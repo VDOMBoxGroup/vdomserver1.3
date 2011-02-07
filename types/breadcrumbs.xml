@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?><Type>
+	<Information>
+		<Name>breadcrumbs</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<Description>#Lang(002)</Description>
+		<ClassName>VDOM_breadcrumbs</ClassName>
+		<ID>8a1650eb-17e5-4944-9e56-0a9817ce1665</ID>
+		<Icon>#Res(3f22be87-b336-4525-81e6-c10fa600c02e)</Icon>
+		<EditorIcon>#Res(0dfa5910-3781-48d0-bfca-3957f74de537)</EditorIcon>
+		<StructureIcon>#Res(750d64e5-d962-41f8-a69a-e1c41b9e54fa)</StructureIcon>
+		<Moveable>1</Moveable>
+		<Resizable>1</Resizable>
+		<Category>Standard</Category>
+		<Dynamic>0</Dynamic>
+		<Version>2</Version>
+		<InterfaceType>1</InterfaceType>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Containers>htmlcontainer,dialog,container,tablecell</Containers>
+		<Container>1</Container>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(301)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(302)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(303)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(304)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(305)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<DefaultValue>300</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(306)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<Help>#Lang(307)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>level</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(308)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+      			<Name>textcolor</Name>
+      			<DisplayName>#Lang(116)</DisplayName>
+      			<DefaultValue/>
+      			<RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+      			<ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      			<Visible>1</Visible>
+      			<Help>#Lang(316)</Help>
+      			<InterfaceType>0</InterfaceType>
+      			<CodeInterface>Color()</CodeInterface>
+      			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+      			<Name>linkcolor</Name>
+      			<DisplayName>#Lang(117)</DisplayName>
+      			<DefaultValue/>
+      			<RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+      			<ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      			<Visible>1</Visible>
+      			<Help>#Lang(317)</Help>
+      			<InterfaceType>0</InterfaceType>
+      			<CodeInterface>Color()</CodeInterface>
+      			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+      			<Name>fontfamily</Name>
+		      	<DisplayName>#Lang(114)</DisplayName>
+      			<DefaultValue>tahoma</DefaultValue>
+      			<RegularExpressionValidation>^(andale mono|arial|arial black|book antiqua|comic sans ms|courier new|georgia|helvetica|impact|symbol|tahoma|terminal|times new roman|times|verdana|webdings|wingdings)$</RegularExpressionValidation>
+      			<ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      			<Visible>1</Visible>
+      			<Help>#Lang(314)</Help>
+      			<InterfaceType>0</InterfaceType>
+      			<CodeInterface>DropDown((#Lang(416)|andale mono)|(#Lang(417)|arial)|(#Lang(418)|arial black)|(#Lang(419)|book antiqua)|(#Lang(420)|comic sans ms)|(#Lang(421)|courier new)|(#Lang(422)|georgia)|(#Lang(423)|helvetica)|(#Lang(424)|impact)|(#Lang(425)|symbol)|(#Lang(426)|tahoma)|(#Lang(427)|terminal)|(#Lang(428)|times new roman)|(#Lang(429)|times)|(#Lang(430)|verdana)|(#Lang(431)|webdings)|(#Lang(432)|wingdings))</CodeInterface>
+      			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+      			<Name>fontsize</Name>
+      			<DisplayName>#Lang(115)</DisplayName>
+      			<DefaultValue>12</DefaultValue>
+      			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+      			<ErrorValidationMessage>#Lang(215)</ErrorValidationMessage>
+      			<Visible>1</Visible>
+      			<Help>#Lang(315)</Help>
+      			<InterfaceType>0</InterfaceType>
+      			<CodeInterface>TextField(2)</CodeInterface>
+      			<Colorgroup>3</Colorgroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Breadcrumbs</Sentence>
+			<Sentence ID="002">Breadcrumbs</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Level</Sentence>
+			<Sentence ID="114">FontFamily</Sentence>
+			<Sentence ID="115">FontSize</Sentence>
+			<Sentence ID="116">Text color</Sentence>
+			<Sentence ID="117">Link color</Sentence>
+			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="203">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="204">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="205">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="206">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="207">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="208">Incorrect value, must be 0-9</Sentence>
+			<Sentence ID="214">Incorrect value</Sentence>
+			<Sentence ID="215">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="216">Incorrect value</Sentence>
+			<Sentence ID="217">Incorrect value</Sentence>
+			<Sentence ID="301">Hierarchy</Sentence>
+			<Sentence ID="302">Visibility</Sentence>
+			<Sentence ID="303">Z-Index</Sentence>
+			<Sentence ID="304">Distance from the top edge of the parent in pixels</Sentence>
+			<Sentence ID="305">Distance from the left edge of the parent in pixels</Sentence>
+			<Sentence ID="306">Weight in pixels</Sentence>
+			<Sentence ID="307">Height in pixels</Sentence>
+			<Sentence ID="308">Application structure level</Sentence>
+			<Sentence ID="314">Font family</Sentence>
+			<Sentence ID="315">Font size</Sentence>
+			<Sentence ID="316">Text color</Sentence>
+			<Sentence ID="317">Link color</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+      <Sentence ID="416">Andale Mono</Sentence>
+      <Sentence ID="417">Arial</Sentence>
+      <Sentence ID="418">Arial Black</Sentence>
+      <Sentence ID="419">Book Antiqua</Sentence>
+      <Sentence ID="420">Comic Sans MS</Sentence>
+      <Sentence ID="421">Courier New</Sentence>
+      <Sentence ID="422">Georgia</Sentence>
+      <Sentence ID="423">Helvetica</Sentence>
+      <Sentence ID="424">Impact</Sentence>
+      <Sentence ID="425">Symbol</Sentence>
+      <Sentence ID="426">Tahoma</Sentence>
+      <Sentence ID="427">Terminal</Sentence>
+      <Sentence ID="428">Times New Roman</Sentence>
+      <Sentence ID="429">Times</Sentence>
+      <Sentence ID="430">Verdana</Sentence>
+      <Sentence ID="431">Webdings</Sentence>
+      <Sentence ID="432">Wingdings</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Меню</Sentence>
+			<Sentence ID="002">Меню</Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Z-Индекс</Sentence>
+			<Sentence ID="104">Верх</Sentence>
+			<Sentence ID="105">Лево</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108">Расположение</Sentence>
+			<Sentence ID="114">Шрифт</Sentence>
+			<Sentence ID="115">Размер шрифта</Sentence>
+			<Sentence ID="116">Цвет текста</Sentence>
+			<Sentence ID="117">Цвет ссылок</Sentence>
+			<Sentence ID="201">Неправильное значение</Sentence>
+			<Sentence ID="202">Неправильное значение, должно быть 0 или 1</Sentence>
+			<Sentence ID="203">Неправильное значение, должна быть строка</Sentence>
+			<Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="208">Неправильное значение, должно быть 0 или 1</Sentence>
+			<Sentence ID="214">Неправильное значение</Sentence>
+			<Sentence ID="215">Неправильное значение</Sentence>
+			<Sentence ID="216">Неправильное значение</Sentence>
+			<Sentence ID="217">Неправильное значение</Sentence>
+			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="302">Отображается объект или нет</Sentence>
+			<Sentence ID="303">Заголовок контейнера</Sentence>
+			<Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="306">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="307">Высота объекта в пикселях</Sentence>
+			<Sentence ID="308">Вид расположения меню</Sentence>
+			<Sentence ID="314">Шрифт</Sentence>
+			<Sentence ID="315">Размер шрифта</Sentence>
+			<Sentence ID="316">Цвет текста</Sentence>
+			<Sentence ID="317">Цвет ссылок</Sentence>
+			<Sentence ID="401">Не отображается</Sentence>
+			<Sentence ID="402">Отображается</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Fil D'Ariane</Sentence>
+			<Sentence ID="002">Fil D'Ariane</Sentence>
+			<Sentence ID="101">Hiérarchie</Sentence>
+			<Sentence ID="102">Visibilité</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106">Largeur</Sentence>
+			<Sentence ID="107">Hauteur</Sentence>
+			<Sentence ID="108">Niveau</Sentence>
+			<Sentence ID="114">Police</Sentence>
+			<Sentence ID="115">Taille</Sentence>
+			<Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="203">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="207">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="208">Valeur Incorrecte, doit être compris entre 0-9</Sentence>
+			<Sentence ID="214">Valeur Incorrecte</Sentence>
+			<Sentence ID="215">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="302">Afficher ou cacher l'objet</Sentence>
+			<Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+			<Sentence ID="305">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+			<Sentence ID="306">Largeur de l'objet en pixels</Sentence>
+			<Sentence ID="307">Hauteur de l'objet en pixels</Sentence>
+			<Sentence ID="308">Niveau de la structure de l'Arborescence</Sentence>
+			<Sentence ID="314">Famille de police</Sentence>
+			<Sentence ID="315">Taille du texte</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+      <Sentence ID="416">Andale Mono</Sentence>
+      <Sentence ID="417">Arial</Sentence>
+      <Sentence ID="418">Arial Black</Sentence>
+      <Sentence ID="419">Book Antiqua</Sentence>
+      <Sentence ID="420">Comic Sans MS</Sentence>
+      <Sentence ID="421">Courier New</Sentence>
+      <Sentence ID="422">Georgia</Sentence>
+      <Sentence ID="423">Helvetica</Sentence>
+      <Sentence ID="424">Impact</Sentence>
+      <Sentence ID="425">Symbol</Sentence>
+      <Sentence ID="426">Tahoma</Sentence>
+      <Sentence ID="427">Terminal</Sentence>
+      <Sentence ID="428">Times New Roman</Sentence>
+      <Sentence ID="429">Times</Sentence>
+      <Sentence ID="430">Verdana</Sentence>
+      <Sentence ID="431">Webdings</Sentence>
+      <Sentence ID="432">Wingdings</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="3f22be87-b336-4525-81e6-c10fa600c02e" Name="Icon" Type="png"><![CDATA[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]]>
+		</Resource>
+		<Resource ID="0dfa5910-3781-48d0-bfca-3957f74de537" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]>
+		</Resource>
+		<Resource ID="750d64e5-d962-41f8-a69a-e1c41b9e54fa" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3pJREFUeNpcU0tsG1UUPfOxPbabOHFMHP/zw05khZq0YVEgVZvUZMkCugiC7mDLrgKhLqgihMSCBSsEQlTikwVIVJGIVCECLXXrNKUlTuxQu3bi+v8dj/+eecPUUivg7e5795yrd885lFiewJND0wRCbUBdKRteMVuyfpkwkz2RMO0OKV/bqv4RvNPbOHggHe7ud5DOSH0M9W8CRk2WGwL1cSRsmc+kbJAlLRiGglrdhc1Zhs7wsHx1I//pB5frH9UEIj7GsE/BGumdeJT77PctH2sepTA1nYFaJYKiaciyiFSaQ3F/wbj62uGHRA753r1YW1VgHebSxWFlsrwUj6nWr20uMKcXU/C9EEI2Q5BNu5DPaxE9cMHh6MA1GcJPP87hwio32xWLA4Fgb5Mi1Qmu1RHvfHPlee/S2SL2IwycdhUm3VHkMhYkj3TYvTeHqWezaLVk5LKjMBlpLC5v4tS5h6doSkXO/bkz5HXYaeTLAloNByi2gCtfrmDvr1kcG2QwbCzB7UlCzT3CuKsMmY2AL3nw1ir3Ni0T4k8knsH4RBYHYTs8MzHs3ncqoALqghZEVOHM8g6CQSNmZppo94pwu5Xev3U4/eLgIttukinIHCRSwvCQEUJD+auriUKphFl3GSOmIvSDIqz2FIp5E5ZWomjUZOyFRHif04/QsgzqiRKqx1vvVwREYqBSixDqBHe3bcobgQwJh3E9CGEVz4h9iWmtjjqS0VEKDlWewGIm0B9r4MzZNGJRvQLwwOkqIfXIDMNQBfd3ptFsqKHXMUhlWlWaYuhf7A6lITkKm72Ao0MHfAtJRMJjMI8RjI4VcTswhWbNg/CeC15vHYmEFpPjIq4H+G1a7jE/nzhZikdjrHKpQoUXcOu3eVhsdUhSF1JPg7njGfA1AUMDRoxZY8qwaVidCXz9XfOLvpUVC5/fD3HrwcAJLPsjiMW0EHgrRkbaComMSkUDu5OHxRrHxtV5rPh5fLV+89tLa/U3nmZBsfL74ZB+LRjw4eRCFs7xBAo5k7IsFizbRTLFIRqexksv53Avsr11/kLpVVEE/78wSW9WS+zlumBwqTRV3Lx+HDpuAKIkYdDQhd31oPvrjcTna58030ulpXqnQ/6bxj4JI5tEkXmd53V+mpYdRNGsUtYU6m3+9voPhe9v3OqGcnlZibOIRpPgHwEGAOySq+MciUisAAAAAElFTkSuQmCC]]>
+		</Resource>
+	</Resources>
+	<SourceCode>
+	<![CDATA[
+
+class VDOM_breadcrumbs(VDOM_object):
+
+	def __mk_ref(self, oid, txt):
+		style = ""
+		if self.linkcolor:
+			style = 'style="color: #%s"' % self.linkcolor
+		return "<a href=\"/%s.vdom\" %s>%s</a>" % (oid, style, txt)
+
+	def render(self,parent, contents=""):
+		if self.visible == "1":
+			font = ""
+			mainstyle="z-index: %s;position: %s;top: %spx;left: %spx; width: %spx; overflow: auto;"%(self.zindex, self.position, self.top, self.left, self.width)
+			mainstyle += " font: %spx %s;" % (self.fontsize, self.fontfamily)
+			if self.textcolor:
+				mainstyle += " color: #%s;" % self.textcolor
+			app = request.application()
+			top = app.search_object(self.id)
+			while top.parent:
+				top = top.parent
+			st = app.app_map
+			lvl = 0
+			try:
+				lvl = int(self.level)
+			except: pass
+			if lvl < 0 or lvl > 9:
+				lvl = 0
+			st_lv = None
+			try:
+				st_lv = st[str(lvl)]
+			except: pass
+
+			oid = top.id
+			result = []
+			while st_lv:
+				if oid not in st_lv.level_map: break
+				if oid != top.id:
+					result.insert(0, self.__mk_ref(oid, app.search_object(oid).attributes.title))
+				else:
+					result.insert(0, app.search_object(oid).attributes.title)
+				if 0 == len(st_lv.level_map[oid].parents): break
+				oid = st_lv.level_map[oid].parents[0].id
+				if oid == top.id: break
+
+			res = ""
+			if 0 == len(result): res = top.attributes.title
+			else: res = " &gt; ".join(result)
+
+			id = 'o_' + (self.id).replace('-', '_')
+			return "<div id=\"%s\" style=\"%s\">%s</div>"%(id, mainstyle, res)
+		else:
+			return ""
+
+	def wysiwyg(self, parent, contents=""):
+		app = request.application()
+		top = app.search_object(self.id)
+		while top.parent:
+			top = top.parent
+		st = app.app_map
+		lvl = 0
+		try:
+			lvl = int(self.level)
+		except: pass
+		if lvl < 0 or lvl > 9:
+			lvl = 0
+		st_lv = None
+		try:
+			st_lv = st[str(lvl)]
+		except: pass
+
+		oid = top.id
+		result = []
+		while st_lv:
+			if oid not in st_lv.level_map: break
+			if oid != top.id:
+				result.insert(0, app.search_object(oid).attributes.title)
+			else:
+				result.insert(0, app.search_object(oid).attributes.title)
+			if 0 == len(st_lv.level_map[oid].parents): break
+			oid = st_lv.level_map[oid].parents[0].id
+			if oid == top.id: break
+
+		res = ""
+		if 0 == len(result): res = top.attributes.title
+		else: res = " &gt; ".join(result)
+
+		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
+				"<text top=\"%s\" left=\"%s\" width=\"%s\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+				"%s</container>"%(
+					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width,
+					0, 0, self.width, self.fontfamily, self.fontsize, res, 
+					contents)
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+	]]>
+	</SourceCode>
+	<Libraries>
+	</Libraries>
+	<E2vdom>
+        <Events>
+            <Userinterfaceevents>
+            </Userinterfaceevents>
+        </Events>
+        <Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="hide">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="Number(0,9999)" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_hide(this.domCont, fade);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="show">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="Number(0,9999)" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_show(this.domCont, fade);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="moveZindexTo">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="Number(0,9999)" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="newZindex"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_moveZindexTo(this.domCont, newZindex);
+                    ]]></Sourcecode>
+                </Action>
+            </Container>
+        </Actions>
+    </E2vdom>
+</Type>
