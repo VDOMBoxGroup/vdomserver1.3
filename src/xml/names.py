@@ -1,0 +1,4 @@
+
+APPLICATION_SECTION="application"
+APPLICATION_ON_START="onstart"
+APPLICATION_ON_FINISH="onfinish"

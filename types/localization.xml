@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?><Type>
+	<Information>
+		<Name>localization</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<Description>#Lang(002)</Description>
+		<ClassName>VDOM_localization</ClassName>
+		<ID>b4d7003d-be29-4459-870c-b1213be8d444</ID>
+		<Icon>#Res(9ff5abe5-baad-4491-8752-2146279a2141)</Icon>
+		<EditorIcon>#Res(a40439a8-e3c5-4ba9-ad3f-daa118104db9)</EditorIcon>
+		<StructureIcon>#Res(8933fb83-460b-494d-8e3d-4f6a757a7b7a)</StructureIcon>
+		<Moveable>0</Moveable>
+		<Resizable>0</Resizable>
+		<Container>3</Container>
+		<RenderType/>
+		<HTTPContentType/>
+		<Category>Standard</Category>
+		<Dynamic>1</Dynamic>
+		<Version>2</Version>
+		<InterfaceType>1</InterfaceType>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Containers/>
+		<Languages>en_US, ru_RU</Languages>
+		<Handlers>set_attr</Handlers>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(301)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(302)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(303)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(304)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(305)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(306)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(307)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>command</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<DefaultValue>nothing</DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(308)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(403)|nothing)|(#Lang(404)|gen_template)|(#Lang(405)|translate))</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>template</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(309)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>Multiline(100000)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>language</Name>
+			<DisplayName>#Lang(110)</DisplayName>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(210)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(310)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(5)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>translation</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(311)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>Multiline(100000)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>texttranslation</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<Visible>0</Visible>
+			<Help>#Lang(312)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>Multiline(100000)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>texttranslationpublic</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(312)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>Multiline(100000)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Localization</Sentence>
+			<Sentence ID="002">Special type for fast application localization</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Command</Sentence>
+			<Sentence ID="109">Template</Sentence>
+			<Sentence ID="110">Language</Sentence>
+			<Sentence ID="111">Translation</Sentence>
+			<Sentence ID="112">Messages</Sentence>
+			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="203">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="204">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="205">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="206">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="207">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="208">Incorrect value</Sentence>
+			<Sentence ID="209">Incorrect value</Sentence>
+			<Sentence ID="210">Incorrect value</Sentence>
+			<Sentence ID="211">Incorrect value</Sentence>
+			<Sentence ID="301">Hierarchy</Sentence>
+			<Sentence ID="302">Visibility</Sentence>
+			<Sentence ID="303">Z-Index</Sentence>
+			<Sentence ID="304">Distance from the top edge of the parent in pixels</Sentence>
+			<Sentence ID="305">Distance from the left edge of the parent in pixels</Sentence>
+			<Sentence ID="306">Weight in pixels</Sentence>
+			<Sentence ID="307">Height in pixels</Sentence>
+			<Sentence ID="308">Localization command</Sentence>
+			<Sentence ID="309">Language template</Sentence>
+			<Sentence ID="310">Language of translation</Sentence>
+			<Sentence ID="411">Translation of template</Sentence>
+			<Sentence ID="412">Translation of messages for scripts</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">Nothing</Sentence>
+			<Sentence ID="404">Generate template</Sentence>
+			<Sentence ID="405">Translate</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Локализация</Sentence>
+			<Sentence ID="002">Специальный тип для быстрой локализации приложений</Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Z-Индекс</Sentence>
+			<Sentence ID="104">Верх</Sentence>
+			<Sentence ID="105">Лево</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108">Комманда</Sentence>
+			<Sentence ID="109">Шаблон</Sentence>
+			<Sentence ID="110">Язык</Sentence>
+			<Sentence ID="111">Перевод</Sentence>
+			<Sentence ID="112">Сообщения</Sentence>
+			<Sentence ID="201">Неправильное значение</Sentence>
+			<Sentence ID="202">Неправильное значение</Sentence>
+			<Sentence ID="203">Неправильное значение, должна быть строка</Sentence>
+			<Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="208">Неправильное значение</Sentence>
+			<Sentence ID="209">Неправильное значение</Sentence>
+			<Sentence ID="210">Неправильное значение</Sentence>
+			<Sentence ID="211">Неправильное значение</Sentence>
+			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="302">Отображается объект или нет</Sentence>
+			<Sentence ID="303">Заголовок контейнера</Sentence>
+			<Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="306">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="307">Высота объекта в пикселях</Sentence>
+			<Sentence ID="308">Комманда локализации</Sentence>
+			<Sentence ID="309">Языковой шаблон</Sentence>
+			<Sentence ID="310">Язык перевода</Sentence>
+			<Sentence ID="311">Перевод шаблона</Sentence>
+			<Sentence ID="311">Перевод сообщений для скриптов</Sentence>
+			<Sentence ID="401">Не отображается</Sentence>
+			<Sentence ID="402">Отображается</Sentence>
+			<Sentence ID="403">Ничего</Sentence>
+			<Sentence ID="404">Сгенерировать шаблон</Sentence>
+			<Sentence ID="404">Перевести шаблон</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="9ff5abe5-baad-4491-8752-2146279a2141" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+		<Resource ID="a40439a8-e3c5-4ba9-ad3f-daa118104db9" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAFqlJREFUeNrkWwd0XNWZ/t70rtFII9mSjCTLSJbkItkSyEW2DAhCCRZJHJKQBAiQLeEsTmM3JBAnWQ5JNjk4ZzfLBs7hOCTZBJIQBwIpYFuAwUUusrBccJNsq1plennT9v/vezMaSe52NnvOPrh+o9HMe/d731++/79XUiqVwv+HQ8f/SJJ01S+8YMGCUjrVZQ3neT7eTqOHRmdXV9e+vwZQiRm9WkAJ3EI63UejjUZZIh5HIp5AKplEksZZJ0D31mi1NDTQ6nT8s4fe3siDQP/+/wxQApejAltH1yqLyzLisTj0NGmj0SiGpJFgMBjO+v24+jDkmIxoNIoYfVfSaKAz6KHVahn0ehobCHTv3wwogXyEARJzzrgcg5YmaLFaYDaboaHXl3uEQ2GEw2FECDgD1isPiQGvI8De/zWgBHAl35jMsS5Kk2L2HA4HjCbjZQEzmtywO8sx3L990gNitn1enwBtMJug0+s9Ktgf/dWBEshv0nfWxaJkomSmLpcLZov5stnj+y9o/BzKymfj8OHDOHbgNTL9sUlzkuk+Xo8XMQJutAhrYR++71LYvWigqi9uTCQSLTKxaDAaBMgrMVG+t7uoCUua70AwSD4qJ+D1hnH04BaEPHtEgMo+mF2fzyfAErscpdsuNkprLpJFThXtMVluiQSCMJlMyM/PvyKQfBhM+Vi4+BYKQgkKQgnyzZg4M3hb4RokpXxk53lHjgO5rlywu0TDkTKeE81t9VUBqqaMTgJZJ4cjsFgscOW5rjjcM4DZVa300HRkmnEBNhqNkT/G4A9GIcdNCEsrEMUCJJLazPesVqsAy25DgDk3b6Q53ntFQFVz3UAgnVcbZF7hIlRcW4NIJEZACSSBDUdp0M8ROgdDUWHO3nApfPEWRGLODLsZsLGYYJfnqBJy2Yy2p5mknAZnrvPqyDG9A7ULb0IikaT8mSQmiVEGTAGOgbIJBwIyiYwUfSaFUMQIj7wUY6E6isSaDFgTReIssO2qi10aUPrS0xR4BEg+rjTwZLM5p+Z28jc7TTqGWYWjBCaK2jn9qJk9gBjl40Q8iDg9BCaQP8+AZTmJSKIYI5FVCERc4n0xJyKAwcaiUaeqqC4eKDs4XWhtNBhS8hwrnMvMkVNB2nOrUVlVq7BIfmkzBUloRNB50Ibd3TYUukbx92v2QiMlFZA00ibLCiqZ0iM3vwIf/dgaPPnUU3jh5z8Tv5cjUTAxTNBFpRfVLzsjwZDQqnzk5eVdUa7M3ExjwNJV/wS7w4rrak9iW6cdJ/sAfyAqRoCGz+cnbRxHgStIQUmHgRED7DYDmhpK0XpjFZZcV4bioskuVD7rGuFajMNst/G5hdLOW9OqlynHWgKYASm+fJkgJUjIro7Kqm6jIJKDEAWaD06YMU46JyKYjYug5PdHwO6WIv1/+w0GFF8zF0WlTWhqLDvvfVpvvhmbN20SzLKQMZiM6+jtVecEqjrzurRfKvLMeEnAGJQAJs7qu3Q2W8tQVV1PwGLId/pwekiHcV9SAAyFo+T/Kdx8UyUa62fhxlVVcNhNF33fpiVN2PTmm+K+MUUft3DKIVZ/ei5G11KUnVRSGfSGC4OjIJUGKKkABZuSwimb7PyG1SK4yOSXriJSON4UyktnoaI8D42LSzFntvuyXaL1llvwr9/+TsZyYuSvpJ7W0sufTvNR1Td7wv6AMxvo2fwzm7lskJpJYCeAuktWomb+9UIMhCh1xOMy7vrIIsyfOwN2q+Gq1MPNS5ZiYGAg87PFYZ/kq9mMtlHUck4tkKemFI2kyYDTpM/SdFY1KlCdsQCV1Y1KlJUVf0zGR/Ha5g/wzu4+FBXYsHBuIeaUUXFg1J71nhc65CNHsbKsHL/KAqr6KjcBpgON0y/PmYckTYZBnogmDVT8zOA0k1iFeM+AOdW3KL5DGpbNln3UHzBgnCqUEr0eI0fOoPPQEEDP9w7bEOrz6OFUV8O0YD50Ssdh2lyS/gBCW99FtHMfInv3IUEAK2lkZxCWiASUGwL3Z4CmuwSceKcexDLlOe00gNkgs1nOBmt21MBdUEDmqlQmkQhLPB5JhAMeON25JO3iQv3IchSuaD9Aqim+fQf8722DNHMGDBUVMMyrRXx/N2QCFnrnXcSOHOOsDKj5NUXzruMcS9bIaSads9lCWRNwSybNaAsDmsYiTZ4vJXo69FqbAZc9FDYnzhOA5fBRdHcZMHMWSbeYwiYLdwYcDIYxNh4GGTJipILs4VHMypMhaX3QFmgQ66UgODSMeHAI0Xf+jHB3L+J9A0iMj0Mr4oQKlP8n9qyUDhfQPLuzmaf3CHgLvcwArUuqeTMbJNeDHIW13LjSKA2sCYDaDJvZ7PIUBGgVcCp6CL0f9ENnqScQFkolMZFSvJ4oDEM0aSvp1XgSjfFBpIJJGG4OoeMMKTFiqDIWRTLB1mSGhUwZNBJ+H6LHThDofsRHxwToZDjMpocmmstBvSaTNVhJ6Y2iA4kJRuMTjGrTDNKZv8RgtDqtCk6TYTfNNANyu91oXrECzStX4EdPr8cg+UyaWaMUJUa3km+WkIleQ2xSGUZe4hnxQopSkifN25wzgrgP2LNbwntn5pMWdmHk+F405dADqdQQMIOYrtZEoOuoUFlUh8TYOCJHjyG8ey+VckksTEqZIMnzVkVPSzbQMm5Jpj/EALQqUB6RSAQ5JqfSkkyzqVUANjQ0CnANDQ2ZB3Uz5bX//vnPs8yYXI8Cj9k8CnPIi6B/ppDZIV8Iks4Md3Ic5fIY9g0Y8ZZ+OWaW5tJnDeidXQ8c3onrZfqcJkaf1SHFAUpHQVNLoK02WBfVw1QxG/GBQVRR9J0z2I/jYUWjM1jRqiEhNAGU3tBkgcsekWgEudyCpIvzZwoKC7Bi5UoxmMmpR0PDYmz83ctkkglFPIh8qgDOM0jIsfXhRL8Dx0+ZQIIIS1KD2D8awV+ubabIHEOVwyDcLzfXioH5S9Fx4G3Up7zQkniRdHoBWNIroFNstvRhnTsfzpISbAgG8bk/vIqjwYACloOpTlemy/bJs4FMm2yELnjDTTdiRUsLGhsbz5vXLFQrLlxYB27nZHKrUEqK2GB2q2fLmJEfROcpHYrlM/iJaT4aZ7nwwAOt9PCceOaZP2F8PCQAdxc1QN/bgdrQGWi59alnoHolEJE4ZtBg8JQeB0ZH0RONZKJvOt3oJgefyQD5XFxcjNtuvwO33n4bZs6cecHkHaSIuvvoKA7FZxOkLgFKybFZMl9SskNBPkXksUFss1bjscc+jsWLr81c58MfbsArr+wSHw5TejpwbROG9m3DqvBpAqtHiuNHIEABTst+QWAN0FAhvrWnR9xzIouIOzp12QEo7ZcMeDH53Cc++SmsbFl5UeqkdziAP+7ux47DZ+AJksyj3Fiiz4dbH5rGavrgzry72Y2KuvJJIPkoKclHXV0Z2tsPCIVlNBngXbwcv+vYjjYvvef3i4clEWiwSTP4sBFbPGNCaGRSjEiQqJsENMeZgzvb2vCpe+5BUVHRRQF8e/8QXtvVh2MDfsiUJmI0ojS4/2OM5yFfH4TBYKTAkBATiyfiFHljGAt44ckh3/KHcMivx96ho6gvnDPp2nX0ABhohFKS2RQTTJmWL8fGjSO4te8wdMSgRNeWyJzZlIeJqNMqlonuoTi3T5guRdEvf/WrWN3WdkFwg5ToGdzWA8PwBGQFYILBkSggYZBug/RqS3DPobewjdzqaCQs2qQ6mlBOTg5cDicq8/KJGD8OUr785cHNqHKVwKKfKM8sFiPuuus6PP/8FrhcVmH+p06P4bOti6B//TQih/dTniSgRgJqNqODMBgJNHf4U+p/3Jea5KMsCF785a/OC/TPe/rxOgnx3UdGBTCTXivEBLPHLHJvRxErynm+txcGj4yHU368nIxjsyMh+jzpIMFpi8Gnzoyj3zCKN3v24M5rl066Z3V1CVVQVgwP++AdGsWXVteibPlNCGrj4PWJ8EGKA+QCEpVm7xXkidjCbKagCKd4Uhav00A7ScnUnTh+XCwLVFVVTWLvN+/14vWOPjI3WXTtZEobQW5NEoOsglw2I7ipzhe2xCNoHe7C6v6dKIx6IVNEDNMvP0JmtdgbxG8pPcgWS6bpZTBo6SFRXiTR8PKRrVhaUot8c84ksHffvQzr1r2Ex26pgPMvr0O262D91MfYRkXKCe3fQw9Kh0HyY63aUFOAkmUp8r0zDbRH0kh17AO/fvFFfOOJJwR7fyT2dhF7UW5JEjg+h7jtQebJQjzdpQuE42iJ9KLNfwitnoMZsc2HnpgP0Q3NBLSUIuEjgyPYTD76/pzZYtWNlxM1IxFECqPQkVU93/UnPHr93ZN7QuWFeGp1BdyL5iM1vxz+Z5/nFShYP34XCQkKnvTw3h04DqNRaX+m1IaaGnk9vEaTYTSZSrWxE2/fvh23P/46RsNShr0QMRem6oNfMwalMwfYYmHcOdCBT598B0UkykV5RA9LY7VAMpmUIKF8AXGuTem1ltTKTeM+lL5/EJuuW6T0Z7UGDJOfsvt0DB7Gzv5DuK5o7iSwha3NGFr7Lyj4+qOwf/5zClj24zV3ikj+obffxfueQQTIdLM7h4wt20fbGT2nFe6rjh3vgt9eLcxzKns0ZzSMHxMAV9PIsJc+cytGVutaVi4EOEG+zBNwcLJXdegWBwn8UEiwmvSEcDJvHBZiJNdkwzOdr6AmvxQ2w0RnQ2u3w7amDaPffBK5//wl2P/hIfj/8zkkx73CjKtyHHj0jc347sAJBDjqJjlAxtPbBhSg3G4gPegRiZXTzHgHTmoqRKo4H3s4x0YPTuZxAjTUWA//8DAMPb2YRWwlFNGLLpcOcvUMEEmw20lx5Vhwz84ggjEKTjoDTvnO4NWj2/DJmhsmXdfxoVYq3yhWPPoN5H7r67B/4fPw/8dz4nfm22+G7tQpSIO97LoKUEXUb5zaYdgYleX7eH3FppWRExvAUKoAlf4+AW7Vmf2wx0LnBsi1K93BS/44RCPnx+tRuaJZ9Jx86/8d4z94WiT+kBFwP1qIb38ol/yTFRPPSofkdqo26HsBOQyDRocXut/A9UXVmO2crMZyPns3fGR148wsg334IQQ2/AL+wQF8f88OJI16aHmZIir2TfSklxWzmzMbQ5TrWB3pyLnn+3bjxV3r8dL2H+JOiqB2OagWulNAknnGaJwk89yPBIboPMtmxTy6RgGBZJXi+soXcU3HuzAsX4YzrXpULXPCoE8J3aLIGxuqnYpfhSkCh+NRROj83L7Xpq/bkKlb7v0EbPd+GmOPfwtJKtV0D34GP3xri/q8FW0eCAWRvUSRAcrtBvLTnjDlJA5KOksIxZHhs4Nj9sgE/QVuHF/ehGM1lTDbragyW1BJAE10jfA7W8XnMtF31izEv/sQZj7ghMup5iKkwUq4t2swE0T8xCqnnN1DR7CJcuu0rQB2GzRLG+F44H4MPPld/OC5Z0ll2TM6nT0kEAym9z2cde1lvdfnEwLfSGpjl9slctVU9gYXzkPfF7+A1IZnUXvHbVhA5VE+BS09FN8wkU7OX/e46DJkVqt9Q+j94AmUXaOfAJhKKNFRMuNGZxwLe730LkV6EhcB8lcG+5N9fxDmPHXLTrLnFOS51+KF6gqMk7hXQCpNAY/XB3X7Tu+5gG4IR8KeINGupdpzV9k1Ii0we15KGR8UFaKnZRmKHv8arv/yFzGvphqxn/0C0R071WZVkioIM5xrH0b0wEEKHCczDbYDnd9DTeUIxyJ+Rx1pRuPQkEV87dVjmRzIgYnNeCzsJ3m4ZRqrtuYmvEx1p580dLojwibLx+j42CQ2pwFVNz+sHRhkM0pins2G0YoyHFlYC2/rKlQtacI8ynv6H/8Xgs89j+juvTDU1ormlG7GDNg/8XFYbmiB9cYbYFywQKkT6TjVu5kEw8/IZCXBYsY3xTkpHpC5xgX3eAT3vX1aSfZqYGJf/e0Hb+O4Z2Aa2Fs/++lMHysNtm+gn4PQhqmLTGfdrEGpZktN4YyW7y2sh5aAaXghmPwuSVV7MhBEyudHgsyFJ+j8u8/DuKgOhqpK4XfcetSYJoS53z+M3e/cgMaFI+QONnq0+WTSTrozyTzJgdhJeh23IrxzFMNP/B4Rix4PPrgAw7lm0avivJpjtKKJIvBTKx/MXLfv9Gm8+sor6KXUxT0nzv8joyPYf+AAp8m6qRuwdOfQ72u7BwfaXzKZnWsq5sBC5pigqj1FwplbF8kIvw4jMTqGkcceh6X1Rrh/+H1oKWlLWT7NJnuk+8co955BYhuZ/3GqGUMGpAJUGHup6qBKRWPVQbJSgg87RDCykZx8+I1efGNNlWhpMqtGrV4Eps29e7GkYC42v/EmOnZ1KE07ul+CzJfHQdLpPPez7TI75/YbXo0iU9jQWrcIbST9ZlM5lCQmk+TozCx34LiNAW4t0k0kmx0FT/8brLfeMlGMk+8e/PBdmEM1I6suia6hdedB48iBhmpfjcNOvukQkpGD3tgLv4CWLYVM8JHP1KCrLEeAcRgscJnsKA3bsESeiVAwhBivcpPLyOrYvnMHxj0eNtn7L2lpn5fc2NbfO3IYv3Y58RsCE2Ym6QZJApjipUWhY6lCIF2Y9HoxeP9DGLjvQWLLK0qwfV/+Kkq5oZZWTEk1yvLDYcGdVAKYOHOETncG6DMcmKzELkkKWBI61PdZcV2oQNxL8UdJ7DHk8X73fgbJmnbtZW+oImZ/53A42lYsb4aJJtrcfRilx08obCaUnZti4lm5VqKa8xhFbMeuPcjnphWDYJPmoEG5V+NwQCsYJTZJw0okMLROJ8ZfpvxO106nspdaKnBkRRNaDHMyzfQ0g9GoyuSO7eg9eZL9sux8O8kuZtnqPp/P17n13a1c8mPHsia0r1gKmSbHC0nTxAQBGqLwHiKzdWk0E4Ij/TnWnyqjKbXvyoym6H0NBT7O9klui9RWo6Z5DVYXLBYVjtIj1mQWs3jsJD9VQbZcaLvcBYHyBWjUe7zeDZs2b0GQ/DNYU4M377kbpypmi97qpG2pBPRkTBYKafrFU6oFqJaQSqp7GzQiiOncbnjd+eh55B8R/MpaWMrLMnsTMgvMvKZD7tP+VjtOnDjRqUbYC26Tu6RNj7zhkQrldcuWLsW82nnCnGxd+1G5qR12j1ewsUeOooT8siC9zsrX1iqrcWy6GjZTNl8rpZp8F+SCQsgk30KU7IN0vXjDYrF/SKZ0FlWHHE2bbBR9ff34w+uvIRAIXNLGx8vZ3cn9z43FxcXO2269Fe58NxIkG/P/9BfY3u/G5poqfHTv+yJvCVlAZpcgZlA0A1JxMSzzaoV/SqSqlHZKUmiHmKg4oor/ydFpQH1+n2gKbKOhppBL2sp6uft1uanDOz/WNi9fjmVLl4nl/wSnHr8fTl5tpiJbt6he+BeXfnYKOrzxQ2loSwIggxNMRdMBJpphLgOSft65s0OYqtfrbVdZvOTd2Fe6A5v33603mUwtNdXVWNnSgvKyMtHHZaBTh44kYXoVm4FyW5K3pctZ0TQNdJBk6HvbtqGjowMej6dHZfGy99hflT8eSG/b4VVzNum6ujrUVNdg3rx5AiCzyINBplfY0s0rBiuSP42jR4+iu7sbhw4dxL6urnQ9uX6qbv2b/5VEenud+scEvC5ZVj23Wqy+FRYWZvZBpNdeuHCgoIITlDt7enu4h+RRezzpv5LwXq15XXWgZ/Hls/3dC7/2ZO8i5Zbrlf4lxPmO/xFgAAyDtjZZsAuLAAAAAElFTkSuQmCC]]></Resource>
+		<Resource ID="8933fb83-460b-494d-8e3d-4f6a757a7b7a" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAFqlJREFUeNrkWwd0XNWZ/t70rtFII9mSjCTLSJbkItkSyEW2DAhCCRZJHJKQBAiQLeEsTmM3JBAnWQ5JNjk4ZzfLBs7hOCTZBJIQBwIpYFuAwUUusrBccJNsq1plennT9v/vezMaSe52NnvOPrh+o9HMe/d731++/79XUiqVwv+HQ8f/SJJ01S+8YMGCUjrVZQ3neT7eTqOHRmdXV9e+vwZQiRm9WkAJ3EI63UejjUZZIh5HIp5AKplEksZZJ0D31mi1NDTQ6nT8s4fe3siDQP/+/wxQApejAltH1yqLyzLisTj0NGmj0SiGpJFgMBjO+v24+jDkmIxoNIoYfVfSaKAz6KHVahn0ehobCHTv3wwogXyEARJzzrgcg5YmaLFaYDaboaHXl3uEQ2GEw2FECDgD1isPiQGvI8De/zWgBHAl35jMsS5Kk2L2HA4HjCbjZQEzmtywO8sx3L990gNitn1enwBtMJug0+s9Ktgf/dWBEshv0nfWxaJkomSmLpcLZov5stnj+y9o/BzKymfj8OHDOHbgNTL9sUlzkuk+Xo8XMQJutAhrYR++71LYvWigqi9uTCQSLTKxaDAaBMgrMVG+t7uoCUua70AwSD4qJ+D1hnH04BaEPHtEgMo+mF2fzyfAErscpdsuNkprLpJFThXtMVluiQSCMJlMyM/PvyKQfBhM+Vi4+BYKQgkKQgnyzZg4M3hb4RokpXxk53lHjgO5rlywu0TDkTKeE81t9VUBqqaMTgJZJ4cjsFgscOW5rjjcM4DZVa300HRkmnEBNhqNkT/G4A9GIcdNCEsrEMUCJJLazPesVqsAy25DgDk3b6Q53ntFQFVz3UAgnVcbZF7hIlRcW4NIJEZACSSBDUdp0M8ROgdDUWHO3nApfPEWRGLODLsZsLGYYJfnqBJy2Yy2p5mknAZnrvPqyDG9A7ULb0IikaT8mSQmiVEGTAGOgbIJBwIyiYwUfSaFUMQIj7wUY6E6isSaDFgTReIssO2qi10aUPrS0xR4BEg+rjTwZLM5p+Z28jc7TTqGWYWjBCaK2jn9qJk9gBjl40Q8iDg9BCaQP8+AZTmJSKIYI5FVCERc4n0xJyKAwcaiUaeqqC4eKDs4XWhtNBhS8hwrnMvMkVNB2nOrUVlVq7BIfmkzBUloRNB50Ibd3TYUukbx92v2QiMlFZA00ibLCiqZ0iM3vwIf/dgaPPnUU3jh5z8Tv5cjUTAxTNBFpRfVLzsjwZDQqnzk5eVdUa7M3ExjwNJV/wS7w4rrak9iW6cdJ/sAfyAqRoCGz+cnbRxHgStIQUmHgRED7DYDmhpK0XpjFZZcV4bioskuVD7rGuFajMNst/G5hdLOW9OqlynHWgKYASm+fJkgJUjIro7Kqm6jIJKDEAWaD06YMU46JyKYjYug5PdHwO6WIv1/+w0GFF8zF0WlTWhqLDvvfVpvvhmbN20SzLKQMZiM6+jtVecEqjrzurRfKvLMeEnAGJQAJs7qu3Q2W8tQVV1PwGLId/pwekiHcV9SAAyFo+T/Kdx8UyUa62fhxlVVcNhNF33fpiVN2PTmm+K+MUUft3DKIVZ/ei5G11KUnVRSGfSGC4OjIJUGKKkABZuSwimb7PyG1SK4yOSXriJSON4UyktnoaI8D42LSzFntvuyXaL1llvwr9/+TsZyYuSvpJ7W0sufTvNR1Td7wv6AMxvo2fwzm7lskJpJYCeAuktWomb+9UIMhCh1xOMy7vrIIsyfOwN2q+Gq1MPNS5ZiYGAg87PFYZ/kq9mMtlHUck4tkKemFI2kyYDTpM/SdFY1KlCdsQCV1Y1KlJUVf0zGR/Ha5g/wzu4+FBXYsHBuIeaUUXFg1J71nhc65CNHsbKsHL/KAqr6KjcBpgON0y/PmYckTYZBnogmDVT8zOA0k1iFeM+AOdW3KL5DGpbNln3UHzBgnCqUEr0eI0fOoPPQEEDP9w7bEOrz6OFUV8O0YD50Ssdh2lyS/gBCW99FtHMfInv3IUEAK2lkZxCWiASUGwL3Z4CmuwSceKcexDLlOe00gNkgs1nOBmt21MBdUEDmqlQmkQhLPB5JhAMeON25JO3iQv3IchSuaD9Aqim+fQf8722DNHMGDBUVMMyrRXx/N2QCFnrnXcSOHOOsDKj5NUXzruMcS9bIaSads9lCWRNwSybNaAsDmsYiTZ4vJXo69FqbAZc9FDYnzhOA5fBRdHcZMHMWSbeYwiYLdwYcDIYxNh4GGTJipILs4VHMypMhaX3QFmgQ66UgODSMeHAI0Xf+jHB3L+J9A0iMj0Mr4oQKlP8n9qyUDhfQPLuzmaf3CHgLvcwArUuqeTMbJNeDHIW13LjSKA2sCYDaDJvZ7PIUBGgVcCp6CL0f9ENnqScQFkolMZFSvJ4oDEM0aSvp1XgSjfFBpIJJGG4OoeMMKTFiqDIWRTLB1mSGhUwZNBJ+H6LHThDofsRHxwToZDjMpocmmstBvSaTNVhJ6Y2iA4kJRuMTjGrTDNKZv8RgtDqtCk6TYTfNNANyu91oXrECzStX4EdPr8cg+UyaWaMUJUa3km+WkIleQ2xSGUZe4hnxQopSkifN25wzgrgP2LNbwntn5pMWdmHk+F405dADqdQQMIOYrtZEoOuoUFlUh8TYOCJHjyG8ey+VckksTEqZIMnzVkVPSzbQMm5Jpj/EALQqUB6RSAQ5JqfSkkyzqVUANjQ0CnANDQ2ZB3Uz5bX//vnPs8yYXI8Cj9k8CnPIi6B/ppDZIV8Iks4Md3Ic5fIY9g0Y8ZZ+OWaW5tJnDeidXQ8c3onrZfqcJkaf1SHFAUpHQVNLoK02WBfVw1QxG/GBQVRR9J0z2I/jYUWjM1jRqiEhNAGU3tBkgcsekWgEudyCpIvzZwoKC7Bi5UoxmMmpR0PDYmz83ctkkglFPIh8qgDOM0jIsfXhRL8Dx0+ZQIIIS1KD2D8awV+ubabIHEOVwyDcLzfXioH5S9Fx4G3Up7zQkniRdHoBWNIroFNstvRhnTsfzpISbAgG8bk/vIqjwYACloOpTlemy/bJs4FMm2yELnjDTTdiRUsLGhsbz5vXLFQrLlxYB27nZHKrUEqK2GB2q2fLmJEfROcpHYrlM/iJaT4aZ7nwwAOt9PCceOaZP2F8PCQAdxc1QN/bgdrQGWi59alnoHolEJE4ZtBg8JQeB0ZH0RONZKJvOt3oJgefyQD5XFxcjNtuvwO33n4bZs6cecHkHaSIuvvoKA7FZxOkLgFKybFZMl9SskNBPkXksUFss1bjscc+jsWLr81c58MfbsArr+wSHw5TejpwbROG9m3DqvBpAqtHiuNHIEABTst+QWAN0FAhvrWnR9xzIouIOzp12QEo7ZcMeDH53Cc++SmsbFl5UeqkdziAP+7ux47DZ+AJksyj3Fiiz4dbH5rGavrgzry72Y2KuvJJIPkoKclHXV0Z2tsPCIVlNBngXbwcv+vYjjYvvef3i4clEWiwSTP4sBFbPGNCaGRSjEiQqJsENMeZgzvb2vCpe+5BUVHRRQF8e/8QXtvVh2MDfsiUJmI0ojS4/2OM5yFfH4TBYKTAkBATiyfiFHljGAt44ckh3/KHcMivx96ho6gvnDPp2nX0ABhohFKS2RQTTJmWL8fGjSO4te8wdMSgRNeWyJzZlIeJqNMqlonuoTi3T5guRdEvf/WrWN3WdkFwg5ToGdzWA8PwBGQFYILBkSggYZBug/RqS3DPobewjdzqaCQs2qQ6mlBOTg5cDicq8/KJGD8OUr785cHNqHKVwKKfKM8sFiPuuus6PP/8FrhcVmH+p06P4bOti6B//TQih/dTniSgRgJqNqODMBgJNHf4U+p/3Jea5KMsCF785a/OC/TPe/rxOgnx3UdGBTCTXivEBLPHLHJvRxErynm+txcGj4yHU368nIxjsyMh+jzpIMFpi8Gnzoyj3zCKN3v24M5rl066Z3V1CVVQVgwP++AdGsWXVteibPlNCGrj4PWJ8EGKA+QCEpVm7xXkidjCbKagCKd4Uhav00A7ScnUnTh+XCwLVFVVTWLvN+/14vWOPjI3WXTtZEobQW5NEoOsglw2I7ipzhe2xCNoHe7C6v6dKIx6IVNEDNMvP0JmtdgbxG8pPcgWS6bpZTBo6SFRXiTR8PKRrVhaUot8c84ksHffvQzr1r2Ex26pgPMvr0O262D91MfYRkXKCe3fQw9Kh0HyY63aUFOAkmUp8r0zDbRH0kh17AO/fvFFfOOJJwR7fyT2dhF7UW5JEjg+h7jtQebJQjzdpQuE42iJ9KLNfwitnoMZsc2HnpgP0Q3NBLSUIuEjgyPYTD76/pzZYtWNlxM1IxFECqPQkVU93/UnPHr93ZN7QuWFeGp1BdyL5iM1vxz+Z5/nFShYP34XCQkKnvTw3h04DqNRaX+m1IaaGnk9vEaTYTSZSrWxE2/fvh23P/46RsNShr0QMRem6oNfMwalMwfYYmHcOdCBT598B0UkykV5RA9LY7VAMpmUIKF8AXGuTem1ltTKTeM+lL5/EJuuW6T0Z7UGDJOfsvt0DB7Gzv5DuK5o7iSwha3NGFr7Lyj4+qOwf/5zClj24zV3ikj+obffxfueQQTIdLM7h4wt20fbGT2nFe6rjh3vgt9eLcxzKns0ZzSMHxMAV9PIsJc+cytGVutaVi4EOEG+zBNwcLJXdegWBwn8UEiwmvSEcDJvHBZiJNdkwzOdr6AmvxQ2w0RnQ2u3w7amDaPffBK5//wl2P/hIfj/8zkkx73CjKtyHHj0jc347sAJBDjqJjlAxtPbBhSg3G4gPegRiZXTzHgHTmoqRKo4H3s4x0YPTuZxAjTUWA//8DAMPb2YRWwlFNGLLpcOcvUMEEmw20lx5Vhwz84ggjEKTjoDTvnO4NWj2/DJmhsmXdfxoVYq3yhWPPoN5H7r67B/4fPw/8dz4nfm22+G7tQpSIO97LoKUEXUb5zaYdgYleX7eH3FppWRExvAUKoAlf4+AW7Vmf2wx0LnBsi1K93BS/44RCPnx+tRuaJZ9Jx86/8d4z94WiT+kBFwP1qIb38ol/yTFRPPSofkdqo26HsBOQyDRocXut/A9UXVmO2crMZyPns3fGR148wsg334IQQ2/AL+wQF8f88OJI16aHmZIir2TfSklxWzmzMbQ5TrWB3pyLnn+3bjxV3r8dL2H+JOiqB2OagWulNAknnGaJwk89yPBIboPMtmxTy6RgGBZJXi+soXcU3HuzAsX4YzrXpULXPCoE8J3aLIGxuqnYpfhSkCh+NRROj83L7Xpq/bkKlb7v0EbPd+GmOPfwtJKtV0D34GP3xri/q8FW0eCAWRvUSRAcrtBvLTnjDlJA5KOksIxZHhs4Nj9sgE/QVuHF/ehGM1lTDbragyW1BJAE10jfA7W8XnMtF31izEv/sQZj7ghMup5iKkwUq4t2swE0T8xCqnnN1DR7CJcuu0rQB2GzRLG+F44H4MPPld/OC5Z0ll2TM6nT0kEAym9z2cde1lvdfnEwLfSGpjl9slctVU9gYXzkPfF7+A1IZnUXvHbVhA5VE+BS09FN8wkU7OX/e46DJkVqt9Q+j94AmUXaOfAJhKKNFRMuNGZxwLe730LkV6EhcB8lcG+5N9fxDmPHXLTrLnFOS51+KF6gqMk7hXQCpNAY/XB3X7Tu+5gG4IR8KeINGupdpzV9k1Ii0we15KGR8UFaKnZRmKHv8arv/yFzGvphqxn/0C0R071WZVkioIM5xrH0b0wEEKHCczDbYDnd9DTeUIxyJ+Rx1pRuPQkEV87dVjmRzIgYnNeCzsJ3m4ZRqrtuYmvEx1p580dLojwibLx+j42CQ2pwFVNz+sHRhkM0pins2G0YoyHFlYC2/rKlQtacI8ynv6H/8Xgs89j+juvTDU1ormlG7GDNg/8XFYbmiB9cYbYFywQKkT6TjVu5kEw8/IZCXBYsY3xTkpHpC5xgX3eAT3vX1aSfZqYGJf/e0Hb+O4Z2Aa2Fs/++lMHysNtm+gn4PQhqmLTGfdrEGpZktN4YyW7y2sh5aAaXghmPwuSVV7MhBEyudHgsyFJ+j8u8/DuKgOhqpK4XfcetSYJoS53z+M3e/cgMaFI+QONnq0+WTSTrozyTzJgdhJeh23IrxzFMNP/B4Rix4PPrgAw7lm0avivJpjtKKJIvBTKx/MXLfv9Gm8+sor6KXUxT0nzv8joyPYf+AAp8m6qRuwdOfQ72u7BwfaXzKZnWsq5sBC5pigqj1FwplbF8kIvw4jMTqGkcceh6X1Rrh/+H1oKWlLWT7NJnuk+8co955BYhuZ/3GqGUMGpAJUGHup6qBKRWPVQbJSgg87RDCykZx8+I1efGNNlWhpMqtGrV4Eps29e7GkYC42v/EmOnZ1KE07ul+CzJfHQdLpPPez7TI75/YbXo0iU9jQWrcIbST9ZlM5lCQmk+TozCx34LiNAW4t0k0kmx0FT/8brLfeMlGMk+8e/PBdmEM1I6suia6hdedB48iBhmpfjcNOvukQkpGD3tgLv4CWLYVM8JHP1KCrLEeAcRgscJnsKA3bsESeiVAwhBivcpPLyOrYvnMHxj0eNtn7L2lpn5fc2NbfO3IYv3Y58RsCE2Ym6QZJApjipUWhY6lCIF2Y9HoxeP9DGLjvQWLLK0qwfV/+Kkq5oZZWTEk1yvLDYcGdVAKYOHOETncG6DMcmKzELkkKWBI61PdZcV2oQNxL8UdJ7DHk8X73fgbJmnbtZW+oImZ/53A42lYsb4aJJtrcfRilx08obCaUnZti4lm5VqKa8xhFbMeuPcjnphWDYJPmoEG5V+NwQCsYJTZJw0okMLROJ8ZfpvxO106nspdaKnBkRRNaDHMyzfQ0g9GoyuSO7eg9eZL9sux8O8kuZtnqPp/P17n13a1c8mPHsia0r1gKmSbHC0nTxAQBGqLwHiKzdWk0E4Ij/TnWnyqjKbXvyoym6H0NBT7O9klui9RWo6Z5DVYXLBYVjtIj1mQWs3jsJD9VQbZcaLvcBYHyBWjUe7zeDZs2b0GQ/DNYU4M377kbpypmi97qpG2pBPRkTBYKafrFU6oFqJaQSqp7GzQiiOncbnjd+eh55B8R/MpaWMrLMnsTMgvMvKZD7tP+VjtOnDjRqUbYC26Tu6RNj7zhkQrldcuWLsW82nnCnGxd+1G5qR12j1ewsUeOooT8siC9zsrX1iqrcWy6GjZTNl8rpZp8F+SCQsgk30KU7IN0vXjDYrF/SKZ0FlWHHE2bbBR9ff34w+uvIRAIXNLGx8vZ3cn9z43FxcXO2269Fe58NxIkG/P/9BfY3u/G5poqfHTv+yJvCVlAZpcgZlA0A1JxMSzzaoV/SqSqlHZKUmiHmKg4oor/ydFpQH1+n2gKbKOhppBL2sp6uft1uanDOz/WNi9fjmVLl4nl/wSnHr8fTl5tpiJbt6he+BeXfnYKOrzxQ2loSwIggxNMRdMBJpphLgOSft65s0OYqtfrbVdZvOTd2Fe6A5v33603mUwtNdXVWNnSgvKyMtHHZaBTh44kYXoVm4FyW5K3pctZ0TQNdJBk6HvbtqGjowMej6dHZfGy99hflT8eSG/b4VVzNum6ujrUVNdg3rx5AiCzyINBplfY0s0rBiuSP42jR4+iu7sbhw4dxL6urnQ9uX6qbv2b/5VEenud+scEvC5ZVj23Wqy+FRYWZvZBpNdeuHCgoIITlDt7enu4h+RRezzpv5LwXq15XXWgZ/Hls/3dC7/2ZO8i5Zbrlf4lxPmO/xFgAAyDtjZZsAuLAAAAAElFTkSuQmCC]]></Resource>
+	</Resources>
+	<SourceCode>
+		<![CDATA[
+
+class VDOM_localization(VDOM_object):
+
+	def render(self, parent, contents=""):
+		return ""
+
+	def wysiwyg(self, parent, contents=""):
+		result=""\
+			"<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\"></container>"%(
+			self.id, self.visible, self.zindex, self.hierarchy, self.order,	self.top, self.left, self.width, self.height)
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+def set_attr(app_id, object_id, param):
+	if "texttranslationpublic" in param:
+		str_messages = unicode(param["texttranslationpublic"]["value"])
+		import src.xml
+		self_obj = src.xml.xml_manager.search_object(app_id, object_id)		
+		dict_messages = {}
+		messages = str_messages.split('\n')
+		for message_pair in messages:
+			mm = message_pair.split(':', 1)
+			dict_messages.update({mm[0].lower() : mm[1].encode('utf-8')})
+		import cPickle 
+		self_obj.set_attribute("texttranslation", "<![CDATA[" + cPickle.dumps(dict_messages) + "]" + "]>", False)
+	if "command" in param:
+		import src.xml
+		self_obj = src.xml.xml_manager.search_object(app_id, object_id)
+		if param["command"]["value"] == "nothing":
+			self_obj.attributes["template"].value = ""
+			self_obj.attributes["template"].original_value = ""
+			self_obj.attributes["language"].value = ""
+			self_obj.attributes["language"].original_value = ""
+		elif param["command"]["value"] == "gen_template":
+			data = "<language id=\"NATIVE\">\n"
+			obj_data = {}
+			objects = request.application().get_all_objects()
+			info = ("value","value1","hint","text","visiblenames","declaration","title","label","selectedvalue","columns","data","htmlcode","buttons","image","rollover","selected","menuheader","menufooter","pages")
+			for obj in objects:
+				if objects[obj].type.name in ("bar","bgmusic","dbschema","copy","dbtable","debug","flashbook","flashday","flashmonth","flashweek","horizonmenu","localization","odbcconnector","printtowebaction","printtowebcontainer","printtowebscript","sensitive","svgbook","time","timer","whole"):
+					continue
+				obj_data[objects[obj].id] = {}
+				obj_data[objects[obj].id]["type_name"]= objects[obj].type.name
+				obj_data[objects[obj].id]["name"]= objects[obj].name
+				for obj_attr in objects[obj].attributes:
+					if obj_attr in info and objects[obj].attributes[obj_attr].original_value != "":
+						obj_data[objects[obj].id][obj_attr] = objects[obj].attributes[obj_attr].original_value
+				#for attr in info:
+				#	if attr in objects[obj].attributes and objects[obj].attributes[attr].original_value != "":
+				#		obj_data[objects[obj].id][attr]=objects[obj].attributes[attr].original_value
+				if len(obj_data[objects[obj].id]) == 2:
+					obj_data.pop(objects[obj].id)
+					
+			for obj in obj_data:
+				data +="\t\t<object id=\"%s\" name=\"%s\" type=\"%s\">\n"%(obj,obj_data[obj].pop("name"), obj_data[obj].pop("type_name"))
+				for attr in obj_data[obj]:
+					data +="\t\t\t<attribute name=\"%s\">%s</attribute>\n"%(attr, obj_data[obj][attr])
+				data +="\t\t</object>\n"
+			data += "</language>"
+			
+			self_obj.attributes["command"].value = "nothing"
+			self_obj.attributes["command"].original_value = "nothing"
+			self_obj.attributes["template"].value = data
+			self_obj.attributes["template"].original_value = data
+			self_obj.attributes["language"].value = ""
+			self_obj.attributes["language"].original_value = ""
+		elif param["command"]["value"] == "translate":
+			if "language" in param:
+				language = param["language"]["value"]
+			else:
+				language = self_obj.attributes["language"].value
+			if "translation" in param:
+				translation = param["translation"]["value"]
+			else:
+				translation = self_obj.attributes["translation"].value
+			from xml.dom.minidom import parseString
+			from xml.dom import Node
+			tr = translation.encode("utf-8")
+			dom = parseString(tr)
+			for language_node in dom.getElementsByTagName("language"):
+				if language_node.getAttribute("id") != language:
+					continue
+				for object_node in language_node.childNodes:
+					if object_node.nodeType != Node.ELEMENT_NODE:
+						continue
+					object = request.application().search_object(object_node.getAttribute("id"))
+					if object:
+						for attribute_node in object_node.childNodes:
+							if attribute_node.nodeType != Node.ELEMENT_NODE:
+								continue
+							try:
+								object.set_attribute(attribute_node.getAttribute("name"), attribute_node.firstChild.nodeValue)
+							except Exception, e:
+								debug("translation error" + str(object_node.getAttribute("id")))
+			self_obj.attributes["command"].value = "nothing"
+			self_obj.attributes["command"].original_value = "nothing"
+		
+		]]>
+	</SourceCode>
+	<Libraries></Libraries>
+	<E2vdom></E2vdom>
+</Type>

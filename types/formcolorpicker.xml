@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?><Type>
+	<Information>
+		<Name>formcolorpicker</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<Description>#Lang(002)</Description>
+		<ClassName>VDOM_formcolorpicker</ClassName>
+		<ID>a57e9f82-f352-d967-ae56-648008c048be</ID>
+		<Icon>#Res(c977c6fe-780e-67c5-491f-4fe09b1f43bc)</Icon>
+		<EditorIcon>#Res(a0346ce7-9d2e-6fc6-c68f-cc945e1dedd6)</EditorIcon>
+		<StructureIcon>#Res(0c2df156-66e5-7dde-7a38-587721fba7bb)</StructureIcon>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<Category>Form</Category>
+		<Dynamic>1</Dynamic>
+		<Version>1</Version>
+		<InterfaceType>1</InterfaceType>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Containers>form, password</Containers>
+		<Container>1</Container>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(301)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(302)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(303)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(304)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(305)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<DefaultValue>130</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(306)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<DefaultValue>22</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(307)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>value</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<DefaultValue/>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(308)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(20)</CodeInterface>
+			<Colorgroup>2</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>tabindex</Name>
+			<DisplayName>#Lang(110)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(210)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(310)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>2</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>border</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(311)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+			<Colorgroup>2</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>mode</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[012]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(312)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(407)|1)|(#Lang(408)|0))</CodeInterface>
+			<Colorgroup>2</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>titleok</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<DefaultValue>Ok</DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(113)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(15)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>titlecancel</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<DefaultValue>Cancel</DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(114)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(15)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Form Color Picker</Sentence>
+			<Sentence ID="002">Form color input field</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Value</Sentence>
+			<Sentence ID="109">Multiline</Sentence>
+			<Sentence ID="110">TabIndex</Sentence>
+			<Sentence ID="111">Border</Sentence>
+			<Sentence ID="112">Hide input field</Sentence>
+			<Sentence ID="113">Title OK</Sentence>
+			<Sentence ID="114">Title Cancel</Sentence>
+			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="203">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="204">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="205">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="206">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="207">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="208">Incorrect value</Sentence>
+			<Sentence ID="209">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="210">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="211">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="212">Incorrect value, must be 0 or 1 or 2</Sentence>
+			<Sentence ID="301">Hierarchy</Sentence>
+			<Sentence ID="302">Visibility</Sentence>
+			<Sentence ID="303">Z-Index</Sentence>
+			<Sentence ID="304">Distance from the top edge of the parent in pixels</Sentence>
+			<Sentence ID="305">Distance from the left edge of the parent in pixels</Sentence>
+			<Sentence ID="306">Weight in pixels</Sentence>
+			<Sentence ID="307">Height in pixels</Sentence>
+			<Sentence ID="308">Text inside the field</Sentence>
+			<Sentence ID="309">Multiline</Sentence>
+			<Sentence ID="310">Tab index</Sentence>
+			<Sentence ID="311">Border</Sentence>
+			<Sentence ID="312">Display mode</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">Single line</Sentence>
+			<Sentence ID="404">Multiline</Sentence>
+			<Sentence ID="405">Invisible</Sentence>
+			<Sentence ID="406">Visible</Sentence>
+			<Sentence ID="407">Yes</Sentence>
+			<Sentence ID="408">No</Sentence>
+			<Sentence ID="410">Normal</Sentence>
+			<Sentence ID="411">Read only</Sentence>
+			<Sentence ID="412">Disabled</Sentence>
+			<Sentence ID="413">Ok</Sentence>
+			<Sentence ID="414">Cancel</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Поле выбора цвета</Sentence>
+			<Sentence ID="002">Поле формы для выбора цвета</Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Z-Индекс</Sentence>
+			<Sentence ID="104">Верх</Sentence>
+			<Sentence ID="105">Лево</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108">Значение</Sentence>
+			<Sentence ID="109">Многострочный</Sentence>
+			<Sentence ID="110">Tab индекс</Sentence>
+			<Sentence ID="111">Граница</Sentence>
+			<Sentence ID="112">Скрывать поле ввода</Sentence>
+			<Sentence ID="201">Неправильное значение</Sentence>
+			<Sentence ID="202">Неправильное значение</Sentence>
+			<Sentence ID="203">Неправильное значение, должна быть строка</Sentence>
+			<Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="208">Неправильное значение</Sentence>
+			<Sentence ID="209">Неправильное значение</Sentence>
+			<Sentence ID="210">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="211">Неправильное значение</Sentence>
+			<Sentence ID="212">Неправильное значение</Sentence>
+			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="302">Отображается объект или нет</Sentence>
+			<Sentence ID="303">Заголовок контейнера</Sentence>
+			<Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="306">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="307">Высота объекта в пикселях</Sentence>
+			<Sentence ID="308">Значение объекта</Sentence>
+			<Sentence ID="309">Многострочный</Sentence>
+			<Sentence ID="310">Tab индекс</Sentence>
+			<Sentence ID="311">Граница</Sentence>
+			<Sentence ID="312">Режим вывода</Sentence>
+			<Sentence ID="401">Не отображается</Sentence>
+			<Sentence ID="402">Отображается</Sentence>
+			<Sentence ID="403">Однострочный</Sentence>
+			<Sentence ID="404">Многострочный</Sentence>
+			<Sentence ID="405">Не отображается</Sentence>
+			<Sentence ID="406">Отображается</Sentence>
+			<Sentence ID="407">Да</Sentence>
+			<Sentence ID="408">Нет</Sentence>
+			<Sentence ID="410">Нормальный</Sentence>
+			<Sentence ID="411">Только чтения</Sentence>
+			<Sentence ID="412">Недоступно</Sentence>
+			<Sentence ID="413">Выбрать</Sentence>
+			<Sentence ID="414">Отмена</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Form Color Picker</Sentence>
+			<Sentence ID="002">Form color input field</Sentence>
+			<Sentence ID="101">Hiérarchie</Sentence>
+			<Sentence ID="102">Visibilité</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106">Largeur</Sentence>
+			<Sentence ID="107">Hauteur</Sentence>
+			<Sentence ID="108">Valeur</Sentence>
+			<Sentence ID="109">Multiligne</Sentence>
+			<Sentence ID="110">TabIndex</Sentence>
+			<Sentence ID="111">Bordure</Sentence>
+			<Sentence ID="112">Hide input field</Sentence>
+			<Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="203">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="207">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="208">Incorrect value</Sentence>
+			<Sentence ID="209">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="210">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="211">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="302">Afficher ou cacher l'objet</Sentence>
+			<Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+			<Sentence ID="305">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+			<Sentence ID="306">Largeur de l'objet en pixels</Sentence>
+			<Sentence ID="307">Hauteur de l'objet en pixels</Sentence>
+			<Sentence ID="308">Texte dans le champs</Sentence>
+			<Sentence ID="309">Multiligne</Sentence>
+			<Sentence ID="310">Tab index</Sentence>
+			<Sentence ID="311">Afficher ou masquer la bordure</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">ligne simple</Sentence>
+			<Sentence ID="404">Multiligne</Sentence>
+			<Sentence ID="405">Invisible</Sentence>
+			<Sentence ID="406">Visible</Sentence>
+			<Sentence ID="413">Ok</Sentence>
+			<Sentence ID="414">Cancel</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="c977c6fe-780e-67c5-491f-4fe09b1f43bc" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+		<Resource ID="a0346ce7-9d2e-6fc6-c68f-cc945e1dedd6" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+		<Resource ID="0c2df156-66e5-7dde-7a38-587721fba7bb" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAZtQTFRF8/Pzra2t5OTk5+fnmMTh7e3t8vLy5eXl9vb2lsLg3+Hi+/v7lJSU1NTU8PLz+vr6/Pz8m8Th3d3dycnJ4uLi4ODgt7e3x8fH7+/vnMXhl8Tgmsbku7u7pMnj/f39nZycm8fl7PH0/f7/nMbh5ubm3Nvb/v7+pqenncfirc/l3t7evLy88fDww8PDn5+f6Orrv7+/UVFQtbW19fX19Pb309PT1Nvf6e/z8vHx2dra1tbWh4aFmsXi1tTS8/Lxl8Ph8/f5+/z9osnk1tXVpszl8vT1///+3NzctLS08PDw8fHx1dXVysrK+vz+osrjq6urlcLgosjj0dHRubm5qamp8vT2s9Pq+fv8ncXhpMvkr9HnxcXFr9Pq6Ojo8vj8ocvmkMDf+fj36eztksDfsdfwmZmZ/v39lMXl4eLj6urqz8/Po8rk3t3dpcrkrtPqstXswdvt9/r8JSUl39/fW1paosjkmMPhmMPg4uLhpMrkocjjvr6+o6OjmcXimMTi19fXxsbGwMDA/v794uzylcHfl8PgvsTI////////7hhL2wAAAIl0Uk5T/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wDRgbi4AAAA50lEQVR42mLoQAMMYCKnvoJZh4GBgY0DLMBqxWfiyqfPxcXFHMQAEmBnyg8oa61TkI4vTDNgEBaJ9dTKS5CKkJQUDAxt8mBgNGIWd49JluLk5GxRdrAQZujQrmHKcBHUYGFhKffzVRUBmiHEY9lcUOpUGSkbpcTrBTLUx9Q2KSy91sY+15GXDSQQ3Z5pXWKWkl2lGe4MFqhuby82LGqLM1dsFzcGCnB7C6i1t/PI2yW6CamDXCqhy98OBByiEkxi/CABuYYsZnZ2JhVWUYFGiOe4xfwZGRlDUvVkgqG+hQFWjo4OgAADAEyPTlhBfxN3AAAAAElFTkSuQmCCUgjY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]]></Resource>
+		<Resource ID="41dd5c5b-0a21-c93a-eefe-e0eda91f1b73" Name="colorinput" Type="js"><![CDATA[KGZ1bmN0aW9uKEMpe0MuZm4uY29sb3JJbnB1dD1mdW5jdGlvbihEKXtEPWpRdWVyeS5leHRlbmQoQy5jb2xvcklucHV0LmRlZmF1bHRzLEQpO3RoaXMuZWFjaChmdW5jdGlvbigpe0ModGhpcykuZGF0YSgiY29sb3JDb250cm9sIixuZXcgQy5jb2xvcklucHV0KHRoaXMsRCkpfSk7cmV0dXJuIHRoaXN9O0MuZm4uY29sb3JTZWxlY3RlZD1mdW5jdGlvbihEKXtpZihEKXt0aGlzLmJpbmQoImNvbG9yU2VsZWN0ZWQiLEQpO3JldHVybiB0aGlzfWVsc2V7dGhpcy50cmlnZ2VyKCJjb2xvclNlbGVjdGVkIil9fTtDLmZuLmNvbG9yQWNjZXB0PWZ1bmN0aW9uKEQpe2lmKEQpe3RoaXMuYmluZCgiY29sb3JBY2NlcHQiLEQpO3JldHVybiB0aGlzfWVsc2V7dGhpcy50cmlnZ2VyKCJjb2xvckFjY2VwdCIpfX07Qy5mbi5jb2xvckNhbmNlbD1mdW5jdGlvbihEKXtpZihEKXt0aGlzLmJpbmQoImNvbG9yQ2FuY2VsIixEKTtyZXR1cm4gdGhpc31lbHNle3RoaXMudHJpZ2dlcigiY29sb3JDYW5jZWwiKX19O0MuY29sb3JJbnB1dD1mdW5jdGlvbihVLE4pe3ZhciBHPUMoVSk7aWYoRy5kYXRhKCJjb2xvckNvbnRyb2wiKSE9bnVsbCl7cmV0dXJuIHRoaXN9dmFyIFE9dGhpcyxUPU4uY2VsbHMqTi5jZWxsU2l6ZSxMPU4uY2VsbHMqTi5jZWxsU2l6ZStOLmh1ZVdpZHRoO3ZhciBjPSI8YnV0dG9uICIuY29uY2F0KCJjbGFzcz0nY29sb3JCdXR0b24nIHN0eWxlPSdjdXJzb3I6cG9pbnRlcjtwb3NpdGlvbjpyZWxhdGl2ZTt3aWR0aDoiLE4uaHVlV2lkdGgsInB4O2hlaWdodDoiLE4uaHVlV2lkdGgsInB4O21hcmdpbjowO3BhZGRpbmc6MDtib3JkZXI6bm9uZSAwO2xpbmUtaGVpZ2h0OiIsTi5odWVXaWR0aC0yLCJweCc+Jm5ic3A7PC9idXR0b24+Iik7dmFyIE89QyhjKSxWLGYsZTtHLmFmdGVyKE8pO08uY2xpY2soZnVuY3Rpb24oayl7aWYoQy5jb2xvcklucHV0LmN1cnJlbnQ9PVEpe00oKX1lbHNle2lmKEMuY29sb3JJbnB1dC5jdXJyZW50KXtDLmNvbG9ySW5wdXQuY3VycmVudC5jYW5jZWwoKX1lbHNle2goKX19ay5zdG9wUHJvcGFnYXRpb24oKTtyZXR1cm4gZmFsc2V9KTt2YXIgSD1DKCIjIi5jb25jYXQoTi5kcm9wZG93bklkKSk7aWYoSC5sZW5ndGg9PTEpe2lmKE4uYWNjZXB0Q2FuY2VsQnV0dG9ucyl7Vj1ILmZpbmQoIi5jb2xvckJ1dHRvbnMiKTtmPVYuZmluZCgiOmVxKDApIik7ZT1WLmZpbmQoIjplcSgxKSIpfX1lbHNle0g9QygiPGRpdiAiLmNvbmNhdCgiaWQ9JyIsTi5kcm9wZG93bklkLCInIGNsYXNzPSdjb2xvckRyb3Bkb3duJyBzdHlsZT0nZGlzcGxheTpub25lO3otaW5kZXg6MTAwMDE7cG9zaXRpb246YWJzb2x1dGU7b3ZlcmZsb3c6dmlzaWJsZTtoZWlnaHQ6MDttYXJnaW46MDtwYWRkaW5nOjA7Y3Vyc29yOnBvaW50ZXInPjwvZGl2PiIpKS5hcHBlbmQoQygiPGRpdiAiLmNvbmNhdCgic3R5bGU9J2Zsb2F0OmxlZnQ7d2lkdGg6IixULCJweDtoZWlnaHQ6IixULCJweDttYXJnaW46MDtwYWRkaW5nOjAnPjwvZGl2PiIpKS5hcHBlbmQoQShOKSkuYXBwZW5kKEIoTikpKTtpZihOLmFjY2VwdENhbmNlbEJ1dHRvbnMpe2Y9QyhjKS50ZXh0KE4udGV4dEFjY2VwdCkuY3NzKHtjdXJzb3I6InBvaW50ZXIiLHdpZHRoOk1hdGgucm91bmQoVC8yKX0pO2U9QyhjKS50ZXh0KE4udGV4dENhbmNlbCkuY3NzKHtjdXJzb3I6InBvaW50ZXIiLHdpZHRoOk1hdGgucm91bmQoVC8yKX0pO1Y9QygiPGRpdiAiLmNvbmNhdCgiY2xhc3M9J2NvbG9yQnV0dG9ucycgc3R5bGU9J3Bvc2l0aW9uOmFic29sdXRlO3otaW5kZXg6MDtsZWZ0OjA7d2lkdGg9IixULCJweDtoZWlnaHQ6IixOLmh1ZUhlaWdodCwicHgnPjwvZGl2PiIpKS5hcHBlbmQoZikuYXBwZW5kKGUpO0gucHJlcGVuZChWKX1DKGRvY3VtZW50LmJvZHkpLmFwcGVuZChIKX12YXIgaj1ILmZpbmQoIi5zYXR1cmF0aW9uQnJpZ2h0bmVzc01hcCIpLEY9SC5maW5kKCIuaHVlTWFwIiksWD1uZXcgQy5jb2xvcklucHV0LmNvbG9yKCksZCxaLEQ9ZmFsc2U7aWYoTi5oaWRlSW5wdXQpe0cuaGlkZSgpfXZhciBXO3ZhciBSPWZ1bmN0aW9uKG0pe2lmKFcpe2NsZWFyVGltZW91dChXKTtXPW51bGx9aWYobSl7Vz1zZXRUaW1lb3V0KFIsbSk7cmV0dXJuIH12YXIgbz1YLmh1ZSpULU1hdGgucm91bmQoWC5odWUqVCk7dmFyIGw9bmV3IEMuY29sb3JJbnB1dC5jb2xvcigwLDEsMSk7YihudWxsKTtGLmZpbmQoImRpdiIpLmVhY2goZnVuY3Rpb24oKXtsLmh1ZT1vL1Q7dGhpcy5odWU9bC5odWU7dGhpcy5jb2xvcj1sLnRvSGV4KCk7dGhpcy5zdHlsZS5iYWNrZ3JvdW5kQ29sb3I9dGhpcy5jb2xvcjtpZih0aGlzLmh1ZT09WC5odWUpe2IodGhpcyl9bysrfSk7dmFyIG49MCxrPTA7bD1uZXcgQy5jb2xvcklucHV0LmNvbG9yKFguaHVlLDAsMCk7SihudWxsKTtqLmZpbmQoImRpdiIpLmVhY2goZnVuY3Rpb24oKXtsLnNhdHVyYXRpb249MS1uLyhOLmNlbGxzLTEpO2wuYnJpZ2h0bmVzcz0xLWsvKE4uY2VsbHMtMSk7dGhpcy5zYXR1cmF0aW9uPWwuc2F0dXJhdGlvbjt0aGlzLmJyaWdodG5lc3M9bC5icmlnaHRuZXNzO3RoaXMuY29sb3I9bC50b0hleCgpO3RoaXMuc3R5bGUuYmFja2dyb3VuZENvbG9yPXRoaXMuY29sb3I7aWYodGhpcy5jb2xvcj09ZCl7Sih0aGlzKX1uKys7aWYobj09Ti5jZWxscyl7bj0wO2srK319KX07dmFyIEU9ZnVuY3Rpb24oKXt2YXIgaz1HLnZhbCgpO2lmKGshPWQpe1guZnJvbUhleChrKTtpKGssRCl9fTt2YXIgaT1mdW5jdGlvbihsLGspe2Q9bDtHLnZhbChsKTtRLmlzQ2hhbmdlZD1aJiZkIT1aO08uY3NzKHtiYWNrZ3JvdW5kQ29sb3I6bCxjb2xvcjpYLmJyaWdodG5lc3NDb250cmFzdCgpLnRvSGV4KCl9KTtpZihOLmFjY2VwdENhbmNlbEJ1dHRvbnMpe2YuY3NzKHtiYWNrZ3JvdW5kQ29sb3I6bCxjb2xvcjpYLmJyaWdodG5lc3NDb250cmFzdCgpLnRvSGV4KCl9KX1pZihrKXtSKE4uaG92ZXJTZWxlY3Q/NTA6MCl9fTt2YXIgTT1mdW5jdGlvbigpe2lmKFohPWQpe0cuY2hhbmdlKCl9Wj1udWxsO1MoKX07dmFyIEs9ZnVuY3Rpb24oKXtpZihRLmlzQ2hhbmdlZCl7Ry52YWwoWik7RSgpO0cuY29sb3JTZWxlY3RlZCgpfVo9bnVsbDtTKCl9O3ZhciBTPWZ1bmN0aW9uKCl7Qy5lYWNoKE4uY2FuY2VsT25DbGljayxmdW5jdGlvbigpe0ModGhpcykudW5iaW5kKCJjbGljay5jb2xvciIpfSk7Ri5maW5kKCJkaXYiKS51bmJpbmQoIm1vdXNlZG93biIpLnVuYmluZCgibW91c2Vtb3ZlIikudW5iaW5kKCJtb3VzZXVwIikudW5iaW5kKCJjbGljayIpO2ouZmluZCgiZGl2IikudW5iaW5kKCJtb3VzZWRvd24iKS51bmJpbmQoIm1vdXNlbW92ZSIpLnVuYmluZCgibW91c2V1cCIpLnVuYmluZCgiY2xpY2siKTtqLnVuYmluZCgiZGJsY2xpY2siKTtILnVuYmluZCgiY2xpY2siKTtpZihOLmFjY2VwdENhbmNlbEJ1dHRvbnMpe1YuY3NzKHttYXJnaW5Ub3A6MH0pO2YudW5iaW5kKCJjbGljayIpO2UudW5iaW5kKCJjbGljayIpfUYuYW5pbWF0ZSh7bWFyZ2luTGVmdDpULU4uaHVlV2lkdGh9LHtkdXJhdGlvbjoxLGNvbXBsZXRlOmZ1bmN0aW9uKCl7Ri5jc3Moe2Rpc3BsYXk6Im5vbmUifSk7SC5jc3Moe2Rpc3BsYXk6Im5vbmUifSl9fSk7Qy5jb2xvcklucHV0LmN1cnJlbnQ9bnVsbDtRLmlzQ2hhbmdlZD1mYWxzZTtEPWZhbHNlfTt2YXIgaD1mdW5jdGlvbigpe1o9ZDtpZihOLmFjY2VwdENhbmNlbEJ1dHRvbnMpe2YuYWRkKGUpLmNzcyh7YmFja2dyb3VuZENvbG9yOmQsY29sb3I6WC5icmlnaHRuZXNzQ29udHJhc3QoKS50b0hleCgpfSl9UigpO0MuZWFjaChOLmNhbmNlbE9uQ2xpY2ssZnVuY3Rpb24oKXtDKHRoaXMpLmJpbmQoImNsaWNrLmNvbG9yIixLKX0pO2lmKE4uaG92ZXJTZWxlY3Qpe0YuZmluZCgiZGl2IikubW91c2Vtb3ZlKGZ1bmN0aW9uKGwpe1AodGhpcyk7Ry5jb2xvclNlbGVjdGVkKCl9KTtqLmZpbmQoImRpdiIpLm1vdXNlbW92ZShmdW5jdGlvbihsKXtJKHRoaXMpO0cuY29sb3JTZWxlY3RlZCgpfSk7ai5kYmxjbGljayhmdW5jdGlvbihsKXtNKCk7bC5zdG9wUHJvcGFnYXRpb24oKTtyZXR1cm4gZmFsc2V9KTtqLmNsaWNrKGZ1bmN0aW9uKGwpe00oKTtsLnN0b3BQcm9wYWdhdGlvbigpO3JldHVybiBmYWxzZX0pfWVsc2V7Ri5maW5kKCJkaXYiKS5tb3VzZWRvd24oZnVuY3Rpb24obCl7cmV0dXJuIFkobCxGKX0pLm1vdXNlbW92ZShmdW5jdGlvbihsKXtpZihnKGwsRikpe1AodGhpcyk7Ry5jb2xvclNlbGVjdGVkKCl9fSkubW91c2V1cChmdW5jdGlvbihsKXthKGwsRil9KS5jbGljayhmdW5jdGlvbihsKXtQKHRoaXMpO0cuY29sb3JTZWxlY3RlZCgpfSk7ai5maW5kKCJkaXYiKS5tb3VzZWRvd24oZnVuY3Rpb24obCl7cmV0dXJuIFkobCxqKX0pLm1vdXNlbW92ZShmdW5jdGlvbihsKXtpZihnKGwsaikpe0kodGhpcyk7Ry5jb2xvclNlbGVjdGVkKCl9fSkubW91c2V1cChmdW5jdGlvbihsKXthKGwsail9KS5jbGljayhmdW5jdGlvbihsKXtJKHRoaXMpO0cuY29sb3JTZWxlY3RlZCgpfSk7ai5kYmxjbGljayhmdW5jdGlvbihsKXtNKCk7bC5zdG9wUHJvcGFnYXRpb24oKTtyZXR1cm4gZmFsc2V9KX1ILmNsaWNrKGZ1bmN0aW9uKGwpe2wuc3RvcFByb3BhZ2F0aW9uKCk7cmV0dXJuIGZhbHNlfSk7dmFyIGs9Ty5vZmZzZXQoKTtILmNzcyh7ZGlzcGxheToiIix0b3A6ay50b3ArTy5oZWlnaHQoKSsicHgiLGxlZnQ6ay5sZWZ0KyhOLnNob3dMZWZ0Py1UOjApKyJweCJ9KS5hbmltYXRlKHtoZWlnaHQ6VCx3aWR0aDpUfSx7ZHVyYXRpb246MSxjb21wbGV0ZTpmdW5jdGlvbigpe0YuY3NzKHtkaXNwbGF5OiIifSkuYW5pbWF0ZSh7bWFyZ2luTGVmdDpUfSx7ZHVyYXRpb246MX0pO2lmKE4uYWNjZXB0Q2FuY2VsQnV0dG9ucyl7Vi5hbmltYXRlKHttYXJnaW5Ub3A6LU4uaHVlV2lkdGh9LHtkdXJhdGlvbjoxfSk7Zi5jbGljayhmdW5jdGlvbihsKXtNKCk7bC5zdG9wUHJvcGFnYXRpb24oKTtyZXR1cm4gZmFsc2V9KTtlLmNsaWNrKGZ1bmN0aW9uKGwpe0soKTtsLnN0b3BQcm9wYWdhdGlvbigpO3JldHVybiBmYWxzZX0pfX19KTtDLmNvbG9ySW5wdXQuY3VycmVudD1RO0Q9dHJ1ZX07aWYoQy5icm93c2VyLm1zaWUpe0guYXR0cigidW5zZWxlY3RhYmxlIiwib24iKTtILmZpbmQoImRpdiIpLmF0dHIoInVuc2VsZWN0YWJsZSIsIm9uIil9dmFyIFk9ZnVuY3Rpb24obCxrKXtpZihrLmRhdGEoImRyYWciKSl7YShsLGspfWsuZGF0YSgiZHJhZyIsdHJ1ZSk7cmV0dXJuIGZhbHNlfTt2YXIgYT1mdW5jdGlvbihsLGspe2suZGF0YSgiZHJhZyIsZmFsc2UpfTt2YXIgZz1mdW5jdGlvbihsLGspe2lmKCFrLmRhdGEoImRyYWciKSl7cmV0dXJuIGZhbHNlfWlmKEMuYnJvd3Nlci5tc2llJiYhbC5idXR0b24pe2EobCxrKTtyZXR1cm4gZmFsc2V9cmV0dXJuIHRydWV9O3ZhciBiPWZ1bmN0aW9uKGspe3ZhciBsPUYuZGF0YSgic2VsZWN0ZWQiKTtpZihsKXtsLnN0eWxlLnpJbmRleD0wO2wuc3R5bGUud2lkdGg9Ti5odWVXaWR0aCsicHgiO2wuc3R5bGUubWFyZ2luPSIwIjtsLnN0eWxlLmJvcmRlcj0ibm9uZSAwIn1GLmRhdGEoInNlbGVjdGVkIixrKTtpZihrKXtrLnN0eWxlLnpJbmRleD0xO2suc3R5bGUud2lkdGg9KE4uaHVlV2lkdGgtMikrInB4IjtrLnN0eWxlLm1hcmdpbj0iLTFweCAwIjtrLnN0eWxlLmJvcmRlcj0ic29saWQgMXB4ICMwMDAifX07dmFyIFA9ZnVuY3Rpb24oayl7WC5odWU9ay5odWU7aShYLnRvSGV4KCksRCl9O3ZhciBKPWZ1bmN0aW9uKGspe3ZhciBsPWouZGF0YSgic2VsZWN0ZWQiKTtpZihsKXtsLnN0eWxlLndpZHRoPU4uY2VsbFNpemUrInB4IjtsLnN0eWxlLmhlaWdodD1OLmNlbGxTaXplKyJweCI7bC5zdHlsZS5ib3JkZXI9Im5vbmUgMCJ9ai5kYXRhKCJzZWxlY3RlZCIsayk7aWYoayl7ay5zdHlsZS53aWR0aD0oTi5jZWxsU2l6ZS0yKSsicHgiO2suc3R5bGUuaGVpZ2h0PShOLmNlbGxTaXplLTIpKyJweCI7ay5zdHlsZS5ib3JkZXI9InNvbGlkIDFweCAiLmNvbmNhdChYLmJyaWdodG5lc3NDb250cmFzdCgpLnRvSGV4KCkpfX07dmFyIEk9ZnVuY3Rpb24oayl7WC5zYXR1cmF0aW9uPWsuc2F0dXJhdGlvbjtYLmJyaWdodG5lc3M9ay5icmlnaHRuZXNzO2koWC50b0hleCgpLGZhbHNlKTtKKGspfTtHLmJpbmQoImNoYW5nZSIsRSk7Ry5iaW5kKCJjb2xvckFjY2VwdCIsTSk7Ry5iaW5kKCJjb2xvckNhbmNlbCIsSyk7aWYoTi5jaGFuZ2Upe0cuY2hhbmdlKE4uY2hhbmdlKX1pZihOLmNvbG9yU2VsZWN0ZWQpe0cuY29sb3JTZWxlY3RlZChOLmNvbG9yU2VsZWN0ZWQpfXRoaXMuYWNjZXB0PU07dGhpcy5jYW5jZWw9Szt0aGlzLmlzQ2hhbmdlZD1mYWxzZTtFKCk7cmV0dXJuIHRoaXN9O2Z1bmN0aW9uIEIoRSl7dmFyIEY9WyI8ZGl2IGNsYXNzPSdzYXR1cmF0aW9uQnJpZ2h0bmVzc01hcCcgc3R5bGU9J3Bvc2l0aW9uOmFic29sdXRlO3otaW5kZXg6MTtvdmVyZmxvdzpoaWRkZW47d2lkdGg6IixFLmNlbGxzKkUuY2VsbFNpemUsInB4O2hlaWdodDoiLEUuY2VsbHMqRS5jZWxsU2l6ZSwicHgnPiJdO2Zvcih2YXIgRD0wO0Q8RS5jZWxscztEKyspe2Zvcih2YXIgRz0wO0c8RS5jZWxscztHKyspe0YucHVzaCgiPGRpdiAiLmNvbmNhdCgic3R5bGU9J2Zsb2F0OmxlZnQ7b3ZlcmZsb3c6aGlkZGVuO3dpZHRoOiIsRS5jZWxsU2l6ZSwicHg7aGVpZ2h0OiIsRS5jZWxsU2l6ZSwicHg7Ym9yZGVyOm5vbmUgMCc+PC9kaXY+IikpfX1GLnB1c2goIjwvZGl2PiIpO3JldHVybiBGLmpvaW4oIiIpfWZ1bmN0aW9uIEEoRSl7dmFyIEQ9WyI8ZGl2IGNsYXNzPSdodWVNYXAnIHN0eWxlPSdwb3NpdGlvbjphYnNvbHV0ZTt6LWluZGV4OjA7d2lkdGg6IixFLmh1ZVdpZHRoLCJweDtoZWlnaHQ6IixFLmNlbGxzKkUuY2VsbFNpemUsInB4Jz4iXTtmb3IodmFyIEY9MDtGPEUuY2VsbHMqRS5jZWxsU2l6ZTtGKyspe0QucHVzaCgiPGRpdiBzdHlsZT0nZmxvYXQ6bGVmdDtwb3NpdGlvbjpyZWxhdGl2ZTtvdmVyZmxvdzpoaWRkZW47d2lkdGg6IixFLmh1ZVdpZHRoLCJweDtoZWlnaHQ6MXB4O2JvcmRlcjpub25lIDAnPiZuYnNwOzwvZGl2PiIpfUQucHVzaCgiPC9kaXY+Iik7cmV0dXJuIEQuam9pbigiIil9Qy5jb2xvcklucHV0LmRlZmF1bHRzPXthY2NlcHRDYW5jZWxCdXR0b25zOnRydWUsY2FuY2VsT25DbGljazpbZG9jdW1lbnRdLGNlbGxzOjgsY2VsbFNpemU6MjAsY2hhbmdlOm51bGwsY29sb3JTZWxlY3RlZDpudWxsLGRyb3Bkb3duSWQ6IkNvbG9yRHJvcGRvd25fc2VsZWN0b3IiLGhpZGVJbnB1dDp0cnVlLGhvdmVyU2VsZWN0OmZhbHNlLGh1ZVdpZHRoOjIwLG5vSGFzaDpmYWxzZSxzaG93TGVmdDpmYWxzZSx0ZXh0QWNjZXB0OiJvayIsdGV4dENhbmNlbDoiY2FuY2VsIn07Qy5jb2xvcklucHV0LmN1cnJlbnQ9bnVsbDtDLmNvbG9ySW5wdXQuY29sb3I9ZnVuY3Rpb24oRCxFLEYpe2lmKGFyZ3VtZW50cy5sZW5ndGg9PTEmJkQuY29uc3RydWN0b3I9PVN0cmluZyl7dGhpcy5mcm9tSGV4KEQpfWVsc2V7dGhpcy5odWU9cGFyc2VGbG9hdChEKXx8MDt0aGlzLnNhdHVyYXRpb249cGFyc2VGbG9hdChFKXx8MDt0aGlzLmJyaWdodG5lc3M9cGFyc2VGbG9hdChGKXx8MH10aGlzLmlzVmFsaWQ9ZnVuY3Rpb24oKXtpZihpc05hTih0aGlzLmh1ZSkpe3JldHVybiBmYWxzZX13aGlsZSh0aGlzLmh1ZT4xKXt0aGlzLmh1ZS09MX13aGlsZSh0aGlzLmh1ZTwwKXt0aGlzLmh1ZSs9MX1pZihpc05hTih0aGlzLnNhdHVyYXRpb24pKXtyZXR1cm4gZmFsc2V9aWYodGhpcy5zYXR1cmF0aW9uPjEpe3RoaXMuc2F0dXJhdGlvbj0xfWVsc2V7aWYodGhpcy5zYXR1cmF0aW9uPDApe3RoaXMuc2F0dXJhdGlvbj0wfX1pZihpc05hTih0aGlzLmJyaWdodG5lc3MpKXtyZXR1cm4gZmFsc2V9aWYodGhpcy5icmlnaHRuZXNzPjEpe3RoaXMuYnJpZ2h0bmVzcz0xfWVsc2V7aWYodGhpcy5icmlnaHRuZXNzPDApe3RoaXMuYnJpZ2h0bmVzcz0wfX1yZXR1cm4gdHJ1ZX07dGhpcy5pc1ZhbGlkKCk7dGhpcy5icmlnaHRuZXNzQ29udHJhc3Q9ZnVuY3Rpb24oKXtyZXR1cm4gbmV3IEMuY29sb3JJbnB1dC5jb2xvcigwLDAsdGhpcy5icmlnaHRuZXNzPj0wLjc1PzA6MSl9O3RoaXMudmFsdWVUb0hleD1mdW5jdGlvbihIKXt2YXIgRz1NYXRoLnJvdW5kKEgqMjU1KS50b1N0cmluZygxNik7cmV0dXJuIEcubGVuZ3RoPT0xPyIwIitHOkd9O3RoaXMuaGV4VG9WYWx1ZT1mdW5jdGlvbihHKXtyZXR1cm4gcGFyc2VJbnQoRywxNikvMjU1fTt0aGlzLmZyb21IZXg9ZnVuY3Rpb24oSSl7aWYoSS5zbGljZSgwLDEpPT0iIyIpe0k9SS5zbGljZSgxKX1pZihJLmxlbmd0aD09Myl7ST1JLnNwbGl0KCIiKTtJPUlbMF0rSVswXStJWzFdK0lbMV0rSVsyXStJWzJdfWlmKEkubGVuZ3RoIT02KXt0aGlzLmJyaWdodG5lc3M9TmFOO3JldHVybiB9dmFyIEs9dGhpcy5oZXhUb1ZhbHVlKEkuc3Vic3RyKDAsMikpO3ZhciBKPXRoaXMuaGV4VG9WYWx1ZShJLnN1YnN0cigyLDIpKTt2YXIgRz10aGlzLmhleFRvVmFsdWUoSS5zdWJzdHIoNCwyKSk7dGhpcy5icmlnaHRuZXNzPU1hdGgubWF4KE1hdGgubWF4KEssSiksRyk7dmFyIEg9TWF0aC5taW4oTWF0aC5taW4oSyxKKSxHKTtpZihIPT10aGlzLmJyaWdodG5lc3Mpe3RoaXMuaHVlPTA7dGhpcy5zYXR1cmF0aW9uPTB9ZWxzZXt2YXIgTD10aGlzLmJyaWdodG5lc3MtSDt0aGlzLnNhdHVyYXRpb249TC90aGlzLmJyaWdodG5lc3M7aWYoSz09dGhpcy5icmlnaHRuZXNzKXt0aGlzLmh1ZT0oSi1HKS9MfWVsc2V7aWYoSj09dGhpcy5icmlnaHRuZXNzKXt0aGlzLmh1ZT0yKygoRy1LKS9MKX1lbHNle3RoaXMuaHVlPTQrKChLLUopL0wpfX10aGlzLmh1ZS89NjtpZih0aGlzLmh1ZTwwKXt0aGlzLmh1ZSs9MX1pZih0aGlzLmh1ZT4xKXt0aGlzLmh1ZS09MX19cmV0dXJuIHRoaXN9O3RoaXMudG9IZXg9ZnVuY3Rpb24oTil7aWYoIXRoaXMuaXNWYWxpZCgpKXtyZXR1cm4iVHJhbnNwYXJlbnQifXZhciBJLEosTTt2YXIgSz1NYXRoLmZsb29yKHRoaXMuaHVlKjYpO3ZhciBMPSh0aGlzLmh1ZSo2KS1LO3ZhciBIPXRoaXMuYnJpZ2h0bmVzcyooMS10aGlzLnNhdHVyYXRpb24pO3ZhciBHPXRoaXMuYnJpZ2h0bmVzcyooMS0odGhpcy5zYXR1cmF0aW9uKkwpKTt2YXIgTz10aGlzLmJyaWdodG5lc3MqKDEtKHRoaXMuc2F0dXJhdGlvbiooMS1MKSkpO3N3aXRjaChLKXtjYXNlIDE6ST1HO0o9dGhpcy5icmlnaHRuZXNzO009SDticmVhaztjYXNlIDI6ST1IO0o9dGhpcy5icmlnaHRuZXNzO009TzticmVhaztjYXNlIDM6ST1IO0o9RztNPXRoaXMuYnJpZ2h0bmVzczticmVhaztjYXNlIDQ6ST1PO0o9SDtNPXRoaXMuYnJpZ2h0bmVzczticmVhaztjYXNlIDU6ST10aGlzLmJyaWdodG5lc3M7Sj1IO009RzticmVhaztjYXNlIDY6Y2FzZSAwOkk9dGhpcy5icmlnaHRuZXNzO0o9TztNPUg7YnJlYWt9cmV0dXJuIE4/IiI6IiMiK3RoaXMudmFsdWVUb0hleChJKSt0aGlzLnZhbHVlVG9IZXgoSikrdGhpcy52YWx1ZVRvSGV4KE0pfX19KShqUXVlcnkpOw==]]></Resource>
+	</Resources>
+	<SourceCode>
+		<![CDATA[
+
+class VDOM_formcolorpicker(VDOM_object):
+
+	def render(self, parent, contents=""):
+		if self.visible == "0":
+			display = " display: none; "
+		else: display = ""
+
+		if self.mode == "1":
+			mode = " readonly "
+		else:
+			if self.mode == "2":
+				mode = " disabled "
+			else:
+				mode = ""
+
+		clean_id = (self.id).replace('-', '_')
+		id = 'o_' + clean_id
+
+		# for doctype xhtml 1.0 - width|height depends on padding
+		fixw = int(self.width) - 10
+		fixh = int(self.height) - 4
+
+		style1="z-index: %s; position: absolute; top: %spx;left: %spx;"%(self.zindex, self.top, self.left)
+		style2="position: relative; width: %spx; height: %spx; padding: 2px 5px; margin-right: 2px; font: 14px tahoma;"%(fixw, fixh)
+		style1 += display
+		if self.border == "0":
+			style2 += "border-width: 0px;"
+		result="<div style=\"%s\"><input id=\"%s\" name=\"%s\" style=\"%s\" type=\"text\" tabindex=\"%s\" value=\"%s\" /></div>"%(style1, id, self.name, style2, self.tabindex, self.value)
+
+		if self.mode == "1":
+			hp = "true"
+		else:
+			hp = "false"
+
+		result += """<script type="text/javascript">jQuery(document).ready(function(){jQuery('#"""+id+"""').colorInput({hideInput:"""+hp+""",textAccept:'"""+(self.titleok).replace("'", "&prime;")+"""',textCancel:'"""+(self.titlecancel).replace("'", "&prime;")+"""',change:function(){execEventBinded('"""+clean_id+"""','changecolor',{color:this.value});} });});</script>"""
+
+		return VDOM_object.render(self, parent, contents=result)
+
+	def wysiwyg(self, parent, contents=""):
+		if self.value:
+			text_size = self.width
+		else:
+			text_size = 0
+		
+		result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+					 "<svg>"\
+						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+					 "</svg>"\
+					 "<text top=\"%s\" width=\"%s\" color=\"#000000\">%s</text>"\
+				 "</container>"%(
+					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, 
+					0, 0, int(self.width) - 1, int(self.height) - 1,
+					4, text_size, self.value,)
+		
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+		]]>
+	</SourceCode>
+	<Libraries>
+		<Library Target="Html">
+		  <![CDATA[<script type="text/javascript" src="/41dd5c5b-0a21-c93a-eefe-e0eda91f1b73.res"></script>]]>
+		</Library>
+	</Libraries>
+	<E2vdom>
+        <Events>
+            <Userinterfaceevents>
+                <Event Name="mousemove">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="mousedown">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="mouseup">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="mouseover">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="mouseout">
+					<Parameters>
+						<Parameter Help="#Lang(745)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(745)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="click">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="dblclick">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="ctrlclick">
+					<Parameters>
+						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
+						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="valuechange">
+					<Parameters>
+						<Parameter Help="#Lang(104)" Name="itemValue" Order="" VbType=""/>
+					</Parameters>
+				</Event>
+                <Event Name="changecolor">
+					<Parameters>
+						<Parameter Name="color" VbType="" Order="" Help="#Lang(108)"/>
+					</Parameters>
+				</Event>
+            </Userinterfaceevents>
+        </Events>
+        <Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="hide">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_hide(this.domCont, fade);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="show">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_show(this.domCont, fade);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="setStyle">
+                    <Parameters>
+                        <Parameter DefaultValue="" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="cssStyleValue"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+jQuery(this).attr('style', cssStyleValue);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="moveTo">
+                    <Parameters>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="newX"/>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="newY"/>
+                        <Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="Effect"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_ui_moveTo(this.domCont, newX, newY, Effect);
+                    ]]></Sourcecode>
+                </Action>
+                <Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="setValue">
+                    <Parameters>
+                        <Parameter DefaultValue="" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="value"/>
+                    </Parameters>
+                    <Sourcecode><![CDATA[ 
+vdom_evt_setvalue(this, value);
+                    ]]></Sourcecode>
+                </Action>
+            </Container>
+
+		</Actions>
+    </E2vdom>
+</Type>

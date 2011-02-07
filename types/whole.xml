@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?><Type>
+	<Information>
+		<Name>whole</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<Description>#Lang(002)</Description>
+		<ClassName>VDOM_wholeobject</ClassName>
+		<ID>5ac1e4ae-f849-4bf4-9b6c-316b30e7a5e6</ID>
+		<Icon>#Res(baac6024-82cf-48b9-bbb1-82314b10171f)</Icon>
+		<EditorIcon>#Res(89c11ca7-5be4-400e-9c1d-e2353e4ef002)</EditorIcon>
+		<StructureIcon>#Res(4a364886-1f7c-4df8-a227-89ee6659a2fc)</StructureIcon>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<Container>1</Container>
+		<Category>Standard</Category>
+		<Dynamic>0</Dynamic>
+		<Version>2</Version>
+		<InterfaceType>1</InterfaceType>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(301)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(302)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(303)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(304)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(305)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<DefaultValue>100</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<Help>#Lang(306)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<DefaultValue>100</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<Help>#Lang(307)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>data</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<DefaultValue/>
+			<RegularExpressionValidation>.+?</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<Help>#Lang(308)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(4000)</CodeInterface>
+			<Colorgroup>3</Colorgroup>
+		</Attribute>
+		<Attribute>
+			<Name>wholecache</Name>
+			<DisplayName/>
+			<DefaultValue/>
+			<RegularExpressionValidation>.+?</RegularExpressionValidation>
+			<ErrorValidationMessage/>
+			<Visible>0</Visible>
+			<Help/>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface/>
+			<Colorgroup>1</Colorgroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">WHOLE object</Sentence>
+			<Sentence ID="002">WHOLE object</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Data</Sentence>
+			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
+			<Sentence ID="203">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="204">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="205">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="206">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="207">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="208">Incorrect value, must be string</Sentence>
+			<Sentence ID="301">Hierarchy</Sentence>
+			<Sentence ID="302">Visibility</Sentence>
+			<Sentence ID="303">Z-Index</Sentence>
+			<Sentence ID="304">Distance from the top edge of the parent in pixels</Sentence>
+			<Sentence ID="305">Distance from the left edge of the parent in pixels</Sentence>
+			<Sentence ID="306">Width in pixels</Sentence>
+			<Sentence ID="307">Height in pixels</Sentence>
+			<Sentence ID="308">Data</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">WHOLE объект</Sentence>
+			<Sentence ID="002">WHOLE объект</Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Z-Индекс</Sentence>
+			<Sentence ID="104">Верх</Sentence>
+			<Sentence ID="105">Лево</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108">Содержимое</Sentence>
+			<Sentence ID="201">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="202">Неправильное значение, должно быть 0 или 1</Sentence>
+			<Sentence ID="203">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
+			<Sentence ID="208">Неправильное значение, должна быть строка</Sentence>
+			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="302">Отображается объект или нет</Sentence>
+			<Sentence ID="303">Z-Index</Sentence>
+			<Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="306">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="307">Высота объекта в пикселях</Sentence>
+			<Sentence ID="308">Содержимое объекта</Sentence>
+			<Sentence ID="401">Не отображается</Sentence>
+			<Sentence ID="402">Отображается</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Objet WHOLE</Sentence>
+			<Sentence ID="002">object WHOLE</Sentence>
+			<Sentence ID="101">Hiérarchie</Sentence>
+			<Sentence ID="102">Visibilité</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106">Largeur</Sentence>
+			<Sentence ID="107">Hauteur</Sentence>
+			<Sentence ID="108">Données</Sentence>
+			<Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="203">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="207">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="208">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="302">Afficher ou cacher l'objet</Sentence>
+			<Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+			<Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+			<Sentence ID="305">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+			<Sentence ID="306">Largeur de l'objet en pixels</Sentence>
+			<Sentence ID="307">Hauteur de l'objet en pixels</Sentence>
+			<Sentence ID="308">Données</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="baac6024-82cf-48b9-bbb1-82314b10171f" Name="Icon" Type="png"><![CDATA[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]]>
+		</Resource>
+		<Resource ID="89c11ca7-5be4-400e-9c1d-e2353e4ef002" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi8rOEw9N14/NGlKSFtJXE1OT0pbXF1eX1VmZ2hpamtsbW5vYnN0dXZ3eHl6e3x//aAAwDAQACEQMRAD8AyusdY6xR1jOxcXOyMXFxci3Hx8fHtfVWyup7qamNqpcxn0GIuJlfWLJxH309XzH2VmHUfaLd22PpD9IlmO6dX17rBzqn2zm3+nsMR+lt3T761f6T+y7Mjdh49rHtHueSdoB/e/Su+ks+c5GZue5PXVypzkZkcdakVZtq9F6r1XI6riYuXmX5WNk3MovoyLH21vrsc2uxrq7XOb9FySsVHEs+s/T34w/7V0eo8fRc71Ge5o/79+ekme7Lg4eM1x99NmP3JcHz/p8PFfg//9Cp1XovVcnquZl4uJdk42VfZfRfRW6yt9dr3W1ubZU1zfoPU6cH6x1YhxG9Oym1uMuIosDjP5u7b9FeZJLLy+3xzrj3Pb5XFy+3xz+fc3w1/hPqfS+l9Tx+p4mVlYl2NjY1zL77763VsYytzbLHOssa1v0WpLyxJD9R7H6d8f8AVquFZ+o9j9OuPwu6f//ZOEJJTQQGAAAAAAAHAAgBAQABAQD/4gIkSUNDX1BST0ZJTEUAAQEAAAIUQURCRQIQAABtbnRyUkdCIFhZWiAH0QADABoACQASADRhY3NwTVNGVAAAAABub25lAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUFEQkUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApjcHJ0AAAA/AAAACRkZXNjAAABIAAAAGB3dHB0AAABgAAAABRia3B0AAABlAAAABRyVFJDAAABqAAAAA5nVFJDAAABuAAAAA5iVFJDAAAByAAAAA5yWFlaAAAB2AAAABRnWFlaAAAB7AAAABRiWFlaAAACAAAAABR0ZXh0AAAAAChjKSAyMDAxIEFkb2JlIFN5c3RlbXMgSW5jLgBkZXNjAAAAAAAAAAVzUkdCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYWVogAAAAAAAA81EAAQAAAAEWzFhZWiAAAAAAAAAAAAAAAAAAAAAAY3VydgAAAAAAAAABAjMAAGN1cnYAAAAAAAAAAQIzAABjdXJ2AAAAAAAAAAECMwAAWFlaIAAAAAAAAHRLAAA97QAAA9BYWVogAAAAAAAAWnMAAKx0AAAXM1hZWiAAAAAAAAAoGAAAFZ4AALgq/+4AIUFkb2JlAGRAAAAAAQMAEAMCAwYAAAAAAAAAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQECAgICAgICAgICAgMDAwMDAwMDAwMBAQEBAQEBAQEBAQICAQICAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA//CABEIABgAGAMBEQACEQEDEQH/xACRAAEAAwAAAAAAAAAAAAAAAAAGBQcIAQACAwEAAAAAAAAAAAAAAAAFBgEHCAMQAAMBAQADAQAAAAAAAAAAAAUGBwgEAQMJAhEAAAcBAAMBAAMAAAAAAAAAAQIDBAUGBwgRExQSABUJEgACAgEDAwMDBAMAAAAAAAABAhEDBBIFBgAhMUEiFTITFFGBQpIjJBb/2gAMAwEBAhEDEQAAAMC5mxK/rxDdyHA8ymsgKxFBFynXt1Q1lWtjFJ//2gAIAQIAAQUAp9Pb/e4fhweSI+cVygDX51JAvS5BSS10EhBoMSqtcnD+NoPWq0zwHj0epXdSv//aAAgBAwABBQCg0NhXGH1vlJLCkeqOxZ0oZdb56AumFHqLAWEAWtdTR3Qs79qTYPAGSyWghqF//9oACAEBAAEFANe692IibDlFM+idVlWMNUampWqbD351Xt5ZR/OX2d/VOqUMH061LjPVFO1Kmwz6NqsqzFmLS030t//aAAgBAgIGPwDkGVlb9kPlvkWFnNjambUe579z1l5uByTIbIqbvSLbNemJ1CG7n9Fj3QYJaFPD8rC5RmLkfJY6g/dcxrtVCRLEAgN2PoeuULvWJbd/tOE0EiId9UxYnn2x58Hx6n4bacqu5FOqwsdCg+j/AOdgdRHZdLEkaohSy8R+HWR8tiixwfZY/wCRXLII/s4MWH3AfzflGFlcO3L8hMy2QuPa8S5IBKKwmD3EyOsjZcTh25pi2uWcrh5AdgQAVLaPpMCe0kDSTpJU8KxMThW5m87njsA2PagIS1HYBnRRMKYEyT2HX//aAAgBAwIGPwDc9m2bcrMbbsWxqq66mKIqoSqgKpA8DufJPc9+s7P2vluW+XQ/uoW60WaInUsN3J7wse7SwUlwEPFtm3bfsjL2rO3DHxrqbrHtreq+1KnBR2InSxKtEq0EGR1zOvkGDdePzbBX9skaYssDzFtfn2x58Hx6n/n9izasitSXtLMK0UjsHnIYHURCrpYkjVEIWXgp2FZX5vCFtikfbts/Lqlq1j9mcHTY3uC+bLN/3XZuLbhm7Vl5Nl1V2Pj3X1PXa5dCtlSMs6WErMqZVgCI6yuPYPAt4rwbrCzsuBlCxwQAUZhX9BAEiNRA0FtBKniW8bvxHcsLacLccfJuuyce2imumi5LbGay1EWdCHSs6naFUEkDr//aAAgBAQEGPwDqbI8j6n6Hw3HsO6I2PC8jyPC9h0THcxoeYY5oljzujwEDSM7sddrrVZvXa63F48FuZ5IvDKunKqq6pzjab9Sv9D+yrFaadLAhKZij1JvitocQHxEcjNxwm0Qxn7lZUxyt2ZUfLsrdcqKp3JSNlee8j2HpPdtyyLadhzbF9VyjcdZvuuZxeM71O5wlJt8NNUy/T87BKuFoSaVM0eFRK7YOiproKJqEKb+f6OK77QLXdxkO2ukVKmNYeOmn9Z6941Y06L/5rnUfZ9v0s/V+vo8eo/j1+R/YP8QxvU61NREc5UlrTITUmnXIuNeJrFI0nfbqMy1eklF24A3aGaOjKKpe4EwK3OslyHNZdHeoB6y52C3TzFwkFdtNlDZ6ed1LwjBNAPyJvIldPiK+iTX8rkS8id286U2HI+edk2XItv3jWdvynVMbzW46lnd5zjW79YL/AEydg7fSISbgnCrmAn0AdtRWB2wdgo3cJprJnIElkEVxt1FD1malnEpNvo/mXY2tilUXjZFq7h3soSrARaJdJtkwVAEgXUSJ6DKi3EyJuf8AXNdwDYMYyTGNhzbY9T1PY81uWXZ9Ss9y65Qt2ts3OW67Q0LBt1G8JCrA1agsZ0+dGTbt01FlCEH/2Q==]]>
+		</Resource>
+		<Resource ID="4a364886-1f7c-4df8-a227-89ee6659a2fc" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAjpQTFRFDyAlHS0ylp2gRlNXsre5oKepkJiaq7CylZ2fqa+xjJSXrrO1ipKVyMzNy87PnaSmho+S8fLy9vf3k5ueIjI2i5OV8PHxrbO1eIKFzdDRzdHSVllcYm5xn6ao4+bm6OnqXzI46erqLEJIGSswMkBFVWJla3p9kiwx3+HihR4mECcrr7W2CiEnN0ZLlJyebVlYdYCDl6CiDyAmd4GEVEFBczYwXmlteoOGlJuew8fIXWhsKz1BWS00cHp9PT5BGDA2OkdMiJCTKzg7ZHBz09fXjJSWZSEZxMnJfSMgXGhrk5qckpmbi5SWZDE1xcnL9PX1297epaytxsrLeB8cwsbHPyEdTzc+b3l7anR3t7y+FCUqiZGTj5eZQDExaTMsnaaoRFFVeYKFj5iabnh7X2puZnd8EiElwcbHOE1SV2NmEiUrUGFlxMjJyMzMWVlahY6P2t3eQjg4L0BES1hc3uDh19vb19nagouOlTQ0mJ+h8/T0ZnN2DiEnyc3Oys3OZR8WaWhoY1FRbycedz84jyovuL2+ZSkjQlBUKSsvfYaIbXd7dYSHpKqscYOG4ePje4WHQy0zdoCCO0pPV2NnX2tueoSH4+XlkZmbYXR4eIGEaFxbiiIqvcLDFCwxfIWIbSkfGzI3HTI4fYeJVDMvo6qsx8vNiJKVY3Bzcnx+cHJ0tbq8rrS2ECEmmKCiECAmkJmceYiLoaiqQlBTYG1wGzE1e4WIm6GktLm7s7m6M0FFr7W39/f4PUpO////18PFYQAAAL50Uk5T////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AJOw04YAAAETSURBVHjaYti7d6+Q+zbH8kU8kf5A9l6GvXv7vF051uqJzosILwMLaOR7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]]>
+		</Resource>
+	</Resources>
+	<SourceCode>
+	<![CDATA[
+
+import src.util.uuid
+import src.engine
+import src.xml
+from src.xml.xml_object import xml_object
+
+class VDOMobject:
+
+	def __init__(self):
+		self.objects = {}
+		self.objects_list = []
+		self.attributes = {}
+		#self.copy_objects = []
+		self.parent = None
+		self.toplevel = None
+		self.actions = {"name": {}, "id": {}}
+
+	def get_objects(self):
+		return self.objects
+
+	def get_objects_list(self):
+		return self.objects_list
+
+	def get_attributes(self):
+		return self.attributes
+
+class VDOMattribute:
+
+	def __init__(self, name, value):
+		self.name = name
+		self.value = value
+
+class VDOM_wholeobject(VDOM_object):
+
+	def parse(self, xml_obj, app):
+		r = []
+		for x in xml_obj.children:
+			_type = src.xml.xml_manager.get_type_by_name(x.lname)
+			if not _type or "copy" == x.lname:
+				raise ValueError
+			_v = VDOMobject()
+			_v.id = str(src.util.uuid.uuid4())
+			_v.name = x.lname + "_" + "_".join(_v.id.split("-"))
+			_v.type = _type
+			for a in _type.attributes:
+				_v.attributes[a] = VDOMattribute(a, _type.attributes[a].default_value)
+			for a in x.attributes:
+				_v.attributes[a] = VDOMattribute(a, x.attributes[a])
+			for c in x.children:
+				if "attribute" == c.lname:
+					_name = c.attributes["name"]
+					_value = c.get_value_as_xml()
+					_v.attributes[_name] = VDOMattribute(_name, _value)
+				else:
+					rr = self.parse(c, app)
+					for i in rr:
+						i.parent = _v
+						_v.objects[i.id] = i
+						_v.objects_list.append(i)
+			r.append(_v)
+			app.register_object(_v)
+			self.q.append(_v)
+		return r
+
+	def render(self, parent, contents=""):
+		self.q = []
+		result = ""
+		if self.visible == "1":
+			if self.wholecache:
+				return VDOM_object.render(self, parent, contents=self.wholecache)
+			style = "overflow:auto; z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx;" % (self.zindex, self.position, self.top, self.left, self.width, self.height)
+			id = 'o_' + (self.id).replace('-', '_')
+
+			_cont = ""
+			v = None
+			x = None
+			if self.data:
+				try:
+					x = xml_object(srcdata=self.data.encode("utf-8"))
+					app = src.xml.xml_manager.get_application(request.application_id)
+					v = self.parse(x, app)
+					_this = app.search_object(self.id)
+					for obj in v:
+						_cont += src.engine.engine.render(app, obj, _this, _this.toplevel.type.render_type)
+				except Exception, e:
+					_cont = "WHOLE object"
+					import traceback
+					traceback.print_exc(file=debugfile)
+			if x:
+				x.delete()
+			for i in self.q:
+				app.unregister_object(i)
+
+			result = "<div id=\"%s\" style=\"%s\">%s</div>" % (id, style, _cont)
+			self.wholecache = result
+		return VDOM_object.render(self, parent, contents=result)
+
+	def wysiwyg(self, parent, contents=""):
+		result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"
+		result += "<text>%s</text>%s</container>"
+		result = result	% (self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, "WHOLE object", contents)
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+def set_attr(app_id, object_id, param):
+	import src.xml
+	o = src.xml.xml_manager.search_object(app_id, object_id)
+	if o and "data" in param:
+		o.set_attribute("wholecache", "", do_compute=False)
+
+	]]>
+	</SourceCode>
+	<Libraries/>
+	<E2vdom/>
+</Type>
