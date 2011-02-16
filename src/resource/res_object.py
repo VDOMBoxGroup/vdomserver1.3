@@ -1,15 +1,14 @@
-import src.resource
-import src.file_access
-from src.util.exception import VDOM_exception
-import src.util.uuid
-from src.storage import storage
 import copy
+import managers, file_access
+# from storage import storage
+from util.exception import VDOM_exception
+import util.uuid
 
 class VDOM_resource_descriptor(object):
 	def __init__(self,owner_id, res_id=None):
 		"""constructor"""
 		self.application_id = owner_id
-		self.id = res_id or str(src.util.uuid.uuid4())
+		self.id = res_id or str(util.uuid.uuid4())
 		self.__loaded = False	
 	
 	@classmethod
@@ -42,7 +41,8 @@ class VDOM_resource_descriptor(object):
 			self.showtimes = None
 			#Loading from DB
 			self.__loaded = True
-			storage.get_resource_record(self)
+			# storage.get_resource_record(self)
+			managers.storage.get_resource_record(self) # ?????
 		
 
 	def load_copy(self):
@@ -56,7 +56,8 @@ class VDOM_resource_descriptor(object):
 		if not getattr(self,"res_type",None):#Means it's new 
 			self.res_type = "permanent"
 			self.label = ""
-		storage.save_resource_record(self)
+		# storage.save_resource_record(self)
+		managers.storage.save_resource_record(self) # ?????
 	
 	def __get_filename(self):
 		"""Lazy initialisation of filename"""
@@ -64,7 +65,7 @@ class VDOM_resource_descriptor(object):
 		if fn:
 			return fn
 		else:
-			self.__filename = str(src.util.uuid.uuid4())
+			self.__filename = str(util.uuid.uuid4())
 			return self.__filename
 
 	def __set_filename(self, value):
@@ -80,25 +81,26 @@ class VDOM_resource_descriptor(object):
 	
 	def get_data(self):
 		if self.__loaded:
-			return src.file_access.file_manager.read(src.file_access.resource,self.application_id,self.object_id,self.filename)
+			return managers.file_manager.read(file_access.resource,self.application_id,self.object_id,self.filename)
 		else:
 			new_res = self.load_copy()
-			return src.file_access.file_manager.read(src.file_access.resource,new_res.application_id,None,new_res.filename)
+			return managers.file_manager.read(file_access.resource,new_res.application_id,None,new_res.filename)
 
 		
 	def get_fd(self):
 		"""Reading resource data from HDD"""
 		if self.__loaded:
-			return src.file_access.file_manager.get_fd(src.file_access.resource,self.application_id,self.object_id,self.filename)
+			return managers.file_manager.get_fd(file_access.resource,self.application_id,self.object_id,self.filename)
 		else:
 			new_res = self.load_copy()
-			return src.file_access.file_manager.get_fd(src.file_access.resource,new_res.application_id,None,new_res.filename)
+			return managers.file_manager.get_fd(file_access.resource,new_res.application_id,None,new_res.filename)
 		
 	
 	def decrease(self, object_id, remove=False):
 		if remove:
 			self.__load_data()
-			storage.delete_resources_index(self)
+			# storage.delete_resources_index(self)
+			managers.storage.delete_resources_index(self) # ?????
 			return 0
 		return 1
 	
@@ -120,7 +122,7 @@ class VDOM_resource_object:
 		self.label = ""
 		self.id = id
 		self.name = ""
-		self.filename = str(src.util.uuid.uuid4())
+		self.filename = str(util.uuid.uuid4())
 		self.showtimes = None
 		
 		#if object_id:
@@ -131,7 +133,7 @@ class VDOM_resource_object:
 		#temp_object = None
 		#if len (self.dependences) == 1 and self.label:
 			#temp_object = self.dependences[self.dependences.keys()[0]]
-		#data  =  src.file_access.file_manager.read(src.file_access.resource,self.application_id,temp_object,self.filename)
+		#data  =  managers.file_manager.read(file_access.resource,self.application_id,temp_object,self.filename)
 		#if self.showtimes:
 			#self.showtimes -= 1
 			#if self.showtimes <= 0:
@@ -144,7 +146,7 @@ class VDOM_resource_object:
 		#temp_object = None
 		#if len (self.dependences) == 1 and self.label:
 			#temp_object = self.dependences[self.dependences.keys()[0]]
-		#fd  =  src.file_access.file_manager.get_fd(src.file_access.resource,self.application_id,temp_object,self.filename)
+		#fd  =  managers.file_manager.get_fd(file_access.resource,self.application_id,temp_object,self.filename)
 		#if self.showtimes:
 			#self.showtimes -= 1
 			#if self.showtimes <= 0:
@@ -153,7 +155,7 @@ class VDOM_resource_object:
 	#def decrease(self, object_id, remove=False):
 		#self.dependences.pop(object_id, None)
 		#if remove:# or not self.use_counting or 0 == len(self.dependences):
-			#src.file_access.file_manager.delete(src.file_access.resource,self.application_id,None,self.filename)
+			#managers.file_manager.delete(file_access.resource,self.application_id,None,self.filename)
 			#self.dependences = {}
 		#return len(self.dependences)
 	

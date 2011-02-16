@@ -1,6 +1,6 @@
 
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -11,9 +11,9 @@ def run(request):
 		Delgrp = 0
 		args = request.arguments().arguments()
 		for uid in args.keys():
-			u = src.managers.user_manager.get_user_by_id(uid)
+			u = managers.user_manager.get_user_by_id(uid)
 			if u:
-				src.managers.user_manager.remove_user(u.login)
+				managers.user_manager.remove_user(u.login)
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The group %s is removed";</script>' % u.login)
 				Delgrp = 1
 		if Delgrp != 1:	
@@ -47,7 +47,7 @@ a:visited {
    <tr>
      <td align="center" class="Texte">""")
 	request.write('<form method=post action="" enctype="multipart/form-data">')
-	userlist = src.managers.user_manager.get_all_groups()
+	userlist = managers.user_manager.get_all_groups()
 	for u in userlist:
 		s = ""
 		if u.system:

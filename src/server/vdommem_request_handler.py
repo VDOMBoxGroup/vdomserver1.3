@@ -4,7 +4,7 @@ import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, select
 from cStringIO import StringIO
 
 from vdommem_scripts import *
-import src.managers
+import managers
 
 #class BaseRequestHandler:
 #
@@ -128,7 +128,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	def open_session(self, params):
 		appid = params["appid"]
 		write = int(params["write"])
-		self.__app = src.managers.xml_manager.get_application(appid)
+		self.__app = managers.xml_manager.get_application(appid)
 		if write:
 			try:
 				self.__app.lock_write()
@@ -141,18 +141,18 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 
 	def get_application(self, params):
 		appid = params["appid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		return wrap_application(x)
 
 	def get_top_objects(self, params):
 		appid = params["appid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		return wrap_objects_list(x.objects_list)
 
 	def get_child_objects(self, params):
 		appid = params["appid"]
 		objid = params["objid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		obj = x.search_object(objid)
 		if obj:
 			return wrap_objects_list(obj.objects_list)
@@ -160,7 +160,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	def get_object(self, params):
 		appid = params["appid"]
 		objid = params["objid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		obj = x.search_object(objid)
 		if obj:
 			return wrap_object(obj)
@@ -168,7 +168,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	def get_child_objects_tree(self, params):
 		appid = params["appid"]
 		objid = params["objid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		obj = x.search_object(objid)
 		if obj:
 			return wrap_objects_tree(obj)
@@ -176,7 +176,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	def object_get_number_of_childs(self, params):
 		appid = params["appid"]
 		objid = params["objid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		obj = x.search_object(objid)
 		if obj:
 			return str(len(obj.get_all_children()))
@@ -184,13 +184,13 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 
 	def get_application_structure(self, params):
 		appid = params["appid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		return x.structure_element.toxml()
 
 	#def set_application_structure(self, params):
 	#	appid = params["appid"]
 	#	data = params["data"]
-	#	x = src.managers.xml_manager.get_application(appid)
+	#	x = managers.xml_manager.get_application(appid)
 	#	if x:
 	#		o = xml_object(srcdata = data)
 	#		x.set_structure(o)
@@ -198,32 +198,32 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 
 	def application_e2vdom(self, params):
 		appid = params["appid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		return x.e2vdom_element.toxml()
 
 	def application_actions(self, params):
 		appid = params["appid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		return x.actions_element.toxml()
 
 	def object_actions(self, params):
 		appid = params["appid"]
 		objid = params["objid"]
-		x = src.managers.xml_manager.get_application(appid)
+		x = managers.xml_manager.get_application(appid)
 		obj = x.search_object(objid)
 		if obj:
 			return obj.actions_element.toxml()
 
 	def application_get_info(self, params):
 		appid = params["appid"]
-		app = src.managers.xml_manager.get_application(appid)
+		app = managers.xml_manager.get_application(appid)
 		return wrap_application_info(app)
 
 	#def application_set_info(self, params):
 	#	appid = params["appid"]
 	#	data = params["data"]
 	#	request_manager.current.user = params["username"]
-	#	app = src.managers.xml_manager.get_application(appid)
+	#	app = managers.xml_manager.get_application(appid)
 	#	if app:
 	#		param = parse_attr(data)
 	#		if param:
@@ -234,7 +234,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 
 	def application_number_of_objects(self, params):
 		appid = params["appid"]
-		app = src.managers.xml_manager.get_application(appid)
+		app = managers.xml_manager.get_application(appid)
 		return str(app.objects_amount())
 
 	#def save_object(self, params):
@@ -242,7 +242,7 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	#	objid = params["objid"]
 	#	data = params["data"]
 	#	request_manager.current.user = params["username"]
-	#	app = src.managers.xml_manager.get_application(appid)
+	#	app = managers.xml_manager.get_application(appid)
 	#	if app:
 	#		obj = app.search_object(objid)
 	#		if obj:
@@ -258,11 +258,11 @@ class VDOM_memory_request_handler(SocketServer.StreamRequestHandler):
 	#	objid = params["objid"]
 	#	action = params["action"]
 	#	context = params["context"]
-	#	x = src.managers.xml_manager.get_application(appid)
+	#	x = managers.xml_manager.get_application(appid)
 	#	if x:
 	#		obj = x.search_object(objid)
 	#		if obj:
 	#			return source_cache.get_source(x, obj, action, context)
 
 
-from src.xml.xml_object import xml_object
+from memory.xml_object import xml_object

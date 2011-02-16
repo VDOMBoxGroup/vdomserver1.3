@@ -6,11 +6,11 @@ FREEBSD = sys.platform.startswith("frebsd")
 
 
 if  LINUX:
-	from src.util.system_linux import *
+	from util.system_linux import *
 elif FREEBSD:
-	from src.util.system_freebsd import *
+	from util.system_freebsd import *
 else:
-	from src.util.system_freebsd import *
+	from util.system_freebsd import *
 
 
 
@@ -35,7 +35,7 @@ def console_debug(data):
 			except:
 				pass
 	try:
-		sess = src.request.request_manager.get_request().session()
+		sess = managers.request_manager.get_request().session()
 		d = sess.value("debug_data")
 		if d is None:
 			d = []
@@ -44,4 +44,4 @@ def console_debug(data):
 	except:
 		pass
 
-import src.request
+import managers

@@ -1,6 +1,6 @@
 
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -11,9 +11,9 @@ def run(request):
 		DelUser = 0
 		args = request.arguments().arguments()
 		for uid in args.keys():
-			u = src.managers.user_manager.get_user_by_id(uid)
+			u = managers.user_manager.get_user_by_id(uid)
 			if u:
-				src.managers.user_manager.remove_user(u.login)
+				managers.user_manager.remove_user(u.login)
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The user %s is removed";</script>' % u.login)
 				DelUser = 1
 		if DelUser != 1:	
@@ -46,7 +46,7 @@ a:visited {
 <div style="overflow:auto; width:630px; height:210px; border:0px #000000 solid;">
 <table width="100%" border="0" align="center" cellspacing="0" cellpadding="0">""")
 	request.write('<form method=post action="" enctype="multipart/form-data">')
-	userlist = src.managers.user_manager.get_all_users()
+	userlist = managers.user_manager.get_all_users()
 	for u in userlist:
 		s = ""
 		if u.system:

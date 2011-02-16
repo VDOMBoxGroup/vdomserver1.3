@@ -1,7 +1,7 @@
 
 import os, tempfile, traceback, shutil
-from src.util.exception import VDOM_exception
-import src.xml
+from util.exception import VDOM_exception
+import managers
 
 def run(request):
 	sess = request.session()
@@ -24,10 +24,10 @@ def run(request):
 			tmpfile.write(args["typefile"][0])
 			tmpfile.close()
 			# test
-			ret = src.xml.xml_manager.test_type(tmpfilename)
+			ret = managers.xml_manager.test_type(tmpfilename)
 			if ret == type_id:
 				# load type
-				ret = src.xml.xml_manager.load_type(tmpfilename)
+				ret = managers.xml_manager.load_type(tmpfilename)
 				# ret[1] is a type object
 				shutil.copyfile(tmpfilename, VDOM_CONFIG["TYPES-LOCATION"] + "/" + ret[1].name.lower() + ".xml")
 				error = "OK, restart your VDOM Box to use the new type"
@@ -65,12 +65,12 @@ a:visited {
  <p class="Texte"><a href="config.py">Configuration</a><a href="menuAppli.html"></a> &gt; <a href="objects.py">Objects</a> &gt; Update</p>
 """)
 
-	l = src.xml.xml_manager.get_types()
+	l = managers.xml_manager.get_types()
 	cont = ""
 	ll = []
 	for type_id in l:
 		a = "_".join(type_id.split("-"))
-		obj = src.xml.xml_manager.get_type(type_id)
+		obj = managers.xml_manager.get_type(type_id)
 		ll.append(("%s (%s, version %s)" % (obj.name, type_id, obj.version), a))
 	ll.sort()
 	for item in ll:

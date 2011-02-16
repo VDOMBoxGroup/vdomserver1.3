@@ -1,11 +1,9 @@
 
 import time, os, tempfile, shutil, re, base64, sys
 
-import src.file_access
-import src.resource
-from src.file_access.manager import application_path
-from src.file_access.manager import application_file_name
-from src.util.exception import VDOM_exception
+import managers
+from file_access.manager import application_path, application_file_name
+from util.exception import VDOM_exception
 
 re_id = re.compile(r"\s+id\s*=\s*\"(.+?)\"", re.IGNORECASE)
 re_type = re.compile(r"\s+type\s*=\s*\"(.+?)\"", re.IGNORECASE)
@@ -45,7 +43,7 @@ class parseapp:
 		if os.path.exists(self.app_path):
 			shutil.rmtree(tmp, ignore_errors=True)
 			return
-		src.file_access.file_manager.create_application_skell(self.id)
+		managers.file_manager.create_application_skell(self.id)
 		# copy app.xml
 		shutil.copyfile(os.path.join(tmp, "app.xml"), self.work_xml_file)
 		# process resources
@@ -101,11 +99,11 @@ class parseapp:
 			"res_format": res_type
 		}
 		debug("Resource %s" % res_id)
-		if not src.resource.resource_manager.check_resource(self.id, attributes):
+		if not managers.resource_manager.check_resource(self.id, attributes):
 			debug("add")
 			# unbase64
 			bindata = base64.b64decode(data[_i:_j])
-			src.resource.resource_manager.add_resource(self.id, None, attributes, bindata)
+			managers.resource_manager.add_resource(self.id, None, attributes, bindata)
 		else:
 			debug("exists")
 		return True

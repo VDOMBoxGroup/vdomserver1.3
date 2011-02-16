@@ -2,7 +2,7 @@
 
 import string, random, math, time
 from hashlib import md5
-import src.managers
+import managers
 
 class VDOM_id:
 	"""id generation class"""
@@ -44,7 +44,7 @@ def id2link(res_id):
 
 def id2link1(res_id):
 	"""transform resource id to resource URL"""
-	o = src.managers.resource_manager.get_resource(None, res_id)
+	o = managers.resource_manager.get_resource(None, res_id)
 	if not o:
 		return ""
 	return "".join(["/", res_id, ".", o.res_format])

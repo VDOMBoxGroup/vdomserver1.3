@@ -1,7 +1,7 @@
 
 import os
-from src.util.system import get_vfs_users
-from src.util.exception import VDOM_exception
+from util.system import get_vfs_users
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()

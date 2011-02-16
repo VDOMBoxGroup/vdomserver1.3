@@ -1,5 +1,5 @@
 
-import src.request
+import managers
 
 import errors, types
 
@@ -42,18 +42,18 @@ class cookies_collection(generic):
 		if let is not None:
 			value=as_value(let).value
 			if isinstance(value, str) or isinstance(value, unicode):
-				cookies=src.request.request_manager.get_request().cookies().cookies()
+				cookies=managers.request_manager.get_request().cookies().cookies()
 				cookies[name]=value
 			else:
 				raise errors.type_mismatch
 		elif set is not None:
 			raise errors.object_has_no_property
 		else:
-			cookies=src.request.request_manager.get_request().cookies()
+			cookies=managers.request_manager.get_request().cookies()
 			return string(cookies[name]) if name in cookies else v_empty
 
 	def __iter__(self):
-		cookies=src.request.request_manager.get_request().cookies()
+		cookies=managers.request_manager.get_request().cookies()
 		return cookies_collection_iterator(iter(cookies))
 
 class arguments_collection_iterator(object):
@@ -75,21 +75,21 @@ class arguments_collection(generic):
 			raise errors.object_has_no_property
 			#value=as_value(let).value
 			#if isinstance(value, str) or isinstance(value, unicode):
-			#	arguments=src.request.request_manager.get_request().arguments().arguments()
+			#	arguments=managers.request_manager.get_request().arguments().arguments()
 			#	arguments[name]=value
 			#else:
 			#	raise errors.type_mismatch
 		elif set is not None:
 			raise errors.object_has_no_property
 		else:
-			arguments=src.request.request_manager.get_request().arguments().arguments()
+			arguments=managers.request_manager.get_request().arguments().arguments()
 			try:
 				return string(unicode(arguments[name][0].decode("utf-8"))) if name in arguments else v_empty
 			except UnicodeDecodeError, error:
 				return binary(arguments[name][0])
 
 	def __iter__(self):
-		arguments=src.request.request_manager.get_request().arguments().arguments()
+		arguments=managers.request_manager.get_request().arguments().arguments()
 		return arguments_collection_iterator(iter(arguments))
 
 class servervariables_collection_iterator(object):
@@ -122,7 +122,7 @@ class servervariables_collection(generic):
 		collection=[]
 		for name in self.variable_table:
 			collection.append(name)
-		headers=src.request.request_manager.get_request().headers().headers()
+		headers=managers.request_manager.get_request().headers().headers()
 		for name in headers:
 			collection.append(u"HEADER_%s"%name)
 		for name in headers:
@@ -132,20 +132,20 @@ class servervariables_collection(generic):
 
 	
 	def variable_header_any(self, name):
-		return string(unicode(src.request.request_manager.get_request().headers().headers()[name[7:]]))
+		return string(unicode(managers.request_manager.get_request().headers().headers()[name[7:]]))
 
 	def variable_http_any(self, name):
-		return string(unicode(src.request.request_manager.get_request().headers().headers()[name[5:].replace(u"_", u"-")]))
+		return string(unicode(managers.request_manager.get_request().headers().headers()[name[5:].replace(u"_", u"-")]))
 	
 
 	
 	def variable_all_http(self):
 		return string(u"\n".join([u"HTTP_%s=%s"%(unicode(name.upper()).replace(u"-", u"_"), unicode(value)) \
-			for name, value in src.request.request_manager.get_request().headers().headers().items()]))
+			for name, value in managers.request_manager.get_request().headers().headers().items()]))
 
 	def variable_raw_http(self):
 		return string(u"\n".join([u"%s=%s"%(unicode(name), unicode(value)) for name, value in \
-			src.request.request_manager.get_request().headers().headers().items()]))
+			managers.request_manager.get_request().headers().headers().items()]))
 
 	def variable_auth_password(self):
 		return v_empty
@@ -154,7 +154,7 @@ class servervariables_collection(generic):
 		return string(u"Basic")
 
 	def variable_auth_user(self):
-		return string(unicode(src.request.request_manager.get_request().session().user))
+		return string(unicode(managers.request_manager.get_request().session().user))
 
 	def variable_content_length(self):
 		return v_empty
@@ -163,53 +163,53 @@ class servervariables_collection(generic):
 		return v_empty
 
 	def variable_gateway_interface(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["GATEWAY_INTERFACE"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["GATEWAY_INTERFACE"]))
 
 	def variable_local_addr(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SERVER_ADDR"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SERVER_ADDR"]))
 
 	def variable_query_stirng(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["QUERY_STRING"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["QUERY_STRING"]))
 
 	def variable_remote_addr(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["REMOTE_ADDR"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["REMOTE_ADDR"]))
 
 	def variable_remote_host(self):
 		return v_empty
 
 	def variable_remote_port(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["REMOTE_PORT"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["REMOTE_PORT"]))
 
 	def variable_remote_user(self):
-		return string(unicode(src.request.request_manager.get_request().session().user))
+		return string(unicode(managers.request_manager.get_request().session().user))
 
 	def variable_request_method(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["REQUEST_METHOD"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["REQUEST_METHOD"]))
 
 	def variable_script_name(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SCRIPT_NAME"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SCRIPT_NAME"]))
 
 	def variable_server_name(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SERVER_NAME"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SERVER_NAME"]))
 
 	def variable_server_port(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SERVER_PORT"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SERVER_PORT"]))
 
 	def variable_server_port_secure(self):
 		return integer(0)
 
 	def variable_server_protocol(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SERVER_PROTOCOL"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SERVER_PROTOCOL"]))
 
 	def variable_server_software(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SERVER_SOFTWARE"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SERVER_SOFTWARE"]))
 
 	def variable_unencoded_url(self):
-		environment=src.request.request_manager.get_request().environment().environment()
+		environment=managers.request_manager.get_request().environment().environment()
 		return string(unicode(environment["SCRIPT_NAME"]+environment["QUERY_STRING"]))
 
 	def variable_script_name(self):
-		return string(unicode(src.request.request_manager.get_request().environment().environment()["SCRIPT_NAME"]))
+		return string(unicode(managers.request_manager.get_request().environment().environment()["SCRIPT_NAME"]))
 
 
 	

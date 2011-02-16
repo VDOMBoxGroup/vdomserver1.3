@@ -1,7 +1,7 @@
 
 import os, tempfile, traceback
-import src.xml
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -12,7 +12,7 @@ def run(request):
 	args = request.arguments().arguments()
 	vh = request.server().virtual_hosting()
 	sites = vh.get_sites()
-	allapp = src.xml.xml_manager.get_applications()
+	allapp = managers.xml_manager.get_applications()
 
 	if "newvhostsite" in args and "newvhost" in args:
 		#add new record
@@ -78,14 +78,14 @@ a:visited {
 	for site in sites:
 		siteid = vh.get_site(site)
 		obj = None
-		try: obj = src.xml.xml_manager.get_application(siteid)
+		try: obj = managers.xml_manager.get_application(siteid)
 		except:
 			if site != 0: vh.set_site(site, None)
 			continue
 		cont = "<option value=%s>%s</option>" % (siteid, "%s (%s)" % (obj.name.encode("utf-8"), siteid))
 		for a in allapp:
 			if a != siteid:
-				obj = src.xml.xml_manager.get_application(a)
+				obj = managers.xml_manager.get_application(a)
 				cont += "<option value=%s>%s</option>" % (a, "%s (%s)" % (obj.name.encode("utf-8"), a))
 		cont += "<option value="">Nothing</option>"
 		request.write('<tr><td align="right" class="Style2">Name %s maps to :</td>\n<td><select name=%s style="font-size: 11px; font-family:tahoma">%s</select></td></tr>\n' % (site, site, cont))
@@ -96,7 +96,7 @@ a:visited {
 	request.write('<tr><td align="right" class="Style2">and map to</td>')
 	cont = ""
 	for a in allapp:
-		obj = src.xml.xml_manager.get_application(a)
+		obj = managers.xml_manager.get_application(a)
 		cont += "<option value=%s>%s</option>" % (a, "%s (%s)" % (obj.name.encode("utf-8"), a))
 	request.write('<td><select name=newvhostsite style="font-size: 11px; font-family:tahoma">%s</select></td></tr>' % cont)
 	request.write('<tr><td colspan="2" align="center"><input type=submit value="Add" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td></tr>')
@@ -108,7 +108,7 @@ a:visited {
 		cont = "<option value="">Not set</option>"
 	else:
 		try:
-			obj = src.xml.xml_manager.get_application(defsite)
+			obj = managers.xml_manager.get_application(defsite)
 			cont = "<option value=%s>%s</option>" % (defsite, "%s (%s)" % (obj.name.encode("utf-8"), defsite))
 		except:
 			defsite = ""
@@ -117,7 +117,7 @@ a:visited {
 	for a in allapp:
 		if a == defsite:
 			continue
-		obj = src.xml.xml_manager.get_application(a)
+		obj = managers.xml_manager.get_application(a)
 		cont += "<option value=%s>%s</option>" % (a, "%s (%s)" % (obj.name.encode("utf-8"), a))
 	if defsite:
 		cont += "<option value="">Not set</option>"

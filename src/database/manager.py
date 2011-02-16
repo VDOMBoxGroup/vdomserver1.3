@@ -1,11 +1,10 @@
 """database manager"""
 import string
 import sys
-import src.util.uuid
-import src.file_access
-from src.util.exception import VDOM_exception
-from src.database.dbobject import VDOM_database_object
-from src.database.dbobject import VDOM_database_table
+import util.uuid
+import managers, file_access
+from util.exception import VDOM_exception
+from dbobject import VDOM_database_object, VDOM_database_table
 from xml.dom.minidom import parseString
 from xml.dom import Node
 import time
@@ -19,13 +18,13 @@ class VDOM_database_manager(object):
 	
 	def restore(self):	
 		"""Restoring databases from last session.(After reboot or power off)"""
-		self.__index = src.storage.storage.read_object(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"])
+		self.__index = managers.storage.read_object(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"])
 		if self.__index:
 			remove_list = []
 			is_dirty_index = False
 			for id in self.__index: #check for not existing or temporary resources
 				database = self.__index[id]
-				if not src.file_access.file_manager.exists(src.file_access.database,database.owner_id,None, database.filename):
+				if not managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
 					remove_list.append(id)
 
 			for id in remove_list:
@@ -33,7 +32,7 @@ class VDOM_database_manager(object):
 				is_dirty_index = True
 				
 			if is_dirty_index:
-				src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+				managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		else:
 			self.remove_databases()
 	
@@ -53,12 +52,12 @@ class VDOM_database_manager(object):
 			
 			self.__index[database.id] = database
 			if attributes["type"] == "sqlite":
-				src.file_access.file_manager.write(src.file_access.database,database.owner_id,None, database.filename, data)
+				managers.file_manager.write(file_access.database,database.owner_id,None, database.filename, data)
 			elif attributes["type"] == "xml":
 				self.create_from_xml(database, data)
 			elif attributes["type"] == "multifile":
 				self.create_from_tar(database, data)
-			src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+			managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		return attributes["id"]
 		
 	def check_database(self, owner_id, id):
@@ -86,13 +85,13 @@ class VDOM_database_manager(object):
 		"""Creation of new database"""
 		database = VDOM_database_object(owner_id,id)
 		self.__index[database.id] = database
-		src.file_access.file_manager.create_database_directory(owner_id)
-		src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+		managers.file_manager.create_database_directory(owner_id)
+		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		return database
 	
 	def create_from_xml(self, database, xml_data):
 		"""Creation of database from xml representation"""
-		src.file_access.file_manager.create_database_directory(database.owner_id)
+		managers.file_manager.create_database_directory(database.owner_id)
 		dom_db = parseString(xml_data)
 		database.id = dom_db.firstChild.getAttribute("ID")
 		database.name = dom_db.firstChild.getAttribute("Name")
@@ -149,15 +148,15 @@ class VDOM_database_manager(object):
 	
 	def create_from_tar(self, database, xml_data):
 		"""Creation of database from tar archive"""
-		src.file_access.file_manager.create_database_directory("%s/%s"%(database.owner_id,database.id))
-		src.file_access.file_manager.get_path(src.file_access.database,database.owner_id,database.id)
+		managers.file_manager.create_database_directory("%s/%s"%(database.owner_id,database.id))
+		managers.file_manager.get_path(file_access.database,database.owner_id,database.id)
 		
 		
 	def remove_databases(self):
 		"""Clearing all databases"""
-		src.file_access.file_manager.clear(src.file_access.database,None, None)
+		managers.file_manager.clear(file_access.database,None, None)
 		self.__index = {}
-		src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 	
 	def list_databases(self, owner_id):
 		"""listing of all resources of application"""
@@ -190,15 +189,15 @@ class VDOM_database_manager(object):
 			is_dirty_index = True
 
 		if is_dirty_index:
-			src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+			managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		if db_id and database:
-			src.file_access.file_manager.delete(src.file_access.database,owner_id,None,database.filename)
+			managers.file_manager.delete(file_access.database,owner_id,None,database.filename)
 		else:
-			src.file_access.file_manager.clear(src.file_access.database,owner_id, None)
+			managers.file_manager.clear(file_access.database,owner_id, None)
 	
 	def save_index(self):
 		"""Saving changes in database index to Storage"""
-		src.storage.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 
 
 internal_database_manager = VDOM_database_manager()

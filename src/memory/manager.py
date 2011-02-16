@@ -2,6 +2,7 @@
 
 import shutil, os, os.path, sys, traceback, base64, zipfile, thread, time, copy
 
+
 class VDOM_xml_manager(object):
 	"""XML Manager class"""
 
@@ -16,24 +17,24 @@ class VDOM_xml_manager(object):
 		self.__app_to_sync = []
 		self.obj_count = 0
 
-		src.resource.resource_manager.save_index_off()
-		src.resource.resource_manager.restore()
-		src.database.database_manager.restore()
+		managers.resource_manager.save_index_off()
+		managers.resource_manager.restore()
+		managers.database_manager.restore()
 
 		# sync semaphores
 		self.__sem = VDOM_semaphore()
 		self.__app_sem = VDOM_semaphore()
 
 		# clear resources and source code
-		id_list = src.storage.storage.read_object(VDOM_CONFIG["XML-MANAGER-APP-STORAGE-RECORD"])
+		id_list = managers.storage.read_object(VDOM_CONFIG["XML-MANAGER-APP-STORAGE-RECORD"])
 		if id_list:
 			for ii in id_list:
-				src.source.cache.clear_container_swap(ii)
+				managers.source_cache.clear_container_swap(ii)
 
-		type_list = src.storage.storage.read_object(VDOM_CONFIG["XML-MANAGER-TYPE-STORAGE-RECORD"])
+		type_list = managers.storage.read_object(VDOM_CONFIG["XML-MANAGER-TYPE-STORAGE-RECORD"])
 		if type_list:
 			for tt in type_list:
-				src.source.cache.clear_type_sources(tt)
+				managers.source_cache.clear_type_sources(tt)
 
 		# list files in type directory and load types from files
 		ret = VDOM_type_enumerator().get()
@@ -68,8 +69,8 @@ class VDOM_xml_manager(object):
 		self.__sync_app()
 
 		# remove unused resources
-		src.resource.resource_manager.collect_unused()
-		src.resource.resource_manager.save_index_on(True)
+		managers.resource_manager.collect_unused()
+		managers.resource_manager.save_index_on(True)
 
 		thread.start_new_thread(self.__app_sync_thread, ())
 
@@ -87,7 +88,7 @@ class VDOM_xml_manager(object):
 						xmlstr = self.__applications[the_id].get_xml_as_string()
 						if len(xmlstr) > 0:
 							try:
-								src.file_access.file_manager.write(src.file_access.application_xml, the_id, None, None, xmlstr, False, False)
+								managers.file_manager.write(file_access.application_xml, the_id, None, None, xmlstr, False, False)
 							except Exception, e:
 								debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
 				self.__app_sem.unlock()
@@ -173,11 +174,11 @@ class VDOM_xml_manager(object):
 
 	def __sync_app(self):
 		"""save application data"""
-		src.storage.storage.write_object(VDOM_CONFIG["XML-MANAGER-APP-STORAGE-RECORD"], self.__app_id_list)
+		managers.storage.write_object(VDOM_CONFIG["XML-MANAGER-APP-STORAGE-RECORD"], self.__app_id_list)
 
 	def __sync_type(self):
 		"""save type data"""
-		src.storage.storage.write_object(VDOM_CONFIG["XML-MANAGER-TYPE-STORAGE-RECORD"], self.__type_id_list)
+		managers.storage.write_object(VDOM_CONFIG["XML-MANAGER-TYPE-STORAGE-RECORD"], self.__type_id_list)
 
 	def app_sync(self, app_id):
 		if app_id not in self.__app_to_sync:
@@ -215,7 +216,7 @@ class VDOM_xml_manager(object):
 				del self.__type_by_name[obj.name.lower()]
 				del obj
 				del self.__types[typeid]
-				src.file_access.file_manager.delete(file_access.global_type, None, None, typeid + ".xml")
+				managers.file_manager.delete(file_access.global_type, None, None, typeid + ".xml")
 				self.__sync_type()
 			finally:
 				self.__sem.unlock()
@@ -231,11 +232,11 @@ class VDOM_xml_manager(object):
 	def create_application(self):
 		"""create new application and return its id"""
 		# check user rights
-		if not src.security.acl_manager.session_user_has_access("vdombox", src.security.create_application):
+		if not managers.acl_manager.session_user_has_access("vdombox", security.create_application):
 			raise VDOM_exception_sec(_("Creating application is not allowed"))
 		newapp = VDOM_application(self)
 		newapp.create()
-		src.file_access.file_manager.create_application_skell(newapp.id)
+		managers.file_manager.create_application_skell(newapp.id)
 		newapp.sync()
 		self.__sem.lock()
 		try:
@@ -246,7 +247,7 @@ class VDOM_xml_manager(object):
 		finally:
 			self.__sem.unlock()
 		# grant access to this application
-		src.security.acl_manager.grant_access_to_application(newapp.id)
+		managers.acl_manager.grant_access_to_application(newapp.id)
 		return newapp.id
 
 	def search_object(self, id_app, id_obj):
@@ -261,7 +262,7 @@ class VDOM_xml_manager(object):
 
 	def import_application(self, path):
 		"""import application from a temporary path or single xml file"""
-		if not src.security.acl_manager.session_user_has_access("vdombox", src.security.create_application):
+		if not managers.acl_manager.session_user_has_access("vdombox", security.create_application):
 			raise VDOM_exception_sec(_("Installing application is not allowed"))
 		p = parseapp()
 		result = None
@@ -280,7 +281,7 @@ class VDOM_xml_manager(object):
 			if hasattr(p, "app_path") and p.app_path:
 				shutil.rmtree(p.app_path, True)
 			if hasattr(p, "id") and p.id:
-				src.resource.resource_manager.invalidate_resources(p.id)
+				managers.resource_manager.invalidate_resources(p.id)
 			return (None, str(e))
 		if not result:
 			return ("", "")
@@ -290,7 +291,7 @@ class VDOM_xml_manager(object):
 
 	def uninstall_application(self, appid, remove_db = True, remove_zero_res = True):
 		"""uninstall application, delete application xml file"""
-		if not src.security.acl_manager.session_user_has_access2(appid, appid, src.security.delete_application):
+		if not managers.acl_manager.session_user_has_access2(appid, appid, security.delete_application):
 			raise VDOM_exception_sec(_("Deleting application is not allowed"))
 		autolock = VDOM_named_mutex_auto("uninstall_" + appid)
 		appobj = None
@@ -322,29 +323,29 @@ class VDOM_xml_manager(object):
 		
 		
 		# remove source
-		src.source.cache.clear_container_swap(appid)
+		managers.source_cache.clear_container_swap(appid)
 		#clear libraries cache
 		appobj.invalidate_libraries()		
 		# remove libs
-		src.file_access.file_manager.delete_libs(appid)
+		managers.file_manager.delete_libs(appid)
 		
 		# remove resources
-		lst = src.resource.resource_manager.list_resources(appid)
+		lst = managers.resource_manager.list_resources(appid)
 		for ll in lst:
-			ro = src.resource.resource_manager.get_resource(appid, ll)
+			ro = managers.resource_manager.get_resource(appid, ll)
 			if len(ro.dependences) > 0 or remove_zero_res:
 				debug("Remove resource %s" % ll)
 				try:
-					src.resource.resource_manager.delete_resource(None, ll, True)
+					managers.resource_manager.delete_resource(None, ll, True)
 				except Exception, e:
 					debug("Error removing resource '%s': %s" % (ll, str(e)))
 			else:
 				debug("Keep resource %s" % ll)
-		#src.resource.resource_manager.invalidate_resources(appid)
+		#managers.resource_manager.invalidate_resources(appid)
 
 		# remove databases
 		if remove_db:
-			src.database.database_manager.delete_database(appid)
+			managers.database_manager.delete_database(appid)
 
 		# remove files
 		l = [application_path, resources_path]
@@ -376,10 +377,10 @@ class VDOM_xml_manager(object):
 
 	def __export_db(self, app, file):
 		file.write("<Databases>\n")
-		lst = src.database.database_manager.list_databases(app.id)
+		lst = managers.database_manager.list_databases(app.id)
 		for ll in lst:
-			do = src.database.database_manager.get_database(app.id, ll)
-			data = src.file_access.file_manager.read(src.file_access.database, app.id, None, do.filename)
+			do = managers.database_manager.get_database(app.id, ll)
+			data = managers.file_manager.read(file_access.database, app.id, None, do.filename)
 			if "" != do.name and len(data) > 0:
 				data = base64.b64encode(data)
 				x = """\t<Database ID="%s" Name="%s" Type="sqlite">""" % (do.id, do.name)
@@ -394,21 +395,21 @@ class VDOM_xml_manager(object):
 		groups = {}	# map group_name to list [(id, access), ...]
 		users = {}	# map login to list [(id, access), ...]
 		for _id in o:
-			if _id in src.security.acl_manager.acl:
-				for _name in src.security.acl_manager.acl[_id]:
-					_access = ",".join(map(str, src.security.acl_manager.acl[_id][_name].keys()))
-					obj = src.security.user_manager.get_group_by_name(_name)
+			if _id in managers.acl_manager.acl:
+				for _name in managers.acl_manager.acl[_id]:
+					_access = ",".join(map(str, managers.acl_manager.acl[_id][_name].keys()))
+					obj = managers.user_manager.get_group_by_name(_name)
 					if obj and not obj.system:
 						if _name not in groups:
 							groups[_name] = []
 						groups[_name].append((_id, _access))
-					obj = src.security.user_manager.get_user_object(_name)
+					obj = managers.user_manager.get_user_object(_name)
 					if obj and not obj.system:
 						if _name not in users:
 							users[_name] = []
 						users[_name].append((_id, _access))
 		for _name in groups:
-			obj = src.security.user_manager.get_group_by_name(_name)
+			obj = managers.user_manager.get_group_by_name(_name)
 			g += "\t\t<Group>\n\t\t\t<Name><![CDATA[%s]]></Name>\n\t\t\t<Description><![CDATA[%s]]></Description>\n\t\t\t<Rights>\n" % (_name, obj.description)
 			for item in groups[_name]:
 				g += '\t\t\t\t<Right Target="%s" Access="%s"/>\n' % item
@@ -416,7 +417,7 @@ class VDOM_xml_manager(object):
 		g += "\t</Groups>\n"
 		u = "\t<Users>\n"
 		for _name in users:
-			obj = src.security.user_manager.get_user_object(_name)
+			obj = managers.user_manager.get_user_object(_name)
 			u += "\t\t<User>\n\t\t\t<Login><![CDATA[%s]]></Login>\n\t\t\t<Password><![CDATA[%s]]></Password>\n\t\t\t<FirstName><![CDATA[%s]]></FirstName>\n\t\t\t<LastName><![CDATA[%s]]></LastName>\n\t\t\t<Email><![CDATA[%s]]></Email>\n\t\t\t<SecurityLevel><![CDATA[%s]]></SecurityLevel>\n\t\t\t<MemberOf><![CDATA[%s]]></MemberOf>\n\t\t\t<Rights>\n" % (_name, obj.password, obj.first_name, obj.last_name, obj.email, obj.security_level, ",".join(obj.member_of))
 			for item in users[_name]:
 				u += '\t\t\t\t<Right Target="%s" Access="%s"/>\n' % item
@@ -434,9 +435,9 @@ class VDOM_xml_manager(object):
 		del parts
 		# resources
 		file.write("<Resources>\n")
-		lst = src.resource.resource_manager.list_resources(app.id)
+		lst = managers.resource_manager.list_resources(app.id)
 		for ll in lst:
-			ro = src.resource.resource_manager.get_resource(app.id, ll)
+			ro = managers.resource_manager.get_resource(app.id, ll)
 			if "" == ro.label:
 				try:
 					data = ro.get_data()
@@ -475,8 +476,8 @@ class VDOM_xml_manager(object):
 			self.modify_objects_count(-1)
 		del app.o_tmp
 		if hasattr(app, "id"):
-			src.resource.resource_manager.invalidate_resources(app.id)
-			src.database.database_manager.delete_database(app.id)
+			managers.resource_manager.invalidate_resources(app.id)
+			managers.database_manager.delete_database(app.id)
 		if hasattr(app, "objects"):
 			del app.objects
 		if hasattr(app, "objects_list"):
@@ -484,27 +485,22 @@ class VDOM_xml_manager(object):
 		if hasattr(app, "_VDOM_application__all_objects"):
 			del app._VDOM_application__all_objects
 
-import src.storage
-import src.resource
-import src.database
-import src.source
-import src.security
-import src.file_access
-from src.util.mutex import VDOM_named_mutex_auto
-from src.util.semaphore import VDOM_semaphore
-from src.util.exception import *
-from src.util.uuid import uuid4
-from src.xml.type import VDOM_type
-from src.xml.application import VDOM_application
-from src.xml.enumerator import VDOM_application_enumerator
-from src.xml.enumerator import VDOM_type_enumerator
-from src.xml.parseapp import parseapp
-from src.xml.xml_object import xml_object
-from src.file_access.manager import application_path
-from src.file_access.manager import resources_path
-from src.file_access.manager import databases_path
-from src.server.local_server import wait_for_options
-from src.version import VDOM_server_version
+
+import managers, security, file_access
+
+from util.mutex import VDOM_named_mutex_auto
+from util.semaphore import VDOM_semaphore
+from util.exception import *
+from util.uuid import uuid4
+
+from .type import VDOM_type
+from application import VDOM_application
+from enumerator import VDOM_application_enumerator, VDOM_type_enumerator
+from .parseapp import parseapp
+from .xml_object import xml_object
+from file_access.manager import application_path, resources_path, databases_path
+from server.local_server import wait_for_options
+from version import VDOM_server_version
 
 internal_xml_manager = VDOM_xml_manager()
 del VDOM_xml_manager

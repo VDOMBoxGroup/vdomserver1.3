@@ -1,5 +1,5 @@
 
-import src.request
+import managers
 
 import errors, types
 
@@ -36,7 +36,7 @@ class session(generic):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property
 		else:
-			return string(unicode(src.request.request_manager.get_request().sid))
+			return string(unicode(managers.request_manager.get_request().sid))
 
 	def v_timeout(self, let=None, set=None):
 		raise errors.not_implemented
@@ -44,13 +44,13 @@ class session(generic):
 	def v_variables(self, name, let=None, set=None):
 		name=as_string(name)
 		if let is not None:
-			# src.request.request_manager.get_request().session().value(name, value=as_string(let))
-			src.request.request_manager.get_request().session().value(name, value=let)
+			# managers.request_manager.get_request().session().value(name, value=as_string(let))
+			managers.request_manager.get_request().session().value(name, value=let)
 		elif set is not None:
 			# raise errors.type_mismatch
-			src.request.request_manager.get_request().session().value(name, value=set)
+			managers.request_manager.get_request().session().value(name, value=set)
 		else:
-			value=src.request.request_manager.get_request().session().value(name)
+			value=managers.request_manager.get_request().session().value(name)
 			# return string(v_empty if value is None else value)
 			return v_empty if value is None else value
 

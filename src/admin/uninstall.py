@@ -1,8 +1,8 @@
 
 import os, tempfile, traceback
-import src.xml
-from src.util.exception import VDOM_exception
-from src.util.app_management import uninstall_application
+import managers
+from util.exception import VDOM_exception
+from util.app_management import uninstall_application
 
 def run(request):
 	sess = request.session()
@@ -11,7 +11,7 @@ def run(request):
 		raise VDOM_exception("Authentication failed")
 
 	args = request.arguments().arguments()
-	applst = src.xml.xml_manager.get_applications()
+	applst = managers.xml_manager.get_applications()
 	vh = request.server().virtual_hosting()
 	p = True
 	for a in args.keys():
@@ -29,7 +29,7 @@ def run(request):
 	elif True != p:
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % p)
 
-	applst = src.xml.xml_manager.get_applications()
+	applst = managers.xml_manager.get_applications()
 
 	request.write("""<html>
 <head>
@@ -60,7 +60,7 @@ a:visited {
 	request.write('<form method=post action="/uninstall.py" enctype="multipart/form-data">')
 	request.write('<table border="0">')
 	for appid in applst:
-		obj = src.xml.xml_manager.get_application(appid)
+		obj = managers.xml_manager.get_application(appid)
 		a = "_".join(appid.split("-"))
 		request.write('<tr><td width="123">&nbsp;</td><td><input type=checkbox name=%s value=%s>%s</input></td></tr>' % (a, "1", "%s (%s)" % (obj.name.encode("utf-8"), appid)))
 	request.write('<tr><td width="123">&nbsp;</td><td>');

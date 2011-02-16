@@ -1,6 +1,6 @@
 ﻿
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -26,9 +26,9 @@ def run(request):
 			email = args["email"][0]
 			group = args["group"][0]
 			try:
-				obj = src.managers.user_manager.create_user(login, password, first_name, last_name, email, slevel)
+				obj = managers.user_manager.create_user(login, password, first_name, last_name, email, slevel)
 				if "" != group:
-					gr = src.managers.user_manager.get_user_by_id(group)
+					gr = managers.user_manager.get_user_by_id(group)
 					if gr:
 						obj.member_of.append(gr.login)
 			except Exception, e:
@@ -91,7 +91,7 @@ a:visited {
   </TR>""" % (error, first_name, last_name, login, password, email, slevel))
 
 		cont = "<option value=\"\"></option>"
-		groups = src.managers.user_manager.get_all_groups()
+		groups = managers.user_manager.get_all_groups()
 		for g in groups:
 			if group == g.id:
 				slctd = "selected"

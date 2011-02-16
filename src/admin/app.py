@@ -1,9 +1,9 @@
 
-import src.managers
+import managers
 
 def run(request):
 
-	#s = src.managers.vdom_memory.new_session()
+	#s = managers.vdom_memory.new_session()
 	#a = s.get_application("10000000-0000-0000-0000-000000000000")
 	#print str(a.objects_list)
 
@@ -16,8 +16,8 @@ def run(request):
 
 	args = request.arguments().arguments()
 	if not passed and "user" in args and "password" in args:
-		user = src.managers.user_manager.match_user(args["user"][0], args["password"][0])
-		if user and src.managers.acl_manager.check_membership(user.login, "ManagementLogin"):
+		user = managers.user_manager.match_user(args["user"][0], args["password"][0])
+		if user and managers.acl_manager.check_membership(user.login, "ManagementLogin"):
 			passed = True
 			sess["appmngmtok"] = 1
 			#sess["username"] = args["user"][0]	# TODO: fix

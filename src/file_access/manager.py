@@ -5,10 +5,10 @@ File Manager - provides interface to file system for resource, py-cache and xml 
 import sys, os, traceback
 import shutil, thread, time,types
 
-import src
-from src.util.exception import VDOM_exception
-from src.util.semaphore import VDOM_semaphore
-import src.util.mutex as mutex
+import file_access
+from util.exception import VDOM_exception
+from util.semaphore import VDOM_semaphore
+import util.mutex as mutex
 
 
 application_path = "applications"
@@ -72,7 +72,7 @@ class VDOM_file_manager(object):
 		else:
 			dirpath = self.__get_path( restype, application_id, "")
 		if not os.path.isdir(dirpath) and restype in \
-		        (src.file_access.type_source,src.file_access.resource, src.file_access.database):
+		        (file_access.type_source, file_access.resource, file_access.database):
 			try:
 				os.makedirs(dirpath)
 			except: pass
@@ -172,7 +172,7 @@ class VDOM_file_manager(object):
 
 	def create_application_skell(self, application_id ):
 		"""Copy <source_fname> file to object file"""
-		try: os.makedirs(self.__get_path(src.file_access.cache, application_id, ""))
+		try: os.makedirs(self.__get_path(file_access.cache, application_id, ""))
 		except: pass
 
 	def create_type_directory(self, type_id):
@@ -211,7 +211,7 @@ class VDOM_file_manager(object):
 			path = self.__get_path(restype, application_id, "")
 		if os.path.exists(path):
 			shutil.rmtree(path,True)
-			if restype != src.file_access.resource :
+			if restype != file_access.resource :
 				try:
 					os.makedirs(path)
 				except: pass
@@ -253,22 +253,22 @@ class VDOM_file_manager(object):
 ### Private ###
 	def __get_path(self, restype, owner_id, object_name ):
 		"""private method: returns path to object according to type of request"""
-		if( restype == src.file_access.application_xml ):
+		if( restype == file_access.application_xml ):
 			return self.__get_application_file_path( owner_id )
 		
-		elif( restype == src.file_access.global_type ):
+		elif( restype == file_access.global_type ):
 			return self.__get_global_type_file_path( object_name )
 		
-		elif( restype == src.file_access.cache ):
+		elif( restype == file_access.cache ):
 			return self.__get_py_chache_file_path( owner_id, object_name )
 		
-		elif( restype == src.file_access.resource ):
+		elif( restype == file_access.resource ):
 			return self.__get_resource_file_path( owner_id, object_name )
 
-		elif( restype == src.file_access.type_source ):
+		elif( restype == file_access.type_source ):
 			return self.__get_native_type_source_file_path(owner_id, object_name )
 		
-		elif( restype == src.file_access.database ):
+		elif( restype == file_access.database ):
 			return self.__get_database_file_path(owner_id, object_name )
 		
 		

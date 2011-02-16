@@ -3,7 +3,7 @@ from copy import copy, deepcopy
 
 import random, re
 
-import src.util.exception
+import util.exception
 
 import options, errors, types
 

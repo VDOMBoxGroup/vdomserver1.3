@@ -1,5 +1,5 @@
 
-import src.request
+import managers
 
 
 def compile_declarations_n_libraries(container):
@@ -51,7 +51,7 @@ def compile_registations(container, parent):
 		"Obj_%(container)s_EventEngine=new VDOM_EventEngine(Obj_%(container)s_Dispatcher, EventQueue);"%\
 		{"container": container.id.replace("-", "_")})
 
-	application=src.request.request_manager.get_request().application()
+	application=managers.request_manager.get_request().application()
 	for source_object in container.object.get_objects():
 		#print "[E2VDOM] Container", container.id
 		events=application.events_by_object.get(source_object, None)

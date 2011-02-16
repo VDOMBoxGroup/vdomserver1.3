@@ -1,5 +1,5 @@
 
-import src.request, src.object
+import managers, object
 
 import errors, types
 
@@ -34,15 +34,15 @@ class response(generic):
 
 	def v_addheader(self, name, value):
 		name=as_string(name).lower()
-		headers=src.request.request_manager.get_request().headers_out().headers()
+		headers=managers.request_manager.get_request().headers_out().headers()
 		if not name in headers:
 			headers[name]=as_string(value)
 
 	def v_redirect(self, url):
-		src.object.request.redirect(as_string(url))
+		object.request.redirect(as_string(url))
 
 	def v_write(self, data):
-		src.object.request.write(as_string(data))
+		object.request.write(as_string(data))
 	
 	def v_isclientconnected(self, let=None, set=None):
 		if let is not None or set is not None:

@@ -1,8 +1,7 @@
 
-import src.xml
-import src.managers
-from src.util.exception import VDOM_exception
-from src.security import *
+import managers
+from util.exception import VDOM_exception
+from security import *
 
 def run(request):
 	sess = request.session()
@@ -20,13 +19,13 @@ def run(request):
 		args = request.arguments().arguments()
 		if "uid" in args and "" != args["uid"][0]:
 			_uid = args["uid"][0]
-			user = src.managers.user_manager.get_user_by_id(_uid)
+			user = managers.user_manager.get_user_by_id(_uid)
 			if not user:
 				_uid = None
 		if "appid" in args and "" != args["appid"][0]:
 			_appid = args["appid"][0]
 			try:
-				app = src.xml.xml_manager.get_application("-".join(_appid.split("_")))
+				app = managers.xml_manager.get_application("-".join(_appid.split("_")))
 			except: pass
 		if "oid" in args and "" != args["oid"][0]:
 			_oid = args["oid"][0]
@@ -58,9 +57,9 @@ def run(request):
 				elif 3 == _type: access = access_to_server
 				for ac in access:
 					if 0 == _type or 3 == _type:
-						src.managers.acl_manager.remove_access(appid, user.login, ac)
+						managers.acl_manager.remove_access(appid, user.login, ac)
 					elif 1 == _type or 2 == _type:
-						src.managers.acl_manager.remove_access(objid, user.login, ac)
+						managers.acl_manager.remove_access(objid, user.login, ac)
 				for key in args.keys():
 					if key.startswith("_set_"):
 						idx = 0
@@ -68,9 +67,9 @@ def run(request):
 						except: pass
 						if idx in access:
 							if 0 == _type or 3 == _type:
-								src.managers.acl_manager.add_access(appid, user.login, idx)
+								managers.acl_manager.add_access(appid, user.login, idx)
 							elif 1 == _type or 2 == _type:
-								src.managers.acl_manager.add_access(objid, user.login, idx)
+								managers.acl_manager.add_access(objid, user.login, idx)
 		if _uid and (_appid or "vdombox" == _appid) and _oid and not _set:
 			_left = ""
 			_right = ""
@@ -104,15 +103,15 @@ def run(request):
 					checked = ""
 					_name = "_set_"
 					if 0 == _type or 3 == _type:
-						if src.managers.acl_manager.check_access(appid, user.login, ac):
+						if managers.acl_manager.check_access(appid, user.login, ac):
 							checked = "checked"
-						elif src.managers.acl_manager.check_access2(appid, appid, user.login, ac):
+						elif managers.acl_manager.check_access2(appid, appid, user.login, ac):
 							_name = "_inh_"
 							checked = "checked disabled"
 					elif 1 == _type or 2 == _type:
-						if src.managers.acl_manager.check_access(objid, user.login, ac):
+						if managers.acl_manager.check_access(objid, user.login, ac):
 							checked = "checked"
-						elif src.managers.acl_manager.check_access2(appid, objid, user.login, ac):
+						elif managers.acl_manager.check_access2(appid, objid, user.login, ac):
 							_name = "_inh_"
 							checked = "checked disabled"
 					_right += """<input type=checkbox name="%s" value=1 %s>%s</input><br>""" % (_name + str(ac), checked, txt)
@@ -181,11 +180,11 @@ def run(request):
 			content = content.encode("utf-8")
 
 		elif _uid and (not _appid or not _oid or not _set):
-			applst = src.xml.xml_manager.get_applications()
+			applst = managers.xml_manager.get_applications()
 			cont = """<option value="vdombox">VDOM Box</option>"""
 			for appid in applst:
 				a = "_".join(appid.split("-"))
-				o = src.xml.xml_manager.get_application(appid)
+				o = managers.xml_manager.get_application(appid)
 				cont += "<option value=%s>%s (%s)</option>" % (a, o.name.encode("utf-8"), appid)
 			content = """<p align="center">Select application</p>
 <form name="form1" method="post" action="/grp-modif-rights.py?uid=%s">

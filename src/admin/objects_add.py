@@ -1,7 +1,7 @@
 
 import os, tempfile, traceback, shutil
-from src.util.exception import VDOM_exception
-import src.xml
+from util.exception import VDOM_exception
+import managers
 
 def run(request):
 	sess = request.session()
@@ -23,15 +23,15 @@ def run(request):
 			tmpfile.write(args["typefile"][0])
 			tmpfile.close()
 			# test
-			ret = src.xml.xml_manager.test_type(tmpfilename)
+			ret = managers.xml_manager.test_type(tmpfilename)
 			if None == ret:
 				# load type
-				ret = src.xml.xml_manager.load_type(tmpfilename)
+				ret = managers.xml_manager.load_type(tmpfilename)
 				# ret[1] is a type object
 				newfname = VDOM_CONFIG["TYPES-LOCATION"] + "/" + ret[1].name.lower() + ".xml"
 				shutil.copyfile(tmpfilename, newfname)
-				src.xml.xml_manager.unload_type(ret[1].id)
-				src.xml.xml_manager.load_type(newfname)
+				managers.xml_manager.unload_type(ret[1].id)
+				managers.xml_manager.load_type(newfname)
 				error = "OK, restart your VDOM Box to use the new type"
 			else:
 				error = "This type is already installed"

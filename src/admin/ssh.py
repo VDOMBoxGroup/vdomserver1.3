@@ -1,6 +1,6 @@
 
 import os, socket
-from src.util.exception import VDOM_exception
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()

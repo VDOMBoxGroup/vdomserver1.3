@@ -4,12 +4,12 @@ User Manager module
 
 from hashlib import md5
 
-import src.storage
-import src.util.id as theid
-from src.storage.storage import VDOM_config
-from src.security.user import VDOM_user
-from src.security.group import VDOM_usergroup
-from src.util.exception import VDOM_exception
+import managers
+import util.id as theid
+from storage.storage import VDOM_config
+from security.user import VDOM_user
+from security.group import VDOM_usergroup
+from util.exception import VDOM_exception
 
 
 class VDOM_user_manager:
@@ -18,25 +18,25 @@ class VDOM_user_manager:
 	def __init__(self):
 		"""Initialize"""
 		self.users_by_name = {}
-		self.users = src.storage.storage.read_object(VDOM_CONFIG["USER-MANAGER-STORAGE-RECORD"])
+		self.users = managers.storage.read_object(VDOM_CONFIG["USER-MANAGER-STORAGE-RECORD"])
 		if self.users == None:
 			self.users = {}
 		try:
-			self.root_user = self.get_user_by_id(src.storage.storage.read(VDOM_CONFIG["USER-MANAGER-ROOT-ID-STORAGE-RECORD"]))
+			self.root_user = self.get_user_by_id(managers.storage.read(VDOM_CONFIG["USER-MANAGER-ROOT-ID-STORAGE-RECORD"]))
 			if not self.root_user:
 				raise Exception()
 		except:
 			cf = VDOM_config()
 			self.root_user = self.create_user("root", cf.get_opt("ROOT-PASSWORD"), system=True)
 			self.root_user.member_of.append("ManagementLogin")
-			src.storage.storage.write_async(VDOM_CONFIG["USER-MANAGER-ROOT-ID-STORAGE-RECORD"], self.root_user.id)
+			managers.storage.write_async(VDOM_CONFIG["USER-MANAGER-ROOT-ID-STORAGE-RECORD"], self.root_user.id)
 		try:
-			self.guest_user = self.get_user_by_id(src.storage.storage.read(VDOM_CONFIG["USER-MANAGER-GUEST-ID-STORAGE-RECORD"]))
+			self.guest_user = self.get_user_by_id(managers.storage.read(VDOM_CONFIG["USER-MANAGER-GUEST-ID-STORAGE-RECORD"]))
 			if not self.guest_user:
 				raise Exception()
 		except:
 			self.guest_user = self.create_user("guest", "", system=True)
-			src.storage.storage.write_async(VDOM_CONFIG["USER-MANAGER-GUEST-ID-STORAGE-RECORD"], self.guest_user.id)
+			managers.storage.write_async(VDOM_CONFIG["USER-MANAGER-GUEST-ID-STORAGE-RECORD"], self.guest_user.id)
 		# create hash
 		for uid in self.users.keys():
 			self.users_by_name[self.users[uid].login] = self.users[uid]
@@ -168,7 +168,7 @@ class VDOM_user_manager:
 
 	def sync(self):
 		"""Saves current state of manager in storage"""
-		src.storage.storage.write_object_async(VDOM_CONFIG["USER-MANAGER-STORAGE-RECORD"], self.users)
+		managers.storage.write_object_async(VDOM_CONFIG["USER-MANAGER-STORAGE-RECORD"], self.users)
 
 internal_manager = VDOM_user_manager()
 del VDOM_user_manager

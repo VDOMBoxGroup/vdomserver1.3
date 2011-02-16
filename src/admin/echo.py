@@ -1,11 +1,11 @@
 
 import zlib
 import base64
-import src.managers
+import managers
 
 def run(request):
 	args = request.arguments().arguments()
-	mngr = src.managers.session_manager
+	mngr = managers.session_manager
 	sess = None
 	sess = mngr[args["sid"][0]]
 

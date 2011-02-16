@@ -1,8 +1,9 @@
 """resource module"""
 import sys
-import src.resource
-from src.module.module import VDOM_module
-from src.util.exception import *
+import managers
+from module import VDOM_module
+from util.exception import *
+
 
 class VDOM_module_resource(VDOM_module):
 	"""resource module class"""
@@ -43,7 +44,7 @@ class VDOM_module_resource(VDOM_module):
 		else:
 			filename = file
 		try:
-			resource = src.resource.resource_manager.get_resource(application_id, filename.split(".")[0])
+			resource = managers.resource_manager.get_resource(application_id, filename.split(".")[0])
 			if not resource:
 				raise VDOM_exception("Resource not found")
 			self.fd = resource.get_fd()

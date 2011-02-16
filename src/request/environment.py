@@ -1,7 +1,7 @@
 
 import os, socket
 
-from src.version import *
+from version import *
 
 class VDOM_environment:
 	"""environment variables"""

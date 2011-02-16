@@ -1,20 +1,20 @@
 """VDOM web services"""
 import SOAPpy, traceback
 
-import src.util.encode
-from src.util.exception import *
-import src.managers
+import util.encode
+from util.exception import *
+import managers
 
 def about(_SOAPContext):
 	"""about function - return server description"""
-	return src.managers.soap_server.about()
+	return managers.soap_server.about()
 
 def get_echo(sid, _SOAPContext):
 	try:
-		sess = src.managers.session_manager[sid]
+		sess = managers.session_manager[sid]
 		data = sess["__tmp_ide_data"]
 		sess["__tmp_ide_data"] = ""	# clear data
-		return "<Result>%s</Result>" % src.util.encode.encode_resource(data)
+		return "<Result>%s</Result>" % util.encode.encode_resource(data)
 	except:
 		return "<Error>Error</Error>"
 
@@ -48,222 +48,222 @@ def proxy1(args):
 
 # open session with the server
 def open_session(name, pwd_md5, _SOAPContext):
-	return proxy1([src.managers.soap_server.open_session, name, pwd_md5])
+	return proxy1([managers.soap_server.open_session, name, pwd_md5])
 
 # close session
 def close_session(sid, _SOAPContext):
-	return proxy1([src.managers.soap_server.close_session, sid])
+	return proxy1([managers.soap_server.close_session, sid])
 
 # create new application
 def create_application(sid, skey, attr, _SOAPContext):
-	return proxy([src.managers.soap_server.create_application, sid, skey, attr])
+	return proxy([managers.soap_server.create_application, sid, skey, attr])
 
 # set application info attributes
 def set_application_info(sid, skey, appid, attr, _SOAPContext):
-	return proxy([src.managers.soap_server.set_application_info, sid, skey, appid, attr])
+	return proxy([managers.soap_server.set_application_info, sid, skey, appid, attr])
 
 # get application info attributes
 def get_application_info(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_application_info, sid, skey, appid])
+	return proxy([managers.soap_server.get_application_info, sid, skey, appid])
 
 # get the list of all applications
 def list_applications(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.list_applications, sid, skey])
+	return proxy([managers.soap_server.list_applications, sid, skey])
 
 def get_applications(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.get_applications, sid, skey])
+	return proxy([managers.soap_server.get_applications, sid, skey])
 
 # get the list of all types
 def list_types(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.list_types, sid, skey])
+	return proxy([managers.soap_server.list_types, sid, skey])
 
 # get type description
 def get_type(sid, skey, typeid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_type, sid, skey, typeid])
+	return proxy([managers.soap_server.get_type, sid, skey, typeid])
 
 # get all types description
 def get_all_types(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.get_all_types, sid, skey])
+	return proxy([managers.soap_server.get_all_types, sid, skey])
 
 # get resource
 def get_resource(sid, skey, ownerid, resid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_resource, sid, skey, ownerid, resid])
+	return proxy([managers.soap_server.get_resource, sid, skey, ownerid, resid])
 
 # list resources
 def list_resources(sid, skey, ownerid, _SOAPContext):
-	return proxy([src.managers.soap_server.list_resources, sid, skey, ownerid])
+	return proxy([managers.soap_server.list_resources, sid, skey, ownerid])
 
 # create object in the application
 def create_object(sid, skey, appid, parentid, typeid, name, attr, _SOAPContext):
-	return proxy([src.managers.soap_server.create_object, sid, skey, appid, parentid, typeid, name, attr])
+	return proxy([managers.soap_server.create_object, sid, skey, appid, parentid, typeid, name, attr])
 
 # create objects in the application
 def create_objects(sid, skey, appid, parentid, objects, _SOAPContext):
-	return proxy([src.managers.soap_server.create_objects, sid, skey, appid, parentid, objects])
+	return proxy([managers.soap_server.create_objects, sid, skey, appid, parentid, objects])
 
 # update object in the application
 def update_object(sid, skey, appid, objid, data, _SOAPContext):
-	return proxy([src.managers.soap_server.update_object, sid, skey, appid, objid, data])
+	return proxy([managers.soap_server.update_object, sid, skey, appid, objid, data])
 
 # render object to xml presentation
 def render_wysiwyg(sid, skey, appid, objid, parentid, dynamic, _SOAPContext):
-	return proxy([src.managers.soap_server.render_wysiwyg, sid, skey, appid, objid, parentid, int(dynamic)])
+	return proxy([managers.soap_server.render_wysiwyg, sid, skey, appid, objid, parentid, int(dynamic)])
 
 # get application top-level objects
 def get_top_objects(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_top_objects, sid, skey, appid])
+	return proxy([managers.soap_server.get_top_objects, sid, skey, appid])
 
 # get object's child objects
 def get_child_objects(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_child_objects, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_child_objects, sid, skey, appid, objid])
 
 # get all object's child objects
 def get_child_objects_tree(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_child_objects_tree, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_child_objects_tree, sid, skey, appid, objid])
 
 # get one object description
 def get_one_object(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_one_object, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_one_object, sid, skey, appid, objid])
 
 # get application language data
 def get_application_language_data(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_application_language_data, sid, skey, appid])
+	return proxy([managers.soap_server.get_application_language_data, sid, skey, appid])
 
 # get application structure
 def get_application_structure(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_application_structure, sid, skey, appid])
+	return proxy([managers.soap_server.get_application_structure, sid, skey, appid])
 
 # set application structure
 def set_application_structure(sid, skey, appid, struct, _SOAPContext):
-	return proxy([src.managers.soap_server.set_application_structure, sid, skey, appid, struct])
+	return proxy([managers.soap_server.set_application_structure, sid, skey, appid, struct])
 
 # set object attribute value
 def set_attribute(sid, skey, appid, objid, attr, value, _SOAPContext):
-	return proxy([src.managers.soap_server.set_attribute, sid, skey, appid, objid, attr, value])
+	return proxy([managers.soap_server.set_attribute, sid, skey, appid, objid, attr, value])
 
 # set value of several object's attributes
 def set_attributes(sid, skey, appid, objid, attr, _SOAPContext):
-	return proxy([src.managers.soap_server.set_attributes, sid, skey, appid, objid, attr])
+	return proxy([managers.soap_server.set_attributes, sid, skey, appid, objid, attr])
 
 # set object name
 def set_name(sid, skey, appid, objid, name, _SOAPContext):
-	return proxy([src.managers.soap_server.set_name, sid, skey, appid, objid, name])
+	return proxy([managers.soap_server.set_name, sid, skey, appid, objid, name])
 
 # set application resource
 def set_resource(sid, skey, appid, restype, resname, resdata, _SOAPContext):
-	return proxy([src.managers.soap_server.set_resource, sid, skey, appid, restype, resname, resdata])
+	return proxy([managers.soap_server.set_resource, sid, skey, appid, restype, resname, resdata])
 
 # update application resource
 def update_resource(sid, skey, appid, resid, resdata, _SOAPContext):
-	return proxy([src.managers.soap_server.update_resource, sid, skey, appid, resid, resdata])
+	return proxy([managers.soap_server.update_resource, sid, skey, appid, resid, resdata])
 
 # delete application resource
 def delete_resource(sid, skey, appid, resid, _SOAPContext):
-	return proxy([src.managers.soap_server.delete_resource, sid, skey, appid, resid])
+	return proxy([managers.soap_server.delete_resource, sid, skey, appid, resid])
 
 # delete object
 def delete_object(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.delete_object, sid, skey, appid, objid])
+	return proxy([managers.soap_server.delete_object, sid, skey, appid, objid])
 
 # get object xml script presentation
 def get_object_script_presentation(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_object_script_presentation, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_object_script_presentation, sid, skey, appid, objid])
 
 # submit object xml script presentation
 def submit_object_script_presentation(sid, skey, appid, objid, pres, _SOAPContext):
-	return proxy([src.managers.soap_server.submit_object_script_presentation, sid, skey, appid, objid, pres])
+	return proxy([managers.soap_server.submit_object_script_presentation, sid, skey, appid, objid, pres])
 
 # get code interface data
 def get_code_interface_data(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_code_interface_data, sid, skey, appid])
+	return proxy([managers.soap_server.get_code_interface_data, sid, skey, appid])
 
 # modify resource
 def modify_resource(sid, skey, appid, objid, resid, attrname, operation, attr, _SOAPContext):
-	return proxy([src.managers.soap_server.modify_resource, sid, skey, appid, objid, resid, attrname, operation, attr])
+	return proxy([managers.soap_server.modify_resource, sid, skey, appid, objid, resid, attrname, operation, attr])
 
 # execute sql
 def execute_sql(sid, skey, appid, dbid, sql, script, _SOAPContext):
-	return proxy([src.managers.soap_server.execute_sql, sid, skey, appid, dbid, sql, script])
+	return proxy([managers.soap_server.execute_sql, sid, skey, appid, dbid, sql, script])
 
 # get application events
 def get_application_events(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_application_events, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_application_events, sid, skey, appid, objid])
 
 # set application events
 def set_application_events(sid, skey, appid, objid, events, _SOAPContext):
-	return proxy([src.managers.soap_server.set_application_events, sid, skey, appid, objid, events])
+	return proxy([managers.soap_server.set_application_events, sid, skey, appid, objid, events])
 
 # execute object method
 def remote_method_call(sid, skey, appid, objid, func_name, xml_param, session_id, _SOAPContext):
-	return proxy([src.managers.soap_server.remote_method_call, sid, skey, appid, objid, func_name, xml_param, session_id])
+	return proxy([managers.soap_server.remote_method_call, sid, skey, appid, objid, func_name, xml_param, session_id])
 
 def remote_call(sid, skey, appid, objid, func_name, xml_param, xml_data, _SOAPContext):
-	return proxy([src.managers.soap_server.remote_call, sid, skey, appid, objid, func_name, xml_param, xml_data])
+	return proxy([managers.soap_server.remote_call, sid, skey, appid, objid, func_name, xml_param, xml_data])
 
 def install_application(sid, skey, vhname, appxml, _SOAPContext):
-	return proxy([src.managers.soap_server.install_application, sid, skey, vhname, appxml])
+	return proxy([managers.soap_server.install_application, sid, skey, vhname, appxml])
 
 def export_application(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.export_application, sid, skey, appid])
+	return proxy([managers.soap_server.export_application, sid, skey, appid])
 
 def create_guid(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.create_guid, sid, skey])
+	return proxy([managers.soap_server.create_guid, sid, skey])
 
 def get_thumbnail(sid, skey, appid, resid, width, height, _SOAPContext):
-	return proxy([src.managers.soap_server.get_thumbnail, sid, skey, appid, resid, width, height])
+	return proxy([managers.soap_server.get_thumbnail, sid, skey, appid, resid, width, height])
 
 def search(sid, skey, appid, pattern, _SOAPContext):
-	return proxy([src.managers.soap_server.search, sid, skey, appid, pattern])
+	return proxy([managers.soap_server.search, sid, skey, appid, pattern])
 
 def keep_alive(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.keep_alive, sid, skey])
+	return proxy([managers.soap_server.keep_alive, sid, skey])
 
 # set server actions
 def set_server_actions(sid, skey, appid, objid, actions, _SOAPContext):
-	return proxy([src.managers.soap_server.set_server_actions, sid, skey, appid, objid, actions])
+	return proxy([managers.soap_server.set_server_actions, sid, skey, appid, objid, actions])
 
 	
 def get_events_structure( sid, skey, appid, objid, _SOAPContext):	
-	return proxy([src.managers.soap_server.get_events_structure, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_events_structure, sid, skey, appid, objid])
 	
 def set_events_structure( sid, skey, appid, objid, events, _SOAPContext):	
-	return proxy([src.managers.soap_server.set_events_structure, sid, skey, appid, objid, events])
+	return proxy([managers.soap_server.set_events_structure, sid, skey, appid, objid, events])
 	
 def create_server_action( sid, skey, appid, objid, actionname, actionvalue, _SOAPContext):
-	return proxy([src.managers.soap_server.create_server_action, sid, skey, appid, objid, actionname, actionvalue])
+	return proxy([managers.soap_server.create_server_action, sid, skey, appid, objid, actionname, actionvalue])
 	
 def delete_server_action( sid, skey, appid, objid, actionid, _SOAPContext):	
-	return proxy([src.managers.soap_server.delete_server_action, sid, skey, appid, objid, actionid])
+	return proxy([managers.soap_server.delete_server_action, sid, skey, appid, objid, actionid])
 
 def rename_server_action( sid, skey, appid, objid, actionid, new_actionname, _SOAPContext):	
-	return proxy([src.managers.soap_server.rename_server_action, sid, skey, appid, objid, actionid, new_actionname])
+	return proxy([managers.soap_server.rename_server_action, sid, skey, appid, objid, actionid, new_actionname])
 	
 def get_server_action( sid, skey, appid, objid, actionid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_server_action, sid, skey, appid, objid, actionid])
+	return proxy([managers.soap_server.get_server_action, sid, skey, appid, objid, actionid])
 	
 def set_server_action( sid, skey, appid, objid, actionid, actionvalue, _SOAPContext):
-	return proxy([src.managers.soap_server.set_server_action, sid, skey, appid, objid, actionid, actionvalue])
+	return proxy([managers.soap_server.set_server_action, sid, skey, appid, objid, actionid, actionvalue])
 	
 def get_server_actions_list( sid, skey, appid, objid, _SOAPContext ):
-	return proxy([src.managers.soap_server.get_server_actions_list, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_server_actions_list, sid, skey, appid, objid])
 	
 def set_application_events( sid, skey, appid, objid, events, _SOAPContext):
-	return proxy([src.managers.soap_server.set_application_events, sid, skey, appid, objid, events])
+	return proxy([managers.soap_server.set_application_events, sid, skey, appid, objid, events])
 	
 # get server actions
 def get_server_actions(sid, skey, appid, objid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_server_actions, sid, skey, appid, objid])
+	return proxy([managers.soap_server.get_server_actions, sid, skey, appid, objid])
 
 
 
 def set_library(sid, skey, appid, name, data, _SOAPContext):
-	return proxy([src.managers.soap_server.set_lib, sid, skey, appid, name, data])
+	return proxy([managers.soap_server.set_lib, sid, skey, appid, name, data])
 
 def remove_library(sid, skey, appid, name, _SOAPContext):
-	return proxy([src.managers.soap_server.del_lib, sid, skey, appid, name])
+	return proxy([managers.soap_server.del_lib, sid, skey, appid, name])
 
 def get_libraries(sid, skey, appid, _SOAPContext):
-	return proxy([src.managers.soap_server.get_libs, sid, skey, appid])
+	return proxy([managers.soap_server.get_libs, sid, skey, appid])
 
 def server_information(sid, skey, _SOAPContext):
-	return proxy([src.managers.soap_server.server_information, sid, skey])
+	return proxy([managers.soap_server.server_information, sid, skey])

@@ -1,9 +1,9 @@
 
 import re
 
-from src.database.dbobject import VDOM_sql_query as sql_query
+from database.dbobject import VDOM_sql_query as sql_query
 
-import src.managers
+import managers
 
 import errors, types
 
@@ -86,7 +86,7 @@ class v_vdomdbconnection(generic):
 
 	def __init__(self):
 		generic.__init__(self)
-		self.__application_id=src.managers.request_manager.current.application_id
+		self.__application_id=managers.request_manager.current.application_id
 		self.__database_id=None
 		self.__database_name=None
 
@@ -98,7 +98,7 @@ class v_vdomdbconnection(generic):
 			self.__database_id=connection_string.lower()
 			self.__database_name=None
 		else:
-			self.__database_id=src.managers.database_manager.list_names(self.__application_id)[connection_string]
+			self.__database_id=managers.database_manager.list_names(self.__application_id)[connection_string]
 			self.__database_name=connection_string
 
 	def v_close(self):

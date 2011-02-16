@@ -1,9 +1,8 @@
 
 import os, traceback
-import src.xml
-from src.util.system import get_external_drives
-from src.util.exception import VDOM_exception
-import src.managers
+import managers
+from util.system import get_external_drives
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -12,8 +11,8 @@ def run(request):
 		raise VDOM_exception("Authentication failed")
 
 	args = request.arguments().arguments()
-	applst = src.xml.xml_manager.get_applications()
-	sm = src.managers.server_manager
+	applst = managers.xml_manager.get_applications()
+	sm = managers.server_manager
 
 	if "history" in args and "" != args["history"][0] and "interval" in args and "" != args["interval"][0] and "device" in args:
 		hist_i = int(args["history"][0])
@@ -71,7 +70,7 @@ function LoadImgWait(){
 	request.write('<table border="0" width="500">')
 	request.write('<tr><td width="123">&nbsp;</td><td align="center" class="Texte">Select applications to backup</td></tr>')
 	for appid in applst:
-		obj = src.xml.xml_manager.get_application(appid)
+		obj = managers.xml_manager.get_application(appid)
 		a = "_".join(appid.split("-"))
 		sss = ""
 		if appid in sm.backup_app:

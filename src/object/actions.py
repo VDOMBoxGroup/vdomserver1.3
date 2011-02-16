@@ -1,10 +1,10 @@
 
 import thread, threading
 
-import src.request
+import managers
 
-from src.object import request
-from src.vscript.engine import vcompile, vexecute
+from object import request
+from vscript.engine import vcompile, vexecute
 
 
 
@@ -23,7 +23,7 @@ class generic_action(object):
 		pass
 
 	def execute(self, object, namespace=None):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		threading.currentThread().application=application.id
 		if self.code is None:
 			self.compile()
@@ -38,7 +38,7 @@ class python_action(generic_action):
 		self.code=compile(self.source, "action: %s:%s"%(self.id, self.name), u"exec")
 
 	def on_execute(self, object, namespace):
-		app_module=src.request.request_manager.get_request().application().id
+		app_module=managers.request_manager.get_request().application().id
 		__import__(app_module)
 		namespace={"request": request, "self": object, "__package__": app_module}
 		exec self.code in namespace
@@ -50,7 +50,7 @@ class vscript_action(generic_action):
 		self.vsource=None
 
 	def compile(self):
-		app_module=src.request.request_manager.get_request().application().id
+		app_module=managers.request_manager.get_request().application().id
 		generic_action.compile(self)
 		self.code, self.vsource=vcompile(self.source, package=app_module)
 

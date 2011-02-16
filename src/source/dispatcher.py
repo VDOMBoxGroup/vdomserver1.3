@@ -2,9 +2,11 @@
 Dispatcher manager
 """
 import SOAPpy
-from src.soap.errors import *
-import src.xml
-from src.util.exception import *
+
+import managers
+from soap.errors import *
+from util.exception import *
+
 
 class VDOM_dispatcher:
 	"""handler manager class"""
@@ -28,9 +30,9 @@ class VDOM_dispatcher:
 	def dispatch_handler(self, app_id, object_id, func_name, param):
 		"""Processing handler"""
 		try:
-			object = src.xml.xml_manager.search_object(app_id, object_id)
+			object = managers.xml_manager.search_object(app_id, object_id)
 			if object and object.type.id in self.__handler_index and func_name in self.__handler_index[object.type.id]:
-				module=__import__(src.util.id.guid2mod(object.type.id))
+				module=__import__(util.id.guid2mod(object.type.id))
 				if func_name in module.__dict__:
 					return getattr(module, func_name)(app_id, object_id, param)
 		except Exception, e:
@@ -40,9 +42,9 @@ class VDOM_dispatcher:
 	def dispatch_remote(self, app_id, object_id, func_name, xml_param, session_id=None):
 		"""Processing remote methods call"""
 		try:
-			object = src.xml.xml_manager.search_object(app_id, object_id)
+			object = managers.xml_manager.search_object(app_id, object_id)
 			if object.type.id in self.__remote_index and func_name in self.__remote_index[object.type.id]:
-				module=__import__(src.util.id.guid2mod(object.type.id))
+				module=__import__(util.id.guid2mod(object.type.id))
 				if func_name in module.__dict__:
 					if session_id:
 						return getattr(module, func_name)(app_id, object_id, xml_param,session_id)
@@ -57,11 +59,11 @@ class VDOM_dispatcher:
 	def dispatch_action(self, app_id, object_id, func_name,xml_param,xml_data):
 		"""Processing action call"""
 		try:
-			request = src.request.request_manager.get_request()
+			request = managers.request_manager.get_request()
 			request.arguments().arguments({"xml_param":xml_param,"xml_data":xml_data})
-			app = src.xml.xml_manager.get_application(app_id)
+			app = managers.xml_manager.get_application(app_id)
 			obj = app.search_object(object_id)
-			src.engine.engine.execute(app, obj, None, func_name, True)
+			managers.engine.execute(app, obj, None, func_name, True)
 			ret = unicode(request.session().value("response"))
 			request.session().remove("response")
 			return ret or ""

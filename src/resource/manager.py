@@ -1,9 +1,9 @@
 """resource manager"""
 import string
-import src.file_access
-from src.util.exception import VDOM_exception
-import src.util.uuid
-from src.resource.res_object import VDOM_resource_object, VDOM_resource_descriptor
+import managers, file_access
+from util.exception import VDOM_exception
+import util.uuid
+from resource.res_object import VDOM_resource_object, VDOM_resource_descriptor
 import sys
 class VDOM_resource_manager(object):
 	"""resource manager class"""
@@ -19,29 +19,33 @@ class VDOM_resource_manager(object):
 
 	def restore(self):	
 		"""Restoring resources from last session.(After reboot or power off)"""
-		from src.storage import storage
-		self.__old_index = src.storage.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
-		already_exist = storage.make_resources_index()
+		# from src!.storage import storage
+		self.__old_index = managers.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
+
+		# already_exist = storage.make_resources_index()
+		already_exist = managers.storage.make_resources_index() # ?????
+
 		if self.__old_index and not already_exist:
 			#Transfering index to new format
 			for resource in self.__old_index:
 				self.__main_index[resource] = VDOM_resource_descriptor.convert(self.__old_index[resource])
 		else:
-			self.__main_index = {res_id:VDOM_resource_descriptor(owner_id, res_id) for (owner_id, res_id) in storage.list_resource_index()}
+			#self.__main_index = {res_id:VDOM_resource_descriptor(owner_id, res_id) for (owner_id, res_id) in storage.list_resource_index()}
+			self.__main_index = {res_id:VDOM_resource_descriptor(owner_id, res_id) for (owner_id, res_id) in managers.storage.list_resource_index()} # ?????
 		del self.__old_index
 		#TODO: check for not existing or temporary resources
 		if not self.__main_index:
 			self.remove_resources()
 		
-		#src.storage.storage.make_resources_index()
-		#resource_data = src.storage.storage.__execute_sql("select res_id, app_id, filename from Resource_index",())
+		#managers.storage.make_resources_index()
+		#resource_data = managers.storage.__execute_sql("select res_id, app_id, filename from Resource_index",())
 		#for row in resource_data:
 			#app_id = row[1]
 			#if app_id not in self.__main_index:
 				#self.__main_index[app_id] = {}
 			#self.__main_index[app_id] = VDOM_resource_descriptor(row[0],row[1],row[2])
 			
-		#self.__index = src.storage.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
+		#self.__index = managers.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
 		#if self.__index:
 			#self.__label_index = {}
 			#remove_list = []
@@ -55,7 +59,7 @@ class VDOM_resource_manager(object):
 						#object_owner_list.append(object_id)
 					#resource.decrease(None,True)
 					#del(resource)
-				#elif not src.file_access.file_manager.exists(src.file_access.resource,resource.application_id,None, resource.filename):
+				#elif not managers.file_manager.exists(file_access.resource,resource.application_id,None, resource.filename):
 					#remove_list.append(id)
 				#else:
 					#resource.dependences = {}
@@ -65,9 +69,9 @@ class VDOM_resource_manager(object):
 				#is_dirty_index = True
 				
 			#for object_id in object_owner_list:
-				#src.file_access.file_manager.clear(src.file_access.resource,None,object_id)
+				#managers.file_manager.clear(file_access.resource,None,object_id)
 			#if is_dirty_index and self.save_index:
-				#src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+				#managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		#else:
 		
 			#self.remove_resources()
@@ -85,7 +89,7 @@ class VDOM_resource_manager(object):
 			#self.__index.pop(id)
 			#is_dirty_index = True
 		#if is_dirty_index and self.save_index: 
-			#src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+			#managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 			
 	def check_resource(self, owner_id, attributes, crc=None):
 		if not "id" in attributes:
@@ -107,7 +111,7 @@ class VDOM_resource_manager(object):
 			#return False
 		#if not resource.filename:
 			#return False
-		#if crc != src.file_access.file_manager.compute_crc(src.file_access.resource,resource.application_id,resource.object_id, resource.filename):
+		#if crc != managers.file_manager.compute_crc(file_access.resource,resource.application_id,resource.object_id, resource.filename):
 			#return False
 		return True
 		
@@ -143,7 +147,7 @@ class VDOM_resource_manager(object):
 			if "res_format" not in attributes:
 				res_descriptor.res_format = ""
 			
-			src.file_access.file_manager.write(src.file_access.resource,res_descriptor.application_id,object_id, res_descriptor.filename, bin_data,None, write_async)
+			managers.file_manager.write(file_access.resource,res_descriptor.application_id,object_id, res_descriptor.filename, bin_data,None, write_async)
 			if "label" not in attributes:
 				res_descriptor.save_record()			
 		return res_descriptor.id
@@ -158,7 +162,7 @@ class VDOM_resource_manager(object):
 				return self.__label_index[(object_id,attributes["label"])].id
 			else:
 				if "id" not in attributes:
-					attributes["id"] = str(src.util.uuid.uuid4())
+					attributes["id"] = str(util.uuid.uuid4())
 				resource = VDOM_resource_object(owner_id,object_id,attributes["id"])
 			try:
 				for key in attributes:
@@ -176,9 +180,9 @@ class VDOM_resource_manager(object):
 				self.__label_index[(object_id,attributes["label"])] = resource
 				if len(resource.dependences) == 1:
 					temp_owner = resource.dependences[resource.dependences.keys()[0]]
-			src.file_access.file_manager.write(src.file_access.resource,resource.application_id,temp_owner, resource.filename, bin_data,None, write_async)
+			managers.file_manager.write(file_access.resource,resource.application_id,temp_owner, resource.filename, bin_data,None, write_async)
 		if self.save_index:
-			src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+			managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		return attributes["id"]
 
 	def get_resource(self, owner_id, res_id):
@@ -216,9 +220,9 @@ class VDOM_resource_manager(object):
 		"""Adding a new resource"""
 		if resource_id in self.__main_index and self.__main_index[resource_id].application_id == owner_id:
 			res = self.__main_index[resource_id].load_copy()
-			src.file_access.file_manager.write(src.file_access.resource,owner_id,None, res.filename, bin_data)
+			managers.file_manager.write(file_access.resource,owner_id,None, res.filename, bin_data)
 		#if resource_id in self.__index:
-			#src.file_access.file_manager.write(src.file_access.resource,owner_id,None, self.__index[resource_id].filename, bin_data)
+			#managers.file_manager.write(file_access.resource,owner_id,None, self.__index[resource_id].filename, bin_data)
 			#return resource_id
 		#else:
 			#return None
@@ -241,21 +245,23 @@ class VDOM_resource_manager(object):
 					#self.__label_index.pop(resource.label)
 				#self.__index.pop(id)
 			#if self.save_index:
-				#src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+				#managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 			
 
 	def remove_resources(self):
 		"""Clearing resource cache on startup"""
-		from src.storage import storage
+		# from src!.storage import storage
 		self.__main_index = {}
 		self.__label_index = {}
-		src.file_access.file_manager.clear(src.file_access.resource,None, None)
-		storage.clear_resources_index()
+		managers.file_manager.clear(file_access.resource,None, None)
+
+		# storage.clear_resources_index()
+		managers.storage.clear_resources_index() # ?????
 		
-		#src.file_access.file_manager.clear(src.file_access.resource,None, None)
+		#managers.file_manager.clear(file_access.resource,None, None)
 		#self.__index = {}
 		#if self.save_index:
-			#src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+			#managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		#self.__label_index = {}
 
 	def invalidate_resources(self, object_id):
@@ -264,7 +270,7 @@ class VDOM_resource_manager(object):
 			if obj_id == object_id:
 				del self.__label_index[(obj_id, label)]
 				
-		src.file_access.file_manager.clear(src.file_access.resource, None, object_id)		
+		managers.file_manager.clear(file_access.resource, None, object_id)		
 		for res_id in self.__main_index.keys():
 			if self.__main_index[res_id].application_id == object_id:
 				del self.__main_index[res_id]
@@ -280,7 +286,7 @@ class VDOM_resource_manager(object):
 		#for id in i:
 			#del self.__index[id]
 ##		if self.save_index:
-		#src.file_access.file_manager.clear(src.file_access.resource, None, object_id)
+		#managers.file_manager.clear(file_access.resource, None, object_id)
 
 	def save_index_off(self):
 		"""Turning flag of index saving OFF"""
@@ -290,7 +296,7 @@ class VDOM_resource_manager(object):
 		"""Turning flag of index saving ON"""
 		self.save_index = True
 		#if forced_save:
-		#	src.storage.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
+		#	managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		
 internal_resource_manager = VDOM_resource_manager()
 del VDOM_resource_manager

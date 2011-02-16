@@ -3,10 +3,9 @@
 import sys
 import string
 
-import src.util.exception
-import src.util.id
-import src.xml.manager
-import src.request
+import util.exception
+import util.id
+import managers
 
 
 def filter_string(string):
@@ -55,9 +54,12 @@ class VDOM_source(object):
 #		result+="import sys\nsys.path.append(\"%s\")\n"%(VDOM_CONFIG["SOURCE-MODULES-DIRECTORY"])
 		result+="import sys\n"
 		result+="\n"
-		# result+="import src.object\nsrc.object.local.request=request\n"
-		# result+="import src.request\nrequest=src.request.request_manager.get_request()\n"
-		result+="from src.object import request\n"
+		# result+="import src!.object\nsrc!.object.local.request=request\n"
+		# result+="import managers.request_manager.get_request()\n"
+
+		result+="from object import request\n"
+		# result+="from src!.object import request\n"
+
 		result+="\n"
 		for module in self.__modules:
 			result+="from %s import %s\n"%(module, self.__modules[module])
@@ -242,4 +244,4 @@ class VDOM_source(object):
 	def size(self):
 		return self.__size
 
-from src.engine.sandbox import VDOM_sandbox
+from engine.sandbox import VDOM_sandbox

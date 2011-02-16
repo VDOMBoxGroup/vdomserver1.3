@@ -2,9 +2,8 @@
 
 import sys, re, traceback
 
-from src.module.module import VDOM_module_post
-from src.module.module import VDOM_module
-import src.request
+from .module import VDOM_module_post, VDOM_module
+import managers
 
 rexp = re.compile("VDOMURL\((.*?)\)", re.IGNORECASE)
 
@@ -16,7 +15,7 @@ class VDOM_module_url(VDOM_module_post):
 		result = VDOM_module_post.run(self, data)
 		parts = rexp.split(result)
 
-		request = src.request.request_manager.get_request()
+		request = managers.request_manager.get_request()
 
 		idx = 0
 		result = ""

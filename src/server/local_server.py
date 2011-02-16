@@ -2,7 +2,7 @@
 
 import socket, sys, time, select
 
-from src.util.system import *
+from util.system import *
 
 card_port = 4444
 wait = 0

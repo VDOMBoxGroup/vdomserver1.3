@@ -1,7 +1,7 @@
 
 import os
-from src.util.exception import VDOM_exception
-import src.xml
+from util.exception import VDOM_exception
+import managers
 
 def run(request):
 	sess = request.session()
@@ -12,14 +12,14 @@ def run(request):
 	error = ""
 
 	args = request.arguments().arguments()
-	applst = src.xml.xml_manager.get_types()
+	applst = managers.xml_manager.get_types()
 	p = False
 	for a in args.keys():
 		if a:
 			aid = "-".join(a.split("_"))
 			if aid in applst:
 				try:
-					obj = src.xml.xml_manager.get_type(aid)
+					obj = managers.xml_manager.get_type(aid)
 					fname = os.path.split(obj.filename)[1]
 					os.remove(os.path.join(VDOM_CONFIG["TYPES-LOCATION"], fname))
 					p = True
@@ -61,10 +61,10 @@ function MM_preloadImages() { //v3.0
 
 	l1 = os.listdir(VDOM_CONFIG["SOURCE-TYPES-LOCATION"])
 	l2 = os.listdir(VDOM_CONFIG["TYPES-LOCATION"])
-	l = src.xml.xml_manager.get_types()
+	l = managers.xml_manager.get_types()
 	ll = []
 	for type_id in l:
-		obj = src.xml.xml_manager.get_type(type_id)
+		obj = managers.xml_manager.get_type(type_id)
 		fname = os.path.split(obj.filename)[1]
 		if fname in l1 or fname not in l2:
 			continue

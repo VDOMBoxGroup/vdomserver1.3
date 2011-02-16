@@ -1,8 +1,8 @@
 
-from src.xml.xml_object import xml_object
-from src.xml.event import *
-from src.xml.structure import *
-from src.util.exception import *
+from memory.xml_object import xml_object
+from memory.event import *
+from memory.structure import *
+from util.exception import *
 
 
 class VDOM_application_wrapper:

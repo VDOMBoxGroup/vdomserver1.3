@@ -2,7 +2,7 @@
 
 import os, thread
 
-from src.version import VDOM_server_version
+from version import VDOM_server_version
 from http_server import VDOM_http_server
 from request_handler import VDOM_http_request_handler
 from vdommem_socket_server import VDOM_memory_socket_server

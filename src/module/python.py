@@ -2,9 +2,9 @@
 
 import os, sys, traceback
 
-from src.module.module import VDOM_module
-from src.util.exception import VDOM_exception
-import src.admin
+from .module import VDOM_module
+from util.exception import VDOM_exception
+import admin
 
 class VDOM_module_python(VDOM_module):
 	"""process python scripts"""
@@ -18,7 +18,7 @@ class VDOM_module_python(VDOM_module):
 		script_name = "_".join(script_name.split("-"))
 		request.add_header("Content-Type", "text/html")
 		try:
-			exec "src.admin." + script_name + ".run(request)"
+			exec "admin." + script_name + ".run(request)"
 		except Exception, e:
 			debug("Error: %s" % str(e))
 			traceback.print_exc(file=debugfile)

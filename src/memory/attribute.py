@@ -1,5 +1,6 @@
 """XML attribute module"""
 
+
 class VDOM_attribute:
 	"""XML attribute class"""
 

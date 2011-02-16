@@ -1,5 +1,5 @@
 
-from src.util.exception import VDOM_exception
+from util.exception import VDOM_exception
 from cgi import escape
 
 def run(request):

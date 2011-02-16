@@ -1,8 +1,8 @@
 from acl_manager import internal_manager as acl_manager
 from user_manager import internal_manager as user_manager
-import src.managers
-src.managers.reg_manager("acl_manager", acl_manager)
-src.managers.reg_manager("user_manager", user_manager)
+import managers
+managers.reg_manager("acl_manager", acl_manager)
+managers.reg_manager("user_manager", user_manager)
 
 create_application	= 1
 modify_application	= 2

@@ -1,7 +1,7 @@
 
 import shutil, os, os.path, sys, traceback, base64, zipfile, thread, time, copy, socket, select
 
-from src.util.exception import *
+from util.exception import *
 from session_objects import *
 
 class VDOM_memory_session():

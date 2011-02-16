@@ -2,7 +2,6 @@
 import re
 
 
-
 patterns={
 	"vscript": {
 		"remove": re.compile("(?:^\s*[Rr][Ee][Mm].+$)|(?:'.+$)|(?:\"[^\"]*\")", re.MULTILINE),

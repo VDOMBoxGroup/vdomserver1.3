@@ -563,7 +563,7 @@
 	<SourceCode>
 		<![CDATA[
 
-import src.e2vdom
+import e2vdom
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -588,8 +588,8 @@ class VDOM_htmlcontainer(VDOM_object):
 					# request.redirect("/" + self.deniedlink + ".vdom")	# obsolete - page_guid.vdom
 					request.redirect("/" + request.application().search_object(self.deniedlink).name + ".vdom")
 
-			src.e2vdom.process(self, parent)
-			libraries, declarations, registrations=src.e2vdom.generate(self)
+			e2vdom.process(self, parent)
+			libraries, declarations, registrations=e2vdom.generate(self)
 			javascript="%s\n%s\n"%(declarations, registrations)
 
 			clean_id = (request.application_id).replace('-', '_')

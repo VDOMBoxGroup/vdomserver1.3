@@ -3,7 +3,7 @@
 import os, sys
 import traceback
 
-from src.file_access.manager import application_path
+from file_access.manager import application_path # TODO: Direct use internal module variable
 
 
 class VDOM_enumerator:

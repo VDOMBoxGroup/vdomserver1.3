@@ -1,11 +1,8 @@
 
 import os, tempfile, traceback, shutil, time
-from src.util.exception import VDOM_exception
-from src.util.system import get_external_drives
-from src.util.system import device_exists
-from src.util.system import mount_device
-from src.util.system import umount_device
-import src.xml
+from util.exception import VDOM_exception
+from util.system import get_external_drives, device_exists, mount_device, umount_device
+import managers
 
 def run(request):
 	sess = request.session()
@@ -13,7 +10,7 @@ def run(request):
 		request.write("Authentication failed")
 		raise VDOM_exception("Authentication failed")
 
-	applist = src.xml.xml_manager.get_applications()
+	applist = managers.xml_manager.get_applications()
 	pathval = ""
 
 	args = request.arguments().arguments()
@@ -25,7 +22,7 @@ def run(request):
 		f = None
 		if appl in applist and format in ["xml", "zip"]:
 			try:
-				src.xml.xml_manager.export_application(appl, format, path)
+				managers.xml_manager.export_application(appl, format, path)
 				toread = os.path.join(path, appl)
 				request.add_header("Content-Type", "application/octet-stream");
 				request.add_header("Content-Disposition", "attachment; filename=%s.%s" % (appl, format));
@@ -58,7 +55,7 @@ def run(request):
 
 			if appl in applist and format in ["xml", "zip"] and device_exists(dev):
 				try:
-					src.xml.xml_manager.export_application(appl, format, path)
+					managers.xml_manager.export_application(appl, format, path)
 					fname = os.path.join(path, appl)
 					fname += ("." + format)
 					mountpoint=mount_device(dev)
@@ -121,7 +118,7 @@ function zzzz(e) {
 	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Application :</div></td>""")
 		cont = ""
 		for a in applist:
-			obj = src.xml.xml_manager.get_application(a)
+			obj = managers.xml_manager.get_application(a)
 			cont += "<option value=%s>%s</option>" % (a, "%s (%s)" % (obj.name.encode("utf-8"), a))
 		drives = get_external_drives()
 		devs = """<option value="none">None</option>"""

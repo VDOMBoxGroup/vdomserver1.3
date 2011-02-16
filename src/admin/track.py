@@ -1,7 +1,7 @@
 
-import src.storage
-from src.storage.storage import VDOM_config
-from src.util.exception import VDOM_exception
+import managers
+from storage.storage import VDOM_config
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -69,10 +69,10 @@ function MM_swapImage() { //v3.0
 		else:
 			cf.set_opt_sync("ENABLE-PAGE-DEBUG", "0")
 			VDOM_CONFIG_1["ENABLE-PAGE-DEBUG"] = "0"
-		tags = src.storage.storage.read_object("DEBUG-TAGS")
+		tags = managers.storage.read_object("DEBUG-TAGS")
 		if not tags:
 			tags = []
-			src.storage.storage.write_object("DEBUG-TAGS", tags)
+			managers.storage.write_object("DEBUG-TAGS", tags)
 		for a in args.keys():
 			if a.startswith("enable_tag_"):
 				k = a[11:]
@@ -140,10 +140,10 @@ function MM_swapImage() { //v3.0
         </tr>
 """ % s)
 
-	tags = src.storage.storage.read_object("DEBUG-TAGS")
+	tags = managers.storage.read_object("DEBUG-TAGS")
 	if not tags:
 		tags = []
-		src.storage.storage.write_object("DEBUG-TAGS", tags)
+		managers.storage.write_object("DEBUG-TAGS", tags)
 	for key in cf.get_keys():
 		if key.startswith("DEBUG-ENABLE-TAG-") and "1" == cf.get_opt(key):
 			k = key[17:]

@@ -1,7 +1,7 @@
 
 import re
 
-import src.request, src.util.uuid, src.managers
+import managers, util.uuid
 
 import errors, types
 
@@ -136,21 +136,21 @@ class server(generic):
 		generic.__init__(self)
 
 	def v_getapplication(self):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		return xmlapplicationwrapper(application)
 
 	def v_application(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("name")
 		else:
-			application=src.request.request_manager.get_request().application()
+			application=managers.request_manager.get_request().application()
 			return xmlapplicationwrapper(application)
 
 	def v_createobject(self, type, parent, name=None):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		type=as_string(type).lower()
 		if not server.check_regex.search(type):
-			xml_type=src.managers.xml_manager.get_type_by_name(type)
+			xml_type=managers.xml_manager.get_type_by_name(type)
 			type=xml_type.id if xml_type is not None else None
 		parent=as_string(parent).lower()
 		if server.check_regex.search(parent):
@@ -168,7 +168,7 @@ class server(generic):
 		return xmlobjectwrapper(object)
 
 	def v_deleteobject(self, object_string):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		object_string=as_string(object_string).lower()
 		if server.check_regex.search(object_string):
 			object=application.search_object(object_string)
@@ -180,7 +180,7 @@ class server(generic):
 		application.delete_object(object)
 
 	def v_getobject(self, object_string):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		object_string=as_string(object_string).lower()
 		if server.check_regex.search(object_string):
 			object=application.search_object(object_string)
@@ -190,9 +190,9 @@ class server(generic):
 		return xmlobjectwrapper(object) if object else v_nothing
 
 	def v_createresource(self, type, name, data):
-		application=src.request.request_manager.get_request().application()
+		application=managers.request_manager.get_request().application()
 		data=as_value(data)
-		resid=unicode(src.util.uuid.uuid4())
+		resid=unicode(util.uuid.uuid4())
 		if isinstance(data, binary):
 			application.create_resource(resid,
 				as_string(type), as_string(name), as_binary(data))
@@ -203,8 +203,8 @@ class server(generic):
 		return string(resid)
 		
 	def v_deleteresource(self, resource):
-		application=src.request.request_manager.get_request().application()
-		src.resource.resource_manager.delete_resource(application, as_string(resource))
+		application=managers.request_manager.get_request().application()
+		managers.resource_manager.delete_resource(application, as_string(resource))
 
 	def v_htmlencode(self, string2encode):
 		return string(escape_page(string2encode))
@@ -215,7 +215,7 @@ class server(generic):
 	def v_sendmail(self, sender, recipient, subject, message):
 		sender, recipient=as_string(sender), as_string(recipient)
 		subject, message=as_string(subject), as_string(message)
-		src.managers.email_manager.send(sender, recipient, subject, message)
+		managers.email_manager.send(sender, recipient, subject, message)
 
 
 server=server()

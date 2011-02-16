@@ -5,7 +5,7 @@ Sandbox
 import sys
 import thread
 import time
-from src.util.exception import VDOM_exception
+from util.exception import VDOM_exception
 
 class VDOM_sandbox:
 	""" Sandbox class"""

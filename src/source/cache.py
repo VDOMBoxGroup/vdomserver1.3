@@ -4,9 +4,9 @@ Source manager: source cache
 
 import sys
 
-import src.file_access
-import src.util.id 
-from src.util.exception import VDOM_exception 
+import managers, file_access
+import util.id 
+from util.exception import VDOM_exception 
 
 class VDOM_source_cache(object):
 	"""source cache class"""
@@ -25,9 +25,9 @@ class VDOM_source_cache(object):
 			pass # WHAT IS THIS!?!
 		if source is not None:
 			return source
-		source = src.source.swap.pop(application.id, container.id, action_name, context)
+		source = managers.source_swap.pop(application.id, container.id, action_name, context)
 		if source is None:
-			source = src.source.compiler.compile(application, container, action_name, context)
+			source = managers.compiler.compile(application, container, action_name, context)
 		if source is not None:
 			requered = source.size()
 			self.check_space(requered)
@@ -35,6 +35,7 @@ class VDOM_source_cache(object):
 			self.__cache_file_index[(application.id, container.id, action_name, context)] = source
 			self.__cache_list.insert(0,(application.id, container.id, action_name, context))
 			return source
+		print "SOURCE6"
 		
 	def check_space(self, requested):
 		""""""
@@ -42,7 +43,7 @@ class VDOM_source_cache(object):
 		while False and self.__memused + requested > memquote and self.__memused > 0:
 			(id_application, id_container, action_name, context) = self.__cache_list.pop()
 			source = self.__cache_file_index[(id_application, id_container, action_name, context) ]
-			src.source.swap.push(id_application, id_container, action_name, context, source)
+			managers.source_swap.push(id_application, id_container, action_name, context, source)
 			self.__memused = self.__memused - source.size()
 		if self.__memused < 0:
 			self.__memused = 0
@@ -55,7 +56,7 @@ class VDOM_source_cache(object):
 #		size = obj.size()
 #		self.__cache_list.remove((id_application, id_container, action_name, context))
 #		self.__memused = self.__memused - size
-#		src.source.swap.pop(id_application, id_container, action_name, context)
+#		managers.source_swap.pop(id_application, id_container, action_name, context)
 
 	def invalidate(self, id_application, id_container):
 		"""seting source code as invalid and removing it from cache or swap"""
@@ -67,17 +68,17 @@ class VDOM_source_cache(object):
 				size = obj.size()
 				self.__cache_list.remove((id_application, id_container, action_name, context))
 				self.__memused = self.__memused - size
-				src.source.swap.pop(id_application, id_container, action_name, context)
+				managers.source_swap.pop(id_application, id_container, action_name, context)
 
 	def clear_container_swap(self,application_id):
-		src.file_access.file_manager.clear(src.file_access.cache, application_id, None)
+		managers.file_manager.clear(file_access.cache, application_id, None)
 
 	def store_type(self,identificator,content):
 		"""storing source file for Native types"""
-		src.file_access.file_manager.write(src.file_access.type_source, identificator, None, src.util.id.guid2mod(identificator) + ".py", "# coding=utf-8\n\n" + content, encode=True)
+		managers.file_manager.write(file_access.type_source, identificator, None, util.id.guid2mod(identificator) + ".py", "# coding=utf-8\n\n" + content, encode=True)
 
 	def clear_type_sources(self,type_id):
-		src.file_access.file_manager.clear(src.file_access.type_source, type_id, None)
+		managers.file_manager.clear(file_access.type_source, type_id, None)
 
 internal_cache=VDOM_source_cache()
 del VDOM_source_cache
