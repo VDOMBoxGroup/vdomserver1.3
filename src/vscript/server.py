@@ -1,7 +1,7 @@
 
 import re
 
-import managers, util.uuid
+import managers, utils.uuid
 
 import errors, types
 
@@ -192,7 +192,7 @@ class server(generic):
 	def v_createresource(self, type, name, data):
 		application=managers.request_manager.get_request().application()
 		data=as_value(data)
-		resid=unicode(util.uuid.uuid4())
+		resid=unicode(utils.uuid.uuid4())
 		if isinstance(data, binary):
 			application.create_resource(resid,
 				as_string(type), as_string(name), as_binary(data))

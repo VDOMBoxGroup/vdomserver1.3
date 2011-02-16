@@ -1,6 +1,6 @@
 
 import managers
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 from security import *
 
 def run(request):

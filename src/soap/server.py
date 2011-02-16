@@ -5,15 +5,15 @@ import sys, os, time, zlib, base64, copy, traceback, tempfile, shutil, SOAPpy
 
 import managers, security
 from errors import *
-from util.encode import *
-from util.semaphore import VDOM_semaphore
-from util.mutex import VDOM_named_mutex_auto
-from util.exception import *
-import util
-from util.uuid import uuid4
+from utils.encode import *
+from utils.semaphore import VDOM_semaphore
+from utils.mutex import VDOM_named_mutex_auto
+from utils.exception import *
+import utils
+from utils.uuid import uuid4
 from xml_object import xml_object # memory.
 from database.dbobject import VDOM_sql_query
-from util.app_management import import_application
+from utils.app_management import import_application
 from version import VDOM_server_version
 
 sessions = {}	# opened sessions
@@ -140,9 +140,9 @@ class VDOM_web_services_server(object):
 		sess.set_user(name, pwd_md5, md5=True)
 
 		# create protector object
-		hash_string = util.get_hash_str()
-		session_key = util.get_session_key()
-		pr = util.VDOM_session_protector(hash_string)
+		hash_string = utils.get_hash_str()
+		session_key = utils.get_session_key()
+		pr = utils.VDOM_session_protector(hash_string)
 		# save protector object
 		self.__sem.lock()
 		sessions[sid] = pr
@@ -282,7 +282,7 @@ class VDOM_web_services_server(object):
 		try:
 			ro = managers.resource_manager.get_resource(owner_id, resource_id)
 			data = ro.get_data()
-			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (util.encode.encode_resource(data), resource_id, ro.res_format, len(ro.dependences))
+			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (utils.encode.encode_resource(data), resource_id, ro.res_format, len(ro.dependences))
 		except Exception, e:
 			#traceback.print_exc(file=debugfile)
 			#debug("Get type resource error: " + str(e))
@@ -1278,7 +1278,7 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(resource_not_found_error, _("Thumbnail error"), _("Resource not found"))
 #			return self.__format_error(_("Resource not found"))
 		_data = managers.resource_editor.do_thumbnail(ro.res_format, ro.get_data(), int(width), int(height))
-		return "<Resource><![CDATA[%s]]></Resource>" % util.encode.encode_resource(_data)
+		return "<Resource><![CDATA[%s]]></Resource>" % utils.encode.encode_resource(_data)
 
 	def execute_sql(self, sid, skey, appid, dbid, sql, script):
 		if not self.__check_session(sid, skey): return self.__session_key_error()

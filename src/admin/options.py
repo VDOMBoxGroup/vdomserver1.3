@@ -1,7 +1,7 @@
 
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 import managers
-from util.system import get_ip_and_mask, get_date_and_time, get_free_space, get_hd_size, get_default_gateway
+from utils.system import get_ip_and_mask, get_date_and_time, get_free_space, get_hd_size, get_default_gateway
 from version import VDOM_server_version
 
 def run(request):

@@ -2,7 +2,7 @@
 import sys, os, tempfile, zipfile, shutil, re
 
 import managers
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 from file_access.manager import databases_path, resources_path
 
 rexp = re.compile(r"\<id\>(.+)\<\/id\>", re.IGNORECASE)

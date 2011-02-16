@@ -5,8 +5,8 @@ Source manager: source cache
 import sys
 
 import managers, file_access
-import util.id 
-from util.exception import VDOM_exception 
+import utils.id 
+from utils.exception import VDOM_exception 
 
 class VDOM_source_cache(object):
 	"""source cache class"""
@@ -75,7 +75,7 @@ class VDOM_source_cache(object):
 
 	def store_type(self,identificator,content):
 		"""storing source file for Native types"""
-		managers.file_manager.write(file_access.type_source, identificator, None, util.id.guid2mod(identificator) + ".py", "# coding=utf-8\n\n" + content, encode=True)
+		managers.file_manager.write(file_access.type_source, identificator, None, utils.id.guid2mod(identificator) + ".py", "# coding=utf-8\n\n" + content, encode=True)
 
 	def clear_type_sources(self,type_id):
 		managers.file_manager.clear(file_access.type_source, type_id, None)

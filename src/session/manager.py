@@ -3,8 +3,8 @@
 import thread, time, copy
 
 from session import VDOM_session
-from util.semaphore import VDOM_semaphore
-from util.exception import VDOM_exception
+from utils.semaphore import VDOM_semaphore
+from utils.exception import VDOM_exception
 import managers
 
 class VDOM_session_manager(dict):

@@ -3,8 +3,8 @@
 import sys
 import re
 
-import util.exception
-import util.id
+import utils.exception
+import utils.id
 import managers
 
 from source import VDOM_source
@@ -54,7 +54,7 @@ class VDOM_compiler(object):
 
 		print "COMPILE5"
 
-		module_name=util.id.guid2mod(object.type.id)
+		module_name=utils.id.guid2mod(object.type.id)
 		print module_name
 		if module_name in self.__modules:
 			print 111
@@ -223,7 +223,7 @@ class VDOM_compiler(object):
 			source.write("\tdef wysiwyg(self, parent, contents=\"\"):\n\t\tresult=contents\n%s\t\treturn %s.wysiwyg(self, parent, contents=result)\n"%(wysiwyg, object.type.class_name))
 		else:
 			source=VDOM_source(object.name, object.type.class_name, object.id, action_name, context)
-			source.import_module(util.id.guid2mod(object.type.id), object.type.class_name)
+			source.import_module(utils.id.guid2mod(object.type.id), object.type.class_name)
 		return source
 
 internal_compiler=VDOM_compiler()

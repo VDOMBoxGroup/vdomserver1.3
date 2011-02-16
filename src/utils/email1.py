@@ -6,7 +6,7 @@ from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 
-from util.semaphore import VDOM_semaphore
+from utils.semaphore import VDOM_semaphore
 from storage.storage import VDOM_config
 import managers
 

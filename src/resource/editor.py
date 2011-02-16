@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 import ImageEnhance
 
 import managers, security
-from util.uuid import uuid4
+from utils.uuid import uuid4
 
 class VDOM_resource_editor:
 	"""resource editor class"""

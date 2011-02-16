@@ -3,7 +3,7 @@
 import os, sys, traceback
 
 from .module import VDOM_module
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 import admin
 
 class VDOM_module_python(VDOM_module):

@@ -6,9 +6,9 @@ import sys, os, traceback
 import shutil, thread, time,types
 
 import file_access
-from util.exception import VDOM_exception
-from util.semaphore import VDOM_semaphore
-import util.mutex as mutex
+from utils.exception import VDOM_exception
+from utils.semaphore import VDOM_semaphore
+import utils.mutex as mutex
 
 
 application_path = "applications"

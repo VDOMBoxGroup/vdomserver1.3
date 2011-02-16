@@ -3,8 +3,8 @@
 import sys
 import string
 
-import util.exception
-import util.id
+import utils.exception
+import utils.id
 import managers
 
 

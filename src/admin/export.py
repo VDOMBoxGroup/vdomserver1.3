@@ -1,7 +1,7 @@
 
 import os, tempfile, traceback, shutil, time
-from util.exception import VDOM_exception
-from util.system import get_external_drives, device_exists, mount_device, umount_device
+from utils.exception import VDOM_exception
+from utils.system import get_external_drives, device_exists, mount_device, umount_device
 import managers
 
 def run(request):

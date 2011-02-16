@@ -1,12 +1,12 @@
 """database object"""
 import managers, file_access
-import util.uuid
+import utils.uuid
 import sqlite3
 import re
 from xml.dom import Node
 from xml.dom.minidom import parse, parseString
-from util.exception import VDOM_exception
-from util.semaphore import VDOM_semaphore
+from utils.exception import VDOM_exception
+from utils.semaphore import VDOM_semaphore
 
 class VDOM_database_object:
 	"""database object class"""
@@ -16,7 +16,7 @@ class VDOM_database_object:
 		self.owner_id = owner_id
 		self.id = id
 		self.name = str(id)
-		self.filename = str(util.uuid.uuid4())
+		self.filename = str(utils.uuid.uuid4())
 		self.is_ready = False
 		self.tables_list = None
 		self.tables_index = {}
@@ -638,7 +638,7 @@ class VDOM_db_column:
 	def __init__(self, name, constraints={}):
 		"""Constructor"""
 		self.name = name
-		self.id = str(util.uuid.uuid4())
+		self.id = str(utils.uuid.uuid4())
 
 		if "type" in constraints:
 			self.type = constraints["type"]

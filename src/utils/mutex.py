@@ -1,5 +1,5 @@
 """
-NAME: VDOM.util.mutex<br>
+NAME: VDOM.utils.mutex<br>
 DESCRIPTION: This class implements mutex object for VDOM<br>
 DATE: 2005/02/17<br>
 AUTHOR: SE Group<br>
@@ -15,7 +15,7 @@ VERSION: 0.001<br>
 
 from threading import Semaphore
 
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 class VDOM_mutex:
 	""" This class should be used to lock objects """

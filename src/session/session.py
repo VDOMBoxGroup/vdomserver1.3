@@ -1,8 +1,8 @@
 """session module"""
 
 import sys, string, time, os, shutil, copy
-from util.id import VDOM_id
-from util.exception import *
+from utils.id import VDOM_id
+from utils.exception import *
 import managers
 
 

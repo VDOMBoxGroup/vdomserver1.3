@@ -1,10 +1,10 @@
 import thread, os, time, tempfile, shutil
 
 import managers, log
-from util.semaphore import VDOM_semaphore
-from util.exception import VDOM_exception
-from util.system import *
-from util.app_management import import_application
+from utils.semaphore import VDOM_semaphore
+from utils.exception import VDOM_exception
+from utils.system import *
+from utils.app_management import import_application
 
 class VDOM_server_manager():
 

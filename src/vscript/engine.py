@@ -1,7 +1,7 @@
 
 import sys, traceback, os.path, re
 
-from util.mutex import VDOM_named_mutex_auto as auto_mutex
+from utils.mutex import VDOM_named_mutex_auto as auto_mutex
 
 import managers, log
 

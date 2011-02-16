@@ -19,11 +19,11 @@ import SimpleHTTPServer
 import SOAPpy
 
 import managers
-import util.email1
+import utils.email1
 import log
-from util.pid import VDOM_server_pid
-from util.exception import VDOM_exception
-from util.semaphore import VDOM_semaphore
+from utils.pid import VDOM_server_pid
+from utils.exception import VDOM_exception
+from utils.semaphore import VDOM_semaphore
 
 from vhosting import VDOM_vhosting
 from soap.functions import *

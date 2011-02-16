@@ -2,8 +2,8 @@
 Source manager: file swap
 """
 
-from util.exception import VDOM_exception
-import util.uuid
+from utils.exception import VDOM_exception
+import utils.uuid
 import file_access
 import cPickle
 import managers
@@ -40,7 +40,7 @@ class VDOM_source_swap:
 
 	def push(self, application_id, container_id, action_name, context, content):
 		"""Store file in disk swap"""
-		name = str(util.uuid.uuid4())
+		name = str(utils.uuid.uuid4())
 		self.__swap_file_index[(application_id,container_id, action_name, context)] = name
 		return managers.file_manager.write(file_access.cache, application_id, None, name, cPickle.dumps(content))
 

@@ -1,5 +1,5 @@
 
-from util.encode import *
+from utils.encode import *
 
 def wrap_object(obj):
 	p_id = ""

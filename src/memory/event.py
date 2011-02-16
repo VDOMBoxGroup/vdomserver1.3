@@ -128,4 +128,4 @@ class VDOM_client_server_events:
 			debug("Event exception: " + str(e))
 
 from xml_object import xml_object
-from util.exception import *
+from utils.exception import *

@@ -1,8 +1,8 @@
 
 import os, traceback
 import managers
-from util.system import get_external_drives
-from util.exception import VDOM_exception
+from utils.system import get_external_drives
+from utils.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()

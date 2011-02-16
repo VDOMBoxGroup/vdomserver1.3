@@ -1,6 +1,6 @@
 ﻿
 import managers
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 def run(request):
 	request.write("""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"

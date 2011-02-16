@@ -2,7 +2,7 @@
 import sys
 import managers
 from module import VDOM_module
-from util.exception import *
+from utils.exception import *
 
 
 class VDOM_module_resource(VDOM_module):

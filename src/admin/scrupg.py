@@ -1,5 +1,5 @@
 
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 from server.local_server import send_to_card
 
 def run(request):

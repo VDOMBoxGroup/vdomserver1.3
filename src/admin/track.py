@@ -1,7 +1,7 @@
 
 import managers
 from storage.storage import VDOM_config
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()

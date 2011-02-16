@@ -5,11 +5,11 @@ User Manager module
 from hashlib import md5
 
 import managers
-import util.id as theid
+import utils.id as theid
 from storage.storage import VDOM_config
 from security.user import VDOM_user
 from security.group import VDOM_usergroup
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 
 class VDOM_user_manager:

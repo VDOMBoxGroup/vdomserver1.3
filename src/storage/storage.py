@@ -6,9 +6,9 @@ import time
 import thread
 import traceback
 
-from util.semaphore import VDOM_semaphore
-from util.exception import VDOM_exception
-from util.mutex import VDOM_named_mutex_auto
+from utils.semaphore import VDOM_semaphore
+from utils.exception import VDOM_exception
+from utils.mutex import VDOM_named_mutex_auto
 
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
 #__update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "

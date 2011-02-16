@@ -1,7 +1,7 @@
 
 import os, tempfile, traceback
 import managers
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
