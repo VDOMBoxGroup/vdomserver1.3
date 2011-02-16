@@ -5,7 +5,7 @@ import SOAPpy
 
 import managers
 from soap.errors import *
-from util.exception import *
+from utils.exception import *
 
 
 class VDOM_dispatcher:
@@ -32,7 +32,7 @@ class VDOM_dispatcher:
 		try:
 			object = managers.xml_manager.search_object(app_id, object_id)
 			if object and object.type.id in self.__handler_index and func_name in self.__handler_index[object.type.id]:
-				module=__import__(util.id.guid2mod(object.type.id))
+				module=__import__(utils.id.guid2mod(object.type.id))
 				if func_name in module.__dict__:
 					return getattr(module, func_name)(app_id, object_id, param)
 		except Exception, e:
@@ -44,7 +44,7 @@ class VDOM_dispatcher:
 		try:
 			object = managers.xml_manager.search_object(app_id, object_id)
 			if object.type.id in self.__remote_index and func_name in self.__remote_index[object.type.id]:
-				module=__import__(util.id.guid2mod(object.type.id))
+				module=__import__(utils.id.guid2mod(object.type.id))
 				if func_name in module.__dict__:
 					if session_id:
 						return getattr(module, func_name)(app_id, object_id, xml_param,session_id)

@@ -140,7 +140,7 @@ class VDOM_object(object):
 				setattr(self, child.lname+"_element", child)
 		# add 'onload' action if it's not here
 		if 0 == len(self.actions["name"]) and 1 != self.type.container:
-			_id = str(util.uuid.uuid4())
+			_id = str(utils.uuid.uuid4())
 			self.actions["name"]["onload"] = VDOM_server_action("", _id, "", "", "", "onload")
 			self.actions["id"][_id] = self.actions["name"]["onload"]
 
@@ -190,7 +190,7 @@ class VDOM_object(object):
 				self.actions["name"][name] = VDOM_server_action(code, _id, _top, _left, _state, name)
 				self.actions["id"][_id] = self.actions["name"][name]
 		if not _onload:
-			_id = str(util.uuid.uuid4())
+			_id = str(utils.uuid.uuid4())
 			self.actions["name"]["onload"] = VDOM_server_action("", _id, "", "", "", "onload")
 			self.actions["id"][_id] = self.actions["name"]["onload"]
 
@@ -244,7 +244,7 @@ class VDOM_object(object):
 			raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
 		self.__sem.lock()
 		try:
-			_id = str(util.uuid.uuid4())
+			_id = str(utils.uuid.uuid4())
 			self.actions["name"][actionname] = VDOM_server_action(value, _id, "", "", "", actionname)
 			self.actions["id"][_id] = self.actions["name"][actionname]
 
@@ -520,12 +520,12 @@ from soap.errors import *
 from .event import *
 from .attribute import VDOM_attribute
 
-from util.exception import *
-from util.semaphore import VDOM_semaphore
-from util.encode import *
-from util.id import is_valid_identifier
+from utils.exception import *
+from utils.semaphore import VDOM_semaphore
+from utils.encode import *
+from utils.id import is_valid_identifier
 
-import util.id
-import util.uuid
+import utils.id
+import utils.uuid
 
 import managers, security

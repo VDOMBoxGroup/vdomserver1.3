@@ -1,14 +1,14 @@
 import copy
 import managers, file_access
 # from storage import storage
-from util.exception import VDOM_exception
-import util.uuid
+from utils.exception import VDOM_exception
+import utils.uuid
 
 class VDOM_resource_descriptor(object):
 	def __init__(self,owner_id, res_id=None):
 		"""constructor"""
 		self.application_id = owner_id
-		self.id = res_id or str(util.uuid.uuid4())
+		self.id = res_id or str(utils.uuid.uuid4())
 		self.__loaded = False	
 	
 	@classmethod
@@ -65,7 +65,7 @@ class VDOM_resource_descriptor(object):
 		if fn:
 			return fn
 		else:
-			self.__filename = str(util.uuid.uuid4())
+			self.__filename = str(utils.uuid.uuid4())
 			return self.__filename
 
 	def __set_filename(self, value):
@@ -122,7 +122,7 @@ class VDOM_resource_object:
 		self.label = ""
 		self.id = id
 		self.name = ""
-		self.filename = str(util.uuid.uuid4())
+		self.filename = str(utils.uuid.uuid4())
 		self.showtimes = None
 		
 		#if object_id:

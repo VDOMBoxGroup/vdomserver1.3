@@ -226,7 +226,7 @@ class VDOM_type(VDOM_parser):
 			
 
 import managers
-import util.id
-from util.exception import *
+import utils.id
+from utils.exception import *
 from type_attribute import VDOM_type_attribute
 from event import *

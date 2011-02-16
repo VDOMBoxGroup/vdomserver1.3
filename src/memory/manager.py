@@ -488,10 +488,10 @@ class VDOM_xml_manager(object):
 
 import managers, security, file_access
 
-from util.mutex import VDOM_named_mutex_auto
-from util.semaphore import VDOM_semaphore
-from util.exception import *
-from util.uuid import uuid4
+from utils.mutex import VDOM_named_mutex_auto
+from utils.semaphore import VDOM_semaphore
+from utils.exception import *
+from utils.uuid import uuid4
 
 from .type import VDOM_type
 from application import VDOM_application

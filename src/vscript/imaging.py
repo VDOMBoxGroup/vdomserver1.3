@@ -3,7 +3,7 @@ import re
 
 import managers
 
-from util.imaging import VDOM_imaging
+from utils.imaging import VDOM_imaging
 
 import errors, types
 

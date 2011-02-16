@@ -106,4 +106,4 @@ class VDOM_parser:
 
 import managers
 from .xml_object import xml_object
-from util.exception import *
+from utils.exception import *

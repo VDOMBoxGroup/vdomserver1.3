@@ -1,5 +1,5 @@
 
-import util.exception
+import utils.exception
 
 import errors
 
@@ -13,7 +13,7 @@ __all__=["v_genericerror",
 
 
 v_genericerror=errors.python
-v_servererror=util.exception.VDOM_exception
+v_servererror=utils.exception.VDOM_exception
 v_scripterror=errors.generic
 v_subscriptoutofrange=errors.subscript_out_of_range
 v_divizionbyzero=errors.division_by_zero

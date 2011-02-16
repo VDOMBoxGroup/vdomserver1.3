@@ -1,6 +1,6 @@
 
 import managers, security
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 class VDOM_acl_manager:
 	"""Defines acl-access and acl-storage methods"""

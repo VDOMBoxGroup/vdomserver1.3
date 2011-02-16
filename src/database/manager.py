@@ -1,9 +1,9 @@
 """database manager"""
 import string
 import sys
-import util.uuid
+import utils.uuid
 import managers, file_access
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 from dbobject import VDOM_database_object, VDOM_database_table
 from xml.dom.minidom import parseString
 from xml.dom import Node

@@ -3,7 +3,7 @@
 import sys
 from cStringIO import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImagePalette
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 import managers
 
 class VDOM_imaging:
@@ -14,7 +14,7 @@ class VDOM_imaging:
 		self.__im = None
 		self.__font = None
 		self.__format = None
-		#from src!.util import font_factory
+		#from src!.utils import font_factory
 		#self.__font_factory = font_factory
 
 	def load(self, application_id, res_id):

@@ -1,7 +1,7 @@
 
 import sys, os, shutil, re, types
 
-from util.exception import *
+from utils.exception import *
 
 # check if path exists
 # read file

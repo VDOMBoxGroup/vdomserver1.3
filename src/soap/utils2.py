@@ -2,7 +2,7 @@
 
 import random
 
-from util.exception import *
+from utils.exception import *
 
 # session protector class
 class VDOM_session_protector:

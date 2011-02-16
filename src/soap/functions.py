@@ -1,8 +1,8 @@
 """VDOM web services"""
 import SOAPpy, traceback
 
-import util.encode
-from util.exception import *
+import utils.encode
+from utils.exception import *
 import managers
 
 def about(_SOAPContext):
@@ -14,7 +14,7 @@ def get_echo(sid, _SOAPContext):
 		sess = managers.session_manager[sid]
 		data = sess["__tmp_ide_data"]
 		sess["__tmp_ide_data"] = ""	# clear data
-		return "<Result>%s</Result>" % util.encode.encode_resource(data)
+		return "<Result>%s</Result>" % utils.encode.encode_resource(data)
 	except:
 		return "<Error>Error</Error>"
 

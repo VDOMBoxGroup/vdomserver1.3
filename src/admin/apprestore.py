@@ -1,8 +1,8 @@
 import os, traceback, time
-from util.exception import VDOM_exception
-from util.system import *
+from utils.exception import VDOM_exception
+from utils.system import *
 import managers
-from util.system import get_external_drives
+from utils.system import get_external_drives
 
 
 

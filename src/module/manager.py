@@ -3,7 +3,7 @@
 import sys, traceback, shutil
 
 import managers
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 from resource import VDOM_module_resource
 from .python import VDOM_module_python

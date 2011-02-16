@@ -6,11 +6,11 @@ FREEBSD = sys.platform.startswith("frebsd")
 
 
 if  LINUX:
-	from util.system_linux import *
+	from utils.system_linux import *
 elif FREEBSD:
-	from util.system_freebsd import *
+	from utils.system_freebsd import *
 else:
-	from util.system_freebsd import *
+	from utils.system_freebsd import *
 
 
 

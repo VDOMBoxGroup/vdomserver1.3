@@ -1073,18 +1073,18 @@ class VDOM_application(VDOM_parser):
 import managers, file_access, security
 
 from version import VDOM_server_version
-from util.mutex import VDOM_named_mutex_auto
+from utils.mutex import VDOM_named_mutex_auto
 from soap.errors import *
-from util.encode import *
+from utils.encode import *
 
 from event import *
 from object import on_attr_change, VDOM_object
 from xml_object import xml_object
 from structure import VDOM_structure_level, VDOM_structure_item
 
-from util.uuid import uuid4
-from util.semaphore import VDOM_semaphore
-from util.exception import *
-from util.id import is_valid_identifier
+from utils.uuid import uuid4
+from utils.semaphore import VDOM_semaphore
+from utils.exception import *
+from utils.id import is_valid_identifier
 
 from vscript.engine import vcompile

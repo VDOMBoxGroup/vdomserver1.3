@@ -1,8 +1,8 @@
 """resource manager"""
 import string
 import managers, file_access
-from util.exception import VDOM_exception
-import util.uuid
+from utils.exception import VDOM_exception
+import utils.uuid
 from resource.res_object import VDOM_resource_object, VDOM_resource_descriptor
 import sys
 class VDOM_resource_manager(object):
@@ -162,7 +162,7 @@ class VDOM_resource_manager(object):
 				return self.__label_index[(object_id,attributes["label"])].id
 			else:
 				if "id" not in attributes:
-					attributes["id"] = str(util.uuid.uuid4())
+					attributes["id"] = str(utils.uuid.uuid4())
 				resource = VDOM_resource_object(owner_id,object_id,attributes["id"])
 			try:
 				for key in attributes:

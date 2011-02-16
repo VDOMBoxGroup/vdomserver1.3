@@ -3,7 +3,7 @@ import time, os, tempfile, shutil, re, base64, sys
 
 import managers
 from file_access.manager import application_path, application_file_name
-from util.exception import VDOM_exception
+from utils.exception import VDOM_exception
 
 re_id = re.compile(r"\s+id\s*=\s*\"(.+?)\"", re.IGNORECASE)
 re_type = re.compile(r"\s+type\s*=\s*\"(.+?)\"", re.IGNORECASE)

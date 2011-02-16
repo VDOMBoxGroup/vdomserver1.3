@@ -1,7 +1,7 @@
 
 import os, re
-from util.system import get_vfs_users
-from util.exception import VDOM_exception
+from utils.system import get_vfs_users
+from utils.exception import VDOM_exception
 
 rexp_ban = [re.compile("^debug$", re.IGNORECASE)]
 

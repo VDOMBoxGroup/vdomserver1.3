@@ -1,7 +1,7 @@
 
 import re, md5, SOAPpy, codecs
 
-from soap.util2 import VDOM_session_protector
+from soap.utils2 import VDOM_session_protector
 
 import errors, types
 
