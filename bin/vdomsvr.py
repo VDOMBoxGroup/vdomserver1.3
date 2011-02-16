@@ -245,7 +245,6 @@ import session
 import soap
 
 
-import vdom_memory_client
 from server.server import VDOM_server
 
 #from actions import actions_on_shutdown
