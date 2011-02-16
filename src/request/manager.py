@@ -2,8 +2,8 @@
 
 import sys, thread
 
-from src.util.exception import VDOM_exception
-from src.util.semaphore import VDOM_semaphore
+from util.exception import VDOM_exception
+from util.semaphore import VDOM_semaphore
 
 class VDOM_request_manager(dict):
 	"""Request manager class"""

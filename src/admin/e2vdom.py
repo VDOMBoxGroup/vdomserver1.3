@@ -1,6 +1,6 @@
 
-import src.engine
-from src.xml.event import VDOM_client_server_events
+import managers
+from memory.event import VDOM_client_server_events
 
 def run(request):
 	args = request.arguments().arguments()
@@ -72,8 +72,8 @@ def run(request):
 						params = ev.events[ob, nm]
 						params["sender"] = [ob]
 						request.arguments().arguments(params)
-						#result = src.engine.engine.execute(app, cont, cont.parent, cont.actions["id"][a_id].name)
-						result = src.engine.engine.execute(app, _obj, _obj.parent, _a.name)
+						#result = managers.engine.execute(app, cont, cont.parent, cont.actions["id"][a_id].name)
+						result = managers.engine.execute(app, _obj, _obj.parent, _a.name)
 						for key in result:
 							k_ob=app.search_object(key)
 							k_ob_parent_id = k_ob.parent.id if k_ob.parent else ""

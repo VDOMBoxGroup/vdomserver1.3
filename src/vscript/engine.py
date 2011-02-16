@@ -1,12 +1,12 @@
 
 import sys, traceback, os.path, re
 
-from src.util.mutex import VDOM_named_mutex_auto as auto_mutex
+from util.mutex import VDOM_named_mutex_auto as auto_mutex
 
-import src.log
+import managers, log
 
-import src.ply.lex as lex
-import src.ply.yacc as yacc
+import ply.lex as lex
+import ply.yacc as yacc
 
 import options, errors, types, lexemes, syntax
 
@@ -63,7 +63,7 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 	error.type=error_type
 	debug(error, console=True)
 	del exclass, exexception, extraceback, history
-	src.log.log_manager.error_bug(error, "vscript")
+	managers.log_manager.error_bug(error, "vscript")
 
 def vsetup(skip_wrappers=None):
 	if skip_wrappers is not None:

@@ -341,7 +341,7 @@
 	<SourceCode>
 		<![CDATA[
 
-import src.e2vdom
+import e2vdom
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -362,7 +362,7 @@ class VDOM_container(VDOM_object):
 			display = " display:none; "
 		else: display = ""
 
-		src.e2vdom.process(self, parent)
+		e2vdom.process(self, parent)
 
 		if self.overflow == "1":
 			ov = 'hidden'

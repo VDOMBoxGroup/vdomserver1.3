@@ -1,22 +1,19 @@
 
-import src.storage
-import src.request
-import src.security
-import src.xml
-from src.util.exception import VDOM_exception
+import managers, security
+from util.exception import VDOM_exception
 
 class VDOM_acl_manager:
 	"""Defines acl-access and acl-storage methods"""
 
 	def __init__(self):
-		self.acl = src.storage.storage.read_object(VDOM_CONFIG["ACL-MANAGER-STORAGE-RECORD"])
+		self.acl = managers.storage.read_object(VDOM_CONFIG["ACL-MANAGER-STORAGE-RECORD"])
 		if(self.acl == None):
 			self.acl = {}
 			self.sync()
 
 	def sync(self):
 		"""Saves current state of manager in storage"""
-		src.storage.storage.write_object_async(VDOM_CONFIG["ACL-MANAGER-STORAGE-RECORD"], self.acl)
+		managers.storage.write_object_async(VDOM_CONFIG["ACL-MANAGER-STORAGE-RECORD"], self.acl)
 
 	def __get_rule(self, object_id, username, access_type):
 		"""
@@ -41,7 +38,7 @@ class VDOM_acl_manager:
 
 	def __allow(self, object_id):
 		# allow access if processing vdom request and accessing within the same application
-		request = src.request.request_manager.get_request()
+		request = managers.request_manager.get_request()
 		if hasattr(request, "request_type") and request.request_type in ["vdom", "action"]:
 			app = request.application()
 			if app and (app.id == object_id or app.search_object(object_id)):
@@ -61,7 +58,7 @@ class VDOM_acl_manager:
 			if self.__get_rule(object_id, name, access_type):
 				return True
 			checked.append(name)
-			user = src.security.user_manager.get_user_by_name(name)
+			user = managers.user_manager.get_user_by_name(name)
 			if user:
 				for gr_name in user.member_of:
 					if not gr_name in checked:
@@ -70,7 +67,7 @@ class VDOM_acl_manager:
 	def check_membership(self, username, groupname):
 		tocheck = [groupname]
 		checked = []
-		user = src.security.user_manager.get_user_by_name(username)
+		user = managers.user_manager.get_user_by_name(username)
 		while True:
 			if len(tocheck) == 0:
 				return False
@@ -78,9 +75,9 @@ class VDOM_acl_manager:
 			if name in user.member_of:
 				return True
 			checked.append(name)
-			group = src.security.user_manager.get_user_by_name(name)
+			group = managers.user_manager.get_user_by_name(name)
 			for gr_name in group.members:
-				if src.security.user_manager.get_group_by_name(gr_name) and gr_name not in checked:
+				if managers.user_manager.get_group_by_name(gr_name) and gr_name not in checked:
 					tocheck.append(gr_name)
 
 	def add_access(self, object_id, username, access_type):
@@ -98,7 +95,7 @@ class VDOM_acl_manager:
 		"""Returns True or False - have account "rule"-access to this object"""
 		if self.__allow(object_id):
 			return True
-		username = src.request.request_manager.get_request().session().user
+		username = managers.request_manager.get_request().session().user
 		if username:
 			return self.check_access(object_id, username, access_type)
 		return False
@@ -107,21 +104,21 @@ class VDOM_acl_manager:
 		"""Returns True or False - have account "rule"-access to this object, including inheritance"""
 		if self.__allow(object_id):
 			return True
-		username = src.request.request_manager.get_request().session().user
+		username = managers.request_manager.get_request().session().user
 		if username:
 			return self.check_access2(app_id, object_id, username, access_type)
 		return False
 
 	def grant_access_to_application(self, aid):
 		"""grant access to application for the session user"""
-		username = src.request.request_manager.get_request().session().user
+		username = managers.request_manager.get_request().session().user
 		if not username:
 			return
-		self.add_access(aid, username, src.security.create_object)
-		self.add_access(aid, username, src.security.modify_object)
-		self.add_access(aid, username, src.security.delete_object)
-		self.add_access(aid, username, src.security.modify_structure)
-		self.add_access(aid, username, src.security.inherit)
+		self.add_access(aid, username, security.create_object)
+		self.add_access(aid, username, security.modify_object)
+		self.add_access(aid, username, security.delete_object)
+		self.add_access(aid, username, security.modify_structure)
+		self.add_access(aid, username, security.inherit)
 
 	def __check_access2_int(self, app_id, obj_id, username, access_type):
 		"""checks access with inheritance"""
@@ -129,7 +126,7 @@ class VDOM_acl_manager:
 			return self.check_access("vdombox", username, access_type)
 		app = None
 		try:
-			app = src.xml.xml_manager.get_application(app_id)
+			app = managers.xml_manager.get_application(app_id)
 		except:
 			return False
 		id_to_check = [app_id, "vdombox"]
@@ -144,7 +141,7 @@ class VDOM_acl_manager:
 		if self.check_access(id_to_check.pop(0), username, access_type):
 			return True
 		for ii in id_to_check:
-			if src.security.inherit != access_type and self.__get_rule(ii, username, src.security.inherit) and self.check_access(ii, username, access_type):
+			if security.inherit != access_type and self.__get_rule(ii, username, security.inherit) and self.check_access(ii, username, access_type):
 				return True
 		return False
 
@@ -161,7 +158,7 @@ class VDOM_acl_manager:
 			if self.__check_access2_int(app_id, obj_id, name, access_type):
 				return True
 			checked.append(name)
-			user = src.security.user_manager.get_user_by_name(name)
+			user = managers.user_manager.get_user_by_name(name)
 			if user:
 				for gr_name in user.member_of:
 					if not gr_name in checked:
@@ -170,5 +167,3 @@ class VDOM_acl_manager:
 
 internal_manager = VDOM_acl_manager()
 del VDOM_acl_manager
-
-import src.security

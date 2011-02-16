@@ -8,9 +8,8 @@ from environment import VDOM_environment
 from headers import VDOM_headers
 from arguments import VDOM_request_arguments
 from Cookie import BaseCookie
-from src.xml.interface import VDOM_memory_interface
-import src.managers
-import src.engine
+from memory.interface import VDOM_memory_interface
+import managers
 
 class MFSt(FieldStorage):
 
@@ -96,17 +95,17 @@ class VDOM_request:
 			#debug("Got session from cookies "+cookies["sid"].value)
 			sid = cookies["sid"].value
 		if sid == "":
-			sid = src.managers.session_manager.create_session()
+			sid = managers.session_manager.create_session()
 			#debug("Created session " + sid)
 		else:
-			x = src.managers.session_manager[sid]
+			x = managers.session_manager[sid]
 			if x is None:
 				debug("Session " + sid + " expired")
-				sid = src.managers.session_manager.create_session()
+				sid = managers.session_manager.create_session()
 		#debug("Session ID "+str(sid))
 		cookies["sid"] = sid
 		args["sid"] = sid
-		self.__session = src.managers.session_manager[sid]
+		self.__session = managers.session_manager[sid]
 
 		self.__arguments = VDOM_request_arguments(args)
 		self.__server = handler.server
@@ -126,7 +125,7 @@ class VDOM_request:
 
 		self.args = self.__arguments
 		try:
-			self.__app = src.managers.xml_manager.get_application(self.__app_id)
+			self.__app = managers.xml_manager.get_application(self.__app_id)
 		except:
 			self.__app = None
 		# special flags
@@ -163,7 +162,7 @@ class VDOM_request:
 	def set_application_id(self, application_id):
 		self.__app_id=application_id
 		self.application_id=application_id
-		try: self.__app = src.managers.xml_manager.get_application(self.__app_id)
+		try: self.__app = managers.xml_manager.get_application(self.__app_id)
 		except: pass
 
 	def write(self, string = None):
@@ -202,7 +201,7 @@ class VDOM_request:
 	def set_session_id(self, sid):
 		self.__cookies["sid"] = sid
 		self.args.arguments()["sid"] = sid
-		self.__session = src.managers.session_manager[sid]
+		self.__session = managers.session_manager[sid]
 
 	def headers(self, headers = None):
 		""" Server headers. """

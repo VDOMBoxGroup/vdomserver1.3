@@ -1,8 +1,8 @@
 
 import os, tempfile, traceback
 from cgi import escape
-from src.util.exception import VDOM_exception
-from src.util.app_management import import_application
+from util.exception import VDOM_exception
+from util.app_management import import_application
 
 def run(request):
 	sess = request.session()
@@ -52,6 +52,7 @@ def run(request):
 					#request.write("Installation error")
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installation error: %s";</script>' % escape(outp[1], quote=True))
 			except Exception, e:
+				traceback.print_exc()
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: ' + escape(str(e), quote=True) + '<br>";</script>')
 			try:
 				os.remove(tmpfilename)

@@ -1,9 +1,9 @@
 """session module"""
 
 import sys, string, time, os, shutil, copy
-from src.util.id import VDOM_id
-from src.util.exception import *
-import src.managers
+from util.id import VDOM_id
+from util.exception import *
+import managers
 
 
 class VDOM_session(dict):
@@ -78,11 +78,11 @@ class VDOM_session(dict):
 
 	def set_user(self, login, password, md5 = False):
 		if md5:
-			if src.managers.user_manager.match_user_md5(login, password):
+			if managers.user_manager.match_user_md5(login, password):
 				self.__user = login
 				return
 		else:
-			if src.managers.user_manager.match_user(login, password):
+			if managers.user_manager.match_user(login, password):
 				self.__user = login
 				return
 		raise VDOM_exception_sec("Authentication failed")

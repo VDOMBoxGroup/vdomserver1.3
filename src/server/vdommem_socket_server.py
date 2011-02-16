@@ -3,8 +3,8 @@
 import sys, os, posixpath, urllib, shutil, mimetypes, socket, select, thread, time, random, traceback
 import SocketServer, BaseHTTPServer, SimpleHTTPServer
 
-from src.util.exception import *
-from src.util.semaphore import VDOM_semaphore
+from util.exception import *
+from util.semaphore import VDOM_semaphore
 
 
 class VDOM_memory_socket_server(SocketServer.ThreadingTCPServer):

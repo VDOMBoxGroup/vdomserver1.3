@@ -1,8 +1,7 @@
 
 import os, tempfile, traceback, shutil, re
-from src.util.exception import VDOM_exception
-from src.util.system import get_date_and_time
-import src.xml
+from util.exception import VDOM_exception
+from util.system import get_date_and_time
 
 def run(request):
 	sess = request.session()

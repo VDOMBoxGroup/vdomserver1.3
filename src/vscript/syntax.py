@@ -1,5 +1,5 @@
 
-import src.ply.lex as lex
+import ply.lex as lex
 
 import errors, lexemes
 

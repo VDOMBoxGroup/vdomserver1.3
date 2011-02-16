@@ -1,10 +1,10 @@
 """image processing module"""
 
+import sys
 from cStringIO import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImagePalette
-from src.util.exception import VDOM_exception
-import src.resource
-import sys
+from util.exception import VDOM_exception
+import managers
 
 class VDOM_imaging:
 	"""imaging class"""
@@ -14,13 +14,13 @@ class VDOM_imaging:
 		self.__im = None
 		self.__font = None
 		self.__format = None
-		#from src.util import font_factory
+		#from src!.util import font_factory
 		#self.__font_factory = font_factory
 
 	def load(self, application_id, res_id):
 		"""load image from file"""
 		try:
-			resource = src.resource.resource_manager.get_resource(application_id,res_id)
+			resource = managers.resource_manager.get_resource(application_id,res_id)
 			if not resource:
 				raise VDOM_exception(_("Cannot load resource"))
 		except:
@@ -123,7 +123,7 @@ class VDOM_imaging:
 			"label" : label
 		}
 		
-		res_id = src.resource.resource_manager.add_resource(application_id, object_id, attributes, output.getvalue())
+		res_id = managers.resource_manager.add_resource(application_id, object_id, attributes, output.getvalue())
 
 		return res_id
 	def save(self, application_id, name, format = "JPEG"):
@@ -147,7 +147,7 @@ class VDOM_imaging:
 
 		}
 		
-		res_id = src.resource.resource_manager.add_resource(application_id, None, attributes, output.getvalue())
+		res_id = managers.resource_manager.add_resource(application_id, None, attributes, output.getvalue())
 
 		return res_id
 	def __get_size(self):

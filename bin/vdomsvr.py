@@ -8,9 +8,9 @@ import sys, time, os, thread, socket, gettext, shutil, stat, __builtin__
 import encodings.utf_16, encodings.utf_16_be, encodings.utf_16_le, encodings.utf_7, encodings.utf_8, encodings.utf_8_sig
 import xmlrpclib
 
-sys.path.append("..")
+sys.path.append("..\src")
 
-from src.config import *
+from config import *
 __builtin__.VDOM_CONFIG = VDOM_CONFIG
 __builtin__.VDOM_CONFIG_1 = VDOM_CONFIG_1
 
@@ -66,16 +66,16 @@ os.chmod(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket", stat.S_IRWXU | stat.S_IRW
 f = open(os.path.join(VDOM_CONFIG["STORAGE-DIRECTORY"], "lib", "__init__.py"), "wt")
 f.close()
 
-from src.storage.storage import VDOM_config
-from src.util.system import console_debug
-import src.storage
-import src.log
-import src.util.email1
+from storage.storage import VDOM_config
+from util.system import console_debug
+import managers
+import log
+import util.email1
 
 gettext.install("vdom2")
 
 # debug
-tags = src.storage.storage.read_object("DEBUG-TAGS")
+tags = managers.storage.read_object("DEBUG-TAGS")
 if not tags:
 	tags = []
 def my_debug(_data, tag="", console=None):
@@ -98,7 +98,7 @@ def my_debug(_data, tag="", console=None):
 		_tag = tag.lower()
 		if _tag not in tags:
 			tags.append(_tag)
-			src.storage.storage.write_object_async("DEBUG-TAGS", tags)
+			managers.storage.write_object_async("DEBUG-TAGS", tags)
 			cf.set_opt_sync("DEBUG-ENABLE-TAG-" + _tag, "1")
 	x = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
 	prep = "%s thread %4d" % (x, thread.get_ident())
@@ -191,7 +191,7 @@ print "Done"
 
 # initialize vscript engine
 
-import src.vscript.prepare
+import vscript.prepare
 
 # handle imports to support application libraries
 
@@ -231,13 +231,27 @@ sys.meta_path.append(metaimporter())
 
 # initialize server
 
-import src.vdom_memory_client
-from src.server.server import VDOM_server
+import log
+import storage
+import file_access
+import resource
+import database
+import source
+import security
+import request
+import engine
+import module
+import session
+import soap
+
+
+import vdom_memory_client
+from server.server import VDOM_server
 
 #from actions import actions_on_shutdown
 
 #if not request_object.session().on_start_executed and _a.global_actions["session"]["sessiononstart"].code:
-#				src.engine.engine.special(_a, _a.global_actions["session"]["sessiononstart"])
+#				src!.engine.engine.special(_a, _a.global_actions["session"]["sessiononstart"])
 #				request_object.session().on_start_executed = True
 
 # create server object instance and start the server

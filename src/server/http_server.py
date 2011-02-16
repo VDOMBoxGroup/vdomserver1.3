@@ -18,25 +18,19 @@ import BaseHTTPServer
 import SimpleHTTPServer
 import SOAPpy
 
-import src.module
-import src.session
-import src.storage
-import src.source
-import src.resource
-import src.security
-import src.file_access
-import src.util.email1
-import src.log
-import src.xml
-from src.util.pid import VDOM_server_pid
-from src.util.exception import VDOM_exception
-from src.util.semaphore import VDOM_semaphore
-from src.server.vhosting import VDOM_vhosting
-from src.soap.functions import *
-from src.server.local_server import execute
-from src.server.local_server import send_to_card
-from src.soap.wsdl import gen_wsdl
-from src.soap.wsdl import methods as wsdl_methods
+import managers
+import util.email1
+import log
+from util.pid import VDOM_server_pid
+from util.exception import VDOM_exception
+from util.semaphore import VDOM_semaphore
+
+from vhosting import VDOM_vhosting
+from soap.functions import *
+from local_server import execute
+from local_server import send_to_card
+from soap.wsdl import gen_wsdl
+from soap.wsdl import methods as wsdl_methods
 
 rexp = re.compile(r"vr0\:.+inet\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
 rexp2 = re.compile(r"eth0.+inet addr\:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
@@ -207,7 +201,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		#	l = 0
 		#	try: l = int(system_options["object_amount"])
 		#	except: pass
-		#	if "1" != system_options["server_license_type"] and l < src.xml.xml_manager.obj_count:
+		#	if "1" != system_options["server_license_type"] and l < managers.xml_manager.obj_count:
 		#		limit = False
 		self.__reject = 0
 #		if self.__current_connections >= self.__maximum_connections: self.__reject = 1

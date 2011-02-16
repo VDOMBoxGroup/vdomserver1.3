@@ -1,12 +1,8 @@
 
-from src.util.exception import VDOM_exception
-import src.xml
-from src.util.system import get_ip_and_mask
-from src.util.system import get_date_and_time
-from src.util.system import get_free_space
-from src.util.system import get_hd_size
-from src.util.system import get_default_gateway
-from src.version import VDOM_server_version
+from util.exception import VDOM_exception
+import managers
+from util.system import get_ip_and_mask, get_date_and_time, get_free_space, get_hd_size, get_default_gateway
+from version import VDOM_server_version
 
 def run(request):
 
@@ -24,8 +20,8 @@ def run(request):
 		param["time"] = None
 		param["firmware"] = system_options["firmware"]
 		param["objlim"] = system_options["object_amount"]
-		param["obj"] = src.xml.xml_manager.obj_count
-		param["_o"] = int(100.0 * src.xml.xml_manager.obj_count / int(system_options["object_amount"]))
+		param["obj"] = managers.xml_manager.obj_count
+		param["_o"] = int(100.0 * managers.xml_manager.obj_count / int(system_options["object_amount"]))
 		param["ver"] = VDOM_server_version
 		if "0" == system_options["server_license_type"]:
 			param["usage"] = "Online server"

@@ -269,7 +269,7 @@
 	<SourceCode>
 		<![CDATA[
 
-import src.util
+import util
 
 class VDOM_image(VDOM_object):
 
@@ -278,8 +278,8 @@ class VDOM_image(VDOM_object):
 		if self.visible == "0":
 			type = "display:none; "
 			
-#		link=src.util.id.id2link(self.value)
-		link=src.util.id.id2link1(self.value)
+#		link=util.id.id2link(self.value)
+		link=util.id.id2link1(self.value)
 		style="z-index: %s;position: %s;top: %spx;left: %spx"%(self.zindex, self.position, self.top, self.left)
 		id = 'o_' + (self.id).replace('-', '_')
 		title = iw = ih = ""
@@ -321,15 +321,14 @@ class VDOM_image(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 def set_attr(app_id, object_id, param):
-	import src.xml
-	o = src.xml.xml_manager.search_object(app_id, object_id)
+	import managers
+	o = managers.xml_manager.search_object(app_id, object_id)
 		
 	if "value" in param and not "width" in param and not "height" in param:
 		attr = param["value"]
 		res_id = attr["value"]
 
-		import src.resource
-		ro = src.resource.resource_manager.get_resource(app_id, res_id)
+		ro = managers.resource_manager.get_resource(app_id, res_id)
 		if not ro:
 			return "Resource not found"
 

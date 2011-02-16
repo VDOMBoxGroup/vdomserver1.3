@@ -127,5 +127,5 @@ class VDOM_client_server_events:
 		except Exception, e:
 			debug("Event exception: " + str(e))
 
-from src.xml.xml_object import xml_object
-from src.util.exception import *
+from xml_object import xml_object
+from util.exception import *

@@ -1,6 +1,6 @@
 ﻿
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	request.write("""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -47,13 +47,13 @@ input{
 	obj = None
 	if "uid" in args and "" != args["uid"][0]:
 		uid = args["uid"][0]
-		obj = src.managers.user_manager.get_user_by_id(uid)
+		obj = managers.user_manager.get_user_by_id(uid)
 		if not obj:
 			error = "User doesn't exist"
 
 	if obj and hasattr(obj, "password") and "password" in args:
 		obj.password = args["password"][0]
-		src.managers.user_manager.sync()
+		managers.user_manager.sync()
 	elif obj and "last_name" in args and "first_name" in args and "slevel" in args and "email" in args and "" != args["last_name"][0] and "" != args["first_name"][0]:
 		obj.first_name = args["first_name"][0]
 		obj.last_name = args["last_name"][0]
@@ -65,22 +65,22 @@ input{
 		for key in args.keys():
 			if key.startswith("group_"):
 				gn = key[6:]
-				group = src.managers.user_manager.get_user_by_id(gn)
+				group = managers.user_manager.get_user_by_id(gn)
 				if group:
 					obj.member_of.append(group.login)
 					if obj.login not in group.members:
 						group.members.append(obj.login)
 		for i in old_member_of:
 			if i not in obj.member_of:
-				group = src.managers.user_manager.get_user_by_name(i)
+				group = managers.user_manager.get_user_by_name(i)
 				if obj.login in group.members:
 					group.members.remove(obj.login)
-		src.managers.user_manager.sync()
+		managers.user_manager.sync()
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Modifications have been registered";</script>')
 
 	elif obj and not obj.system and "description" in args and "" != args["description"][0]:
 		obj.description = args["description"][0]
-		src.managers.user_manager.sync()
+		managers.user_manager.sync()
 	
 
 	request.write("""<p class="Texte"><a href="users.py">Users</a> &gt; <a href="users-modif.py">Select user</a> &gt; Update user</p>
@@ -122,7 +122,7 @@ input{
     <TD align="right"><span class="Texte-page">Groups :&nbsp;</span></TD>""")
 
 		f = 0
-		groups = src.managers.user_manager.get_all_groups()
+		groups = managers.user_manager.get_all_groups()
 		for g in groups:
 			if f != 0:
 				if (f % 3) == 0:

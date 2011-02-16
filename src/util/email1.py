@@ -6,9 +6,9 @@ from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 
-from src.util.semaphore import VDOM_semaphore
-from src.storage.storage import VDOM_config
-import src.managers
+from util.semaphore import VDOM_semaphore
+from storage.storage import VDOM_config
+import managers
 
 
 class VDOM_SMTP(SMTP):
@@ -170,7 +170,7 @@ class VDOM_email_manager(object):
 							self.__errors.pop(item["id"], 0)
 						except (SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError) as e:
 							debug("SMTP send to %s error: %s" % (item["to"], str(e)))
-							src.managers.log_manager.error_server("SMTP send to %s error: %s" % (item["to"], str(e)), "email")
+							managers.log_manager.error_server("SMTP send to %s error: %s" % (item["to"], str(e)), "email")
 							self.__errors[item["id"]] = str(e)
 							# move this mail to the temp queue
 							if item["ttl"] >0:
@@ -193,13 +193,13 @@ class VDOM_email_manager(object):
 				except (SMTPConnectError,SMTPHeloError,socket_error) as e: #Connect error
 					debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
 					self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
-					src.managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (str(e),self.smtp_server, self.smtp_port), "email")
+					managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (str(e),self.smtp_server, self.smtp_port), "email")
 					#del s
 					ts = 360
 				except SMTPAuthenticationError as e:
 					#debug("Authentication error: %s" % str(e))
 					self.__error = "SMTP Authentication error: %s" % str(e)
-					src.managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")
+					managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")
 					#del s
 					
 					ts = 360
@@ -219,4 +219,4 @@ class VDOM_email_manager(object):
 
 email_manager = VDOM_email_manager()
 del VDOM_email_manager
-src.managers.reg_manager("email_manager", email_manager)
+managers.reg_manager("email_manager", email_manager)

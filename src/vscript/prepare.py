@@ -1,8 +1,8 @@
 
 import sys, os
 
-import src.ply.lex as lex
-import src.ply.yacc as yacc
+import ply.lex as lex
+import ply.yacc as yacc
 
 import lexemes, syntax
 

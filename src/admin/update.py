@@ -1,8 +1,8 @@
 
 import os, tempfile, traceback
 from cgi import escape
-from src.util.exception import VDOM_exception
-from src.util.app_management import update_application
+from util.exception import VDOM_exception
+from util.app_management import update_application
 
 def run(request):
 	sess = request.session()

@@ -3,10 +3,11 @@
 import re, sys, os, SOAPpy, thread, threading
 from threading import Condition
 from names import APPLICATION_SECTION, APPLICATION_ON_START, APPLICATION_ON_FINISH
-from src.xml.parser import VDOM_parser
+from parser import VDOM_parser
 
 
 rexp = re.compile(r"\#res\(([a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12})\)", re.IGNORECASE)
+
 
 class VDOM_application(VDOM_parser):
 	"""XML VDOM application class"""
@@ -86,12 +87,12 @@ class VDOM_application(VDOM_parser):
 			obj = self.__all_objects[oid]
 			for res_id in obj.resources.keys():
 				attributes = {"id" : res_id}
-				if src.resource.resource_manager.check_resource(self.id, attributes):
-					src.resource.resource_manager.add_resource(self.id, obj.id, attributes, None)
+				if managers.resource_manager.check_resource(self.id, attributes):
+					managers.resource_manager.add_resource(self.id, obj.id, attributes, None)
 		for res_id in self.resources.keys():
 			attributes = {"id" : res_id}
-			if src.resource.resource_manager.check_resource(self.id, attributes):
-				src.resource.resource_manager.add_resource(self.id, self.id, attributes, None)
+			if managers.resource_manager.check_resource(self.id, attributes):
+				managers.resource_manager.add_resource(self.id, self.id, attributes, None)
 		# check if need to create structure
 		if len(self.structure_element.children) == 0:
 			# generate structure
@@ -123,7 +124,7 @@ class VDOM_application(VDOM_parser):
 		if on_start.code:
 			#threading.currentThread().application=self.id
 			__import__(self.id)
-			src.engine.engine.special(self, on_start, namespace={})
+			managers.engine.special(self, on_start, namespace={})
 			#threading.currentThread().application=None
 
 	def __repr__(self):
@@ -335,13 +336,13 @@ class VDOM_application(VDOM_parser):
 					if tgt and acc and (tgt in self.__all_objects or tgt == self.id):
 						a[str(tgt)] = map(int, acc.split(","))
 		try:
-			src.security.user_manager.create_group(name, desc)
+			managers.user_manager.create_group(name, desc)
 		except:
 			#debug("Group '%s' exists" % name)
 			pass
 		for tgt in a:
 			for i in a[tgt]:
-				src.security.acl_manager.add_access(tgt, name, i)
+				managers.acl_manager.add_access(tgt, name, i)
 
 	def parse_security_user(self, xml_obj):
 		login = xml_obj.get_child_by_name("login")
@@ -373,23 +374,23 @@ class VDOM_application(VDOM_parser):
 		if sl and sl.value: sl = sl.value.encode("utf-8")
 		else: sl = ""
 		try:
-			src.security.user_manager.create_user(login, password, fn, ln, email, sl)
+			managers.user_manager.create_user(login, password, fn, ln, email, sl)
 		except:
 			#debug("User '%s' exists" % login)
 			pass # WTF!?!
-		u = src.security.user_manager.get_user_object(login)
+		u = managers.user_manager.get_user_object(login)
 		if not u:
 			return
 		for tgt in a:
 			for i in a[tgt]:
-				src.security.acl_manager.add_access(tgt, login, i)
+				managers.acl_manager.add_access(tgt, login, i)
 		if memb and memb.value:
 			m = memb.value.encode("utf-8")
 			u.member_of = m.split(",")
-			src.security.user_manager.sync()
+			managers.user_manager.sync()
 
 	def parse_libraries(self, xml_obj):
-		src.file_access.file_manager.create_lib_path(self.id)
+		managers.file_manager.create_lib_path(self.id)
 		for child in xml_obj.children:
 			if "library" == child.lname:
 				self.parse_library(child)
@@ -401,14 +402,14 @@ class VDOM_application(VDOM_parser):
 				try:
 					threading.currentThread().application=self.id
 					x, y = vcompile(xml_obj.value, bytecode = 0)
-					src.file_access.file_manager.write_lib(self.id, name, x)
+					managers.file_manager.write_lib(self.id, name, x)
 					self.libs[name] = y
 				except:
 					pass # WTF!?!
 				finally:
 					threading.currentThread().application=None
 			else:
-				src.file_access.file_manager.write_lib(self.id, name, xml_obj.value)
+				managers.file_manager.write_lib(self.id, name, xml_obj.value)
 				self.libs[name] = None
 		else:
 			debug("  Library '%s' ignored: incorrect name" % name)
@@ -456,7 +457,7 @@ class VDOM_application(VDOM_parser):
 	def do_parse_structure(self, xml_obj):
 		"""parse application structure"""
 		if None != self.app_map:
-			if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+			if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 				raise VDOM_exception_sec(_("Modifying application structure is not allowed"))
 		self.__app_map = {}
 		# pre-fill structure
@@ -479,12 +480,12 @@ class VDOM_application(VDOM_parser):
 				if "" != res_id:
 					if obj_id not in self.structure_resources or res_id != self.structure_resources[obj_id]:
 						attributes = {"id" : res_id}
-						if src.resource.resource_manager.check_resource(self.id, attributes):
-							src.resource.resource_manager.add_resource(self.id, obj_id, attributes, None)
+						if managers.resource_manager.check_resource(self.id, attributes):
+							managers.resource_manager.add_resource(self.id, obj_id, attributes, None)
 					if obj_id in self.structure_resources and res_id != self.structure_resources[obj_id]:
 						attributes = {"id" : self.structure_resources[obj_id]}
-						if src.resource.resource_manager.check_resource(self.id, attributes):
-							src.resource.resource_manager.delete_resource(obj_id, self.structure_resources[obj_id])
+						if managers.resource_manager.check_resource(self.id, attributes):
+							managers.resource_manager.delete_resource(obj_id, self.structure_resources[obj_id])
 					self.structure_resources[obj_id] = res_id
 				for level_item in child.children:
 					if "level" == level_item.lname:
@@ -536,8 +537,8 @@ class VDOM_application(VDOM_parser):
 			"name" : res_name,
 			"res_format": res_format,
 			}
-		if not src.resource.resource_manager.check_resource(self.id, attributes):
-			src.resource.resource_manager.add_resource(self.id, None, attributes, data)
+		if not managers.resource_manager.check_resource(self.id, attributes):
+			managers.resource_manager.add_resource(self.id, None, attributes, data)
 
 	def __create_structure_object(self, obj):
 		autolock = VDOM_named_mutex_auto(self.id + "_structure")
@@ -606,9 +607,9 @@ class VDOM_application(VDOM_parser):
 
 		obj.invalidate()
 
-		src.request.request_manager.get_request().container_id = obj.toplevel.id
+		managers.request_manager.get_request().container_id = obj.toplevel.id
 		if do_compute:
-			src.engine.engine.compute(self, obj, parent)
+			managers.engine.compute(self, obj, parent)
 
 		if not parent:
 			self.__create_structure_object(obj)
@@ -617,7 +618,7 @@ class VDOM_application(VDOM_parser):
 
 	def __do_delete_object(self, obj):
 		"""delete object from the application; also delete all associated resources and source code"""
-		src.source.dispatcher.dispatch_handler(self.id, obj.id, "on_delete", None )
+		managers.dispatcher.dispatch_handler(self.id, obj.id, "on_delete", None )
 		# first delete all child objects
 		l = []
 		for o in obj.objects_list:
@@ -698,8 +699,8 @@ class VDOM_application(VDOM_parser):
 		# delete resources
 #		for ii in obj.resources.keys():
 #			for j in xrange(obj.resources[ii]):
-#				src.resource.resource_manager.delete_resource(obj.id, ii, True)
-		src.resource.resource_manager.invalidate_resources(obj.id)
+#				managers.resource_manager.delete_resource(obj.id, ii, True)
+		managers.resource_manager.invalidate_resources(obj.id)
 		# remove from parent
 		if obj.parent:
 			del obj.parent.objects[obj.id]
@@ -742,7 +743,7 @@ class VDOM_application(VDOM_parser):
 
 	def search(self, pattern):
 		# return map top level object id to the list of objects id where pattern is found
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Searching is not allowed"))
 		result = {}
 		for obj in self.objects_list:
@@ -756,7 +757,7 @@ class VDOM_application(VDOM_parser):
 
 	def create_resource(self, resid, restype, resname, resdata):
 		"""create application resource"""
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Creating resource is not allowed"))
 		self.__sem.lock()
 		try:
@@ -765,12 +766,12 @@ class VDOM_application(VDOM_parser):
 				"name" : resname,
 				"res_format": restype
 				}
-			src.resource.resource_manager.add_resource(self.id, None, attributes, resdata)
+			managers.resource_manager.add_resource(self.id, None, attributes, resdata)
 		finally:
 			self.__sem.unlock()
 
 	def delete_object(self, obj):
-		if not src.security.acl_manager.session_user_has_access2(self.id, obj.id, src.security.delete_object):
+		if not managers.acl_manager.session_user_has_access2(self.id, obj.id, security.delete_object):
 			raise VDOM_exception_sec(_("Deleting object is not allowed"))
 		self.__sem.lock()
 		try:
@@ -781,14 +782,14 @@ class VDOM_application(VDOM_parser):
 
 	def create_object(self, typeid, parent = None, do_compute=True):
 		if parent:
-			if not src.security.acl_manager.session_user_has_access2(self.id, parent.id, src.security.create_object):
+			if not managers.acl_manager.session_user_has_access2(self.id, parent.id, security.create_object):
 				raise VDOM_exception_sec(_("Creating object is not allowed"))
 		else:
-			if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.create_object):
+			if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.create_object):
 				raise VDOM_exception_sec(_("Creating object is not allowed"))
 		try:
 			l = int(system_options["object_amount"])
-			if "1" != system_options["server_license_type"] and src.xml.xml_manager.obj_count >= l:
+			if "1" != system_options["server_license_type"] and managers.xml_manager.obj_count >= l:
 				raise VDOM_exception_lic(_("License exceeded"))
 		except VDOM_exception, e:
 			raise
@@ -806,7 +807,7 @@ class VDOM_application(VDOM_parser):
 
 	def set_info(self, name, value):
 		"""set value of an information element"""
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))
 		lname = name.lower()
 		if lname in self.info_map:
@@ -875,12 +876,12 @@ class VDOM_application(VDOM_parser):
 			if "vscript" == self.scripting_language:
 				try:
 					x, y = vcompile(data, bytecode = 0)
-					src.file_access.file_manager.write_lib(self.id, name, x)
+					managers.file_manager.write_lib(self.id, name, x)
 					self.libs[name] = y
 				except:
 					pass
 			else:
-				src.file_access.file_manager.write_lib(self.id, name, data)
+				managers.file_manager.write_lib(self.id, name, data)
 				self.libs[name] = None
 			self.invalidate_libraries()
 		finally:
@@ -896,7 +897,7 @@ class VDOM_application(VDOM_parser):
 					break
 			if item:
 				item.delete()
-				src.file_access.file_manager.delete_lib(self.id, name)
+				managers.file_manager.delete_lib(self.id, name)
 				if name in self.libs:
 					self.libs.pop(name)
 		finally:
@@ -919,7 +920,7 @@ class VDOM_application(VDOM_parser):
 			self.__sem.unlock()
 
 	def set_e2vdom_events(self, obj, xml_obj):
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))
 		self.__sem.lock()
 		try:
@@ -941,7 +942,7 @@ class VDOM_application(VDOM_parser):
 			self.__sem.unlock()
 
 	def set_e2vdom_actions(self, obj, xml_obj):
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))
 		self.__sem.lock()
 		try:
@@ -964,7 +965,7 @@ class VDOM_application(VDOM_parser):
 			self.__sem.unlock()
 	
 	def remove_action(self, obj, actionid):
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))
 		self.__sem.lock()
 		try:
@@ -978,7 +979,7 @@ class VDOM_application(VDOM_parser):
 			self.__sem.unlock()	
 			
 	def create_server_action(self, actionname,  value):
-		if not src.security.acl_manager.session_user_has_access2(self.id, self.id, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))
 		self.__sem.lock()
 		try:
@@ -1069,27 +1070,21 @@ class VDOM_application(VDOM_parser):
 		self.__1sem.unlock()
 
 
-import src.file_access
-import src.source
-import src.xml
-import src.resource
-import src.engine
-import src.request
-import src.security
-from src import file_access
-from src.version import VDOM_server_version
-from src.util.mutex import VDOM_named_mutex_auto
-from src.soap.errors import *
-from src.util.encode import *
-from src.xml.event import *
-from src.xml.object import on_attr_change
-from src.xml.xml_object import xml_object
-from src.xml.object import VDOM_object
-from src.xml.structure import VDOM_structure_level
-from src.xml.structure import VDOM_structure_item
-from src.util.uuid import uuid4
-from src.util.semaphore import VDOM_semaphore
-from src.util.exception import *
-from src.util.id import is_valid_identifier
-from src.vscript.engine import vcompile
-import src.util.id
+import managers, file_access, security
+
+from version import VDOM_server_version
+from util.mutex import VDOM_named_mutex_auto
+from soap.errors import *
+from util.encode import *
+
+from event import *
+from object import on_attr_change, VDOM_object
+from xml_object import xml_object
+from structure import VDOM_structure_level, VDOM_structure_item
+
+from util.uuid import uuid4
+from util.semaphore import VDOM_semaphore
+from util.exception import *
+from util.id import is_valid_identifier
+
+from vscript.engine import vcompile

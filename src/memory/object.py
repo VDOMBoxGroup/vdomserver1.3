@@ -16,13 +16,13 @@ def on_attr_change(obj, old_value, new_value, app_id):
 			if obj.resources[res_id] <= 0:
 				del(obj.resources[res_id])
 				attributes = {"id" : res_id}
-				if src.resource.resource_manager.check_resource(app_id, attributes):
-					src.resource.resource_manager.delete_resource(obj.id, res_id)
+				if managers.resource_manager.check_resource(app_id, attributes):
+					managers.resource_manager.delete_resource(obj.id, res_id)
 	# add links to newly used resources
 	for res_id in ret1:
 		attributes = {"id" : res_id}
-		if src.resource.resource_manager.check_resource(app_id, attributes):
-			src.resource.resource_manager.add_resource(app_id, obj.id, attributes, None)
+		if managers.resource_manager.check_resource(app_id, attributes):
+			managers.resource_manager.add_resource(app_id, obj.id, attributes, None)
 			if res_id not in obj.resources:
 				obj.resources[res_id] = 0
 			obj.resources[res_id] += 1
@@ -140,7 +140,7 @@ class VDOM_object(object):
 				setattr(self, child.lname+"_element", child)
 		# add 'onload' action if it's not here
 		if 0 == len(self.actions["name"]) and 1 != self.type.container:
-			_id = str(src.util.uuid.uuid4())
+			_id = str(util.uuid.uuid4())
 			self.actions["name"]["onload"] = VDOM_server_action("", _id, "", "", "", "onload")
 			self.actions["id"][_id] = self.actions["name"]["onload"]
 
@@ -190,7 +190,7 @@ class VDOM_object(object):
 				self.actions["name"][name] = VDOM_server_action(code, _id, _top, _left, _state, name)
 				self.actions["id"][_id] = self.actions["name"][name]
 		if not _onload:
-			_id = str(src.util.uuid.uuid4())
+			_id = str(util.uuid.uuid4())
 			self.actions["name"]["onload"] = VDOM_server_action("", _id, "", "", "", "onload")
 			self.actions["id"][_id] = self.actions["name"]["onload"]
 
@@ -219,7 +219,7 @@ class VDOM_object(object):
 	def set_actions(self, xml_obj):
 		if 1 == self.type.container:
 			return
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 		self.__sem.lock()
 		try:
@@ -238,13 +238,13 @@ class VDOM_object(object):
 	def create_action(self, actionname, value):
 		if 1 == self.type.container:
 			return
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 		if not is_valid_identifier(actionname):
 			raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
 		self.__sem.lock()
 		try:
-			_id = str(src.util.uuid.uuid4())
+			_id = str(util.uuid.uuid4())
 			self.actions["name"][actionname] = VDOM_server_action(value, _id, "", "", "", actionname)
 			self.actions["id"][_id] = self.actions["name"][actionname]
 
@@ -264,7 +264,7 @@ class VDOM_object(object):
 		return _id;
 
 	def delete_action(self, actionid):
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 		if actionid not in self.actions["id"]:
 			# action_id_error to errors.py ?
@@ -290,7 +290,7 @@ class VDOM_object(object):
 			self.__sem.unlock()
 
 	def rename_action(self, actionid, new_actionname):
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 
 		if actionid not in self.actions["id"]:
@@ -326,7 +326,7 @@ class VDOM_object(object):
 			self.__sem.unlock()
 
 	def set_action(self, actionid, actionvalue):
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 
 		if actionid not in self.actions["id"]:
@@ -387,18 +387,18 @@ class VDOM_object(object):
 				values[name] = v
 
 		#call attribute changing handler with multiply attributes
-		src.source.dispatcher.dispatch_handler(self.application.id, self.id, "set_attr", values)
+		managers.dispatcher.dispatch_handler(self.application.id, self.id, "set_attr", values)
 
 		self.__do_invalidate(self)
-		src.request.request_manager.get_request().container_id = self.toplevel.id
+		managers.request_manager.get_request().container_id = self.toplevel.id
 		if do_compute:
-			src.engine.engine.compute(self.application, self, self.parent)
+			managers.engine.compute(self.application, self, self.parent)
 
 	def set_attribute_ex(self, name, value, do_compute=True):
 		"""set attribute value"""
 		# this method doesn't clear source code and doesn't dispatch handlers and doesn't call compute
 		# but set_attributes does all these things
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 		if name not in self.attributes:
 			return
@@ -439,7 +439,7 @@ class VDOM_object(object):
 
 	def set_name(self, value):
 		"""set object name"""
-		if not src.security.acl_manager.session_user_has_access2(self.application.id, self.id, src.security.modify_object):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
 		if value.lower() == self.name:
 			return
@@ -468,8 +468,8 @@ class VDOM_object(object):
 
 	def __do_invalidate(self, obj):
 		"""invalidate source code"""
-		src.source.cache.invalidate(self.application.id, obj.id)
-		src.resource.resource_manager.invalidate_resources(obj.id)
+		managers.source_cache.invalidate(self.application.id, obj.id)
+		managers.resource_manager.invalidate_resources(obj.id)
 
 		to_invalidate = []
 		if obj.parent:
@@ -482,8 +482,8 @@ class VDOM_object(object):
 				self.__do_invalidate(obj1)
 
 	def __do_invalidate1(self, obj):
-		src.source.cache.invalidate(self.application.id, obj.id)
-		src.resource.resource_manager.invalidate_resources(obj.id)
+		managers.source_cache.invalidate(self.application.id, obj.id)
+		managers.resource_manager.invalidate_resources(obj.id)
 		if hasattr(obj, "dynamic"):
 			del obj.dynamic
 		for o in obj.objects_list:
@@ -515,17 +515,17 @@ class VDOM_object(object):
 			result += r
 		return result
 
-from src.soap.errors import *
-from src.xml.event import *
-from src.xml.attribute import VDOM_attribute
-from src.util.exception import *
-from src.util.semaphore import VDOM_semaphore
-from src.util.encode import *
-from src.util.id import is_valid_identifier
-import src.util.id
-import src.util.uuid
-import src.source
-import src.resource
-import src.engine
-import src.request
-import src.security
+from soap.errors import *
+
+from .event import *
+from .attribute import VDOM_attribute
+
+from util.exception import *
+from util.semaphore import VDOM_semaphore
+from util.encode import *
+from util.id import is_valid_identifier
+
+import util.id
+import util.uuid
+
+import managers, security

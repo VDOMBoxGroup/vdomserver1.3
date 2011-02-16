@@ -1,13 +1,13 @@
 
 import sys, re
 
-from src.object import request
-from src.e2vdom import global_context
-from src.util.exception import *
+from . import request
+from e2vdom import global_context
+from util.exception import *
 
 from actions import *
 
-import src.request
+import managers
 
 #rexp2 = re.compile(r"\#lang\(([0-9]+)\)", re.IGNORECASE)
 
@@ -74,8 +74,8 @@ class VDOM_object(object):
 				temp = self.test4lang(attribute.value)
 				if request.session["vdom_current_language"] not in self.__object.languages:
 					for i in xrange(attribute.value.count("#Lang")):
-						if temp[i] in self.__object.languages[src.request.request_manager.get_request().application().default_language]:
-							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[src.request.request_manager.get_request().application().default_language][temp[i]])	
+						if temp[i] in self.__object.languages[managers.request_manager.get_request().application().default_language]:
+							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[managers.request_manager.get_request().application().default_language][temp[i]])	
 				else:
 					for i in xrange(attribute.value.count("#Lang")):
 						if temp[i] in self.__object.languages[request.session["vdom_current_language"]]:
@@ -180,7 +180,7 @@ class VDOM_object(object):
 			if action and action.code:
 				debug("[Object] Execute %s action \"%s\" in context %s:"%(self.__id, action_name, context))
 				if action.cache is None:
-					language=src.request.request_manager.get_request().application().scripting_language
+					language=managers.request_manager.get_request().application().scripting_language
 					#if action.lang=="python":
 					if language=="python":
 						action.cache=python_action(self, action_name, action.code)
@@ -189,7 +189,7 @@ class VDOM_object(object):
 						action.cache=vscript_action(self, action_name, action.code)
 					else:
 						raise VDOM_exception("Unknown action language")
-				action.cache.execute(self, src.request.request_manager.get_request().session().context)
+				action.cache.execute(self, managers.request_manager.get_request().session().context)
 		else:
 			debug("[Object] HAS NO SCRIPT!!!")
 

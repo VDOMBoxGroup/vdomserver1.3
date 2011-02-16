@@ -15,7 +15,7 @@ VERSION: 0.001<br>
 
 from threading import Semaphore
 
-from src.util.exception import VDOM_exception
+from util.exception import VDOM_exception
 
 class VDOM_mutex:
 	""" This class should be used to lock objects """

@@ -2,14 +2,14 @@
 Virtual hosting class. Allows to map hostnames and application identifiers.
 """
 
-import src.storage
+import managers
 
 class VDOM_vhosting:
 
 	def __init__(self):
 		"""constructor"""
 		self.__vhosting_data = {}
-		ret = src.storage.storage.read_object(VDOM_CONFIG["VIRTUAL-HOSTING-STORAGE-RECORD"])
+		ret = managers.storage.read_object(VDOM_CONFIG["VIRTUAL-HOSTING-STORAGE-RECORD"])
 		if ret:
 			self.__vhosting_data = ret
 
@@ -19,7 +19,7 @@ class VDOM_vhosting:
 
 	def sync(self):
 		"""save the object into storage"""
-		src.storage.storage.write_object(VDOM_CONFIG["VIRTUAL-HOSTING-STORAGE-RECORD"], self.__vhosting_data)
+		managers.storage.write_object(VDOM_CONFIG["VIRTUAL-HOSTING-STORAGE-RECORD"], self.__vhosting_data)
 
 	def set_site(self, site, app_id):
 		"""add/remove new site in virtual hosting or change it's id"""

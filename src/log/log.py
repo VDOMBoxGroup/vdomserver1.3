@@ -6,7 +6,7 @@ import time, thread, sys, os
 import logging
 import logging.handlers
 
-from src.util.semaphore import VDOM_semaphore
+from util.semaphore import VDOM_semaphore
 
 class VDOM_log_manager:
 	"""log class"""

@@ -2,7 +2,7 @@
 
 import sys, re, string
 
-from src.xml.parser import VDOM_parser
+from parser import VDOM_parser
 
 if_re = re.compile(r"^([^\(]+)\((.*?)\)$", re.IGNORECASE)
 
@@ -63,10 +63,10 @@ class VDOM_type(VDOM_parser):
 			xml_obj.sync(self.__pathname)
 		if hasattr(self, "remote_methods"):
 			for func_name in self.remote_methods:
-				src.source.dispatcher.add_remote_method(self.id, func_name)
+				managers.dispatcher.add_remote_method(self.id, func_name)
 		if hasattr(self, "handlers"):
 			for func_name in self.handlers:
-				src.source.dispatcher.add_handler(self.id, func_name)
+				managers.dispatcher.add_handler(self.id, func_name)
 		xml_obj.delete()
 
 	def __repr__(self):
@@ -87,16 +87,16 @@ class VDOM_type(VDOM_parser):
 		return self.attributes
 
 	def parse_resources(self, xml_obj):
-		#src.resource.resource_manager.invalidate_resources(self.id)
+		#managers.resource_manager.invalidate_resources(self.id)
 		VDOM_parser.parse_resources(self, xml_obj)
 
 	def parse_sourcecode(self, xml_obj):
 		"""parse source code section"""
 		src2 = xml_obj.value
 		# append import section
-		src2 = "from src.object.request import VDOM_request\n\nrequest = VDOM_request()\n\nfrom src.object.object import VDOM_object\n\n%s\n" % src2.strip()
+		src2 = "from object.request import VDOM_request\n\nrequest = VDOM_request()\n\nfrom object.object import VDOM_object\n\n%s\n" % src2.strip()
 		# write source code to the file
-		src.source.cache.store_type(self.id, src2)
+		managers.source_cache.store_type(self.id, src2)
 
 	def save_resource(self, res_id, res_format, res_name, data):
 		"""method to save resource"""
@@ -105,7 +105,7 @@ class VDOM_type(VDOM_parser):
 			"name" : res_name,
 			"res_format": res_format,
 			}
-		src.resource.resource_manager.add_resource(self.id, None, attributes, data)
+		managers.resource_manager.add_resource(self.id, None, attributes, data)
  
 	def parse_attributes(self, xml_obj):
 		"""parse type attributes"""
@@ -204,9 +204,9 @@ class VDOM_type(VDOM_parser):
 							par.name = p.attributes["scriptname"]
 							par.default_value = p.attributes["defaultvalue"]
 							a.parameters.append(par)
-				src = act.get_child_by_name("sourcecode")
-				if src:
-					a.source_code = src.value.strip()
+				src2 = act.get_child_by_name("sourcecode")
+				if src2:
+					a.source_code = src2.value.strip()
 
 	def parse_libraries(self, xml_obj):
 		"""parse type libraries"""
@@ -225,9 +225,8 @@ class VDOM_type(VDOM_parser):
 					self.extlib[target].append(child.value)
 			
 
-import src.source
-import src.resource
-import src.util.id
-from src.util.exception import *
-from src.xml.type_attribute import VDOM_type_attribute
-from src.xml.event import *
+import managers
+import util.id
+from util.exception import *
+from type_attribute import VDOM_type_attribute
+from event import *

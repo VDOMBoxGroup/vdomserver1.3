@@ -1,8 +1,8 @@
 from manager import internal_file_manager as file_manager
 from share import internal_share as share
-import src.managers
-src.managers.reg_manager("file_manager", file_manager)
-src.managers.reg_manager("file_share", share)
+import managers
+managers.reg_manager("file_manager", file_manager)
+managers.reg_manager("file_share", share)
 
 application_xml = 0 # XML
 global_type 	= 1 # app/types/                           - XML files of types

@@ -1,6 +1,6 @@
 
-from src.util.exception import VDOM_exception
-from src.server.local_server import send_to_card
+from util.exception import VDOM_exception
+from server.local_server import send_to_card
 
 def run(request):
 	sess = request.session()

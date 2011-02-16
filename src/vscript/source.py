@@ -64,7 +64,8 @@ class vinitialnamemanager(vnamemanager):
 	def import_names(self, module_name, alias=NOT_AN_ARGUMENT):
 		if alias==NOT_AN_ARGUMENT:
 			alias=module_name
-		module=__import__("src.vscript.%s"%module_name).__dict__["vscript"].__dict__[module_name]
+		#module=__import__("src!.vscript.%s"%module_name).__dict__["vscript"].__dict__[module_name]
+		module=__import__("vscript.%s"%module_name).__dict__[module_name]
 		for name in dir(module):
 			if name.startswith(lexemes.prefix):
 				self._names[name]=alias
@@ -1349,7 +1350,7 @@ class vsourcenames(object):
 			return True
 
 	def compose(self, ident):
-		contents=[(None, ident, u"from src.vscript.%s import %s"%(name, u", ".join(names))) \
+		contents=[(None, ident, u"from vscript.%s import %s"%(name, u", ".join(names))) \
 			for name, names in self.imports.iteritems() if name is not None]
 		contents.extend((None, ident, u"globals().setdefault(%s, %s)"%(repr(name), value)) \
 			for name, value in self.names.iteritems() if isinstance(value, basestring))
@@ -1380,7 +1381,7 @@ class vsource(object):
 
 	def compose(self, ident):
 		self.scope_names()
-		contents=[(None, ident, u"from src.vscript import *")]
+		contents=[(None, ident, u"from vscript import *")]
 		if self.package:
 			contents.insert(0, (None, 0, "__package__=\"%s\""%self.package))
 		contents.extend(self.statements.compose(ident=0, precede=self.names.compose(ident)))

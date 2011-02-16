@@ -1,11 +1,10 @@
 import thread, os, time, tempfile, shutil
 
-import src.xml
-import src.log
-from src.util.semaphore import VDOM_semaphore
-from src.util.exception import VDOM_exception
-from src.util.system import *
-from src.util.app_management import import_application
+import managers, log
+from util.semaphore import VDOM_semaphore
+from util.exception import VDOM_exception
+from util.system import *
+from util.app_management import import_application
 
 class VDOM_server_manager():
 
@@ -17,7 +16,7 @@ class VDOM_server_manager():
 		self.interval = 0	# minutes
 		self.backup_type = "zip"
 		self.backup_dev = ""
-		self.conf = src.storage.storage.read_object(VDOM_CONFIG["BACKUP-STORAGE-RECORD"])
+		self.conf = managers.storage.read_object(VDOM_CONFIG["BACKUP-STORAGE-RECORD"])
 		if self.conf:
 			self.history = self.conf.get("history", 0)
 			self.interval = self.conf.get("interval", 0)
@@ -25,7 +24,7 @@ class VDOM_server_manager():
 			b = self.conf.get("backup_app", [])
 			for i in b:
 				try:
-					src.xml.xml_manager.get_application(i)
+					managers.xml_manager.get_application(i)
 					self.backup_app.append(i)
 				except:
 					pass
@@ -39,7 +38,7 @@ class VDOM_server_manager():
 		self.conf["interval"] = self.interval
 		self.conf["backup_app"] = self.backup_app
 		self.conf["backup_dev"] = self.backup_dev
-		src.storage.storage.write_object_async(VDOM_CONFIG["BACKUP-STORAGE-RECORD"], self.conf)
+		managers.storage.write_object_async(VDOM_CONFIG["BACKUP-STORAGE-RECORD"], self.conf)
 
 	def configure_backup(self, applist = [], hist = 0, interv = 0, dev = ""):
 		self.__sem.lock()
@@ -82,20 +81,20 @@ class VDOM_server_manager():
 						if not os.path.isdir(basedir):
 							t1 = time.time()
 							umount_device(self.backup_dev)
-							src.log.log_manager.error_server("can't create path '%s'" % basedir, caller="backup")
+							managers.log_manager.error_server("can't create path '%s'" % basedir, caller="backup")
 							continue
 					self.__sem.lock()
 					#
 					for a in self.backup_app:
-						try: src.xml.xml_manager.get_application(a)
+						try: managers.xml_manager.get_application(a)
 						except: continue
 						direct = os.path.join(basedir, a)
 						try: os.makedirs(direct)
 						except: pass
 						if not os.path.isdir(direct):
-							src.log.log_manager.error_server("can't create path '%s'" % direct, caller="backup")
+							managers.log_manager.error_server("can't create path '%s'" % direct, caller="backup")
 							continue
-						src.xml.xml_manager.export_application(a, self.backup_type, direct)
+						managers.xml_manager.export_application(a, self.backup_type, direct)
 						self.__do_backup(direct, a)
 					#
 					self.__sem.unlock()
@@ -153,7 +152,7 @@ class VDOM_server_manager():
 			raise VDOM_exception(_("Application ID doesn't match to the file"))
 		# uninstall application
 		try:
-			src.xml.xml_manager.uninstall_application(appid)
+			managers.xml_manager.uninstall_application(appid)
 			debug("Application '%s' has been removed" % appid)
 		except: pass
 		tmpfilename = tempfile.mkstemp("." + file.split(".")[-1].lower(), "", VDOM_CONFIG["TEMP-DIRECTORY"])

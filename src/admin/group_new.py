@@ -1,6 +1,6 @@
 ﻿
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -14,7 +14,7 @@ def run(request):
 			name = args["group_name"][0]
 			descr = args["description"][0]
 			try:
-				src.managers.user_manager.create_group(name, descr)
+				managers.user_manager.create_group(name, descr)
 			except Exception, e:
 				error = str(e)
 

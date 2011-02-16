@@ -1,6 +1,6 @@
 
-import src.managers
-from src.util.exception import VDOM_exception
+import managers
+from util.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -68,7 +68,7 @@ function add_li(sId, inc, NameTab) {
 }
 
 """)
-	userlist = src.managers.user_manager.get_all_groups()
+	userlist = managers.user_manager.get_all_groups()
 	CptTUG = 0
 	CptTUA = 0
 	for u in userlist:

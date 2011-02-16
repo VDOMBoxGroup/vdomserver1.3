@@ -1,7 +1,8 @@
 """This module implements interface to VDOM memory; used by scripts"""
 
 import sys
-import src.xml
+import managers
+
 
 class VDOM_memory_interface(object):
 	"""This class is used as interface to VDOM memory"""
@@ -29,6 +30,6 @@ class VDOM_memory_interface(object):
 		pass
 
 	def search_object(self, obj_id):
-		app = src.xml.xml_manager.get_application(self.__request.application_id)
+		app = managers.xml_manager.get_application(self.__request.application_id)
 		object=app.search_object(obj_id)
 		return object

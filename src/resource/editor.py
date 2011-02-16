@@ -2,11 +2,8 @@ from cStringIO import StringIO
 from PIL import Image, ImageDraw, ImageFont
 import ImageEnhance
 
-import src.session
-import src.resource
-import src.xml
-import src.security
-from src.util.uuid import uuid4
+import managers, security
+from util.uuid import uuid4
 
 class VDOM_resource_editor:
 	"""resource editor class"""
@@ -16,14 +13,14 @@ class VDOM_resource_editor:
 		self.converts = {"jpg": "RGB", "jpeg": "RGB", "png": "RGB"}
 
 	def modify_resource(self, sid, appid, objid, resid, attrname, operation, param):
-		if not src.security.acl_manager.session_user_has_access2(appid, appid, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
 			raise VDOM_exception(_("Modifying resource is not allowed"))
-		app = src.xml.xml_manager.get_application(appid)
+		app = managers.xml_manager.get_application(appid)
 		obj = app.search_object(objid)
 		# check if need to backup this resource
 		need_backup = False
 		key = objid + attrname
-		s = src.session.session_manager.get_session(sid)
+		s = managers.session_manager.get_session(sid)
 		last = s.value("resource_editor_last")
 		if key != last:
 			need_backup = True
@@ -31,7 +28,7 @@ class VDOM_resource_editor:
 			if obj.has_attribute("resource_cache"):
 				obj.set_attribute("resource_cache", "")
 		# go
-		ro = src.resource.resource_manager.get_resource(appid, resid)
+		ro = managers.resource_manager.get_resource(appid, resid)
 		if not ro:
 			return (False, _("Resource not found"))
 		if not obj.has_attribute(attrname):
@@ -48,7 +45,7 @@ class VDOM_resource_editor:
 					"name" : ro.name,
 					"res_format": ro.res_format
 					}
-				src.resource.resource_manager.add_resource(appid, None, attributes, data)
+				managers.resource_manager.add_resource(appid, None, attributes, data)
 				if need_backup:
 					obj.set_attribute("resource_cache", "#Res(%s)" % resid)
 					s.value("resource_editor_last", key)

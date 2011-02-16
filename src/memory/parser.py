@@ -2,6 +2,7 @@
 
 import base64, string
 
+
 class VDOM_parser:
 	"""parser class"""
 
@@ -86,7 +87,7 @@ class VDOM_parser:
 				"owner": self.id,
 				"type": db_type
 				}
-			src.database.database_manager.add_database(self.id, attributes, bindata)
+			managers.database_manager.add_database(self.id, attributes, bindata)
 		except KeyError:
 			raise VDOM_exception_parse("database format error")
 
@@ -103,6 +104,6 @@ class VDOM_parser:
 			except AttributeError:
 				raise VDOM_exception_parse("attribute \"%s\" not defined" % attr_name)
 
-import src.database
-from src.xml.xml_object import xml_object
-from src.util.exception import *
+import managers
+from .xml_object import xml_object
+from util.exception import *

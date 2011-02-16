@@ -3,9 +3,9 @@
 import thread, time, copy
 
 from session import VDOM_session
-from src.util.semaphore import VDOM_semaphore
-from src.util.exception import VDOM_exception
-import src.managers
+from util.semaphore import VDOM_semaphore
+from util.exception import VDOM_exception
+import managers
 
 class VDOM_session_manager(dict):
 	"""Session Manager class"""
@@ -85,14 +85,14 @@ class VDOM_session_manager(dict):
 	def __get_current(self):
 		self.__sem.lock()
 		try:
-			return src.managers.request_manager.current.session()
+			return managers.request_manager.current.session()
 		finally:
 			self.__sem.unlock()
 
 	def __set_current(self, sess):
 		self.__sem.lock()
 		try:
-			src.managers.request_manager.current.set_session_id(sess.id)
+			managers.request_manager.current.set_session_id(sess.id)
 		finally:
 			self.__sem.unlock()
 

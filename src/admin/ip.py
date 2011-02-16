@@ -1,11 +1,10 @@
 
 import os, tempfile, traceback, shutil, re
-from src.util.exception import VDOM_exception
-import src.xml
-from src.util.system import *
-from src.soap.wsdl import gen_wsdl
-from src.server.local_server import send_network
-from src.storage.storage import VDOM_config
+from util.exception import VDOM_exception
+from util.system import *
+from soap.wsdl import gen_wsdl
+from server.local_server import send_network
+from storage.storage import VDOM_config
 
 def run(request):
 	sess = request.session()

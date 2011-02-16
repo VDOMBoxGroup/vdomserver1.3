@@ -9,13 +9,12 @@ import SocketServer, BaseHTTPServer, SimpleHTTPServer
 from cStringIO import StringIO
 import xml.sax.saxutils
 
-import src.xml
-from src.request.request import VDOM_request
-from src.storage.storage import VDOM_config
-from src.version import *
-import src.soap.SOAPBuilder
-import src.managers
-from src.soap.wsdl import methods as soap_methods
+import managers
+from request.request import VDOM_request
+from storage.storage import VDOM_config
+from version import *
+import soap.SOAPBuilder
+from soap.wsdl import methods as soap_methods
 
 # A class to describe how header messages are handled
 class HeaderHandler:
@@ -112,7 +111,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		self.__request.number_of_connections = self.__connections
 		#debug("Creating request object complete")
 		# put request to the manager
-		src.managers.request_manager.current = self.__request
+		managers.request_manager.current = self.__request
 
 		if "127.0.0.1" != self.client_address[0]:
 			debug("Session is " + self.__request.sid)
@@ -163,7 +162,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			return self.redirect("/index.py")
 		# process requested URI, call module manager
 		try:
-			(code, ret) = src.managers.module_manager.process_request(self.__request)
+			(code, ret) = managers.module_manager.process_request(self.__request)
 		except Exception as e:
 			requestline = "<br>"
 			if hasattr(self, "requestline"):
@@ -240,7 +239,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		self.server.notify_finish(self.client_address)
 
 		# remove request
-		del src.managers.request_manager.current
+		del managers.request_manager.current
 		try:
 			del(self.__request.vdom)
 			del(self.__request)
@@ -282,7 +281,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		f = StringIO()
 		f.write("<b>Application id:</b> %s<br>" % str(self.__request.app_id()))
 		f.write("<b>Registered types:</b><br>")
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		typelst = mngr.get_types()
 		for typeid in typelst:
 			tp = None
@@ -433,15 +432,15 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			if "sid" in arg_names:
 				_i = arg_names.index("sid")
 				if _i < len(ordered_args):
-					src.managers.request_manager.current.set_session_id(ordered_args[_i])
+					managers.request_manager.current.set_session_id(ordered_args[_i])
 				elif "sid" in named_args:
-					src.managers.request_manager.current.set_session_id(named_args["sid"])
+					managers.request_manager.current.set_session_id(named_args["sid"])
 			if "appid" in arg_names:
 				_i = arg_names.index("appid")
 				if _i < len(ordered_args):
-					src.managers.request_manager.current.set_application_id(ordered_args[_i])
+					managers.request_manager.current.set_application_id(ordered_args[_i])
 				elif "appid" in named_args:
-					src.managers.request_manager.current.set_application_id(named_args["appid"])
+					managers.request_manager.current.set_application_id(named_args["appid"])
 
 			resp = ""
 

@@ -3,26 +3,18 @@
 import sys, os, time, zlib, base64, copy, traceback, tempfile, shutil, SOAPpy
 
 
-import src.engine
-import src.resource
-import src.session
-import src.request
-import src.xml
-import src.util.id
-import src.source.dispatcher
-import src.security
+import managers, security
 from errors import *
-from src.util.encode import *
-from src.util.semaphore import VDOM_semaphore
-from src.util.mutex import VDOM_named_mutex_auto
-from src.util.exception import *
+from util.encode import *
+from util.semaphore import VDOM_semaphore
+from util.mutex import VDOM_named_mutex_auto
+from util.exception import *
 import util
-from src.util.uuid import uuid4
-from src.xml.xml_object import xml_object
-from src.database.dbobject import VDOM_sql_query
-from src.util.app_management import import_application
-from src.version import VDOM_server_version
-import src.managers
+from util.uuid import uuid4
+from xml_object import xml_object # memory.
+from database.dbobject import VDOM_sql_query
+from util.app_management import import_application
+from version import VDOM_server_version
 
 sessions = {}	# opened sessions
 names = {}	# logged in users
@@ -44,7 +36,7 @@ class VDOM_web_services_server(object):
 
 		ret = True
 
-		mngr = src.session.session_manager
+		mngr = managers.session_manager
 		sess = mngr[sid]
 		if not sess:
 			raise SOAPpy.faultType(session_id_error, _("Session ID error"), _("Invalid session ID supplied"))
@@ -97,7 +89,7 @@ class VDOM_web_services_server(object):
 		try: del sessions[sid]
 		except: pass
 		# remove session
-		mngr = src.session.session_manager
+		mngr = managers.session_manager
 		sess = None
 		try:
 			sess = mngr[sid]
@@ -133,14 +125,14 @@ class VDOM_web_services_server(object):
 	def open_session(self, name, pwd_md5):
 		"""open session with the server"""
 		self.__sem.lock()
-		if not src.security.user_manager.match_user_md5(name, pwd_md5):
+		if not managers.user_manager.match_user_md5(name, pwd_md5):
 			time.sleep(1)
 			self.__sem.unlock()
 			raise SOAPpy.faultType(login_incorrect_error, _("Login incorrect"), _("<Error><User>%s</User></Error>") % name)
 #			return self.__format_error(_("Login incorrect"))
 		self.__sem.unlock()
 		# open session
-		mngr = src.session.session_manager
+		mngr = managers.session_manager
 		sid = mngr.create_session()
 		sess = mngr.get_session(sid)
 		sess.value("login", "1")
@@ -174,10 +166,10 @@ class VDOM_web_services_server(object):
 		ret += "<SessionKey><![CDATA[%s]]></SessionKey>" % session_key
 		ret += "<HashString><![CDATA[%s]]></HashString>" % hash_string
 		ret += "</Session>"
-		ret += "<Hostname>%s</Hostname>" % src.request.request_manager.get_request().app_vhname
+		ret += "<Hostname>%s</Hostname>" % managers.request_manager.get_request().app_vhname
 		ret += "<Username>%s</Username>" % name
 		ret += "<ServerVersion>%s</ServerVersion>" % VDOM_server_version
-#		src.request.request_manager.get_request().cookies().cookie("sid", sid)
+#		managers.request_manager.get_request().cookies().cookie("sid", sid)
 		return ret
 
 	def close_session(self, sid):
@@ -223,7 +215,7 @@ class VDOM_web_services_server(object):
 	def create_application(self, sid, skey, attr):
 		"""create new application"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		appid = mngr.create_application()
 		app = mngr.get_application(appid)
 		try:
@@ -258,13 +250,13 @@ class VDOM_web_services_server(object):
 
 	def __do_list_applications(self, right):
 		result = "<Applications>"
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		applst = mngr.get_applications()
 		for appid in applst:
 			app = None
 			try: app = mngr.get_application(appid)
 			except: pass
-			if app and src.security.acl_manager.session_user_has_access2(app.id, app.id, right):
+			if app and managers.acl_manager.session_user_has_access2(app.id, app.id, right):
 				appname = app.name
 				if "" == appname:
 					appname = _("Not specified")
@@ -277,20 +269,20 @@ class VDOM_web_services_server(object):
 	def list_applications(self, sid, skey):
 		"""get the list of installed applications"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		return self.__do_list_applications(src.security.modify_application)
+		return self.__do_list_applications(security.modify_application)
 
 	def get_applications(self, sid, skey):
 		"""same as above but checks list_application right"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		return self.__do_list_applications(src.security.list_application)
+		return self.__do_list_applications(security.list_application)
 
 	def get_resource(self, sid, skey, owner_id, resource_id):
 		"""get resource"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		try:
-			ro = src.resource.resource_manager.get_resource(owner_id, resource_id)
+			ro = managers.resource_manager.get_resource(owner_id, resource_id)
 			data = ro.get_data()
-			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (src.util.encode.encode_resource(data), resource_id, ro.res_format, len(ro.dependences))
+			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (util.encode.encode_resource(data), resource_id, ro.res_format, len(ro.dependences))
 		except Exception, e:
 			#traceback.print_exc(file=debugfile)
 			#debug("Get type resource error: " + str(e))
@@ -301,9 +293,9 @@ class VDOM_web_services_server(object):
 		"""list resources"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		result = "<Resources>\n"
-		res = src.resource.resource_manager.list_resources(owner_id)
+		res = managers.resource_manager.list_resources(owner_id)
 		for resid in res:
-			ro = src.resource.resource_manager.get_resource(owner_id, resid)
+			ro = managers.resource_manager.get_resource(owner_id, resid)
 			if not getattr(ro,"label",None): #TODO: in new version label will always non exist. So no meanin in this line
 				result += """<Resource id="%s" name="%s" type="%s" usecount="%s"/>\n""" % (ro.id, ro.name, ro.res_format,len(ro.dependences))
 		result += "</Resources>\n"
@@ -396,7 +388,7 @@ class VDOM_web_services_server(object):
 			return errmsg
 		# decode resource data
 		resdata = zlib.decompress(base64.b64decode(resdata))
-		src.resource.resource_manager.update_resource(appid, resid, resdata)
+		managers.resource_manager.update_resource(appid, resid, resdata)
 		app.sync()
 		return "<Resource id=\"%s\"/>" % resid
 	
@@ -406,7 +398,7 @@ class VDOM_web_services_server(object):
 		(app, errmsg) = self.__find_application(appid)	# returns (app, error_message)
 		if not app:
 			return errmsg
-		src.resource.resource_manager.delete_resource(appid, resid, True)
+		managers.resource_manager.delete_resource(appid, resid, True)
 		return  "<Resource>%s</Resource>"%resid
 
 	def create_object(self, sid, skey, appid, parentid, typeid, name, attr):
@@ -415,7 +407,7 @@ class VDOM_web_services_server(object):
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		app = ret[0]
 		ret = None
 		if parentid == "":
@@ -469,7 +461,7 @@ class VDOM_web_services_server(object):
 		"""get the list of installed types"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		result = "<Types>"
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		typelst = mngr.get_types()
 		for typeid in typelst:
 			tp = None
@@ -487,7 +479,7 @@ class VDOM_web_services_server(object):
 		"""get type description"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		try:
-			type_obj = src.xml.xml_manager.get_type(typeid)
+			type_obj = managers.xml_manager.get_type(typeid)
 			return type_obj.get_xml_as_string()
 		except:
 			raise SOAPpy.faultType(type_id_error, _("Get type error"), _("Type not registered"))
@@ -497,7 +489,7 @@ class VDOM_web_services_server(object):
 		"""get all types description"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		result = "<Types>"
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		typelst = mngr.get_types()
 		for typeid in typelst:
 			tp = None
@@ -512,7 +504,7 @@ class VDOM_web_services_server(object):
 
 	def __find_object(self, appid, objid):
 		"""find object with given id in the application"""
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		app = None
 		try:
 			app = mngr.get_application(appid)
@@ -533,7 +525,7 @@ class VDOM_web_services_server(object):
 
 	def __find_application(self, appid):
 		"""find application"""
-		mngr = src.xml.xml_manager
+		mngr = managers.xml_manager
 		app = None
 		try:
 			app = mngr.get_application(appid)
@@ -549,9 +541,9 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[2]
 		_p = ret[0].search_object(parentid)
-		src.request.request_manager.get_request().container_id = ret[1].toplevel.id
+		managers.request_manager.get_request().container_id = ret[1].toplevel.id
 		try:
-			rend = src.engine.engine.wysiwyg(ret[0], ret[1], _p, dynamic)
+			rend = managers.engine.wysiwyg(ret[0], ret[1], _p, dynamic)
 			return "<Result>%s</Result>\n<ParentID>%s</ParentID>\n<ObjectID>%s</ObjectID>" % (rend, parentid, objid)
 		except:
 			traceback.print_exc(file=debugfile)
@@ -599,7 +591,7 @@ class VDOM_web_services_server(object):
 		if obj:
 			objects_inside = copy.deepcopy(obj.get_objects_by_name().keys())
 #			objects_inside.remove(obj.name)
-		type_obj = src.xml.xml_manager.get_type_by_name(xml_obj.lname)
+		type_obj = managers.xml_manager.get_type_by_name(xml_obj.lname)
 		for aname in type_obj.get_attributes():
 			attr_map[aname.lower()] = type_obj.get_attributes()[aname].default_value
 		# parse attributes
@@ -1270,7 +1262,7 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[2]
 		param = self.__parse_attr(attr, False)
-		(success, _data) = src.managers.resource_editor.modify_resource(sid, appid, objid, resid, attrname, operation, param)
+		(success, _data) = managers.resource_editor.modify_resource(sid, appid, objid, resid, attrname, operation, param)
 		if not success:
 			raise SOAPpy.faultType(res_mod_error, _data, _data)
 #			return self.__format_error(_data)
@@ -1281,19 +1273,19 @@ class VDOM_web_services_server(object):
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
-		ro = src.resource.resource_manager.get_resource(appid, resid)
+		ro = managers.resource_manager.get_resource(appid, resid)
 		if not ro:
 			raise SOAPpy.faultType(resource_not_found_error, _("Thumbnail error"), _("Resource not found"))
 #			return self.__format_error(_("Resource not found"))
-		_data = src.managers.resource_editor.do_thumbnail(ro.res_format, ro.get_data(), int(width), int(height))
-		return "<Resource><![CDATA[%s]]></Resource>" % src.util.encode.encode_resource(_data)
+		_data = managers.resource_editor.do_thumbnail(ro.res_format, ro.get_data(), int(width), int(height))
+		return "<Resource><![CDATA[%s]]></Resource>" % util.encode.encode_resource(_data)
 
 	def execute_sql(self, sid, skey, appid, dbid, sql, script):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
-		if not src.security.acl_manager.session_user_has_access2(appid, appid, src.security.modify_application):
+		if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
 			raise VDOM_exception(_("SQL execution is not allowed"))
 		_script = False
 		if "True" == script:
@@ -1312,11 +1304,11 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[2]
 		if session_id == "":
-			if not src.security.acl_manager.session_user_has_access2(appid, appid, src.security.modify_application):
+			if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
 				raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
 		else:
 			try:
-				sess = src.session.session_manager.get_session(session_id)
+				sess = managers.session_manager.get_session(session_id)
 				policy = sess.value(objid)
 				if policy is None:
 					raise AttributeError
@@ -1326,7 +1318,7 @@ class VDOM_web_services_server(object):
 					raise AttributeError
 			except:
 				raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
-		ret = src.source.dispatcher.dispatch_remote(appid, objid, func_name, xml_param,session_id)
+		ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_param,session_id)
 		return ret
 
 	def remote_call(self, sid, skey, appid, objid, func_name, xml_param, xml_data):
@@ -1337,18 +1329,18 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not defined"), _(""))
 		rctype = p["CallType"]
 		if rctype == "rmc":
-			if not src.security.acl_manager.session_user_has_access2(appid, appid, src.security.modify_application):
+			if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
 				raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
-			ret = src.source.dispatcher.dispatch_remote(appid, objid, func_name, xml_data)
+			ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_data)
 		elif rctype == "rmc_over_session" and "HTTPSessionID" in p:
-			sess = src.session.session_manager.get_session(p["HTTPSessionID"])
+			sess = managers.session_manager.get_session(p["HTTPSessionID"])
 			policy = sess.value(objid)
 			if policy and  "rmc_allow" in policy and func_name in policy["rmc_allow"]:
-				ret = src.source.dispatcher.dispatch_remote(appid, objid, func_name, xml_data,p["HTTPSessionID"])
+				ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_data,p["HTTPSessionID"])
 			else:
 				raise SOAPpy.faultType(remote_method_call_error, _("Remote  call is not allowed"), _(""))
 		elif rctype == "server_action":
-			ret = src.source.dispatcher.dispatch_action(appid, objid, func_name, xml_param,xml_data)
+			ret = managers.dispatcher.dispatch_action(appid, objid, func_name, xml_param,xml_data)
 		else:
 			raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not alowed"), _(""))
 		return ret
@@ -1356,7 +1348,7 @@ class VDOM_web_services_server(object):
 
 	def install_application(self, sid, skey, vhname, appxml):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		request = src.request.request_manager.get_request()
+		request = managers.request_manager.get_request()
 		vh = request.server().virtual_hosting()
 		if "" != vhname and vh.get_site(vhname):
 			raise SOAPpy.faultType(duplicate_vhname_error, _("Install application error"), _("Virtual host name exists"))
@@ -1391,7 +1383,7 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[1]
 		path = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-		src.xml.xml_manager.export_application(appid, "xml", path)
+		managers.xml_manager.export_application(appid, "xml", path)
 		toread = os.path.join(path, appid) + ".xml"
 		f = open(toread, "rb")
 		data = f.read()
@@ -1415,10 +1407,10 @@ class VDOM_web_services_server(object):
 				return ret[1]
 			appidlst = [appid]
 		else:
-			appidlst = src.xml.xml_manager.get_applications()
+			appidlst = managers.xml_manager.get_applications()
 		s = "<SearchResult>\n"
 		for _id in appidlst:
-			_app = src.xml.xml_manager.get_application(_id)
+			_app = managers.xml_manager.get_application(_id)
 			r = _app.search(pattern)
 			if 0 == len(r):
 				continue
@@ -1442,7 +1434,7 @@ class VDOM_web_services_server(object):
 			if "object" == child.lname:
 				_name = child.attributes["name"]
 				_type = child.attributes["type"].lower()
-				_type_obj = src.xml.xml_manager.get_type(_type)
+				_type_obj = managers.xml_manager.get_type(_type)
 				_attr_map = {}
 				_attr_elem = child.get_child_by_name("attributes")
 				if _attr_elem:
@@ -1534,7 +1526,7 @@ class VDOM_web_services_server(object):
 						else:
 							raise SOAPpy.faultType(attr_value_error, _("Unknown ID"), "")
 					elif _type:
-						_type_obj = src.xml.xml_manager.get_type(_type)
+						_type_obj = managers.xml_manager.get_type(_type)
 						# create new object
 						(_new_name, _new_id) = app.create_object(_type_obj.id, parent, False)
 						_new_obj = app.search_object(_new_id)

@@ -2,12 +2,12 @@
 
 import sys, traceback, shutil
 
-import src.xml
-import src.engine
-from src.util.exception import VDOM_exception
-from src.module.resource import VDOM_module_resource
-from src.module.python import VDOM_module_python
-from src.module.post_processing import VDOM_post_processing
+import managers
+from util.exception import VDOM_exception
+
+from resource import VDOM_module_resource
+from .python import VDOM_module_python
+from post_processing import VDOM_post_processing
 
 
 class VDOM_module_manager(object):
@@ -57,13 +57,13 @@ class VDOM_module_manager(object):
 		parts1 = filter(lambda x: "" != x, parts1)
 		if 2 == len(parts1):
 			try:	# preview
-				a1 = src.xml.xml_manager.get_application(parts1[0])
+				a1 = managers.xml_manager.get_application(parts1[0])
 				request_object.set_application_id(a1.id)
 				o1 = a1.search_object(parts1[1])
 				if o1 and 3 == o1.type.container:
 					request_object.container_id = o1.id
 					request_object.request_type = "vdom"
-					result = src.engine.engine.render(a1, o1, None, o1.type.render_type.lower())
+					result = managers.engine.render(a1, o1, None, o1.type.render_type.lower())
 					return (None, result.encode("utf-8"))
 			except: raise
 
@@ -102,7 +102,7 @@ class VDOM_module_manager(object):
 			#debug("Container id: " + container_id)
 
 			# get container object and check if it can be a top level container
-			_a = src.xml.xml_manager.get_application(request_object.app_id())
+			_a = managers.xml_manager.get_application(request_object.app_id())
 			obj = _a.search_object(container_id)
 			if not obj:
 				for _i in _a.objects:
@@ -128,12 +128,12 @@ class VDOM_module_manager(object):
 
 			# execute session start action
 			if not request_object.session().on_start_executed and _a.global_actions["session"]["sessiononstart"].code:
-				src.engine.engine.special(_a, _a.global_actions["session"]["sessiononstart"])
+				managers.engine.special(_a, _a.global_actions["session"]["sessiononstart"])
 				request_object.session().on_start_executed = True
 
 			result = None
 			try:
-				result = src.engine.engine.render(_a, obj, None, obj.type.render_type.lower())
+				result = managers.engine.render(_a, obj, None, obj.type.render_type.lower())
 			except VDOM_exception, e:
 				debug("Render exception: " + str(e))
 				return (None, str(e))

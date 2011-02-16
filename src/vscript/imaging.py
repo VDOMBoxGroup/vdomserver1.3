@@ -1,9 +1,9 @@
 
 import re
 
-import src.managers
+import managers
 
-from src.util.imaging import VDOM_imaging
+from util.imaging import VDOM_imaging
 
 import errors, types
 
@@ -41,7 +41,7 @@ class v_vdomimaging(generic):
 
 	def __init__(self):
 		generic.__init__(self)
-		self.__application_id=src.managers.request_manager.current.application_id
+		self.__application_id=managers.request_manager.current.application_id
 		self.__imaging=VDOM_imaging()
 
 	def v_load(self, resource_id):

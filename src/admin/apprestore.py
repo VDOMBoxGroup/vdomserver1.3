@@ -1,9 +1,8 @@
 import os, traceback, time
-import src.xml
-from src.util.exception import VDOM_exception
-from src.util.system import *
-import src.managers
-from src.util.system import get_external_drives
+from util.exception import VDOM_exception
+from util.system import *
+import managers
+from util.system import get_external_drives
 
 
 
@@ -14,7 +13,7 @@ def run2(request, basedir):
 		raise VDOM_exception("Authentication failed")
 
 	args = request.arguments().arguments()
-	sm = src.managers.server_manager
+	sm = managers.server_manager
 	msg = ""
 
 	if "id" in args and "" != args["id"][0] and "file" in args and "" != args["file"][0]:
@@ -71,7 +70,7 @@ function LoadImgWait(){
 		for appid in l:
 			name = "name unknown"
 			try:
-				obj = src.xml.xml_manager.get_application(appid)
+				obj = managers.xml_manager.get_application(appid)
 				name = obj.name.encode("utf-8")
 			except: pass
 			a = "_".join(appid.split("-"))
@@ -114,7 +113,7 @@ function LoadImgWait(){
 
 def run(request):
 	basedir = VDOM_CONFIG["BACKUP-DIRECTORY"]
-	sm = src.managers.server_manager
+	sm = managers.server_manager
 	if sm.backup_dev and device_exists(sm.backup_dev):
 		mountpoint = mount_device(sm.backup_dev)
 		basedir = os.path.join(mountpoint, "vdombackup")
