@@ -23,12 +23,8 @@ class VDOM_compiler(object):
 		""" Compile objects """
 		#debug("[Compiler] Compile %s action \"%s\" in context %s (application %s)"%(object.id, action_name, context, application.id))
 
-		print "COMPILE1"
-
 		attributes=object.get_attributes()
 		objects=[]; status=[]
-
-		print "COMPILE2"
 
 		if not hasattr(object, "dynamic"):
 			object.dynamic={(action_name, context): object.type.dynamic}
@@ -36,14 +32,10 @@ class VDOM_compiler(object):
 			object.dynamic.setdefault((action_name, context), object.type.dynamic)
 		if not hasattr(object, "optimization_priority"):
 			object.optimization_priority=object.type.optimization_priority
-
-		print "COMPILE3"
 		
 		object.types={object.type.id: object.type}
 		object.containers={}
 		object.libraries={}
-
-		print "COMPILE4"
 
 		action=object.actions["name"].get(action_name, None)
 		if action and action.code and (context is global_context or object.id==context):
@@ -52,30 +44,22 @@ class VDOM_compiler(object):
 			names=auxilary.analyse_script_structure(action.code, application.scripting_language) # action.lang
 			auxilary.enable_dynamic(object, action_name, context, names)
 
-		print "COMPILE5"
-
 		module_name=utils.id.guid2mod(object.type.id)
 		print module_name
 		if module_name in self.__modules:
-			print 111
 			module=self.__modules[module_name]
 		else:
-			print 222
 			#debug("[Compiler] Object %s, import module %s"%(object.id, module_name))
 			try:
 				module=__import__(module_name)
 			except Exception as e:
 				print e
 				raise
-			print 2222222
 			self.__modules[module_name]=module
 		if "on_compile" in module.__dict__:
-			print 333
 			#debug("[Compiler] Call \"on_compile\" handler")
 			status.append("on_compile")
 			objects=module.on_compile(application, object, action_name, context, objects)
-
-		print "COMPILE6"
 
 		contain_objects=len(objects)
 		if contain_objects:
@@ -84,8 +68,6 @@ class VDOM_compiler(object):
 			else:
 				status.append("1 object")
 
-		print "COMPILE7"
-
 		if objects:
 			order=0
 			for item in objects:
@@ -93,8 +75,6 @@ class VDOM_compiler(object):
 				xobject.order=order
 				#debug("[Compiler] Object %s, order %s"%(xobject.id, xobject.order))
 				order+=1
-
-		print "COMPILE8"
 
 		#if status:
 		#	debug("[Compiler] Object %s, type %s (%s)"%(object.id, object.type.class_name, ", ".join(status)))
@@ -106,8 +86,6 @@ class VDOM_compiler(object):
 		
 		if object.type.container in (2,3):
 			object.containers[object.type.id]=object.type			
-
-		print "COMPILE9"
 
 		if contain_objects:
 		
