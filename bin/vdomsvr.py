@@ -67,10 +67,10 @@ f = open(os.path.join(VDOM_CONFIG["STORAGE-DIRECTORY"], "lib", "__init__.py"), "
 f.close()
 
 from storage.storage import VDOM_config
-from util.system import console_debug
+from utils.system import console_debug
 import managers
 import log
-import util.email1
+import utils.email1
 
 gettext.install("vdom2")
 
@@ -167,8 +167,8 @@ if not ok:
 	print "Got response on", addr_try, ":", VDOM_CONFIG["SERVER-PORT"]
 	os._exit(0)
 
-if not sys.platform.startswith("freebsd") and not sys.platform.startswith("linux") and 'WINGDB_ACTIVE' not in os.environ:
-	thread.start_new_thread(watcher, ())
+#if not sys.platform.startswith("freebsd") and not sys.platform.startswith("linux") and 'WINGDB_ACTIVE' not in os.environ:
+#	thread.start_new_thread(watcher, ())
 
 # copy types
 print "Copying VDOM types to hard drive...",
@@ -195,39 +195,8 @@ import vscript.prepare
 
 # handle imports to support application libraries
 
-import threading, imp, pkgutil
-
-class metaimporter(object):
-	def find_module(self, fullname, path=None):
-		#print "[MetaImporter] Search for %s (%s)"%(fullname, path)
-		application=getattr(threading.currentThread(), "application", None)
-		if application is None:
-			return None
-		
-		if not fullname.startswith(application):
-			return None
-		
-		if fullname == application:
-			#load application
-			search_path=[VDOM_CONFIG["LIB-DIRECTORY"]]
-			try:
-				file, pathname, description=imp.find_module(fullname, search_path)
-			except ImportError, error:
-				return None
-			return pkgutil.ImpLoader(fullname, file, pathname, description)
-		elif fullname.find(".") != -1:
-			#load library
-			(app_module, library) = fullname.split(".",1)
-			search_path=["%s/%s"%(VDOM_CONFIG["LIB-DIRECTORY"],app_module)]
-			try:
-				file, pathname, description=imp.find_module(library, search_path)
-			except ImportError, error:
-				return None
-			return pkgutil.ImpLoader(fullname, file, pathname, description)
-		else:
-			return None
-
-sys.meta_path.append(metaimporter())
+from server.metaimporter import VDOM_metaimporter
+sys.meta_path.append(VDOM_metaimporter())
 
 # initialize server
 
@@ -244,29 +213,17 @@ import module
 import session
 import soap
 
+from server.server import VDOM_box_server
 
-from server.server import VDOM_server
+print "Creating VDOM server"
+server=VDOM_box_server()
+server.start()
 
-#from actions import actions_on_shutdown
+import threading
+from utils.server import VDOM_thread, VDOM_daemon
+from utils.tracing import show_active_threads, show_active_threads_stack
 
-#if not request_object.session().on_start_executed and _a.global_actions["session"]["sessiononstart"].code:
-#				src!.engine.engine.special(_a, _a.global_actions["session"]["sessiononstart"])
-#				request_object.session().on_start_executed = True
+show_active_threads()
+#show_active_threads_stack()
 
-# create server object instance and start the server
-
-while True:
-	print "Creating VDOM server"
-	server = VDOM_server()
-	server.start()
-	try:
-		if server.server.restart:
-			server = None
-			time.sleep(2)
-			continue
-	except:
-		pass
-	finally:
-		#actions_on_shutdown()
-		pass
-	os._exit(0)
+os._exit(0)
