@@ -1,6 +1,6 @@
 import sys, re
-sys.path.append("..")
-import src.util.uuid
+sys.path.append("../src")
+import utils.uuid
 
 def load_file(filename):
 	file=open(filename, "r")
@@ -29,7 +29,7 @@ reobj = re.compile(r"\b[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-Z0-9]{12}\b", re.DOTALL
 result = reobj.findall(data)
 for match in result:
 	if match not in type_guid:
-		new_guid = str(src.util.uuid.uuid4())
+		new_guid = str(utils.uuid.uuid4())
 		print "%s was replaced %s"%(match,new_guid)
 		data = data.replace(match, new_guid)
 

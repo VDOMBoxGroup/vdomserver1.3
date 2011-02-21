@@ -8,7 +8,7 @@ import sys, time, os, thread, socket, gettext, shutil, stat, __builtin__
 import encodings.utf_16, encodings.utf_16_be, encodings.utf_16_le, encodings.utf_7, encodings.utf_8, encodings.utf_8_sig
 import xmlrpclib
 
-sys.path.append("..\src")
+sys.path.append("../src")
 
 from config import *
 __builtin__.VDOM_CONFIG = VDOM_CONFIG
