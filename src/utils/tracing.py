@@ -1,6 +1,6 @@
 
 import sys, os, traceback, threading
-from thread import VDOM_thread, VDOM_daemon
+from server import VDOM_thread, VDOM_daemon
 
 
 path_python=sys.prefix

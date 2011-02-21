@@ -269,7 +269,7 @@
 	<SourceCode>
 		<![CDATA[
 
-import util
+import utils
 
 class VDOM_image(VDOM_object):
 
@@ -278,8 +278,8 @@ class VDOM_image(VDOM_object):
 		if self.visible == "0":
 			type = "display:none; "
 			
-#		link=util.id.id2link(self.value)
-		link=util.id.id2link1(self.value)
+#		link=utils.id.id2link(self.value)
+		link=utils.id.id2link1(self.value)
 		style="z-index: %s;position: %s;top: %spx;left: %spx"%(self.zindex, self.position, self.top, self.left)
 		id = 'o_' + (self.id).replace('-', '_')
 		title = iw = ih = ""

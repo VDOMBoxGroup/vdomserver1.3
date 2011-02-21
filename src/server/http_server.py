@@ -160,12 +160,14 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def serve_forever(self):
 		"""handle each request in separate thread"""
 		thread.start_new_thread(self.serve_card_proccess, (None,))
-		while not self.__stop:
-			self.handle_request()
+		# while not self.__stop:
+		#	self.handle_request()
+		SocketServer.ThreadingTCPServer.serve_forever(self)
 		idx = 0
 		while self.__current_connections and idx < 30:
 			time.sleep(0.1)
 			idx += 1
+
 	def serve_card_proccess(self, argv):
 		while not self.__stop:
 			ret = select.select([self.__local_socket], [], [], 1)
