@@ -6,9 +6,9 @@ UUID generation utility
 
 import sys
 
-sys.path.append("..")
+sys.path.append("../src")
 
 import xml.dom
-import src.util.uuid
+import utils.uuid
 
-print src.util.uuid.uuid4()
+print utils.uuid.uuid4()
