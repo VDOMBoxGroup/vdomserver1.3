@@ -27,8 +27,8 @@ from utils.semaphore import VDOM_semaphore
 
 from vhosting import VDOM_vhosting
 from soap.functions import *
-from local_server import execute
-from local_server import send_to_card
+#from local_server import execute
+#from local_server import send_to_card
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
 
@@ -94,11 +94,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		#create semaphore
 		self.__sem = VDOM_semaphore()
 
-		# local socket
-		port = VDOM_CONFIG["SERVER-LOCALHOST-PORT"]
-		self.__local_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		self.__local_socket.bind(('localhost', port))
-
 		# register soap methods
 		for method in wsdl_methods.keys():
 			exec("""self.registerFunction(SOAPpy.MethodSig(%s, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")""" % method)
@@ -108,8 +103,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
 		# generate wsdl file
 		gen_wsdl()
-		sys.stderr.write("Listening on localhost:%d [pid %d]\n" % (port, os.getpid()))
-		send_to_card("online")
+		#send_to_card("online")
 
 	def __del__(self):
 		"""destructor, remove pid file"""
@@ -128,14 +122,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 						if sock.accept_ssl() != 1:
 							raise socket.error, "Couldn't accept SSL connection"
 					return sock, addr
-
-	def handle_specific_request(self, command):
-		"""handle specific request from localhost"""
-		try:
-			execute(command)
-		except:
-			traceback.print_exc(file=debugfile)
-			pass
 
 	def current_connections(self):
 		"""access current_connections property"""
@@ -159,7 +145,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
 	def serve_forever(self):
 		"""handle each request in separate thread"""
-		thread.start_new_thread(self.serve_card_proccess, (None,))
 		# while not self.__stop:
 		#	self.handle_request()
 		SocketServer.ThreadingTCPServer.serve_forever(self)
@@ -167,25 +152,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		while self.__current_connections and idx < 30:
 			time.sleep(0.1)
 			idx += 1
-
-	def serve_card_proccess(self, argv):
-		while not self.__stop:
-			ret = select.select([self.__local_socket], [], [], 1)
-			for r in ret[0]:
-				if r == self.__local_socket:
-					(string, address) = self.__local_socket.recvfrom(1024)
-					if "stop" == string:
-						self.__stop = True
-						debug("Stop from " + address[0] + "\n")
-						raise socket.error("")
-					elif "restart" == string:
-							self.restart = True
-							self.__stop = True
-							debug("Restart from " + address[0] + "\n")
-							raise socket.error("")
-					else:
-							# create thread to handle specific request from localhost
-							thread.start_new_thread(self.handle_specific_request, (string, ))
 
 	def verify_request(self, request, client_address):
 		"""verify the request by matching client address with the stored regexp"""
@@ -291,6 +257,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
 	# convenience  - wraps your func for you.
 	def registerKWFunction(self, function, namespace = '', funcName = None, path = ''):
+		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! registerKWFunction !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 		if namespace == '' and path == '': namespace = self.namespace
 		if namespace == '' and path != '':
 			namespace = path.replace("/", ":")
