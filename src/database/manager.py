@@ -200,8 +200,8 @@ class VDOM_database_manager(object):
 		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 
 
-internal_database_manager = VDOM_database_manager()
-del VDOM_database_manager
+#internal_database_manager = VDOM_database_manager()
+#del VDOM_database_manager
 
 def un_quote(param):
 	"""Delete all quotes from param"""

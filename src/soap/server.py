@@ -1600,5 +1600,5 @@ class VDOM_web_services_server(object):
 		return ret
 
 
-internal_soap_server = VDOM_web_services_server()
-del VDOM_web_services_server
+#internal_soap_server = VDOM_web_services_server()
+#del VDOM_web_services_server

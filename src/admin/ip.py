@@ -3,7 +3,7 @@ import os, tempfile, traceback, shutil, re
 from utils.exception import VDOM_exception
 from utils.system import *
 from soap.wsdl import gen_wsdl
-from server.local_server import send_network
+# from server.local_server import send_network
 from storage.storage import VDOM_config
 
 def run(request):
@@ -54,8 +54,9 @@ def run(request):
 		except Exception, e:
 			error += "Error: " + str(e) + "<br>\n"
 
-	if _send:
-		send_network()
+	# CARD INTERFACE TEMPORARILY REMOVED
+	# if _send:	
+	#	send_network() 
 
 	(the_ip, the_mask) = get_ip_and_mask()
 	if not the_ip or not the_mask:

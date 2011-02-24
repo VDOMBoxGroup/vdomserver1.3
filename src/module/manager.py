@@ -177,5 +177,5 @@ class VDOM_module_manager(object):
 		return (404, None)
 
 
-module_manager_internal = VDOM_module_manager()
-del VDOM_module_manager
+#module_manager_internal = VDOM_module_manager()
+#del VDOM_module_manager

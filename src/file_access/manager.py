@@ -325,5 +325,5 @@ class VDOM_file_manager(object):
 		else:
 			return os.path.join( VDOM_CONFIG[ "FILE-ACCESS-DIRECTORY" ], databases_path)
 	
-internal_file_manager=VDOM_file_manager()
-del VDOM_file_manager
+#internal_file_manager=VDOM_file_manager()
+#del VDOM_file_manager

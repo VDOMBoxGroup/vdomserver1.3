@@ -1,8 +1,11 @@
-from manager import internal_file_manager as file_manager
-from share import internal_share as share
-import managers
-managers.reg_manager("file_manager", file_manager)
-managers.reg_manager("file_share", share)
+#from manager import internal_file_manager as file_manager
+#from share import internal_share as share
+#import managers
+#managers.reg_manager("file_manager", file_manager)
+#managers.reg_manager("file_share", share)
+
+from manager import VDOM_file_manager
+from share import VDOM_share
 
 application_xml = 0 # XML
 global_type 	= 1 # app/types/                           - XML files of types

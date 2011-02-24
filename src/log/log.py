@@ -127,5 +127,5 @@ class VDOM_log_manager:
 		self.__write_message(self.message_error, caller, message_text, self.log_bug)
 
 
-log_manager_internal = VDOM_log_manager()
-del VDOM_log_manager
+#log_manager_internal = VDOM_log_manager()
+#del VDOM_log_manager

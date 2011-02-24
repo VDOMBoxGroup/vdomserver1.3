@@ -1,7 +1,6 @@
 """VDOM http server module"""
 
-import sys
-import os
+import sys, os
 import posixpath
 import urllib
 import shutil
@@ -13,13 +12,9 @@ import thread
 import time
 import random
 import traceback
-import SocketServer
-import BaseHTTPServer
-import SimpleHTTPServer
-import SOAPpy
+import SocketServer, BaseHTTPServer, SimpleHTTPServer, SOAPpy
 
 import managers
-import utils.email1
 import log
 from utils.pid import VDOM_server_pid
 from utils.exception import VDOM_exception

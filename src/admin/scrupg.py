@@ -1,6 +1,6 @@
 
 from utils.exception import VDOM_exception
-from server.local_server import send_to_card
+# from server.local_server import send_to_card
 
 def run(request):
 	sess = request.session()
@@ -8,7 +8,8 @@ def run(request):
 		request.write("Authentication failed")
 		raise VDOM_exception("Authentication failed")
 
-	send_to_card("tryupdate")
+	# CARD INTERFACE TEMPORARILY REMOVED
+	# send_to_card("tryupdate")
 
 	request.write("""<html>
 <head>

@@ -1,11 +1,14 @@
 
 import __builtin__, sys, os,  time, thread, socket, shutil, stat
+
+from config import VDOM_CONFIG, VDOM_CONFIG_1
+__builtin__.VDOM_CONFIG = VDOM_CONFIG
+__builtin__.VDOM_CONFIG_1 = VDOM_CONFIG_1
+
+sys.path.append(VDOM_CONFIG["LIB-DIRECTORY"])
+
 import managers
-
-from storage.storage import VDOM_config
 from utils.system import console_debug
-import managers, log
-
 
 # install debug and licensing
 
@@ -35,10 +38,14 @@ if sys.platform.startswith("freebsd") or sys.platform.startswith("linux"):
 	send_to_log(str(VDOM_CONFIG["LOG-FILE-SIZE"]))
 	send_to_log(VDOM_CONFIG["LOG-DIRECTORY"])
 
-tags=managers.storage.read_object("DEBUG-TAGS") or []
+tags=None
 
 def my_debug(_data, tag="", console=None):
 	global tags
+	from storage.storage import VDOM_config
+	if tags is None:
+		import managers
+		tags=managers.storage.read_object("DEBUG-TAGS") or []
 	debug_on = True
 	if "1" != VDOM_CONFIG_1["DEBUG"]:
 		debug_on = False

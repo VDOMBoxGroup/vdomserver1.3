@@ -165,5 +165,5 @@ class VDOM_acl_manager:
 						tocheck.append(gr_name)
 
 
-internal_manager = VDOM_acl_manager()
-del VDOM_acl_manager
+#internal_manager = VDOM_acl_manager()
+#del VDOM_acl_manager

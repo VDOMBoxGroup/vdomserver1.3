@@ -204,5 +204,5 @@ class VDOM_compiler(object):
 			source.import_module(utils.id.guid2mod(object.type.id), object.type.class_name)
 		return source
 
-internal_compiler=VDOM_compiler()
-del VDOM_compiler
+#internal_compiler=VDOM_compiler()
+#del VDOM_compiler
