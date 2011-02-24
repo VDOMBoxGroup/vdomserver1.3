@@ -1,7 +1,6 @@
 
-from copy import copy, deepcopy
-
 import random, re
+from copy import copy, deepcopy
 
 import utils.exception
 
