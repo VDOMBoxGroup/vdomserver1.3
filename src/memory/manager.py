@@ -1,6 +1,7 @@
 """XML Manager module"""
 
 import shutil, os, os.path, sys, traceback, base64, zipfile, thread, time, copy
+from metaimporter import VDOM_metaimporter
 
 
 class VDOM_xml_manager(object):
@@ -16,6 +17,8 @@ class VDOM_xml_manager(object):
 		self.__type_id_list = []
 		self.__app_to_sync = []
 		self.obj_count = 0
+
+		sys.meta_path.append(VDOM_metaimporter())
 
 		managers.resource_manager.save_index_off()
 		managers.resource_manager.restore()
