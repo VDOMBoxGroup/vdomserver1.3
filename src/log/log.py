@@ -125,7 +125,3 @@ class VDOM_log_manager:
 	def error_bug(self, message_text, caller=""):
 		"""write error message"""
 		self.__write_message(self.message_error, caller, message_text, self.log_bug)
-
-
-#log_manager_internal = VDOM_log_manager()
-#del VDOM_log_manager

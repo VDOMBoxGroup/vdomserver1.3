@@ -165,7 +165,3 @@ class VDOM_server_manager():
 		shutil.copyfile(file, tmpfilename)
 		import_application(tmpfilename)
 		os.remove(tmpfilename)
-
-
-#internal_mngr = VDOM_server_manager()
-#del VDOM_server_manager

@@ -163,7 +163,3 @@ class VDOM_acl_manager:
 				for gr_name in user.member_of:
 					if not gr_name in checked:
 						tocheck.append(gr_name)
-
-
-#internal_manager = VDOM_acl_manager()
-#del VDOM_acl_manager

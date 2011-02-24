@@ -1,8 +1,3 @@
-#from manager import internal_file_manager as file_manager
-#from share import internal_share as share
-#import managers
-#managers.reg_manager("file_manager", file_manager)
-#managers.reg_manager("file_share", share)
 
 from manager import VDOM_file_manager
 from share import VDOM_share

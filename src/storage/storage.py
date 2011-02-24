@@ -297,10 +297,8 @@ class VDOM_storage(object):
 		return self.write_async(key, data)
 
 
-#internal_storage = VDOM_storage()
-#del VDOM_storage
-
 import managers
+
 
 class VDOM_config:
 	"""class to read/save changeable config"""

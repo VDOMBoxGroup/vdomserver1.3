@@ -297,6 +297,3 @@ class VDOM_resource_manager(object):
 		self.save_index = True
 		#if forced_save:
 		#	managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
-		
-#internal_resource_manager = VDOM_resource_manager()
-#del VDOM_resource_manager

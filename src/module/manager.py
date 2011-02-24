@@ -175,7 +175,3 @@ class VDOM_module_manager(object):
 			return (None, ret) if ret else (404, None)
 
 		return (404, None)
-
-
-#module_manager_internal = VDOM_module_manager()
-#del VDOM_module_manager

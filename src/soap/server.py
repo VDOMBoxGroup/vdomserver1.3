@@ -9,7 +9,7 @@ from utils.encode import *
 from utils.semaphore import VDOM_semaphore
 from utils.mutex import VDOM_named_mutex_auto
 from utils.exception import *
-import utils
+import soaputils
 from utils.uuid import uuid4
 from xml_object import xml_object # memory.
 from database.dbobject import VDOM_sql_query
@@ -140,9 +140,9 @@ class VDOM_web_services_server(object):
 		sess.set_user(name, pwd_md5, md5=True)
 
 		# create protector object
-		hash_string = utils.get_hash_str()
-		session_key = utils.get_session_key()
-		pr = utils.VDOM_session_protector(hash_string)
+		hash_string = soaputils.get_hash_str()
+		session_key = soaputils.get_session_key()
+		pr = soaputils.VDOM_session_protector(hash_string)
 		# save protector object
 		self.__sem.lock()
 		sessions[sid] = pr
@@ -1598,7 +1598,3 @@ class VDOM_web_services_server(object):
 		ret += "<ServerVersion>%s</ServerVersion>\n" % VDOM_server_version
 		ret += "</Information>\n"
 		return ret
-
-
-#internal_soap_server = VDOM_web_services_server()
-#del VDOM_web_services_server

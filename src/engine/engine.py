@@ -1,6 +1,3 @@
-"""
-Engine
-"""
 
 import sys, thread, time, traceback
 
@@ -16,7 +13,6 @@ from object import request
 #import profile
 
 from exceptions import RenderTermination
-
 
 
 class VDOM_engine:
@@ -114,9 +110,5 @@ class VDOM_engine:
 		debug("[Engine] Terminate render")
 		raise RenderTermination
 
-
-
-#internal_engine=VDOM_engine()
-#del VDOM_engine
 
 from source.source import VDOM_source
