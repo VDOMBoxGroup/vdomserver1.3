@@ -2,6 +2,9 @@
 import sys, threading, imp, pkgutil
 
 class VDOM_metaimporter(object):
+	
+	def __init__(self):
+		sys.path.append(VDOM_CONFIG["LIB-DIRECTORY"])
 
 	def find_module(self, fullname, path=None):
 		#print "[MetaImporter] Search for %s (%s)"%(fullname, path)
