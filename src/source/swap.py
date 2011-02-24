@@ -44,5 +44,5 @@ class VDOM_source_swap:
 		self.__swap_file_index[(application_id,container_id, action_name, context)] = name
 		return managers.file_manager.write(file_access.cache, application_id, None, name, cPickle.dumps(content))
 
-internal_swap=VDOM_source_swap()
-del VDOM_source_swap
+#internal_swap=VDOM_source_swap()
+#del VDOM_source_swap

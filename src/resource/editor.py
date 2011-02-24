@@ -172,5 +172,5 @@ class VDOM_resource_editor:
 		return tw.getvalue()
 
 
-internal_resource_editor = VDOM_resource_editor()
-del VDOM_resource_editor
+#internal_resource_editor = VDOM_resource_editor()
+#del VDOM_resource_editor

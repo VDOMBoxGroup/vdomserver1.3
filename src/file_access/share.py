@@ -218,5 +218,5 @@ class VDOM_share(object):
 		except:
 			return None
 
-internal_share=VDOM_share()
-del VDOM_share
+#internal_share=VDOM_share()
+#del VDOM_share

@@ -60,5 +60,5 @@ class VDOM_request_manager(dict):
 	current = property(get_request, set_request, remove_request)
 
 
-internal_request_manager = VDOM_request_manager()
-del VDOM_request_manager
+#internal_request_manager = VDOM_request_manager()
+#del VDOM_request_manager

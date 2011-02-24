@@ -99,5 +99,5 @@ class VDOM_session_manager(dict):
 	current = property(__get_current, __set_current)
 
 
-internal_session_manager = VDOM_session_manager()
-del VDOM_session_manager
+#internal_session_manager = VDOM_session_manager()
+#del VDOM_session_manager

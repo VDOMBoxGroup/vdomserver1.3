@@ -297,33 +297,34 @@ class VDOM_storage(object):
 		return self.write_async(key, data)
 
 
-internal_storage = VDOM_storage()
-del VDOM_storage
+#internal_storage = VDOM_storage()
+#del VDOM_storage
 
+import managers
 
 class VDOM_config:
 	"""class to read/save changeable config"""
 
 	def get_opt(self, name):
 		VDOM_named_mutex_auto(name)
-		conf = internal_storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
+		conf = managers.storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
 		if name in conf:
 			return conf[name]
 		return None
 
 	def get_keys(self):
-		conf = internal_storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
+		conf = managers.storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
 		return conf.keys()
 
 	def set_opt(self, name, val):
 		VDOM_named_mutex_auto(name)
-		conf = internal_storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
+		conf = managers.storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
 		conf[name] = val
-		internal_storage.write_object_async(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf)
+		managers.storage.write_object_async(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf)
 
 	def set_opt_sync(self, name, val):
 		VDOM_named_mutex_auto(name)
-		conf = internal_storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
+		conf = managers.storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
 		conf[name] = val
-		internal_storage.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf)
+		managers.storage.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf)
 

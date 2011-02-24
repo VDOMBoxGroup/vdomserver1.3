@@ -116,7 +116,7 @@ class VDOM_engine:
 
 
 
-internal_engine=VDOM_engine()
-del VDOM_engine
+#internal_engine=VDOM_engine()
+#del VDOM_engine
 
 from source.source import VDOM_source

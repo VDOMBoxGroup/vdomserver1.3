@@ -5,7 +5,4 @@
 #from utils.server import VDOM_server
 #VDOM_server()
 
-from manager import 
-
-from thread import VDOM_thread, VDOM_daemon
-from server import VDOM_server
+from manager import VDOM_server_manager
