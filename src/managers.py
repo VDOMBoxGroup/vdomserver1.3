@@ -4,3 +4,4 @@ def reg_manager(name, manager):
 
 def register(name, manager_class):
 	globals()[name]=manager_class()
+

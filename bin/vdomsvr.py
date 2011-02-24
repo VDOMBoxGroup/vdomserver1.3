@@ -50,8 +50,6 @@ managers.register("email_manager", VDOM_email_manager)
 managers.register("soap_server", VDOM_soap_server)
 managers.register("server_manager", VDOM_server_manager)
 
-import vscript.prepare
-
 managers.server.start()
 
 from utils.tracing import show_threads_trace
