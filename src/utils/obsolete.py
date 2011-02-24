@@ -5,8 +5,6 @@ from config import VDOM_CONFIG, VDOM_CONFIG_1
 __builtin__.VDOM_CONFIG = VDOM_CONFIG
 __builtin__.VDOM_CONFIG_1 = VDOM_CONFIG_1
 
-sys.path.append(VDOM_CONFIG["LIB-DIRECTORY"])
-
 import managers
 from utils.system import console_debug
 
