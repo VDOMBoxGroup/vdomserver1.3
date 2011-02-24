@@ -71,6 +71,3 @@ class VDOM_dispatcher:
 			raise SOAPpy.faultType(remote_method_call_error, _("Action call error"), str(e))
 		
 		raise SOAPpy.faultType(remote_method_call_error, _("Handler not found"), str(func_name))
-		
-#internal_dispatcher=VDOM_dispatcher()
-#del VDOM_dispatcher

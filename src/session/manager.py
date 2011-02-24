@@ -97,7 +97,3 @@ class VDOM_session_manager(dict):
 			self.__sem.unlock()
 
 	current = property(__get_current, __set_current)
-
-
-#internal_session_manager = VDOM_session_manager()
-#del VDOM_session_manager

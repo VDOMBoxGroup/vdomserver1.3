@@ -169,6 +169,3 @@ class VDOM_user_manager:
 	def sync(self):
 		"""Saves current state of manager in storage"""
 		managers.storage.write_object_async(VDOM_CONFIG["USER-MANAGER-STORAGE-RECORD"], self.users)
-
-#internal_manager = VDOM_user_manager()
-#del VDOM_user_manager

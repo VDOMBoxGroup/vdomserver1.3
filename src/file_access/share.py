@@ -217,6 +217,3 @@ class VDOM_share(object):
 			return k.st_mtime
 		except:
 			return None
-
-#internal_share=VDOM_share()
-#del VDOM_share

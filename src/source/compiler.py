@@ -203,6 +203,3 @@ class VDOM_compiler(object):
 			source=VDOM_source(object.name, object.type.class_name, object.id, action_name, context)
 			source.import_module(utils.id.guid2mod(object.type.id), object.type.class_name)
 		return source
-
-#internal_compiler=VDOM_compiler()
-#del VDOM_compiler

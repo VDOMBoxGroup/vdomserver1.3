@@ -79,6 +79,3 @@ class VDOM_source_cache(object):
 
 	def clear_type_sources(self,type_id):
 		managers.file_manager.clear(file_access.type_source, type_id, None)
-
-#internal_cache=VDOM_source_cache()
-#del VDOM_source_cache

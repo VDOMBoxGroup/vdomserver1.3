@@ -170,7 +170,3 @@ class VDOM_resource_editor:
 		tw = StringIO()
 		new_img.save(tw, self.formats[format])
 		return tw.getvalue()
-
-
-#internal_resource_editor = VDOM_resource_editor()
-#del VDOM_resource_editor

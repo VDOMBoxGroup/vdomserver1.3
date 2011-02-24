@@ -504,6 +504,3 @@ from .xml_object import xml_object
 from file_access.manager import application_path, resources_path, databases_path
 # from server.local_server import wait_for_options
 from version import VDOM_server_version
-
-#internal_xml_manager = VDOM_xml_manager()
-#del VDOM_xml_manager

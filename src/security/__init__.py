@@ -1,8 +1,3 @@
-#from acl_manager import internal_manager as acl_manager
-#from user_manager import internal_manager as user_manager
-#import managers
-#managers.reg_manager("acl_manager", acl_manager)
-#managers.reg_manager("user_manager", user_manager)
 
 from acl_manager import VDOM_acl_manager
 from user_manager import VDOM_user_manager

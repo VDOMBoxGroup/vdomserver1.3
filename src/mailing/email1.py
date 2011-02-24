@@ -215,8 +215,3 @@ class VDOM_email_manager(object):
 			else:
 				ts = 10
 			time.sleep(ts)
-
-
-#email_manager = VDOM_email_manager()
-#del VDOM_email_manager
-#managers.reg_manager("email_manager", email_manager)
