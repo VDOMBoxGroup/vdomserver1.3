@@ -21,8 +21,7 @@ class VDOM_server(VDOM_singleton):
 	quantum=property(lambda self: self.__quantum)
 
 	def prepare(self):
-		from web import VDOM_http_server_thread
-		VDOM_http_server_thread().start()
+		pass
 
 	def cleanup(self):
 		pass
