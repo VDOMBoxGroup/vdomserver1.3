@@ -1,17 +1,19 @@
 
 import time, threading
-import managers
+import auxiliary
 
 
 class VDOM_thread(threading.Thread):
 
-	def __init__(self, name=None, sleep=1):
+	def __init__(self, name=None, sleep=auxiliary.quantum):
 		threading.Thread.__init__(self, name=name)
-		self.__server=managers.server
+		self.__server=auxiliary.server
+		self.__quantum=auxiliary.quantum
 		self.__running=True
 		self.__sleep=sleep
 
 	server=property(lambda self: self.__server)
+	quantum=property(lambda self: self.__quantum)
 	running=property(lambda self: self.__running)
 
 	def prepare(self):
@@ -28,7 +30,7 @@ class VDOM_thread(threading.Thread):
 			if not self.work():
 				remainder=self.__sleep
 				while remainder>0 and self.__running:
-					value=min(self.__server.quantum, remainder)
+					value=min(self.__quantum, remainder)
 					time.sleep(value)
 					remainder-=value
 

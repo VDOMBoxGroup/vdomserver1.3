@@ -1,6 +1,6 @@
 
 import sys, os, traceback, threading
-from server import VDOM_thread, VDOM_daemon
+from threads import VDOM_thread, VDOM_daemon
 import utils.console
 
 

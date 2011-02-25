@@ -22,13 +22,14 @@ from utils.semaphore import VDOM_semaphore
 
 from vhosting import VDOM_vhosting
 from soap.functions import *
-#from local_server import execute
-#from local_server import send_to_card
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
 
+
 rexp = re.compile(r"vr0\:.+inet\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
 rexp2 = re.compile(r"eth0.+inet addr\:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
+
+	
 class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	"""VDOM threading http server class"""
 

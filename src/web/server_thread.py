@@ -2,12 +2,12 @@
 import os, thread
 
 from version import VDOM_server_version
-from server import VDOM_thread
+from utils.threads import VDOM_thread
 from http_server import VDOM_http_server
-from request_handler import VDOM_http_request_handler
+from http_request_handler import VDOM_http_request_handler
 
 
-class VDOM_http_server_thread(VDOM_thread):
+class VDOM_web_server_thread(VDOM_thread):
 
 	def __init__(self):
 		VDOM_thread.__init__(self, name="HTTP Server")
