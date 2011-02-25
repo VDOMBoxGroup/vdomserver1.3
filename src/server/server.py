@@ -31,30 +31,21 @@ class VDOM_server(VDOM_singleton):
 			while self.__running: time.sleep(self.__quantum)
 		except KeyboardInterrupt:
 			pass
-			#debug("Force shutdown by keyboard")
 
 	def start(self):
 		try:
 			self.prepare()
 			self.main()
-		except:
-			raise
-			#debug("Force shutdown due exception")
-			#pass
 		finally:
 			self.stop()
-			#debug("STOP THREADS")
 			self.notify(lambda thread: not isinstance(thread, VDOM_daemon))
-			#debug("STOP DAEMONS")
 			self.notify(lambda thread: isinstance(thread, VDOM_daemon) and not thread.dependencies)
-			#debug("CLEANUP")
 			self.cleanup()
 
 	def stop(self):
 		self.__running=False
 
 	def terminate(self):
-		#debug("Force shutdown by signal")
 		self.stop()
 
 	def notify(self, condition):
@@ -62,8 +53,5 @@ class VDOM_server(VDOM_singleton):
 			threads=tuple(thread for thread in threading.enumerate() if isinstance(thread, VDOM_thread) and condition(thread))
 			if not threads: return
 			for thread in threads:
-				if thread.running:
-					#debug("STOP %s"%thread.name)
-					thread.stop()
-			#debug("WAIT FOR %s"%thread.name)
+				if thread.running: thread.stop()
 			threads[0].join(self.__quantum)
