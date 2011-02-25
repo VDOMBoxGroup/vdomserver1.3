@@ -24,24 +24,18 @@ class VDOM_thread(threading.Thread):
 		pass
 
 	def main(self):
-		#while self.__server.running and self.__running:
 		while self.__running:
 			if not self.work():
 				remainder=self.__sleep
-				#while remainder>0 and self.__server.running and self.running:
 				while remainder>0 and self.__running:
-					sleep=min(self.__server.quantum, remainder)
-					time.sleep(remainder)
-					remainder-=sleep
+					value=min(self.__server.quantum, remainder)
+					time.sleep(value)
+					remainder-=value
 
 	def run(self):
 		try:
 			self.prepare()
 			self.main()
-		except:
-			raise
-			#debug("Force shutdown due exception")
-			#self.__server.stop()
 		finally:
 			self.cleanup()
 
