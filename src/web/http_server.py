@@ -252,7 +252,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
 	# convenience  - wraps your func for you.
 	def registerKWFunction(self, function, namespace = '', funcName = None, path = ''):
-		print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! registerKWFunction !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 		if namespace == '' and path == '': namespace = self.namespace
 		if namespace == '' and path != '':
 			namespace = path.replace("/", ":")
