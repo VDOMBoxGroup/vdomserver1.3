@@ -5,7 +5,6 @@ from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 from utils.system import *
 from utils.app_management import import_application
-from web import VDOM_http_server_thread
 
 
 class VDOM_server_manager():
@@ -34,8 +33,6 @@ class VDOM_server_manager():
 			self.conf = {}
 		# thread
 		thread.start_new_thread(self.__backup_thread, ())
-		# web server
-		VDOM_http_server_thread().start()
 
 	def save_conf(self):
 		self.conf["history"] = self.history
