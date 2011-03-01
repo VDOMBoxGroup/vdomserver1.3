@@ -54,14 +54,11 @@ try:
 
 	managers.server.start()
 
-	#sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
-	#from utils.tracing import show_threads_trace
-	#show_threads_trace()
+	sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
+	from utils.tracing import show_threads_trace
+	show_threads_trace()
 except:
 	from traceback import print_exc
-	#sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
-	#from utils.tracing import show_threads_trace
-	#show_threads_trace()
 	sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
 	print_exc()
 finally:
