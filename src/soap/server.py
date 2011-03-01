@@ -11,7 +11,7 @@ from utils.mutex import VDOM_named_mutex_auto
 from utils.exception import *
 import soaputils
 from utils.uuid import uuid4
-from xml_object import xml_object # memory.
+from memory import xml_object # memory.
 from database.dbobject import VDOM_sql_query
 from utils.app_management import import_application
 from version import VDOM_server_version

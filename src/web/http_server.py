@@ -1,33 +1,14 @@
-"""VDOM http server module"""
 
-import sys, os
-import posixpath
-import urllib
-import shutil
-import mimetypes
-import re
-import socket
-import select
-import thread
-import time
-import random
-import traceback
+import sys, os, time, random, socket, select, traceback
 import SocketServer, BaseHTTPServer, SimpleHTTPServer, SOAPpy
-
 import managers
-import log
 from utils.pid import VDOM_server_pid
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
-
 from vhosting import VDOM_vhosting
 from soap.functions import *
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
-
-
-rexp = re.compile(r"vr0\:.+inet\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
-rexp2 = re.compile(r"eth0.+inet addr\:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
 
 	
 class VDOM_http_server(SocketServer.ThreadingTCPServer):

@@ -2,8 +2,23 @@
 
 import shutil, os, os.path, sys, traceback, base64, zipfile, thread, time, copy
 from metaimporter import VDOM_metaimporter
+from utils.threads import VDOM_daemon
 
 
+class VDOM_xml_sync_daemon(VDOM_daemon):
+	
+	def __init__(self, name="XML Sync", sleep=VDOM_CONFIG["APP-SAVE-TIMEOUT"]):
+		VDOM_daemon.__init__(self, name=name, sleep=sleep)
+
+	def prepare(self):
+		debug("Start %s"%self.name)
+
+	def cleanup(self):
+		debug("Stop %s"%self.name)
+
+	def work(self):
+		managers.xml_manager.sync()
+    
 class VDOM_xml_manager(object):
 	"""XML Manager class"""
 
@@ -75,7 +90,7 @@ class VDOM_xml_manager(object):
 		managers.resource_manager.collect_unused()
 		managers.resource_manager.save_index_on(True)
 
-		thread.start_new_thread(self.__app_sync_thread, ())
+		#thread.start_new_thread(self.__app_sync_thread, ())
 
 	def __app_sync_thread(self):
 		while True:
@@ -97,6 +112,24 @@ class VDOM_xml_manager(object):
 				self.__app_sem.unlock()
 			time.sleep(VDOM_CONFIG["APP-SAVE-TIMEOUT"])
 
+	def sync(self):
+		if len(self.__app_to_sync) > 0:
+			self.__app_sem.lock()
+			while len(self.__app_to_sync) > 0:
+				the_id = self.__app_to_sync.pop(0)
+				try:
+					while True:
+						self.__app_to_sync.remove(the_id)
+				except: pass
+				if the_id in self.__applications:
+					xmlstr = self.__applications[the_id].get_xml_as_string()
+					if len(xmlstr) > 0:
+						try:
+							managers.file_manager.write(file_access.application_xml, the_id, None, None, xmlstr, False, False)
+						except Exception, e:
+							debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
+			self.__app_sem.unlock()
+		
 	### app
 
 	def load_application(self, filename, boot = False):
