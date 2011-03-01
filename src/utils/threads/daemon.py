@@ -1,10 +1,11 @@
 
 import time, threading
+import auxiliary
 from thread import VDOM_thread
 
 class VDOM_daemon(VDOM_thread):
 
-	def __init__(self, name=None, sleep=1, dependencies=None):
+	def __init__(self, name=None, sleep=auxiliary.quantum, dependencies=None):
 		VDOM_thread.__init__(self, name=name, sleep=sleep)
 		self.__dependencies=[]
 		if dependencies:

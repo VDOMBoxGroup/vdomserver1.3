@@ -26,13 +26,7 @@ class VDOM_thread(threading.Thread):
 		pass
 
 	def main(self):
-		while self.__running:
-			if not self.work():
-				remainder=self.__sleep
-				while remainder>0 and self.__running:
-					value=min(self.__quantum, remainder)
-					time.sleep(value)
-					remainder-=value
+		while self.__running: self.sleep(self.work())
 
 	def run(self):
 		try:
@@ -43,3 +37,10 @@ class VDOM_thread(threading.Thread):
 
 	def stop(self):
 		self.__running=False
+
+	def sleep(self, seconds=None):
+		remainder=self.__sleep if seconds is None else seconds
+		while remainder>0 and self.__running:
+			value=min(self.__quantum, remainder)
+			time.sleep(value)
+			remainder-=value

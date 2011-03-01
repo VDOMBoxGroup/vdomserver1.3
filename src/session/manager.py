@@ -6,33 +6,29 @@ from session import VDOM_session
 from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 import managers
+from daemon import VDOM_session_cleaner
 
 class VDOM_session_manager(dict):
 	"""Session Manager class"""
 
 	def __init__(self):
 		"""constructor"""
+		dict.__init__(self)
 		self.__timeout = VDOM_CONFIG["SESSION-LIFETIME"]
 		self.__sem = VDOM_semaphore()
 		#start clean thread
-		thread.start_new_thread(self.clean_thread, ())
-		dict.__init__(self)
+		self.__daemon=VDOM_session_cleaner(self)
+		self.__daemon.start()
 
 	def check_sessions(self):
 		"""clean timed-out sessions"""
 		keys_copy = copy.deepcopy(self.keys())
-		for sid in keys_copy:
-			self[sid]
+		for sid in keys_copy: self[sid]
 
-	def clean_thread(self):
+	def work(self):
 		"""clean thread function"""
-		interval = self.__timeout
-		if interval < 3600:
-			interval = 3600
-		while True:
-			time.sleep(interval)
-			self.check_sessions()
-		return 0
+		self.check_sessions()
+		return max(3600, self.__timeout)
 
 	def create_session(self):
 		"""create session & return it`s id"""

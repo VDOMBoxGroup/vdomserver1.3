@@ -1,6 +1,6 @@
 """server request handler module"""
 
-import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, threading, time, SOAPpy, traceback
+import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, threading, time, SOAPpy, traceback, select
 
 if sys.platform.startswith("freebsd"):
 	import vdomlib
@@ -58,6 +58,15 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 		except:
 			raise
+
+	def handle(self):
+		"""Handle multiple requests if necessary."""
+		self.close_connection = 1
+		self.handle_one_request()
+		while self.server.active and not self.close_connection:
+			ready=select.select([self.request], [], [], 0.5)
+			if not ready[0]: continue
+			self.handle_one_request()
 
 	def do_GET(self):
 		"""serve a GET request"""

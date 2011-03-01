@@ -10,6 +10,8 @@ from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 from utils.mutex import VDOM_named_mutex_auto
 
+from daemon import VDOM_storage_writer
+
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
 #__update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
 _clear_sql = "DELETE FROM Resource_index"
@@ -28,7 +30,8 @@ class VDOM_storage(object):
 		if not self.init_db():
 			raise VDOM_exception("Failed to initialize local server storage")
 		#start write thread
-		thread.start_new_thread(self.__write_thread, ())
+		self.__daemon=VDOM_storage_writer(self)
+		self.__daemon.start()
 		# check if need to write config_1
 		if not VDOM_CONFIG["VDOM-CONFIG-1-RECORD"] in self.keys():
 			self.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], VDOM_CONFIG_1)
@@ -101,21 +104,23 @@ class VDOM_storage(object):
 			conm.execute("delete from storage where name = ?", (key, ))
 			#conn.commit() #
 
-	def __write_thread(self):
-		"""thread that implements async writing"""
-		conn = sqlite3.connect(self.__fname)
-		cur = conn.cursor()
-		while True:
-			if self.__queue:
-				try:
-					self.__sem.lock()
-					while self.__queue:
-						item = self.__queue.pop(0)
-						self.__internal_write(item[0], item[1], cur)
-					conn.commit()
-				finally:
-					self.__sem.unlock()
-			time.sleep(0.1)
+
+	def prepare(self):
+		connection=sqlite3.connect(self.__fname)
+		cursor=connection.cursor()
+		return connection, cursor
+
+	def work(self, connection, cursor):
+		if self.__queue:
+			try:
+				self.__sem.lock()
+				while self.__queue:
+					item = self.__queue.pop(0)
+					self.__internal_write(item[0], item[1], cursor)
+				connection.commit()
+			finally:
+				self.__sem.unlock()
+
 
 	def read(self, key):
 		"""read data from storage"""

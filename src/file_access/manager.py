@@ -9,6 +9,7 @@ import file_access
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
 import utils.mutex as mutex
+from daemon import VDOM_file_manager_writer
 
 
 application_path = "applications"
@@ -25,26 +26,26 @@ class VDOM_file_manager(object):
 	def __init__(self):
 		self.__queue = []
 		self.__sem = VDOM_semaphore()
-		thread.start_new_thread(self.__write_thread, ())
+		self.__daemon=VDOM_file_manager_writer(self)
+		self.__daemon.start()
 
-	def __write_thread(self):
-		"""thread that implements async writing"""
-		while True:
-			if len(self.__queue) > 0:
-				self.__sem.lock()
-				while len(self.__queue) > 0:
-					item = self.__queue.pop(0)
-					fname = item[0]
-					data = item[1]
-#					self.write(fname, data)
-					file = open(fname, "wb")
-					if  type(content) == types.FileType or hasattr(content, "read"):
-						shutil.copyfileobj(content, fh)
-					else:
-						file.write(data)
-					file.close()
-				self.__sem.unlock()
-			time.sleep(0.1)
+
+	def work(self):
+		if len(self.__queue) > 0:
+			self.__sem.lock()
+			while len(self.__queue) > 0:
+				item = self.__queue.pop(0)
+				fname = item[0]
+				data = item[1]
+#				self.write(fname, data)
+				file = open(fname, "wb")
+				if  type(content) == types.FileType or hasattr(content, "read"):
+					shutil.copyfileobj(content, fh)
+				else:
+					file.write(data)
+				file.close()
+			self.__sem.unlock()
+
 
 	def write_async(self, fname, data):
 		self.__sem.lock()

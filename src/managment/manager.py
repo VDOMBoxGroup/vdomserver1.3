@@ -5,6 +5,7 @@ from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 from utils.system import *
 from utils.app_management import import_application
+from daemon import VDOM_backup
 
 
 class VDOM_server_manager():
@@ -32,7 +33,8 @@ class VDOM_server_manager():
 		else:
 			self.conf = {}
 		# thread
-		thread.start_new_thread(self.__backup_thread, ())
+		self.__daemon=VDOM_backup(self)
+		self.__daemon.start()
 
 	def save_conf(self):
 		self.conf["history"] = self.history
@@ -67,8 +69,10 @@ class VDOM_server_manager():
 		self.save_conf()
 		self.__sem.unlock()
 
-	def __backup_thread(self):
-		t1 = time.time()
+	def prepare(self):
+		return time.time()
+
+	def work(self, t1):
 		while True:
 			if len(self.backup_app) > 0 and self.history > 0 and self.interval > 0:
 				t2 = time.time()
@@ -104,7 +108,7 @@ class VDOM_server_manager():
 					t1 = time.time()
 			else:
 				t1 = time.time()
-			time.sleep(60)
+			return 60
 
 	def __do_backup(self, direct, app_id):
 		this_name = app_id + "." + self.backup_type

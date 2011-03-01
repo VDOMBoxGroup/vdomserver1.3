@@ -37,7 +37,9 @@ class VDOM_server(VDOM_singleton):
 			self.main()
 		finally:
 			self.stop()
+			sys.stderr.write("Stop threads...\n")
 			self.notify(lambda thread: not isinstance(thread, VDOM_daemon))
+			sys.stderr.write("Stop daemons...\n")
 			self.notify(lambda thread: isinstance(thread, VDOM_daemon) and not thread.dependencies)
 			self.cleanup()
 

@@ -10,7 +10,7 @@ from soap.functions import *
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
 
-	
+
 class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	"""VDOM threading http server class"""
 
@@ -82,6 +82,8 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		gen_wsdl()
 		#send_to_card("online")
 
+		self.active=True
+
 	def __del__(self):
 		"""destructor, remove pid file"""
 		VDOM_server_pid(self.__pidfile, False, True)
@@ -124,18 +126,20 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		"""handle each request in separate thread"""
 		# while not self.__stop:
 		#	self.handle_request()
+
 		SocketServer.ThreadingTCPServer.serve_forever(self)
-		idx = 0
-		while self.__current_connections and idx < 30:
-			time.sleep(0.1)
-			idx += 1
+		while self.__current_connections: time.sleep(0.1)
+
+	def shutdown(self):
+		self.active=False
+		SocketServer.ThreadingTCPServer.shutdown(self)
 
 	def verify_request(self, request, client_address):
 		"""verify the request by matching client address with the stored regexp"""
 		self.__deny = 0
 		return True
 
-	def finish_request(self, request, client_address):
+	def finish_request(self, request, client_address, thread=None):
 		"""finish one request by instantiating RequestHandlerClass"""
 		self.__sem.lock()
 		card = True
