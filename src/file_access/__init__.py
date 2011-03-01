@@ -1,6 +1,7 @@
 
 from manager import VDOM_file_manager
 from share import VDOM_share
+from daemon import VDOM_file_manager_writer
 
 application_xml = 0 # XML
 global_type 	= 1 # app/types/                           - XML files of types

@@ -9,6 +9,7 @@ from email.mime.multipart  import MIMEMultipart
 from utils.semaphore import VDOM_semaphore
 from storage.storage import VDOM_config
 import managers
+from daemon import VDOM_mailer
 
 
 class VDOM_SMTP(SMTP):
@@ -23,7 +24,6 @@ class VDOM_SMTP(SMTP):
 	def getreply(self):
 		self.sock.settimeout(self.tout)
 		return SMTP.getreply(self)
-
 
 class MIME_VDOM(MIMENonMultipart):
 
@@ -42,7 +42,8 @@ class VDOM_email_manager(object):
 		self.__error = ""
 		self.__id = 0
 		self.__load_config()
-		thread.start_new_thread(self.__email_thread, ())
+		self.__daemon=VDOM_mailer(self)
+		self.__daemon.start()
 
 	def __load_config(self):
 		cf = VDOM_config()
@@ -119,9 +120,8 @@ class VDOM_email_manager(object):
 		self.__sem.unlock()
 		return x
 	
-	def __email_thread(self):
-		ts = 0.1
-		while True:
+	def work(self):
+			ts=0.1
 			if len(self.__queue) > 0:
 				self.__sem.lock()
 				try:
@@ -214,4 +214,4 @@ class VDOM_email_manager(object):
 					self.__sem.unlock()
 			else:
 				ts = 10
-			time.sleep(ts)
+			return ts

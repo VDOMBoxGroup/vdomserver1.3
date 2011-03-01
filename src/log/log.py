@@ -2,7 +2,7 @@
 log module
 """
 
-import time, thread, sys, os
+import time, thread, threading, sys, os
 import logging
 import logging.handlers
 
@@ -55,6 +55,7 @@ class VDOM_log_manager:
 
 	def __write_thread(self):
 		"""thread that implements async writing"""
+		threading.current_thread().name="Logger"
 		while True:
 			if len(self.__queue) > 0:
 				self.__sem.lock()

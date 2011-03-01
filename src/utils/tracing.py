@@ -20,6 +20,13 @@ def normalize_source_statement(statement, length=50):
 	statement=statement.strip()
 	return statement[:length-3]+"..." if len(statement)>length else statement
 
+def show_trace(ident="", stack=None):
+	if stack is None: stack=traceback.extract_stack()
+	for path, line, function, statement in stack:
+		path=normalize_source_path(path)
+		statement=normalize_source_statement(statement)
+		print "%*s %6s %s:%s:%s"%(-title_width, title, ident, path, line, function)
+		title, ident="", ""
 
 def show_threads_trace(ident="", title_width=30):
 	threads={thread.ident: thread for thread in threading.enumerate()}
@@ -39,5 +46,3 @@ def show_threads_trace(ident="", title_width=30):
 			statement=normalize_source_statement(statement)
 			print "%*s %6s %s:%s:%s"%(-title_width, title, ident, path, line, function)
 			title, ident="", ""
-
-	
