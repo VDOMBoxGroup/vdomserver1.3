@@ -53,13 +53,18 @@ try:
 	managers.register("server_manager", VDOM_server_manager)
 
 	managers.server.start()
-
-	sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
-	from utils.tracing import show_threads_trace
-	show_threads_trace()
 except:
 	from traceback import print_exc
-	sys.stderr.write("- - - - - - - - - - - - - - - - - - - -\n")
+	sys.stderr.write("\n")
 	print_exc()
 finally:
-	os._exit(0)
+	import threading
+	count=threading.active_count()
+	if count>1:
+		sys.stderr.write("\n")
+		from utils.tracing import show_threads_trace
+		show_threads_trace(details=None)
+		daemons=tuple(thread for thread in threading.enumerate() if thread.daemon)
+		if count-len(daemons)>1:
+			sys.stderr.write("\nForce exit\n")
+			os._exit(0)

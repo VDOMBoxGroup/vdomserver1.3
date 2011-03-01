@@ -28,19 +28,20 @@ def show_trace(ident="", stack=None):
 		print "%*s %6s %s:%s:%s"%(-title_width, title, ident, path, line, function)
 		title, ident="", ""
 
-def show_threads_trace(ident="", title_width=30):
+def show_threads_trace(ident="", title_width=30, details=1):
 	threads={thread.ident: thread for thread in threading.enumerate()}
 	for ident, frame in sys._current_frames().items():
 		thread=threads.get(ident, None)
 		if not thread: continue
 		flags=tuple(flag for flag in ("Daemon" if thread.daemon else None, 
 			"Smart" if isinstance(thread, (VDOM_thread, VDOM_daemon)) else None) if flag)
-		details=" (%s)"%", ".join(flags) if flags else ""
-		title="%s...%s"%(thread.name[:title_width-len(details)-3], details) \
-			if len(thread.name)>title_width-len(details) else \
-			"%s%s"%(thread.name, details)
+		information=" (%s)"%", ".join(flags) if flags else ""
+		title="%s...%s"%(thread.name[:title_width-len(information)-3], information) \
+			if len(thread.name)>title_width-len(information) else \
+			"%s%s"%(thread.name, information)
 		ident=thread.ident
 		stack=traceback.extract_stack(frame)
+		if not details: stack=(stack[-1],)
 		for path, line, function, statement in stack:
 			path=normalize_source_path(path)
 			statement=normalize_source_statement(statement)
