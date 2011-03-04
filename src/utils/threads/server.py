@@ -35,7 +35,7 @@ class VDOM_server(VDOM_singleton):
 		try:
 			self.prepare()
 			self.main()
-		finally:
+		finally: # TODO: Rewrite
 			self.stop()
 			sys.stderr.write("Stop threads...\n")
 			self.notify(lambda thread: not isinstance(thread, VDOM_daemon))
@@ -50,9 +50,13 @@ class VDOM_server(VDOM_singleton):
 		self.stop()
 
 	def notify(self, condition):
+		ignore=set();
 		while True:
 			threads=tuple(thread for thread in threading.enumerate() if isinstance(thread, VDOM_thread) and condition(thread))
 			if not threads: return
 			for thread in threads:
-				if thread.running: thread.stop()
+				if thread in ignore: continue
+				if thread.running:
+					thread.stop()
+					ignore.add(thread)
 			threads[0].join(self.__quantum)
