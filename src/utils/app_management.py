@@ -116,6 +116,7 @@ def update_application(path, vh):
 		managers.database_manager.add_database(appid, dbs[path], data)
 	shutil.rmtree(tmpdir, ignore_errors=True)
 	# restore resources
+	os.mkdir(rpath1)
 	r2 = os.listdir(tmpdir1)
 	for item in r2:
 		shutil.copy2(tmpdir1 + "/" + item, rpath1)
