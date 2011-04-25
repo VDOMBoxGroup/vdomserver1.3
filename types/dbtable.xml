@@ -284,7 +284,7 @@ class VDOM_dbtable(VDOM_object):
 				#	self.data = table.get_data_xml()
 				#else:
 				#	self.data = table.update_data(self.data)
-				#from src.database.dbobject import VDOM_sql_query
+				#from database.dbobject import VDOM_sql_query
 				#query = VDOM_sql_query(request.application_id, database_id, "select * from %s"%self.name)
 				#self.data = str(query.fetchall_xml())
 				#del(query)
@@ -359,17 +359,17 @@ class VDOM_dbtable(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 		
 def on_delete(app_id, object_id, param):
-	from src.database.dbobject import VDOM_sql_query
-	import src.xml
-	application = src.xml.xml_manager.get_application(app_id)
+	from database.dbobject import VDOM_sql_query
+	import managers
+	application = managers.xml_manager.get_application(app_id)
 	object = application.search_object(object_id)
 	q = VDOM_sql_query(app_id, object.parent.id, "DROP TABLE IF EXISTS \'%s\'"%object.name)
 	q.commit()
 	return ""
 
 def get_table(app_id,object_id):
-	import src.xml
-	application = src.xml.xml_manager.get_application(app_id)
+	import managers
+	application = managers.xml_manager.get_application(app_id)
 	object = application.search_object(object_id)
 	db = request.database_manager.get_database(request.application_id, object.parent.id)
 	return db.get_table(object_id,object.name)

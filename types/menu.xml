@@ -693,8 +693,8 @@
 	</Resources>
 	<SourceCode>
 	<![CDATA[
-import src.resource
-from src.util.imaging import VDOM_imaging
+import managers
+from utils.imaging import VDOM_imaging
 class VDOM_menu(VDOM_object):
 
 
@@ -702,7 +702,7 @@ class VDOM_menu(VDOM_object):
 		imagefile = None
 		rolloverfile = None
 		if image:
-			resource = src.resource.resource_manager.get_resource_by_label(self.id, imagename)
+			resource = managers.resource_manager.get_resource_by_label(self.id, imagename)
 			if resource:
 				imagefile = resource.id
 			else:
@@ -715,7 +715,7 @@ class VDOM_menu(VDOM_object):
 				im1.write_text( title, align=self.fontalign, ident=self.fontshift, color=(int(color1[:2],16), int(color1[2:4],16), int(color1[4:6],16)))
 				imagefile = im1.save_temporary(request.application_id,self.id,imagename)
 		if rollover:
-			resource = src.resource.resource_manager.get_resource_by_label(self.id, rollovername)
+			resource = managers.resource_manager.get_resource_by_label(self.id, rollovername)
 			if resource:
 				rolloverfile = resource.id
 			else:
@@ -882,7 +882,7 @@ class VDOM_menu(VDOM_object):
 			vis="display:none;"
 		if len(self.pages) == 0:
 			return ""
-		import src.util
+		import utils
 		result = ""
 		header = 0
 		if not self.layout or self.layout == "" or self.layout == "0":
@@ -895,10 +895,10 @@ class VDOM_menu(VDOM_object):
 			representation = ""
 			if self.image:
 				if self.rollover and self.rolloverfiles[i] != "":
-					onmouse = " OnMouseOver=\"this.src=\'"+src.util.id.id2link1(self.rolloverfiles[i])+"\'\" OnMouseOut=\"this.src=\'"+src.util.id.id2link1(self.imagefiles[i])+"\'\""
+					onmouse = " OnMouseOver=\"this.src=\'"+utils.id.id2link1(self.rolloverfiles[i])+"\'\" OnMouseOut=\"this.src=\'"+utils.id.id2link1(self.imagefiles[i])+"\'\""
 				else:
 					onmouse = ""
-				representation = "<IMG src=%s %s title=\"%s\" style=\"border:none\" width=\"%s\" height=\"%s\">"%(src.util.id.id2link1(self.imagefiles[i]),onmouse,self.pages[i][1],self.finalwidth,self.finalheight)
+				representation = "<IMG src=%s %s title=\"%s\" style=\"border:none\" width=\"%s\" height=\"%s\">"%(utils.id.id2link1(self.imagefiles[i]),onmouse,self.pages[i][1],self.finalwidth,self.finalheight)
 			else:
 				representation = self.pages[i][1]
 			if self.pages[i][0] == "":

@@ -337,7 +337,7 @@ class VDOM_dbhtmlview(VDOM_object):
   def get_html_data(self):
     data = ""
     try:
-      from src.database.dbobject import VDOM_sql_query
+      from database.dbobject import VDOM_sql_query
       
       query = self.sqlquery
       if self.limit and not self.contains_word(query, "limit") and str(self.limit) != "":
