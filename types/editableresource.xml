@@ -273,18 +273,18 @@
 	<SourceCode>
 	<![CDATA[
 
-import src.resource
+import managers
 
 class VDOM_editableresource(VDOM_object):
 
 	def render(self, parent, contents=""):
 		if self.visible == "1":
-			resource = src.resource.resource_manager.get_resource_by_label(self.id, "userdata")
+			resource = managers.resource_manager.get_resource_by_label(self.id, "userdata")
 			if resource:
 				res_id = resource.id
 			else:
 				res_type = "js" if self.datatype == 1 else "css" if self.datatype == 2 else "txt"
-				res_id = src.resource.resource_manager.add_resource(request.application_id, self.id, {"name" :"userdata","res_format" : res_type ,"res_type" : "temporary", "label" : "userdata"},self.userdata)
+				res_id = managers.resource_manager.add_resource(request.application_id, self.id, {"name" :"userdata","res_format" : res_type ,"res_type" : "temporary", "label" : "userdata"},self.userdata)
 
 			udata = ""
 			if self.datatype == "1":
@@ -335,8 +335,8 @@ class VDOM_editableresource(VDOM_object):
 #def set_attr(app_id, object_id, param):
 #	if "userdata" in param:
 #		userdata = param["userdata"]["value"]
-#		resource = src.resource.resource_manager.get_resource_by_label(object_id, "userdata")
-#		src.resource.resource_manager.delete_resource(object_id,resource.id,True)
+#		resource = managers.resource_manager.get_resource_by_label(object_id, "userdata")
+#		managers.resource_manager.delete_resource(object_id,resource.id,True)
 			]]>
 	</SourceCode>
 	<Libraries>
