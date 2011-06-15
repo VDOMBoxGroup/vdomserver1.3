@@ -14,8 +14,7 @@ def run(request):
 	if "datestr" in args and "" != args["datestr"][0]:
 		try:
 			s = args["datestr"][0]
-			s = s.replace(" ", "-")
-			f = os.popen("date %s" % (s))
+			f = os.popen("date %s" % s)
 			outp = f.read()
 			f.close()
 		except Exception, e:
