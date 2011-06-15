@@ -43,3 +43,9 @@ class VDOM_source_swap:
 		name = str(utils.uuid.uuid4())
 		self.__swap_file_index[(application_id,container_id, action_name, context)] = name
 		return managers.file_manager.write(file_access.cache, application_id, None, name, cPickle.dumps(content))
+
+	def clear(self):
+		"""Clean up of disk swap"""
+		for swap_record in self.__swap_file_index:
+			managers.file_access.file_manager.delete(managers.file_access.cache, swap_record[0], None, self.__swap_file_index[swap_record])
+		self.__swap_file_index = {}

@@ -15,7 +15,7 @@ class MFSt(FieldStorage):
 
 	def make_file(self, binary=None):
 		import tempfile
-		return tempfile.NamedTemporaryFile("w+b",dir=VDOM_CONFIG["TEMP-DIRECTORY"])
+		return tempfile.NamedTemporaryFile("w+b",prefix="vdomupload",dir=VDOM_CONFIG["TEMP-DIRECTORY"],delete=False)
 
 class File_argument(object):
 	def __init__(self,fileobj, name):
@@ -136,8 +136,8 @@ class VDOM_request:
 		self.__binary = False
 		self.fh = None
 	
-	def __del__(self):
-		"""Destructor needed for temp files cleanup"""
+	def collect_files(self):
+		"""Replacement for destructor needed for temp files cleanup"""
 		for key in self.files:
 			self.files[key][0].close()
 			

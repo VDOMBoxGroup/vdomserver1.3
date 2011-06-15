@@ -5,6 +5,7 @@ import SOAPpy
 
 import managers
 from soap.errors import *
+import utils
 from utils.exception import *
 
 

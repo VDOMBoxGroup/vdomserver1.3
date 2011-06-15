@@ -57,7 +57,11 @@ class VDOM_request(object):
 		"""specify redirection to some url"""
 		managers.request_manager.current.redirect(to)
 		managers.engine.terminate()
-
+		
+	def terminate(self):
+		"""Current request termination"""
+		managers.engine.terminate()
+		
 	def application(self):
 		return managers.request_manager.current.application()
 	

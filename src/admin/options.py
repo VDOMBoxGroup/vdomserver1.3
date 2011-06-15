@@ -21,7 +21,7 @@ def run(request):
 		param["firmware"] = system_options["firmware"]
 		param["objlim"] = system_options["object_amount"]
 		param["obj"] = managers.xml_manager.obj_count
-		param["_o"] = int(100.0 * managers.xml_manager.obj_count / int(system_options["object_amount"]))
+		param["_o"] = int(100.0 * managers.xml_manager.obj_count / int(system_options["object_amount"])) if int(system_options["object_amount"]) != 0 else 100
 		param["ver"] = VDOM_server_version
 		if "0" == system_options["server_license_type"]:
 			param["usage"] = "Online server"

@@ -24,16 +24,16 @@ def run(request):
 			tmpfile.close()
 			# call update function
 			outp = update_application(tmpfilename, request.server().virtual_hosting())
-			if None != outp[0] and "" != outp[0]:
+			if outp[0]:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
 			else:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Update error";</script>')
-		except Exception, e:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: ' + escape(str(e), quote=True) + '<br>";</script>')
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Update error: %s";</script>' % escape(outp[1], quote=True))
+		except Exception as e:
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: %s";</script>' % escape(str(e), quote=True))
 			traceback.print_exc(file=debugfile)
 		try:
 			os.remove(tmpfilename)
-		except Exception, e:
+		except Exception as e:
 			pass
 	else:
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')

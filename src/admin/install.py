@@ -11,7 +11,7 @@ def run(request):
 		raise VDOM_exception("Authentication failed")
 
 	args = request.arguments().arguments()
-	if "appfile" in args and "vhname" in args and "format" in args and "" != args["appfile"][0] and "" != args["vhname"][0] and "" != args["format"][0]:
+	if "appfile" in args and "appfile" in request.files and "vhname" in args and "format" in args and "" != args["appfile"][0] and "" != args["vhname"][0] and "" != args["format"][0]:
 		# perform installation
 		#request.write('Installing...<br><br>')
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installing...";</script>')
@@ -28,18 +28,12 @@ def run(request):
 			#request.write('Virtual host name "%s" already exists' % vhname)
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual host name \'%s\' already exists";</script>' % vhname)
 		else:
-			tmpfilename = ""
 			try:
-				# save file
-				tmpfilename = tempfile.mkstemp("." + args["format"][0], "", VDOM_CONFIG["TEMP-DIRECTORY"])
-				os.close(tmpfilename[0])
-				tmpfilename = tmpfilename[1]
-				tmpfile = open(tmpfilename, "wb")
-				tmpfile.write(args["appfile"][0])
-				tmpfile.close()
-				#request.write(tmpfilename + "<br>")
+				# #request.write(tmpfilename + "<br>")
+				request.files["appfile"][0].delete = False
+				request.files["appfile"][0].close()
 				# call import function
-				outp = import_application(tmpfilename)
+				outp = import_application(request.files["appfile"][0].name,args["format"][0])
 				if None != outp[0] and "" != outp[0]:
 					#request.write("OK, application id = %s" % outp)
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
@@ -54,10 +48,7 @@ def run(request):
 			except Exception, e:
 				traceback.print_exc()
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: ' + escape(str(e), quote=True) + '<br>";</script>')
-			try:
-				os.remove(tmpfilename)
-			except Exception, e:
-				pass
+
 	elif "appfile" in args and "vhname" in args and "format" in args:
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect parameters";</script>')
 	else:

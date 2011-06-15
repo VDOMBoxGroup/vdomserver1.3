@@ -215,7 +215,11 @@ class VDOM_storage(object):
 		
 	def get_resource_record(self, res_descriptor):
 		"""Interface for access to DB records of resources"""
-		row = self.__execute_sql_read("SELECT filename, name, res_type, res_format from Resource_index WHERE res_id = ?", (res_descriptor.id,))[0]
+		rows = self.__execute_sql_read("SELECT filename, name, res_type, res_format from Resource_index WHERE res_id = ?", (res_descriptor.id,))
+		if len(rows) == 1:
+			row = rows[0]
+		else:
+			raise VDOM_exception("Resource record (id = %s) not found"%res_descriptor.id)
 		res_descriptor.filename = row[0]
 		res_descriptor.name = row[1]
 		res_descriptor.res_type = row[2]

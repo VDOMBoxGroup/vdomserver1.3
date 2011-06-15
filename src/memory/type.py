@@ -57,10 +57,9 @@ class VDOM_type(VDOM_parser):
 		# base
 		VDOM_parser.create(self, xml_obj)
 		# save xml to file
-		self.__pathname = "%s/%s.xml"%(VDOM_CONFIG["TYPES-LOCATION"],self.name) #VDOM_CONFIG["TEMP-DIRECTORY"] + "/types/" + self.name+ ".xml"
-		#xml_obj.sync(self.__pathname)#TODO: Maybe it is really not used?
+		self.filename = "%s/%s.xml"%(VDOM_CONFIG["TYPES-LOCATION"],self.name)
 		if had_resources:
-			xml_obj.sync(self.__pathname)
+			xml_obj.sync(self.filename)
 		if hasattr(self, "remote_methods"):
 			for func_name in self.remote_methods:
 				managers.dispatcher.add_remote_method(self.id, func_name)
@@ -77,7 +76,7 @@ class VDOM_type(VDOM_parser):
 
 	def get_xml_as_string(self):
 		"""get xml document as string"""
-		f = open(self.__pathname, "rb")
+		f = open(self.filename, "rb")
 		data = f.read()
 		f.close()
 		return data.decode("utf-8")
@@ -87,7 +86,8 @@ class VDOM_type(VDOM_parser):
 		return self.attributes
 
 	def parse_resources(self, xml_obj):
-		#managers.resource_manager.invalidate_resources(self.id)
+		if xml_obj.children:
+			managers.resource_manager.invalidate_resources(self.id)
 		VDOM_parser.parse_resources(self, xml_obj)
 
 	def parse_sourcecode(self, xml_obj):

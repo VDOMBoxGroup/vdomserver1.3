@@ -1,5 +1,5 @@
 
-import os, socket
+import os, socket,time
 from utils.exception import VDOM_exception
 
 def run(request):
@@ -55,33 +55,24 @@ function MM_swapImage() { //v3.0
 		modify = True
 
 	# check if ssh opened
-	enabled = True
-	f = os.popen("ipfw show 500")
-	outp = f.read()
-	f.close()
-	if "allow" not in outp:
-		enabled = False
-
+	def is_enabled():
+		f = os.popen("pidof sshd")
+		outp = f.read()
+		f.close()
+		return True if outp else False
 	# change option
 	if modify:
-		if enabled:
-			f = os.popen("/etc/ssh/close_port")
+		if is_enabled():
+			f = os.popen("/usr/local/etc/init.d/openssh stop")
 			outp = f.read()
 			f.close()
 		else:
-			f = os.popen("/etc/ssh/open_port")
+			f = os.popen("/usr/local/etc/init.d/openssh start")
 			outp = f.read()
 			f.close()
+		time.sleep(1)
 
-	# check if ssh opened
-	enabled = True
-	f = os.popen("ipfw show 500")
-	outp = f.read()
-	f.close()
-	if "allow" not in outp:
-		enabled = False
-
-	if enabled:
+	if is_enabled():
 		request.write("""<body>
 <p class="Texte"><a href="config.py">Configuration</a><a href="menuAppli.html"></a> &gt; Remote access </p>
 <table width="100%" height="85%" border="0">

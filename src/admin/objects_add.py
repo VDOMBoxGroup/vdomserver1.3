@@ -13,15 +13,8 @@ def run(request):
 	args = request.arguments().arguments()
 	if "typefile" in args and "" != args["typefile"][0]:
 		# perform installation
-		tmpfilename = ""
 		try:
-			# save file
-			tmpfilename = tempfile.mkstemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-			os.close(tmpfilename[0])
-			tmpfilename = tmpfilename[1]
-			tmpfile = open(tmpfilename, "wb")
-			tmpfile.write(args["typefile"][0])
-			tmpfile.close()
+			tmpfilename = request.files["typefile"][0].name
 			# test
 			ret = managers.xml_manager.test_type(tmpfilename)
 			if None == ret:
@@ -38,10 +31,6 @@ def run(request):
 		except Exception, e:
 			request.write("Error: " + str(e) + "<br>")
 			debug(traceback.format_exc())
-		try:
-			os.remove(tmpfilename)
-		except Exception, e:
-			pass
 
 	request.write("""<html>
 <head>

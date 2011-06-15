@@ -44,7 +44,7 @@ class VDOM_database_manager(object):
 			database = VDOM_database_object(owner_id,attributes["id"])
 			try:
 				for key in attributes:
-					if key != "id" or key != "type":
+					if key not in ("id", "type"):
 						setattr(database, key, attributes[key])
 						#exec "database." + key + " = \"" + attributes[key] + "\""
 			except:

@@ -7,11 +7,17 @@ import sys, gettext, os
 gettext.install("vdom2")
 sys.path.append("../src")
 
+from utils.card_connect import send_to_card
 import utils.obsolete
+#Seting 10% to progressbar
+send_to_card("booting 10")
 
 import managers
 
 from server import VDOM_server
+#Seting 20% to progressbar
+send_to_card("booting 20")
+
 from log import VDOM_log_manager
 from storage import VDOM_storage
 from file_access import VDOM_file_manager, VDOM_share

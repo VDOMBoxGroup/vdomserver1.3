@@ -1,5 +1,6 @@
 
-import os, tempfile, traceback, shutil
+import os, tempfile, traceback, shutil, sys
+from cgi import escape
 from utils.exception import VDOM_exception
 import managers
 
@@ -11,35 +12,31 @@ def run(request):
 
 	error = ""
 	args = request.arguments().arguments()
-	if "typefile" in args and "typeid" in args and "" != args["typefile"][0] and "" != args["typeid"][0]:
+	if "typefile" in args and "" != args["typefile"][0]:
 		# perform installation
-		type_id = "-".join(args["typeid"][0].split("_"))
-		tmpfilename = ""
 		try:
-			# save file
-			tmpfilename = tempfile.mkstemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-			os.close(tmpfilename[0])
-			tmpfilename = tmpfilename[1]
-			tmpfile = open(tmpfilename, "wb")
-			tmpfile.write(args["typefile"][0])
-			tmpfile.close()
+			tmpfilename = request.files["typefile"][0].name
 			# test
-			ret = managers.xml_manager.test_type(tmpfilename)
-			if ret == type_id:
+			type_id = managers.xml_manager.test_type(tmpfilename)
+			if type_id:
 				# load type
+				managers.xml_manager.unload_type(type_id)
 				ret = managers.xml_manager.load_type(tmpfilename)
-				# ret[1] is a type object
-				shutil.copyfile(tmpfilename, VDOM_CONFIG["TYPES-LOCATION"] + "/" + ret[1].name.lower() + ".xml")
-				error = "OK, restart your VDOM Box to use the new type"
+				modulename = "module_%s"%type_id.replace('-','_')
+				if modulename in sys.modules:
+					sys.modules.pop(modulename)
+				managers.source_cache.clear_cache()
+				#for app_id in managers.xml_manager.get_applications():
+				#	app = managers.xml_manager.get_application(app_id)
+				#	for obj in app.get_objects().itervalues():
+				#		obj.invalidate()
+				error = "OK, new type is applied immediately"
 			else:
-				error = "Incorrect file or selected type"
+				error = "Incorrect file"
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: %s";</script>' % escape(error, quote=True))
 		except Exception, e:
-			request.write("Error: " + str(e) + "<br>")
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: Error. %s";</script>' % escape(str(e), quote=True))
 			request.write(traceback.format_exc())
-		try:
-			os.remove(tmpfilename)
-		except Exception, e:
-			pass
 
 	request.write("""<html>
 <head>
@@ -63,30 +60,9 @@ a:visited {
 
 <body>
  <p class="Texte"><a href="config.py">Configuration</a><a href="menuAppli.html"></a> &gt; <a href="objects.py">Objects</a> &gt; Update</p>
-""")
-
-	l = managers.xml_manager.get_types()
-	cont = ""
-	ll = []
-	for type_id in l:
-		a = "_".join(type_id.split("-"))
-		obj = managers.xml_manager.get_type(type_id)
-		ll.append(("%s (%s, version %s)" % (obj.name, type_id, obj.version), a))
-	ll.sort()
-	for item in ll:
-		cont += "<option value=%s>%s</option>" % (item[1], item[0])
-
-	request.write("""<center>
-<p align="center">%s</p>
+<center>
 <form method="post" action="/objects-update.py" enctype="multipart/form-data">
       <table border="0">
-        <tr>
-          <td>&nbsp;</td>
-          <td class="Style2"><div align="right">Update type : 
-          </div></td>
-          <td><select name="typeid">%s</select>
-          </td>
-        </tr>
         <tr>
           <td>&nbsp;</td>
           <td class="Style2"><div align="right">VDOM type xml file : 
@@ -103,4 +79,4 @@ a:visited {
 </form>
 </center>
 </body>
-</html>""" % (error, cont))
+</html>""")

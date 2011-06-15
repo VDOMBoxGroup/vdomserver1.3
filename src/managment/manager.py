@@ -165,4 +165,4 @@ class VDOM_server_manager():
 		tmpfilename = tmpfilename[1]
 		shutil.copyfile(file, tmpfilename)
 		import_application(tmpfilename)
-		os.remove(tmpfilename)
+		os.remove(tmpfilename,file.split(".")[-1].lower())

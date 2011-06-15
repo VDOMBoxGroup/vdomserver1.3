@@ -32,7 +32,7 @@ def compile_declarations_n_libraries(container):
 				lines.append(
 					"VDOM_Type_%(type)s.prototype.%(name)s=function(%(parameters)s){%(source)s}"%\
 					{"type": id.replace("-", "_"), "name": name,
-					"parameters": ("".join([", %s"%parameter.name for parameter in action.parameters]))[2:],
+					"parameters": ("".join([", %s"%parameter.name for parameter in action.parameters]).replace('"',r'\"') )[2:],
 					"source": action.source_code})
 	
 #	lines.append("});")
@@ -82,7 +82,7 @@ def compile_registations(container, parent):
 					else:
 #						if action.target_object in container.object.objects:
 						target="\"Obj_%s:%s(%s)\""%(action.target_object.replace("-", "_"), action.method_name,
-							", ".join([parameter.value for parameter in action.parameters]))
+							", ".join([parameter.value.replace('"',r'\"') for parameter in action.parameters])  )
 #						else:
 #							target="\'Obj_%s:bubbleEvent(\"%s\")\'"%(container.id.replace("-", "_"), action.method_name)
 					lines.append(
