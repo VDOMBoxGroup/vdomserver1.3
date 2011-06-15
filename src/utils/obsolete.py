@@ -10,6 +10,33 @@ from utils.system import console_debug
 
 # install debug and licensing
 
+#overriding server ports
+print ("Server run params: vdomsvr.py -p SERVER-PORT LOCAL-PORT CARD-PORT LOGGER-PORT -c vdom.cfg")
+if sys.argv:
+	for i in range(len(sys.argv)):
+		if sys.argv[i] == "-p" and i+1<len (sys.argv):
+			portlist = sys.argv[i+1:]
+			confkeys = ("SERVER-PORT", "SERVER-LOCALHOST-PORT","LOCALHOST-CARD-PORT","LOCALHOST-LOGGER-PORT")
+			for j in range(min(len(portlist),len(confkeys))):
+				if not portlist[j].isdigit():
+					break
+				VDOM_CONFIG[confkeys[j]] = int(portlist[j])
+			break
+		if sys.argv[i] == "-c" and i+1<len (sys.argv):
+			if os.path.isfile(sys.argv[i+1]):
+				import ConfigParser
+				config = ConfigParser.SafeConfigParser()
+				config.read(sys.argv[i+1])
+				for key in VDOM_CONFIG:
+					if config.has_option("VdomConfig", key):
+						if type(VDOM_CONFIG[key]) is int:
+							VDOM_CONFIG[key] = config.getint("VdomConfig", key)
+						else:
+							VDOM_CONFIG[key] = config.get("VdomConfig", key)
+					
+
+
+
 if sys.platform.startswith("freebsd") or sys.platform.startswith("linux"):
 	try:
 		f = open(VDOM_CONFIG["LOGGER-PIDFILE"], "r")
@@ -119,8 +146,6 @@ if not ok:
 # enforce directory structure
 
 try: os.makedirs(VDOM_CONFIG["TYPES-LOCATION"])
-except: pass
-try: os.makedirs(VDOM_CONFIG["TEMP-DIRECTORY"] + "/types")
 except: pass
 try: os.makedirs(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"] + "/applications")
 except: pass

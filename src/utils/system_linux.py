@@ -1,27 +1,28 @@
 import os, re, socket, sys
 import shlex, subprocess
-
+import src.managers
+rexp_ifconfig = re.compile(r"inet addr:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*Mask:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
+rexp_gateway = re.compile(r"^0\.0\.0\.0\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL | re.MULTILINE)
 
 def reinit_network():
-	f = os.popen("/bin/sh /opt/boot/networkconfig.sh")
-	outp = f.read()
-	f.close()
-
-rexp = re.compile(r"inet addr:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*Mask:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
-
-def get_ip_and_mask(interface = "eth0"):
-	# return (ip, mask)
 	try:
-		f = os.popen("ifconfig %s"%interface)
-		outp = f.read()
-		f.close()
-		ret = rexp.search(outp, 0)
+		subprocess.check_call(["/bin/sh","/opt/boot/networkconfig.sh"])
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: Network reinit failed. %s"%str(e),"system_linux")
+		
+def get_ip_and_mask(interface = "eth0"):
+	"""return (ip, mask)"""
+	try:
+		outp = subprocess.check_output(["ifconfig",str(interface)])
+		ret = rexp_ifconfig.search(outp, 0)
 		if ret and ret.group():
 			the_ip = ret.group(1)
 			the_mask = ret.group(2)
 			return (the_ip, the_mask)
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return (None, None)
 
 
@@ -34,19 +35,18 @@ def set_ip_and_mask(ip, mask):
 	f.close()
 	reinit_network()
 
-rexp1 = re.compile(r"^0\.0\.0\.0\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL | re.MULTILINE)
+
 
 def get_default_gateway():
 	try:
-		f = os.popen("netstat -rn")
-		outp = f.read()
-		f.close()
-		ret = rexp1.search(outp, 0)
+		outp = subprocess.check_output(["netstat", "-rn"])
+		ret = rexp_gateway.search(outp, 0)
 		if ret and ret.group():
 			gate = ret.group(1)
 			return gate
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return None
 
 def set_default_gateway(gate):
@@ -57,6 +57,7 @@ def set_default_gateway(gate):
 		reinit_network()
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 
 def get_dns():
 	pdns = sdns = ""
@@ -79,6 +80,7 @@ def get_dns():
 				sdns = ""
 	except Exception, e:
 		debug("get_dns: " + str(e))
+		managers.log_manager.error_server("System call error: Getting DNS failed. %s"%str(e),"system_linux")
 	return (pdns, sdns)
 
 def set_dns(pdns, sdns):
@@ -93,25 +95,21 @@ def set_dns(pdns, sdns):
 		f.close()
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 
 def get_date_and_time():
 	try:
-		f = os.popen('date "+%Y%m%d%H%M.%S"')
-		outp = f.read()
-		f.close()
-		outp = outp.strip()
-		if 15 == len(outp):
-			the_date = "%s.%s.%s %s:%s" % (outp[:4], outp[4:6], outp[6:8], outp[8:10], outp[10:])
-			return the_date
+		outp = subprocess.check_output(['date', '+%Y.%m.%d %H:%M:%S'])
+		return outp.strip()
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return None
 
 def vdom_df():
 	"HDD info in megabytes"
-	f = os.popen("/opt/boot/hdddev_info.sh")
-	(size, used, free, percent) = f.readlines()
-	f.close()
+	outp = subprocess.check_output(["/opt/boot/hdddev_info.sh"])
+	(size, used, free, percent) = outp.strip().split("\n")
 	return (size, used, free, percent)
 
 
@@ -121,6 +119,7 @@ def get_free_space():
 		return int(free)/1024.0
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return 0
 
 def get_hd_size():
@@ -129,35 +128,50 @@ def get_hd_size():
 		return int(size)/1024.0
 	except Exception, e:
 		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return 0
 
 def get_external_drives():
-	outp = subprocess.check_output(["/opt/boot/externaldrives.sh"])
-	lines = outp.strip().split("\n")
-	return [ { "device": line.split(';', 1)[0],
-		"label": line.split(';', 1)[1].strip() }  for line in lines ]
+	try:
+		outp = subprocess.check_output(["/opt/boot/externaldrives.sh"])
+		lines = outp.strip().split("\n")
+		return [ { "device": line.split(';', 1)[0],
+		"label": line.split(';', 1)[1].strip() }  for line in lines if line ]
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+	return []
 
 def device_exists(dev):
 	return os.path.exists(dev)
 
 def mount_device(dev):
 	"""returns mountpoint of the device. raise CalledProcessError if can't"""
-	outp = subprocess.check_output(["/opt/boot/mountpoint.sh", dev])
-	return outp.strip()
+	try:
+		outp = subprocess.check_output(["/opt/boot/mountpoint.sh", dev])
+		return outp.strip()
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 
 def umount_device(dev):
-	outp = subprocess.check_output(["umount", dev])
-	return outp.strip()
+	try:
+		outp = subprocess.check_output(["umount", dev])
+		return outp.strip()
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 
 def get_vfs_users():
 	r = []
-	f = os.popen("/sbin/vfs_users")
-	userlist = f.read()
-	f.close()
-	ll = userlist.splitlines()
-	for s in ll:
-		i = s.find(":")
-		if i < 0: i = len(s)
-		r.append(s[:i])
+	try:
+		userlist = subprocess.check_output(["/sbin/vfs_users"])
+		ll = userlist.splitlines()
+		for s in ll:
+			i = s.find(":")
+			if i < 0: i = len(s)
+			r.append(s[:i])
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return r
-

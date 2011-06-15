@@ -18,11 +18,7 @@ class VDOM_source_cache(object):
 
 	def get_source(self, application, container, action_name, context):
 		"""geting source code of compiled VDOM object"""
-		source = None
-		try: 
-			source = self.__cache_file_index[(application.id, container.id, action_name, context)]
-		except:
-			pass # WHAT IS THIS!?!
+		source = self.__cache_file_index.get((application.id, container.id, action_name, context),None)
 		if source is not None:
 			return source
 		source = managers.source_swap.pop(application.id, container.id, action_name, context)
@@ -69,7 +65,13 @@ class VDOM_source_cache(object):
 				self.__cache_list.remove((id_application, id_container, action_name, context))
 				self.__memused = self.__memused - size
 				managers.source_swap.pop(id_application, id_container, action_name, context)
-
+	
+	def clear_cache(self):
+		self.__cache_file_index = {}
+		self.__cache_list = []
+		self.__memused = 0
+		src.source.swap.clear()
+		
 	def clear_container_swap(self,application_id):
 		managers.file_manager.clear(file_access.cache, application_id, None)
 

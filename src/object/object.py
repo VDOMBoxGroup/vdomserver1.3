@@ -191,7 +191,8 @@ class VDOM_object(object):
 						raise VDOM_exception("Unknown action language")
 				action.cache.execute(self, managers.request_manager.get_request().session().context)
 		else:
-			debug("[Object] HAS NO SCRIPT!!!")
+			#debug("[Object] HAS NO SCRIPT!!!")
+			pass
 
 	def update(self, *arguments):
 		for argument in arguments:
@@ -231,15 +232,31 @@ class VDOM_object(object):
 		self.stage=stage_action
 		request.add_client_action(self.__id, data)
 
-	def action(self, action_name, param = (), source_id = None):
+	def action(self, action_name, param = [], source_id = None):
 		"""Client action call from server action"""
 
 		if source_id:
 			src_id = "SRC_ID=\"o_%s\" "% source_id.replace('-', '_')
 		else:
 			src_id = ""
-#		self.write ("<EXECUTE %sDST_ID=\"o_%s\" ACT_NAME=\"%s\" PARAM=\"%s\"/>\n"%(src_id,self.__id.replace('-', '_'),action_name,",".join(param)))
-		self.write ("<EXECUTE %sDST_ID=\"%s\" ACT_NAME=\"%s\" PARAM=\"%s\"/>\n"%(src_id,self.__id.replace('-', '_'),action_name,",".join(param)))
+		#self.write ("<EXECUTE %sDST_ID=\"%s\" ACT_NAME=\"%s\"><PARAM><![CDATA[%s]]></PARAM></EXECUTE>\n"%(src_id,self.__id.replace('-', '_'),action_name, param))
+
+		if type(param) != list:
+			param = [param]
+
+		params = ""
+		import types
+		import json
+		for val in param:
+			if isinstance(val, types.StringTypes):
+				xtype = 'str'
+				xval = unicode(val) # NO str() !!! unicode() ONLY
+			else:
+				xtype = 'obj'
+				xval = unicode(json.dumps(val))
+			params += "<PARAM type=\"%s\"><![CDATA[%s]]></PARAM>" % ( xtype, xval )
+
+		self.write("<EXECUTE %sDST_ID=\"%s\" ACT_NAME=\"%s\">%s</EXECUTE>" % (src_id, self.__id.replace('-', '_'), action_name, params))
 
 	def test4lang(self, value):
 		"""test for #Lang(N)"""

@@ -840,7 +840,7 @@ class VDOM_web_services_server(object):
 #				if src_id in obj.objects or src_id == obj.id:
 				#if src_id == obj.id:
 				for ev_name in app.events[obj.id][src_id]:
-					result += """<Event ObjSrcID="%s" TypeID="%s"  Name="%s" Top="%s" Left="%s" State="%s" ContainerID="%s">\n""" % (src_id, obj.type.id, ev_name, app.events[obj.id][src_id][ev_name].top, app.events[obj.id][src_id][ev_name].left, app.events[obj.id][src_id][ev_name].state, app.events[obj.id][src_id][ev_name].container)
+					result += """<Event ObjSrcID="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (src_id, obj.type.id, app.events[obj.id][src_id][ev_name].container, ev_name, app.events[obj.id][src_id][ev_name].top, app.events[obj.id][src_id][ev_name].left, app.events[obj.id][src_id][ev_name].state)
 					for a in app.events[obj.id][src_id][ev_name].actions:
 						result += """<Action ID="%s"/>\n""" % a
 					result += "</Event>\n"
@@ -873,7 +873,6 @@ class VDOM_web_services_server(object):
 		result += self.get_server_actions(sid, skey, appid, objid, check=False)
 		return "<E2vdom>%s</E2vdom>" % result
 	
-	# did not tested +	
 	def get_events_structure(self, sid, skey, appid, objid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
@@ -883,18 +882,19 @@ class VDOM_web_services_server(object):
 		obj = app.search_object(objid)
 		result =  self.__do_get_events(app, obj)
 		
-		result += "<ClientActions>\n"	
-		if obj:
-			ll = obj.get_all_children()
-			for a_id in app.actions:
-				a = app.actions[a_id]
-				if a.target_object in obj.objects or a.target_object == obj.id or a.target_object in ll:
-					result += """<Action ID="%s" ObjectID="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (a_id, a.target_object, a.method_name, a.top, a.left, a.state)
-					for p in a.parameters:
-						result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
-					result += "</Action>\n"
-		result += "</ClientActions>\n"
+		#result += "<ClientActions>\n"	
+		#if obj:
+		#	ll = obj.get_all_children()
+		#	for a_id in app.actions:
+		#		a = app.actions[a_id]
+		#		if a.target_object in obj.objects or a.target_object == obj.id or a.target_object in ll:
+		#			result += """<Action ID="%s" ObjectID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (a_id, a.target_object, a.method_name, a.top, a.left, a.state)
+		#			for p in a.parameters:
+		#				result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
+		#			result += "</Action>\n"
+		#result += "</ClientActions>\n"
 		
+		result += self.__do_get_client_actions(app, obj)
 		result += self.get_server_actions_list(sid, skey, appid, objid, check=False, full=True)
 		return "<E2vdom>%s</E2vdom>" % result
 		
@@ -908,7 +908,7 @@ class VDOM_web_services_server(object):
 			raise VDOM_exception("Incorrect object")
 		root = None
 		client_actions_element = None
-		#server_actions_element = None
+		server_actions_element = None
 		events_element = None
 		try:
 			root = xml_object(srcdata=events.encode("utf-8"))
@@ -917,9 +917,9 @@ class VDOM_web_services_server(object):
 			client_actions_element = root.get_child_by_name("clientactions")
 			if not client_actions_element:
 				raise VDOM_exception_element("ClientActions")
-			#server_actions_element = root.get_child_by_name("serveractions")
-			#if not server_actions_element:
-			#	raise VDOM_exception_element("ServerActions")
+			server_actions_element = root.get_child_by_name("serveractions")
+			if not server_actions_element:
+				raise VDOM_exception_element("ServerActions")
 			events_element = root.get_child_by_name("events")
 			if not events_element:
 				raise VDOM_exception_element("Events")
@@ -927,7 +927,7 @@ class VDOM_web_services_server(object):
 			for child in client_actions_element.children:
 				if "action" == child.lname:
 					_id = child.attributes["id"]
-					tgt_id = child.attributes["ObjectID"]
+					tgt_id = child.attributes["ObjTgtID"]
 					mn = child.attributes["methodname"]
 					if not tgt_id or not mn or not _id:
 						raise VDOM_exception_element("client action")
@@ -938,13 +938,15 @@ class VDOM_web_services_server(object):
 							if not par_name:
 								raise VDOM_exception_element("Parameter")
 			# server actions
-			#for child in server_actions_element.children:
-			#	if "action" == child.lname:
-			#		_id = child.attributes["id"]
-			#		_name = child.attributes["name"]
-			#		_lang = child.attributes["language"]
-			#		if not _id or not _name or not _lang:
-			#			raise VDOM_exception_element("server action")
+			for child in server_actions_element.children:
+				if "action" == child.lname:
+					_id = child.attributes["id"]
+					_name = child.attributes["name"]
+					_object_id = child.attributes["ObjectID"]
+					#_lang = child.attributes["language"]
+					#if not _id or not _name or not _lang:
+					if not _id or not _name or not _object_id:
+						raise VDOM_exception_element("server action")
 			# events
 			for child in events_element.children:
 				if "event" == child.lname:
@@ -961,11 +963,18 @@ class VDOM_web_services_server(object):
 			if root:
 				root.delete()
 			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-		#server_actions_element.name = "Actions"
+		server_actions_element.name = "Actions"
 		if obj:
 			app.set_e2vdom_events(obj, events_element)
 			app.set_e2vdom_actions(obj, client_actions_element)
-		#	obj.set_actions(server_actions_element)
+			#obj.set_actions(server_actions_element)
+			for child in server_actions_element.children:
+				if "action" == child.lname:
+					action_object_id = child.attributes["ObjectID"]
+					action_object = app.search_object(action_object_id)
+					if action_object and 1 != action_object.type.container:
+						action_object.set_action_attributes(child)
+					
 		#else:
 		#	app.set_global_actions(server_actions_element)
 		root.delete()
@@ -1000,6 +1009,7 @@ class VDOM_web_services_server(object):
 		client_actions_element = None
 		#server_actions_element = None
 		events_element = None
+
 		try:
 			root = xml_object(srcdata=events.encode("utf-8"))
 			if "e2vdom" != root.lname:
@@ -1112,9 +1122,6 @@ class VDOM_web_services_server(object):
 	
 	
 	def get_server_actions(self, sid, skey, appid, objid, check=True):
-		debug("W o r k s ! ! !")
-		print("Hi heee")
-		
 		if check:
 			if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
@@ -1125,11 +1132,12 @@ class VDOM_web_services_server(object):
 		if obj:
 			result += self.__do_get_server_actions(obj)
 		elif objid in app.global_actions:
+			result += "<Container ID=\"%s\">\n"%objid
 			for _name in app.global_actions[objid]:
 				x = app.global_actions[objid][_name]
-				result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (x.id, x.name, x.top, x.left, x.state)
-				result += """<![CDATA[%s]]>\n""" % x.code
-				result += "</Action>\n"
+				result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
+				        x.id, x.name, x.top, x.left, x.state,x.code)
+			result += "</Container>\n"
 		result += "</ServerActions>\n"
 		return result
 		
@@ -1151,7 +1159,6 @@ class VDOM_web_services_server(object):
 				result += self.__do_get_server_actions_list(x, full)
 		return result	
 	
-	#	+	
 	def get_server_actions_list(self, sid, skey, appid, objid, check=True, full=False ):
 		if check:
 			if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1218,40 +1225,27 @@ class VDOM_web_services_server(object):
 				raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
 			else:
 				action = obj.actions["id"][actionid]
-				result = '<Action ID="%s" Name="%s" ObjectID="%s">' % (actionid, action.name, objid)
-				result += '<![CDATA[%s]]>' % action.code
-				result += '</Action>\n'
-				return result
+				return '<Action ID="%s" Name="%s" ObjectID="%s"><![CDATA[%s]]></Action>\n'% (actionid, action.name, objid,action.code)
 		
-	#did not tested + 
-	#def get_server_action(self, sid, skey, appid, objid, actionid, check=True):
-	#	if check:
-	#		if not self.__check_session(sid, skey): return self.__session_key_error()
-	#	(app, msg) = self.__find_application(appid)
-	#	if not app:
-	#		return msg
-	#	obj = app.search_object(objid) 
-	#	result = """<ServerActions ObjectID="%s" >\n"""%(objid)
-	#	if objid in app.global_actions:
-	#		if actionid  in app.global_actions[objid]:
-	#			x = app.global_actions[objid][actionid ]
-	#			result += """<Action ID="%s" Name="%s" ObjectID="%s" >\n 	<![CDATA[%s]]>\n </Action>\n""" % (x.id, x.name, objid,  x.code)
-	#	result += "</ServerActions>\n"
-	#	return result	
 	
 	def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
 		"""set server action"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		(app, obj, errmsg) = self.__find_object(appid, objid)
-		if not obj:
-			return errmsg
-		else:
+		(app, msg) = self.__find_application(appid)
+		if not app:
+			return msg
+		obj = app.search_object(objid)
+		if obj:
 			obj.set_action(actionid, actionvalue)
 			app.sync()
 			return self.__success()
-	
-	#def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue, check=True):
-	#	return self.__success()
+		elif objid in app.global_actions and actionid in app.global_actions[objid]:
+			app.set_global_action(objid,actionid,actionvalue)
+			app.sync()
+			return self.__success()
+		else:
+			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
+
 		
 ##### ----- ========================================================================================================
 
@@ -1361,7 +1355,7 @@ class VDOM_web_services_server(object):
 		tmpfile.write(appxml.encode("utf-8"))
 		tmpfile.close()
 		# install
-		outp, msg = import_application(tmpfilename)
+		outp, msg = import_application(tmpfilename,"xml")
 		try:
 			os.remove(tmpfilename)
 		except Exception, e:

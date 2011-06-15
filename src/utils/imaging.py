@@ -19,12 +19,13 @@ class VDOM_imaging:
 
 	def load(self, application_id, res_id):
 		"""load image from file"""
+		self.__im = None
 		try:
 			resource = managers.resource_manager.get_resource(application_id,res_id)
 			if not resource:
 				raise VDOM_exception(_("Cannot load resource"))
 		except:
-			sys.stderr.write("Error reading resource %s:%s\n" % (str(application_id), str(file))) #TODO: change to logger
+			debug("[Imagin]Error reading resource %s:%s\n" % (str(application_id), str(file))) #TODO: change to logger
 			return ""
 
 		formats = {"jpg": "JPEG", "jpeg": "JPEG", "gif": "GIF", "bmp": "BMP","png": "PNG"}
@@ -32,7 +33,6 @@ class VDOM_imaging:
 		if resource.res_format.lower() in formats:
 			self.__format = formats[resource.res_format.lower()]
 			
-		self.__im = None
 		try:
 			self.__im = Image.open(StringIO(resource.get_data()))
 		except: 

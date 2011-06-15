@@ -19,10 +19,11 @@ def run(request):
 		path = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
 		appl = args["appl"][0]
 		format = args["format"][0].lower()
+		embedtypes = bool(args["embedtypes"][0] == "1") if "embedtypes" in args else False
 		f = None
 		if appl in applist and format in ["xml", "zip"]:
 			try:
-				managers.xml_manager.export_application(appl, format, path)
+				managers.xml_manager.export_application(appl, format, path, embedtypes)
 				toread = os.path.join(path, appl)
 				request.add_header("Content-Type", "application/octet-stream");
 				request.add_header("Content-Disposition", "attachment; filename=%s.%s" % (appl, format));
@@ -52,10 +53,10 @@ def run(request):
 			appl = args["appl"][0]
 			format = args["format"][0].lower()
 			dev = args["device"][0]
-
+			embedtypes = bool(args["embedtypes"][0] == "1") if "embedtypes" in args else False
 			if appl in applist and format in ["xml", "zip"] and device_exists(dev):
 				try:
-					managers.xml_manager.export_application(appl, format, path)
+					managers.xml_manager.export_application(appl, format, path, embedtypes)
 					fname = os.path.join(path, appl)
 					fname += ("." + format)
 					mountpoint=mount_device(dev)
@@ -126,11 +127,14 @@ function zzzz(e) {
 
 		request.write("""<td class="Style2"><select name=appl>%s</select></td></tr>
 	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Format :</div></td>
-	<td class="Style2"><select name=format><option value=xml>xml</option><option value=zip>zip</option></select></td></tr>
+	<td class="Style2"><select name="format"><option value=xml>xml</option><option value=zip>zip</option></select></td></tr>
 
 	<tr><td>&nbsp;</td><td><div align="right" class="Style2">To device :</div></td>
-	<td class="Style2"><select name=device>%s</select></td></tr>
-
+	<td class="Style2"><select name="device">%s</select></td></tr>
+	
+	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Embed types in xml :</div></td>
+	<td class="Style2"><input name="embedtypes" type="checkbox" value="1"></input></td></tr>
+	
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td><input type=submit value="Export" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td></tr>
 	</table></span></form></div>""" % (cont, devs))
 		request.write("""</td>

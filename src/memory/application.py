@@ -2,7 +2,7 @@
 
 import re, sys, os, SOAPpy, thread, threading
 from threading import Condition
-from names import APPLICATION_SECTION, APPLICATION_ON_START, APPLICATION_ON_FINISH
+from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH
 from parser import VDOM_parser
 
 
@@ -104,23 +104,11 @@ class VDOM_application(VDOM_parser):
 				i.attributes["Left"] = "0"
 				i.attributes["ResourceID"] = ""
 		self.do_parse_structure(self.structure_element)
-		if "session" not in self.global_actions:
-			self.global_actions["session"] = {}
-		if 0 == len(self.global_actions["session"]):
-			self.global_actions["session"]["sessiononstart"] = VDOM_server_action("", "session", "", "", "", "SessionOnStart")
-			self.global_actions["session"]["sessiononend"] = VDOM_server_action("", "session", "", "", "", "SessionOnEnd")
-			self.global_actions["session"]["requeststart"] = VDOM_server_action("", "session", "", "", "", "RequestStart")
-
-		application_actions=self.global_actions.setdefault(APPLICATION_SECTION, {})
-		application_actions.setdefault(APPLICATION_ON_START,
-				VDOM_server_action("", APPLICATION_SECTION, "", "", "", APPLICATION_ON_START))
-		application_actions.setdefault(APPLICATION_ON_FINISH,
-				VDOM_server_action("", APPLICATION_SECTION, "", "", "", APPLICATION_ON_FINISH))
-
+		
 		self.sync()
 		del self.o_tmp
 
-		on_start=self.global_actions[APPLICATION_SECTION][APPLICATION_ON_START]
+		on_start=self.global_actions[APPLICATION_SECTION][APPLICATION_SECTION+ON_START]
 		if on_start.code:
 			#threading.currentThread().application=self.id
 			__import__(self.id)
@@ -208,6 +196,8 @@ class VDOM_application(VDOM_parser):
 
 	def parse_actions(self, xml_obj):
 		"""parse application global actions section"""
+		self.do_prepare_global_actions()
+		self.actions_element = xml_obj
 		for s_node in xml_obj.children:
 			if "action" == s_node.lname:
 				name = s_node.attributes["name"]
@@ -218,9 +208,8 @@ class VDOM_application(VDOM_parser):
 				_left = s_node.attributes.get("left", "")
 				_state = s_node.attributes.get("state", "")
 				code = s_node.get_value_as_xml().strip()
-				if _id not in self.global_actions:
-					self.global_actions[_id] = {}
-				self.global_actions[_id][name.lower()] = VDOM_server_action(code, _id, _top, _left, _state, name)
+				category = _id.replace(name,'') #TODO: find better solution to get category
+				self.global_actions[category][_id] = VDOM_server_action(code, _id, _top, _left, _state, name)
 
 	def parse_e2vdom(self, xml_obj):
 		"""parse events section"""
@@ -496,6 +485,24 @@ class VDOM_application(VDOM_parser):
 		for r in to_remove:
 			r.delete()
 
+	def do_prepare_global_actions(self):
+		session_actions=self.global_actions.setdefault(SESSION_SECTION, {})
+		request_actions=self.global_actions.setdefault(REQUEST_SECTION, {})
+		application_actions=self.global_actions.setdefault(APPLICATION_SECTION, {})
+		
+		session_actions.setdefault(SESSION_SECTION+ON_START,
+				VDOM_server_action("", SESSION_SECTION+ON_START, "", "", "", ON_START))
+		session_actions.setdefault(SESSION_SECTION+ON_FINISH,
+				VDOM_server_action("", SESSION_SECTION+ON_FINISH, "", "", "", ON_FINISH))
+		
+		request_actions.setdefault(REQUEST_SECTION+ON_FINISH,
+				VDOM_server_action("", REQUEST_SECTION+ON_START, "", "", "", ON_START))
+		
+		application_actions.setdefault(APPLICATION_SECTION+ON_START,
+				VDOM_server_action("", APPLICATION_SECTION+ON_START, "", "", "", ON_START))
+		application_actions.setdefault(APPLICATION_SECTION+ON_FINISH,
+				VDOM_server_action("", APPLICATION_SECTION+ON_FINISH, "", "", "", ON_FINISH))
+		
 	def test4res(self, value, owner):
 		"""test for #Res(N)"""
 		ret = None
@@ -611,9 +618,10 @@ class VDOM_application(VDOM_parser):
 		if do_compute:
 			managers.engine.compute(self, obj, parent)
 
-		if not parent:
+		if parent:
+			managers.dispatcher.dispatch_handler(self.id, parent.id, "add_child", {"child_id":obj.id})
+		else:
 			self.__create_structure_object(obj)
-
 		return (obj_name, obj_id)
 
 	def __do_delete_object(self, obj):
@@ -919,6 +927,27 @@ class VDOM_application(VDOM_parser):
 		finally:
 			self.__sem.unlock()
 
+	def set_global_action(self, category, actionid, actionvalue):
+		self.__sem.lock()
+		try:
+			global_action = self.global_actions[category][actionid]
+			global_action.code = actionvalue
+			
+			action_node = None
+			for child in self.actions_element.children:
+				if "Action" == child.name and child.attributes["ID"] == actionid:
+					action_node = child
+					break;
+			if action_node:
+				action_node.value = actionvalue
+			else:
+				action_code = """<Action ID="%s" Name="%s" Top="" Left="" State=""><![CDATA[%s]]></Action>""" % (global_action.id, global_action.name, actionvalue)
+				action_node = xml_object(srcdata=action_code.encode("utf-8"))
+				self.actions_element.append_as_copy(action_node)
+				action_node.delete()				
+		finally:
+			self.__sem.unlock()
+			
 	def set_e2vdom_events(self, obj, xml_obj):
 		if not managers.acl_manager.session_user_has_access2(self.id, self.id, security.modify_application):
 			raise VDOM_exception_sec(_("Modifying application is not allowed"))

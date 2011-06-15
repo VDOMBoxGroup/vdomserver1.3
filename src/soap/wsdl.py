@@ -58,8 +58,8 @@ methods = {
 	"set_application_events" : ["sid", "skey", "appid", "objid", "events"],
 	"set_server_actions" : ["sid", "skey", "appid", "objid", "actions"],
 	"get_events_structure" : ["sid", "skey", "appid", "objid"],
+	"set_events_structure" : ["sid", "skey", "appid", "objid", "events"],
 	"get_server_actions" : ["sid", "skey", "appid", "objid"],
-	#set_events_structure
 	"create_server_action" : ["sid", "skey", "appid", "objid", "actionname", "actionvalue"],
 	"delete_server_action" : ["sid", "skey", "appid", "objid", "actionid"],
         "rename_server_action" : ["sid", "skey", "appid", "objid", "actionid", "new_actionname"],

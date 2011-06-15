@@ -21,11 +21,11 @@ def on_attr_change(obj, old_value, new_value, app_id):
 	# add links to newly used resources
 	for res_id in ret1:
 		attributes = {"id" : res_id}
-		if managers.resource_manager.check_resource(app_id, attributes):
-			managers.resource_manager.add_resource(app_id, obj.id, attributes, None)
-			if res_id not in obj.resources:
-				obj.resources[res_id] = 0
-			obj.resources[res_id] += 1
+		#if managers.resource_manager.check_resource(app_id, attributes):
+		managers.resource_manager.add_resource(app_id, obj.id, attributes, None)
+		if res_id not in obj.resources:
+			obj.resources[res_id] = 0
+		obj.resources[res_id] += 1
 
 
 class descriptor(object):
@@ -68,11 +68,11 @@ class VDOM_object(object):
 	parse_list = ["attributes", "actions", "languages"]
 
 	valid_attributes = ["objects", "objects_list", "objects_by_name", "attributes", "copy_objects",
-				"actions", "application", "doc", "parent", "type", "id", "name", "xml_obj",
-				"attributes_element", "objects_element", "resources",
-				"dynamic", "types", "containers", "libraries",
-				"optimization_priority", "order", "_VDOM_object__sem",
-				"toplevel", "has_copy", "original_name", "actions_element", "languages","languages_element"]
+	                    "actions", "application", "doc", "parent", "type", "id", "name", "xml_obj",
+	                    "attributes_element", "objects_element", "resources",
+	                    "dynamic", "types", "containers", "libraries",
+	                    "optimization_priority", "order", "_VDOM_object__sem",
+	                    "toplevel", "has_copy", "original_name", "actions_element", "languages","languages_element"]
 
 	def __init__(self, app):
 		"""constructor"""
@@ -144,9 +144,15 @@ class VDOM_object(object):
 			self.actions["name"]["onload"] = VDOM_server_action("", _id, "", "", "", "onload")
 			self.actions["id"][_id] = self.actions["name"]["onload"]
 
+			actions = self.xml_obj.get_child_by_name("Actions")
+			if actions is None:
+				xml_actions = xml_object(srcdata="""<Actions></Actions>""".encode("utf-8"))
+				self.xml_obj.append_as_copy(xml_actions)
+				xml_actions.delete()				
+				actions = self.xml_obj.get_child_by_name("Actions")
+
 			action = """<Action ID="%s" Name="onload" Top="" Left="" State=""><![CDATA[]]></Action>""" % _id
 			xml_obj = xml_object(srcdata=action.encode("utf-8"))
-			actions = self.xml_obj.get_child_by_name("Actions")
 			actions.append_as_copy(xml_obj)
 			xml_obj.delete()
 
@@ -354,6 +360,62 @@ class VDOM_object(object):
 			self.__do_invalidate1(self)
 		finally:
 			self.__sem.unlock()	
+
+
+	def set_action_attributes(self, obj_xml):
+		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
+			raise VDOM_exception_sec(_("Modifying object is not allowed"))
+
+		self.__sem.lock()
+		try:
+
+			if "action" == obj_xml.lname:
+				_id = obj_xml.attributes["id"] = obj_xml.attributes["id"].lower()
+
+				if _id not in self.actions["id"]:
+					raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)		
+
+				_name = obj_xml.attributes["name"]
+				_top = obj_xml.attributes["top"]
+				_left = obj_xml.attributes["left"]
+				_state = obj_xml.attributes["state"]
+
+				self.actions["id"][_id].cache = None
+				self.actions["name"][_name].cache = None
+
+				actions = self.xml_obj.get_child_by_name("Actions")
+
+				for child in actions.children:
+					if "Action" == child.name and child.attributes["ID"] == _id:
+						#child.attributes["name"] = _name
+						if _top:
+							child.attributes["top"] = _top
+						if _left:
+							child.attributes["left"] = _left
+						if _state:
+							child.attributes["state"] = _state
+						break
+
+				#self.actions["id"][_id].name = _name
+				#self.actions["name"][_name].name = _name
+				if _top:
+					self.actions["id"][_id].top = _top
+					self.actions["name"][_name].top = _top
+				if _left:
+					self.actions["id"][_id].left = _left
+					self.actions["name"][_name].left = _left
+				if _state:
+					self.actions["id"][_id].state = _state
+					self.actions["name"][_name].state = _state
+
+			else:
+				raise VDOM_exception_element("action")
+
+			# invalidate
+			self.__do_invalidate(self)
+			self.__do_invalidate1(self)
+		finally:
+			self.__sem.unlock()
 
 	def get_objects(self):
 		"""get list of inner objects"""

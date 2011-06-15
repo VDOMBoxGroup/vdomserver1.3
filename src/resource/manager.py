@@ -1,10 +1,9 @@
 """resource manager"""
-import string
 import managers, file_access
 from utils.exception import VDOM_exception
 import utils.uuid
 from resource.res_object import VDOM_resource_object, VDOM_resource_descriptor
-import sys
+import sys, copy
 class VDOM_resource_manager(object):
 	"""resource manager class"""
 
@@ -133,7 +132,6 @@ class VDOM_resource_manager(object):
 				self.__label_index[(object_id,attributes["label"])] = res_descriptor
 				res_descriptor.object_id = object_id
 			else:
-				import copy
 				res_descriptor = copy.copy(res_descriptor)
 			for key in attributes:
 				if key == "name":
@@ -201,8 +199,8 @@ class VDOM_resource_manager(object):
 	
 	def get_resource_by_label(self, object_id, label):
 		"""Getting resource object"""
-		res = self.__label_index.get((object_id,label))
-		return res.load_copy() if res else None
+		return self.__label_index.get((object_id,label))
+
 		#if (object_id,label) in self.__label_index:
 		#	return self.__label_index[(object_id,label)]
 		#return None
@@ -231,11 +229,12 @@ class VDOM_resource_manager(object):
 		"""Removing resource object and it's content"""
 		#TODO: remove resource from label_index
 		if res_id in self.__main_index:
-			resource = self.__main_index.pop(res_id)
+			resource = self.__main_index[res_id]
 			resource.decrease(object_id,remove)
-			if getattr(resource, "object_id",None):
-				self.__label_index.pop((resource.object_id,resource.label),None) #TODO: fix labels resources
-				
+			if remove:
+				if getattr(resource, "object_id",None):
+					self.__label_index.pop((resource.object_id,resource.label),None) #TODO: fix labels resources
+				self.__main_index.pop(res_id)
 			
 		#if id in self.__index:
 			#resource = self.__index[id]

@@ -47,7 +47,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 	def __init__(self, request, client_address, server, args=None):
 		"""constructor"""
-		debug("Creating RequestHandler object")
+		#debug("Creating RequestHandler object")
 		self.__reject = args["reject"]
 		self.__deny = args["deny"]
 		self.__card = args["card"]
@@ -58,7 +58,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 		except:
 			raise
-
+		
 	def handle(self):
 		"""Handle multiple requests if necessary."""
 		self.close_connection = 1
@@ -79,8 +79,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			sys.setcheckinterval(100)
 			#self.copyfile(f, self.wfile)
 			f.close()
-		#if self.__request.nokeepalive: #TODO: Check if this is really needed somewhere
-		#	self.close_connection = 1
+		if self.__request.nokeepalive: #TODO: Check if this is really needed somewhere
+			self.close_connection = 1
 
 	def do_HEAD(self):
 		"""serve a HEAD request"""
@@ -246,8 +246,11 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		SimpleHTTPServer.SimpleHTTPRequestHandler.finish(self)
 		"""tell the server that processing is finished"""
 		self.server.notify_finish(self.client_address)
-
+		
 		# remove request
+		try:
+			managers.request_manager.current.collect_files()
+		except VDOM_exception: pass
 		del managers.request_manager.current
 		try:
 			del(self.__request.vdom)
