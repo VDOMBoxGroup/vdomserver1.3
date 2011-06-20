@@ -2,7 +2,7 @@
 import managers
 
 
-class VDOM_request(object):
+class VDOM_obsolete_request(object):
 
 	def __get_vdom(self):
 		return managers.request_manager.current.vdom

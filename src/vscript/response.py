@@ -1,5 +1,6 @@
 
-import managers, object
+import managers #, object
+request=None # TODO: TEMPORARY DUMMY
 
 import errors, types
 
