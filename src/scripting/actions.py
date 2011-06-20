@@ -41,7 +41,8 @@ class python_action(generic_action):
 		app_module=managers.request_manager.get_request().application().id
 		__import__(app_module)
 		namespace={"request": scripting.request, "response": scripting.response, "application": scripting.application,
-			"server": scripting.server, "session": scripting.session, "self": object, "__package__": app_module}
+			"server": scripting.server, "session": scripting.session, "obsolete_request": scripting.obsolete_request, 
+			"self": object, "__package__": app_module}
 		exec self.code in namespace
 		
 class vscript_action(generic_action):
