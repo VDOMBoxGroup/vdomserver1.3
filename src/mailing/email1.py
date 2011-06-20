@@ -214,5 +214,5 @@ class VDOM_email_manager(object):
 					self.__sem.unlock()
 			else:
 				ts = 10
-			time.sleep(ts)
+			#time.sleep(ts)
 			return ts

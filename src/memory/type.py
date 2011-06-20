@@ -94,7 +94,9 @@ class VDOM_type(VDOM_parser):
 		"""parse source code section"""
 		src2 = xml_obj.value
 		# append import section
-		src2 = "from object.request import VDOM_request\n\nrequest = VDOM_request()\n\nfrom object.object import VDOM_object\n\n%s\n" % src2.strip()
+		# TODO: Join all import from scripting code
+		#src2 = "from object.request import VDOM_request\n\nrequest = VDOM_request()\n\nfrom object.object import VDOM_object\n\n%s\n" % src2.strip()
+		src2="from scripting import server, application, session, request, response, VDOM_object, obsolete\n\n%s\n" % src2.strip()
 		# write source code to the file
 		managers.source_cache.store_type(self.id, src2)
 

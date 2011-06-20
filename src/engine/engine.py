@@ -8,7 +8,7 @@ import managers
 from sandbox import VDOM_sandbox
 from e2vdom import global_context, action_render, action_wysiwyg
 from vscript.engine import vcompile, vexecute
-from object import request
+import scripting # from object import request
 
 #import profile
 
@@ -94,7 +94,9 @@ class VDOM_engine:
 				#if action.lang=="python":
 				if language=="python":
 					debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%action.code)
-					namespace={"request": request, "self": None, "__package__": application.id }
+					# namespace={"request": request, "self": None, "__package__": application.id }
+					namespace={"request": scripting.request, "response": scripting.response, "application": scripting.application,
+						"server": scripting.server, "session": scripting.session, "self": None, "__package__": application.id}
 					exec action.code in namespace
 				#elif action.lang=="vscript":
 				elif language=="vscript":

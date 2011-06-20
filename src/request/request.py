@@ -1,6 +1,6 @@
 """request module represents the request got by the VDOM server"""
 
-import os, sys, cgi, shutil
+import os, sys, cgi, shutil, urlparse
 from cStringIO import StringIO
 from cgi import FieldStorage
 
@@ -40,6 +40,7 @@ class VDOM_request:
 	#------------------------------------------------------------
 	def __init__(self, arguments):
 		""" Constructor, create headers, cookies, request and environment """
+
 		headers = arguments["headers"]
 		handler = arguments["handler"]
 
@@ -106,7 +107,6 @@ class VDOM_request:
 		cookies["sid"] = sid
 		args["sid"] = sid
 		self.__session = managers.session_manager[sid]
-
 		self.__arguments = VDOM_request_arguments(args)
 		self.__server = handler.server
 		self.__handler = handler
@@ -135,6 +135,7 @@ class VDOM_request:
 		self.nokeepalive = False
 		self.__binary = False
 		self.fh = None
+
 	
 	def collect_files(self):
 		"""Replacement for destructor needed for temp files cleanup"""
