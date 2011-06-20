@@ -32,6 +32,7 @@ class VDOM_environment:
 		else: hh = self.__environment["HTTP_HOST"]
 		hh = hh.split(":")[0]
 		self.__environment["HTTP_HOST"] = hh
+		self.__environment["SERVER_ADDR"] = str(handler.server.server_address[0])
 		self.__environment["SERVER_PORT"] = str(handler.server.server_address[1])
 		self.__environment["SERVER_NAME"] = VDOM_server_name
 		self.__environment["SERVER_VERSION"] = VDOM_server_version

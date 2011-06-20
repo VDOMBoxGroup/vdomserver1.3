@@ -3,7 +3,7 @@ import thread, threading
 
 import managers
 
-from object import request
+import scripting # from object import request
 from vscript.engine import vcompile, vexecute
 
 
@@ -40,7 +40,8 @@ class python_action(generic_action):
 	def on_execute(self, object, namespace):
 		app_module=managers.request_manager.get_request().application().id
 		__import__(app_module)
-		namespace={"request": request, "self": object, "__package__": app_module}
+		namespace={"request": scripting.request, "response": scripting.response, "application": scripting.application,
+			"server": scripting.server, "session": scripting.session, "self": object, "__package__": app_module}
 		exec self.code in namespace
 		
 class vscript_action(generic_action):

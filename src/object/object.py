@@ -66,7 +66,7 @@ class VDOM_object(object):
 		temp = None
 		for attribute in self.__object.get_attributes().values():
 			# debug("[Object] Load %s attribute '%s', value %s"%(self.__id, attribute.name, repr(attribute.value)))
-			if not attribute.name in type(self).__dict__:		
+			if not attribute.name in type(self).__dict__:
 				setattr(type(self), attribute.name, VDOM_descriptor(attribute.name))
 
 			attribute_value = attribute.value
