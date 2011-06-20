@@ -1,7 +1,7 @@
 
 import sys, re
 
-from . import request
+from wrappers import obsolete_request # from . import request
 from e2vdom import global_context
 from utils.exception import *
 
@@ -57,7 +57,7 @@ class VDOM_object(object):
 	def __init__(self, id):
 		debug("[Object] Initialize %s"%id)
 		self.__id=id
-		self.__object=request.vdom.search_object(id)
+		self.__object=obsolete_request.vdom.search_object(id)
 		self.__type=self.__object.type
 		self.stage=stage_initialize
 		self.compute_state=compute_require_recompute
@@ -72,14 +72,14 @@ class VDOM_object(object):
 			attribute_value = attribute.value
 			if attribute.value.count("#Lang") != 0:
 				temp = self.test4lang(attribute.value)
-				if request.session["vdom_current_language"] not in self.__object.languages:
+				if obsolete_request.session["vdom_current_language"] not in self.__object.languages:
 					for i in xrange(attribute.value.count("#Lang")):
 						if temp[i] in self.__object.languages[managers.request_manager.get_request().application().default_language]:
 							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[managers.request_manager.get_request().application().default_language][temp[i]])	
 				else:
 					for i in xrange(attribute.value.count("#Lang")):
-						if temp[i] in self.__object.languages[request.session["vdom_current_language"]]:
-							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[request.session["vdom_current_language"]][temp[i]])			
+						if temp[i] in self.__object.languages[obsolete_request.session["vdom_current_language"]]:
+							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[obsolete_request.session["vdom_current_language"]][temp[i]])			
 
 
 			setattr(self, attribute_value_name%attribute.name, attribute_value)
@@ -230,7 +230,7 @@ class VDOM_object(object):
 	def write(self, data):
 		debug("[Object] Write data to client %s"%data)
 		self.stage=stage_action
-		request.add_client_action(self.__id, data)
+		obsolete_request.add_client_action(self.__id, data)
 
 	def action(self, action_name, param = [], source_id = None):
 		"""Client action call from server action"""

@@ -577,7 +577,7 @@ class VDOM_htmlcontainer(VDOM_object):
 		if self.visible == "1":
 
 			if "" != self.securitycode:
-				code = str(request.session.value("SecurityCode"))
+				code = str(obsolete_request.session.value("SecurityCode"))
 				redir = False
 				if not code or code not in self.securitycode.split(";"):
 					redir = True
@@ -585,14 +585,14 @@ class VDOM_htmlcontainer(VDOM_object):
 					result = "<html></html>"
 					return VDOM_object.render(self, parent, contents=result)
 				elif redir:
-					# request.redirect("/" + self.deniedlink + ".vdom")	# obsolete - page_guid.vdom
-					request.redirect("/" + request.application().search_object(self.deniedlink).name + ".vdom")
+					# obsolete_request.redirect("/" + self.deniedlink + ".vdom")	# obsolete - page_guid.vdom
+					obsolete_request.redirect("/" + obsolete_request.application().search_object(self.deniedlink).name + ".vdom")
 
 			e2vdom.process(self, parent)
 			libraries, declarations, registrations=e2vdom.generate(self)
 			javascript="%s\n%s\n"%(declarations, registrations)
 
-			clean_id = (request.application_id).replace('-', '_')
+			clean_id = (obsolete_request.application_id).replace('-', '_')
 
 			style=self.style
 			style += " margin: 0 auto;"
@@ -679,7 +679,7 @@ class VDOM_htmlcontainer(VDOM_object):
 				"</body>\n"\
 				"</html>"%\
 				{"doctype": doctype, "testClasses": testClasses, "testFunc": testFunc, "jqui": jqui, "clean_id": clean_id,
-				"application": request.application_id, "title": self.title, "session": request.session.id(), "metas": metas,
+				"application": obsolete_request.application_id, "title": self.title, "session": obsolete_request.session.id(), "metas": metas,
 				"noscript": noscript, "style": style,
 				"javascript": javascript, "style2": style2, "cssclass": cssclass,
 				"libraries": libraries, "contents": contents, "bgcolor": self.bgcolor, "centr": centr, "pagestyle": css}
