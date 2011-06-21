@@ -7,6 +7,7 @@ import sys, gettext, os
 gettext.install("vdom2")
 sys.path.append("../src")
 
+from utils import codecs
 from utils.card_connect import send_to_card
 import utils.obsolete
 #Seting 10% to progressbar
