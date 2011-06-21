@@ -1,6 +1,7 @@
 
-import codecs, htmlescape, xmlescape
+import codecs, html, xml, url
 
 
-codecs.register(htmlescape.search)
-codecs.register(xmlescape.search)
+codecs.register(html.search)
+codecs.register(xml.search)
+codecs.register(url.search)

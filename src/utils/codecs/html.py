@@ -10,7 +10,7 @@ decode_table={"&%s;"%name: unichr(codepoint) for name, codepoint in name2codepoi
 decode_regex=re.compile("(?:&#(\d{1,5});)|(&\w{1,8};)")
 
 
-class HtmlEscapeCodec(codecs.Codec):
+class HtmlCodec(codecs.Codec):
 	
 	def encode(self, input, errors='strict'):
 		output=encode_regex.sub(lambda match: encode_table[match.group(0)], input)
@@ -24,31 +24,31 @@ class HtmlEscapeCodec(codecs.Codec):
 		return output, len(output)
 
 
-class HtmlEscapeIncrementalEncoder(codecs.IncrementalEncoder):
+class HtmlIncrementalEncoder(codecs.IncrementalEncoder):
 	
 	def encode(self, input, final=False):
 		raise NotImplementedError 
 
-class HtmlEscapeIncrementalDecoder(codecs.IncrementalDecoder):
+class HtmlIncrementalDecoder(codecs.IncrementalDecoder):
 	
 	def decode(self, input, final=False):
 		raise NotImplementedError 
 
 
-class HtmlEscapeStreamReader(HtmlEscapeCodec, codecs.StreamReader):
+class HtmlStreamReader(HtmlCodec, codecs.StreamReader):
 	pass
 
-class HtmlEscapeStreamWriter(HtmlEscapeCodec, codecs.StreamWriter):
+class HtmlStreamWriter(HtmlCodec, codecs.StreamWriter):
 	pass
 
 
 def search(encoding):
-	if encoding=='htmlescape':
-		return codecs.CodecInfo(name='htmlescape',
-			encode=HtmlEscapeCodec().encode,
-			decode=HtmlEscapeCodec().decode,
-			incrementalencoder=HtmlEscapeIncrementalEncoder,
-			incrementaldecoder=HtmlEscapeIncrementalDecoder,
-			streamreader=HtmlEscapeStreamReader,
-			streamwriter=HtmlEscapeStreamWriter)
+	if encoding=='html':
+		return codecs.CodecInfo(name='html',
+			encode=HtmlCodec().encode,
+			decode=HtmlCodec().decode,
+			incrementalencoder=HtmlIncrementalEncoder,
+			incrementaldecoder=HtmlIncrementalDecoder,
+			streamreader=HtmlStreamReader,
+			streamwriter=HtmlStreamWriter)
 	return None
