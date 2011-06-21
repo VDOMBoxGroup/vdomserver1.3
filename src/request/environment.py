@@ -25,14 +25,13 @@ class VDOM_environment:
 
 		self.__environment["REMOTE_ADDR"] = str(handler.client_address[0])
 		self.__environment["REMOTE_PORT"] = str(handler.client_address[1])
-		self.__environment["SERVER_ADDR"] = str(socket.gethostbyname(socket.gethostname()))
+		self.__environment["SERVER_ADDR"] = str(socket.gethostbyname(socket.gethostname())) # str(handler.server.server_address[0])
 		hh = ""
 		if "HTTP_HOST" not in self.__environment:
 			hh = self.__environment["SERVER_ADDR"]
 		else: hh = self.__environment["HTTP_HOST"]
 		hh = hh.split(":")[0]
 		self.__environment["HTTP_HOST"] = hh
-		self.__environment["SERVER_ADDR"] = str(handler.server.server_address[0])
 		self.__environment["SERVER_PORT"] = str(handler.server.server_address[1])
 		self.__environment["SERVER_NAME"] = VDOM_server_name
 		self.__environment["SERVER_VERSION"] = VDOM_server_version
