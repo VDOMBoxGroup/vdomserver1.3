@@ -51,16 +51,45 @@ class VDOM_databases(object):
 
 class VDOM_resources(object):
 	
-	def create(self, type, name, data):
-		application=managers.request_manager.get_request().application()
-		id=unicode(utils.uuid.uuid4())
-		application.create_resource(id, as_string(type), as_string(name), as_binary(data))
+	def create(self, data, resource_format="res", name=""):
+		"""Create new resource"""
+		application_id=managers.request_manager.current.app_id()
+		attributes = {"res_type":"permanent",
+						"res_format":resource_format,
+						"name":name,
+		
+						}
+		managers.resource_manager.add_resource(application_id, None, attributes, data)
+		#application.create_resource(application.id, as_string(type), as_string(name), as_binary(data))
 		return id
 		
-	def delete(self, resource):
-		application=managers.request_manager.get_request().application()
-		managers.resource_manager.delete_resource(application, resource)
+	def delete(self, resource_id):
+		"""Delete resource"""
+		application_id=managers.request_manager.current.app_id()
+		managers.resource_manager.delete_resource(application_id, resource_id)
 
+	def create_temporary(self, object_id, label, data, resource_format="res", name=""):
+		"""Create temporary resource with lable"""
+		application_id=managers.request_manager.current.app_id()
+		
+		attributes = {"res_type":"temporary",
+					  "res_format":resource_format,
+					  "name":name,
+					  "label":label,
+					 }
+		
+		managers.resource_manager.add_resource(application_id, object_id, attributes, data)
+
+	def get(self, res_id):
+		"""Geting resource"""
+		application_id=managers.request_manager.current.app_id()
+		managers.resource_manager.get_resource(application_id, res_id)
+		
+	def get_list(self):
+		"""Geting resource list"""
+		application_id=managers.request_manager.current.app_id()
+		managers.resource_manager.list_resource(application_id)		
+	
 class VDOM_application(object):
 	
 	def __init__(self):
