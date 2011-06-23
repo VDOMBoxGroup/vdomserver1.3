@@ -89,6 +89,10 @@ class VDOM_resources(object):
 		"""Geting resource list"""
 		application_id=managers.request_manager.current.app_id()
 		managers.resource_manager.list_resource(application_id)		
+		
+	def get_by_label(self, object_id, label):
+		managers.resource_manager.get_resource_by_label(object_id, label)	
+		
 	
 class VDOM_application(object):
 	
