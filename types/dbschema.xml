@@ -159,10 +159,10 @@ def on_compile(application, object, action_name, context, objects):
 class VDOM_dbschema(VDOM_object):
 	
 	def compute(self):
-		database_manager = request.database_manager
-		if not database_manager.check_database(request.application_id, self.id):
-			database_manager.create_database(request.application_id, self.id)
-		database = database_manager.get_database(request.application_id, self.id)
+		database_manager = obsolete_request.database_manager
+		if not database_manager.check_database(application.id, self.id):
+			database_manager.create_database(application.id, self.id)
+		database = database_manager.get_database(application.id, self.id)
 		if database.name != self.name:
 			database.name = self.name
 			database_manager.save_index()
@@ -174,8 +174,8 @@ class VDOM_dbschema(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 def on_delete(application_id, object_id, param):
-	import managers
-	managers.database_manager.delete_database(application_id, object_id)
+	import database
+	database.database_manager.delete_database(application_id, object_id)
 	return ""
 
 def execute_query(application_id, object_id, param):
@@ -186,7 +186,7 @@ def execute_query(application_id, object_id, param):
 		query =q.fetchall()
 		return (query)
 	else:
-		return "Error, query failed: %s"%str(e)
+		return "Error, query filed: %s"%str(e)
 
 def execute_query_xml(application_id, object_id, xml_param):
 	if xml_param:
