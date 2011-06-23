@@ -107,9 +107,13 @@ class VDOM_application(object):
 
 	def _get_name(self):
 		return managers.request_manager.current.application().name
+		
+	def _get_structure(self):
+		return managers.request_manager.current.application().app_map
 	
 	id=property(_get_id)
 	name=property(_get_name)
+	structure=property(_get_structure)
 	objects=property(lambda self: self._objects)
 	databases=property(lambda self: self._databases)
 	resources=property(lambda self: self._resources)
