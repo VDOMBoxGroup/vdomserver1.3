@@ -178,7 +178,7 @@ class VDOM_debug(VDOM_object):
 			arguments=request.arguments
 			value="<b>ARGUMENTS</b><br>"
 			for argument in arguments:
-				value+="<b>%s</b>:&nbsp;%s<br>"%(argument, arguments[argument][0])
+				value+="<b>%s</b>:&nbsp;%s<br>"%(argument, arguments.get(argument,[],list))
 			id = 'o_' + (self.id).replace('-', '_')
 			result="<div id=\"%s\" style=\"%s\"><div style=\"%s\">%s</div></div>"%(id, style, innerstyle, value.decode("utf-8"))
 		else:
