@@ -94,8 +94,14 @@ class VDOM_request(object):
 	def _get_cookies(self):
 		return managers.request_manager.current.cookies()
 	
+	def _get_container(self): # TODO: change stub to real container object
+		class container_stub(object):
+			def __init__(self):
+				self.id = managers.request_manager.current.container_id
+		return container_stub()
+	
 	arguments=property(lambda self: self._arguments)
-	container=property(lambda self: None) # TODO
+	container=property(_get_container)
 	environment=property(_get_environment)
 	headers=property(lambda self: self._headers)
 	cookies=property(_get_cookies)
