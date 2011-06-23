@@ -281,7 +281,7 @@ class VDOM_hypertext(VDOM_object):
 			return ""
 
 	def wysiwyg(self, parent, contents=""):
-		html_with_server = re.sub("=/", "=http://" + request.app_vhname + "/"  ,self.htmlcode)
+		html_with_server = re.sub("=/", "=http://" + request.server.host + "/"  ,self.htmlcode)
 		html_wys = re.sub("(href\s*=\s*['\"]{1}(.*?)['\"]{1})", r"""style="text-decoration: underline; color:#394fa2;" """,html_with_server)
 		html_wys = re.sub("<script\s*\>", "<pre>Script:<br/>" ,self.htmlcode)
 		html_wys = re.sub("</script>", "</pre>" ,self.htmlcode)
