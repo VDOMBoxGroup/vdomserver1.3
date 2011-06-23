@@ -307,19 +307,20 @@ class VDOM_Sensitive(VDOM_object):
 	def render(self, contents=""):
 		if self.visible == "1":
 			if self.target:
-				target = "target=\""+self.target+"\""
+				target = 'target="%s"' % self.target
 			else:
 				target = ""
 			if self.containerlink:
-				# link_render_1 = "<a href=\"/"+self.containerlink+".vdom\" "+target+">"	# obsolete - page_guid.vdom
-				link_render_1 = "<a href=\"/"+request.application().search_object(self.containerlink).name+".vdom\" "+target+">"
+				ref_obj = application.objects.search(self.containerlink)
+				ref_page = "/%s.vdom" % ref_obj.name if ref_obj else ""
+				link_render_1 = """<a href="%s" %s>""" % (ref_page, target)
 				link_render_2 = "</a>"
 				#link_image = "<img style=\"width:%spx; height:%spx; border:none;\" src=\"/7d0e6d03-2fc2-4e3d-9c6b-acab5c2e97d5.res\" >"%(self.width, self.height)
 			elif self.link:
 				prefix = ""
 				if not self.link.startswith("mailto:"):
 					prefix = "http://"
-				link_render_1 = ("<a href=\"%s"+self.link+"\" "+target+">") % prefix
+				link_render_1 = """<a href="%s%s" %s>""" % (prefix, self.link, target)
 				#link_image = "<img style=\"width:%spx; height:%spx; border:none;\" src=\"/7d0e6d03-2fc2-4e3d-9c6b-acab5c2e97d5.res\" >"%(self.width, self.height)
 				link_render_2 = "</a>"
 			else:
