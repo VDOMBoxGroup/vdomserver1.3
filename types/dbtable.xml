@@ -260,15 +260,15 @@ class VDOM_dbtable(VDOM_object):
 	def compute(self):
 		self.structure = "not modified"
 		self.data = "not modified"
-		database_manager = request.database_manager
-		parent_obj =request.application().search_object(self.id).parent
+		database_manager = obsolete_request.database_manager
+		parent_obj = application.objects.search(self.id).parent
 		database_id = parent_obj.id
-		db = request.database_manager.get_database(request.application_id, database_id)
+		db = obsolete_request.database_manager.get_database(application.id, database_id)
 		if db:
 			table = db.get_table(self.id,self.name)
 			if self.name != table.name:
 				table.rename(self.name)
-				request.database_manager.save_index()
+				obsolete_request.database_manager.save_index()
 			#try:
 				
 				#if not self.structure or self.structure == "":
@@ -284,8 +284,8 @@ class VDOM_dbtable(VDOM_object):
 				#	self.data = table.get_data_xml()
 				#else:
 				#	self.data = table.update_data(self.data)
-				#from database.dbobject import VDOM_sql_query
-				#query = VDOM_sql_query(request.application_id, database_id, "select * from %s"%self.name)
+				#from src.database.dbobject import VDOM_sql_query
+				#query = VDOM_sql_query(application.id, database_id, "select * from %s"%self.name)
 				#self.data = str(query.fetchall_xml())
 				#del(query)
 			#except Exception, e:
@@ -299,7 +299,7 @@ class VDOM_dbtable(VDOM_object):
 		result = ""
 		#try:
 		from xml.dom.minidom import parse, parseString
-		table = get_table(request.application_id,self.id)
+		table = get_table(application.id,self.id)
 		structure = table.get_structure()
 		dom3 = parseString(structure.encode("UTF-8"))
 		res = dom3.getElementsByTagName("column")
@@ -318,7 +318,7 @@ class VDOM_dbtable(VDOM_object):
 					2, 24, str(int(self.width) - 3), str(int(self.height)-26))
 					
 		result += "<text top=\"2\" left=\"3\" width=\"%s\" height=\"20\" fontweight=\"bold\" fontfamily=\"Tahoma\" fontsize=\"13\" textalign=\"center\">%s</text>"%(
-					str(int(self.width)-8), self.name[:15])
+					str(int(self.width)-8), self.name[:25])
 					
 		if len(res) > 0:
 		
@@ -360,18 +360,14 @@ class VDOM_dbtable(VDOM_object):
 		
 def on_delete(app_id, object_id, param):
 	from database.dbobject import VDOM_sql_query
-	import managers
-	application = managers.xml_manager.get_application(app_id)
-	object = application.search_object(object_id)
+	object = application.objects.search(object_id)
 	q = VDOM_sql_query(app_id, object.parent.id, "DROP TABLE IF EXISTS \'%s\'"%object.name)
 	q.commit()
 	return ""
 
 def get_table(app_id,object_id):
-	import managers
-	application = managers.xml_manager.get_application(app_id)
-	object = application.search_object(object_id)
-	db = request.database_manager.get_database(request.application_id, object.parent.id)
+	object = application.objects.search(object_id)
+	db = obsolete_request.database_manager.get_database(application.id, object.parent.id)
 	return db.get_table(object_id,object.name)
 	
 def get_structure(app_id, object_id, xml_param):
