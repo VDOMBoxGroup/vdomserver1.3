@@ -496,7 +496,7 @@ class VDOM_form(VDOM_object):
 		if not self.target or self.meth == "event":
 			target = u""
 		else:
-			ref_obj = application.object.search(self.target)
+			ref_obj = application.objects.search(self.target)
 			target = u"/%s.vdom" % ref_obj.name if ref_obj else u""
 
 #		if self.submitonce == "1" and self.meth != "event":
