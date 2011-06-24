@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>datatable_v3</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_datatable_v3</ClassName>
+    <ID>a2240af9-66d1-8841-0c58-ff687f3d2b3c</ID>
+    <Icon>#Res(de9ca937-5421-f7a9-3b2d-e7e98e5f07b6)</Icon>
+    <EditorIcon>#Res(00bbbc03-c6a0-70e2-073c-e7e98e60ae07)</EditorIcon>
+    <StructureIcon>#Res(e492b72a-478c-962a-4526-e7e98e606074)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>1</Dynamic>
+    <Version>3.2.6720</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
+    <Languages>en_US ,en_US ,en_US</Languages>
+    <Handlers>set_attr</Handlers>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>title</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>table</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>header</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>showheader</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>data</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>key</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hiddenfields</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectionmode</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">datatablev3</Sentence>
+      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">hide object with fade effect</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="801">fade</Sentence>
+      <Sentence ID="502">select all rows in table</Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="503">deselect all rows</Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="504">show object</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="802">fade</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Defines is object visible or not</Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="401">No</Sentence>
+      <Sentence ID="402">Yes</Sentence>
+      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="203">Position on z-axis</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Width of object</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of object</Sentence>
+      <Sentence ID="307">Incorrectr value, must be positive integer</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="208">Table's title</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="209">Table's header</Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="211">Show header or not</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="212">Data wich should include in table</Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="213">Key field wich identify entry</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="214">Fields wich should be hidden</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="215">Mode of row selecting</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="405">Single</Sentence>
+      <Sentence ID="406">Multi</Sentence>
+      <Sentence ID="116">Style</Sentence>
+      <Sentence ID="216">CSS style defined by user</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="117">Skin</Sentence>
+      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="407">User defined</Sentence>
+      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="901">keyField</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">headerData</Sentence>
+      <Sentence ID="904">Left</Sentence>
+      <Sentence ID="905">Left</Sentence>
+      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="907">Left</Sentence>
+      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="909">Left</Sentence>
+      <Sentence ID="911">left</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913">Left</Sentence>
+      <Sentence ID="914">left</Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922">Left</Sentence>
+      <Sentence ID="923">Left</Sentence>
+      <Sentence ID="924"></Sentence>
+    </Language>
+    <Language Code="en_US">
+      <Sentence ID="001">datatablev3</Sentence>
+      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">hide object with fade effect</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="801">fade</Sentence>
+      <Sentence ID="502">select all rows in table</Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="503">deselect all rows</Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="504">show object</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="802">fade</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Defines is object visible or not</Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="401">No</Sentence>
+      <Sentence ID="402">Yes</Sentence>
+      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="203">Position on z-axis</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Width of object</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of object</Sentence>
+      <Sentence ID="307">Incorrectr value, must be positive integer</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="208">Table's title</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="209">Table's header</Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="211">Show header or not</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="212">Data wich should include in table</Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="213">Key field wich identify entry</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="214">Fields wich should be hidden</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="215">Mode of row selecting</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="405">Single</Sentence>
+      <Sentence ID="406">Multi</Sentence>
+      <Sentence ID="116">Style</Sentence>
+      <Sentence ID="216">CSS style defined by user</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="117">Skin</Sentence>
+      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="407">User defined</Sentence>
+      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="901">keyField</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">headerData</Sentence>
+      <Sentence ID="904">Left</Sentence>
+      <Sentence ID="905">Left</Sentence>
+      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="907">Left</Sentence>
+      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="909">Left</Sentence>
+      <Sentence ID="911">left</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913">Left</Sentence>
+      <Sentence ID="914">left</Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922">Left</Sentence>
+      <Sentence ID="923">Left</Sentence>
+      <Sentence ID="924"></Sentence>
+    </Language>
+    <Language Code="en_US">
+      <Sentence ID="001">datatablev3</Sentence>
+      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">hide object with fade effect</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="801">fade</Sentence>
+      <Sentence ID="502">select all rows in table</Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="503">deselect all rows</Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="504">show object</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="802">fade</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Defines is object visible or not</Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="401">No</Sentence>
+      <Sentence ID="402">Yes</Sentence>
+      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="203">Position on z-axis</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Width of object</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of object</Sentence>
+      <Sentence ID="307">Incorrectr value, must be positive integer</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="208">Table's title</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="209">Table's header</Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="211">Show header or not</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="212">Data wich should include in table</Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="213">Key field wich identify entry</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="214">Fields wich should be hidden</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="215">Mode of row selecting</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="405">Single</Sentence>
+      <Sentence ID="406">Multi</Sentence>
+      <Sentence ID="116">Style</Sentence>
+      <Sentence ID="216">CSS style defined by user</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="117">Skin</Sentence>
+      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="407">User defined</Sentence>
+      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="901">keyField</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">headerData</Sentence>
+      <Sentence ID="904">Left</Sentence>
+      <Sentence ID="905">Left</Sentence>
+      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="907">Left</Sentence>
+      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="909">Left</Sentence>
+      <Sentence ID="911">left</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913">Left</Sentence>
+      <Sentence ID="914">left</Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922">Left</Sentence>
+      <Sentence ID="923">Left</Sentence>
+      <Sentence ID="924"></Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="de9ca937-5421-f7a9-3b2d-e7e98e5f07b6" Name="Icon" Type="png"><![CDATA[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
+RK5CYII=]]></Resource>
+    <Resource ID="00bbbc03-c6a0-70e2-073c-e7e98e60ae07" Name="Icon" Type="png"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEA
+AQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAAB
+AAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9m
+ZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4
+AAAAAABwAAD/////////////////////////////A+gAAAAA////////////////////////////
+/wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////
+A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAA
+AAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFk
+b2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwM
+DBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/E
+AT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcI
+CQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMH
+JZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaG
+lqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEU
+obFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi8rOEw9N14/NGlKSF
+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
+JCrA1agsZ0+dGTbt01FlCEH/2Q==]]></Resource>
+    <Resource ID="e492b72a-478c-962a-4526-e7e98e606074" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAARRQTFRF4ODg7+/v8fHx+vr6/f395eXl/v7+4uLix8fH3Nzc/Pz81tjY
+t7e36urq1NTUzs7O6OjoqampxMTEzMzM9/j48PDw5OTklJSU266utbW1p6env7+/6enprKys7vT0
+3t7e9/v73d/furq6TU1N2c/P8vPzycnJ2L+/9/b20qGh/f7+l5eXlpaWpaWl8vLyn5+fvr6+z8/P
+Wlpa9PX1qqqqxJyc3d3d297e4dHRJiYm+fz8y8vL28HBxcXFo6Oj09PT5ubmtra2u7u77Ozs1dXV
+0tLS39/f+PX14eHh7uTk6eXl+/z8ioqKpKSk9PT01tbW9fX17u7ukJCQ3+Hh6+vr+Pj49vb2+/v7
++fn59/f3////////pFFVPQAAAFx0Uk5T////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+/wCDbRfgAAAA10lEQVR42izP11rDMAyAUSW2s7on0LLK6mZDy55lrxYS2/L7v0ejkHOhi/9CnwSG
+iIibFNBQkxz4NRkLkmDV1486P7XlYnH6bVO4/W0v6qpWSknZBM//s1uX4/OIaCcLK1lReVp9fa7q
+GPsqg7n/FKOT7ntI+MtpvMNfyGy99RTBvEVLCweZ7QAZU9q5SUIZcx+HLrIwCh6T4CHC5tkFao0V
+uoPnuYM469vaWbumS+0dibEIrPpdSIF7Bdd1QTyA3P9/Ti41SqXj4WDvaiP9NsXErjFzAQYAm+s6
+UwNybn0AAAAASUVORK5CYIIw8qwXZWg0thBhlivw1ld0KjUN4hMGmiGh4u8RoVxRFOkblaPDBTJU
+zIdTV9NKyzm1ir2EDSSg0RBiHm3bYG+izSENFnBtaBC39hNrYGVtkLQDCjAVs/M0NKRlcrFySOSB
+XCpUztsABCxSQsyCvCABjoAYfgYGZgFuKfZQiOeYBGsZGRktMxJk3aG+hQFulsZGgAADAGSATSIt
+Ko16AAAAAElFTkSuQmCCp6mEc/bAwCBNjE1QSVlpU2trS6Cnp8eXjYPZUgjYFcQDkBjlmtqaZb9D
+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
+RK5CYII=]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[
+
+  
+import json
+  
+class VDOM_datatable_v3(VDOM_object):
+ 
+	def render(self, parent, contents=""):
+	
+		id = "o_" + (self.id).replace('-', '_')
+		display = u" display:none; " if self.visible == "0" else u""
+		
+		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px"""\
+				.format(display = display, zind = self.zindex, top = self.top, left = self.left)
+				
+		if self.header:
+			try:
+				header = json.loads(self.header)
+				if isinstance(header, int):
+					raise Exception (u"Incorrect value in header %s" % self.header) 
+			except:
+				raise Exception (u"Incorrect value in header %s" % self.header)
+		else:
+			header = []
+		if self.data:
+			try:
+				src_data = json.loads(self.data)
+				if isinstance(src_data, int):
+					raise Exception (u"Incorrect value in data %s" % self.data)
+			except:
+				raise Exception (u"Incorrect value in data %s" % self.data)
+		else:
+			src_data = []
+		
+		try:
+			key = json.loads(self.key) #self.key if isinstance(self.key, unicode) else json.loads(self.key)
+		except:
+			key = self.key
+			
+		if self.hiddenfields:
+			try:
+				hidden = json.loads(self.hiddenfields)
+				if isinstance(hidden, int):
+					hidden = [hidden]
+			except:
+				if self.hiddenfields in header:
+					hidden = [self.hiddenfields]
+				else:
+					raise Exception (u"Incorrect value in hidden fields  %s" % self.hiddenfields)
+		else:
+			hidden = []
+			
+		data = []
+		keys = []
+		for value in src_data:
+			if isinstance(value, list) and len(header) == len(value):
+				row = dict(zip(header, value))
+				data.append(row)
+				if key and key in header:
+					keys.append(row[key])
+			else:
+				data.append(value)
+				if key and key in header:
+					keys.append(value[key]) 
+		
+		
+		js_headerselect = u"""
+$("#"""+id+""" table tr th:not([checkbox])").click(function(){
+var hname_"""+id+""" = $(this).html();
+execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "headerselected", {headername:hname_"""+id+"""});
+ });		
+"""
+		
+		js_multiselect = u"""
+window.selectionmode_"""+id+""" = 'multi';
+$("#"""+id+""" table tr th input:checkbox").click(function(){
+	if(this.checked){
+		$("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+		  params_"""+id+""".push(window.keys_"""+id+"""[i]);
+		  });
+		
+	}else{		
+		$("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		params_"""+id+""" = [];
+	}
+	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+  });
+
+$("#"""+id+""" table tr td input:checkbox").click(function(){
+	if(this.checked){
+		$(this).parent().parent().addClass('row_selected');
+	}else{
+		$(this).parent().parent().removeClass('row_selected');
+	}
+	params_"""+id+""" = [];
+	$("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+		if (this.checked){
+		   params_"""+id+""".push(window.keys_"""+id+"""[i]);
+		}
+	});
+	if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){
+		$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+	}else{
+		$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+	}
+	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+  });
+"""
+
+		js_cellclick = u"""
+$("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
+	var cell_data = $(this).html();
+	var cell_index = $(this).attr("index");
+	var header_data = header_""" + id + """[cell_index - 1];
+	var param = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
+	params_"""+id+"""[0] = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
+	if(window.selectionmode_"""+id+""" != 'multi'){
+		$("#"""+id+""" table tr[row]").each(function(){
+			if($(this).hasClass('row_selected')){
+				$(this).removeClass('row_selected');
+			}
+		});
+		$(this).parent().addClass('row_selected');
+		execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+	}
+	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+  });
+"""
+		
+		tdata = u""
+		theader = u""
+		vheader = [h for h in header if h not in hidden]
+		if vheader:
+			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>\n' if self.selectionmode == "1" else u'<tr header class="thead">'
+			for (index, colname) in zip(range(len(vheader)), vheader):
+				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>\n'
+			theader += u'</tr>'
+		for (row_i, row) in zip(range(len(data)), data):
+			if (row_i + 1) % 2:
+				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' oddrow">\n'
+			else:
+				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' even">\n'
+			
+			tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox"></td>\n' if self.selectionmode == "1" else ""
+			if vheader:
+				for (index, col) in zip(range(len(vheader)), vheader):
+					try:
+						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>\n'
+					except:
+						raise Exception ("In row (%s) no column %s"%(json.dumps(row), col))
+			else:
+				for (index, val) in zip(range(len(row)), row):
+					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>\n'
+			tdata += u"</tr>\n"
+			
+		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick
+		result = u"""<script type="text/javascript">
+jQuery(document).ready(function($){
+var id_"""+id+""" = '"""+id+"""';
+window.keys_"""+id+""" = """ + json.dumps(keys) + """;
+window.header_"""+id+""" = """ + json.dumps(vheader) + """
+var params_"""+id+""" = [];
+%(select)s
+%(headerselect)s
+});
+</script>		
+<style type="text/css">
+%(css)s
+</style>
+<div id="%(id)s" style="%(style)s">
+<table width="%(width)spx" height="%(height)spx" border="2" cellpadding="5" class="table">
+<caption>%(title)s</caption>
+%(theader)s
+<tbody class="tbody">
+%(tdata)s
+</tbody>
+</table>
+</div>
+""" % {"select": select,
+	   "headerselect": js_headerselect,
+	   "css": self.style % {"id": id},
+	   "id": id,
+	   "style": style,
+	   "width": self.width,
+	   "height": self.height,
+	   "title": self.title,
+	   "theader": theader if self.showheader == '1' else '',
+	   "tdata": tdata}
+		
+		return VDOM_object.render(self, parent, contents=result)
+	
+	def wysiwyg(self, parent, contents=""):
+		try:
+			header = json.loads(self.header)
+		except:
+			header = []
+		try:
+			src_data = json.loads(self.data)
+		except:
+			src_data = []
+			
+		data = []
+		theader = ""
+		tdata = ""
+		for value in src_data:
+			if isinstance(value, list) and len(header) == len(value):
+				row = dict(zip(header, value))
+				data.append(row)
+			else:
+				data.append(value)
+
+		for colname in header:
+			theader += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"14\" color=\"#000000\" textalign=\"center\">"+unicode(colname)+u"</text></cell>"
+			
+		for row in data:
+			tdata += u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\">"
+			if header and len(header) == len(row):
+				for col in header:
+					tdata += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"12\" color=\"#000000\" textalign=\"center\">"+unicode(row[col])+u"</text></cell>"
+			else:
+				for val in row:
+					tdata += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"12\" color=\"#000000\" textalign=\"center\">"+unicode(val)+u"</text></cell>"
+			
+			tdata +=u"</row>"
+			
+		result=u"<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+					u"<table zindex=\"%s\" top=\"0\" left=\"0\" width=\"%s\" height=\"%s\" backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\" >"\
+						u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\">%s"\
+						u"</row>"\
+						u"%s"\
+					u"</table>"\
+				u"%s</container>"%(
+					self.id, self.zindex, self.hierarchy, self.top, self.left, self.width, self.height,
+					self.zindex, self.width, self.height,
+					theader,
+					tdata,
+					contents)
+		
+
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+		
+
+	
+def set_attr(app_id, object_id, param):
+	
+	css = """#%(id)s caption {
+font: 18px Arial;
+text-align:left;
+margin-bottom:15px;
+
+}
+
+#%(id)s table.table {
+border-collapse:collapse;
+border:1px solid #d4d4d4;
+height:0px;
+}
+
+#%(id)s .th-cell {
+height:32px !important;
+background:#f5f5f5;
+text-align:left;
+padding-left:10px;
+border-bottom:2px solid #d4d4d4;
+}
+
+#%(id)s .thead {
+height:32px !important;
+background:#f5f5f5;
+}
+
+#%(id)s table.table td.cell {
+height:32px !important;
+text-align:left;
+padding-left:10px;
+}
+#%(id)s tr.even {
+background: #f0f0f0; 
+} 
+#%(id)s .row {
+cursor:pointer;
+}
+#%(id)s .row_selected {
+background:#effdff !important;
+}
+"""	
+		
+	o = application.objects.search(object_id)
+		
+	# set attributes
+	
+	if "skin" in param:
+		if param["skin"]["value"] == "1":
+			o.set_attributes({"style": css})
+	if "style" in param and param["style"]["value"] and o.attributes.style != css:		
+		o.set_attributes({"skin": 0}) 	
+	
+	return ""	
+ 
+ ]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="cellclick">
+          <Parameters>
+            <Parameter Name="keyField" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="cellData" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="click">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
+        <Event Name="ctrlclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="custom">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="headerselected">
+          <Parameters>
+            <Parameter Name="headername" Order="" VbType="" Help="#Lang(912)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(921)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(923)"/>
+          </Parameters>
+        </Event>
+        <Event Name="rowsselected">
+          <Parameters>
+            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(924)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^\d+$"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_hide(this.domCont, fade);
+		  ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var id = this.domCont.id;
+eval('var selectionmode = window.selectionmode_'+id+';');
+if(selectionmode == 'multi'){
+   eval('var keys = window.keys_'+id+';');
+   eval('var dth=jQuery("#'+id+' table input:checkbox");');
+   dth.attr('checked', 'checked').parent().not("th").parent().addClass('row_selected');
+   execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
+}
+		  ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var id = this.domCont.id;
+eval('var selectionmode = window.selectionmode_'+id+';');
+if(selectionmode == 'multi'){
+   var keys = [];
+   eval('var dth=jQuery("#'+id+' table input:checkbox");');
+   dth.removeAttr('checked').parent().not("th").parent().removeClass('row_selected');
+   execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
+}
+
+		  ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_show(this.domCont, fade);
+		  ]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
+</Type>
