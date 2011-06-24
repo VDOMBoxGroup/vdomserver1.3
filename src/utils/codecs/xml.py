@@ -2,22 +2,23 @@
 import re, codecs
 
 
-encode_table={"<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&apos;", "&": "&amp;"}
-encode_regex=re.compile("(%s)"%"|".join(map(re.escape, encode_table.keys())))
-
-decode_table={entiry: symbol for symbol, entiry in encode_table.iteritems()}
-decode_regex=re.compile("(%s)"%"|".join(map(re.escape, decode_table.keys())))
+decode_table={"&lt;": "<", "&gt;": ">", "&quot;": "\"", "&apos;": "'", "&amp;": "&"}
+decode_regex=re.compile("(?:&#(\d{1,5});)|(?:&#x(\d{1,5});)|(&\w{1,8};)")
 
 
 class XmlCodec(codecs.Codec):
 	
 	def encode(self, input, errors='strict'):
-		output=encode_regex.sub(lambda match: encode_table[match.group(0)], input)
+		output=input.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;")
 		return output, len(output)
 
 	def decode(self, input, errors='strict'):
-		output=decode_regex.sub(lambda match: decode_table[match.group(0)], input)
+		def substitute(match):
+			code, xcode, entity=match.group(1, 2, 3)
+			return unichr(int(code)) if code else unichr(int(xcode, 16)) if xcode else decode_table.get(entity, entity)
+		output=decode_regex.sub(substitute, input)
 		return output, len(output)
+
 
 
 class XmlIncrementalEncoder(codecs.IncrementalEncoder):

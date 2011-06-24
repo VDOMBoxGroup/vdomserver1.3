@@ -3,11 +3,11 @@ import re, codecs
 from htmlentitydefs import name2codepoint, codepoint2name
 
 
-encode_table={unichr(codepoint): "&%s;"%name for codepoint, name in codepoint2name.iteritems()}
+encode_table={unichr(code): "&%s;"%name for code, name in codepoint2name.iteritems()}
 encode_regex=re.compile("(%s)"%"|".join(map(re.escape, encode_table.keys())))
 
-decode_table={"&%s;"%name: unichr(codepoint) for name, codepoint in name2codepoint.iteritems()}
-decode_regex=re.compile("(?:&#(\d{1,5});)|(&\w{1,8};)")
+decode_table={"&%s;"%name: unichr(code) for name, code in name2codepoint.iteritems()}
+decode_regex=re.compile("(?:&#(\d{1,5});)|(?:&#x(\d{1,5});)|(&\w{1,8};)")
 
 
 class HtmlCodec(codecs.Codec):
@@ -18,8 +18,8 @@ class HtmlCodec(codecs.Codec):
 
 	def decode(self, input, errors='strict'):
 		def substitute(match):
-			code, entity=match.group(1, 2)
-			return unichr(int(code)) if code else decode_table.get(entity, entity)
+			code, xcode, entity=match.group(1, 2, 3)
+			return unichr(int(code)) if code else unichr(int(xcode, 16)) if xcode else decode_table.get(entity, entity)
 		output=decode_regex.sub(substitute, input)
 		return output, len(output)
 
