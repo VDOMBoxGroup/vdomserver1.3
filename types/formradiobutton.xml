@@ -118,7 +118,7 @@
       <Help>#Lang(308)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>3</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
@@ -130,7 +130,7 @@
       <Help>#Lang(309)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
       <RegularExpressionValidation>^.+$</RegularExpressionValidation>
     </Attribute>
@@ -166,7 +166,7 @@
       <Help>#Lang(324)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
@@ -424,7 +424,72 @@
     <Resource ID="dbd5a117-b23c-4d62-85da-611bcc71d007" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
     <Resource ID="de533a49-3276-4479-8daf-ee661255c215" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQ5QTFRF+/v7/Pz8/v7+7e3tra2t5OTk4+Pj8vLy7+/v3d3d5+fn09PT5eXl4uLi8PDw+Pj4+Pf3ycnJysrKx8fH4ODg0dHR1dXVt7e3+fn58fHx6Ojo7fLy5cjJ3NLTubm56Fle0NDQ7Pn47hsj29vby4aJhISEq6urtbW1zaGj/f7+tLS0k5OTo6Oj+P39wMDA3NzcmZmZ39/f8vPzlJSU3t7e1tbW6urqUFBQ/Pv7w8PD9Pj44eHh9///2uTk9fX1WVlZ19fXxsbG5ubmvr6+v7+/qampu7u75bW25ezrJSUln5+fp6enm5ubvLy8xcXF+/7+z8/P2tra9PT08/Pz9vb2+vr6/f399/f3////////mwe9fQAAAFp0Uk5T//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8A0daKbwAAANxJREFUeNpcz8daAkEQBODeyOYlJzOKgmLOETMGjDPT3fv+L8IO6sU69OE/1NcF2b+APsK/Pg8SIURBTsE6FKn8tlzXbdeEhsgxiUghAOI9lOJ2coBUPFuaKVKK62CvBZVtpM3Zhd6TUkkJsreB6zSbF6POyiWay3He4W98STD25hal4rClS8thzTvhj74iMyxoeOej7jBmlUqjPoU75t3j5zITceUqB6gbJvP+uEXov+pPvVPFeWTVcxpKA958BlHk3FpVY+tnHDRWbdt+2Hl5nP9d+xdLZtlEgAEASD04/irLcSoAAAAASUVORK5CYIK3STIw8qwXZWg0thBhlivw1ld0KjUN4hMGmiGh4u8RoVxRFOkblaPDBTJUzIdTV9NKyzm1ir2EDSSg0RBiHm3bYG+izSENFnBtaBC39hNrYGVtkLQDCjAVs/M0NKRlcrFySOSBXCpUztsABCxSQsyCvCABjoAYfgYGZgFuKfZQiOeYBGsZGRktMxJk3aG+hQFulsZGgAADAGSATSItKo16AAAAAElFTkSuQmCCp6mEc/bAwCBNjE1QSVlpU2trS6Cnp8eXjYPZUgjY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]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[class VDOM_formradiobutton(VDOM_object):	def render(self, parent, contents=""):		display = u"display:none;" if self.visible == "0" else u""		classn = u"""class="%s" """ % self.classname if self.classname else u""				object = request.vdom.search_object(self.id)		if object.parent and object.parent.type.class_name == "VDOM_formradiogroup":			name = object.parent.name			state = [u"", u"""checked="checked" """][int(self.state)]			style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;						width: {width}px; height: {height}px; font: 14px tahoma; overflow: hidden; {display}"""\					.format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 							width = self.width, height = self.height, display = display)			clean_id = (self.id).replace('-', '_')			id = u"o_%s" % clean_id			result = \				u"""<div id="%(id)s" style="%(style)s">						<input %(classn)s name="%(name)s" type="radio" %(state)s tabindex="%(tabind)s" 							value="%(value)s" id="inp_%(id)s" style="vertical-align:middle" />						<label for="inp_%(id)s" style="vertical-align:middle">%(label)s</label>						%(contents)s					</div>					<script type="text/javascript">						jQuery(document).ready(function(){							jQuery("#inp_%(id)s").change(function(){								execEventBinded("%(clean_id)s", "change", { Value: jQuery("#inp_%(id)s").val() });});						});					</script>				""" % {"id": id, "style": style, "classn": classn,						"name": name, "state": state, "tabind": self.tabindex, "value": self.value,						"label": self.label, "contents": contents, "clean_id": clean_id}		else:			result = u""		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		if int(self.state):			state =  u"""<circle cx="9" cy="8" r="3" fill="#000000" stroke="#000000"/>"""		else:			state = u""				result = \			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 							top="{top}" left="{left}" width="{width}" height="{height}">					<svg>						<circle cx="9" cy="8" r="6" fill="#EEEEEE" stroke="#000000"/>						{state}					</svg>					<text top="-2" left="16" width="{txt_wid}" height="{txt_hei}">{label}</text>					{contents}				</container>""".format(id = self.id, vis = self.visible, zind = self.zindex, 									hierarchy = self.hierarchy, order = self.order, 									top = self.top, left = self.left, width = self.width, height = self.height,									state = state, txt_wid = int(self.width)-16, txt_hei = int(self.height) + 3, 									label = self.label, contents = contents)		return VDOM_object.wysiwyg(self, parent, contents=result)		]]></SourceCode>
+  <SourceCode><![CDATA[
+
+class VDOM_formradiobutton(VDOM_object):
+
+	def render(self, parent, contents=""):
+		display = u"display:none;" if self.visible == "0" else u""
+		classn = u"""class="%s" """ % self.classname if self.classname else u""
+		
+		object = application.objects.search(self.id)
+		if object.parent and object.parent.type.class_name == "VDOM_formradiogroup":
+			name = object.parent.name
+			state = [u"", u"""checked="checked" """][int(self.state)]
+			style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
+						width: {width}px; height: {height}px; font: 14px tahoma; overflow: hidden; {display}"""\
+					.format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
+							width = self.width, height = self.height, display = display)
+
+			clean_id = (self.id).replace('-', '_')
+			id = u"o_%s" % clean_id
+
+			result = \
+				u"""<div id="%(id)s" style="%(style)s">
+						<input %(classn)s name="%(name)s" type="radio" %(state)s tabindex="%(tabind)s" 
+							value="%(value)s" id="inp_%(id)s" style="vertical-align:middle" />
+						<label for="inp_%(id)s" style="vertical-align:middle">%(label)s</label>
+						%(contents)s
+					</div>
+					<script type="text/javascript">
+						jQuery(document).ready(function(){
+							jQuery("#inp_%(id)s").change(function(){
+								execEventBinded("%(clean_id)s", "change", { Value: jQuery("#inp_%(id)s").val() });});
+						});
+					</script>
+				""" % {"id": id, "style": style, "classn": classn,
+						"name": name, "state": state, "tabind": self.tabindex, "value": self.value,
+						"label": self.label, "contents": contents, "clean_id": clean_id}
+		else:
+			result = u""
+
+		return VDOM_object.render(self, parent, contents=result)
+
+	def wysiwyg(self, parent, contents=""):
+
+		if int(self.state):
+			state =  u"""<circle cx="9" cy="8" r="3" fill="#000000" stroke="#000000"/>"""
+		else:
+			state = u""
+		
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+							top="{top}" left="{left}" width="{width}" height="{height}">
+					<svg>
+						<circle cx="9" cy="8" r="6" fill="#EEEEEE" stroke="#000000"/>
+						{state}
+					</svg>
+					<text top="-2" left="16" width="{txt_wid}" height="{txt_hei}">{label}</text>
+					{contents}
+				</container>""".format(id = self.id, vis = self.visible, zind = self.zindex, 
+									hierarchy = self.hierarchy, order = self.order, 
+									top = self.top, left = self.left, width = self.width, height = self.height,
+									state = state, txt_wid = int(self.width)-16, txt_hei = int(self.height) + 3, 
+									label = self.label, contents = contents)
+
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+		]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
