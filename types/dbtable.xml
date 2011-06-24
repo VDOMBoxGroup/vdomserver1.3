@@ -263,12 +263,12 @@ class VDOM_dbtable(VDOM_object):
 		database_manager = obsolete_request.database_manager
 		parent_obj = application.objects.search(self.id).parent
 		database_id = parent_obj.id
-		db = obsolete_request.database_manager.get_database(application.id, database_id)
+		db = database_manager.get_database(application.id, database_id)
 		if db:
 			table = db.get_table(self.id,self.name)
 			if self.name != table.name:
 				table.rename(self.name)
-				obsolete_request.database_manager.save_index()
+				database_manager.save_index()
 			#try:
 				
 				#if not self.structure or self.structure == "":
