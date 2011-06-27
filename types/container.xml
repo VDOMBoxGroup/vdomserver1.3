@@ -760,6 +760,28 @@ def set_attr(app_id, object_id, param):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+	    <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="newClass" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery(this.domCont).addClass(newClass);
+		  ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="newClass" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="oldClass" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (jQuery(this.domCont).hasClass(oldClass)){
+	jQuery(this.domCont).removeClass(oldClass);
+	jQuery(this.domCont).addClass(newClass);
+}else{
+	console.info("Object " + this.domCont.id + " hasn't class " + oldClass);
+}
+		  ]]></SourceCode>
+		</Action>
         <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="dragStart">
           <Parameters/>
           <SourceCode><![CDATA[
@@ -807,6 +829,14 @@ this.domCont.style.zindex = parseInt(newZindex);
 this.domCont.style.width = parseInt(width);
 this.domCont.style.height = parseInt(height);
                     ]]></SourceCode>
+        </Action>
+		<Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="cssClass" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery(this.domCont).attr('class', cssClass);
+		  ]]></SourceCode>
         </Action>
         <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setTransparency">
           <Parameters>
