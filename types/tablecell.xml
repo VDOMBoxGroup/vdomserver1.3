@@ -132,8 +132,8 @@ class VDOM_tablecell(VDOM_object):
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		#import managers
-		#obj = managers.xml_manager.search_object(request.application_id, self.id)
+		#import src.xml
+		#obj = src.xml.xml_manager.search_object(request.application_id, self.id)
 		#childs = obj.objects
 		
 		result = u"""<cell id="%s" visible="%s" zindex="%s" hierarchy="%s" order="%s" bordercolor="#000000">%s</cell>
