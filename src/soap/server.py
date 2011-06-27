@@ -5,6 +5,7 @@ import sys, os, time, zlib, base64, copy, traceback, tempfile, shutil, SOAPpy
 
 import managers, security
 from errors import *
+import utils
 from utils.encode import *
 from utils.semaphore import VDOM_semaphore
 from utils.mutex import VDOM_named_mutex_auto
