@@ -1,7 +1,7 @@
 """session module"""
 
 import sys, string, time, os, shutil, copy
-from utils.id import VDOM_id
+
 from utils.exception import *
 import managers
 
@@ -12,8 +12,8 @@ class VDOM_session(dict):
 	def __init__(self):
 		"""session constructor"""
 		dict.__init__(self)
-		id_obj = VDOM_id()
-		self.__id = id_obj.new()
+		
+		self.__id = managers.session_manager.get_unique_sid()
 		self.context = {}
 		self.on_start_executed = False
 		self.__user = ""

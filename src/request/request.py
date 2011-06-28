@@ -101,7 +101,7 @@ class VDOM_request:
 		else:
 			x = managers.session_manager[sid]
 			if x is None:
-				debug("Session " + sid + " expired")
+				#debug("Session " + sid + " expired")
 				sid = managers.session_manager.create_session()
 		#debug("Session ID "+str(sid))
 		cookies["sid"] = sid
@@ -200,9 +200,11 @@ class VDOM_request:
 		return self.__session
 
 	def set_session_id(self, sid):
+		old_sid = self.__session.id()
 		self.__cookies["sid"] = sid
 		self.args.arguments()["sid"] = sid
 		self.__session = managers.session_manager[sid]
+		managers.session_manager.remove_session(old_sid)
 
 	def headers(self, headers = None):
 		""" Server headers. """
