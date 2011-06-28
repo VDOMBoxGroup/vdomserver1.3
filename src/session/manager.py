@@ -7,6 +7,7 @@ from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 import managers
 from daemon import VDOM_session_cleaner
+from utils.id import VDOM_id
 
 class VDOM_session_manager(dict):
 	"""Session Manager class"""
@@ -15,7 +16,7 @@ class VDOM_session_manager(dict):
 		"""constructor"""
 		dict.__init__(self)
 		self.__timeout = VDOM_CONFIG["SESSION-LIFETIME"]
-		self.__sem = VDOM_semaphore()
+		self.__sem = VDOM_semaphore()#1,True)
 		#start clean thread
 		self.__daemon=VDOM_session_cleaner(self)
 		self.__daemon.start()
@@ -34,8 +35,10 @@ class VDOM_session_manager(dict):
 		"""create session & return it`s id"""
 		s = VDOM_session()
 		self.__sem.lock()
-		dict.__setitem__(self, s.id(), s)
-		self.__sem.unlock()
+		try:
+			dict.__setitem__(self, s.id(), s)
+		finally:
+			self.__sem.unlock()
 		return s.id()
 
 	def remove_session(self, session_id):
@@ -93,3 +96,10 @@ class VDOM_session_manager(dict):
 			self.__sem.unlock()
 
 	current = property(__get_current, __set_current)
+
+	def get_unique_sid(self):
+		sid = VDOM_id().new()
+		while dict.__contains__(self, sid):
+			sid = VDOM_id().new()
+			debug("Sid generation colision")
+		return sid

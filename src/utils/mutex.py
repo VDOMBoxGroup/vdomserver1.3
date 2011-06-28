@@ -60,9 +60,7 @@ class VDOM_named_mutex_manager(object):
 	def lock(self, name):
 		"""lock mutex with specified name"""
 		self.__mutex.lock()
-#		debug("*****#####")
-#		debug(str(name))
-#		debug("*****#####")
+		#print("lock*****#####\n%s\n*****#####\n"%str(name))
 		if name not in self.__map:
 			self.__map[name] = VDOM_mutex()
 			self.__count[name] = 1
@@ -74,6 +72,7 @@ class VDOM_named_mutex_manager(object):
 	def unlock(self, name):
 		"""unlock mutex with specified name"""
 		self.__mutex.lock()
+		#print("unlock*****#####\n%s\n*****#####\n"%str(name))
 		if name in self.__map:
 			self.__map[name].unlock()
 			if self.__count[name] > 1:
