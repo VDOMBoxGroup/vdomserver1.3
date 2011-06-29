@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.2.6720</Version>
+    <Version>3.3.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -217,6 +217,18 @@
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>cssclass</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(318)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -313,6 +325,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="118">CSS Class</Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="318">CSS Class</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -408,6 +423,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="118">CSS Class</Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="318">CSS Class</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -503,6 +521,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="118">CSS Class</Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="318">CSS Class</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -945,7 +966,7 @@ var params_"""+id+""" = [];
 <style type="text/css">
 %(css)s
 </style>
-<div id="%(id)s" style="%(style)s">
+<div id="%(id)s" style="%(style)s" class="%(classn)s">
 <table width="%(width)spx" height="%(height)spx" border="2" cellpadding="5" class="table">
 <caption>%(title)s</caption>
 %(theader)s
@@ -959,6 +980,7 @@ var params_"""+id+""" = [];
 	   "css": self.style % {"id": id},
 	   "id": id,
 	   "style": style,
+	   "classn": self.cssclass,
 	   "width": self.width,
 	   "height": self.height,
 	   "title": self.title,
