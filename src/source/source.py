@@ -58,7 +58,7 @@ class VDOM_source(object):
 		# result+="import managers.request_manager.get_request()\n"
 
 		#result+="from object import request\n"
-		result+="from scripting import server, application, session, request, response, VDOM_object, obsolete_request\n"
+		result+="from scripting import server, application, log, session, request, response, VDOM_object, obsolete_request\n"
 
 		#result+="from scripting import request\n"
 		# result+="from src!.object import request\n"

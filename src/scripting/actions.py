@@ -40,8 +40,9 @@ class python_action(generic_action):
 	def on_execute(self, object, namespace):
 		app_module=managers.request_manager.get_request().application().id
 		__import__(app_module)
-		namespace={"request": scripting.request, "response": scripting.response, "application": scripting.application,
-			"server": scripting.server, "session": scripting.session, "obsolete_request": scripting.obsolete_request, 
+		namespace={"server": scripting.server, "application": scripting.application, "log": scripting.log, 
+			"session": scripting.session, "request": scripting.request, "response": scripting.response,
+			"obsolete_request": scripting.obsolete_request, 
 			"self": object, "__package__": app_module}
 		exec self.code in namespace
 		

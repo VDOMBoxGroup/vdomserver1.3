@@ -95,8 +95,9 @@ class VDOM_engine:
 				if language=="python":
 					debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%action.code)
 					# namespace={"request": request, "self": None, "__package__": application.id }
-					namespace={"request": scripting.request, "response": scripting.response, "application": scripting.application,
-						"server": scripting.server, "session": scripting.session, "obsolete_request": scripting.obsolete_request, 
+					namespace={"server": scripting.server, "application": scripting.application, "log": scripting.log, 
+						"session": scripting.session, "request": scripting.request, "response": scripting.response,
+						"obsolete_request": scripting.obsolete_request, 
 						"self": None, "__package__": application.id}
 					exec action.code in namespace
 				#elif action.lang=="vscript":
