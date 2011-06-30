@@ -15,6 +15,7 @@ from storage.storage import VDOM_config
 from version import *
 import soap.SOAPBuilder
 from soap.wsdl import methods as soap_methods
+from utils.exception import VDOM_exception
 
 # A class to describe how header messages are handled
 class HeaderHandler:
@@ -250,7 +251,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		# remove request
 		try:
 			managers.request_manager.current.collect_files()
-		except VDOM_exception: pass
+		except VDOM_exception as error:
+			print "WARNING: %s"%error
+			pass
 		del managers.request_manager.current
 		try:
 			del(self.__request.vdom)
