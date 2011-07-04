@@ -92,13 +92,12 @@ class VDOM_object(object):
 		self.update_state=state_up_to_date
 		self.stage=stage_normal
 
-	def __del__(self):
-		debug("[Object] Deinitialize %s"%self.__id)
-		self.stage=stage_deinitialize
-		self.__object=None
-		self.__attributes=None
-		self.__objects=None
-
+#	def __del__(self): WARNING: Temporary removed due memory leaks
+#		debug("[Object] Deinitialize %s"%self.__id)
+#		self.stage=stage_deinitialize
+#		self.__object=None
+#		self.__attributes=None
+#		self.__objects=None
 
 
 	def __get_name(self):
