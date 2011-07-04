@@ -809,8 +809,8 @@ class VDOM_datatable_v3(VDOM_object):
 		id = "o_" + (self.id).replace('-', '_')
 		display = u" display:none; " if self.visible == "0" else u""
 		
-		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px"""\
-				.format(display = display, zind = self.zindex, top = self.top, left = self.left)
+		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
+				.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
 				
 		if self.header:
 			try:
@@ -967,7 +967,7 @@ var params_"""+id+""" = [];
 %(css)s
 </style>
 <div id="%(id)s" style="%(style)s" class="%(classn)s">
-<table width="%(width)spx" height="%(height)spx" border="2" cellpadding="5" class="table">
+<table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
 <caption>%(title)s</caption>
 %(theader)s
 <tbody class="tbody">
@@ -981,8 +981,6 @@ var params_"""+id+""" = [];
 	   "id": id,
 	   "style": style,
 	   "classn": self.cssclass,
-	   "width": self.width,
-	   "height": self.height,
 	   "title": self.title,
 	   "theader": theader if self.showheader == '1' else '',
 	   "tdata": tdata}
