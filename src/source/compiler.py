@@ -194,7 +194,7 @@ class VDOM_compiler(object):
 			source.write("class %s(%s):\n\n"%(source.class_name, object.type.class_name))
 			source.write("\tdef __init__(self, id):\n\t\t%s.__init__(self, id)\n%s%s\n"%(object.type.class_name, init,
 				"\t\tself.objects.update({%s})\n"%", ".join(["%s: self.%s"%(repr(name), name) for name in xobjects]) if xobjects else ""))
-			source.write("\tdef __del__(self):\n\t\t%s.__del__(self)\n%s\n"%(object.type.class_name, dein))
+			# source.write("\tdef __del__(self):\n\t\t%s.__del__(self)\n%s\n"%(object.type.class_name, dein)) # WARNING: Temporary removed due memory leaks
 			source.write("\tdef execute(self, action_name, context):\n%s\t\t%s.execute(self, action_name, context)\n\n"%(execute, object.type.class_name))
 			source.write("\tdef compute(self):\n%s\t\t%s.compute(self)\n\n"%(compute, object.type.class_name))
 			source.write("\tdef render(self, parent, contents=\"\"):\n\t\tresult=contents\n%s\t\treturn %s.render(self, parent, contents=result)\n\n"%(render, object.type.class_name))
