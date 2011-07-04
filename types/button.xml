@@ -901,7 +901,7 @@ class VDOM_button(VDOM_object):
 		height = u"height:%spx;" % self.height if self.height else u""
 		clname = u"""class="%s" """ % self.classname if self.classname else u""
 
-		return u"""<a style="display:block;{height}" href="{link}" title="{hint}" {classname}>{bgimage}
+		return u"""<a style="display:block;{height} {bgimage}" href="{link}" title="{hint}" {classname}>
 				""".format(bgimage = bgimg, height = height, link = link, hint = self.hint, classname = clname)
 	
 
