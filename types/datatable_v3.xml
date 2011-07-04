@@ -811,7 +811,9 @@ class VDOM_datatable_v3(VDOM_object):
 		
 		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
 				.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
-				
+		
+		cssclass = "class = \"%s\"" % self.cssclass if self.cssclass else ""
+		
 		if self.header:
 			try:
 				header = json.loads(self.header)
@@ -966,7 +968,7 @@ var params_"""+id+""" = [];
 <style type="text/css">
 %(css)s
 </style>
-<div id="%(id)s" style="%(style)s" class="%(classn)s">
+<div id="%(id)s" style="%(style)s" %(class)s">
 <table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
 <caption>%(title)s</caption>
 %(theader)s
@@ -980,7 +982,7 @@ var params_"""+id+""" = [];
 	   "css": self.style % {"id": id},
 	   "id": id,
 	   "style": style,
-	   "classn": self.cssclass,
+	   "class": cssclass,
 	   "title": self.title,
 	   "theader": theader if self.showheader == '1' else '',
 	   "tdata": tdata}
