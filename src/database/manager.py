@@ -80,6 +80,19 @@ class VDOM_database_manager(object):
 		else:
 			database = self.create_database(owner_id, db_id)
 		return database
+		
+	def get_database_by_name(self, owner_id, db_name):
+		"""Getting database object by name"""
+		database = None
+		db = []
+		for db_id, db_obj in self.__index.items():
+			if db_obj.name == db_name:
+				db.append(self.__index[db_id])
+		if len(db) == 1:
+			database = db[0]
+			return database
+		else:
+			pass
 	
 	def create_database(self, owner_id, id):
 		"""Creation of new database"""
