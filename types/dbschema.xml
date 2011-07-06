@@ -174,8 +174,7 @@ class VDOM_dbschema(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 def on_delete(application_id, object_id, param):
-	import database
-	database.database_manager.delete_database(application_id, object_id)
+	obsolete_request.database_manager.delete_database(application_id, object_id)
 	return ""
 
 def execute_query(application_id, object_id, param):
