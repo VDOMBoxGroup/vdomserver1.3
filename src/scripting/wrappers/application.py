@@ -1,6 +1,8 @@
 
 import re, managers
 
+DBSCHEMA_ID = '753ea72c-475d-4a29-96be-71c522ca2097'
+DBTABLE_ID = '92269b6e-4b6b-4882-852f-f7ef0e89c079'
 
 class VDOM_objects(object):
 	
@@ -45,10 +47,74 @@ class VDOM_storage(object):
 	
 	pass
 
-class VDOM_databases(object):
-	
-	pass
+class VDOM_database(object):
 
+	def __init__(self, name):
+		self.__name = name
+		self.database = managers.database_manager.get_database_by_name(managers.request_manager.current.app_id(), self.__name)
+		if not self.database or (not self.database.is_ready and not self.database.open()):
+			raise Exception("Database with name \"%s\" does not exist" % self.__name)
+		self.__conn = self.database.get_connection()
+		self.__cur = self.__conn.cursor()
+			
+	def fetchone(self, sql, params={}):
+		self.__cur.execute(sql, params)
+		return self.__cur.fetchone()
+			
+	def fetchall(self, sql, params={}):
+		self.__cur.execute(sql, params)
+		return self.__cur.fetchall()
+			
+	def commit(self, sql, params={}):
+		self.__cur.execute(sql, params)
+		if self.__conn:
+			self.__conn.commit()
+		return (self.__cur.lastrowid, self.__cur.rowcount)
+		
+	def create(self, table_name, table_diffinition=""):
+		application_id=managers.request_manager.current.app_id()
+		application = managers.xml_manager.get_application(application_id)
+		parent = application.search_objects_by_name(self.__name)
+		if table_name in parent[0].get_objects_by_name().keys():
+			obj = application.search_objects_by_name(table_name)[0]
+			return self.database.get_table(obj.id, table_name, table_diffinition)
+		else:
+			obj_name,obj_id = application.create_object(DBTABLE_ID, parent[0])
+			obj = application.search_object(obj_id)
+			obj.set_name(table_name)
+			#obj.set_attributes({"top":500,"left":600,"width": 200,"height":300})
+			return self.database.get_table(obj_id, table_name, table_diffinition)
+
+	def get_list(self):
+		return self.database.get_tables_list()
+
+class VDOM_databases(object):
+		
+	def __getattribute__(self, name):
+			try:
+				return object.__getattribute__(self, name)
+			except:
+				database = VDOM_database(name)
+				return database
+	
+	def create(self, db_name, title="DBSchema", description=""):
+		application_id=managers.request_manager.current.app_id()
+		application = managers.xml_manager.get_application(application_id)
+		database = managers.database_manager.get_database_by_name(application_id, db_name)
+		if not database:
+			obj_name, obj_id = application.create_object(DBSCHEMA_ID)
+			obj = application.search_object(obj_id)
+			obj.set_name(db_name)
+			obj.set_attributes({"title": title, "description": description})
+			database = managers.database_manager.get_database(application_id, obj_id)
+			database.name = db_name
+			database.open()
+		return database
+		
+	def get_list(self):
+		application_id=managers.request_manager.current.app_id()
+		return managers.database_manager.list_databases(application_id)
+	
 class VDOM_resources(object):
 	
 	def create(self, data, resource_format="res", name=""):
