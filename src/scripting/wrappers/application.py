@@ -1,5 +1,5 @@
 
-import re, managers
+import re, managers, threading
 
 DBSCHEMA_ID = '753ea72c-475d-4a29-96be-71c522ca2097'
 DBTABLE_ID = '92269b6e-4b6b-4882-852f-f7ef0e89c079'
@@ -47,8 +47,49 @@ class VDOM_storage(object):
 	
 	pass
 
-class VDOM_database(object):
+class VDOM_cursor_object(object):
 
+	def __init__(self, connection, cursor):
+		self.__conn = connection
+		self.__cur = cursor
+		self.finished = False
+		
+	def fetchone(self):
+		return self.__cur.fetchone()
+		
+	def fetchmany(self, size=None):
+		if size is None:
+			size = self.__cur.arraysize
+		return self.__cur.fetchmany(size)
+	def fetchall(self):
+		return self.__cur.fetchall()
+	def rows(self):
+		if not self.finished:
+			for row in self.__cur:
+				yield row
+		self.finished = True
+	def _lastrowid(self):
+		return self.__cur.lastrowid
+	def _rowcount(self):
+		return self.__cur.rowcount
+	def commit(self):
+		if self.__conn:
+			self.__conn.commit()
+			
+	lastrowid=property(_lastrowid)
+	rowcount=property(_rowcount)
+	
+class VDOM_database(object):
+	
+	def __enter__(self):
+		return self
+		
+	def __exit__(self, type, value, traceback):
+		if type is None:
+			self.__conn.commit()
+		else:
+			self.__conn.rollback()
+		
 	def __init__(self, name):
 		self.__name = name
 		self.database = managers.database_manager.get_database_by_name(managers.request_manager.current.app_id(), self.__name)
@@ -65,8 +106,9 @@ class VDOM_database(object):
 		self.__cur.execute(sql, params)
 		return self.__cur.fetchall()
 			
-	def commit(self, sql, params={}):
-		self.__cur.execute(sql, params)
+	def commit(self, sql=None, params={}):
+		if sql is not None:
+			self.__cur.execute(sql, params)
 		if self.__conn:
 			self.__conn.commit()
 		return (self.__cur.lastrowid, self.__cur.rowcount)
@@ -85,17 +127,33 @@ class VDOM_database(object):
 			#obj.set_attributes({"top":500,"left":600,"width": 200,"height":300})
 			return self.database.get_table(obj_id, table_name, table_diffinition)
 
+	def query(self, sql, params={}):
+		self.__cur.execute(sql, params)
+		return VDOM_cursor_object(self.__conn, self.__cur)
+		
+	def execute(self, sql, params={}):
+		self.__cur.execute(sql, params)
+		
+	def executemany(self, sql, seq_of_params):
+		self.__cur.executemany(sql, seq_of_params)
+		
+	def executescript(self, sql_script):
+		self.__cur.executescript(sql_script)
+	
 	def get_list(self):
 		return self.database.get_tables_list()
 
 class VDOM_databases(object):
 		
+	__db = threading.local()
+
 	def __getattribute__(self, name):
 			try:
 				return object.__getattribute__(self, name)
 			except:
-				database = VDOM_database(name)
-				return database
+				if getattr(self.__db, 'database', None) is None:
+					self.__db.database = VDOM_database(name)
+				return self.__db.database
 	
 	def create(self, db_name, title="DBSchema", description=""):
 		application_id=managers.request_manager.current.app_id()
