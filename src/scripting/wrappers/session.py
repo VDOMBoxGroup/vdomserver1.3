@@ -5,7 +5,7 @@ import managers
 class VDOM_session(object):
 
 	def _get_id(self):
-		managers.request_manager.current.session().id()
+		return managers.request_manager.current.session().id()
 
 	def __getitem__(self, name):
 		return managers.request_manager.current.session()[name]
