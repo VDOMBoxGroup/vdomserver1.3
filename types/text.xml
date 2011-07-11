@@ -8,20 +8,19 @@
     <ID>73a54f2e-4001-4676-93a0-804048a57081</ID>
     <Icon>#Res(3469a707-922f-4b19-8554-4fb4159564fe)</Icon>
     <EditorIcon>#Res(fa545fa9-752b-47b7-8fd9-25574249e162)</EditorIcon>
-    <StructureIcon>#Res(3469a707-922f-4b19-8554-4fb4159564fe)</StructureIcon>
+    <StructureIcon>#Res(114eb656-776b-4ec4-912b-d7e0c51cd906)</StructureIcon>
     <Moveable>1</Moveable>
     <Resizable>1</Resizable>
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3</Version>
+    <Version>3.0.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, form, password</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, objectviewpattern</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
-    <RenderType/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
@@ -31,23 +30,23 @@
       <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(301)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(132)</DisplayName>
+      <DisplayName>#Lang(102)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(302)</Help>
+      <Help>#Lang(202)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(236)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -55,11 +54,11 @@
       <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(303)</Help>
+      <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -67,11 +66,11 @@
       <DisplayName>#Lang(104)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(304)</Help>
+      <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -79,11 +78,11 @@
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(305)</Help>
+      <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -91,143 +90,143 @@
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue>400</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(306)</Help>
+      <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(321)</Help>
+      <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Number(-100, 2500)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(213)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>value</Name>
-      <DisplayName>#Lang(107)</DisplayName>
+      <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(307)</Help>
+      <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>.+</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>css</Name>
-      <DisplayName>#Lang(112)</DisplayName>
+      <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(312)</Help>
+      <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(212)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>color</Name>
-      <DisplayName>#Lang(108)</DisplayName>
+      <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(308)</Help>
+      <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontfamily</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue>tahoma</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(314)</Help>
+      <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(416)|andale)|(#Lang(417)|arial)|(#Lang(418)|arial)|(#Lang(419)|book)|(#Lang(420)|comic)|(#Lang(421)|courier)|(#Lang(422)|georgia)|(#Lang(423)|helvetica)|(#Lang(424)|impact)|(#Lang(425)|symbol)|(#Lang(426)|tahoma)|(#Lang(427)|terminal)|(#Lang(428)|times)|(#Lang(429)|times)|(#Lang(430)|verdana)|(#Lang(431)|webdings)|(#Lang(432)|wingdings))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|andale)|(#Lang(406)|arial)|(#Lang(407)|arial)|(#Lang(408)|book)|(#Lang(409)|comic)|(#Lang(411)|courier)|(#Lang(412)|georgia)|(#Lang(413)|helvetica)|(#Lang(414)|impact)|(#Lang(415)|symbol)|(#Lang(416)|tahoma)|(#Lang(417)|terminal)|(#Lang(418)|times)|(#Lang(419)|times)|(#Lang(421)|verdana)|(#Lang(422)|webdings)|(#Lang(423)|wingdings))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^(andale mono|arial|arial black|book antiqua|comic sans ms|courier new|georgia|helvetica|impact|symbol|tahoma|terminal|times new roman|times|verdana|webdings|wingdings)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
-      <DisplayName>#Lang(115)</DisplayName>
+      <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>12</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(315)</Help>
+      <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(215)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontstyle</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(316)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(410)|italic)|(#Lang(411)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(424)|italic)|(#Lang(425)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^(italic|normal)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontweight</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(317)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|bold)|(#Lang(413)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(426)|bold)|(#Lang(427)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^(bold|normal)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>align</Name>
-      <DisplayName>#Lang(111)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>left</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(311)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|left)|(#Lang(406)|center)|(#Lang(407)|right))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(428)|left)|(#Lang(429)|center)|(#Lang(431)|right))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>alpha</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(322)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Number(0, 100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^(100|\d{1,2})$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textdecoration</Name>
-      <DisplayName>#Lang(120)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>none</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(320)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|underline)|(#Lang(415)|none))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(432)|underline)|(#Lang(433)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none)</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -235,481 +234,491 @@
     <Language Code="en_US">
       <Sentence ID="001">Text</Sentence>
       <Sentence ID="002">Text</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Visibility</Sentence>
+      <Sentence ID="601">Visibility</Sentence>
+      <Sentence ID="701">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="801">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="502">Visibility</Sentence>
+      <Sentence ID="602">Visibility</Sentence>
+      <Sentence ID="702">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="802">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="503">Visibility</Sentence>
+      <Sentence ID="603">Visibility</Sentence>
+      <Sentence ID="703">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="803">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="704">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="804">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="705">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="805">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="504">Visibility</Sentence>
+      <Sentence ID="604">Visibility</Sentence>
+      <Sentence ID="706">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="806">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="505">Visibility</Sentence>
+      <Sentence ID="605">Visibility</Sentence>
+      <Sentence ID="707">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="807">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="506">Visibility</Sentence>
+      <Sentence ID="606">Visibility</Sentence>
+      <Sentence ID="708">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="808">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Value</Sentence>
-      <Sentence ID="108">Color</Sentence>
-      <Sentence ID="109">Strikethrough</Sentence>
-      <Sentence ID="110">Font</Sentence>
-      <Sentence ID="111">Alignment</Sentence>
-      <Sentence ID="112">Underlined</Sentence>
-      <Sentence ID="113">Height</Sentence>
-      <Sentence ID="114">FontFamily</Sentence>
-      <Sentence ID="115">FontSize</Sentence>
-      <Sentence ID="116">FontStyle</Sentence>
-      <Sentence ID="117">FontWeight</Sentence>
-      <Sentence ID="118">Editable</Sentence>
-      <Sentence ID="119">Alpha</Sentence>
-      <Sentence ID="120">Text-decoration</Sentence>
-      <Sentence ID="201">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="203">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="204">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="205">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="206">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="207">Incorrect value</Sentence>
-      <Sentence ID="208">Incorrect value</Sentence>
-      <Sentence ID="209">Incorrect value</Sentence>
-      <Sentence ID="210">Incorrect value</Sentence>
-      <Sentence ID="211">Incorrect value</Sentence>
-      <Sentence ID="212">Incorrect value</Sentence>
-      <Sentence ID="213">Incorrect value</Sentence>
-      <Sentence ID="214">Incorrect value</Sentence>
-      <Sentence ID="215">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="216">Incorrect value</Sentence>
-      <Sentence ID="217">Incorrect value</Sentence>
-      <Sentence ID="218">Incorrect value</Sentence>
-      <Sentence ID="219">Incorrect value</Sentence>
-      <Sentence ID="220">Incorrect value</Sentence>
-      <Sentence ID="301">Hierarchy</Sentence>
-      <Sentence ID="302">Visibility</Sentence>
-      <Sentence ID="303">Z-Index</Sentence>
-      <Sentence ID="304">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="305">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="306">Weight in pixels</Sentence>
-      <Sentence ID="307">Value of the object</Sentence>
-      <Sentence ID="308">Color of the text</Sentence>
-      <Sentence ID="309">Strikethrough text</Sentence>
-      <Sentence ID="310">Font of the text</Sentence>
-      <Sentence ID="311">Alignment of the text</Sentence>
-      <Sentence ID="312">Underlined text</Sentence>
-      <Sentence ID="314">Font family</Sentence>
-      <Sentence ID="315">Font size</Sentence>
-      <Sentence ID="316">Font style</Sentence>
-      <Sentence ID="317">Font weight</Sentence>
-      <Sentence ID="320">Text decoration</Sentence>
+      <Sentence ID="202">Visibility</Sentence>
+      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Z-Index</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Weight in pixels</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="307">Incorrect value</Sentence>
+      <Sentence ID="108">Value</Sentence>
+      <Sentence ID="208">Value of the object</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="109">Underlined</Sentence>
+      <Sentence ID="209">Underlined text</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Left</Sentence>
-      <Sentence ID="406">Center</Sentence>
-      <Sentence ID="407">Right</Sentence>
-      <Sentence ID="410">Italic</Sentence>
-      <Sentence ID="411">Normal</Sentence>
-      <Sentence ID="412">Bold</Sentence>
-      <Sentence ID="413">Normal</Sentence>
-      <Sentence ID="414">Underline</Sentence>
-      <Sentence ID="415">None</Sentence>
-      <Sentence ID="416">Andale Mono</Sentence>
-      <Sentence ID="417">Arial</Sentence>
-      <Sentence ID="418">Arial Black</Sentence>
-      <Sentence ID="419">Book Antiqua</Sentence>
-      <Sentence ID="420">Comic Sans MS</Sentence>
-      <Sentence ID="421">Courier New</Sentence>
-      <Sentence ID="422">Georgia</Sentence>
-      <Sentence ID="423">Helvetica</Sentence>
-      <Sentence ID="424">Impact</Sentence>
-      <Sentence ID="425">Symbol</Sentence>
-      <Sentence ID="426">Tahoma</Sentence>
-      <Sentence ID="427">Terminal</Sentence>
-      <Sentence ID="428">Times New Roman</Sentence>
-      <Sentence ID="429">Times</Sentence>
-      <Sentence ID="430">Verdana</Sentence>
-      <Sentence ID="431">Webdings</Sentence>
-      <Sentence ID="432">Wingdings</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="121">Visibility</Sentence>
-      <Sentence ID="221">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="122">Visibility</Sentence>
-      <Sentence ID="123">Visibility</Sentence>
-      <Sentence ID="222">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="223">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="124">Visibility</Sentence>
-      <Sentence ID="125">Visibility</Sentence>
-      <Sentence ID="224">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="225">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="226">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="227">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="228">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="229">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="126">Visibility</Sentence>
-      <Sentence ID="127">Visibility</Sentence>
-      <Sentence ID="230">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="231">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="128">Visibility</Sentence>
-      <Sentence ID="129">Visibility</Sentence>
-      <Sentence ID="232">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="233">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="130">Visibility</Sentence>
-      <Sentence ID="131">Visibility</Sentence>
-      <Sentence ID="234">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="235">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="132">Visibility</Sentence>
-      <Sentence ID="236">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="133">Left</Sentence>
-      <Sentence ID="134">Top</Sentence>
-      <Sentence ID="135">Left</Sentence>
-      <Sentence ID="136">Top</Sentence>
-      <Sentence ID="700"></Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="137">Left</Sentence>
-      <Sentence ID="138">Top</Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="705"></Sentence>
-      <Sentence ID="706"></Sentence>
-      <Sentence ID="707"></Sentence>
-      <Sentence ID="139">Left</Sentence>
-      <Sentence ID="140">Top</Sentence>
-      <Sentence ID="708"></Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="141">Left</Sentence>
-      <Sentence ID="142">Top</Sentence>
-      <Sentence ID="710"></Sentence>
-      <Sentence ID="711"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="143">Left</Sentence>
-      <Sentence ID="144">Top</Sentence>
-      <Sentence ID="714"></Sentence>
-      <Sentence ID="715"></Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717"></Sentence>
-      <Sentence ID="145">Left</Sentence>
-      <Sentence ID="146">Top</Sentence>
-      <Sentence ID="718"></Sentence>
-      <Sentence ID="719"></Sentence>
-      <Sentence ID="720"></Sentence>
-      <Sentence ID="721"></Sentence>
+      <Sentence ID="111">Color</Sentence>
+      <Sentence ID="211">Color of the text</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="112">FontFamily</Sentence>
+      <Sentence ID="212">Font family</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="405">Andale Mono</Sentence>
+      <Sentence ID="406">Arial</Sentence>
+      <Sentence ID="407">Arial Black</Sentence>
+      <Sentence ID="408">Book Antiqua</Sentence>
+      <Sentence ID="409">Comic Sans MS</Sentence>
+      <Sentence ID="411">Courier New</Sentence>
+      <Sentence ID="412">Georgia</Sentence>
+      <Sentence ID="413">Helvetica</Sentence>
+      <Sentence ID="414">Impact</Sentence>
+      <Sentence ID="415">Symbol</Sentence>
+      <Sentence ID="416">Tahoma</Sentence>
+      <Sentence ID="417">Terminal</Sentence>
+      <Sentence ID="418">Times New Roman</Sentence>
+      <Sentence ID="419">Times</Sentence>
+      <Sentence ID="421">Verdana</Sentence>
+      <Sentence ID="422">Webdings</Sentence>
+      <Sentence ID="423">Wingdings</Sentence>
+      <Sentence ID="113">FontSize</Sentence>
+      <Sentence ID="213">Font size</Sentence>
+      <Sentence ID="313">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="114">FontStyle</Sentence>
+      <Sentence ID="214">Font style</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="424">Italic</Sentence>
+      <Sentence ID="425">Normal</Sentence>
+      <Sentence ID="115">FontWeight</Sentence>
+      <Sentence ID="215">Font weight</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="426">Bold</Sentence>
+      <Sentence ID="427">Normal</Sentence>
+      <Sentence ID="116">Alignment</Sentence>
+      <Sentence ID="216">Alignment of the text</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="428">Left</Sentence>
+      <Sentence ID="429">Center</Sentence>
+      <Sentence ID="431">Right</Sentence>
+      <Sentence ID="117">Alpha</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
+      <Sentence ID="118">Text-decoration</Sentence>
+      <Sentence ID="218">Text decoration</Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="432">Underline</Sentence>
+      <Sentence ID="433">None</Sentence>
+      <Sentence ID="901">Left</Sentence>
+      <Sentence ID="902">Top</Sentence>
+      <Sentence ID="903">Left</Sentence>
+      <Sentence ID="904">Top</Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909">Left</Sentence>
+      <Sentence ID="911">Top</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916">Left</Sentence>
+      <Sentence ID="917">Top</Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Left</Sentence>
+      <Sentence ID="922">Top</Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927">Left</Sentence>
+      <Sentence ID="928">Top</Sentence>
+      <Sentence ID="929"></Sentence>
+      <Sentence ID="931"></Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Left</Sentence>
+      <Sentence ID="935">Top</Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Текст</Sentence>
       <Sentence ID="002">Текст</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Отображение</Sentence>
+      <Sentence ID="601">Отображение</Sentence>
+      <Sentence ID="701">Неправильное значение</Sentence>
+      <Sentence ID="801">Неправильное значение</Sentence>
+      <Sentence ID="502">Отображение</Sentence>
+      <Sentence ID="602">Отображение</Sentence>
+      <Sentence ID="702">Неправильное значение</Sentence>
+      <Sentence ID="802">Неправильное значение</Sentence>
+      <Sentence ID="503">Отображение</Sentence>
+      <Sentence ID="603">Отображение</Sentence>
+      <Sentence ID="703">Неправильное значение</Sentence>
+      <Sentence ID="803">Неправильное значение</Sentence>
+      <Sentence ID="704">Неправильное значение</Sentence>
+      <Sentence ID="804">Неправильное значение</Sentence>
+      <Sentence ID="705">Неправильное значение</Sentence>
+      <Sentence ID="805">Неправильное значение</Sentence>
+      <Sentence ID="504">Отображение</Sentence>
+      <Sentence ID="604">Отображение</Sentence>
+      <Sentence ID="706">Неправильное значение</Sentence>
+      <Sentence ID="806">Неправильное значение</Sentence>
+      <Sentence ID="505">Отображение</Sentence>
+      <Sentence ID="605">Отображение</Sentence>
+      <Sentence ID="707">Неправильное значение</Sentence>
+      <Sentence ID="807">Неправильное значение</Sentence>
+      <Sentence ID="506">Отображение</Sentence>
+      <Sentence ID="606">Отображение</Sentence>
+      <Sentence ID="708">Неправильное значение</Sentence>
+      <Sentence ID="808">Неправильное значение</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
-      <Sentence ID="104">Верх</Sentence>
-      <Sentence ID="105">Лево</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="107">Значение</Sentence>
-      <Sentence ID="108">Цвет</Sentence>
-      <Sentence ID="109">Перечеркивание</Sentence>
-      <Sentence ID="110">Шрифт</Sentence>
-      <Sentence ID="111">Расположение</Sentence>
-      <Sentence ID="112">Подчеркивание</Sentence>
-      <Sentence ID="113">Высота</Sentence>
-      <Sentence ID="114">Шрифт</Sentence>
-      <Sentence ID="115">Размер шрифта</Sentence>
-      <Sentence ID="116">Курсив</Sentence>
-      <Sentence ID="117">Жирность</Sentence>
-      <Sentence ID="118">Редактируемый</Sentence>
-      <Sentence ID="119">Прозрачность</Sentence>
-      <Sentence ID="120">Оформление текста</Sentence>
-      <Sentence ID="201">Неправильное значение</Sentence>
-      <Sentence ID="202">Неправильное значение</Sentence>
-      <Sentence ID="203">Неправильное значение, должна быть строка</Sentence>
-      <Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="207">Неправильное значение</Sentence>
-      <Sentence ID="208">Неправильное значение</Sentence>
-      <Sentence ID="209">Неправильное значение</Sentence>
-      <Sentence ID="210">Неправильное значение</Sentence>
-      <Sentence ID="211">Неправильное значение</Sentence>
-      <Sentence ID="212">Неправильное значение</Sentence>
-      <Sentence ID="213">Неправильное значение</Sentence>
-      <Sentence ID="214">Неправильное значение</Sentence>
-      <Sentence ID="215">Неправильное значение</Sentence>
-      <Sentence ID="216">Неправильное значение</Sentence>
-      <Sentence ID="217">Неправильное значение</Sentence>
-      <Sentence ID="218">Неправильное значение</Sentence>
-      <Sentence ID="219">Неправильное значение</Sentence>
-      <Sentence ID="220">Неправильное значение</Sentence>
-      <Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="302">Отображается объект или нет</Sentence>
-      <Sentence ID="303">Заголовок контейнера</Sentence>
-      <Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="306">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="307">Значение объекта</Sentence>
-      <Sentence ID="308">Цвет текста</Sentence>
-      <Sentence ID="309">Перечеркивание текста</Sentence>
-      <Sentence ID="310">Шрифт текста</Sentence>
-      <Sentence ID="311">Расположение текста</Sentence>
-      <Sentence ID="312">Подчеркивание текста</Sentence>
-      <Sentence ID="314">Шрифт</Sentence>
-      <Sentence ID="315">Размер шрифта</Sentence>
-      <Sentence ID="316">Курсив</Sentence>
-      <Sentence ID="317">Жирность</Sentence>
-      <Sentence ID="320">Оформление текста</Sentence>
+      <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="302">Неправильное значение</Sentence>
       <Sentence ID="401">Не отображается</Sentence>
       <Sentence ID="402">Отображается</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="203">Заголовок контейнера</Sentence>
+      <Sentence ID="303">Неправильное значение, должна быть строка</Sentence>
+      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="307">Неправильное значение</Sentence>
+      <Sentence ID="108">Значение</Sentence>
+      <Sentence ID="208">Значение объекта</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="109">Подчеркивание</Sentence>
+      <Sentence ID="209">Подчеркивание текста</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
-      <Sentence ID="405">Влево</Sentence>
-      <Sentence ID="406">По центру</Sentence>
-      <Sentence ID="407">Вправо</Sentence>
-      <Sentence ID="410">Да</Sentence>
-      <Sentence ID="411">Нет</Sentence>
-      <Sentence ID="412">Да</Sentence>
-      <Sentence ID="413">Нет</Sentence>
-      <Sentence ID="414">Подчеркнутый</Sentence>
-      <Sentence ID="415">Обычный</Sentence>
-      <Sentence ID="416">Andale Mono</Sentence>
-      <Sentence ID="417">Arial</Sentence>
-      <Sentence ID="418">Arial Black</Sentence>
-      <Sentence ID="419">Book Antiqua</Sentence>
-      <Sentence ID="420">Comic Sans MS</Sentence>
-      <Sentence ID="421">Courier New</Sentence>
-      <Sentence ID="422">Georgia</Sentence>
-      <Sentence ID="423">Helvetica</Sentence>
-      <Sentence ID="424">Impact</Sentence>
-      <Sentence ID="425">Symbol</Sentence>
-      <Sentence ID="426">Tahoma</Sentence>
-      <Sentence ID="427">Terminal</Sentence>
-      <Sentence ID="428">Times New Roman</Sentence>
-      <Sentence ID="429">Times</Sentence>
-      <Sentence ID="430">Verdana</Sentence>
-      <Sentence ID="431">Webdings</Sentence>
-      <Sentence ID="432">Wingdings</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="121">Отображение</Sentence>
-      <Sentence ID="221">Неправильное значение</Sentence>
-      <Sentence ID="122">Отображение</Sentence>
-      <Sentence ID="123">Отображение</Sentence>
-      <Sentence ID="222">Неправильное значение</Sentence>
-      <Sentence ID="223">Неправильное значение</Sentence>
-      <Sentence ID="124">Отображение</Sentence>
-      <Sentence ID="125">Отображение</Sentence>
-      <Sentence ID="224">Неправильное значение</Sentence>
-      <Sentence ID="225">Неправильное значение</Sentence>
-      <Sentence ID="226">Неправильное значение</Sentence>
-      <Sentence ID="227">Неправильное значение</Sentence>
-      <Sentence ID="228">Неправильное значение</Sentence>
-      <Sentence ID="229">Неправильное значение</Sentence>
-      <Sentence ID="126">Отображение</Sentence>
-      <Sentence ID="127">Отображение</Sentence>
-      <Sentence ID="230">Неправильное значение</Sentence>
-      <Sentence ID="231">Неправильное значение</Sentence>
-      <Sentence ID="128">Отображение</Sentence>
-      <Sentence ID="129">Отображение</Sentence>
-      <Sentence ID="232">Неправильное значение</Sentence>
-      <Sentence ID="233">Неправильное значение</Sentence>
-      <Sentence ID="130">Отображение</Sentence>
-      <Sentence ID="131">Отображение</Sentence>
-      <Sentence ID="234">Неправильное значение</Sentence>
-      <Sentence ID="235">Неправильное значение</Sentence>
-      <Sentence ID="132">Отображение</Sentence>
-      <Sentence ID="236">Неправильное значение</Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="133">Лево</Sentence>
-      <Sentence ID="134">Верх</Sentence>
-      <Sentence ID="135">Лево</Sentence>
-      <Sentence ID="136">Верх</Sentence>
-      <Sentence ID="700"></Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="137">Лево</Sentence>
-      <Sentence ID="138">Верх</Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="705"></Sentence>
-      <Sentence ID="706"></Sentence>
-      <Sentence ID="707"></Sentence>
-      <Sentence ID="139">Лево</Sentence>
-      <Sentence ID="140">Верх</Sentence>
-      <Sentence ID="708"></Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="141">Лево</Sentence>
-      <Sentence ID="142">Верх</Sentence>
-      <Sentence ID="710"></Sentence>
-      <Sentence ID="711"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="143">Лево</Sentence>
-      <Sentence ID="144">Верх</Sentence>
-      <Sentence ID="714"></Sentence>
-      <Sentence ID="715"></Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717"></Sentence>
-      <Sentence ID="145">Лево</Sentence>
-      <Sentence ID="146">Верх</Sentence>
-      <Sentence ID="718"></Sentence>
-      <Sentence ID="719"></Sentence>
-      <Sentence ID="720"></Sentence>
-      <Sentence ID="721"></Sentence>
+      <Sentence ID="111">Цвет</Sentence>
+      <Sentence ID="211">Цвет текста</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="112">Шрифт</Sentence>
+      <Sentence ID="212">Шрифт</Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="405">Andale Mono</Sentence>
+      <Sentence ID="406">Arial</Sentence>
+      <Sentence ID="407">Arial Black</Sentence>
+      <Sentence ID="408">Book Antiqua</Sentence>
+      <Sentence ID="409">Comic Sans MS</Sentence>
+      <Sentence ID="411">Courier New</Sentence>
+      <Sentence ID="412">Georgia</Sentence>
+      <Sentence ID="413">Helvetica</Sentence>
+      <Sentence ID="414">Impact</Sentence>
+      <Sentence ID="415">Symbol</Sentence>
+      <Sentence ID="416">Tahoma</Sentence>
+      <Sentence ID="417">Terminal</Sentence>
+      <Sentence ID="418">Times New Roman</Sentence>
+      <Sentence ID="419">Times</Sentence>
+      <Sentence ID="421">Verdana</Sentence>
+      <Sentence ID="422">Webdings</Sentence>
+      <Sentence ID="423">Wingdings</Sentence>
+      <Sentence ID="113">Размер шрифта</Sentence>
+      <Sentence ID="213">Размер шрифта</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="114">Курсив</Sentence>
+      <Sentence ID="214">Курсив</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="424">Да</Sentence>
+      <Sentence ID="425">Нет</Sentence>
+      <Sentence ID="115">Жирность</Sentence>
+      <Sentence ID="215">Жирность</Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="426">Да</Sentence>
+      <Sentence ID="427">Нет</Sentence>
+      <Sentence ID="116">Расположение</Sentence>
+      <Sentence ID="216">Расположение текста</Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
+      <Sentence ID="428">Влево</Sentence>
+      <Sentence ID="429">По центру</Sentence>
+      <Sentence ID="431">Вправо</Sentence>
+      <Sentence ID="117">Прозрачность</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="317">Неправильное значение</Sentence>
+      <Sentence ID="118">Оформление текста</Sentence>
+      <Sentence ID="218">Оформление текста</Sentence>
+      <Sentence ID="318">Неправильное значение</Sentence>
+      <Sentence ID="432">Подчеркнутый</Sentence>
+      <Sentence ID="433">Обычный</Sentence>
+      <Sentence ID="901">Лево</Sentence>
+      <Sentence ID="902">Верх</Sentence>
+      <Sentence ID="903">Лево</Sentence>
+      <Sentence ID="904">Верх</Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909">Лево</Sentence>
+      <Sentence ID="911">Верх</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916">Лево</Sentence>
+      <Sentence ID="917">Верх</Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Лево</Sentence>
+      <Sentence ID="922">Верх</Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927">Лево</Sentence>
+      <Sentence ID="928">Верх</Sentence>
+      <Sentence ID="929"></Sentence>
+      <Sentence ID="931"></Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Лево</Sentence>
+      <Sentence ID="935">Верх</Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Texte simple</Sentence>
       <Sentence ID="002">Texte simple</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Visibilité</Sentence>
+      <Sentence ID="601">Visibilité</Sentence>
+      <Sentence ID="701">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="801">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="502">Visibilité</Sentence>
+      <Sentence ID="602">Visibilité</Sentence>
+      <Sentence ID="702">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="802">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="503">Visibilité</Sentence>
+      <Sentence ID="603">Visibilité</Sentence>
+      <Sentence ID="703">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="803">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="704">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="804">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="705">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="805">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="504">Visibilité</Sentence>
+      <Sentence ID="604">Visibilité</Sentence>
+      <Sentence ID="706">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="806">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="505">Visibilité</Sentence>
+      <Sentence ID="605">Visibilité</Sentence>
+      <Sentence ID="707">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="807">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="506">Visibilité</Sentence>
+      <Sentence ID="606">Visibilité</Sentence>
+      <Sentence ID="708">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="808">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="107">Valeur</Sentence>
-      <Sentence ID="108">Couleur</Sentence>
-      <Sentence ID="109">Strikethrough</Sentence>
-      <Sentence ID="110">Police</Sentence>
-      <Sentence ID="111">Alignement</Sentence>
-      <Sentence ID="112">Souligné</Sentence>
-      <Sentence ID="113">Hauteur</Sentence>
-      <Sentence ID="114">Famille de police</Sentence>
-      <Sentence ID="115">Taille</Sentence>
-      <Sentence ID="116">Style</Sentence>
-      <Sentence ID="117">Graisse</Sentence>
-      <Sentence ID="118">Editable</Sentence>
-      <Sentence ID="119">Alpha</Sentence>
-      <Sentence ID="120">Text-decoration</Sentence>
-      <Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="203">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="207">Valeur Incorrecte</Sentence>
-      <Sentence ID="208">Valeur Incorrecte</Sentence>
-      <Sentence ID="209">Valeur Incorrecte</Sentence>
-      <Sentence ID="210">Valeur Incorrecte</Sentence>
-      <Sentence ID="211">Valeur Incorrecte</Sentence>
-      <Sentence ID="212">Valeur Incorrecte</Sentence>
-      <Sentence ID="213">Valeur Incorrecte</Sentence>
-      <Sentence ID="214">Valeur Incorrecte</Sentence>
-      <Sentence ID="215">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="216">Valeur Incorrecte</Sentence>
-      <Sentence ID="217">Valeur Incorrecte</Sentence>
-      <Sentence ID="218">Valeur Incorrecte</Sentence>
-      <Sentence ID="219">Valeur Incorrecte</Sentence>
-      <Sentence ID="220">Valeur Incorrecte</Sentence>
-      <Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="302">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="306">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur de l'object</Sentence>
-      <Sentence ID="308">Couleur du texte</Sentence>
-      <Sentence ID="309">Strikethrough text</Sentence>
-      <Sentence ID="310">Police du texte</Sentence>
-      <Sentence ID="311">Alignement du texte</Sentence>
-      <Sentence ID="312">Texte souligné</Sentence>
-      <Sentence ID="314">Famille de police</Sentence>
-      <Sentence ID="315">Taille de la police</Sentence>
-      <Sentence ID="316">Style de la police</Sentence>
-      <Sentence ID="317">Graisse de la police</Sentence>
-      <Sentence ID="320">Texte decoration</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="307">Valeur Incorrecte</Sentence>
+      <Sentence ID="108">Valeur</Sentence>
+      <Sentence ID="208">Valeur de l'object</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="109">Souligné</Sentence>
+      <Sentence ID="209">Texte souligné</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Non</Sentence>
       <Sentence ID="404">Oui</Sentence>
-      <Sentence ID="405">Gauche</Sentence>
-      <Sentence ID="406">Centrer</Sentence>
-      <Sentence ID="407">Droite</Sentence>
-      <Sentence ID="410">Italic</Sentence>
-      <Sentence ID="411">Normal</Sentence>
-      <Sentence ID="412">Gras</Sentence>
-      <Sentence ID="413">Normal</Sentence>
-      <Sentence ID="414">Souligné</Sentence>
-      <Sentence ID="415">Aucun</Sentence>
-      <Sentence ID="416">Andale Mono</Sentence>
-      <Sentence ID="417">Arial</Sentence>
-      <Sentence ID="418">Arial Black</Sentence>
-      <Sentence ID="419">Book Antiqua</Sentence>
-      <Sentence ID="420">Comic Sans MS</Sentence>
-      <Sentence ID="421">Courier New</Sentence>
-      <Sentence ID="422">Georgia</Sentence>
-      <Sentence ID="423">Helvetica</Sentence>
-      <Sentence ID="424">Impact</Sentence>
-      <Sentence ID="425">Symbol</Sentence>
-      <Sentence ID="426">Tahoma</Sentence>
-      <Sentence ID="427">Terminal</Sentence>
-      <Sentence ID="428">Times New Roman</Sentence>
-      <Sentence ID="429">Times</Sentence>
-      <Sentence ID="430">Verdana</Sentence>
-      <Sentence ID="431">Webdings</Sentence>
-      <Sentence ID="432">Wingdings</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="121">Visibilité</Sentence>
-      <Sentence ID="221">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="122">Visibilité</Sentence>
-      <Sentence ID="123">Visibilité</Sentence>
-      <Sentence ID="222">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="223">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="124">Visibilité</Sentence>
-      <Sentence ID="125">Visibilité</Sentence>
-      <Sentence ID="224">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="225">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="226">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="227">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="228">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="229">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="126">Visibilité</Sentence>
-      <Sentence ID="127">Visibilité</Sentence>
-      <Sentence ID="230">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="231">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="128">Visibilité</Sentence>
-      <Sentence ID="129">Visibilité</Sentence>
-      <Sentence ID="232">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="233">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="130">Visibilité</Sentence>
-      <Sentence ID="131">Visibilité</Sentence>
-      <Sentence ID="234">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="235">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="132">Visibilité</Sentence>
-      <Sentence ID="236">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="133">Gauche</Sentence>
-      <Sentence ID="134">Haut</Sentence>
-      <Sentence ID="135">Gauche</Sentence>
-      <Sentence ID="136">Haut</Sentence>
-      <Sentence ID="700"></Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="137">Gauche</Sentence>
-      <Sentence ID="138">Haut</Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="705"></Sentence>
-      <Sentence ID="706"></Sentence>
-      <Sentence ID="707"></Sentence>
-      <Sentence ID="139">Gauche</Sentence>
-      <Sentence ID="140">Haut</Sentence>
-      <Sentence ID="708"></Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="141">Gauche</Sentence>
-      <Sentence ID="142">Haut</Sentence>
-      <Sentence ID="710"></Sentence>
-      <Sentence ID="711"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="143">Gauche</Sentence>
-      <Sentence ID="144">Haut</Sentence>
-      <Sentence ID="714"></Sentence>
-      <Sentence ID="715"></Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717"></Sentence>
-      <Sentence ID="145">Gauche</Sentence>
-      <Sentence ID="146">Haut</Sentence>
-      <Sentence ID="718"></Sentence>
-      <Sentence ID="719"></Sentence>
-      <Sentence ID="720"></Sentence>
-      <Sentence ID="721"></Sentence>
+      <Sentence ID="111">Couleur</Sentence>
+      <Sentence ID="211">Couleur du texte</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="112">Famille de police</Sentence>
+      <Sentence ID="212">Famille de police</Sentence>
+      <Sentence ID="312">Valeur Incorrecte</Sentence>
+      <Sentence ID="405">Andale Mono</Sentence>
+      <Sentence ID="406">Arial</Sentence>
+      <Sentence ID="407">Arial Black</Sentence>
+      <Sentence ID="408">Book Antiqua</Sentence>
+      <Sentence ID="409">Comic Sans MS</Sentence>
+      <Sentence ID="411">Courier New</Sentence>
+      <Sentence ID="412">Georgia</Sentence>
+      <Sentence ID="413">Helvetica</Sentence>
+      <Sentence ID="414">Impact</Sentence>
+      <Sentence ID="415">Symbol</Sentence>
+      <Sentence ID="416">Tahoma</Sentence>
+      <Sentence ID="417">Terminal</Sentence>
+      <Sentence ID="418">Times New Roman</Sentence>
+      <Sentence ID="419">Times</Sentence>
+      <Sentence ID="421">Verdana</Sentence>
+      <Sentence ID="422">Webdings</Sentence>
+      <Sentence ID="423">Wingdings</Sentence>
+      <Sentence ID="113">Taille</Sentence>
+      <Sentence ID="213">Taille de la police</Sentence>
+      <Sentence ID="313">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="114">Style</Sentence>
+      <Sentence ID="214">Style de la police</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
+      <Sentence ID="424">Italic</Sentence>
+      <Sentence ID="425">Normal</Sentence>
+      <Sentence ID="115">Graisse</Sentence>
+      <Sentence ID="215">Graisse de la police</Sentence>
+      <Sentence ID="315">Valeur Incorrecte</Sentence>
+      <Sentence ID="426">Gras</Sentence>
+      <Sentence ID="427">Normal</Sentence>
+      <Sentence ID="116">Alignement</Sentence>
+      <Sentence ID="216">Alignement du texte</Sentence>
+      <Sentence ID="316">Valeur Incorrecte</Sentence>
+      <Sentence ID="428">Gauche</Sentence>
+      <Sentence ID="429">Centrer</Sentence>
+      <Sentence ID="431">Droite</Sentence>
+      <Sentence ID="117">Alpha</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="317">Valeur Incorrecte</Sentence>
+      <Sentence ID="118">Text-decoration</Sentence>
+      <Sentence ID="218">Texte decoration</Sentence>
+      <Sentence ID="318">Valeur Incorrecte</Sentence>
+      <Sentence ID="432">Souligné</Sentence>
+      <Sentence ID="433">Aucun</Sentence>
+      <Sentence ID="901">Gauche</Sentence>
+      <Sentence ID="902">Haut</Sentence>
+      <Sentence ID="903">Gauche</Sentence>
+      <Sentence ID="904">Haut</Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909">Gauche</Sentence>
+      <Sentence ID="911">Haut</Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916">Gauche</Sentence>
+      <Sentence ID="917">Haut</Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Gauche</Sentence>
+      <Sentence ID="922">Haut</Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927">Gauche</Sentence>
+      <Sentence ID="928">Haut</Sentence>
+      <Sentence ID="929"></Sentence>
+      <Sentence ID="931"></Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Gauche</Sentence>
+      <Sentence ID="935">Haut</Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939"></Sentence>
     </Language>
   </Languages>
   <Resources>
     <Resource ID="3469a707-922f-4b19-8554-4fb4159564fe" Name="Icon" Type="png"><![CDATA[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]]></Resource>
-    <Resource ID="fa545fa9-752b-47b7-8fd9-25574249e162" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+    <Resource ID="fa545fa9-752b-47b7-8fd9-25574249e162" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAHhUlEQVR42m1We3BU1Rn/zt27u9nH
+3Udehjw3D/LaJAZIgiEhkseCEUsxU0YsDlqcKpa0MtMO2qEvR/+x1VqmVWcca2ut4NDYiQ+kIolB
+CGgSSEIekJhgYLMkgSS72dfdu3vvOf3uqkhnembOzH2c+/2+x+/7fZfAbauiogI4jgMgoI1Jsdhv
+nn0WXnn1ZTh1sivHbrfv5Hm+HBjjZEUZ8Xq9R+saG6Y3NTRC5+F/AW/SaXU8H4tIEoyMjNyySb69
+SLVYIc2RAxqNhmOMUSAEIuFwG77aabfaqi0Wwa7X6fXqF5IUjfoDAa/P5z3PCHknwZDQAQyYBr1D
+cOr56itY9Pu/AyjMzwffzUVIy83hYtEYJRwpZQo9lJ2R2ZKVnQ0WiwW0Wi1ifu0POgCxWAz8aMTt
+dsO1WXcPhr4fnw/rdTru+swMtdjsMH11BoiztBTGxsfBkZ7BCUlJNBqV2ghlr6+prLRnZGbGFEUh
+uDlGKYFvABABNDzP9Ho9RaeZx+PR9vf3B5iGPK7ltUf8y8scPqOFJSVASoqL1cNcwOejZpvt/mhY
+fLe2tpaUlDoxWpmPh0kIQ9OEfZtXBBJFkXmXlwl6DJg5eWF+nj9zthd0Ot0PA37/EcFq5agsU+Is
+KdHiBzG9yVS6NL/wRZnTaSouKaG7du/WVFSUM/QebuUGF6VUDQCCoRC8/Y832eXxS2AymYjBkKBc
+GDjPDV6+HF21Kq1WCgYH8SBPSoqKeFlWCIbag9Y2tN57r0wVyu9t/wkrLS0lqkGVWWrebweJyQoo
+sgx//9sbMH5xlBGDkVSkpcqet97gO6LswnWAumSel0lFxZ2YIs0O742bR1NSUuSm5mZNMBiEvfv2
+EaezFNQI4tT9prjq4jCgkBhRGYcsYfCnlw5BsgHY9/f+Ajqe+rn8xyOHtQm5ebujVHmLZKSkgSXR
++kHQH9iakZkhb2ps0orhMDz2xF7ACG4B3B6BurBAEA6LQHQGCMwMQ7oyBxNLDPY882fZfWmUs1lt
+p9BOE6lcs7Y87Pd/JEUiGUnIontaW5HLMvnRo49CMRLg/wGoV1SRQSZaEOcmweSbAo/bA//8bJK9
+f7yLLi0tanQJCQH/4pKDVFZWvhBc8T+OTWJGrtMWl4uzJdrhgQcfhOKiojiAWmN1U7X/ANPFFJCB
+h8jCNHALI4BkgcO9M3Bp+hr09nRTMRIhClXAmpqylZQ5y07I0Whjgk7PYy1Ydk4OqVm/HnY8sAPy
+8vLjABpOozZq3HWVTwpGFJm/AswzDAQNBdOq4L2Pu+HE+53gnvUwGRFRMjiNXrdLBejWENhoSDDw
+BqOR6bRakpmVBb/89a8gLzc3zpjvWMpAjUGanwY6N4KBUFByN4KsM8OLzz0DFy6cx/NAw+EQE8Uw
+RwnZRZDzLwsGw8NGg9FkNJmo2WzmVKNPHTwIVevWxiWBQ7Ywlf8EaxEJQuxKL9CICLKjDqheAO/y
+Erz0++dhYe46RKNRFg6FGPYJmZn33E9qqqrrMP8dFkG4w2g2UcEsoD3s+fZ2qK6qAtQ1TBEX917D
+a2FybAiSdArokx0Q4fQgiSEIBEV487VXYM4zy1AIWSgYJD6/X/ztE08WkPY9j8HgpdGupET7JrNZ
+oIIg8LyWh4ce2QPp6ekQCofAkJAQrwU2JOjx2iBY4cb8PBoPg4Ls0ur08N7RdxDAzSIRSQkEAtzS
+8vJAcW7+elJchFSkyo+dxcWvJSYmxTBFvF6vg7aduwjmEQb6+qCi8k6YnJiA6poamJ2dxSrgwEDl
+np11I30J1NTWwckPO9mcx0MkSYotLS1pBy8O/zQsRf5CmpuaNGmpqfr5Gze/KCwoKDMLgoIea7Zs
+287uSEsjfZ+fA6ezDHo+7YL7tm2HGZTgznc74ODvnoPTPZ+CwWSCrJxc9nFnB1m8Ma+ERVEzMTk5
+1bDx7rXnzp0Nk5bmZl0oFIqGQuF6lO5TRUWFDCWXNLju4UyCwAb7+0gxApzrPQ0b6htg6stJ7OAQ
+5OTiDPF6UTc4lldQSM6e/A/1+7x0+soV/vLExGabzfZJTI7xZNt938MJJREpKrEVv/9n9RvqDxXk
+5ynl1XdBYnIq6lKAGQxGmHVfi3PVYrWCyWwG38qK6ghKBiU8NujUxQE2Pjqi6Tn12QGHI+cPohhR
+JYsSV4sLtm7eAv8+9gGHOo4Mpfs3t7hevKuujhMESwz1nTMajSQpOYWYBVO8L1Z8KxhFGLCYNCpJ
+FMVR29/3OXxy4sTTSJTnI1KEGxkdoeura74emTeveWCDqxEyVqVzKysrdHFx0bXZ5TpUX19XUl5e
+DoLZonpO7XabqrwMAYjP5+PwHExPTcHpM2emPjp+fH9ycvKxdWvXkTnPdfbh8WP/O/RbW1vj8osA
+3NTUFM1yOEwGnW4PdvNDDQ13lzscDgP+WcS72rfig6szV8WxsbHx/oGBt7u7u/7qyM31Y2q4H2zf
+Qduf3BdX4nEcxeR2CW5rawOcpTA3N8cn4myQ8RdkdHRUfZWPe01ZWZkJAQj+loTwfuji0PCXux95
+GIaGhmD16tXa7Ozs2BbXFjjw9IFbNv8L2dywe0UuQREAAAAASUVORK5CYII=]]></Resource>
     <Resource ID="114eb656-776b-4ec4-912b-d7e0c51cd906" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAANhQTFRF/M3P/Fphwhkg/MzPwh0kwhkf/M7R+1hg/M3QthYbvxkfs2Fk+Flg/K+zrXF0/L3AmZaWlEdJ3isyrm9y/MzO+Pj4/mRssWJl/oiMwhwi/zE5yWZq7cDC2GVr+cPFw8PDz8/Pl5SU1xwj/u3ulpWVwh4kwR0kr3Z4i2Jj/1pirVpdrZaX4uLisVpd+Wxy4N3d1dXVu3F0qVNXsHh7al1eq6ura11d/6yx/dvc+I6T//j4/eDh+J6ivri4sXZ42yAn/8XH+rK2/97gl5eX4p+i+1VdmJWV////zGDRHQAAAEh0Uk5T//////////////////////////////////////////////////////////////////////////////////////////////8AnOzyYAAAAH5JREFUeNpicLdy4RNWN7YT59Yy0tXQcWdwtxCTlXEy11QydJCQ4jQVZXDnFdR3d+dw5XJ2d7cWMpFncJezdXd3F3FlUgFS/NoKDO5gwODK5AZlES/AiibALokqwMyoii7AQlhAAEWAjVFNEUXAkcfeDFlA2cZST9oAzAQIMACnrzifmqU7zAAAAABJRU5ErkJggl321oNKu4kfDKogv2XI/vGX49TZ2VFTU92tKc/MvKFTp08BFmHo8k6wvt1AssPpnxiboCiHhwsXL3w0SCEwx1uEq/n5tzTPQ4jD1fGGhoZf9/X1PRgfH894XWfvcF+Ya//M9BsB9zHMtdqiZbFtm+KT00hIkKTc3ZdG4Xj4BtdhrshuLrImY7EY1csCzTZyzIYJry6vUmMs+vnZs2cs1urQrjWKEALvCscDSHjWtvY2qrcFMkE2yKhkvaXC386g2sMihKRVbvrjM6epXhctG2SFzJBdMbgWf5VrbyEZWHi7IPNTNtfW1g5q7+Csp6GhbgCznCtPx0eERiFjIpEgyBw7EuvmpAJZ2x89w4vKXaf+9/wFcXIu9p05c4Z+/4c/0c9+/lMe/FZdafPp0zF6+M1faHh4mEaGR8Q+ngzQT86dxWaPmRtXavQWclcNiaW9o4uOt7bR+nqWisVi3UCi00+e7GIPHGatHitrmmUHA+fG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]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
@@ -736,7 +745,8 @@ class VDOM_text(VDOM_object):
 			"color" : "#%s"%self.color if self.color else None,
 			"text-decoration": self.textdecoration or None}
 
-		result="<div id=\"%(id)s\" style=\"%(style)s%(css)s\">%(value)s</div>"%{
+		result="<div oname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\">%(value)s</div>"%{
+			"oname": self.name,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),
 			"css": "; %s"%self.css if self.css else "",
@@ -765,121 +775,121 @@ class VDOM_text(VDOM_object):
       <Userinterfaceevents>
         <Event Name="mousemove">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(133)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(134)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(135)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(136)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(700)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(701)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(702)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(703)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(137)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(138)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(704)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(705)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(706)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(707)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(139)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(140)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(708)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(709)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
         <Event Name="click">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(141)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(142)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(710)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(711)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(712)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(713)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(925)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(926)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(143)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(144)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(714)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(715)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(716)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(717)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(929)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(931)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(932)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(933)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(145)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(146)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(718)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(719)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(720)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(721)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(936)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(937)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(938)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(939)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(102)" InterfaceName="#Lang(121)" MethodName="hide">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(202)" ScriptName="fade" Help="#Lang(221)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(122)" InterfaceName="#Lang(123)" MethodName="show">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(222)" ScriptName="fade" Help="#Lang(223)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(124)" InterfaceName="#Lang(125)" MethodName="moveTo">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(224)" ScriptName="newX" Help="#Lang(225)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(226)" ScriptName="newY" Help="#Lang(227)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(228)" ScriptName="Effect" Help="#Lang(229)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(126)" InterfaceName="#Lang(127)" MethodName="setFontSize">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setFontSize">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(230)" ScriptName="size" Help="#Lang(231)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="size" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).css("font-size", size);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(128)" InterfaceName="#Lang(129)" MethodName="setFontFamily">
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setFontFamily">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(232)" ScriptName="familyName" Help="#Lang(233)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="familyName" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_setFontFamily(this.domCont, familyName);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(130)" InterfaceName="#Lang(131)" MethodName="setText">
+        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setText">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(234)" ScriptName="text" Help="#Lang(235)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="text" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).text(text);
