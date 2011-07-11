@@ -145,6 +145,18 @@
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>dataid</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>3</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -183,6 +195,9 @@
       <Sentence ID="111">Parameters</Sentence>
       <Sentence ID="211">Set parameters for properties</Sentence>
       <Sentence ID="311">Incorrect, must be multiline</Sentence>
+      <Sentence ID="112">ID</Sentence>
+      <Sentence ID="212">ID</Sentence>
+      <Sentence ID="312">Incorrect, must be multiline</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Контейнер</Sentence>
@@ -373,10 +388,16 @@ class VDOM_objectviewpattern(VDOM_object):
 		else:
 			style += "display:none;"
 
+		dataid = ""
+		#if self.dataid != '':
+		#	dataid = "dataid=\"%s\"" % (self.dataid).replace("\"", "")
+
 		if style != "":
 			style = " style='%s' " % style
-		result = u"<div {classname} {style}>{contents} DATA: {data}</div>".format(
-			data      = self.data,
+		#result = u"<div {classname} {style}>{contents} DATA: {data}</div>".format(
+		result = u"<div {classname} {style} {dataid}>{contents}</div>".format(
+			#data      = self.data,
+			dataid    = dataid,
 			classname = classname,
 			style     = style,
 			contents  = contents
