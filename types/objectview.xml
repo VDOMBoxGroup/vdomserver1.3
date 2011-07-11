@@ -215,8 +215,8 @@
       <Sentence ID="108">Pattern List</Sentence>
       <Sentence ID="208">Incorrect value</Sentence>
       <Sentence ID="308">List of containers with item pattern</Sentence>
-      <Sentence ID="109">Objects</Sentence>
-      <Sentence ID="209">Objects with parameters</Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="209">Describe objects list</Sentence>
       <Sentence ID="309">Incorrect, must be JSON</Sentence>
       <Sentence ID="111">Overflow</Sentence>
       <Sentence ID="211">Overflow mode</Sentence>
@@ -272,7 +272,7 @@ def create_dupes_recurse(application, res, object, children, aa, w):
 		aa.append(obj_id)
 
 		# get it
-		obj = application.objects.search(obj_id)
+		obj = application.objects.search(obj_id)  # poss dont use
 
 		# copy object name if this is not 1st child container in objectviewtemplate
 		#if not obj.parent.type.container == 2:
@@ -284,7 +284,9 @@ def create_dupes_recurse(application, res, object, children, aa, w):
 			pass
 
 		# copy actions
-		obj.actions = xobject.actions
+		# obj.actions = xobject.actions
+		import copy
+		obj.actions = copy.copy(xobject.actions)
 
 		# copy properties
 		#for name, val in xobject.get_attributes().iteritems():
@@ -305,88 +307,106 @@ def create_dupes_recurse(application, res, object, children, aa, w):
 	return result, aa
 
 def on_compile(application_object, object, action_name, context, objects):
-	debug("[on_compile] ####### begin")
+	debug("[ov on_compile] ####### begin")
 	result = objects
 	attributes = object.get_attributes()
 	pattern = attributes["pattern"].value
+	
 	if pattern:
-		source_object = application.objects.search(pattern)
-
-		if not source_object:
-			return result
-
-		if source_object.type.dynamic:
-			object.dynamic[(action_name, context)] # object.dynamic=1
-		object.optimization_priority = source_object.type.optimization_priority
-
 		aa = []
-
-		#res, aa = create_dupes_recurse(application, result, object, source_object.get_objects_list(), aa)
-		#result.append({
-		#	"object": res
-		#})
-
-		#res2, aa = create_dupes_recurse(application, result, object, source_object.get_objects_list(), aa)
-		#result.append({
-		#	"object": res2
-		#	,"render": [u"""%s.top="0" """ % res2.name, u"""%s.left="300" """ % res2.name]
-		#})
-
-		debug("[ov] ####### get ov data & json it ")
-		od_t = u"""%s""" % (attributes["data"].value).replace("\n", "")
-		print od_t
-		import json
 		try:
-			od = json.loads(od_t)
+			source_object = application.objects.search(pattern)
+
+			if not source_object:
+				return result
+
+			if source_object.type.dynamic:
+				object.dynamic[(action_name, context)] # object.dynamic=1
+			object.optimization_priority = source_object.type.optimization_priority
+
+			#res, aa = create_dupes_recurse(application, result, object, source_object.get_objects_list(), aa)
+			#result.append({
+			#	"object": res
+			#})
+
+			#res2, aa = create_dupes_recurse(application, result, object, source_object.get_objects_list(), aa)
+			#result.append({
+			#	"object": res2
+			#	,"render": [u"""%s.top="0" """ % res2.name, u"""%s.left="300" """ % res2.name]
+			#})
+
+			debug("[ov on_compile] ####### get ov data & json it ")
+			od_t = u"""%s""" % (attributes["data"].value).replace("\n", "")
+			#print od_t
+			import json
+			try:
+				od = json.loads(od_t)
+			except:
+				od = []
+			#debug("[ov on_compile] ####### jsoned: ")
+			#print json.dumps(od)
+
+			sobj_attributes = source_object.get_attributes()
+
+			#nn = 1
+			nn = 0
+			for w in od:
+				# create new object for item container
+				obj_t = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
+				obj_id = obj_t.id
+				aa.append(obj_id)
+				obj = application.objects.search(obj_id)
+
+				#obj.attributes = source_object.attributes.copy()#copy.deepcopy(source_object.attributes) #deepcopy
+				obj_a = source_object.get_attributes()
+				for a in obj_a:
+					obj.set_attribute_ex(obj_a[a].name, obj_a[a].value, False)
+				obj.set_attribute_ex('data', w, False)
+
+				#obj.actions = source_object.actions
+				import copy
+				obj.actions = copy.copy(source_object.actions)
+
+				try:
+					wx = od[w]
+				except:
+					wx = w
+				res, aa = create_dupes_recurse(application, result, obj, source_object.get_objects_list(), aa, wx)
+
+				classname = attributes['classname'].value
+				if classname == '':
+					classname = 'ov'
+
+				result.append({
+					"object": obj #res
+					#,"render": render
+					#,"render": [u"self.%s.data=\"\"\"%s\"\"\" " % (res.name, z)]
+					,"render": [
+						u"self.%s.visible=\"1\"" % (obj.name)
+						,u"self.%s.width=\"%s\"" % (obj.name, sobj_attributes['width'].value)
+						,u"self.%s.height=\"%s\"" % (obj.name, sobj_attributes['height'].value)
+						#,u"self.%s.data=\"\"\"%s\"\"\"" % (obj.name, w)
+						,u"self.%(name)s.classname+=\" %(class)s-item %(class)s-item-%(nn)s\"" % {
+							"name":   obj.name 
+							,"class":  classname
+							,"nn":     str(nn)
+						}
+						,u"self.%(name)s.dataid=\"%(dataid)s\"" % { "name": obj.name, "dataid": wx }
+					]
+				})
+
+				nn += 1
+
+			debug("[ov on_compile] ####### store ov_created_objects ")
+			setattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), aa)
+
 		except:
-			od = []
-		debug("[ov] ####### jsoned: ")
-		print json.dumps(od)
-
-		sobj_attributes = source_object.get_attributes()
-
-		#nn = 1
-		nn = 0
-		obja = []
-		for w in od:
-			# create new object for item container
-			obj_t = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
-			obj_id = obj_t.id
-			aa.append(obj_id)
-			obj = application.objects.search(obj_id)
-			#obja.append(application.objects.search(obj_id))
-
-			obj.attributes = source_object.attributes
-			obj.set_attribute_ex('data', w, False)
-
-			obj.actions = source_object.actions
-
-			res, aa = create_dupes_recurse(application, result, obj, source_object.get_objects_list(), aa, w)
-
-			result.append({
-				"object": obj #res
-				#,"render": render
-				#,"render": [u"self.%s.data=\"\"\"%s\"\"\" " % (res.name, z)]
-				,"render": [
-					u"self.%s.visible=\"1\"" % (obj.name)
-					,u"self.%s.width=\"%s\"" % (obj.name, sobj_attributes['width'].value)
-					,u"self.%s.height=\"%s\"" % (obj.name, sobj_attributes['height'].value)
-					#,u"self.%s.data=\"\"\"%s\"\"\"" % (obj.name, w)
-					,u"self.%(name)s.classname+=\" %(class)s-item %(class)s-item-%(nn)s\"" % {
-						"name":  obj.name, 
-						"class": attributes['classname'].value,
-						"nn":    str(nn)
-					}
-				]
-			})
-
-			nn += 1
-
-		debug("[ov] ####### store ov_created_objects ")
-		setattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), aa)
+			for object_id in aa:
+				application.objects.delete(object_id)
+			raise
 
 
-	debug("[on_compile] ####### end")
+	debug("[ov on_compile] ####### end")
 	return result
 
 class VDOM_objectview(VDOM_object):
@@ -405,14 +425,8 @@ class VDOM_objectview(VDOM_object):
 		aa = getattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), [])
 
 		#debug("[ov] ####### delete ov_created_objects")
-		for oi in aa:
-			#debug("[ov] ####### ... find " + oi)
-			x = application.objects.search(oi)
-			if x:
-			#	debug("[ov] ####### ... kill them")
-				application.objects.delete(x.id)
-			#else:
-			#	debug("[ov] ####### ... none")
+		for object_id in aa:
+			application.objects.delete(object_id)
 
 
 		# render
@@ -453,10 +467,8 @@ class VDOM_objectview(VDOM_object):
 		# remove on_compile's objects 
 		managers.source_cache.invalidate(application.id, self.id)
 		aa = getattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), [])
-		for oi in aa:
-			x = application.objects.search(oi)
-			if x:
-				application.objects.delete(x.id)
+		for object_id in aa:
+			application.objects.delete(object_id)
 
 		
 		html_items = u""
@@ -473,14 +485,16 @@ class VDOM_objectview(VDOM_object):
 				nn = 0
 				for w in od:
 					nn += 1
-					b, tail = w[:0], w
+					try:
+						wx = od[w]
+					except:
+						wx = w
+					b, tail = wx[:0], wx
 					while len(tail)>2:
 						b += tail[:2] + "&shy;"
 						tail = tail[2:]
 					data = b + tail
-					html_items += u"<div><b>{nn}</b> {data}</div>".format(
-						nn = nn, data = data
-					)
+					html_items += u"<div><b>{nn}</b> {data}</div>".format( nn = nn, data = data )
 
 		html = u"""
 		<style type="text/css">
