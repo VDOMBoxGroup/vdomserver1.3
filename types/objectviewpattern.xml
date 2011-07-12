@@ -389,8 +389,8 @@ class VDOM_objectviewpattern(VDOM_object):
 			style += "display:none;"
 
 		dataid = ""
-		#if self.dataid != '':
-		#	dataid = "dataid=\"%s\"" % (self.dataid).replace("\"", "")
+		if self.dataid != '':
+			dataid = "dataid=\"%s\"" % (self.dataid).replace("\"", "")
 
 		if style != "":
 			style = " style='%s' " % style
