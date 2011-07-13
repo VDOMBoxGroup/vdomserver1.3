@@ -27,6 +27,7 @@ class parseapp:
 		g = f.close()
 		t2 = time.time()
 		if g is not None:
+			debug( "Returne-code: %s"%g )
 			shutil.rmtree(tmp, ignore_errors=True)
 			raise VDOM_exception("Incorrect application format")
 		print "Parse time:", t2-t1
