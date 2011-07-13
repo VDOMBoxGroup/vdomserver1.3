@@ -298,7 +298,7 @@ class VDOM_xml_manager(object):
 			if p.id in self.__applications:
 				return ("", "")
 			if p.key:
-				from src.server.local_server import check_application_license
+				from server.local_server import check_application_license
 				if not p.key.strip().isdigit() or not check_application_license(p.id, p.key.strip()):
 					raise Exception("You have no permission to install this application. Please contact your dealer for support.")
 			(result, app_object) = self.load_application(p.work_xml_file)

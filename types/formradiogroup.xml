@@ -228,7 +228,7 @@
   </Resources>
   <SourceCode><![CDATA[
 
-import src.e2vdom
+import e2vdom
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -239,7 +239,7 @@ def on_compile(application, object, action_name, context, objects):
 class VDOM_formradiogroup(VDOM_object):
 
 	def render(self, parent, contents=""):
-		src.e2vdom.process(self, parent)
+		e2vdom.process(self, parent)
 		display = u"display:none" if self.visible == "0" else u""
 		
 		style = u"""overflow: auto; z-index: {zind}; position: {pos};
