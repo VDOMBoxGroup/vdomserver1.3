@@ -99,7 +99,7 @@ class VDOM_resource_descriptor(object):
 	def decrease(self, object_id, remove=False):
 		if remove:
 			self.__load_data()
-			managers.file_manager.delete(src.file_access.resource,self.application_id,None,self.filename)
+			managers.file_manager.delete(file_access.resource,self.application_id,None,self.filename)
 			managers.storage.delete_resources_index(self)
 			return 0
 		return 1
