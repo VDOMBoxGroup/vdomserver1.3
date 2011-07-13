@@ -49,6 +49,11 @@ def import_application(path, ext = "xml"):
 
 def uninstall_application(appid):
 	try:
+		#TODO: find better way to change current application
+		request = managers.request_manager.get_request()
+		request._VDOM_request__app_id = appid
+		request._VDOM_request__app = managers.xml_manager.get_application(appid)
+		request.application_id = appid
 		managers.xml_manager.uninstall_application(appid)
 	except Exception, e:
 		import traceback
