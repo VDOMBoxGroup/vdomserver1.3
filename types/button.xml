@@ -343,42 +343,46 @@
       <Sentence ID="001">Button</Sentence>
       <Sentence ID="002">Link button or image button</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Move object to selected point</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">moveZindexTo</Sentence>
-      <Sentence ID="705">newZindex</Sentence>
-      <Sentence ID="805">New Z-index value</Sentence>
-      <Sentence ID="504">Set new button image</Sentence>
-      <Sentence ID="604">setButtonImage</Sentence>
-      <Sentence ID="706">resourceUrl</Sentence>
-      <Sentence ID="806">Resource URL of new image</Sentence>
-      <Sentence ID="505">Set button image when the cursor is over</Sentence>
-      <Sentence ID="605">setButtonRollover</Sentence>
+      <Sentence ID="501">add new CSS class for button</Sentence>
+      <Sentence ID="601">addClass</Sentence>
+      <Sentence ID="701">className</Sentence>
+      <Sentence ID="801">Class name</Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="802">Fade time</Sentence>
+      <Sentence ID="503">Move object to selected point</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="805">Visual effect by moving</Sentence>
+      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="604">moveZindexTo</Sentence>
+      <Sentence ID="706">newZindex</Sentence>
+      <Sentence ID="806">New Z-index value</Sentence>
+      <Sentence ID="505">Set new button image</Sentence>
+      <Sentence ID="605">setButtonImage</Sentence>
       <Sentence ID="707">resourceUrl</Sentence>
       <Sentence ID="807">Resource URL of new image</Sentence>
-      <Sentence ID="506">Set new CSS class</Sentence>
-      <Sentence ID="606">setClass</Sentence>
-      <Sentence ID="708">className</Sentence>
-      <Sentence ID="808">New CSS class name</Sentence>
-      <Sentence ID="507">Set new container link</Sentence>
-      <Sentence ID="607">setLink</Sentence>
-      <Sentence ID="709">containerUrl</Sentence>
-      <Sentence ID="809">New container URL</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="711">Fade</Sentence>
-      <Sentence ID="811">Time of appearance</Sentence>
+      <Sentence ID="506">Set button image when the cursor is over</Sentence>
+      <Sentence ID="606">setButtonRollover</Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="808">Resource URL of new image</Sentence>
+      <Sentence ID="507">Set new CSS class</Sentence>
+      <Sentence ID="607">setClass</Sentence>
+      <Sentence ID="709">className</Sentence>
+      <Sentence ID="809">New CSS class name</Sentence>
+      <Sentence ID="508">Set new container link</Sentence>
+      <Sentence ID="608">setLink</Sentence>
+      <Sentence ID="711">containerUrl</Sentence>
+      <Sentence ID="811">New container URL</Sentence>
+      <Sentence ID="509">Show the object</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="812">Time of appearance</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy of object</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
@@ -505,51 +509,55 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="509">add new CSS class for button</Sentence>
-      <Sentence ID="609">addClass</Sentence>
-      <Sentence ID="712">Class name</Sentence>
-      <Sentence ID="812">className</Sentence>
+      <Sentence ID="510">Changing attribute Text</Sentence>
+      <Sentence ID="610">setText</Sentence>
+      <Sentence ID="713">String to load into attribute 'Text'</Sentence>
+      <Sentence ID="813">text</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
       <Sentence ID="002">Кнопка в виде ссылки или изображения</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Спрятать объект</Sentence>
-      <Sentence ID="601">Спрятать</Sentence>
-      <Sentence ID="701">Затухание</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">X</Sentence>
-      <Sentence ID="802">X-координата новой точки</Sentence>
-      <Sentence ID="703">Y</Sentence>
-      <Sentence ID="803">Y-координата новой точки</Sentence>
-      <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при сдвиге</Sentence>
-      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="603">Изменить Z-индекс</Sentence>
-      <Sentence ID="705">Z-индекс</Sentence>
-      <Sentence ID="805">Новое значение Z-индекса</Sentence>
-      <Sentence ID="504">Установить новое изображение для кнопки</Sentence>
-      <Sentence ID="604">Установить изображение</Sentence>
-      <Sentence ID="706">URL ресурса</Sentence>
-      <Sentence ID="806">URL ресурса для изображения</Sentence>
-      <Sentence ID="505">Установить новое изображение при наведении</Sentence>
-      <Sentence ID="605">Изображение при наведении</Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="502">Спрятать объект</Sentence>
+      <Sentence ID="602">Спрятать</Sentence>
+      <Sentence ID="702">Затухание</Sentence>
+      <Sentence ID="802">Время исчезновения</Sentence>
+      <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="603">Сдвинуть</Sentence>
+      <Sentence ID="703">X</Sentence>
+      <Sentence ID="803">X-координата новой точки</Sentence>
+      <Sentence ID="704">Y</Sentence>
+      <Sentence ID="804">Y-координата новой точки</Sentence>
+      <Sentence ID="705">Эффект</Sentence>
+      <Sentence ID="805">Визуальный эффект при сдвиге</Sentence>
+      <Sentence ID="504">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="604">Изменить Z-индекс</Sentence>
+      <Sentence ID="706">Z-индекс</Sentence>
+      <Sentence ID="806">Новое значение Z-индекса</Sentence>
+      <Sentence ID="505">Установить новое изображение для кнопки</Sentence>
+      <Sentence ID="605">Установить изображение</Sentence>
       <Sentence ID="707">URL ресурса</Sentence>
       <Sentence ID="807">URL ресурса для изображения</Sentence>
-      <Sentence ID="506">Установить новый класс CSS</Sentence>
-      <Sentence ID="606">Установить класс</Sentence>
-      <Sentence ID="708">Имя класса</Sentence>
-      <Sentence ID="808">Имя нового класса CSS</Sentence>
-      <Sentence ID="507">Установить новую ссылку на контейнер</Sentence>
-      <Sentence ID="607">Установить ссылку</Sentence>
-      <Sentence ID="709">URL контейнера</Sentence>
-      <Sentence ID="809">URL нового контейнера</Sentence>
-      <Sentence ID="508">Показать объект</Sentence>
-      <Sentence ID="608">Показать</Sentence>
-      <Sentence ID="711">Задержка</Sentence>
-      <Sentence ID="811">Время задержки</Sentence>
+      <Sentence ID="506">Установить новое изображение при наведении</Sentence>
+      <Sentence ID="606">Изображение при наведении</Sentence>
+      <Sentence ID="708">URL ресурса</Sentence>
+      <Sentence ID="808">URL ресурса для изображения</Sentence>
+      <Sentence ID="507">Установить новый класс CSS</Sentence>
+      <Sentence ID="607">Установить класс</Sentence>
+      <Sentence ID="709">Имя класса</Sentence>
+      <Sentence ID="809">Имя нового класса CSS</Sentence>
+      <Sentence ID="508">Установить новую ссылку на контейнер</Sentence>
+      <Sentence ID="608">Установить ссылку</Sentence>
+      <Sentence ID="711">URL контейнера</Sentence>
+      <Sentence ID="811">URL нового контейнера</Sentence>
+      <Sentence ID="509">Показать объект</Sentence>
+      <Sentence ID="609">Показать</Sentence>
+      <Sentence ID="712">Задержка</Sentence>
+      <Sentence ID="812">Время задержки</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="301">Неправильное значение, дожно быть целое положительное число</Sentence>
@@ -676,51 +684,55 @@
       <Sentence ID="915">Текущее значение Y</Sentence>
       <Sentence ID="916">Текущее значение X</Sentence>
       <Sentence ID="917">Текущее значение Y</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="812"></Sentence>
+      <Sentence ID="510"></Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="813"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
       <Sentence ID="002">Lien sur une image</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Move object to selected point</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">moveZindexTo</Sentence>
-      <Sentence ID="705">newZindex</Sentence>
-      <Sentence ID="805">New Z-index value</Sentence>
-      <Sentence ID="504">Set new button image</Sentence>
-      <Sentence ID="604">setButtonImage</Sentence>
-      <Sentence ID="706">resourceUrl</Sentence>
-      <Sentence ID="806">Resource URL of new image</Sentence>
-      <Sentence ID="505">Set button image when the cursor is over</Sentence>
-      <Sentence ID="605">setButtonRollover</Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="802">Fade time</Sentence>
+      <Sentence ID="503">Move object to selected point</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="805">Visual effect by moving</Sentence>
+      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="604">moveZindexTo</Sentence>
+      <Sentence ID="706">newZindex</Sentence>
+      <Sentence ID="806">New Z-index value</Sentence>
+      <Sentence ID="505">Set new button image</Sentence>
+      <Sentence ID="605">setButtonImage</Sentence>
       <Sentence ID="707">resourceUrl</Sentence>
       <Sentence ID="807">Resource URL of new image</Sentence>
-      <Sentence ID="506">Set new CSS class</Sentence>
-      <Sentence ID="606">setClass</Sentence>
-      <Sentence ID="708">className</Sentence>
-      <Sentence ID="808">New CSS class name</Sentence>
-      <Sentence ID="507">Set new container link</Sentence>
-      <Sentence ID="607">setLink</Sentence>
-      <Sentence ID="709">containerUrl</Sentence>
-      <Sentence ID="809">New container URL</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="711">Fade</Sentence>
-      <Sentence ID="811">Time of appearance</Sentence>
+      <Sentence ID="506">Set button image when the cursor is over</Sentence>
+      <Sentence ID="606">setButtonRollover</Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="808">Resource URL of new image</Sentence>
+      <Sentence ID="507">Set new CSS class</Sentence>
+      <Sentence ID="607">setClass</Sentence>
+      <Sentence ID="709">className</Sentence>
+      <Sentence ID="809">New CSS class name</Sentence>
+      <Sentence ID="508">Set new container link</Sentence>
+      <Sentence ID="608">setLink</Sentence>
+      <Sentence ID="711">containerUrl</Sentence>
+      <Sentence ID="811">New container URL</Sentence>
+      <Sentence ID="509">Show the object</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="812">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
@@ -847,10 +859,10 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="812"></Sentence>
+      <Sentence ID="510"></Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="813"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1153,75 +1165,82 @@ def set_attr(app_id, object_id, param):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="addClass">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(812)" ScriptName="className" Help="#Lang(712)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 jQuery(this.domCont).children('a').addClass(className);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_hide(this.domCont, fade);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Effect" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 this.domCont.style.zindex = parseInt(newZindex);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setButtonImage">
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setButtonImage">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="resourceUrl" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="resourceUrl" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_setButtonImage(this.domCont, resourceUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setButtonRollover">
+        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setButtonRollover">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="resourceUrl" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="resourceUrl" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_setButtonRollover(this.domCont, resourceUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setClass">
+        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="className" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).children('a').attr('class',className);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setLink">
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setLink">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="containerUrl" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="containerUrl" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_setLink(this.domCont, containerUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
+        <Action Description="#Lang(510)" InterfaceName="#Lang(610)" MethodName="setText">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="fade" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(813)" ScriptName="text" Help="#Lang(713)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery('a span',this.domCont).text(text);]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="fade" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
