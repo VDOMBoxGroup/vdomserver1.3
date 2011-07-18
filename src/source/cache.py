@@ -70,7 +70,7 @@ class VDOM_source_cache(object):
 		self.__cache_file_index = {}
 		self.__cache_list = []
 		self.__memused = 0
-		managers.source_swap.swap.clear()
+		managers.source_swap.clear()
 		
 	def clear_container_swap(self,application_id):
 		managers.file_manager.clear(file_access.cache, application_id, None)
