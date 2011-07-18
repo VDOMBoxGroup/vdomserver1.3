@@ -10,6 +10,13 @@ class VDOM_session(object):
 	def __getitem__(self, name):
 		return managers.request_manager.current.session()[name]
 
+	def __setitem__(self, name,value):
+		managers.request_manager.current.session()[name] = value
+
+	def __delitem__(self, name):
+		del managers.request_manager.current.session()[name]
+
+	
 	def get(self, name, default=None):
 		return managers.request_manager.current.session().get(name, default)
 
