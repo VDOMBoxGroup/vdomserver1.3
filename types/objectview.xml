@@ -342,7 +342,7 @@ def on_compile(application_object, object, action_name, context, objects):
 			#	,"render": [u"""%s.top="0" """ % res2.name, u"""%s.left="300" """ % res2.name]
 			#})
 
-			obj_data_t = u"""%s""" % (attributes["data"].value).replace("\n", "")
+			obj_data_t = u"""%s""" % (attributes["data"].value))
 			import json
 			try:
 				obj_data = json.loads(obj_data_t)
@@ -410,7 +410,7 @@ def on_compile(application_object, object, action_name, context, objects):
 							,"classlast":  classlast
 							,"classodd":   classodd
 						}
-						,u"self.%(name)s.dataid=\"%(dataid)s\"" % { "name": obj.name, "dataid": w.replace('"', '') }
+						,u"self.%(name)s.dataid=\"%(dataid)s\"" % { "name": obj.name, "dataid": w }
 					]
 				})
 
