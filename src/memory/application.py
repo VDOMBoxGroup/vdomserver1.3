@@ -890,7 +890,8 @@ class VDOM_application(VDOM_parser):
 				except:
 					pass
 			else:
-				managers.file_manager.write_lib(self.id, name, data)
+				value="from scripting import server, application, log, session, request, response, VDOM_object, obsolete_request\n%s\n"%data
+				managers.file_manager.write_lib(self.id, name, value)
 				self.libs[name] = None
 			self.invalidate_libraries()
 		finally:
