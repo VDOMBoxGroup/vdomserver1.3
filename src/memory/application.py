@@ -398,7 +398,8 @@ class VDOM_application(VDOM_parser):
 				finally:
 					threading.currentThread().application=None
 			else:
-				managers.file_manager.write_lib(self.id, name, xml_obj.value)
+				value="from scripting import server, application, log, session, request, response, VDOM_object, obsolete_request\n%s\n"%xml_obj.value
+				managers.file_manager.write_lib(self.id, name, value)
 				self.libs[name] = None
 		else:
 			debug("  Library '%s' ignored: incorrect name" % name)
