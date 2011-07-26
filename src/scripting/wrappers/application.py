@@ -1,6 +1,7 @@
 
 import re, managers, threading
 
+from file_access import application_storage
 DBSCHEMA_ID = '753ea72c-475d-4a29-96be-71c522ca2097'
 DBTABLE_ID = '92269b6e-4b6b-4882-852f-f7ef0e89c079'
 
@@ -43,10 +44,14 @@ class VDOM_objects(object):
 			object=objects[0] if objects else None
 		return object
 
-class VDOM_storage(object):
+class VDOM_file_storage(object):
 	
-	pass
+	def __init__(self):
+		self.__app_id = managers.request_manager.current.app_id()
 
+	def exists(self, name):
+		pass
+		
 class VDOM_cursor_object(object):
 
 	def __init__(self, connection, cursor):
@@ -92,7 +97,9 @@ class VDOM_database(object):
 		
 	def __init__(self, name):
 		self.__name = name
-		self.database = managers.database_manager.get_database_by_name(managers.request_manager.current.app_id(), self.__name)
+		app_id = managers.request_manager.current.app_id()
+
+		self.database = managers.database_manager.get_database_by_name(app_id, self.__name)
 		if not self.database or (not self.database.is_ready and not self.database.open()):
 			raise Exception("Database with name \"%s\" does not exist" % self.__name)
 		self.__conn = self.database.get_connection()
@@ -224,7 +231,7 @@ class VDOM_application(object):
 		self._objects=VDOM_objects()
 		self._databases=VDOM_databases()
 		self._resources=VDOM_resources()
-		self._storage=VDOM_storage()
+		#self._storage=VDOM_storage()
 
 	def _get_id(self):
 		return managers.request_manager.current.app_id()
