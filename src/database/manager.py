@@ -87,7 +87,7 @@ class VDOM_database_manager(object):
 		db = []
 		for db_id, db_obj in self.__index.items():
 			if db_obj.name == db_name:
-				db.append(self.__index[db_id])
+				db.append(self.__index[db_id])		
 		if len(db) == 1:
 			database = db[0]
 			return database
