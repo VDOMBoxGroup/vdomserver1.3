@@ -297,10 +297,10 @@ class VDOM_xml_manager(object):
 			debug(p.work_xml_file)
 			if p.id in self.__applications:
 				return ("", "")
-			if p.key:
-				from server.local_server import check_application_license
-				if not p.key.strip().isdigit() or not check_application_license(p.id, p.key.strip()):
-					raise Exception("You have no permission to install this application. Please contact your dealer for support.")
+			#if p.key:
+			#	from server.local_server import check_application_license
+			#	if not p.key.strip().isdigit() or not check_application_license(p.id, p.key.strip()):
+			#		raise Exception("You have no permission to install this application. Please contact your dealer for support.")
 			(result, app_object) = self.load_application(p.work_xml_file)
 			if not result:			# previous version of application not removed?
 				return ("", "")
@@ -340,6 +340,8 @@ class VDOM_xml_manager(object):
 		for o in l:
 			#debug("\n"+str(o) + "\n")
 			appobj.delete_object(o)
+		# delete databases
+		
 #		del(appobj.xml_manager)
 		self.__sem.lock()
 		try:
