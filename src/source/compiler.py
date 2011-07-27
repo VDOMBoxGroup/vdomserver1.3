@@ -41,7 +41,16 @@ class VDOM_compiler(object):
 		if action and action.code and (context is global_context or object.id==context):
 			#debug("[Compiler] Assume %s as dynamic, contain action \"%s\" in context %s"%(object.id, action_name, context))
 			object.dynamic[(action_name, context)]=1
-			names=auxilary.analyse_script_structure(action.code, application.scripting_language) # action.lang
+
+			## !!! this XEPb is needed for objectview type.
+			## !!! Nikolay, check it please...
+			try:
+				slang = application.scripting_language
+			except:
+				slang = 'python'
+			#names=auxilary.analyse_script_structure(action.code, application.scripting_language) # action.lang
+			names=auxilary.analyse_script_structure(action.code, slang) # action.lang
+
 			auxilary.enable_dynamic(object, action_name, context, names)
 
 		module_name=utils.id.guid2mod(object.type.id)
