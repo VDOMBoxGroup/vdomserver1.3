@@ -17,7 +17,7 @@
     <Version>3.0.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, objectviewpattern</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
@@ -745,7 +745,7 @@ class VDOM_text(VDOM_object):
 			"color" : "#%s"%self.color if self.color else None,
 			"text-decoration": self.textdecoration or None}
 
-		result="<div oname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\">%(value)s</div>"%{
+		result="<div objectname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\">%(value)s</div>"%{
 			"oname": self.name,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),

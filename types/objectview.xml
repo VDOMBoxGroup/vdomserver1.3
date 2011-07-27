@@ -235,7 +235,7 @@
       <Sentence ID="314">Incorrect, must be 0, 1 or 2</Sentence>
       <Sentence ID="414">Horizontal</Sentence>
       <Sentence ID="415">Vertical</Sentence>
-      <Sentence ID="416">Vertical wide items</Sentence>
+      <Sentence ID="416">Vertical wide</Sentence>
       <Sentence ID="111">Overflow</Sentence>
       <Sentence ID="211">Overflow mode</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
@@ -277,173 +277,178 @@
 import e2vdom
 import managers
 import thread
-
-def create_dupes_recurse(application, res, object, children, tmp_list):
-	result = res
-	for xobject in children:
-
-		# create new object
-		obj_new = application.objects.create(xobject.type.id, object.id)
-		obj_new_id = obj_new.id
-
-		# add to list of created objects for delete later
-		tmp_list.append(obj_new_id)
-
-		# copy object name if this is not 1st child container in objectviewtemplate
-		#if not obj_new.parent.type.container == 2:
-		#if not obj_new.parent.parent:
-		#	obj_new.set_name(xobject.name)
-		try:
-			obj_new.set_name(xobject.name)
-		except:
-			pass
-
-		# copy actions
-		import copy
-		obj_new.actions = copy.copy(xobject.actions)
-
-		# copy properties
-		#for name, val in xobject.get_attributes().iteritems():
-		#	obj_new.set_attribute_ex(name, val, False)
-		obj_attr = xobject.get_attributes()
-		for a in obj_attr:
-			obj_new.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
-
-		#result.append({
-		#	"object": obj_new
-		#})
-
-		if xobject.type.container == 2:
-			result, tmp_list = create_dupes_recurse(application, result, obj_new, xobject.get_objects_list(), tmp_list)
-
-	return result, tmp_list
-
-def on_compile(application_object, object, action_name, context, objects):
-	result = objects
-	attributes = object.get_attributes()
-	pattern = attributes["pattern"].value
-	
-	if pattern:
-		tmp_list = []
-		try:
-			source_object = application.objects.search(pattern)
-
-			if not source_object:
-				return result
-
-			if source_object.type.dynamic:
-				object.dynamic[(action_name, context)] # object.dynamic=1
-			object.optimization_priority = source_object.type.optimization_priority
-
-			## ex.
-			#res2, tmp_list = create_dupes_recurse(application, result, object, source_object.get_objects_list(), tmp_list)
-			#result.append({
-			#	"object": res2
-			#	,"render": [u"""%s.top="0" """ % res2.name, u"""%s.left="300" """ % res2.name]
-			#})
-
-			obj_data_t = u"""%s""" % (attributes["data"].value))
-			import json
-			try:
-				obj_data = json.loads(obj_data_t)
-			except:
-				obj_data = []
-
-			source_object_attr = source_object.get_attributes()
-
-			classname = attributes['classname'].value
-			if classname == '':
-				classname = 'ov'
-
-			nn = 1
-			nn_first = 1
-			for w in obj_data:
-				# create new object for item container
-				obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
-				obj_id = obj.id
-				tmp_list.append(obj_id)
-
-				#obj.attributes = source_object.attributes.copy()#copy.deepcopy(source_object.attributes) #deepcopy
-				obj_attr = source_object.get_attributes()
-				for a in obj_attr:
-					obj.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
-				obj.set_attribute_ex('data', w, False)
-
-				#obj.actions = source_object.actions
-				import copy
-				obj.actions = copy.copy(source_object.actions)
-
-				try:
-					wx = obj_data[w]
-				except:
-					wx = w
-				res, tmp_list = create_dupes_recurse(application, result, obj, source_object.get_objects_list(), tmp_list)
-
-				if nn_first == 1:
-					nn_first = 0
-					classfirst = u"%s-item-first" % classname
-				else:
-					classfirst = ''
-
-				if nn == len(obj_data):
-					classlast = u"%s-item-last" % classname
-				else:
-					classlast = ''
-
-				if nn % 2:
-					classodd = ''
-				else:
-					classodd = u"%s-item-odd" % classname
-
-				result.append({
-					"object": obj
-					,"render": [
-						u"self.%s.visible=\"1\"" % (obj.name)
-						,u"self.%s.width=\"%s\"" % (obj.name, source_object_attr['width'].value)
-						,u"self.%s.height=\"%s\"" % (obj.name, source_object_attr['height'].value)
-						#,u"self.%s.data=\"\"\"%s\"\"\"" % (obj.name, w)
-						,u"self.%(name)s.classname+=\" %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s\"" % {
-							"name":        obj.name 
-							,"class":      classname
-							,"nn":         str(nn)
-							,"classfirst": classfirst
-							,"classlast":  classlast
-							,"classodd":   classodd
-						}
-						,u"self.%(name)s.dataid=\"%(dataid)s\"" % { "name": obj.name, "dataid": w }
-					]
-				})
-
-				nn += 1
-
-			setattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), tmp_list)
-
-		except:
-			for object_id in tmp_list:
-				application.objects.delete(object_id)
-			raise
-
-
-	return result
+import copy
 
 class VDOM_objectview(VDOM_object):
+
+	tmp_list = []
+
+	def create_dupes_recurse(self, application, res, object, children):
+		result = res
+		for xobject in children:
+
+			# create new object
+
+			obj_new = application.objects.create(xobject.type.id, object.id)
+			obj_new_id = obj_new.id
+
+			# add to list of created objects for delete later
+
+			self.tmp_list.append(obj_new_id)
+
+			# copy object name if this is not 1st child container in objectviewtemplate
+
+			#if not obj_new.parent.type.container == 2:
+			#if not obj_new.parent.parent:
+			#	obj_new.set_name(xobject.name)
+			try:
+				obj_new.set_name(xobject.name)
+			except:
+				pass
+
+			# copy actions
+
+			#obj_new.actions = copy.copy(xobject.actions)
+
+			# copy properties
+
+			#for name, val in xobject.get_attributes().iteritems():
+			#	obj_new.set_attribute_ex(name, val, False)
+			obj_attr = xobject.get_attributes()
+			for a in obj_attr:
+				obj_new.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
+
+			#result.append({
+			#	"object": obj_new
+			#})
+
+			if xobject.type.container == 2:
+				result = self.create_dupes_recurse(application, result, obj_new, xobject.get_objects_list())
+
+		return result
+
+
+	def do_compile(self, object):
+		result = ""
+
+		if self.pattern:
+			self.tmp_list = []
+			try:
+
+				# get object with id == pattern
+
+				source_object = application.objects.search(self.pattern)
+				source_object_attr = source_object.get_attributes()
+
+				if not source_object:
+					return result
+
+				# parse ov.data
+
+				obj_data_t = u"""%s""" % (self.data).replace("\n", "")
+				import json
+				try:
+					obj_data = json.loads(obj_data_t)
+				except:
+					obj_data = []
+
+				classname = self.classname
+				if classname == '':
+					classname = 'ov'
+
+				nn = 1
+				nn_first = 1
+				for w in obj_data:
+
+					# create new object for item container
+
+					obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
+
+					obj_id = obj.id
+					self.tmp_list.append(obj_id)
+
+					obj_attr = source_object.get_attributes()
+					for a in obj_attr:
+						obj.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
+					obj.set_attribute_ex('data', w, False)
+
+					#obj.actions = source_object.actions
+					obj.actions = copy.copy(source_object.actions)
+
+					try:
+						wx = obj_data[w]
+					except:
+						wx = w
+					res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
+
+					if nn_first == 1:
+						nn_first = 0
+						classfirst = u"%s-item-first" % classname
+					else:
+						classfirst = ''
+
+					if nn == len(obj_data):
+						classlast = u"%s-item-last" % classname
+					else:
+						classlast = ''
+
+					if nn % 2:
+						classodd = ''
+					else:
+						classodd = u"%s-item-odd" % classname
+
+					if w.keys():
+						item_data_id = w.keys()[0]
+						item_data = w[item_data_id]
+					else:
+						item_data_id = ""
+						item_data = w
+
+					obj.set_attribute_ex("visible", "1", False)
+					obj.set_attribute_ex("width", source_object_attr['width'].value, False)
+					obj.set_attribute_ex("height", source_object_attr['height'].value, False)
+					obj.set_attribute_ex("data", item_data, False)
+					obj.set_attribute_ex("dataid", item_data_id, False)
+					obj.set_attribute_ex("classname", "%(userdef)s %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s" % {
+						"name":        obj.name
+						,"class":      classname
+						,"nn":         str(nn)
+						,"classfirst": classfirst
+						,"classlast":  classlast
+						,"classodd":   classodd
+						,"userdef":    obj_attr["classname"].value
+					}, False)
+					result += managers.engine.render(application, obj, object, "vdom")
+
+					nn += 1
+
+			except:
+				for object_id in self.tmp_list:
+					application.objects.delete(object_id)
+				raise
+
+		#debug("!!!!!!!! result ")
+		#debug(result)
+
+		return result
+
 
 	def __init__(self, id):
 		VDOM_object.__init__(self, id)
 
 	def render(self, parent, contents = ""):
 
-		# remove on_compile's objects 
+		# render items
+
+		inner_render = self.do_compile(application.objects.search(self.id))
+
+		# remove on_compile's objects
 
 		managers.source_cache.invalidate(application.id, self.id)
-
-		tmp_list = getattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), [])
-
-		for object_id in tmp_list:
+		for object_id in self.tmp_list:
 			application.objects.delete(object_id)
 
-
-		# render
+		# render object
 
 		display = u" display:none; " if self.visible == "0" else u""
 
@@ -481,13 +486,13 @@ class VDOM_objectview(VDOM_object):
 			layout = u"clear: both;"
 		else:
 			layout = u"width: 100% !important; clear: both;"
-		
+
 		style_items = u"""
 		<style type="text/css">
 		#%(id)s .%(class)s-item {
 		%(layout)s
 		}
-		</style>""" % { 
+		</style>""" % {
 			"id":      id
 			,"class":  classname_item
 			,"layout": layout
@@ -506,8 +511,8 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""{style_items}<div id="{id}" style="{style}" {classname}>{contents}</div>{js}""".format(
-			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js
+		result = u"""{style_items}<div id="{id}" style="{style}" {classname}>{inner_render}{contents}</div>{js}""".format(
+			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js, inner_render = inner_render
 		)
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -515,13 +520,12 @@ class VDOM_objectview(VDOM_object):
 
 	def wysiwyg(self, parent, contents=""):
 
-		# remove on_compile's objects 
+		# remove on_compile's objects
+
 		managers.source_cache.invalidate(application.id, self.id)
-		tmp_list = getattr(managers.request_manager.current, "ov_created_objects_" + str(thread.get_ident()), [])
-		for object_id in tmp_list:
+		for object_id in self.tmp_list:
 			application.objects.delete(object_id)
 
-		
 		html_items = u""
 		datalen = 0
 		if self.data != "":
@@ -540,12 +544,18 @@ class VDOM_objectview(VDOM_object):
 						wx = obj_data[w]
 					except:
 						wx = w
-					b, tail = wx[:0], wx
+					if wx.keys():
+						item_data_id = wx.keys()[0]
+						item_data = wx[item_data_id]
+					else:
+						item_data_id = ""
+						item_data = wx
+					b, tail = item_data[:0], item_data
 					while len(tail)>2:
 						b += tail[:2] + "&shy;"
 						tail = tail[2:]
 					data = b + tail
-					html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = w, data = data )
+					html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
 
 		if self.layout == "0":
 			layout = u"width: 150px;"
