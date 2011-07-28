@@ -345,12 +345,13 @@ class VDOM_objectview(VDOM_object):
 
 				# parse ov.data
 
-				obj_data_t = u"""%s""" % (self.data).replace("\n", "")
+				#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
 				import json
+				import collections
 				try:
-					obj_data = json.loads(obj_data_t)
+					obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 				except:
-					obj_data = []
+					obj_data = {}
 
 				classname = self.classname
 				if classname == '':
@@ -358,7 +359,7 @@ class VDOM_objectview(VDOM_object):
 
 				nn = 1
 				nn_first = 1
-				for w in obj_data:
+				for key in obj_data:
 
 					# create new object for item container
 
@@ -370,15 +371,11 @@ class VDOM_objectview(VDOM_object):
 					obj_attr = source_object.get_attributes()
 					for a in obj_attr:
 						obj.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
-					obj.set_attribute_ex('data', w, False)
+					obj.set_attribute_ex('data', obj_data[key], False)
 
 					#obj.actions = source_object.actions
 					obj.actions = copy.copy(source_object.actions)
 
-					try:
-						wx = obj_data[w]
-					except:
-						wx = w
 					res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
 
 					if nn_first == 1:
@@ -397,12 +394,8 @@ class VDOM_objectview(VDOM_object):
 					else:
 						classodd = u"%s-item-odd" % classname
 
-					if w.keys():
-						item_data_id = w.keys()[0]
-						item_data = w[item_data_id]
-					else:
-						item_data_id = ""
-						item_data = w
+					item_data_id = key
+					item_data = obj_data[key]
 
 					obj.set_attribute_ex("visible", "1", False)
 					obj.set_attribute_ex("width", source_object_attr['width'].value, False)
@@ -529,33 +522,25 @@ class VDOM_objectview(VDOM_object):
 		html_items = u""
 		datalen = 0
 		if self.data != "":
-			obj_data_t = u"""%s""" % (self.data).replace("\n", "")
+			#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
 			import json
+			import collections
 			try:
-				obj_data = json.loads(obj_data_t)
+				obj_data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
 			except:
-				obj_data = []
-			if len(obj_data) > 0:
-				datalen = len(obj_data)
-				nn = 0
-				for w in obj_data:
-					nn += 1
-					try:
-						wx = obj_data[w]
-					except:
-						wx = w
-					if wx.keys():
-						item_data_id = wx.keys()[0]
-						item_data = wx[item_data_id]
-					else:
-						item_data_id = ""
-						item_data = wx
-					b, tail = item_data[:0], item_data
-					while len(tail)>2:
-						b += tail[:2] + "&shy;"
-						tail = tail[2:]
-					data = b + tail
-					html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
+				obj_data = {}
+			datalen = len(obj_data)
+			nn = 0
+			for key in obj_data:
+				nn += 1
+				item_data_id = key
+				item_data = obj_data[key]
+				b, tail = item_data[:0], item_data
+				while len(tail)>2:
+					b += tail[:2] + "&shy;"
+					tail = tail[2:]
+				data = b + tail
+				html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
 
 		if self.layout == "0":
 			layout = u"width: 150px;"

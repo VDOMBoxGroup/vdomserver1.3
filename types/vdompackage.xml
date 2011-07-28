@@ -154,11 +154,7 @@
       <Sentence ID="404">No-repeat</Sentence>
       <Sentence ID="405">Repeat-X</Sentence>
       <Sentence ID="406">Repeat-Y</Sentence>
-      <Sentence ID="108">Meta keywords</Sentence>
-      <Sentence ID="208">Meta keywords of the page</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="111">Meta description</Sentence>
-      <Sentence ID="211">Meta description of the page</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="312">Incorrect value, must be string</Sentence>
       <Sentence ID="113">Security code</Sentence>
@@ -371,11 +367,7 @@
       <Sentence ID="404">Ne pas répéter</Sentence>
       <Sentence ID="405">Répéter-horizontal</Sentence>
       <Sentence ID="406">Répéter-vertical</Sentence>
-      <Sentence ID="108">Meta keywords</Sentence>
-      <Sentence ID="208">Meta keywords de la page</Sentence>
       <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="111">Meta description</Sentence>
-      <Sentence ID="211">Meta description de la page</Sentence>
       <Sentence ID="311">Valeur Incorrecte</Sentence>
       <Sentence ID="312">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
       <Sentence ID="113">Code de securité</Sentence>
@@ -415,6 +407,8 @@
   </Resources>
   <SourceCode><![CDATA[
 
+import e2vdom
+
 def on_compile(application_object, object, action_name, context, objects):
 	result = objects
 	for xobject in object.get_objects_list():
@@ -424,8 +418,52 @@ def on_compile(application_object, object, action_name, context, objects):
 class VDOM_vdompackage(VDOM_object):
 
 	def render(self, parent, contents = ""):
-		result = u""
-		return VDOM_object.render(self, parent, contents = result)
+		#result = u""
+		#return VDOM_object.render(self, parent, contents = result)
+
+		e2vdom.process(self, parent)
+		libraries, declarations, registrations = e2vdom.generate(self)
+		javascript = "%s\n%s\n" % (declarations, registrations)
+
+		clean_id = (application.id).replace('-', '_')
+
+		centr = "1"
+
+		doctype="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
+
+		result="%(doctype)s\n"\
+			"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"\
+			"<head>\n"\
+			"<title>%(title)s</title>\n"\
+			"<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n"\
+			"<script type=\"text/javascript\">\n"\
+			"var APPLICATION_ID=\"%(application)s\";\n"\
+			"var SESSION_ID=\"%(session)s\";\n"\
+			"var SERVER_URL=\"/e2vdom.py\";\n"\
+			"</script>\n"\
+'<script type="text/javascript" src="/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v=152"></script>'\
+'<script type="text/javascript" src="/b67cfe82-a508-63ba-37ca-6c27d82c5112.res?v=1810"></script>'\
+'<script type="text/javascript" src="/3ef16f3c-9863-9597-f341-8f9913c99c11.res?v20110322"></script>'\
+'<script type="text/javascript" src="/3e932470-0e08-446c-a866-30c00e6d812a.res"></script>'\
+'<script type="text/javascript" src="/1b055baa-6376-4582-b527-1ee364c19e88.res?v20110322"></script>'\
+			"%(libraries)s"\
+			"</head>\n"\
+			"<body>\n"\
+			"<div id='container'>\n"\
+			"%(contents)s\n"\
+			"<script type=\"text/javascript\">\n%(javascript)s</script>\n"\
+			"</div>\n"\
+			"<!--[if lt IE 7]>\n<script type=\"text/javascript\" src=\"/0b3e0dc0-6429-eb14-26d6-2d30c535b707.res\"></script>\n"\
+			"<script type=\"text/javascript\">jQuery(document).ready(function($){$(\'img,input\').ifixpng();});</script>\n<![endif]-->\n"\
+			"<script type=\"text/javascript\">hchInit(%(centr)s,'#fff');</script>\n"\
+			"</body>\n"\
+			"</html>"%\
+			{ "doctype": doctype, "clean_id": clean_id, "application": application.id, "session": session.id,
+			"title": self.title, "javascript": javascript, "libraries": libraries, "contents": contents, "centr": centr }
+
+		return VDOM_object.render(self, parent, contents=result)
+
+
 
 	def wysiwyg(self, parent, contents = ""):
 		result = u"""<container id="{id}" zindex="{zind}" hierarchy="{hierarchy}"
@@ -441,5 +479,141 @@ class VDOM_vdompackage(VDOM_object):
 
 ]]></SourceCode>
   <Libraries/>
-  <E2vdom />
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="click">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="ctrlclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="erroreventengine">
+          <Parameters>
+            <Parameter Name="msg" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_hide(this.domCont, fade);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_show(this.domCont, fade);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newZindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+this.domCont.style.zindex = parseInt(newZindex);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="Effect" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_moveTo(this.domCont, newX, newY, Effect);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="loadHTML">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="value" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery(this.domCont).html(value);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="addHTML">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="value" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_addHTML(this.domCont, value);
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="changeCursor">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="cursorType" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+this.domCont.style.cursor = cursorType;
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="goTo">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="url" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+document.location.href=url; return false;
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="consoleMessage">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="msg" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+console.info(msg);
+					]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
 </Type>
