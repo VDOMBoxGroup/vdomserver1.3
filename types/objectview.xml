@@ -110,7 +110,7 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>pattern</Name>
+      <Name>vdomclassid</Name>
       <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -278,6 +278,8 @@ import e2vdom
 import managers
 import thread
 import copy
+import json
+import collections
 
 class VDOM_objectview(VDOM_object):
 
@@ -331,13 +333,13 @@ class VDOM_objectview(VDOM_object):
 	def do_compile(self, object):
 		result = ""
 
-		if self.pattern:
+		if self.vdomclassid:
 			self.tmp_list = []
 			try:
 
-				# get object with id == pattern
+				# get object with id == vdomclassid
 
-				source_object = application.objects.search(self.pattern)
+				source_object = application.objects.search(self.vdomclassid)
 				source_object_attr = source_object.get_attributes()
 
 				if not source_object:
@@ -346,8 +348,6 @@ class VDOM_objectview(VDOM_object):
 				# parse ov.data
 
 				#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
-				import json
-				import collections
 				try:
 					obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 				except:
@@ -523,8 +523,6 @@ class VDOM_objectview(VDOM_object):
 		datalen = 0
 		if self.data != "":
 			#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
-			import json
-			import collections
 			try:
 				obj_data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
 			except:
@@ -603,18 +601,15 @@ class VDOM_objectview(VDOM_object):
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
-def set_attr(app_id, object_id, param):
-	if "pattern" in param:
-		src_old = param["pattern"]["old_value"]
-		src_new = param["pattern"]["value"]
-		import xml
-		obj_old = application.objects.search(src_old)	# try to find old and new source objects
-		obj_new = application.objects.search(src_new)
-		if obj_old:
-			obj_old.copy_objects.remove(object_id)
-		if obj_new:
-			obj_new.copy_objects.append(object_id)
-	return ""
+#def set_attr(app_id, object_id, param):
+#	obj_id = ""
+#	if "vdomclassid" in param:
+#		try:
+#			obj = application.objects.search(param["vdomclassid"]["value"])
+#			obj_id = obj.id
+#		except:
+#			pass
+#	return obj_id
 
 ]]></SourceCode>
   <Libraries/>
