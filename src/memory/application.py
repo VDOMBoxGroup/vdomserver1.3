@@ -868,16 +868,13 @@ class VDOM_application(VDOM_parser):
 	def set_library(self, name, data):
 		if not is_valid_identifier(name):
 			raise SOAPpy.faultType(lib_name_error, _("Incorrect library name"), "")
-		print "LOCK"
 		self.__sem.lock()
 		try:
-			print "PARSE"
 			item = None
 			for child in self.libraries_element.children:
 				if name == child.attributes["name"]:
 					item = child
 					break
-			print "CREATE XML OBJECTS"
 			if item:
 				item.value = data
 			else:
@@ -885,7 +882,6 @@ class VDOM_application(VDOM_parser):
 				x.attributes["Name"] = name
 				self.libraries_element.children.append(x)
 				x.value = data
-			print "WRITE"
 			if "vscript" == self.scripting_language:
 				try:
 					x, y = vcompile(data, bytecode = 0)
@@ -897,12 +893,9 @@ class VDOM_application(VDOM_parser):
 				value="from scripting import server, application, log, session, request, response, VDOM_object, obsolete_request\n%s\n"%data
 				managers.file_manager.write_lib(self.id, name, value)
 				self.libs[name] = None
-			print "INVALIDATE"
 			self.invalidate_libraries()
 		finally:
-			print "UNLOCK"
 			self.__sem.unlock()
-		print "DONE"
 
 	
 	def remove_library(self, name):

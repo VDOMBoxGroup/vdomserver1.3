@@ -142,6 +142,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def finish_request(self, request, client_address, thread=None):
 		"""finish one request by instantiating RequestHandlerClass"""
 		self.__sem.lock()
+		debug("FINISH REQUEST")
 		card = True
 		limit = True
 		#if system_options.get("object_amount", "") is "":
@@ -169,7 +170,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			if self.__current_connections > 0:
 				self.__current_connections -= 1
 				if "127.0.0.1" != client_address[0]:
-					debug("Decrease: %d" % self.__current_connections)
+					debug("Decrease: %d (exception, from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
 					#import gc
 					#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
 					#if len(gc.garbage) > 0:
@@ -180,10 +181,11 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def notify_finish(self, client_address):
 		"""must be called by the handler to notify the server about the end of the request processing"""
 		self.__sem.lock()
+		debug("NOTIFY REQUEST")
 		if self.__current_connections > 0:
 			self.__current_connections -= 1
 			if "127.0.0.1" != client_address[0]:
-				debug("Decrease: %d" % self.__current_connections)
+				debug("Decrease: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
 				#import gc
 				#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
 				#if len(gc.garbage) > 0:
