@@ -418,18 +418,18 @@ class VDOM_vdomclass(VDOM_object):
 
 		return VDOM_object.wysiwyg(self, parent, contents = result)
 
-def set_attr(app_id, object_id, param):
-	if "pattern" in param:
-		src_old = param["pattern"]["old_value"]
-		src_new = param["pattern"]["value"]
-		import xml
-		obj_old = application.objects.search(src_old)	# try to find old and new source objects
-		obj_new = application.objects.search(src_new)
-		if obj_old:
-			obj_old.copy_objects.remove(object_id)
-		if obj_new:
-			obj_new.copy_objects.append(object_id)
-	return ""
+#def set_attr(app_id, object_id, param):
+#	if "pattern" in param:
+#		src_old = param["pattern"]["old_value"]
+#		src_new = param["pattern"]["value"]
+#		import xml
+#		obj_old = application.objects.search(src_old)	# try to find old and new source objects
+#		obj_new = application.objects.search(src_new)
+#		if obj_old:
+#			obj_old.copy_objects.remove(object_id)
+#		if obj_new:
+#			obj_new.copy_objects.append(object_id)
+#	return ""
 
 
 		]]></SourceCode>
