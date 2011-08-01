@@ -190,9 +190,9 @@ class VDOM_resources(object):
 						"name":name,
 		
 						}
-		managers.resource_manager.add_resource(application_id, None, attributes, data)
+		res_id = managers.resource_manager.add_resource(application_id, None, attributes, data)
 		#application.create_resource(application.id, as_string(type), as_string(name), as_binary(data))
-		return id
+		return res_id
 		
 	def delete(self, resource_id):
 		"""Delete resource"""
@@ -209,7 +209,8 @@ class VDOM_resources(object):
 					  "label":label,
 					 }
 		
-		managers.resource_manager.add_resource(application_id, object_id, attributes, data)
+		res_id = managers.resource_manager.add_resource(application_id, object_id, attributes, data)
+		return res_id
 
 	def get(self, res_id):
 		"""Geting resource"""
