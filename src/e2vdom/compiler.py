@@ -11,7 +11,7 @@ def compile_declarations_n_libraries(container):
 
 #	lines.append("jQuery(document).ready(function($){")
 
-	lines.append(";EventQueue=new VDOM_EventQueue;")
+	lines.append("EventQueue=new VDOM_EventQueue;")
 	
 	for id, type in containers.iteritems():
 		lines.append(
@@ -42,7 +42,7 @@ def compile_declarations_n_libraries(container):
 def compile_registations(container, parent):
 	lines=[]
 
-	lines.append(";jQuery(document).ready(function($){")
+	#lines.append(";jQuery(document).ready(function($){")
 
 	lines.append(
 		"if(typeof Obj_%(container)s_EventEngine!=='undefined'){Obj_%(container)s_EventEngine.stop();delete Obj_%(container)s_EventEngine;}\n"\
@@ -111,6 +111,6 @@ def compile_registations(container, parent):
 		"Obj_%(container)s_EventEngine.start();"%\
 		{"container": container.id.replace("-", "_")})
 
-	lines.append("});")
+	#lines.append("});")
 
 	return "\n".join(lines)
