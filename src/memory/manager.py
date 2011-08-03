@@ -210,10 +210,13 @@ class VDOM_xml_manager(object):
 
 	def app_sync(self, app_id):
 		if app_id not in self.__app_to_sync:
+			debug("APP SYNC LOCK")
 			self.__app_sem.lock()
 			try:
+				debug("APP SYNC APPEND")
 				self.__app_to_sync.append(app_id)
 			finally:
+				debug("APP SYNC UNLOCK")
 				self.__app_sem.unlock()
 
 ### public ###########################################################################################
