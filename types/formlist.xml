@@ -461,12 +461,14 @@ import StringIO, json, collections
 		disabled = u"disabled" if self.disabled == "1" else u""
 				select = u"""<select {disabled} id="{id}" name="{name}" tabindex="{tabind}" style="{style}">"""\				.format(disabled = disabled, id = id, name = self.name, tabind = self.tabindex, style = style)
 
-		try:	
-			decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)			data = decoder.decode(self.value)
-			debug(data)			if isinstance(data, int):
-				raise Exception("value: %s. Attribute 'value' must be list" % self.value)
-		except:
-			raise Exception("value: %s. Attribute 'value' must be list" % self.value)		
+		data = {}
+		if self.value:		
+			try:	
+				decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)				data = decoder.decode(self.value)
+				debug(data)				if isinstance(data, int):
+					raise Exception("value: %s. Attribute 'value' must be list" % self.value)
+			except:
+				raise Exception("value: %s. Attribute 'value' must be list" % self.value)		
 		if isinstance(data, dict):
 			data = OrderedDict(data)
 					res_buffer = StringIO.StringIO(u"")		res_buffer.write(select)		
