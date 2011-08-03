@@ -31,6 +31,8 @@ class VDOM_server(VDOM_singleton):
 			while self.__running: time.sleep(self.__quantum)
 		except KeyboardInterrupt:
 			pass
+		finally:
+			show_threads_trace(details=None)
 
 	def start(self):
 		try:
@@ -48,7 +50,6 @@ class VDOM_server(VDOM_singleton):
 		self.__running=False
 
 	def terminate(self):
-		show_threads_trace(details=None)
 		self.stop()
 
 	def notify(self, condition):
