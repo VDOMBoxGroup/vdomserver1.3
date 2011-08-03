@@ -142,25 +142,27 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def finish_request(self, request, client_address, thread=None):
 		"""finish one request by instantiating RequestHandlerClass"""
 		self.__sem.lock()
-		debug("FINISH REQUEST")
-		card = True
-		limit = True
-		#if system_options.get("object_amount", "") is "":
-		#	pass#card = False
-		#else:
-		#	l = 0
-		#	try: l = int(system_options["object_amount"])
-		#	except: pass
-		#	if "1" != system_options["server_license_type"] and l < managers.xml_manager.obj_count:
-		#		limit = False
-		self.__reject = 0
-#		if self.__current_connections >= self.__maximum_connections: self.__reject = 1
-#		else:
-		self.__current_connections += 1
-		self.client_address = client_address
-		if "127.0.0.1" != client_address[0]:
-			debug("Increase: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
-		self.__sem.unlock()
+		try:
+			debug("FINISH REQUEST")
+			card = True
+			limit = True
+			#if system_options.get("object_amount", "") is "":
+			#	pass#card = False
+			#else:
+			#	l = 0
+			#	try: l = int(system_options["object_amount"])
+			#	except: pass
+			#	if "1" != system_options["server_license_type"] and l < managers.xml_manager.obj_count:
+			#		limit = False
+			self.__reject = 0
+	#		if self.__current_connections >= self.__maximum_connections: self.__reject = 1
+	#		else:
+			self.__current_connections += 1
+			self.client_address = client_address
+			if "127.0.0.1" != client_address[0]:
+				debug("Increase: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
+		finally:
+			self.__sem.unlock()
 		try:
 			self.RequestHandlerClass(request, client_address, self, {"reject":self.__reject, "deny":self.__deny, "card":card, "limit":limit, "connections":self.__current_connections})
 		except Exception, e:
