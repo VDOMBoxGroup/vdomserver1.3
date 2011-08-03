@@ -17,6 +17,7 @@ def normalize_source_path(path):
 	return path
 
 def normalize_source_statement(statement, length=50):
+	if statement is None: return ""
 	statement=statement.strip()
 	return statement[:length-3]+"..." if len(statement)>length else statement
 
