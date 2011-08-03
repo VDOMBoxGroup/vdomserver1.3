@@ -1237,18 +1237,26 @@ class VDOM_web_services_server(object):
 	
 	def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
 		"""set server action"""
+		debug("START SET_SERVER_ACTION")
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
 		if not app:
+			debug("DONE SET_SERVER_ACTION")
 			return msg
 		obj = app.search_object(objid)
 		if obj:
+			debug("SET_SERVER_ACTION SET ACTION")
 			obj.set_action(actionid, actionvalue)
+			debug("SET_SERVER_ACTION APP.SYNC")
 			app.sync()
+			debug("DONE SET_SERVER_ACTION")
 			return self.__success()
 		elif objid in app.global_actions and actionid in app.global_actions[objid]:
+			debug("SET_SERVER_ACTION SET GLOBAL ACTION")
 			app.set_global_action(objid,actionid,actionvalue)
+			debug("SET_SERVER_ACTION APP.SYNC")
 			app.sync()
+			debug("DONE SET_SERVER_ACTION")
 			return self.__success()
 		else:
 			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
