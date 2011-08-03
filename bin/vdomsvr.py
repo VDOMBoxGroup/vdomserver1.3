@@ -64,6 +64,8 @@ except:
 	from traceback import print_exc
 	sys.stderr.write("\n")
 	print_exc()
+	from utils.tracing import show_threads_trace
+	show_threads_trace(details=None)
 finally:
 	import threading
 	count=threading.active_count()
