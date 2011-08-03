@@ -612,6 +612,7 @@ class VDOM_dialog_2(VDOM_object):
 		
 		result += """<script type='text/javascript'>
 jQuery(document).ready(function($){
+	d_id_%(id)s = '%(id)s';
 	dialog_win_%(id)s=new Boxy($('#%(id)s'),{
 		width: %(width)s
 		,height: %(height)s
@@ -621,9 +622,11 @@ jQuery(document).ready(function($){
 		,show: %(show)s
 		,modal: %(modal)s
 		,hideShrink: false
-		,afterHide: function(){ $('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').show(); }
-		,afterShow: function(){ 
+		,afterHide: function(){
+			$('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').show();
+			execEventBinded(d_id_%(id)s.substring(2, d_id_%(id)s.length), "onHide", {});
 		}
+		,afterShow: function(){execEventBinded(d_id_%(id)s.substring(2, d_id_%(id)s.length), "onShow", {});}
 	});
 	if(typeof pngfix=='function'){
 		$('.boxy-wrapper').find('.top,.left,.right,.bottom,.top-right,.top-left,.bottom-left, .bottom-right').pngfix({sizingMethod:'scale'});
