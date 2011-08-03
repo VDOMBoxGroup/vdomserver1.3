@@ -663,7 +663,8 @@ jQuery(this.domCont).focus();
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(228)" ScriptName="cssStyleValue" Help="#Lang(229)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this).attr('style', cssStyleValue);
+var t=$q(this.domCont);
+t.attr('style', t.attr('style') + ';' + cssStyleValue);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(132)" InterfaceName="#Lang(133)" MethodName="setValue">
