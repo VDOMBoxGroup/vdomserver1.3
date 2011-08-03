@@ -4,6 +4,7 @@ from utils.singleton import VDOM_singleton
 from thread import VDOM_thread
 from daemon import VDOM_daemon
 import auxiliary
+from utils.tracing import show_threads_trace
 
 
 class VDOM_server(VDOM_singleton):
@@ -47,6 +48,7 @@ class VDOM_server(VDOM_singleton):
 		self.__running=False
 
 	def terminate(self):
+		show_threads_trace(details=None)
 		self.stop()
 
 	def notify(self, condition):
