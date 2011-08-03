@@ -493,8 +493,15 @@ class VDOM_objectview(VDOM_object):
 
 		js = u"""<script type="text/javascript">
 		$j(document).ready(function(){
-			$j("#%(id)s>.%(class)s-item").click(function(){
+			$j("#%(id)s>.%(class)s-item").click(function(e){
 				execEventBinded('%(woid)s', "itemclick", {"id":$j(this).attr("dataid")});
+				return false;
+			});
+			$j("#%(id)s>.%(class)s-item").hover(function(e){
+				execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
+				return false;
+			},function(e){
+				execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
 				return false;
 			});
 		});
@@ -622,49 +629,23 @@ class VDOM_objectview(VDOM_object):
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
         <Event Name="dblclick">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseup">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
         <Event Name="itemclick">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemmouseover">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemmouseout">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
