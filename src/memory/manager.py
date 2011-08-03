@@ -102,8 +102,10 @@ class VDOM_xml_manager(object):
 
 	def work(self):
 		if len(self.__app_to_sync) > 0:
+			debug("APP SEM LOCK")
 			self.__app_sem.lock()
 			try:
+				debug("APP SEM WORK")
 				while len(self.__app_to_sync) > 0:
 					the_id = self.__app_to_sync.pop(0)
 					try:
@@ -118,7 +120,9 @@ class VDOM_xml_manager(object):
 							except Exception, e:
 								debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
 			finally:
+				debug("APP SEM UNLOCK")
 				self.__app_sem.unlock()
+				debug("APP SEM DONE")
 		
 	### app
 
@@ -218,6 +222,7 @@ class VDOM_xml_manager(object):
 			finally:
 				debug("APP SYNC UNLOCK")
 				self.__app_sem.unlock()
+				debug("APP SYNC DONE")
 
 ### public ###########################################################################################
 	def get_application(self, appid):
