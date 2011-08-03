@@ -181,16 +181,18 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def notify_finish(self, client_address):
 		"""must be called by the handler to notify the server about the end of the request processing"""
 		self.__sem.lock()
-		debug("NOTIFY REQUEST")
-		if self.__current_connections > 0:
-			self.__current_connections -= 1
-			if "127.0.0.1" != client_address[0]:
-				debug("Decrease: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
-				#import gc
-				#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
-				#if len(gc.garbage) > 0:
-				#	print str(gc.garbage)
-		self.__sem.unlock()
+		try:
+			debug("NOTIFY REQUEST")
+			if self.__current_connections > 0:
+				self.__current_connections -= 1
+				if "127.0.0.1" != client_address[0]:
+					debug("Decrease: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
+					#import gc
+					#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
+					#if len(gc.garbage) > 0:
+					#	print str(gc.garbage)
+		finally:
+			self.__sem.unlock()
 
 	def get_cur_con(self):
 		return self.__current_connections
