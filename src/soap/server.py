@@ -86,21 +86,23 @@ class VDOM_web_services_server(object):
 	def __term_session(self, sid):
 		"""terminate session"""
 		self.__sem.lock()
-		# remove protector object
-		try: del sessions[sid]
-		except: pass
-		# remove session
-		mngr = managers.session_manager
-		sess = None
 		try:
-			sess = mngr[sid]
-			name = sess.user#["username"]
-			if name in names:
-				del names[name]
-		except:
-			pass
-		del mngr[sid]
-		self.__sem.unlock()
+			# remove protector object
+			try: del sessions[sid]
+			except: pass
+			# remove session
+			mngr = managers.session_manager
+			sess = None
+			try:
+				sess = mngr[sid]
+				name = sess.user#["username"]
+				if name in names:
+					del names[name]
+			except:
+				pass
+			del mngr[sid]
+		finally:
+			self.__sem.unlock()
 
 	def __format_error(self, msg):
 		"""prepare error xml message"""
@@ -126,12 +128,14 @@ class VDOM_web_services_server(object):
 	def open_session(self, name, pwd_md5):
 		"""open session with the server"""
 		self.__sem.lock()
-		if not managers.user_manager.match_user_md5(name, pwd_md5):
-			time.sleep(1)
+		try:
+			if not managers.user_manager.match_user_md5(name, pwd_md5):
+				time.sleep(1)
+				self.__sem.unlock()
+				raise SOAPpy.faultType(login_incorrect_error, _("Login incorrect"), _("<Error><User>%s</User></Error>") % name)
+	#			return self.__format_error(_("Login incorrect"))
+		finally:
 			self.__sem.unlock()
-			raise SOAPpy.faultType(login_incorrect_error, _("Login incorrect"), _("<Error><User>%s</User></Error>") % name)
-#			return self.__format_error(_("Login incorrect"))
-		self.__sem.unlock()
 		# open session
 		mngr = managers.session_manager
 		sid = mngr.create_session()
@@ -146,8 +150,10 @@ class VDOM_web_services_server(object):
 		pr = soaputils.VDOM_session_protector(hash_string)
 		# save protector object
 		self.__sem.lock()
-		sessions[sid] = pr
-		self.__sem.unlock()
+		try:
+			sessions[sid] = pr
+		finally:
+			self.__sem.unlock()
 
 		keymap = {}
 		# generate next session key (with index 0)

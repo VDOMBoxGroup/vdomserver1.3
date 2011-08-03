@@ -103,20 +103,22 @@ class VDOM_xml_manager(object):
 	def work(self):
 		if len(self.__app_to_sync) > 0:
 			self.__app_sem.lock()
-			while len(self.__app_to_sync) > 0:
-				the_id = self.__app_to_sync.pop(0)
-				try:
-					while True:
-						self.__app_to_sync.remove(the_id)
-				except: pass
-				if the_id in self.__applications:
-					xmlstr = self.__applications[the_id].get_xml_as_string()
-					if len(xmlstr) > 0:
-						try:
-							managers.file_manager.write(file_access.application_xml, the_id, None, None, xmlstr, False, False)
-						except Exception, e:
-							debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
-			self.__app_sem.unlock()
+			try:
+				while len(self.__app_to_sync) > 0:
+					the_id = self.__app_to_sync.pop(0)
+					try:
+						while True:
+							self.__app_to_sync.remove(the_id)
+					except: pass
+					if the_id in self.__applications:
+						xmlstr = self.__applications[the_id].get_xml_as_string()
+						if len(xmlstr) > 0:
+							try:
+								managers.file_manager.write(file_access.application_xml, the_id, None, None, xmlstr, False, False)
+							except Exception, e:
+								debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
+			finally:
+				self.__app_sem.unlock()
 		
 	### app
 
@@ -209,8 +211,10 @@ class VDOM_xml_manager(object):
 	def app_sync(self, app_id):
 		if app_id not in self.__app_to_sync:
 			self.__app_sem.lock()
-			self.__app_to_sync.append(app_id)
-			self.__app_sem.unlock()
+			try:
+				self.__app_to_sync.append(app_id)
+			finally:
+				self.__app_sem.unlock()
 
 ### public ###########################################################################################
 	def get_application(self, appid):
@@ -548,8 +552,10 @@ class VDOM_xml_manager(object):
 		
 	def modify_objects_count(self, num):
 		self.__sem.lock()
-		self.obj_count += num
-		self.__sem.unlock()
+		try:
+			self.obj_count += num
+		finally:
+			self.__sem.unlock()
 
 	def uninstall_abnormal(self, app):
 		for o in app.o_tmp:
