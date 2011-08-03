@@ -1561,16 +1561,16 @@ class VDOM_web_services_server(object):
 
 	def set_lib(self, sid, skey, appid, libname, data):
 		"""create/update library"""
-		print "START SET_LIB"
+		debug("START SET_LIB")
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, errmsg) = self.__find_application(appid)
 		if not app:
 			return errmsg
-		print "START APP.SET_LIBRARY"
+		debug("START APP.SET_LIBRARY")
 		app.set_library(libname, data)
-		print "START APP.SYNC"
+		debug("START APP.SYNC")
 		app.sync()
-		print "DONE"
+		debug("DONE")
 		return '<Library Name="%s"/>' % libname
 
 	def del_lib(self, sid, skey, appid, libname):
