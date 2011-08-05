@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>tabview</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_tabview</ClassName>
+    <ID>691b8bc3-0eee-830a-f0e0-e907d2b2489e</ID>
+    <Icon>#Res(aeda0e48-7db2-2519-1a07-e907d2b275d0)</Icon>
+    <EditorIcon>#Res(f731c9c9-8cb0-f24b-40df-e907d2b2bad4)</EditorIcon>
+    <StructureIcon>#Res(342f9a17-f1c3-b636-3384-e907d2b2f801)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>2</Container>
+    <Category>Standard</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1.206.6720</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, container, tablecell, form, accordeon</Containers>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
+    <Handlers>set_attr,add_child</Handlers>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>currenttab</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>showtabs</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Tabview</Sentence>
+      <Sentence ID="002">Container for tabs</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">activate tab</Sentence>
+      <Sentence ID="601">activateTab</Sentence>
+      <Sentence ID="701">open tab</Sentence>
+      <Sentence ID="801">tab name</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy of the object</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Show object or not</Sentence>
+      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="108">currenttab</Sentence>
+      <Sentence ID="208">Current tab</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="109">Show tabs</Sentence>
+      <Sentence ID="209">Show tabs or not</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="111">Style</Sentence>
+      <Sentence ID="211">CSS style defined by user</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="112">Skin</Sentence>
+      <Sentence ID="212">Defined skin</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="405">User defined</Sentence>
+      <Sentence ID="406">Custom</Sentence>
+      <Sentence ID="901">Current X-value</Sentence>
+      <Sentence ID="902">Current Y-value</Sentence>
+      <Sentence ID="903">Current X-value</Sentence>
+      <Sentence ID="904">Current Y-value</Sentence>
+      <Sentence ID="905">Current X-value</Sentence>
+      <Sentence ID="906">Current Y-value</Sentence>
+      <Sentence ID="907">Current X-value</Sentence>
+      <Sentence ID="908">Current Y-value</Sentence>
+      <Sentence ID="909">Current X-value</Sentence>
+      <Sentence ID="911">Current Y-value</Sentence>
+      <Sentence ID="912">Current X-value</Sentence>
+      <Sentence ID="913">Current Y-value</Sentence>
+      <Sentence ID="914">Current X-value</Sentence>
+      <Sentence ID="915">Current Y-value</Sentence>
+      <Sentence ID="916">Current X-value</Sentence>
+      <Sentence ID="917">Current Y-value</Sentence>
+      <Sentence ID="918">Container id</Sentence>
+      <Sentence ID="919">Container name</Sentence>
+      <Sentence ID="921">Container hierarchy</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Tabs</Sentence>
+      <Sentence ID="002">Container for tabs</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">activate tab</Sentence>
+      <Sentence ID="601">activateTab</Sentence>
+      <Sentence ID="701">newTab</Sentence>
+      <Sentence ID="801">new tab</Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="108">currentTab</Sentence>
+      <Sentence ID="208">Current tab</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="109">Show tabs</Sentence>
+      <Sentence ID="209">Show tabs or not</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="901">Current X-value</Sentence>
+      <Sentence ID="902">Current Y-value</Sentence>
+      <Sentence ID="903">Current X-value</Sentence>
+      <Sentence ID="904">Current Y-value</Sentence>
+      <Sentence ID="905">Current X-value</Sentence>
+      <Sentence ID="906">Current Y-value</Sentence>
+      <Sentence ID="907">Current X-value</Sentence>
+      <Sentence ID="908">Current Y-value</Sentence>
+      <Sentence ID="909">Current X-value</Sentence>
+      <Sentence ID="911">Current Y-value</Sentence>
+      <Sentence ID="912">Current X-value</Sentence>
+      <Sentence ID="913">Current Y-value</Sentence>
+      <Sentence ID="914">Current X-value</Sentence>
+      <Sentence ID="915">Current Y-value</Sentence>
+      <Sentence ID="916">Current X-value</Sentence>
+      <Sentence ID="917">Current Y-value</Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921"></Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Табы</Sentence>
+      <Sentence ID="002">Окно с табами</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Активировать таб</Sentence>
+      <Sentence ID="601">Активировать таб</Sentence>
+      <Sentence ID="701">Новый таб</Sentence>
+      <Sentence ID="801">Номер нового таба</Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="202">Отображать объект или нет</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="401">Невидимый</Sentence>
+      <Sentence ID="402">Видимый</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="108">Текущий таб</Sentence>
+      <Sentence ID="208">Номер текущего таба</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="109">Показывать закладки</Sentence>
+      <Sentence ID="209">Устанавливает, будут ли отображаться закладки</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="403">Нет</Sentence>
+      <Sentence ID="404">Да</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="901">Текущее значение X</Sentence>
+      <Sentence ID="902">Текущее значение Y</Sentence>
+      <Sentence ID="903">Текущее значение X</Sentence>
+      <Sentence ID="904">Текущее значение Y</Sentence>
+      <Sentence ID="905">Текущее значение X</Sentence>
+      <Sentence ID="906">Текущее значение Y</Sentence>
+      <Sentence ID="907">Текущее значение X</Sentence>
+      <Sentence ID="908">Текущее значение Y</Sentence>
+      <Sentence ID="909">Текущее значение X</Sentence>
+      <Sentence ID="911">Текущее значение Y</Sentence>
+      <Sentence ID="912">Текущее значение X</Sentence>
+      <Sentence ID="913">Текущее значение Y</Sentence>
+      <Sentence ID="914">Текущее значение X</Sentence>
+      <Sentence ID="915">Текущее значение Y</Sentence>
+      <Sentence ID="916">Текущее значение X</Sentence>
+      <Sentence ID="917">Текущее значение Y</Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921"></Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="AEDA0E48-7DB2-2519-1A07-E907D2B275D0" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="F731C9C9-8CB0-F24B-40DF-E907D2B2BAD4" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="342F9A17-F1C3-B636-3384-E907D2B2F801" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADiUlEQVR42jWSa2hcRRTH/2dm7r37
+			zD6SdZvYhKZdBRtaRUEobbT9KCqIxBZjQNGKYE0rDSIFUVso9kt9VSzS4AubitqQQlGwH0pBamuN
+			SonVKjahJsFNu9lkH/fevXtnxtmIB4bDnDNz5szv/ElrTadW94gLjQY7dHOhoQ+M4vWjr8BmGNqm
+			rSMVKXGJ1PDdIvLZg7Mz0IV7Qdd+cG4nW12VjZBg7M/eAgbm5zAjg/QDdvShqWYweBNq07OxtrbN
+			sRiihMp53//+jOeO5R379BKXS9+Uqhgu3AIayqbjMU0b7hD24G1CPGJpdJ+oVTDu1fFSMoM8F/jC
+			reK85yEtOEaS6b+JsQlX40Q3tyZbHUybtWajbWNfWxZxwcMzbg0Tvsv2xNMmr3GgWtaPR+NqWzSO
+			K2Eg+oSNPHFMCjlFeYv7xaa09+dy4SZmc5dAlzwX79creNEU8JTCEXdZ74q3oSwVjtUrOk0sPNaR
+			t7SgKTq9uvvyFdfrExJsXTyiIRW5TEMrrFigNbjxghF6mcDTpaJ2tVYf51axOaXeovXcPrg9mRz5
+			0qs6Kc7Vy+ksa2hg0Q+wv1KGNp94LZFBT8zBdBCgFITqzkSUvq3V6bu6+zC126LfBCf6Ik52FZja
+			ncqytGB4Z7mM8VptpYsdySTuj8bw/EIR2xMJ9ZPfYNM6dB2wbtLP9Sc+OPnHz14oC1nO5XvVZb43
+			kwE3LR9dWlop8ILZ/173cVU1cdytyn4rwoZT6euPisQaOllYi3PF0rk6sPnrRl2VpBRcAiPtWbrP
+			jkKAMGaAGoD6yXgSM2EzXBdxWA3qQkpjC/2HCh+1CfbUesvxzSHn01qFbiilD7fnyNTCwcWSnqeQ
+			mIR+IpZsGM1ENljOh6HGM7TVibIoqHNWhm8fynYMNIi0kbEshqFwONfKTKGNiM7W3fBs6PHLfoN2
+			ZTNfQek9XdwqktdZoE+ormuGvAO9O6fpDaEppgjNDDGhTNzIOswSWb/6vvvqcnlflxDv/tUMoM18
+			6Xq+Fz9WfVo2z3R6XKVs6x5th6MXXfeuizJQVSOerQbalkTsFxXwnTKQk7MRyQYX51oC0SsMPs/c
+			ilBodIRMjDVr4ZwMkimLHx6vVHe28gOp5Gg5kCM9wq7uEAnh2QgfW5iFYYD/IeJ4rgspxdBj2Xzj
+			P9da7MwE8GbLh8Delv+tcy2fbgRykSsM3ZhfufcvTYCh0NGkENoAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="a48a6898-5596-4b88-5864-f82e57f64545" Name="put_here_ico_label" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAIMAAAARCAYAAAD+Mx8uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOjFBNTBERDU0N0Y4OTExRTBCQzQ1QjI4RDFGOUZBM0RBIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOjFBNTBERDU1N0Y4OTExRTBCQzQ1QjI4RDFGOUZBM0RBIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUE1MERENTI3Rjg5MTFFMEJDNDVC
+MjhEMUY5RkEzREEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUE1MERENTM3Rjg5MTFFMEJD
+NDVCMjhEMUY5RkEzREEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz5Y1bcJAAAEDElEQVR42uxav2sUQRTekyAWgouVldlAWslu
+YyXcnhBIZe4KQUjhpdFKclfYCdmrLCxyV2qj11gJt6kSCHibyjIX/4G7/ANyqQQlxJnwPfkYZvf2
+LiaBuA8eN5mdH++9/eZ7b5aUTk9PHS17e3vOJFleXnYKub4yl9L/ROk9tL8o/VGE6v8Fw2ulj9D+
+VoDh/5AbRQgKmcQMM4uqPTYt3ftKkxzTXaWe0sEl+e/hdzRhXB2/n67gHWkbnyvt5rBzJpFa8CKY
+IULwQqhu95Vu5pj7UenWJQb6AIGeJEtQ54rAEBFwL40Z7iJA96nvu9I1pZ+nWFefoBb9rcHQQF8I
+hAvKffyOyWE/hR3086rSO0qPjJOqQTev9Bj9YzCNj/aqwVI+MZEHe3wax+t0aR+ffs39+CSbjCj7
+lWmOS2OPJjCPRwdq24hPlu8enoktIWxwTLYxwaALxWeYdBN9H6YEgk0GMEKAERFYhAkSCrTuq1iC
+cUC07uO0NtEvAPIRtABz+mSDnLIKBbaO9Q6V9tAeEzAqZKO0Q4wZGeNC7CfP9F5t2LhFB8GDv33D
+n3njEJmsyT4E+LuPdQcEGNN32bOMuSNi8ZrS+CxN7O7uOlpPTk7OFLeHNxTAV7qhn8lYrTmojdNE
+PUfN0MKYxAIELRtAewXOxmCJKgLZRH+AcRsGUwW0bpnaAsxVBEnWaBOAbRKQHSGBWK+xQM8asEfY
+T/eX0Odi7wA2HmfsFxs+rML3kHyvWHyPYE8T7ZjsG3H61jXDbaUvlD6mBd6BDZ4q/WV8f6jnYAKp
+E/pAtH7B6+dkFx/rCD3W4JTk8jYBmFnGIZrPKkx1sDp4oZLW0iSh0zWwpJAe1vCM/gGlE2nr/YZo
+xxl7diz7LREw+lhrbPi+b9ggjNEz+s/ShK4T3uPlf6VF1lK+PzzIUVVHGXT3r8TNKKpcCnpe6eGU
+JcRi4Qx2jQwWjFNuAcISVdQNDbQXZtgzMdpHE1L2KNd3BkkXpl7Qlc4zUJyn7vApbRzQ8wYh3Z/h
+ehoC5BWcQnfG2sjD/JZhl409h3h5kiamvTEcUrHbwr6NlJvPgA5Ki4r5KjODOP0QDJEli0pvnRMI
+CQIhla5rnJYqUsu6hSbrAMCA0kYLc7ZwwuT20MkR3DGCd0x2eVT5O1OCogWGGVJRmKScxAT79wno
+8ZSxjDFXfJd4bqf42oa/Q+Pa+hcMv+lFL+Yw4GeOFLGf8byGlzdvobNmxomWwqyOq2WH0lVA16uu
+cdWLjJfB9tVQTI7RlrW3MWcJwe1a6g/OyRG9nAW6LrKNXYs/AY3tpqTf0QQf2He+LnqWeU34VrZ9
+DCzt7OzomuHtFGjUYGisrKwU32+vmczh28LLIhSFlOT/GQop5I8AAwDZI0qB3sUACgAAAABJRU5E
+rkJggg==]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[import e2vdomdef on_compile(application, object, action_name, context, objects):	result=objects	for xobject in object.get_objects_list():		result.append({"object": xobject})	return resultclass VDOM_tabview(VDOM_object):		def render(self, parent, contents=""):
+		from collections import OrderedDict
+		display = u" display:none; " if self.visible == "0" else u""		e2vdom.process(self, parent)		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; border: none;""".format(display = display, zind = self.zindex, pos = self.position, 
+						top = self.top, left = self.left, width = self.width, height = self.height)
+
+		id = u"o_" + (self.id).replace('-', '_')		
+		cont_tag = u"""<div class="content">%s</div>""" % contents
+		tab_tag = u""
+		tag_array = {}
+		js = u""
+		children_array = []
+		children = self.objects
+		for key in children:
+			child = children[key]
+			children_array.append([str(child.id), str(child.name), str(child.hierarchy), "o_" + (child.id).replace('-', '_')])
+			tag_array[child.hierarchy] = u"""<li><a href='#{id}'>{tabname}</a></li>\n""".format(id = "o_" + (child.id).replace('-', '_'), tabname = child.title) 
+			
+			if self.currenttab == child.hierarchy:
+				show_guid = u"o_" + (child.id).replace('-', '_')
+				js = u"""<script type="text/javascript">
+	$j('#%(id)s div.content>div').hide();
+	$j('#%(id)s #%(show_guid)s').show();
+	$j('#%(id)s ul.tabNavigation a').removeClass('active');
+	$j('#%(id)s ul.tabNavigation a[href="#%(show_guid)s"]').addClass('active');
+</script>""" % { "id": id, "show_guid": show_guid }
+		
+		sortTagArray = OrderedDict(sorted(tag_array.items(), key=lambda t: t[0]))
+		for key in sortTagArray:
+			tab_tag += tag_array[key]
+		
+		css = u"""#%(id)s ul.tabNavigation{
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+#%(id)s ul.tabNavigation li{
+    display: inline;
+}
+""" % {"id": id}
+
+		if self.showtabs == '1':
+			css += self.style % {"id": id}
+			tabs = u'<ul class="tabNavigation" style="list-style: none">\n' + tab_tag + u'\n</ul>'
+			js += u"""<script type="text/javascript">
+var tabview_children_%(id)s = %(arr)s;
+jQuery(document).ready(function($){
+	$("#%(id)s ul.tabNavigation a").click(function(){
+		$("#%(id)s div.content>div").hide();
+		$("#%(id)s div.content>div").filter(this.hash).show();
+		$('#%(id)s ul.tabNavigation a').removeClass('active');
+		$(this).addClass('active');
+		var cont_id = this.hash.substring(3, this.hash.length).replace(/_/g, "-")
+		for (var i = 0; i<tabview_children_%(id)s.length; i++){
+			if (cont_id == tabview_children_%(id)s[i][0]){
+				execEventBinded("%(id)s".substring(2, "%(id)s".length), "tabchanged", {ID:tabview_children_%(id)s[i][0], Name:tabview_children_%(id)s[i][1], Hierarchy:tabview_children_%(id)s[i][2]});
+			}
+		}
+	});
+});
+</script>""" % { "id": id, "arr": str(children_array) }
+		else:
+			css = u''
+			tabs = u''
+			js += u"""<script type="text/javascript">
+var tabview_children_%(id)s = %(arr)s;
+</script>""" % { "id": id, "arr": str(children_array) }
+
+		result = u"""<style type="text/css">{css}</style>
+<div id="{id}" style="{style}" >
+{tabs}
+{cont_tag}
+</div>
+{js}""".format(css = css, id = id, style = style, tabs = tabs, cont_tag = cont_tag, js = js)
+
+		return VDOM_object.render(self, parent, contents=result)		def wysiwyg(self, parent, contents=""):			object_width = 200		object_height = 200		if self.width and self.width > 0:			object_width = self.width		if self.height and self.height > 0:			object_height = self.height				image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"		result=u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 							top="{top}" left="{left}" width="{width}" height="{height}">							<svg>								<rect x="{panel_width}" y="0" width="140" height="20" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE">									 <image x="5" y="0" width="131" height="17" href="#Res({img_id})" />								</rect>							</svg>							<svg>								<rect x="0" y="20" width="{container_width}" height="{container_height}" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE"/>							</svg>{contents}					</container>				""".format(id = self.id, vis = self.visible, zind = self.zindex, 						hierarchy = self.hierarchy, top = self.top, left = self.left, width = int(object_width) + 2, height = int(object_height) + 2, 						panel_width = int(object_width) - 140, container_height = int(object_height) - 20, container_width = object_width, 						img_id = image_id, contents = contents)		return VDOM_object.wysiwyg(self, parent, contents=result)		def set_attr(app_id, object_id, param):	obj = application.objects.search(object_id)	if "width" in param:		if param["width"]["value"]:				width = int(param["width"]["value"])		else:			width = 200			if obj.attributes.width != width:			obj.set_attributes({"width": width})		if "height" in param:		if param["height"]["value"]:				height = int(param["height"]["value"])		else:			height = 200					if obj.attributes.height != height:			obj.set_attributes({"height": height})					childs = obj.objects	for key in childs:		child = application.objects.search(key)		if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":			child.set_attributes({"zindex": "1"})		elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":			child.set_attributes({"zindex": "0"})				if "width" in param:			if param["width"]["value"]:					width = int(param["width"]["value"]) - 2			else:				width = 200				child.set_attributes({"width": width})			if "height" in param:			if param["height"]["value"]:					height = int(param["height"]["value"]) - 20			else:				height = 200						child.set_attributes({"height": height})
+
+	css = u""""""
+	
+	o = application.objects.search(object_id)
+	
+	if "skin" in param:
+		if param["skin"]["value"] == "1":
+			o.set_attributes({"style": css})
+	if "style" in param and param["style"]["value"] and o.attributes.style != css:		
+		o.set_attributes({"skin": 0})
+		return ""	def add_child(app_id, object_id, param):	object = application.objects.search(param["child_id"])						width_container = int(object.parent.attributes.width) - 2	height_container = int(object.parent.attributes.height) - 20		object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})		childs = object.parent.objects	container_hierarchy = []	for key in childs:		child = application.objects.search(key)		container_hierarchy.append(child.attributes.hierarchy)				if object.parent.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":			child.set_attributes({"zindex": "1"})		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":			child.set_attributes({"zindex": "0"})			if len(container_hierarchy) > 1 and int(object.attributes.hierarchy) == 0:		object.set_attributes({"hierarchy": int(max(container_hierarchy)) + 1})		if object.parent.attributes.currenttab == child.attributes.hierarchy and str(object.attributes.zindex) != "1":			object.set_attributes({"zindex": "1"})		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(object.attributes.zindex) != "0":			object.set_attributes({"zindex": "0"})					return ""]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="click">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="ctrlclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="tabchanged">
+          <Parameters>
+            <Parameter Name="ID" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Name" Order="" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="Hierarchy" Order="" VbType="" Help="#Lang(921)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateTab">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="openTab" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var id = this.domCont.id;		  
+eval('var x=tabview_children_'+this.domCont.id+';');
+if (typeof x !== 'undefined') {
+	$q('#'+this.domCont.id+' div.content>div').hide();
+  $q.each(x, function() {
+ if (openTab == this[0] || openTab == this[1] || openTab == this[2]) {
+        $q('#'+this[3]).show();
+		execEventBinded(id.substring(2, id.length), "tabchanged", {ID:this[0], Name:this[1], hierarchy:this[2]});		
+      } else {
+        $q('#'+this[3]).hide();
+      }
+   
+  });
+}]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
+</Type>
