@@ -123,6 +123,18 @@
     </Attribute>
     <Attribute>
       <Name>selectedvalue</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>tabindex</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
@@ -134,27 +146,15 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>tabindex</Name>
+      <Name>disabled</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>disabled</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(313)</Help>
-      <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(213)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -227,12 +227,17 @@
       <Sentence ID="108">Value</Sentence>
       <Sentence ID="208">String of displayed and post values in json format</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="111">Selected value</Sentence>
-      <Sentence ID="211">Index of selected value in list (from 0)</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">TabIndex</Sentence>
-      <Sentence ID="212">Tab index of the object on the page</Sentence>
-      <Sentence ID="312">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="109">Selected value</Sentence>
+      <Sentence ID="209">Index of selected value in list (from 0)</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="111">TabIndex</Sentence>
+      <Sentence ID="211">Tab index of the object on the page</Sentence>
+      <Sentence ID="311">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="112">Disabled</Sentence>
+      <Sentence ID="212">Make field disable</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -249,11 +254,10 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Item to display</Sentence>
       <Sentence ID="917">Item value to identify</Sentence>
-      <Sentence ID="113">Disabled</Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313">Make field disable</Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="508">Set 'selected' to item from list</Sentence>
+      <Sentence ID="608">selectItem</Sentence>
+      <Sentence ID="714">Value ID</Sentence>
+      <Sentence ID="814">selectItem</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Список формы</Sentence>
@@ -323,12 +327,17 @@
       <Sentence ID="108">Значения</Sentence>
       <Sentence ID="208">Строка отображаемых значений, разделенных '|'</Sentence>
       <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="111">Текущий элемент</Sentence>
-      <Sentence ID="211">Номер текущего элемента в списке (от 0)</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">Tab индекс</Sentence>
-      <Sentence ID="212">Tab индекс объекта на странице</Sentence>
-      <Sentence ID="312">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="109">Текущий элемент</Sentence>
+      <Sentence ID="209">Номер текущего элемента в списке (от 0)</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="111">Tab индекс</Sentence>
+      <Sentence ID="211">Tab индекс объекта на странице</Sentence>
+      <Sentence ID="311">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -345,11 +354,10 @@
       <Sentence ID="915">Текущее значение Y</Sentence>
       <Sentence ID="916">Отображаемое значение</Sentence>
       <Sentence ID="917">Идентифицирующее значение</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="714"></Sentence>
+      <Sentence ID="814"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Liste Formulaire</Sentence>
@@ -419,12 +427,17 @@
       <Sentence ID="108">Valeur</Sentence>
       <Sentence ID="208">String of displayed values, separated by '|'</Sentence>
       <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="111">Valeur Selectionnée</Sentence>
-      <Sentence ID="211">Index of selected value in list (from 0)</Sentence>
-      <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="112">TabIndex</Sentence>
-      <Sentence ID="212">Tab index</Sentence>
-      <Sentence ID="312">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="109">Valeur Selectionnée</Sentence>
+      <Sentence ID="209">Index of selected value in list (from 0)</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="111">TabIndex</Sentence>
+      <Sentence ID="211">Tab index</Sentence>
+      <Sentence ID="311">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -441,11 +454,10 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Item to display</Sentence>
       <Sentence ID="917">Item value to identify</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="714"></Sentence>
+      <Sentence ID="814"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -479,7 +491,7 @@ import StringIO, json, collections
 				selected = u""
 			if isinstance(data, OrderedDict):
 				option = u"""<option value="{cur_value}" {selected}>{cur_item}</option>"""\
-					.format(cur_value = data[value], selected = selected, cur_item = value)
+					.format(cur_value = value, selected = selected, cur_item = data[value])
 			else:
 				option = u"""<option value="{cur_value}" {selected}>{cur_item}</option>"""\
 					.format(cur_value = value, selected = selected, cur_item = value)
@@ -577,6 +589,14 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
           <SourceCode><![CDATA[ 
 vdom_ui_removeItem(this.domCont, item, itemValue);
                     ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="selectItem">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(814)" ScriptName="itemId" Help="#Lang(714)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'selected');
+		  ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setStyle">
           <Parameters>
