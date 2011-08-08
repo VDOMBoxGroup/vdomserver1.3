@@ -31,7 +31,6 @@ class VDOM_source_cache(object):
 			self.__cache_file_index[(application.id, container.id, action_name, context)] = source
 			self.__cache_list.insert(0,(application.id, container.id, action_name, context))
 			return source
-		print "SOURCE6"
 		
 	def check_space(self, requested):
 		""""""
