@@ -281,6 +281,71 @@ import copy
 import json
 import collections
 
+class DummyAttribute(object):
+
+	def __init__(self):
+		self.value=0
+
+class DummyAttributes(object):
+
+	def __getitem__(self, key):
+		if key=="hierarchy": return DummyAttribute()
+		else: raise AttributeError, "!!!"
+
+class DummyObject(object):
+
+	def __init__(self, vdomclass, name, action_name, context, index):
+		self.__original=vdomclass
+		self.name=name
+		self.id=vdomclass.id
+		self.type=vdomclass.type
+		try: self.order=vdomclass.attributes["order"].value
+		except: self.order=0
+		self.dynamic={(action_name, context): vdomclass.type.dynamic}
+		self.attributes=DummyAttributes()
+		self.actions=vdomclass.actions
+		self.types={self.type.id: self.type}
+		self.containers={}
+		self.libraries={}
+
+	def get_attributes(self):
+		return self.attributes
+
+	def get_objects_list(self):
+		return self.__original.get_objects_list()
+
+def on_compile(application_object, object, action_name, context, objects):
+	result = objects
+	attributes = object.get_attributes()
+	vdomclassid = attributes["vdomclassid"].value
+
+	vdomclass = application.objects.search(vdomclassid)
+	if not vdomclass:
+		return result
+
+	try:
+		obj_data = json.loads(attributes["data"].value, object_pairs_hook = collections.OrderedDict)
+	except:
+		obj_data = {}
+		debug("[ObjectView] Error while parse DATA property")
+
+	for index, x in enumerate(obj_data):
+		name="vdomclass_%d" % index
+		dummy=DummyObject(vdomclass, name, action_name, context, index)
+		xobject = {
+			"object": dummy,
+			"name": name,
+			"init": [
+				"self.%s.dataid = %s" % (name, repr(x)),
+				"self.%s.data = '%s'" % (name, obj_data[x]),
+				"self.%s.visible = '1'" % name
+			]
+		}
+		result.append(xobject)
+
+	return result
+
+
 class VDOM_objectview(VDOM_object):
 
 	tmp_list = []
@@ -431,18 +496,6 @@ class VDOM_objectview(VDOM_object):
 
 	def render(self, parent, contents = ""):
 
-		# render items
-
-		inner_render = self.do_compile(application.objects.search(self.id))
-
-		# remove on_compile's objects
-
-		managers.source_cache.invalidate(application.id, self.id)
-		for object_id in self.tmp_list:
-			application.objects.delete(object_id)
-
-		# render object
-
 		display = u" display:none; " if self.visible == "0" else u""
 
 		e2vdom.process(self, parent)
@@ -511,8 +564,8 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""{style_items}<div id="{id}" style="{style}" {classname}>{inner_render}{contents}</div>{js}""".format(
-			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js, inner_render = inner_render
+		result = u"""{style_items}<div id="{id}" style="{style}" {classname}>{contents}</div>{js}""".format(
+			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js
 		)
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -521,10 +574,6 @@ class VDOM_objectview(VDOM_object):
 	def wysiwyg(self, parent, contents=""):
 
 		# remove on_compile's objects
-
-		managers.source_cache.invalidate(application.id, self.id)
-		for object_id in self.tmp_list:
-			application.objects.delete(object_id)
 
 		html_items = u""
 		datalen = 0
