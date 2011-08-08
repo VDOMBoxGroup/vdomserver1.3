@@ -125,6 +125,9 @@ class VDOM_compiler(object):
 					for item in objects:
 						xobject=item["object"]
 
+						option_name=item.get("name", None)
+						realname=option_name or xobject.name
+
 						option_init=item.get("init", None)
 						option_execute=item.get("execute", None)
 						option_compute=item.get("compute", None)
@@ -138,36 +141,39 @@ class VDOM_compiler(object):
 							#	debug("[Compiler] Include %s as static"%xobject.id)
 
 							xattributes=xobject.get_attributes()
-							xsource=managers.source_cache.get_source(application, xobject, action_name, context)
+							if option_name:
+								xsource=managers.compiler.compile(application, xobject, action_name, context)
+							else:
+								xsource=managers.source_cache.get_source(application, xobject, action_name, context)
 
 							if xobject.dynamic[(action_name, context)]:
 								source.include(xsource)
-								xobjects.append(xobject.name)
+								xobjects.append(realname)
 								
-								init+="\t\tself.%s=%s(%s)\n\t\tself.%s.order=%s\n"%(xobject.name,
-									xsource.class_name, repr(xsource.id), xobject.name, repr(xobject.order))
+								init+="\t\tself.%s=%s(%s)\n\t\tself.%s.order=%s\n"%(realname,
+									xsource.class_name, repr(xsource.id), realname, repr(xobject.order))
 								if option_init:
 									init+="".join(["\t\t%s\n"%line for line in option_init])
-								dein+="\t\tdel self.%s\n"%xobject.name
+								dein+="\t\tdel self.%s\n"%realname
 								
 								if option_execute:
 									execute+="".join(["\t\t%s\n"%line for line in option_execute])
-								execute+="\t\tself.%s.execute(action_name, context)\n"%(xobject.name)
+								execute+="\t\tself.%s.execute(action_name, context)\n"%(realname)
 								
 								if option_compute:
 									compute+="".join(["\t\t%s\n"%line for line in option_compute])
 								
-								compute+="\t\tself.%s.recompute()\n"%(xobject.name)
+								compute+="\t\tself.%s.recompute()\n"%(realname)
 								
 								if option_render:
 									render+="".join(["\t\t%s\n"%line for line in option_render])
-								render+="\t\tresult+=self.%s.render(%s)\n"%(xobject.name, repr(object.id))
+								render+="\t\tresult+=self.%s.render(%s)\n"%(realname, repr(object.id))
 
 								if option_wysiwyg:
 									wysiwyg+="".join(["\t\t%s\n"%line for line in option_wysiwyg])
-								wysiwyg+="\t\tresult+=self.%s.wysiwyg(%s)\n"%(xobject.name, repr(object.id))
+								wysiwyg+="\t\tresult+=self.%s.wysiwyg(%s)\n"%(realname, repr(object.id))
 							else:
-								xghosts.append(xobject.name)
+								xghosts.append(realname)
 								if option_init or option_render:
 									names={}
 									if option_init:
