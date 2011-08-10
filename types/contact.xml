@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>contact</Name>
+    <DisplayName>#Lang(002)</DisplayName>
+    <Description>#Lang(001)</Description>
+    <ClassName>VDOM_contact</ClassName>
+    <ID>64c12e50-9069-471f-8cf5-e85667c7ba79</ID>
+    <Icon>#Res(5f58a34e-d408-446c-af76-71164a43d846)</Icon>
+    <EditorIcon>#Res(685665d6-9010-44a5-ba81-21ea4801f16c)</EditorIcon>
+    <StructureIcon>#Res(f2e48402-0346-45a8-99ab-11cee59a3ec9)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, container, tablecell</Containers>
+    <Languages>en_US ,ru_RU ,fr_FR</Languages>
+    <Handlers>set_attr</Handlers>
+    <RemoteMethods/>
+    <RenderType/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(0|1)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>150</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>language</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1)|(#Lang(405)|2))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(0|1|2)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>email</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^([\.\-_A-Za-z0-9]+?@[\.\-A-Za-z0-9]+?\.[A-Za-z0-9]{2,6})?$</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Contact</Sentence>
+      <Sentence ID="002">Contact</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Language</Sentence>
+      <Sentence ID="109">E-Mail address</Sentence>
+      <Sentence ID="201">Hierarchy of the object</Sentence>
+      <Sentence ID="202">Show or not object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="206">Weight of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Text language</Sentence>
+      <Sentence ID="209">Address where messages will be sent</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value, must be valid e-mail address</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">English</Sentence>
+      <Sentence ID="404">Russian</Sentence>
+      <Sentence ID="405">French</Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Контакт</Sentence>
+      <Sentence ID="002">Контакт</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Цвет</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Язык</Sentence>
+      <Sentence ID="109">E-mail адрес</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Язык</Sentence>
+      <Sentence ID="209">E-mail адрес</Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть в формате записи email</Sentence>
+      <Sentence ID="401">Невидимый</Sentence>
+      <Sentence ID="402">Видимый</Sentence>
+      <Sentence ID="403">Английский</Sentence>
+      <Sentence ID="404">Русский</Sentence>
+      <Sentence ID="405">Французский</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Formulaire Contact</Sentence>
+      <Sentence ID="002">Formulaire Contact</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Langage</Sentence>
+      <Sentence ID="109">Addresse E-Mail</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Langue du texte</Sentence>
+      <Sentence ID="209">Adresse vers laquelle les messages seront envoyés</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, insérez une addresse e-mail valide</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">Anglais</Sentence>
+      <Sentence ID="404">Russe</Sentence>
+      <Sentence ID="405">Français</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="5f58a34e-d408-446c-af76-71164a43d846" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="685665d6-9010-44a5-ba81-21ea4801f16c" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+    <Resource ID="f2e48402-0346-45a8-99ab-11cee59a3ec9" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAihQTFRF29vb7+/v6+vr7vL36urrvLu7zs7O7Onk0tHR9/f31+f6+fn5lcPs6+zu9vb28fHxqqqq1dzi2uHrl7vm8fDw19XU0+39VJfgy8vLv76+gdT/vLu5sOH74OPm/f39ouX/oLP/d6/r6enpzs7Neqzns9Hzzc3N3tzbcKTf5t7ssrGw5ujrv+r8ydz/0M/M3uDiW6fymb3otdr4sND32t7kttXuUJfi4vD3vNLplMTu7vH2pcTnp9T/2uPqYKXwaLP5Ybb/1NTVu7q6h8DwysfFQnvZZbn/wcj/jdz/p8zuhbjnjsTuhLXm+Pj46Ozx09PVc6vqdsr/6vT+wNPk9vf4ZaDjtdn/z8b34vP/hqPIVpLbcpz42uX1QIze4+Pjz8/P4+Li9PT07uzqwMDBwsHB1d3ktcnxxNnvhNL/7Orpw9XsvLy8UYnPXKv59vTxy9ztzdzpu+z/5+fn3eTtvtbzodH94Or34+nx3eXma8L/3O7+jcL8irn+tc3t5vP43dnW4ubqx8XDjrfln77f19XS1PP/zMzLosfw5OTjSpHfpdH/z9r/wb+78O/v0dHRycnK8PDw1ez/5OTkyOP0p8PjrcjmytTf////rM/v7u3tbKrx4+Pkq9T/x8fH0NDPzMvK4uz5aqHf7+3r9fX1vOf/W6Po6ezvuNTy6ebi9PLxksby8v3/dqr/W6To4eDf4eHh3NvaVp3k7/Hyi73sharXd6rj8/Py////gm9JXQAAALh0Uk5T////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////APaK50EAAADySURBVHjaYtgOAmyc89fzgVnbGcBktlXxohUtG5gWy0EFXGYYKBpmCWXWz+wHCySKymRUOuTaBQgzs4IFGDbpFMp7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]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[
+
+class VDOM_contact(VDOM_object):
+
+	def render(self, parent, contents=""):
+		if self.visible == "1":
+			args = request.arguments
+			if "subject" in args and "message" in args and "fromaddr" in args:
+				subj = args["subject"]
+				mess = args["message"]
+				froma = args["fromaddr"]
+				if len(mess) > 0 or len(subj) > 0:
+					server.mailer.send(froma, self.email, subj, mess)
+					
+			style="font-size:14px; font-family: Tahoma; z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx;background: #EEEEEE"%(self.zindex, self.position, self.top, self.left, self.width, self.height)
+			table_style = "font-size:14px; font-family: Tahoma;"
+			
+			if self.language == "0":
+				addr = "Your address :"
+				subj = "Subject :"
+				msg = "Message :"
+				send = "Send"
+			elif self.language == "1":
+				addr = "Ваш e-mail :".decode("utf8")
+				subj = "Тема :".decode("utf8")
+				msg = "Сообщение :".decode("utf8")
+				send = "Отправить".decode("utf8")
+			else:
+				addr = "Votre e-mail :".decode("utf8")
+				subj = "Sujet :".decode("utf8")
+				msg = "Message :".decode("utf8")
+				send = "Envoyer".decode("utf8")
+				
+			if int(self.width) < 70:
+				form_data = ""
+			elif int(self.width) < 85:
+				form_data = """%s <input style="width:100%%" type="text" name="fromaddr"/><br>
+							%s <input style="width:100%%" type="text" name="subject"/><br>
+							%s<br><textarea name="message" rows=10 cols=30 style="width: 100%%; height: %s px;"></textarea><br>
+							<input style="width: 70px; position: relative; top: %s px;"  type="submit" value="%s"/>"""%(addr, subj, msg, int(self.height)- 160, 5, send)
+			elif int(self.width) < 235:
+				form_data = """%s <input style="width:100%%" type="text" name="fromaddr"/><br>
+							%s <input style="width:100%%" type="text" name="subject"/><br>
+							%s<br><textarea name="message" rows=10 cols=30 style="width: 100%%; height: %s px;"></textarea><br>
+							<input style="width: 70px; position: relative; top: %s px;"  type="submit" value="%s"/>"""%(addr, subj, msg, int(self.height)- 140, 5, send)
+			else:
+				form_data = """<table style="%s">
+								<tr><td align="right">%s</td> <td><input type="text" name="fromaddr"/></td></tr>
+								<tr><td align="right">%s</td> <td><input type="text" name="subject"/></td></tr>
+								<tr><td>%s</td></tr>
+								</table>
+								<textarea name="message" rows=10 cols=30 style="width: 100%%; height: %s px;"></textarea><br>
+								<input style="width: 70px; position: relative; top: %s px;" type="submit" value="%s"/>"""%(table_style, addr, subj, msg, int(self.height)- 102, 5, send)
+
+			p = application.objects.search(self.id)
+			while p.parent:
+				p = p.parent
+			ref_obj = application.objects.search(p.id)
+			target = "/%s.vdom" % ref_obj.name if ref_obj else ""
+			
+			id = 'o_' + (self.id).replace('-', '_')
+			result="<div id=\"%s\" style=\"%s\"><form name=\"%s\" style=\"%s\" method=post action=\"%s\">%s</form></div>"%(id, table_style, self.name, style, target, form_data)
+		else:
+			result=""
+		return VDOM_object.render(self, parent, contents=result)
+
+
+	def wysiwyg(self, parent, contents=""):
+	
+		if self.language == "0":
+			addr = "Your address :"
+			subj = "Subject :"
+			msg = "Message :"
+			send = "Send"
+		elif self.language == "1":
+			addr = "Ваш e-mail :".decode("utf8")
+			subj = "Тема :".decode("utf8")
+			msg = "Сообщение :".decode("utf8")
+			send = "Отправить".decode("utf8")
+		else:
+			addr = "Votre e-mail :".decode("utf8")
+			subj = "Sujet :".decode("utf8")
+			msg = "Message :".decode("utf8")
+			send = "Envoyer".decode("utf8")
+			
+		if int(self.width) < 70:
+			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+						"<svg>"\
+							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
+						"</svg>"\
+					"</container>"%(
+						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
+						int(self.width), int(self.height))
+		elif int(self.width) < 85:
+			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+						"<svg>"\
+							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
+						"</svg>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+					"%s</container>"%(
+						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
+						int(self.width), int(self.height),
+						33, int(self.width) - 1, 20,
+						75, int(self.width) - 1, 20,
+						115, int(self.width) - 1, int(self.height)- 145,
+						int(self.height)-22, 70, 22,
+						0, int(self.width) - 1, "Tahoma", 14, "Your",
+						17, int(self.width) - 1, "Tahoma", 14, "address: ",
+						59, int(self.width) - 1, "Tahoma", 14, subj,
+						99, int(self.width) -1, "Tahoma", 14, msg,
+						int(self.height)-18, 70, 18, "Tahoma", 12, send,
+						contents)
+		elif int(self.width) < 235:
+			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+						"<svg>"\
+							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
+						"</svg>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+					"%s</container>"%(
+						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
+						int(self.width), int(self.height),
+						19, int(self.width) - 1, 20,
+						61, int(self.width) - 1, 20,
+						101, int(self.width) - 1, int(self.height)- 130,
+						int(self.height) - 23, 70, 22, 
+						0, self.width, "Tahoma", 14, addr, 
+						42, int(self.width) - 1, "Tahoma", 14, subj,
+						82, int(self.width) - 1, "Tahoma", 14, msg,
+						int(self.height)-21, 70, 18, "Tahoma", 12, send,
+						contents)
+		else:
+			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+						"<svg>"\
+							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
+							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
+							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
+						"</svg>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
+					"%s</container>"%(
+						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, 
+						int(self.width), int(self.height),
+						3, 90, 150, 20,
+						28, 90, 150, 20,
+						70, 0, int(self.width) - 1, int(self.height)- 100,
+						int(self.height)-23, 70, 22,
+						3, int(self.width) - 1, "Tahoma", 14, addr,
+						28, int(self.width) - 1 , "Tahoma", 14, subj,
+						50, int(self.width) - 1, "Tahoma", 14, msg,
+						int(self.height) - 20, 70, 18, "Tahoma", 12, send,
+						contents)
+					
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+        
+        
+def set_attr(app_id, object_id, param):
+	o = application.objects.search(object_id)
+	
+	if "width" in param:
+		width = param["width"]["value"]
+		if int(width) < 70:
+			o.set_attributes({"width": "70"})
+			
+	if "height" in param:
+		height = param["height"]["value"]
+		if int(height) < 200:
+			o.set_attributes({"height": "200"})
+        
+	]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents/>
+    </Events>
+    <Actions/>
+  </E2vdom>
+</Type>
