@@ -8,7 +8,7 @@ import utils.id
 import managers
 
 from source import VDOM_source
-from e2vdom import global_context
+from e2vdom import global_context, virtual_context
 
 import auxilary
 
@@ -30,6 +30,8 @@ class VDOM_compiler(object):
 			object.dynamic={(action_name, context): object.type.dynamic}
 		else:
 			object.dynamic.setdefault((action_name, context), object.type.dynamic)
+		if context==virtual_context: object.dynamic=1
+
 		if not hasattr(object, "optimization_priority"):
 			object.optimization_priority=object.type.optimization_priority
 		
@@ -40,17 +42,11 @@ class VDOM_compiler(object):
 		action=object.actions["name"].get(action_name, None)
 		if action and action.code and (context is global_context or object.id==context):
 			#debug("[Compiler] Assume %s as dynamic, contain action \"%s\" in context %s"%(object.id, action_name, context))
-			object.dynamic[(action_name, context)]=1
-
-			## !!! this XEPb is needed for objectview type.
-			## !!! Nikolay, check it please...
-			try:
-				slang = application.scripting_language
-			except:
-				slang = 'python'
-			#names=auxilary.analyse_script_structure(action.code, application.scripting_language) # action.lang
-			names=auxilary.analyse_script_structure(action.code, slang) # action.lang
-
+			if context!=virtual_context: object.dynamic[(action_name, context)]=1
+			# WARNING: Leonid reports to application may not have scripting_language attribute...
+			try: scripting_language=application.scripting_language
+			except: scripting_language="python"
+			names=auxilary.analyse_script_structure(action.code, scripting_language)
 			auxilary.enable_dynamic(object, action_name, context, names)
 
 		module_name=utils.id.guid2mod(object.type.id)
@@ -93,14 +89,14 @@ class VDOM_compiler(object):
 		if "html" in object.type.lib:
 			object.libraries[object.type.id]=object.type.lib["html"]
 		
-		if object.type.container in (2,3):
+		if object.type.container in (2, 3):
 			object.containers[object.type.id]=object.type			
 
 		if contain_objects:
 		
 			source=VDOM_source(object.name, "container_"+"_".join(object.id.split("-")), object.id, action_name, context)
 			source.import_module(module_name, object.type.class_name)
-
+			
 			dynamic=object.dynamic[(action_name, context)]; maximum_priority=0; maximum_hierarchy=0
 			for item in objects:
 				xobject=item["object"]
@@ -153,7 +149,6 @@ class VDOM_compiler(object):
 
 							if xobject.dynamic[(action_name, context)]:
 								object.dynamic[(action_name, context)]=1
-
 								source.include(xsource)
 								xobjects.append(realname)
 								
@@ -224,4 +219,5 @@ class VDOM_compiler(object):
 		else:
 			source=VDOM_source(object.name, object.type.class_name, object.id, action_name, context)
 			source.import_module(utils.id.guid2mod(object.type.id), object.type.class_name)
+
 		return source
