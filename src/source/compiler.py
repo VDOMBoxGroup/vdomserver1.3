@@ -109,12 +109,13 @@ class VDOM_compiler(object):
 					maximum_priority=xobject.type.optimization_priority
 				if int(xobject.attributes["hierarchy"].value)>maximum_hierarchy:
 					maximum_hierarchy=int(xobject.attributes["hierarchy"].value)
+				"""
 				managers.source_cache.get_source(application, xobject, action_name, context)
-				if xobject.dynamic[(action_name, context)]:
-					object.dynamic[(action_name, context)]=1
+				if xobject.dynamic[(action_name, context)]: object.dynamic[(action_name, context)]=1
 				object.types.update(xobject.types)
 				object.containers.update(xobject.containers)
 				object.libraries.update(xobject.libraries)
+				"""
 
 			#if dynamic!=object.dynamic[(action_name, context)]:
 			#	debug("[Copy] Assume %s as dynamic in action %s:%s, contains dynamic object"%(object.id, action_name, context))
@@ -146,7 +147,13 @@ class VDOM_compiler(object):
 							else:
 								xsource=managers.source_cache.get_source(application, xobject, action_name, context)
 
+							object.types.update(xobject.types)
+							object.containers.update(xobject.containers)
+							object.libraries.update(xobject.libraries)
+
 							if xobject.dynamic[(action_name, context)]:
+								object.dynamic[(action_name, context)]=1
+
 								source.include(xsource)
 								xobjects.append(realname)
 								
