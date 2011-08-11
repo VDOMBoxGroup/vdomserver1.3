@@ -550,7 +550,6 @@ def set_attr(app_id, object_id, param):
 		s.seek(0, 0)
 		im = Image.open(s)	
 		width, height = im.size
-
 		# set attributes
 		if o.attributes.width != width or o.attributes.height != height:
 			o.set_attributes({"width": width, "height": height})
