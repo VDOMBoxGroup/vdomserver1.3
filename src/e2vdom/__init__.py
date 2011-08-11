@@ -5,6 +5,7 @@ from auxiliary import process, generate
 
 
 global_context="global"
+virtual_context="virtual"
 
 action_render="onload"
 action_wysiwyg="wysiwyg"
