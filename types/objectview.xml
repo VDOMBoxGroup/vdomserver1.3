@@ -283,13 +283,14 @@ import collections
 
 class DummyAttribute(object):
 
-	def __init__(self):
-		self.value=0
+	def __init__(self, value = 0):
+		self.value = value
 
 class DummyAttributes(object):
 
 	def __getitem__(self, key):
-		if key=="hierarchy": return DummyAttribute()
+		if key == "hierarchy": return DummyAttribute()
+		if key == "dynamic": return DummyAttribute(1)
 		else: raise AttributeError, "!!!"
 
 class DummyObject(object):
@@ -329,16 +330,52 @@ def on_compile(application_object, object, action_name, context, objects):
 		obj_data = {}
 		debug("[ObjectView] Error while parse DATA property")
 
+	classname = attributes["classname"].value
+	if classname == '':
+		classname = 'ov'
+
+	nn = 1
+	nn_first = 1
+
 	for index, x in enumerate(obj_data):
-		name="vdomclass_%d" % index
-		dummy=DummyObject(vdomclass, name, action_name, context, index)
+
+		if nn_first == 1:
+			nn_first = 0
+			classfirst = u"%s-item-first" % classname
+		else:
+			classfirst = ''
+
+		if nn == len(obj_data):
+			classlast = u"%s-item-last" % classname
+		else:
+			classlast = ''
+
+		if nn % 2:
+			classodd = ''
+		else:
+			classodd = u"%s-item-odd" % classname
+
+		name = "vdomclass_%d" % index
+		dummy = DummyObject(vdomclass, name, action_name, context, index)
+		vdomclass_attributes = vdomclass.get_attributes()
 		xobject = {
 			"object": dummy,
 			"name": name,
 			"init": [
 				"self.%s.dataid = %s" % (name, repr(x)),
 				"self.%s.data = '%s'" % (name, obj_data[x]),
-				"self.%s.visible = '1'" % name
+				"self.%s.visible = '1'" % name,
+				"self.%s.width = '%s'" % (name, vdomclass_attributes['width'].value),
+				"self.%s.height = '%s'" % (name, vdomclass_attributes['height'].value),
+				"self.%(name)s.classname = '%(userdef)s %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s'" % {
+					"name":        name
+					,"class":      classname
+					,"nn":         str(nn)
+					,"classfirst": classfirst
+					,"classlast":  classlast
+					,"classodd":   classodd
+					,"userdef":    vdomclass_attributes["classname"].value
+				}
 			]
 		}
 		result.append(xobject)
@@ -349,6 +386,10 @@ def on_compile(application_object, object, action_name, context, objects):
 class VDOM_objectview(VDOM_object):
 
 	tmp_list = []
+
+	def compute(self):
+		VDOM_object.compute(self)
+		self.classname = 'ololo'
 
 	def create_dupes_recurse(self, application, res, object, children):
 		result = res
@@ -496,6 +537,10 @@ class VDOM_objectview(VDOM_object):
 
 	def render(self, parent, contents = ""):
 
+		managers.source_cache.invalidate(application.id, self.id)
+		for object_id in self.tmp_list:
+			application.objects.delete(object_id)
+
 		display = u" display:none; " if self.visible == "0" else u""
 
 		e2vdom.process(self, parent)
@@ -564,8 +609,8 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""{style_items}<div id="{id}" style="{style}" {classname}>{contents}</div>{js}""".format(
-			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js
+		result = u"""{style_items}<div objtype='objectview' ver='2.2/2011-08-11' objname='{name}' id="{id}" style="{style}" {classname}>{contents}</div>{js}""".format(
+			id = id, style = style, style_items = style_items, classname = classname, contents = contents, js = js, name = self.name
 		)
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -657,15 +702,6 @@ class VDOM_objectview(VDOM_object):
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
-#def set_attr(app_id, object_id, param):
-#	obj_id = ""
-#	if "vdomclassid" in param:
-#		try:
-#			obj = application.objects.search(param["vdomclassid"]["value"])
-#			obj_id = obj.id
-#		except:
-#			pass
-#	return obj_id
 
 ]]></SourceCode>
   <Libraries/>
