@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.13.6720</Version>
+    <Version>1.15.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_v2, container, tablecell, form, vdomclass</Containers>
@@ -175,6 +175,14 @@
       <Sentence ID="001">list</Sentence>
       <Sentence ID="002">Description</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Hides object</Sentence>
+      <Sentence ID="601">hide</Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="801">Hide effect</Sentence>
+      <Sentence ID="502">Shows object</Sentence>
+      <Sentence ID="602">show</Sentence>
+      <Sentence ID="702">fade</Sentence>
+      <Sentence ID="802">Show effect</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy</Sentence>
       <Sentence ID="301">incorrect value</Sentence>
@@ -217,6 +225,23 @@
       <Sentence ID="113">CSS class</Sentence>
       <Sentence ID="213">CSS class</Sentence>
       <Sentence ID="313">incorrect value</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907">list element id</Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -326,6 +351,16 @@ class VDOM_list(VDOM_object):
 			else:
 				raise Exception("Incorrect value in string %s" % unicode(value))
 		res_buffer.write(u"</ul>\n</div>\n")
+		js_script = u"""<script type="text/javascript">
+jQuery(document).ready(function($){
+	var obj_id = '%(id)s'
+	$('#%(id)s ul li').click(function(){
+		var elem_id = $(this).attr('id');
+		execEventBinded(obj_id.substring(2, obj_id.length), "itemclick", {itemid:elem_id});
+	});
+});
+</script>""" % {"id": id}
+		res_buffer.write(js_script)
 		result = res_buffer.getvalue()
 		res_buffer.close()
 		return VDOM_object.render(self, parent, contents=result)
@@ -393,8 +428,81 @@ def set_attr(app_id, object_id, param):
   <Libraries/>
   <E2vdom>
     <Events>
-      <Userinterfaceevents/>
+      <Userinterfaceevents>
+        <Event Name="click">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="ctrlclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemclick">
+          <Parameters>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(909)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(912)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
     </Events>
-    <Actions/>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_hide(this.domCont, fade);
+                    ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_show(this.domCont, fade);
+                    ]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
   </E2vdom>
 </Type>
