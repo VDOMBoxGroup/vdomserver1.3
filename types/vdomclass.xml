@@ -392,7 +392,7 @@ class VDOM_vdomclass(VDOM_object):
 		if style != "":
 			style = " style='%s' " % style
 		#result = u"<div {classname} {style}>{contents} DATA: {data}</div>".format(
-		result = u"<div {classname} {style} {dataid}>{contents}</div>".format(
+		result = u"<div typename='vdomclass' {classname} {style} {dataid}>{contents}</div>".format(
 			#data      = self.data,
 			dataid    = dataid,
 			classname = classname,
