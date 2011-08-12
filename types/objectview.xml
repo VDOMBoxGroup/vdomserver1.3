@@ -469,10 +469,15 @@ class VDOM_objectview(VDOM_object):
 				# get object with id == vdomclassid
 
 				source_object = application.objects.search(self.vdomclassid)
-				source_object_attr = source_object.get_attributes()
 
 				if not source_object:
+					result += u"Invalid vdomclass"
 					return result
+
+				if 'get_attributes' in dir(source_object):
+					source_object_attr = source_object.get_attributes()
+				else:
+					source_object_attr = DummyAttributes()
 
 				# parse ov.data
 
@@ -494,16 +499,15 @@ class VDOM_objectview(VDOM_object):
 					# create new object for item container
 
 					#obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
-					#obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
 					d_name = "vdomclass_%d" % index
 					obj = DummyObject(source_object, d_name, e2vdom.virtual_context, source_object, index)
 
 					obj_id = obj.id
 					self.tmp_list.append(obj_id)
 
-					obj_attr = source_object.get_attributes()
-					for a in obj_attr:
-						obj.set_attribute_ex(obj_attr[a].name, obj_attr[a].value, False)
+					#obj_attr = source_object.get_attributes()
+					for a in source_object_attr:
+						obj.set_attribute_ex(source_object_attr[a].name, source_object_attr[a].value, False)
 					obj.set_attribute_ex('data', obj_data[key], False)
 
 					#obj.actions = source_object.actions
@@ -542,7 +546,7 @@ class VDOM_objectview(VDOM_object):
 						,"classfirst": classfirst
 						,"classlast":  classlast
 						,"classodd":   classodd
-						,"userdef":    obj_attr["classname"].value
+						,"userdef":    source_object_attr["classname"].value
 					}, False)
 					result += managers.engine.render(application, obj, object, "vdom")
 
