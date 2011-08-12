@@ -229,6 +229,18 @@
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none)</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -380,6 +392,9 @@
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
+      <Sentence ID="119">Class</Sentence>
+      <Sentence ID="219">CSS class name</Sentence>
+      <Sentence ID="319">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Текст</Sentence>
@@ -745,11 +760,12 @@ class VDOM_text(VDOM_object):
 			"color" : "#%s"%self.color if self.color else None,
 			"text-decoration": self.textdecoration or None}
 
-		result="<div objectname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\">%(value)s</div>"%{
+		result="<div objectname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
 			"oname": self.name,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),
 			"css": "; %s"%self.css if self.css else "",
+			"classname": self.classname,
 			"value": self.value}
 		
 		return VDOM_object.render(self, parent, contents=result)
