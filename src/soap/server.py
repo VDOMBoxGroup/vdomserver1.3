@@ -820,7 +820,7 @@ class VDOM_web_services_server(object):
 		try:
 			obj.set_name(name)
 		except VDOM_exception, e:
-			raise SOAPpy.faultType(name_error, _("Rename error: ") + str(e), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, str(name)))
+			raise SOAPpy.faultType(name_error, _("Rename error: ") + str(e), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.original_name))
 			#"<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>" % (obj.original_name, obj.id, obj.type.id))
 #			return self.__format_error(str(e)) + "\n<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>\n"% (obj.name, obj.id, obj.type.id)
 		app.sync()
