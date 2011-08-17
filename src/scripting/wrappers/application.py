@@ -100,8 +100,11 @@ class VDOM_database(object):
 		app_id = managers.request_manager.current.app_id()
 
 		self.database = managers.database_manager.get_database_by_name(app_id, self.__name)
-		if not self.database or (not self.database.is_ready and not self.database.open()):
+		#if not self.database or (not self.database.is_ready and not self.database.open()):
+		if not self.database:
 			raise Exception("Database with name \"%s\" does not exist" % self.__name)
+		elif not self.database.is_ready and not self.database.open():
+			raise Exception("Database with name \"%s\" could not be opened" % self.__name)
 		self.__conn = self.database.get_connection()
 		self.__cur = self.__conn.cursor()
 			
