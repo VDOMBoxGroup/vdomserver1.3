@@ -87,7 +87,8 @@ class VDOM_database_manager(object):
 		db = []
 		for db_id, db_obj in self.__index.items():
 			if db_obj.name == db_name:
-				db.append(self.__index[db_id])		
+				db.append(self.__index[db_id])
+		managers.log_manager.error_server("list of databases by name %s" % (str(db)), "manager")
 		if len(db) == 1:
 			database = db[0]
 			return database
