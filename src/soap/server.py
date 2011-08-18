@@ -131,7 +131,7 @@ class VDOM_web_services_server(object):
 		try:
 			if not managers.user_manager.match_user_md5(name, pwd_md5):
 				time.sleep(1)
-				self.__sem.unlock()
+				#self.__sem.unlock()
 				raise SOAPpy.faultType(login_incorrect_error, _("Login incorrect"), _("<Error><User>%s</User></Error>") % name)
 	#			return self.__format_error(_("Login incorrect"))
 		finally:
