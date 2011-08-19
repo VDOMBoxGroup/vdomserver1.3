@@ -898,6 +898,7 @@ for (var j in window.selectedRows_"""+id+"""){
 				$("#"""+id+""" table tr").attr('index', function(index, attr){
 					if (attr == i+1){
 						$(this).children("td").children("input").attr('checked', 'checked');
+						$(this).addClass('row_selected');
 					}
 				});
 			}
@@ -907,6 +908,7 @@ for (var j in window.selectedRows_"""+id+"""){
 		$("#"""+id+""" table tr").attr('index', function(index, attr){
 			if (attr == window.selectedRows_"""+id+"""[j]){
 				$(this).children("td").children("input").attr('checked', 'checked');
+				$(this).addClass('row_selected');
 			}
 		});
 	}
@@ -960,6 +962,11 @@ $("#"""+id+""" table tr td input:checkbox").click(function(){
 	}
 	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
   });
+if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){
+	$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+}else{
+	$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+}
 """
 
 		js_cellclick = u"""
