@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.6.6720</Version>
+    <Version>3.7.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_v2, container, tablecell, form, vdomclass</Containers>
@@ -182,6 +182,18 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>selectedrows</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(319)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>selectionmode</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -328,6 +340,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="119">Selected rows</Sentence>
+      <Sentence ID="219">Incorrect value</Sentence>
+      <Sentence ID="319">Rows which should be checked</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -426,6 +441,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="119">Selected rows</Sentence>
+      <Sentence ID="219">Incorrect value</Sentence>
+      <Sentence ID="319">Rows which should be checked</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -524,6 +542,9 @@
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Left</Sentence>
       <Sentence ID="924"></Sentence>
+      <Sentence ID="119">Selected rows</Sentence>
+      <Sentence ID="219">Incorrect value</Sentence>
+      <Sentence ID="319">Rows which should be checked</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -864,7 +885,39 @@ class VDOM_datatable_v3(VDOM_object):
 				if key and key in header:
 					keys.append(value[key]) 
 		
-		
+		if self.selectedrows:
+			try:
+				selectedRows = json.loads(self.selectedrows)
+				if isinstance(selectedRows, list):
+					js_multiselect = """
+window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
+for (var j in window.selectedRows_"""+id+"""){
+	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
+		for (var i=0; i < window.keys_"""+id+""".length; i++){
+			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){
+				$("#"""+id+""" table tr").attr('index', function(index, attr){
+					if (attr == i+1){
+						$(this).children("td").children("input").attr('checked', 'checked');
+					}
+				});
+			}
+		}
+	}
+	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){
+		$("#"""+id+""" table tr").attr('index', function(index, attr){
+			if (attr == window.selectedRows_"""+id+"""[j]){
+				$(this).children("td").children("input").attr('checked', 'checked');
+			}
+		});
+	}
+}
+"""
+				else:
+					raise Exception (u"Attribute must be list")
+			except:
+				raise Exception (u"Incorrect value in selected rows")
+		else:
+			js_multiselect = u""
 		js_headerselect = u"""
 $("#"""+id+""" table tr th:not([checkbox])").click(function(){
 var hname_"""+id+""" = $(this).html();
@@ -872,8 +925,9 @@ execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "headerselecte
  });		
 """
 		
-		js_multiselect = u"""
+		js_multiselect += u"""
 window.selectionmode_"""+id+""" = 'multi';
+
 $("#"""+id+""" table tr th input:checkbox").click(function(){
 	if(this.checked){
 		$("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
