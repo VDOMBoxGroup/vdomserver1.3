@@ -532,19 +532,19 @@ class VDOM_form(VDOM_object):
 			.format(ovf = ov, zind = self.zindex, pos = self.position, 
 					top = self.top, left = self.left, wid = self.width, hei = self.height)
 
-#		result = u"""<form id="%(id)s" name="%(name)s" style="%(display)s %(style)s" method="%(method)s" 
-#							action="/%(target)s.vdom" enctype="%(encode_type)s" 
-#							onsubmit="return vdom_ui_formSubmit(this,%(submitonce)s)">%(contents)s
-#					</form><script type="text/javascript">%(registrations)s</script>
-#				""" % {
-#				"submitonce": self.submitonce, "id": id, "name": self.name, 
-#				"display": display, "style": style, "method": "post", 
-#				"target": target, "encode_type": self.enctype, 
-#				"contents": contents, "registrations": registrations }
+		#result = u"""<form id="%(id)s" name="%(name)s" style="%(display)s %(style)s" method="%(method)s" 
+		#					action="/%(target)s.vdom" enctype="%(encode_type)s" 
+		#					onsubmit="return vdom_ui_formSubmit(this,%(submitonce)s)">%(contents)s
+		#			</form><script type="text/javascript">%(registrations)s</script>
+		#		""" % {
+		#		"submitonce": self.submitonce, "id": id, "name": self.name, 
+		#		"display": display, "style": style, "method": "post", 
+		#		"target": target, "encode_type": self.enctype, 
+		#		"contents": contents, "registrations": registrations }
 
-		result = u"""<form id="{id}" style="display:block;margin:0; {display} {style}" 
-							name="{name}" method="{method}" action="{target}" style="overflow:visible" 
-							{enctype} {submitonce}>{contents}
+		result = u"""<form ver="2.1" id="{id}" style="display:block;margin:0; {display} {style}" 
+						name="{name}" method="{method}" action="{target}" style="overflow:visible" 
+						{enctype} {submitonce}>{contents}
 					</form> {submitjs} 
 				""".format(id = id, display = display, style = style, name = self.name, method = self.meth, target = target,
 				enctype = enctype, submitonce = submitonce, contents = contents, submitjs = submitjs )
@@ -634,7 +634,7 @@ class VDOM_form(VDOM_object):
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_hide(this.domCont, fade);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(122)" InterfaceName="#Lang(123)" MethodName="loadHTMLData">
           <Parameters>
@@ -642,7 +642,7 @@ vdom_ui_hide(this.domCont, fade);
           </Parameters>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).html(HTMLdata);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(116)" InterfaceName="#Lang(117)" MethodName="resizeTo">
           <Parameters>
@@ -652,7 +652,7 @@ jQuery(this.domCont).html(HTMLdata);
           <SourceCode><![CDATA[ 
 this.domCont.style.width=parseInt(width);
 this.domCont.style.height=parseInt(height);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(120)" InterfaceName="#Lang(121)" MethodName="setUrlTarget">
           <Parameters>
@@ -660,7 +660,7 @@ this.domCont.style.height=parseInt(height);
           </Parameters>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).attr('action', containerUrl);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(114)" InterfaceName="#Lang(115)" MethodName="show">
           <Parameters>
@@ -668,13 +668,13 @@ jQuery(this.domCont).attr('action', containerUrl);
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont,fade);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(118)" InterfaceName="#Lang(119)" MethodName="submit">
           <Parameters/>
           <SourceCode><![CDATA[ 
 jQuery(this.domCont).submit();
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
