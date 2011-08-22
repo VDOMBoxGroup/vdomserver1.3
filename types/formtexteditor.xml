@@ -380,25 +380,38 @@
 class VDOM_formtexteditor(VDOM_object):
 
 	def render(self, parent, contents=""):
-		display = u"display:none;" if self.visible == "0" else u"display:block;"
 		id = u"o_" + (self.id).replace('-', '_')			
 
-		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
-					width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
-				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
-						width = self.width, height = self.height, display = display)
+		display = u"display:none;" if self.visible == "0" else u"display:block;"
+
+		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: visible; position: absolute;
+			width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
+			""".format(zind = self.zindex, top = self.top, left = self.left, 
+					width = self.width, height = self.height, display = display)
+
+		style_area = u"""padding: 2px 5px; font: 14px tahoma; width: {width}px; height:{height}px""".format(width = self.width, height = self.height)
 
 		result = u"""
 <script type="text/javascript">$q(document).ready(function($) {
-	$('#%(id)s').cleditor();
+	if (typeof %(id)s_editor !== 'undefined') { delete %(id)s_editor; }
+	%(id)s_editor = $('#%(id)s>textarea').cleditor({
+		width: %(width)s,
+		height: %(height)s,
+		bodyStyle: "%(style_area)s"
+	});
 });</script>
-			<textarea id="%(id)s" name="%(name)s" tabindex="%(tabind)s" style="%(style)s">%(value)s</textarea>
+<div id="%(id)s" style="%(style)s">
+	<textarea name="%(name)s" tabindex="%(tabind)s" style="%(style_area)s">%(value)s</textarea>
+</div>
 			""" % {
-				"id":     id,
-				"name":   self.name,
-				"tabind": self.tabindex,
-				"style":  style,
-				"value":  self.value
+				"id":         id,
+				"name":       self.name,
+				"tabind":     self.tabindex,
+				"style":      style,
+				"style_area": style_area,
+				"value":      self.value,
+				"width":      self.width,
+				"height":     self.height
 			}
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -487,7 +500,7 @@ class VDOM_formtexteditor(VDOM_object):
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_hide(this.domCont, fade);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(116)" InterfaceName="#Lang(117)" MethodName="moveTo">
           <Parameters>
@@ -497,29 +510,24 @@ vdom_ui_hide(this.domCont, fade);
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(120)" InterfaceName="#Lang(121)" MethodName="setFocus">
           <Parameters/>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).focus();
-					]]></SourceCode>
-        </Action>
-        <Action Description="#Lang(114)" InterfaceName="#Lang(115)" MethodName="setStyle">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(214)" ScriptName="cssStyleValue" Help="#Lang(215)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[ 
-jQuery(this).attr('style', cssStyleValue);
-					]]></SourceCode>
+$q('textarea',this.domCont).focus();
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(118)" InterfaceName="#Lang(119)" MethodName="setValue">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(222)" ScriptName="value" Help="#Lang(223)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).val(value);
-					]]></SourceCode>
+/*
+$q('textarea',this.domCont).val(value);
+eval(this.domCont.id+"_editor.updateFrame();");
+*/
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(112)" InterfaceName="#Lang(113)" MethodName="show">
           <Parameters>
@@ -527,7 +535,7 @@ jQuery(this.domCont).val(value);
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
