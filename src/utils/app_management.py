@@ -51,9 +51,7 @@ def uninstall_application(appid):
 	try:
 		#TODO: find better way to change current application
 		request = managers.request_manager.get_request()
-		request._VDOM_request__app_id = appid
-		request._VDOM_request__app = managers.xml_manager.get_application(appid)
-		request.application_id = appid
+		request.set_application_id(appid)
 		managers.xml_manager.uninstall_application(appid)
 	except Exception, e:
 		import traceback
@@ -74,6 +72,8 @@ def update_application(path, vh):
 		ret = rexp.search(some)
 		if ret:
 			appid = ret.groups()[0].strip()
+			request = managers.request_manager.get_request()
+			request.set_application_id(appid)
 			debug("Update application id=\"%s\"" % appid)
 		else:
 			raise VDOM_exception("Application XML-file is corrupted - unable to find application ID")
