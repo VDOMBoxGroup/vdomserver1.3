@@ -332,7 +332,7 @@ class VDOM_list(VDOM_object):
 		css = self.style % {"id": id}
 		res_buffer.write(css)
 		res_buffer.write(u"</style>\n")
-		rslt = u"<div id=\"%(id)s\" style=\"%(style)s\" class=\"%(cssclass)s\">\n<ul>" % {"id": id, "style": style, "cssclass": cssclass}
+		rslt = u"<div id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s>\n<ul>" % {"id": id, "style": style, "cssclass": cssclass}
 		res_buffer.write(rslt)
 		for key, value in data.items():
 			if isinstance(value, list):
