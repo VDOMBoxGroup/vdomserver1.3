@@ -629,9 +629,21 @@ class VDOM_objectview(VDOM_object):
 		}
 
 		js = u"""<script type="text/javascript">
+		%(id)s_doo = false;
 		$j(document).ready(function(){
-			$j("#%(id)s>.%(class)s-item").click(function(e){
-				execEventBinded('%(woid)s', "itemclick", {"id":$j(this).attr("dataid")});
+			$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
+				var t = $j(this);
+				if (e.type == 'dblclick') {
+					%(id)s_doo = false;
+					execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
+				} else {
+					setTimeout(function() {
+						if (%(id)s_doo == true) {
+							execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
+						}
+					}, 200);
+					%(id)s_doo = true;
+				}
 				return false;
 			});
 			$j("#%(id)s>.%(class)s-item").hover(function(e){
@@ -766,6 +778,11 @@ class VDOM_objectview(VDOM_object):
           </Parameters>
         </Event>
         <Event Name="itemclick">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemdblclick">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
