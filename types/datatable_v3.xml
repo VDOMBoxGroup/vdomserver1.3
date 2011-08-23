@@ -970,6 +970,7 @@ if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr
 """
 
 		js_cellclick = u"""
+/*
 $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 	var cell_data = $(this).html();
 	var cell_index = $(this).attr("index");
@@ -986,9 +987,51 @@ $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 		execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
 	}
 	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
-  });
+});
+*/
+
+var """+id+"""_tds = $("#"""+id+""" table tr[row] td:not([checkbox])"), """+id+"""_doo = false;
+
+$("""+id+"""_tds).live('click dblclick', function(e){
+
+	var cell_data = $(this).html();
+	var cell_index = $(this).attr("index");
+	var header_data = header_""" + id + """[cell_index - 1];
+	var param = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
+	params_"""+id+"""[0] = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
+
+	if (e.type == 'dblclick') {
+		"""+id+"""_doo = false;
+
+		/* double click */
+		execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
+
+	} else {
+		t = setTimeout(function() {
+			if ("""+id+"""_doo == true) {
+
+				/* click */
+				if(window.selectionmode_"""+id+""" != 'multi'){
+					$("#"""+id+""" table tr[row]").each(function(){
+						if($(this).hasClass('row_selected')){
+							$(this).removeClass('row_selected');
+						}
+					});
+					$(this).parent().addClass('row_selected');
+					execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+				}
+				execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+
+			}
+		}, 200);
+		"""+id+"""_doo = true;
+	}
+
+	return false;
+
+});
 """
-		
+
 		tdata = u""
 		theader = u""
 		vheader = [h for h in header if h not in hidden]
@@ -1170,27 +1213,16 @@ background:#effdff !important;
             <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="click">
+        <Event Name="celldblclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(905)"/>
-          </Parameters>
-        </Event>
-        <Event Name="ctrlclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="keyField" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="cellData" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
         <Event Name="custom">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
         <Event Name="headerselected">
