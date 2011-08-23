@@ -242,6 +242,7 @@
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
+      <Sentence ID="919">Parametr</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -439,6 +440,11 @@ def set_attr(app_id, object_id, param):
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+          </Parameters>
+        </Event>
+        <Event Name="custom">
+          <Parameters>
+            <Parameter Name="param" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick">
