@@ -641,8 +641,8 @@ jQuery(document).ready(function($){
 		,show: %(show)s
 		,modal: %(modal)s
 		,hideShrink: false
-		,afterHide: function(){ console.info('after hide'); execEventBinded("%(idn)s", "hide", {}); }
-		,afterShow: function(){ console.info('after show'); execEventBinded("%(idn)s", "show", {}); }
+		,afterHide: function(){ execEventBinded("%(idn)s", "hide", {}); }
+		,afterShow: function(){ execEventBinded("%(idn)s", "show", {}); }
 	});
 	if(typeof pngfix=='function'){
 		$('.boxy-wrapper').find('.top,.left,.right,.bottom,.top-right,.top-left,.bottom-left, .bottom-right').pngfix({sizingMethod:'scale'});
