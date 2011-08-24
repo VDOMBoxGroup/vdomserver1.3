@@ -3,20 +3,16 @@
 import socket, sys, time, select
 
 from utils.system import *
+from utils.card_connect import send_to_card,send_to_card_and_wait
+
 
 card_port = 4444
 wait = 0
 
-def send_reply(msg, port):
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	s.sendto(msg, ('localhost', int(port)))
-
-def send_to_card(data):
-	send_reply(data, card_port)
 
 def wait_for_options():
 	global wait
-	if not sys.platform.startswith("freebsd"):
+	if not (FREEBSD or LINUX):
 		return
 	wait = 1
 
@@ -84,6 +80,11 @@ def send_network():
 	send_option("server_pdns", pdns)
 	send_option("server_sdns", sdns)
 
+
+def send_pong():
+	send_to_card("pong")
+
+
 def execute(data):
 	parts = data.split(" ")
 	if "option" == parts[0]:
@@ -97,3 +98,10 @@ def execute(data):
 		set_network()
 	elif "getnetwork" == parts[0]:
 		send_network()
+	elif "ping" == parts[0]:
+		send_pong()
+
+def check_application_license(application_id, license_type):
+	return send_to_card_and_wait( 
+	    "getlicense %s %s" % (str(application_id), str(license_type)),
+	    "%s/%s" % (str(application_id), str(license_type)) ) == "1"
