@@ -827,7 +827,9 @@ class VDOM_datatable_v3(VDOM_object):
  
 	def render(self, parent, contents=""):
 	
-		id = "o_" + (self.id).replace('-', '_')
+		idn = (self.id).replace('-', '_')
+		id = u'o_' + idn
+
 		display = u" display:none; " if self.visible == "0" else u""
 		
 		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
@@ -923,7 +925,7 @@ for (var j in window.selectedRows_"""+id+"""){
 		js_headerselect = u"""
 $("#"""+id+""" table tr th:not([checkbox])").click(function(){
 var hname_"""+id+""" = $(this).html();
-execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "headerselected", {headername:hname_"""+id+"""});
+execEventBinded('"""+idn+"""', "headerselected", {headername:hname_"""+id+"""});
  });		
 """
 		
@@ -940,7 +942,7 @@ $("#"""+id+""" table tr th input:checkbox").click(function(){
 		$("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
 		params_"""+id+""" = [];
 	}
-	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
   });
 
 $("#"""+id+""" table tr td input:checkbox").click(function(){
@@ -960,7 +962,7 @@ $("#"""+id+""" table tr td input:checkbox").click(function(){
 	}else{
 		$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 	}
-	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
   });
 if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){
 	$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
@@ -984,9 +986,9 @@ $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 			}
 		});
 		$(this).parent().addClass('row_selected');
-		execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
 	}
-	execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+	execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
 });
 */
 
@@ -1005,7 +1007,7 @@ $("""+id+"""_tds).live('click dblclick', function(e){
 		"""+id+"""_doo = false;
 
 		/* double click */
-		execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
+		execEventBinded('"""+idn+"""', "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
 
 	} else {
 		setTimeout(function() {
@@ -1015,9 +1017,9 @@ $("""+id+"""_tds).live('click dblclick', function(e){
 				if(window.selectionmode_"""+id+""" != 'multi'){
 					$("#"""+id+""" table tr[row]").removeClass('row_selected');
 					t.parent().addClass('row_selected');
-					execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "rowsselected", {keyList:params_"""+id+"""});
+					execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
 				}
-				execEventBinded(id_"""+id+""".substring(2, id_"""+id+""".length), "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+				execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
 
 			}
 		}, 200);

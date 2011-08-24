@@ -587,15 +587,13 @@ class VDOM_dialog_2(VDOM_object):
 
 	def render(self, parent, contents=""):
 		
-		id = 'o_' + (self.id).replace('-', '_')
+		idn = (self.id).replace('-', '_')
+		id = u'o_' + idn
 
 		e2vdom.process(self, parent)
 		
-		result = """<style type="text/css">
-%(css)s
-</style>""" % {"css": self.style}
+		result = u"""<style type="text/css">%(css)s</style>""" % {"css": self.style}
 
-		
 		if self.draggable == "0":
 			draggable = "true"
 		else: draggable = "false"
@@ -623,17 +621,16 @@ jQuery(document).ready(function($){
 		,show: %(show)s
 		,modal: %(modal)s
 		,hideShrink: false
-		,afterHide: function(){
-			$('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').show();
-			execEventBinded(d_id_%(id)s.substring(2, d_id_%(id)s.length), "onHide", {});
-		}
-		,afterShow: function(){ execEventBinded(d_id_%(id)s.substring(2, d_id_%(id)s.length), "onShow", {}); }
+		,afterHide: function(){ execEventBinded("%(idn)s", "hide", {}); }
+		,afterShow: function(){ execEventBinded("%(idn)s", "show", {}); }
 	});
 	if(typeof pngfix=='function'){
 		$('.boxy-wrapper').find('.top,.left,.right,.bottom,.top-right,.top-left,.bottom-left, .bottom-right').pngfix({sizingMethod:'scale'});
 	}
 });
-</script>""" % {"id": id, "width": self.width, "height": self.height, "drag": draggable, "title": self.title, "show": show, "modal": modal, "classname": 'kuklusklass'}
+</script>""" % {
+			"id": id, "idn": idn, "width": self.width, "height": self.height, "drag": draggable,
+			"title": self.title, "show": show, "modal": modal, "classname": 'kuklusklass' }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -781,10 +778,10 @@ border-radius:6px;
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="onHide">
+        <Event Name="hide">
           <Parameters/>
         </Event>
-        <Event Name="onShow">
+        <Event Name="show">
           <Parameters/>
         </Event>
       </Userinterfaceevents>
@@ -797,17 +794,24 @@ border-radius:6px;
           </Parameters>
           <SourceCode><![CDATA[
 eval("dialog_win_" + this.domCont.id + ".hide();");
-jQuery('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').show();
-execEventBinded(this.domCont.id.substring(2, this.domCont.id.length), "onHide", {});
-                    ]]></SourceCode>
+/*execEventBinded(this.domCont.id.substring(2, this.domCont.id.length), "hide", {});*/
+]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadHTMLData">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setTitle">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="HTMLdata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="title" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery(this.domCont).html(HTMLdata);
-                    ]]></SourceCode>
+/*eval("dialog_win_" + this.domCont.id + ".setTitle(\""+title.replace('"','&quot;')+"\");");*/
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setContent">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="content" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+/*eval("dialog_win_" + this.domCont.id + ".setContent(\""+content.replace('"','&quot;')+"\");");*/
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
@@ -815,9 +819,8 @@ jQuery(this.domCont).html(HTMLdata);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(newZindex);
-this.domCont.style.height = parseInt(newZindex);
-                    ]]></SourceCode>
+eval("dialog_win_" + this.domCont.id + ".resize("+parseInt(width,10)+","+parseInt(height,10)+");");
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
@@ -825,9 +828,8 @@ this.domCont.style.height = parseInt(newZindex);
           </Parameters>
           <SourceCode><![CDATA[
 eval("dialog_win_" + this.domCont.id + ".show();");
-jQuery('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').hide();
-execEventBinded(this.domCont.id.substring(2, this.domCont.id.length), "onShow", {});
-					]]></SourceCode>
+/*execEventBinded(this.domCont.id.substring(2, this.domCont.id.length), "show", {});*/
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
