@@ -847,7 +847,8 @@ class VDOM_web_services_server(object):
 #				if src_id in obj.objects or src_id == obj.id:
 				#if src_id == obj.id:
 				for ev_name in app.events[obj.id][src_id]:
-					result += """<Event ObjSrcID="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (src_id, obj.type.id, app.events[obj.id][src_id][ev_name].container, ev_name, app.events[obj.id][src_id][ev_name].top, app.events[obj.id][src_id][ev_name].left, app.events[obj.id][src_id][ev_name].state)
+					#result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (src_id, app.search_object(src_id).name, obj.type.id, app.events[obj.id][src_id][ev_name].container, ev_name, app.events[obj.id][src_id][ev_name].top, app.events[obj.id][src_id][ev_name].left, app.events[obj.id][src_id][ev_name].state)
+					result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (src_id, app.search_object(src_id).name, app.search_object(src_id).type.id, app.events[obj.id][src_id][ev_name].container, ev_name, app.events[obj.id][src_id][ev_name].top, app.events[obj.id][src_id][ev_name].left, app.events[obj.id][src_id][ev_name].state)
 					for a in app.events[obj.id][src_id][ev_name].actions:
 						result += """<Action ID="%s"/>\n""" % a
 					result += "</Event>\n"
@@ -861,7 +862,7 @@ class VDOM_web_services_server(object):
 			for a_id in app.actions:
 				a = app.actions[a_id]
 				if a.target_object in obj.objects or a.target_object == obj.id or a.target_object in ll:
-					result += """<Action ID="%s" ObjTgtID="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (a_id, a.target_object, a.method_name, a.top, a.left, a.state)
+					result += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (a_id, a.target_object, app.search_object(a.target_object).name, a.method_name, a.top, a.left, a.state)
 					for p in a.parameters:
 						result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
 					result += "</Action>\n"
@@ -1159,7 +1160,7 @@ class VDOM_web_services_server(object):
 			if full:
 				additional = """  Top="%s" Left="%s" State="%s"  """%( x.top, x.left, x.state)
 			
-			result += """<Action ID="%s" Name="%s" ObjectID="%s" %s />\n""" % (x.id, x.name, obj.id , additional)
+			result += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id, obj.name , additional)
 			
 		if full:
 			for x in obj.objects_list:
@@ -1182,7 +1183,7 @@ class VDOM_web_services_server(object):
 				additional = ""	
 				if full:
 					additional = """  Top="%s" Left="%s" State="%s"  """%( x.top, x.left, x.state)
-				result += """<Action ID="%s" Name="%s" ObjectID="%s" %s />\n""" % (x.id, x.name, obj.id , additional)
+				result += """<Action ID="%s" Name="%s" ObjectID="%s" ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id ,  obj.name, additional)
 		result += "</ServerActions>\n"
 		return result
 		
