@@ -547,7 +547,7 @@ setTimeout(function() {
 		#		"target": target, "encode_type": self.enctype, 
 		#		"contents": contents, "registrations": registrations }
 
-		result = u"""<form ver="2.1" id="{id}" style="display:block;margin:0; {display} {style}" 
+		result = u"""<form ver="2.2" id="{id}" style="display:block;margin:0; {display} {style}" 
 						name="{name}" method="{method}" action="{target}" style="overflow:visible" 
 						{enctype} {submitonce}>{contents}
 					</form> {submitjs} 
