@@ -26,6 +26,18 @@
   </Information>
   <Attributes>
     <Attribute>
+      <Name>designcolor</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>EEEEEE</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>hierarchy</Name>
       <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -254,6 +266,9 @@
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy of the object</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="123">Color in WYSIWYG</Sentence>
+      <Sentence ID="223">Color in design mode</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
       <Sentence ID="102">Visibility</Sentence>
       <Sentence ID="202">Show object or not</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
@@ -670,11 +685,11 @@ class VDOM_container(VDOM_object):
 		result =u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
 							top="{top}" left="{left}" width="{width}" height="{height}">
 						<svg>
-							<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE"/>
+							<rect x="0" y="0" width="{width}" height="{height}" fill="#{designcolor}"/>
 						</svg>{contents}
 					</container>
 				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
-						hierarchy = self.hierarchy, order = self.order, 
+						hierarchy = self.hierarchy, order = self.order, designcolor = self.designcolor,
 						top = self.top, left = self.left, width = self.width, height = self.height, 
 						contents = contents)
 
