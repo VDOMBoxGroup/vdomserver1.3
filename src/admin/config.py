@@ -69,7 +69,9 @@ function MM_swapImage() { //v3.0
     <td><div align="center"></div></td>
     <td><div align="center"><a href="ssh.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)"><img src="images/acces-distance.gif" alt="Remote access" name="ssh" border="0" id="ssh" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="scrupg.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)"><img src="images/screen_upgrade.jpg" alt="Screen upgrade" name="screen" border="0" id="screen" /></a></div></td>
+    <td><div align="center"><a href="vcard.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('vcard','','images/bt-virtualhost_s.jpg',1)"><img src="images/bt-virtualhost.jpg" alt="Virtual card" name="vcard" border="0" id="vcard" /></a></div></td>
+    <td><div align="center"></div></td>
+	<td><div align="center"><a href="scrupg.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)"><img src="images/screen_upgrade.jpg" alt="Screen upgrade" name="screen" border="0" id="screen" /></a></div></td>
     <td><div align="center"></div></td>
     <td><div align="center"><a href="inithdd.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)"><img src="images/initialize_hard_disk.jpg" alt="Initialize hard disk" name="inithdd" border="0" id="inithdd" /></a></div></td>
     <td><div align="center"></div></td>
@@ -85,6 +87,8 @@ function MM_swapImage() { //v3.0
     <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('Objects','','Images/bt-objects-new_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="objects.py">Object</a></div></td>
     <td>&nbsp;</td>
     <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="ssh.py">Remote access</a></div></td>
+    <td>&nbsp;</td>
+    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('vcard','','images/bt-virtualhost_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="vcard.py">Virtual card</a></div></td>
     <td>&nbsp;</td>
     <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="scrupg.py">Screen upgrade</a></div></td>
     <td>&nbsp;</td>

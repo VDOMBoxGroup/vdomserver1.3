@@ -46,3 +46,4 @@ from admin.users import run
 from admin.vfs import run
 from admin.vfs_update import run
 from admin.virtualhost import run
+from admin.vcard import run
