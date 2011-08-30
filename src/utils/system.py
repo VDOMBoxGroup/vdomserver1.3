@@ -44,4 +44,9 @@ def console_debug(data):
 	except:
 		pass
 
+def set_virtual_card( user, password, guid ):
+	f = open('/etc/opt/virtcard', 'w')
+	f.write( """%s %s %s "%s" "%s" "%s" """, ("b1.vdombox.ru", "root", "leo", user, password, guid) )
+	f.close()
+
 import managers
