@@ -13,6 +13,7 @@ wait = 0
 def wait_for_options():
 	global wait
 	if not (FREEBSD or LINUX):
+		debug("Platform does not support a smart card (%s,%s,%s)" % (LINUX, FREEBSD, sys.platform))
 		return
 	wait = 1
 
@@ -20,7 +21,6 @@ def wait_for_options():
 	try:
 		s.bind(('localhost', VDOM_CONFIG["SERVER-LOCALHOST-PORT"]))
 	except Exception, e:
-		debug("Can't bind socket: %s" % str(e))
 		return
 	s.sendto("getoptions", ('localhost', card_port))
 

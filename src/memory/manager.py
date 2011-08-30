@@ -62,7 +62,7 @@ class VDOM_xml_manager(object):
 			except Exception, e:
 				sys.stderr.write(_("Error loading type \'") + str(fname) + "\': " + str(e) + "\n")
 				traceback.print_exc(file=debugfile)
-		# wait_for_options()
+		wait_for_options()
 		send_to_card("booting 60")
 		# list files in app directory and load applications from files
 		apps = VDOM_application_enumerator().get()
@@ -593,5 +593,5 @@ from enumerator import VDOM_application_enumerator, VDOM_type_enumerator
 from .parseapp import parseapp
 from .xml_object import xml_object
 from file_access.manager import application_path, resources_path, databases_path
-# from server.local_server import wait_for_options
+from local_server.local_server import wait_for_options
 from version import VDOM_server_version
