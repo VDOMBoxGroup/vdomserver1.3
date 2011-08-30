@@ -549,12 +549,12 @@ class VDOM_formcheckbox(VDOM_object):
 						<label for="inp_%(id)s" style="vertical-align:middle">%(label)s</label>
 						%(contents)s
 					</div>
-					<script type="text/javascript">jQuery(document).ready(function(){
-							jQuery('#inp_%(id)s').change(function(){
-								execEventBinded('%(clean_id)s', 'change', { Value: jQuery('#inp_%(id)s').val() });
-							});
-						});
-					</script>
+					<script type="text/javascript">jQuery(document).ready(function($){
+$('#inp_%(id)s').click(function(){
+	var v = ($(this).is(':checked')) ? "1" : "0";
+	execEventBinded('%(clean_id)s', 'change', { "Value": v });
+});
+					});</script>
 				""" % {"id": id, "style": style, "name": self.name, "state": state, 
 						"tabind": self.tabindex, "value": self.value, "disable": disable,"label": self.label, 
 						"contents": contents, "clean_id": clean_id}
