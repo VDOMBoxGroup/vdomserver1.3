@@ -497,8 +497,8 @@ rkJggg==]]></Resource>
 var tabview_children_%(id)s = %(arr)s;
 jQuery(document).ready(function($){
 	$("#%(id)s ul.tabNavigation a").click(function(){
-		$("#%(id)s div.content>div").hide();
-		$("#%(id)s div.content>div").filter(this.hash).show();
+		$("#%(id)s div.content>div").fadeOut(100);
+		$("#%(id)s div.content>div").filter(this.hash).fadeIn(100);
 		$('#%(id)s ul.tabNavigation a').removeClass('active');
 		$(this).addClass('active');
 		var cont_id = this.hash.substring(3, this.hash.length).replace(/_/g, "-")
@@ -507,6 +507,7 @@ jQuery(document).ready(function($){
 				execEventBinded("%(id)s".substring(2, "%(id)s".length), "tabchanged", {ID:tabview_children_%(id)s[i][0], Name:tabview_children_%(id)s[i][1], Hierarchy:tabview_children_%(id)s[i][2]});
 			}
 		}
+		return false;
 	});
 });
 </script>""" % { "id": id, "arr": str(children_array) }
