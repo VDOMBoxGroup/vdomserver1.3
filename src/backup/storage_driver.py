@@ -16,10 +16,6 @@ class VDOM_storage_driver(object):
 class VDOM_backup_storage_manager(object):
     
     def __init__(self):
-        self.__index = {}
-        
-    def restore(self):
-        """Restoring storage drivers from last session.(After reboot or power off)"""
         self.__index = managers.storage.read_object(VDOM_CONFIG["BACKUP-STORAGE-DRIVER-INDEX-RECORD"])
     
     def add_driver(self, driver):
