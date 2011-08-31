@@ -124,14 +124,14 @@
     <Attribute>
       <Name>selectedvalue</Name>
       <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue />
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>tabindex</Name>
@@ -475,24 +475,28 @@ import StringIO, json, collections
 
 		data = {}
 		if self.value:		
-			try:	
-				decoder = json.JSONDecoder(object_pairs_hook=collections.OrderedDict)				data = decoder.decode(self.value)
+			try:				data = json.loads(self.value, object_pairs_hook=collections.OrderedDict)
 				debug(data)				if isinstance(data, int):
-					raise Exception("value: %s. Attribute 'value' must be list" % self.value)
+					raise Exception("value: %s. Incorrect format of data" % self.value)
 			except:
-				raise Exception("value: %s. Attribute 'value' must be list" % self.value)		
+				raise Exception("value: %s. Incorrect format of data" % self.value)		
 		if isinstance(data, dict):
 			data = OrderedDict(data)
 					res_buffer = StringIO.StringIO(u"")		res_buffer.write(select)		
+		selected = u""
 		for (index, value) in zip(xrange(len(data)), data):
-			if index == int(self.selectedvalue):
-				selected = u"""selected="selected" """
-			else:
-				selected = u""
 			if isinstance(data, OrderedDict):
+				if value == unicode(self.selectedvalue):
+					selected = u"""selected="selected" """
 				option = u"""<option value="{cur_value}" {selected}>{cur_item}</option>"""\
 					.format(cur_value = value, selected = selected, cur_item = data[value])
 			else:
+				try:
+					if index == int(self.selectedvalue):
+						selected = u"""selected="selected" """
+				
+				except:
+					pass
 				option = u"""<option value="{cur_value}" {selected}>{cur_item}</option>"""\
 					.format(cur_value = value, selected = selected, cur_item = value)
 			res_buffer.write(option)
