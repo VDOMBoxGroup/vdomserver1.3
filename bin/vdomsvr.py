@@ -34,6 +34,7 @@ from memory import VDOM_xml_manager
 from mailing import VDOM_email_manager
 from soap import VDOM_soap_server
 from managment import VDOM_server_manager
+from backup import VDOM_backup_manager
 
 try:
 	managers.register("server", VDOM_server)
@@ -58,6 +59,7 @@ try:
 	managers.register("email_manager", VDOM_email_manager)
 	managers.register("soap_server", VDOM_soap_server)
 	managers.register("server_manager", VDOM_server_manager)
+	managers.register("backup_manager", VDOM_backup_manager)
 
 	managers.server.start()
 except:
