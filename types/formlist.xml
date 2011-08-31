@@ -471,7 +471,7 @@ import StringIO, json, collections
 class VDOM_formlist(VDOM_object):	def render(self, parent, contents=""):
 		from collections import OrderedDict		display = u"display:none;" if self.visible == "0" else u""		style = u"""position: absolute; z-index: {zind}; top: {top}px; left: {left}px; width: {width}px; height: {height}px;					{display} font: 14px tahoma				""".format(zind = self.zindex, top = self.top, left = self.left, 						width = self.width, height = self.height, display = display)		id = u"o_" + (self.id).replace('-', '_')		
 		disabled = u"disabled" if self.disabled == "1" else u""
-				select = u"""<select {disabled} id="{id}" name="{name}" tabindex="{tabind}" style="{style}">"""\				.format(disabled = disabled, id = id, name = self.name, tabind = self.tabindex, style = style)
+				select = u"""<select {disabled} id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" style="{style}">"""\				.format(disabled = disabled, id = id, name = self.name, tabind = self.tabindex, style = style)
 
 		data = {}
 		if self.value:		
@@ -487,13 +487,17 @@ import StringIO, json, collections
 		for (index, value) in zip(xrange(len(data)), data):
 			if isinstance(data, OrderedDict):
 				if value == unicode(self.selectedvalue):
-					selected = u"""selected="selected" """
+					selected = u"""selected="yes" """
+				else:
+					selected = u""
 				option = u"""<option value="{cur_value}" {selected}>{cur_item}</option>"""\
 					.format(cur_value = value, selected = selected, cur_item = data[value])
 			else:
 				try:
 					if index == int(self.selectedvalue):
-						selected = u"""selected="selected" """
+						selected = u"""selected="yes" """
+					else:
+						selected = u""
 				
 				except:
 					pass
