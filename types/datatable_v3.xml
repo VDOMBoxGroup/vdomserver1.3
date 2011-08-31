@@ -992,7 +992,7 @@ $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 });
 */
 
-"""+id+"""_tds = $("#"""+id+""" table tr[row] td:not([checkbox])");
+"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox])");
 """+id+"""_doo = false;
 
 $("""+id+"""_tds).live('click dblclick', function(e){
@@ -1010,19 +1010,22 @@ $("""+id+"""_tds).live('click dblclick', function(e){
 		execEventBinded('"""+idn+"""', "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
 
 	} else {
-		setTimeout(function() {
-			if ("""+id+"""_doo == true) {
+		if (typeof """+id+"""_tout === 'undefined') {
+			"""+id+"""_tout = setTimeout(function() {
+				if ("""+id+"""_doo == true) {
 
-				/* click */
-				if(window.selectionmode_"""+id+""" != 'multi'){
-					$("#"""+id+""" table tr[row]").removeClass('row_selected');
-					t.parent().addClass('row_selected');
-					execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
+					/* click */
+					if(window.selectionmode_"""+id+""" != 'multi'){
+						$("#"""+id+""" table tr[row]").removeClass('row_selected');
+						t.parent().addClass('row_selected');
+						execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
+					}
+					execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+
 				}
-				execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
-
-			}
-		}, 200);
+				delete """+id+"""_tout;
+			}, 200);
+		}
 		"""+id+"""_doo = true;
 	}
 
