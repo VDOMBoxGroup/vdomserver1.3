@@ -13,9 +13,6 @@ class VDOM_scheduler(object):
 class VDOM_scheduler_manger(object):
 
     def __init__(self):
-        self.__index = {}
-        
-    def restore(self):
         self.__index = managers.storage.read_object(VDOM_CONFIG["BACKUP-SCHEDULER-INDEX-STORAGE-RECORD"])
     
     def add_task(self, drv_id, app_list, interval, rotation):
