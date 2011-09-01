@@ -841,7 +841,7 @@ class VDOM_datatable_v3(VDOM_object):
 			try:
 				header = json.loads(self.header)
 				if isinstance(header, int):
-					raise Exception (u"Incorrect value in header %s" % self.header) 
+					raise Exception (u"Incorrect value in header %s" % self.header)
 			except:
 				raise Exception (u"Incorrect value in header %s" % self.header)
 		else:
@@ -992,7 +992,19 @@ $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 });
 */
 
-"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox])");
+/*
+if (window.selectionmode_"""+id+""" === 'multi' ) {
+	$("#"""+id+""":last table tr[row] td:nth-child(1)").live('click', function(){
+		//$('input[type="checkbox"]', this).click();
+		var x = $('input[type="checkbox"]', this);
+		var stat = !x.attr("checked");
+		x.attr("checked", stat);
+	});
+}
+*/
+
+/*"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox]):not(:first)");*/
+"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not(:nth-child(1))");
 """+id+"""_doo = false;
 
 $("""+id+"""_tds).live('click dblclick', function(e){
