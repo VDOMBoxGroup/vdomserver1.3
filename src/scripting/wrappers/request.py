@@ -11,9 +11,14 @@ class VDOM_arguments(object):
 
 	def get(self, name, default=None, castto=None):
 		value=managers.request_manager.current.arguments().arguments().get(name, default)
+		debug("---->%s"%str(value))
 		if value is default or castto is list: return value
+		debug("---->%s"%str(value))
 		if len(value)!=1: raise TypeError
-		return castto(value[0])
+		if castto:
+			return castto(value[0])
+		else:
+			return value[0]
 
 	def keys(self):
 		return managers.request_manager.current.arguments().arguments().keys()
