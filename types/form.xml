@@ -170,6 +170,18 @@
       <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(140)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(240)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(340)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -268,6 +280,9 @@
       <Sentence ID="137">Current X-value</Sentence>
       <Sentence ID="138">Current Y-value</Sentence>
       <Sentence ID="139">Parameters</Sentence>
+      <Sentence ID="140">Class</Sentence>
+      <Sentence ID="240">CSS class name</Sentence>
+      <Sentence ID="340">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Форма</Sentence>
@@ -547,12 +562,15 @@ setTimeout(function() {
 		#		"target": target, "encode_type": self.enctype, 
 		#		"contents": contents, "registrations": registrations }
 
-		result = u"""<form ver="2.2" id="{id}" style="display:block;margin:0; {display} {style}" 
+		classname = u"""class="%s" """ % self.classname if self.classname else u""
+
+		result = u"""<form ver="2.3" id="{id}" style="display:block;margin:0; {display} {style}" 
 						name="{name}" method="{method}" action="{target}" style="overflow:visible" 
-						{enctype} {submitonce}>{contents}
+						{enctype} {submitonce} {classname}>
+						{contents}
 					</form> {submitjs} 
 				""".format(id = id, display = display, style = style, name = self.name, method = self.meth, target = target,
-				enctype = enctype, submitonce = submitonce, contents = contents, submitjs = submitjs )
+				enctype = enctype, submitonce = submitonce, contents = contents, submitjs = submitjs, classname = classname )
 
 		return VDOM_object.render(self, parent, contents=result)
 
