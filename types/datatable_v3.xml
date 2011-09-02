@@ -1004,7 +1004,11 @@ if (window.selectionmode_"""+id+""" === 'multi' ) {
 */
 
 /*"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox]):not(:first)");*/
-"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not(:nth-child(1))");
+if (window.selectionmode_"""+id+""" === 'multi') {
+	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not(:nth-child(1))");
+} else {
+	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td");
+}
 """+id+"""_doo = false;
 
 $("""+id+"""_tds).live('click dblclick', function(e){
