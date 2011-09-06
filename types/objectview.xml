@@ -464,98 +464,93 @@ class VDOM_objectview(VDOM_object):
 
 		if self.vdomclassid:
 			self.tmp_list = []
+
+			# get object with id == vdomclassid
+
+			source_object = application.objects.search(self.vdomclassid)
+
+			if not source_object:
+				result += u"Invalid vdomclass"
+				return result
+
+			if 'get_attributes' in dir(source_object):
+				source_object_attr = source_object.get_attributes()
+			else:
+				debug('Object has no attributes: %s' % source_object)
+				source_object_attr = DummyAttributes()
+
+			# parse ov.data
+
+			#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
 			try:
-
-				# get object with id == vdomclassid
-
-				source_object = application.objects.search(self.vdomclassid)
-
-				if not source_object:
-					result += u"Invalid vdomclass"
-					return result
-
-				if 'get_attributes' in dir(source_object):
-					source_object_attr = source_object.get_attributes()
-				else:
-					source_object_attr = DummyAttributes()
-
-				# parse ov.data
-
-				#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
-				try:
-					obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
-				except:
-					obj_data = {}
-
-				classname = self.classname
-				if classname == '':
-					classname = 'ov'
-
-				nn = 1
-				nn_first = 1
-				#for key in obj_data:
-				for index, key in enumerate(obj_data):
-
-					# create new object for item container
-
-					#obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
-					d_name = "vdomclass_%d" % index
-					obj = DummyObject(source_object, d_name, e2vdom.virtual_context, source_object, index)
-
-					obj_id = obj.id
-					self.tmp_list.append(obj_id)
-
-					#obj_attr = source_object.get_attributes()
-					for a in source_object_attr:
-						obj.set_attribute_ex(source_object_attr[a].name, source_object_attr[a].value, False)
-					obj.set_attribute_ex('data', obj_data[key], False)
-
-					#obj.actions = source_object.actions
-					obj.actions = copy.copy(source_object.actions)
-
-					res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
-
-					if nn_first == 1:
-						nn_first = 0
-						classfirst = u"%s-item-first" % classname
-					else:
-						classfirst = ''
-
-					if nn == len(obj_data):
-						classlast = u"%s-item-last" % classname
-					else:
-						classlast = ''
-
-					if nn % 2:
-						classodd = ''
-					else:
-						classodd = u"%s-item-odd" % classname
-
-					item_data_id = key
-					item_data = obj_data[key]
-
-					obj.set_attribute_ex("visible", "1", False)
-					obj.set_attribute_ex("width", source_object_attr['width'].value, False)
-					obj.set_attribute_ex("height", source_object_attr['height'].value, False)
-					obj.set_attribute_ex("data", item_data, False)
-					obj.set_attribute_ex("dataid", item_data_id, False)
-					obj.set_attribute_ex("classname", "%(userdef)s %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s" % {
-						"name":        obj.name
-						,"class":      classname
-						,"nn":         str(nn)
-						,"classfirst": classfirst
-						,"classlast":  classlast
-						,"classodd":   classodd
-						,"userdef":    source_object_attr["classname"].value
-					}, False)
-					result += managers.engine.render(application, obj, object, "vdom")
-
-					nn += 1
-
+				obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 			except:
-				for object_id in self.tmp_list:
-					application.objects.delete(object_id)
-				raise
+				obj_data = {}
+
+			classname = self.classname
+			if classname == '':
+				classname = 'ov'
+
+			nn = 1
+			nn_first = 1
+			#for key in obj_data:
+			for index, key in enumerate(obj_data):
+
+				# create new object for item container
+
+				#obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
+				d_name = "vdomclass_%d" % index
+				obj = DummyObject(source_object, d_name, e2vdom.virtual_context, source_object, index)
+
+				obj_id = obj.id
+				self.tmp_list.append(obj_id)
+
+				#obj_attr = source_object.get_attributes()
+				for a in source_object_attr:
+					obj.set_attribute_ex(source_object_attr[a].name, source_object_attr[a].value, False)
+				obj.set_attribute_ex('data', obj_data[key], False)
+
+				#obj.actions = source_object.actions
+				obj.actions = copy.copy(source_object.actions)
+
+				res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
+
+				if nn_first == 1:
+					nn_first = 0
+					classfirst = u"%s-item-first" % classname
+				else:
+					classfirst = ''
+
+				if nn == len(obj_data):
+					classlast = u"%s-item-last" % classname
+				else:
+					classlast = ''
+
+				if nn % 2:
+					classodd = ''
+				else:
+					classodd = u"%s-item-odd" % classname
+
+				item_data_id = key
+				item_data = obj_data[key]
+
+				obj.set_attribute_ex("visible", "1", False)
+				obj.set_attribute_ex("width", source_object_attr['width'].value, False)
+				obj.set_attribute_ex("height", source_object_attr['height'].value, False)
+				obj.set_attribute_ex("data", item_data, False)
+				obj.set_attribute_ex("dataid", item_data_id, False)
+				obj.set_attribute_ex("classname", "%(userdef)s %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s" % {
+					"name":        obj.name
+					,"class":      classname
+					,"nn":         str(nn)
+					,"classfirst": classfirst
+					,"classlast":  classlast
+					,"classodd":   classodd
+					,"userdef":    source_object_attr["classname"].value
+				}, False)
+				result += managers.engine.render(application, obj, object, "vdom")
+
+				nn += 1
 
 		#debug("!!!!!!!! result ")
 		#debug(result)
@@ -660,7 +655,7 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""<div objtype='objectview' ver='2.4/2011-08-12' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
+		result = u"""<div objtype='objectview' ver='2.5/2011-09-06' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
 			id = id, name = self.name, js = js,
 			style = style.strip(), style_items = style_items.strip(), 
 			classname = classname.strip(), contents = inner_render
