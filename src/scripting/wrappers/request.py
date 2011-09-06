@@ -7,18 +7,13 @@ class VDOM_arguments(object):
 	def __getitem__(self, name):
 		value=managers.request_manager.current.arguments().arguments()[name]
 		if len(value)!=1: raise TypeError
-		return unicode(value[0])
+		return unicode(value[0].decode("utf-8"))
 
 	def get(self, name, default=None, castto=None):
 		value=managers.request_manager.current.arguments().arguments().get(name, default)
-		debug("---->%s"%str(value))
-		if value is default or castto is list: return value
-		debug("---->%s"%str(value))
+		if value is default or castto is list: return [unicode(item.decode("utf-8")) for item in value]
 		if len(value)!=1: raise TypeError
-		if castto:
-			return castto(value[0])
-		else:
-			return value[0]
+		return castto(unicode(value[0].decode("utf8")))
 
 	def keys(self):
 		return managers.request_manager.current.arguments().arguments().keys()
