@@ -120,7 +120,7 @@ class VDOM_client_server_events:
 							param_name = child2.attributes["name"]
 							if not param_name:
 								raise VDOM_exception_element("parameter")
-							params[param_name] = [child2.value]
+							params[param_name] = [child2.value.encode("utf8")]
 					self.events[(source_obj_id, event_name)] = params
 		except VDOM_exception:
 			raise
