@@ -12,4 +12,5 @@ class VDOM_backup(object):
         
     def __do_backup(self, app_id, path, src_path, meta_info, server_version, vhost="default"):
         pass
-    
+
+backup = VDOM_backup()
