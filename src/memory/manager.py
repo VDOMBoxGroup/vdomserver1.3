@@ -26,6 +26,7 @@ class VDOM_xml_manager(object):
 		managers.resource_manager.save_index_off()
 		managers.resource_manager.restore()
 		managers.database_manager.restore()
+		managers.scheduler_manager.restore()
 
 		# sync semaphores
 		self.__sem = VDOM_semaphore()
