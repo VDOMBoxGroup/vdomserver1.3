@@ -34,6 +34,7 @@ from memory import VDOM_xml_manager
 from mailing import VDOM_email_manager
 from soap import VDOM_soap_server
 from managment import VDOM_server_manager
+from scheduler import VDOM_scheduler_manager
 from backup import VDOM_backup_manager
 
 try:
@@ -55,11 +56,12 @@ try:
 	managers.register("engine", VDOM_engine)
 	managers.register("module_manager", VDOM_module_manager)
 	managers.register("session_manager", VDOM_session_manager)
+	managers.register("scheduler_manager", VDOM_scheduler_manager)
 	managers.register("xml_manager", VDOM_xml_manager)
 	managers.register("email_manager", VDOM_email_manager)
 	managers.register("soap_server", VDOM_soap_server)
-	managers.register("server_manager", VDOM_server_manager)
-	#managers.register("backup_manager", VDOM_backup_manager)
+	managers.register("server_manager", VDOM_server_manager)	
+	managers.register("backup_manager", VDOM_backup_manager)
 
 	managers.server.start()
 except:
