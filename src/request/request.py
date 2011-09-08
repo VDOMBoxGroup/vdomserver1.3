@@ -10,6 +10,7 @@ from arguments import VDOM_request_arguments
 from Cookie import BaseCookie
 from memory.interface import VDOM_memory_interface
 import managers
+from utils.file_argument import File_argument
 
 class MFSt(FieldStorage):
 
@@ -17,22 +18,7 @@ class MFSt(FieldStorage):
 		import tempfile
 		return tempfile.NamedTemporaryFile("w+b",prefix="vdomupload",dir=VDOM_CONFIG["TEMP-DIRECTORY"],delete=False)
 
-class File_argument(object):
-	def __init__(self,fileobj, name):
-		self.__fileobj = fileobj
-		self.__name = name
-	def __getitem__(self, key):
-		if not isinstance(key, int):
-			raise TypeError
-		if key == 0:
-			self.__fileobj.seek(0)
-			value = self.__fileobj.read()
-			self.__fileobj.seek(0)
-			return value
-		elif key == 1:
-			return self.__name
-		else:
-			raise AttributeError
+
 
 class VDOM_request:
 	"""VDOM server request object"""
