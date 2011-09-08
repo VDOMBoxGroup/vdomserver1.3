@@ -65,7 +65,7 @@ class VDOM_dispatcher:
 			app = managers.xml_manager.get_application(app_id)
 			obj = app.search_object(object_id)
 			managers.engine.execute(app, obj, None, func_name, True)
-			ret = unicode(request.session().value("response"))
+			ret = request.session().value("response")
 			request.session().remove("response")
 			return ret or ""
 		except Exception, e:
