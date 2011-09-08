@@ -1,25 +1,47 @@
 
 import managers
-
+from utils.file_argument import File_argument
 
 class VDOM_arguments(object):
 
 	def __getitem__(self, name):
-		value=managers.request_manager.current.arguments().arguments()[name]
-		if len(value)!=1: raise TypeError
-		return unicode(value[0].decode("utf-8", "replace"))
+		value = managers.request_manager.current.arguments().arguments()[name]
+		good = (isinstance(value, list) and len(value) > 0)
+		if not good:	
+			raise TypeError
+		return self.__try_decode(value[0])
+			
 
 	def get(self, name, default=None, castto=None):
-		value=managers.request_manager.current.arguments().arguments().get(name, default)
-		if value is default or castto is list: return [unicode(item.decode("utf-8", "replace")) for item in value]
-		if len(value)!=1: raise TypeError
-		return castto(unicode(value[0].decode("utf8", "replace")))
+		value = managers.request_manager.current.arguments().arguments().get(name, None)
+		
+		good = (isinstance(value, list) and len(value) > 0)
+		if not good:
+			return default
+		
+		if castto is list:
+			return [self.__try_decode(item) for item in value]
+		else:
+			item = self.__try_decode(value[0])
+			return castto(item) if castto and item else item
+	
+	def __try_decode(self, item):
+		if isinstance(item, str):
+			return unicode(item.decode("utf-8", "ignore"))
+		else:
+			return item
+		
+	
+	
+	
+	
+
 
 	def keys(self):
 		return managers.request_manager.current.arguments().arguments().keys()
 
-	def __iter__(self):
-		return iter(managers.request_manager.current.arguments().arguments())
+	#def __iter__(self):
+	#	return iter(managers.request_manager.current.arguments().arguments())
 
 class VDOM_headers(object):
 
