@@ -72,7 +72,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 	def do_GET(self):
 		"""serve a GET request"""
 		# create request object
-		debug("DO GET %s"%self)
+		#debug("DO GET %s"%self)
 		self.create_request("get")
 		f = self.on_request("get")
 		if f:
@@ -85,8 +85,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			if self.__request.nokeepalive: # TODO: Check if this is really needed somewhere
 				self.close_connection = 1
 		except:
-			debug("EXCEPTION WHEN DO GET %s"%self)
-			print dir(self)
+			#debug("EXCEPTION WHEN DO GET %s"%self)
+			#print dir(self)
 			raise
 
 	def do_HEAD(self):
@@ -100,7 +100,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 	def do_POST(self):
 		"""serve a POST request"""
 		# create request object
-		debug("DO POST %s"%self)
+		#debug("DO POST %s"%self)
 		self.create_request("post")
 		# if POST to SOAP-POST-URL call do_SOAP
 		if self.__request.environment().environment()["REQUEST_URI"] == VDOM_CONFIG["SOAP-POST-URL"]:
@@ -117,7 +117,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 	def create_request(self, method):
 		"""initialize request, <method> is either 'post' or 'get'"""
-		debug("CREATE REQUEST %s"%self)
+		#debug("CREATE REQUEST %s"%self)
 		#import gc
 		#debug("\nGarbage: "+str(len(gc.garbage))+"\n")
 		#debug("Creating request object")
@@ -136,7 +136,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 	def on_request(self, method):
 		"""request handling code the method <method>"""
-		debug("ON REQUEST %s"%self)
+		#debug("ON REQUEST %s"%self)
 		#check if we should send 503 or 403 errors
 		if self.__reject:
 			self.send_error(503, self.responses[503][0])
@@ -253,7 +253,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 	def finish(self):
 		"""finish processing request"""
-		debug("FINISH REQUEST %s"%self)
+		#debug("FINISH REQUEST %s"%self)
 		SimpleHTTPServer.SimpleHTTPRequestHandler.finish(self)
 		"""tell the server that processing is finished"""
 		self.server.notify_finish(self.client_address)
@@ -262,7 +262,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		try:
 			managers.request_manager.current.collect_files()
 		except VDOM_exception as error:
-			print "WARNING: %s"%error
+			#print "WARNING: %s"%error
 			pass
 		del managers.request_manager.current
 		try:
