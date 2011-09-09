@@ -52,7 +52,12 @@ class VDOM_dispatcher:
 					else:
 						return getattr(module, func_name)(app_id, object_id, xml_param)
 		except Exception, e:
-			raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), str(e))
+			if getattr(e, "message", None) and isinstance(e.message, unicode):
+				msg = unicode(e).encode("utf8")
+			else:
+				msg = str(e)
+			
+			raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), msg)
 			#return "<Error><![CDATA[%s]]></Error>"%str(e)
 		raise SOAPpy.faultType(remote_method_call_error, _("Handler not found"), str(func_name))
 		#return "<Error><![CDATA[Handler not found]]></Error>"
@@ -69,6 +74,10 @@ class VDOM_dispatcher:
 			request.session().remove("response")
 			return ret or ""
 		except Exception, e:
-			raise SOAPpy.faultType(remote_method_call_error, _("Action call error"), str(e))
+			if getattr(e, "message", None) and isinstance(e.message, unicode):
+				msg = unicode(e).encode("utf8")
+			else:
+				msg = str(e)
+			raise SOAPpy.faultType(remote_method_call_error, _("Action call error"), msg)
 		
 		raise SOAPpy.faultType(remote_method_call_error, _("Handler not found"), str(func_name))
