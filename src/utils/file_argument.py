@@ -9,12 +9,12 @@ class File_argument(object):
 		if not isinstance(key, int):
 			raise TypeError
 		if key == 0:
-			self.__fileobj.seek(0)
-			value = self.__fileobj.read()
-			self.__fileobj.seek(0)
+			self.fileobj.seek(0)
+			value = self.fileobj.read()
+			self.fileobj.seek(0)
 			return value
 		elif key == 1:
-			return self.__name
+			return self.name
 		else:
 			raise AttributeError
 		
