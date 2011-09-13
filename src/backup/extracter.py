@@ -1,4 +1,5 @@
 import managers, tempfile, os
+from utils.app_management import import_application
 
 class VDOM_extracter(object):
     def __init__(self, app_id):
@@ -18,9 +19,16 @@ class VDOM_app_extracter(VDOM_extracter):
     def extract(self):
         path = tempfile.mkdtemp("", "", os.path.join(VDOM_CONFIG["TEMP-DIRECTORY"], self.app_id))
         
-        managers.xml_manager.export_application(self.app_id, "xml", path)
-        return path
+        try:
+            managers.xml_manager.export_application(self.app_id, "xml", path)
+            return path
+        except:
+            return None
     
     def restore(self, path):
-        pass
+        """import app_xml"""
+        if os.path.exists(path):
+            import_application(path)
+        else:
+            pass
     
