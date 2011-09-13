@@ -7,6 +7,7 @@ class VDOM_arguments(object):
 	def __getitem__(self, name):
 		value = managers.request_manager.current.arguments().arguments()[name]
 		good = (isinstance(value, list) and len(value) > 0)
+		#in case of File_argumet value is not list, will raise TypeError
 		if not good:	
 			raise TypeError
 		return self.__try_decode(value[0])
@@ -23,9 +24,9 @@ class VDOM_arguments(object):
 			return [self.__try_decode(item) for item in value]
 		elif castto is Attachment:
 			if isinstance(value,File_argument):
-				return castto(value)
+				return Attachment(value)
 			else:
-				raise TypeError
+				return default
 		else:
 			if isinstance(value, File_argument):
 				return default
