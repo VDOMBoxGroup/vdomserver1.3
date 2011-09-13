@@ -66,13 +66,9 @@ class VDOM_xml_manager(object):
 		wait_for_options()
 		send_to_card("booting 60")
 		# list files in app directory and load applications from files
-		debug("APP load debug: ready to start")
 		apps = VDOM_application_enumerator().get()
-		debug("APP load debug: got enumerator")
 		apps_count = len(apps)
-		debug("APP load debug: app count%s"%apps_count)
 		for counter in xrange(apps_count):
-			debug("APP load debug: counter=%s %s"%(counter,apps[counter]))
 			fname = apps[counter]
 			if counter > apps_count/4.0 and counter <= (apps_count/4.0 +1):
 				send_to_card("booting 70")
@@ -93,10 +89,8 @@ class VDOM_xml_manager(object):
 				if VDOM_CONFIG["AUTO-REMOVE-INCORRECT-APPLICATIONS"]:
 					shutil.rmtree(os.path.split(fname)[0], True)
 
-		debug("APP load debug: End of app load")
 		self.__sync_type()
 		self.__sync_app()
-		debug("APP load debug: ")
 		# remove unused resources
 		managers.resource_manager.collect_unused()
 		managers.resource_manager.save_index_on(True)

@@ -39,17 +39,13 @@ class VDOM_application_enumerator(VDOM_enumerator):
 	def get(self):
 		"""get application files list"""
 		try:
-			debug("APP load debug:geting enumerator")
 			directory = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], application_path)
-			debug("APP load debug: app dir %s"%directory)
 			r1 = os.listdir(directory)
-			debug("APP load debug: app dir %s"%str(r1))
 			r2 = []
 			for item in r1:
 				if -1 == item.find("."):
 					directory2 = os.path.join(directory, item, "app.xml")
 					r2.append(directory2)
-					debug("APP load debug: app dir found %s"%str(directory2))
 			return r2
 		except Exception, e:
 			traceback.print_exc(file=debugfile)
