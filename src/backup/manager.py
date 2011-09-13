@@ -2,6 +2,7 @@ import managers, version
 from scheduler.task import VDOM_backup_task
 from storage_driver import backup_storage_manager
 from backup import backup
+from restore import VDOM_restore
 
 
 class VDOM_backup_manager(object):
@@ -72,4 +73,15 @@ class VDOM_backup_manager(object):
     
     def get_revision_list(self):
         pass
+    
+    def restore(self, driver_path, app_id, revision_number):
+        xml_path = ""
+        ldap_path = ""
+        storage_path = ""
+        xapian_path = ""
+        dirs = {"application": xml_path,
+                "storage": storage_path,
+                "ldap": ldap_path,
+                "xapian": xapian_path}
+        VDOM_restore.restore(driver_path, app_id, revision_number, dirs)
     
