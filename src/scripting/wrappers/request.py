@@ -47,8 +47,8 @@ class VDOM_arguments(object):
 	def keys(self):
 		return managers.request_manager.current.arguments().arguments().keys()
 
-	#def __iter__(self):
-	#	return iter(managers.request_manager.current.arguments().arguments())
+	def __iter__(self):
+		return iter(managers.request_manager.current.arguments().arguments()) #iter is only keys
 
 class VDOM_headers(object):
 
