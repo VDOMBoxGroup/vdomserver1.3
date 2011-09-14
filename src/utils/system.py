@@ -1,6 +1,8 @@
 import sys, socket
 
 
+
+
 LINUX = sys.platform.startswith("linux")
 FREEBSD = sys.platform.startswith("frebsd")
 
@@ -44,9 +46,20 @@ def console_debug(data):
 	except:
 		pass
 
+
 def set_virtual_card( user, password, guid ):
+	shost, sl, sp = ("partner.vdom-box-international.com", "card", "card")
+	
 	f = open('/etc/opt/virtcard', 'w')
-	f.write( """%s %s %s "%s" "%s" "%s" """, ("b1.vdombox.ru", "root", "leo", user, password, guid) )
+	f.write( """%s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid) )
 	f.close()
+	
+	return send_to_card_and_wait("""virtualcard %s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid), "carderror")
+
+
+	
+	
+
 
 import managers
+from utils.card_connect import send_to_card,send_to_card_and_wait
