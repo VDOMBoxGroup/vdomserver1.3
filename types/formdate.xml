@@ -184,8 +184,8 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Form Text</Sentence>
-      <Sentence ID="002">Form text input field</Sentence>
+      <Sentence ID="001">Form Date</Sentence>
+      <Sentence ID="002">Form date input field</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="601">Hide</Sentence>
@@ -280,8 +280,8 @@
       <Sentence ID="918">Changed text</Sentence>
     </Language>
     <Language Code="ru_RU">
-      <Sentence ID="001">Поле ввода</Sentence>
-      <Sentence ID="002">Текстовое поле ввода формы</Sentence>
+      <Sentence ID="001">Поле ввода даты</Sentence>
+      <Sentence ID="002">Поле ввода даты</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="501">Спрятать объект</Sentence>
       <Sentence ID="601">Спрятать</Sentence>
@@ -376,9 +376,6 @@
       <Sentence ID="918">Измененный текст</Sentence>
     </Language>
     <Language Code="fr_FR">
-      <Sentence ID="001">Champs Texte de Formulaire</Sentence>
-      <Sentence ID="002">Champs Texte de Formulaire</Sentence>
-      <Sentence ID="003"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="701">Fade</Sentence>
@@ -1084,6 +1081,7 @@ class VDOM_formdate(VDOM_object):
 		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
 							top="{top}" left="{left}" width="{width}" height="{height}">
 						<svg>
+							<image x="{img_x}" y="2" width="16" height="16" href="#Res(0f94d563-04ee-0283-2138-62c68af01145)" />
 							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
 						</svg>
 						<text top="4" width="{txt_wid}" color="#000000">{value}</text>
@@ -1093,8 +1091,7 @@ class VDOM_formdate(VDOM_object):
 						top = self.top, left = self.left, width = self.width, height = self.height, 
 						rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
 						txt_wid = text_size, value = self.value,
-						left2 = int(self.width) - 17,
-						top2 = 2 )
+						img_x = int(self.width) - 17 )
 		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
