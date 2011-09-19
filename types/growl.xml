@@ -479,13 +479,21 @@ import re
 class VDOM_growl(VDOM_object):
 
 	def render(self, parent, contents=""):
+
 		z = ''
 		style = int(self.style)
 		if style > 0:
 			x = style
-			if style > 5: x = 5
+			if x > 5: x = 5
 			if x > 1:
-				xa = [ '', 'red', 'green', 'blue', 'black', 'white' ]
+				xa = {
+					1: 'yellow',
+					2: 'red',
+					3: 'green',
+					4: 'blue',
+					5: 'black',
+					6: 'white'
+				}
 				z = xa[x]
 		else:
 			if self.userclass != "":
@@ -495,7 +503,7 @@ class VDOM_growl(VDOM_object):
 jQuery(document).ready(function($){
 	if (typeof $.growl === 'undefined') {
 		$.growl=function(t,m){
-			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''%(class)s});
+			$.gritter.add({'title':t,'text':m,'sticky':true,'time':''%(class)s});
 		}
 	}
 	$('span.growls').each(function(){
