@@ -480,9 +480,10 @@ class VDOM_growl(VDOM_object):
 
 	def render(self, parent, contents=""):
 		z = ''
-		if self.style > 0:
-			x = self.style
-			if self.style > 5: x = 5
+		style = int(self.style)
+		if style > 0:
+			x = style
+			if style > 5: x = 5
 			if x > 1:
 				xa = [ '', 'red', 'green', 'blue', 'black', 'white' ]
 				z = xa[x]
