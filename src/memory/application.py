@@ -496,7 +496,7 @@ class VDOM_application(VDOM_parser):
 		session_actions.setdefault(SESSION_SECTION+ON_FINISH,
 				VDOM_server_action("", SESSION_SECTION+ON_FINISH, "", "", "", ON_FINISH))
 		
-		request_actions.setdefault(REQUEST_SECTION+ON_FINISH,
+		request_actions.setdefault(REQUEST_SECTION+ON_START,
 				VDOM_server_action("", REQUEST_SECTION+ON_START, "", "", "", ON_START))
 		
 		application_actions.setdefault(APPLICATION_SECTION+ON_START,
