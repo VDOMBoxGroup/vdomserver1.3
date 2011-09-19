@@ -89,6 +89,7 @@ class VDOM_engine:
 		debug("[Engine] Execute special action \"%s\" (application %s)"%(action.name, application.id))
 		#application.lock()
 		try:
+			scripting.application.set_app_id(application.id)
 			if action and action.code:
 				language=application.scripting_language
 				#if action.lang=="python":

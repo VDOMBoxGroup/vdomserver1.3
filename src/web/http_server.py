@@ -143,7 +143,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		"""finish one request by instantiating RequestHandlerClass"""
 		self.__sem.lock()
 		try:
-			debug("FINISH REQUEST")
+			#debug("FINISH REQUEST")
 			card = True
 			limit = True
 			#if system_options.get("object_amount", "") is "":
@@ -184,7 +184,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		"""must be called by the handler to notify the server about the end of the request processing"""
 		self.__sem.lock()
 		try:
-			debug("NOTIFY REQUEST")
+			#debug("NOTIFY REQUEST")
 			if self.__current_connections > 0:
 				self.__current_connections -= 1
 				if "127.0.0.1" != client_address[0]:
