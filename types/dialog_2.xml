@@ -641,7 +641,7 @@ jQuery(document).ready(function($){
 		,show: %(show)s
 		,modal: %(modal)s
 		,hideShrink: false
-		,afterHide: function(){ execEventBinded("%(idn)s", "hide", {}); }
+		,afterHide: function(){ execEventBinded("%(idn)s", "hide", {}); $('#ui-datepicker-div').fadeOut(); }
 		,afterShow: function(){ execEventBinded("%(idn)s", "show", {}); }
 	});
 	if(typeof pngfix=='function'){
