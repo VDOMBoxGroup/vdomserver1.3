@@ -9,11 +9,11 @@ import managers
 class VDOM_session(dict):
 	"""session class"""
 
-	def __init__(self):
+	def __init__(self, sid):
 		"""session constructor"""
 		dict.__init__(self)
 		
-		self.__id = managers.session_manager.get_unique_sid()
+		self.__id = sid
 		self.context = {}
 		self.on_start_executed = False
 		self.__user = ""
