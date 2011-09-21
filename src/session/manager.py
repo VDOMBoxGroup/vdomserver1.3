@@ -33,9 +33,9 @@ class VDOM_session_manager(dict):
 
 	def create_session(self):
 		"""create session & return it`s id"""
-		s = VDOM_session()
-		self.__sem.lock()
+		self.__sem.lock()		
 		try:
+			s = VDOM_session(self.get_unique_sid())
 			dict.__setitem__(self, s.id(), s)
 		finally:
 			self.__sem.unlock()
