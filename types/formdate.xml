@@ -592,11 +592,9 @@ class VDOM_formdate(VDOM_object):
 		fixh = int(self.height) - 4
 
 		if self.inputmode == "1":
-			js = u"""<script type='text/javascript'>
-				$q(function($){
-					$('#%(id)s').datepicker('destroy').datepicker({ dateFormat: 'yy-mm-dd', showAnim: 'slideDown' });
-				});
-				</script>""" % { "id": id }
+			js = u"""<script type='text/javascript'>$q(function($){
+				$('#%(id)s').datepicker('destroy').datepicker({ dateFormat: 'yy-mm-dd' });
+			});</script>""" % { "id": id }
 			modestyle = u"background:url('/0f94d563-04ee-0283-2138-62c68af01145.res') right 50% no-repeat;"
 		else:
 			js = u""
