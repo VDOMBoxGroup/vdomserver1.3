@@ -1058,10 +1058,10 @@ class VDOM_formdate(VDOM_object):
 					$('#%(id)s').datepicker('destroy').datepicker({ dateFormat: 'yy-mm-dd', showAnim: 'slideDown' });
 				});
 				</script>""" % { "id": id }
-			modestyle = u""
+			modestyle = u"background:url('/0f94d563-04ee-0283-2138-62c68af01145.res') right 50% no-repeat;"
 		else:
 			js = u""
-			modestyle = u"background:url('/0f94d563-04ee-0283-2138-62c68af01145.res') right top no-repeat;"
+			modestyle = u""
 
 		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px;
 					padding: 2px 5px; {display} font: 14px tahoma; {modestyle}
@@ -1077,21 +1077,26 @@ class VDOM_formdate(VDOM_object):
 
 	def wysiwyg(self, parent, contents=""):
 		text_size = self.width if self.value else 0
-		
+		img_x = int(self.width) - 18
+		if img_x < 0: img_x = 2
+		if self.inputmode == "1":
+			modestyle = u"""<image x="{img_x}" y="2" width="16" height="16" href="#Res(0f94d563-04ee-0283-2138-62c68af01145)" />""".format(
+				img_x = img_x )
+		else:
+			u""
 		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
 							top="{top}" left="{left}" width="{width}" height="{height}">
 						<svg>
-							<image x="{img_x}" y="2" width="16" height="16" href="#Res(0f94d563-04ee-0283-2138-62c68af01145)" />
 							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
+							{modestyle}
 						</svg>
 						<text top="4" width="{txt_wid}" color="#000000">{value}</text>
 					</container>
 				 """.format(id = self.id, vis = self.visible, zind = self.zindex, 
-						hierarchy = self.hierarchy, order = self.order, 
+						hierarchy = self.hierarchy, order = self.order, modestyle = modestyle,
 						top = self.top, left = self.left, width = self.width, height = self.height, 
 						rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
-						txt_wid = text_size, value = self.value,
-						img_x = int(self.width) - 17 )
+						txt_wid = text_size, value = self.value )
 		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
