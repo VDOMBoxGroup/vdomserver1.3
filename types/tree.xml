@@ -2228,7 +2228,7 @@ jQuery(document).ready(function($){
 		}
 
 	});
-
+/*
 	$j("#%(id)s li").droppable({
 		accept: '.special',
 		hoverClass: 'drophover',
@@ -2236,7 +2236,7 @@ jQuery(document).ready(function($){
 			execEventBinded('%(woid)s', "dragdrop", {"params": "some parameters"});
 		}
 	});
-
+*/
 });
 </script>""" % {
 "woid"          : woid,
