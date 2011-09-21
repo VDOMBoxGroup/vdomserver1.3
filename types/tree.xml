@@ -2,8 +2,8 @@
 <Type>
   <Information>
     <Name>tree</Name>
-    <DisplayName>#Lang(002)</DisplayName>
-    <Description>#Lang(001)</Description>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
     <ClassName>VDOM_tree</ClassName>
     <ID>0075c5c4-3e29-511a-7a0e-c9a138eabea0</ID>
     <Icon>#Res(21b26a4a-97ab-8f60-c57c-13bd2dd7706e)</Icon>
@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>2</Version>
+    <Version>2.0.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -112,7 +112,7 @@
     <Attribute>
       <Name>fx</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>{ height: "toggle", duration: 200 }</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
@@ -160,45 +160,7 @@
     <Attribute>
       <Name>initAjax</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>{"title": "Item 1"},
-	{"title": "Folder 2", "isFolder": true, "key": "folder2", "expand": true,
-		"children": [
-			{"title": "Sub-item 2.1",
-				"children": [
-							{"title": "Sub-item 2.1.1",
-								"children": [
-                                            {"title": "Sub-item 2.1.1.1"},
-                                            {"title": "Sub-item 2.1.2.2"},
-                                            {"title": "Sub-item 2.1.1.3"},
-                                            {"title": "Sub-item 2.1.2.4"}
-										]
-								},
-                            {"title": "Sub-item 2.1.2"},
-                            {"title": "Sub-item 2.1.3"},
-                            {"title": "Sub-item 2.1.4"}
-						]
-				},
-            {"title": "Sub-item 2.2"},
-            {"title": "Sub-item 2.3 (lazy)", "isLazy": true }
-		]
-	},
-	{"title": "Folder 3", "isFolder": true, "key": "folder3",
-		"children": [
-			{"title": "Sub-item 3.1",
-				"children": [
-                            {"title": "Sub-item 3.1.1"},
-                            {"title": "Sub-item 3.1.2"},
-                            {"title": "Sub-item 3.1.3"},
-                            {"title": "Sub-item 3.1.4"}
-						]
-				},
-            {"title": "Sub-item 3.2"},
-            {"title": "Sub-item 3.3"},
-            {"title": "Sub-item 3.4"}
-		]
-	},
-    {"title": "Lazy Folder 4", "isFolder": true, "isLazy": true, "key": "folder4"},
-    {"title": "Item 5"}</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
@@ -261,88 +223,88 @@
       <Sentence ID="001">Tree</Sentence>
       <Sentence ID="002">Tree</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="502">Load HTML data</Sentence>
+      <Sentence ID="602">loadHTMLData</Sentence>
+      <Sentence ID="702">HTMLdata</Sentence>
+      <Sentence ID="802">New HTML data</Sentence>
+      <Sentence ID="503">Change size of the object</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="703">Width</Sentence>
+      <Sentence ID="803">New width value</Sentence>
+      <Sentence ID="704">Height</Sentence>
+      <Sentence ID="804">New height value</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="102">Show</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108">Fx</Sentence>
-      <Sentence ID="109">Show title</Sentence>
-      <Sentence ID="111">Title</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="113">Init Ajax</Sentence>
-      <Sentence ID="114">Checkbox</Sentence>
-      <Sentence ID="115">Keyboard Active</Sentence>
-      <Sentence ID="116">Auto Collapse</Sentence>
-      <Sentence ID="117">Select Mode</Sentence>
       <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208">Animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
-      <Sentence ID="209">Show title as tree root</Sentence>
-      <Sentence ID="211">Title of the tree</Sentence>
-      <Sentence ID="212">Data to display in tree (html ul, li)</Sentence>
-      <Sentence ID="213">Ajax options used to initialize the tree strucuture.</Sentence>
-      <Sentence ID="214">Show checkboxes.</Sentence>
-      <Sentence ID="215">Support keyboard navigation.</Sentence>
-      <Sentence ID="216">Automatically collapse all siblings, when a node is expanded.</Sentence>
-      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="102">Show</Sentence>
+      <Sentence ID="202">Show object or not</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="311">Incorrect value, must be string</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="314">Incorrect value</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="108">Fx</Sentence>
+      <Sentence ID="208">Animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="109">Show title</Sentence>
+      <Sentence ID="209">Show title as tree root</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="111">Title</Sentence>
+      <Sentence ID="211">Title of the tree</Sentence>
+      <Sentence ID="311">Incorrect value, must be string</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="212">Data to display in tree (html ul, li)</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="113">Init Ajax</Sentence>
+      <Sentence ID="213">Ajax options used to initialize the tree strucuture.</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="114">Checkbox</Sentence>
+      <Sentence ID="214">Show checkboxes.</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="115">Keyboard Active</Sentence>
+      <Sentence ID="215">Support keyboard navigation.</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
+      <Sentence ID="116">Auto Collapse</Sentence>
+      <Sentence ID="216">Automatically collapse all siblings, when a node is expanded.</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="409">No</Sentence>
       <Sentence ID="411">Yes</Sentence>
+      <Sentence ID="117">Select Mode</Sentence>
+      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
       <Sentence ID="412">Single</Sentence>
       <Sentence ID="413">Multi</Sentence>
       <Sentence ID="414">Multi-hier</Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Change size of the object</Sentence>
-      <Sentence ID="504">Load HTML data</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="604">loadHTMLData</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="705">HTMLdata</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="803">New width value</Sentence>
-      <Sentence ID="804">New height value</Sentence>
-      <Sentence ID="805">New HTML data</Sentence>
-      <Sentence ID="901">Current X-value</Sentence>
-      <Sentence ID="902">Current Y-value</Sentence>
-      <Sentence ID="903">Current X-value</Sentence>
+      <Sentence ID="901">Node ID</Sentence>
+      <Sentence ID="902">Is folder</Sentence>
+      <Sentence ID="903">Node title</Sentence>
       <Sentence ID="904">Current Y-value</Sentence>
       <Sentence ID="905">Current X-value</Sentence>
       <Sentence ID="906">Current Y-value</Sentence>
@@ -350,105 +312,105 @@
       <Sentence ID="908">Current Y-value</Sentence>
       <Sentence ID="909">Current X-value</Sentence>
       <Sentence ID="911">Current Y-value</Sentence>
-      <Sentence ID="912">Current X-value</Sentence>
+      <Sentence ID="912">Current Y-value</Sentence>
       <Sentence ID="913">Current Y-value</Sentence>
       <Sentence ID="914">Current X-value</Sentence>
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="918">Node ID</Sentence>
-      <Sentence ID="919">Is folder</Sentence>
-      <Sentence ID="921">Node title</Sentence>
+      <Sentence ID="918">Current X-value</Sentence>
+      <Sentence ID="919">Current Y-value</Sentence>
+      <Sentence ID="921">Current X-value</Sentence>
       <Sentence ID="922">Current Y-value</Sentence>
-      <Sentence ID="923">Current Y-value</Sentence>
+      <Sentence ID="923">Current X-value</Sentence>
       <Sentence ID="924">Current Y-value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Деревянный список</Sentence>
       <Sentence ID="002">Деревянный список</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Спрятать объект</Sentence>
+      <Sentence ID="601">Спрятать</Sentence>
+      <Sentence ID="701">Затухание</Sentence>
+      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="502">Загрузка HTML данных</Sentence>
+      <Sentence ID="602">Загрузка HTML данных</Sentence>
+      <Sentence ID="702">HTML данные</Sentence>
+      <Sentence ID="802">Новые HTML данные</Sentence>
+      <Sentence ID="503">Изменить размеры объекта</Sentence>
+      <Sentence ID="603">Изменить размеры</Sentence>
+      <Sentence ID="703">Ширина</Sentence>
+      <Sentence ID="803">Новое значение ширины</Sentence>
+      <Sentence ID="704">Высота</Sentence>
+      <Sentence ID="804">Новое значение высоты</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="705">Задержка</Sentence>
+      <Sentence ID="805">Время задержки</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="102">Показать</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
-      <Sentence ID="104">Верх</Sentence>
-      <Sentence ID="105">Лево</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="108">Fx</Sentence>
-      <Sentence ID="109">Показать заголовок</Sentence>
-      <Sentence ID="111">Заголовок</Sentence>
-      <Sentence ID="112">Данные</Sentence>
-      <Sentence ID="113">Активировать Ajax</Sentence>
-      <Sentence ID="114">Checkbox</Sentence>
-      <Sentence ID="115">Клавиатура активна</Sentence>
-      <Sentence ID="116">Автоматическое свертывание</Sentence>
-      <Sentence ID="117">Режим выбора</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="202">Отображать объект или нет</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="208">Анимация, например null или { height: "toggle", duration: 200 }</Sentence>
-      <Sentence ID="209">Показывать заголовок как корень дерева</Sentence>
-      <Sentence ID="211">Заголовок дерева</Sentence>
-      <Sentence ID="212">Данные для отображения (html ul, li)</Sentence>
-      <Sentence ID="213">Использование Ajax для инициализации структуры дерева.</Sentence>
-      <Sentence ID="214">Показывать checkboxes.</Sentence>
-      <Sentence ID="215">Поддержка навигации клавиатурой.</Sentence>
-      <Sentence ID="216">Автоматически сворачивать все дочерние элементы узла</Sentence>
-      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="102">Показать</Sentence>
+      <Sentence ID="202">Отображать объект или нет</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
-      <Sentence ID="311">Неправильное значение, должна быть строка</Sentence>
-      <Sentence ID="312">Неправильное значение</Sentence>
-      <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316">Неправильное значение</Sentence>
-      <Sentence ID="317">Неправильное значение</Sentence>
       <Sentence ID="401">Нет</Sentence>
       <Sentence ID="402">Да</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="108">Fx</Sentence>
+      <Sentence ID="208">Анимация, например null или { height: "toggle", duration: 200 }</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="109">Показать заголовок</Sentence>
+      <Sentence ID="209">Показывать заголовок как корень дерева</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
+      <Sentence ID="111">Заголовок</Sentence>
+      <Sentence ID="211">Заголовок дерева</Sentence>
+      <Sentence ID="311">Неправильное значение, должна быть строка</Sentence>
+      <Sentence ID="112">Данные</Sentence>
+      <Sentence ID="212">Данные для отображения (html ul, li)</Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="113">Активировать Ajax</Sentence>
+      <Sentence ID="213">Использование Ajax для инициализации структуры дерева.</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="114">Checkbox</Sentence>
+      <Sentence ID="214">Показывать checkboxes.</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
+      <Sentence ID="115">Клавиатура активна</Sentence>
+      <Sentence ID="215">Поддержка навигации клавиатурой.</Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
       <Sentence ID="407">Нет</Sentence>
       <Sentence ID="408">Да</Sentence>
+      <Sentence ID="116">Автоматическое свертывание</Sentence>
+      <Sentence ID="216">Автоматически сворачивать все дочерние элементы узла</Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="409">Нет</Sentence>
       <Sentence ID="411">Да</Sentence>
+      <Sentence ID="117">Режим выбора</Sentence>
+      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
+      <Sentence ID="317">Неправильное значение</Sentence>
       <Sentence ID="412">Single</Sentence>
       <Sentence ID="413">Multi</Sentence>
       <Sentence ID="414">Multi-hier</Sentence>
-      <Sentence ID="501">Спрятать объект</Sentence>
-      <Sentence ID="502">Показать объект</Sentence>
-      <Sentence ID="503">Изменить размеры объекта</Sentence>
-      <Sentence ID="504">Загрузка HTML данных</Sentence>
-      <Sentence ID="601">Спрятать</Sentence>
-      <Sentence ID="602">Показать</Sentence>
-      <Sentence ID="603">Изменить размеры</Sentence>
-      <Sentence ID="604">Загрузка HTML данных</Sentence>
-      <Sentence ID="701">Затухание</Sentence>
-      <Sentence ID="702">Задержка</Sentence>
-      <Sentence ID="703">Ширина</Sentence>
-      <Sentence ID="704">Высота</Sentence>
-      <Sentence ID="705">HTML данные</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="802">Время задержки</Sentence>
-      <Sentence ID="803">Новое значение ширины</Sentence>
-      <Sentence ID="804">Новое значение высоты</Sentence>
-      <Sentence ID="805">Новые HTML данные</Sentence>
-      <Sentence ID="901">Текущее значение X</Sentence>
-      <Sentence ID="902">Текущее значение Y</Sentence>
-      <Sentence ID="903">Текущее значение X</Sentence>
+      <Sentence ID="901">ID узла</Sentence>
+      <Sentence ID="902">Папка или нет</Sentence>
+      <Sentence ID="903">Заголовок узла</Sentence>
       <Sentence ID="904">Текущее значение Y</Sentence>
       <Sentence ID="905">Текущее значение X</Sentence>
       <Sentence ID="906">Текущее значение Y</Sentence>
@@ -456,105 +418,105 @@
       <Sentence ID="908">Текущее значение Y</Sentence>
       <Sentence ID="909">Текущее значение X</Sentence>
       <Sentence ID="911">Текущее значение Y</Sentence>
-      <Sentence ID="912">Текущее значение X</Sentence>
+      <Sentence ID="912">Текущее значение Y</Sentence>
       <Sentence ID="913">Текущее значение Y</Sentence>
       <Sentence ID="914">Текущее значение X</Sentence>
       <Sentence ID="915">Текущее значение Y</Sentence>
       <Sentence ID="916">Текущее значение X</Sentence>
       <Sentence ID="917">Текущее значение Y</Sentence>
-      <Sentence ID="918">ID узла</Sentence>
-      <Sentence ID="919">Папка или нет</Sentence>
-      <Sentence ID="921">Заголовок узла</Sentence>
+      <Sentence ID="918">Текущее значение X</Sentence>
+      <Sentence ID="919">Текущее значение Y</Sentence>
+      <Sentence ID="921">Текущее значение X</Sentence>
       <Sentence ID="922">Текущее значение Y</Sentence>
-      <Sentence ID="923">Текущее значение Y</Sentence>
+      <Sentence ID="923">Текущее значение X</Sentence>
       <Sentence ID="924">Текущее значение Y</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Show title</Sentence>
       <Sentence ID="002">inventaire arbre</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="502">Load HTML data</Sentence>
+      <Sentence ID="602">loadHTMLData</Sentence>
+      <Sentence ID="702">HTMLdata</Sentence>
+      <Sentence ID="802">New HTML data</Sentence>
+      <Sentence ID="503">Change size of the object</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="703">Width</Sentence>
+      <Sentence ID="803">New width value</Sentence>
+      <Sentence ID="704">Height</Sentence>
+      <Sentence ID="804">New height value</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="102">Show</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="108">Fx</Sentence>
-      <Sentence ID="109">Show title</Sentence>
-      <Sentence ID="111">Titre</Sentence>
-      <Sentence ID="112">Données</Sentence>
-      <Sentence ID="113">Init Ajax</Sentence>
-      <Sentence ID="114">Checkbox</Sentence>
-      <Sentence ID="115">Keyboard Active</Sentence>
-      <Sentence ID="116">Auto Collapse</Sentence>
-      <Sentence ID="117">Select Mode</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="208">Animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
-      <Sentence ID="209">Show title as tree root</Sentence>
-      <Sentence ID="211">Title of the tree</Sentence>
-      <Sentence ID="212">Données à afficher (html ul, li)</Sentence>
-      <Sentence ID="213">Ajax options used to initialize the tree strucuture.</Sentence>
-      <Sentence ID="214">Show checkboxes.</Sentence>
-      <Sentence ID="215">Support keyboard navigation.</Sentence>
-      <Sentence ID="216">Automatically collapse all siblings, when a node is expanded.</Sentence>
-      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="102">Show</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="309">Valeur Incorrecte</Sentence>
-      <Sentence ID="311">Valeur Incorrecte, doit être une chaîne</Sentence>
-      <Sentence ID="312">Valeur Incorrecte</Sentence>
-      <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="314">Valeur Incorrecte</Sentence>
-      <Sentence ID="315">Valeur Incorrecte</Sentence>
-      <Sentence ID="316">Valeur Incorrecte</Sentence>
-      <Sentence ID="317">Valeur Incorrecte</Sentence>
       <Sentence ID="401">Non</Sentence>
       <Sentence ID="402">Oui</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="108">Fx</Sentence>
+      <Sentence ID="208">Animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="109">Show title</Sentence>
+      <Sentence ID="209">Show title as tree root</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Non</Sentence>
       <Sentence ID="404">Oui</Sentence>
+      <Sentence ID="111">Titre</Sentence>
+      <Sentence ID="211">Title of the tree</Sentence>
+      <Sentence ID="311">Valeur Incorrecte, doit être une chaîne</Sentence>
+      <Sentence ID="112">Données</Sentence>
+      <Sentence ID="212">Données à afficher (html ul, li)</Sentence>
+      <Sentence ID="312">Valeur Incorrecte</Sentence>
+      <Sentence ID="113">Init Ajax</Sentence>
+      <Sentence ID="213">Ajax options used to initialize the tree strucuture.</Sentence>
+      <Sentence ID="313">Valeur Incorrecte</Sentence>
+      <Sentence ID="114">Checkbox</Sentence>
+      <Sentence ID="214">Show checkboxes.</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="405">Non</Sentence>
       <Sentence ID="406">Oui</Sentence>
+      <Sentence ID="115">Keyboard Active</Sentence>
+      <Sentence ID="215">Support keyboard navigation.</Sentence>
+      <Sentence ID="315">Valeur Incorrecte</Sentence>
       <Sentence ID="407">Non</Sentence>
       <Sentence ID="408">Oui</Sentence>
+      <Sentence ID="116">Auto Collapse</Sentence>
+      <Sentence ID="216">Automatically collapse all siblings, when a node is expanded.</Sentence>
+      <Sentence ID="316">Valeur Incorrecte</Sentence>
       <Sentence ID="409">Non</Sentence>
       <Sentence ID="411">Oui</Sentence>
+      <Sentence ID="117">Select Mode</Sentence>
+      <Sentence ID="217">1:single, 2:multi, 3:multi-hier</Sentence>
+      <Sentence ID="317">Valeur Incorrecte</Sentence>
       <Sentence ID="412">Single</Sentence>
       <Sentence ID="413">Multi</Sentence>
       <Sentence ID="414">Multi-hier</Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Change size of the object</Sentence>
-      <Sentence ID="504">Load HTML data</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="604">loadHTMLData</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="705">HTMLdata</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="803">New width value</Sentence>
-      <Sentence ID="804">New height value</Sentence>
-      <Sentence ID="805">New HTML data</Sentence>
-      <Sentence ID="901">Current X-value</Sentence>
-      <Sentence ID="902">Current Y-value</Sentence>
-      <Sentence ID="903">Current X-value</Sentence>
+      <Sentence ID="901">Node ID</Sentence>
+      <Sentence ID="902">Is folder</Sentence>
+      <Sentence ID="903">Node title</Sentence>
       <Sentence ID="904">Current Y-value</Sentence>
       <Sentence ID="905">Current X-value</Sentence>
       <Sentence ID="906">Current Y-value</Sentence>
@@ -562,24 +524,122 @@
       <Sentence ID="908">Current Y-value</Sentence>
       <Sentence ID="909">Current X-value</Sentence>
       <Sentence ID="911">Current Y-value</Sentence>
-      <Sentence ID="912">Current X-value</Sentence>
+      <Sentence ID="912">Current Y-value</Sentence>
       <Sentence ID="913">Current Y-value</Sentence>
       <Sentence ID="914">Current X-value</Sentence>
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="918">Node ID</Sentence>
-      <Sentence ID="919">Is folder</Sentence>
-      <Sentence ID="921">Node title</Sentence>
+      <Sentence ID="918">Current X-value</Sentence>
+      <Sentence ID="919">Current Y-value</Sentence>
+      <Sentence ID="921">Current X-value</Sentence>
       <Sentence ID="922">Current Y-value</Sentence>
-      <Sentence ID="923">Current Y-value</Sentence>
+      <Sentence ID="923">Current X-value</Sentence>
       <Sentence ID="924">Current Y-value</Sentence>
     </Language>
   </Languages>
   <Resources>
-    <Resource ID="21b26a4a-97ab-8f60-c57c-13bd2dd7706e" Name="Icon" Type="png"><![CDATA[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]]></Resource>
-    <Resource ID="4701b002-d882-47e3-865c-5243943e67b4" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
-    <Resource ID="175ba938-504c-0205-c144-cf25477f5d03" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAARRQTFRF4ODg7+/v8fHx+vr6/f395eXl/v7+4uLix8fH3Nzc/Pz81tjYt7e36urq1NTUzs7O6OjoqampxMTEzMzM9/j48PDw5OTklJSU266utbW1p6env7+/6enprKys7vT03t7e9/v73d/furq6TU1N2c/P8vPzycnJ2L+/9/b20qGh/f7+l5eXlpaWpaWl8vLyn5+fvr6+z8/PWlpa9PX1qqqqxJyc3d3d297e4dHRJiYm+fz8y8vL28HBxcXFo6Oj09PT5ubmtra2u7u77Ozs1dXV0tLS39/f+PX14eHh7uTk6eXl+/z8ioqKpKSk9PT01tbW9fX17u7ukJCQ3+Hh6+vr+Pj49vb2+/v7+fn59/f3////////pFFVPQAAAFx0Uk5T/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wCDbRfgAAAA10lEQVR42izP11rDMAyAUSW2s7on0LLK6mZDy55lrxYS2/L7v0ejkHOhi/9CnwSGiIibFNBQkxz4NRkLkmDV1486P7XlYnH6bVO4/W0v6qpWSknZBM//s1uX4/OIaCcLK1lReVp9fa7qGPsqg7n/FKOT7ntI+MtpvMNfyGy99RTBvEVLCweZ7QAZU9q5SUIZcx+HLrIwCh6T4CHC5tkFao0VuoPnuYM469vaWbumS+0dibEIrPpdSIF7Bdd1QTyA3P9/Ti41SqXj4WDvaiP9NsXErjFzAQYAm+s6UwNybn0AAAAASUVORK5CYIIw8qwXZWg0thBhlivw1ld0KjUN4hMGmiGh4u8RoVxRFOkblaPDBTJUzIdTV9NKyzm1ir2EDSSg0RBiHm3bYG+izSENFnBtaBC39hNrYGVtkLQDCjAVs/M0NKRlcrFySOSBXCpUztsABCxSQsyCvCABjoAYfgYGZgFuKfZQiOeYBGsZGRktMxJk3aG+hQFulsZGgAADAGSATSItKo16AAAAAElFTkSuQmCCp6mEc/bAwCBNjE1QSVlpU2trS6Cnp8eXjYPZUgjY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]]></Resource>
+    <Resource ID="21b26a4a-97ab-8f60-c57c-13bd2dd7706e" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="4701b002-d882-47e3-865c-5243943e67b4" Name="Icon" Type="jpg"><![CDATA[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]]></Resource>
+    <Resource ID="175ba938-504c-0205-c144-cf25477f5d03" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADYklEQVR42m2TbWxTVRjHn3Pu27m9
+a7mdbG4OS7UEUMa2FFxdiMQ38MOWxUTcMH4QM4XsJYGNpRIg0YWlaNymZMGgxESDMcpLopuOtibS
+rCyI+zAhM0YyKLBBb+l4Wdvb3r7ce7iaYFb1/+Wc55zk9/xPnvNHoV7blyu3vNciORtJfPLz3Ezw
+k3GLXJHWtSTDWcj0y33X+vc5QX3eu5HqBgZ3VwgWCwW7SwPr2w5uttpykM3aQFNTwPJIZ8QlTPzS
+lNLy0kDlWy6Ahp6NiAKmdZ3/Avh3VQY923Zvku0KUIoB8QTuXo1RLSeBei9PwyPjg+nLs30NzY+r
+jGiFuo4zxYBAjyNQ/8b2TQX1BtISaQp6DpElDwNZusLgrTJK3LyJ3m3yumpWsFdqX/Gghp4JWgQI
+99efXu5e/WKJ4ykQ5EcpykcxYa4BwkYeoIw9+8Pk9xt2fNuaVU4bX/m89O3h6WIH5wY3nLOX2Z+u
+qHZDPhcHGzFAL2BIFgjkknn4+ligtfG19uNL+bM4FIwYWz+YKgYc6V7XnFazT9yei5DX3cLCaOKZ
+ZzlBsDQKY4FjU5T2/6ge7aqH5PDRV+Gn0euwef/5YgClPnN5B3Z6D4DD6YS5qzPtkiTZSYndNx+L
+wqEP+9COZUCPzIZg+v03GSxXAYMZSOUwtYqcgehMGwIewccnn2RYljPm5+MdhBCZE4iPIwLs7Ow0
+HnSb6LGDzbUGOEGEVKYADJhTe3A5MDDICIKgx2KxLkKEhyw4cyDyzajUvmftiKV8lTN794Z269Lk
+Z5IsX0cYYV2HaQ7hPxYDMM/zRjwe7xAEs/edi0PBoRPki7Av84i7BlKRKUjFFUgotyCXUs1Pp406
+K8XmIgeiKOqKouwqkUgdLMwe+v27M+UHDzedYtCCmFDuGCyRKC8/VhDLlrFXJkaC69eVNy0GoGg0
+SlU15ckg29blK13a/G9hq7eVbWOtLq6iusEoJCKYYzXz8SJ7wT8+tra2qsgB9Pbu/ns/tncVnB/6
+E45rUOoPbrst2sqhbLUTIDVnzo0Bikvhoj/8c62n6oX/APz+IDjmPkIDw7+AHsW2lu7qT3kOOcyM
+6GAgDGDoCFE2k0yHLHZhL4L/0YXDz0FNRztsYVrQKcPMGKXI1D8Z+KsG+NU89MB9aDlmWBirvR8A
+AAAASUVORK5CYII=]]></Resource>
     <Resource ID="ad49e7da-131b-ae4a-ccb8-636655ffea66" Name="dynatree" Type="js"><![CDATA[Ly8ganF1ZXJ5LmR5bmF0cmVlLmpzIGJ1aWxkIDEuMC4zDQovLyBSZXZpc2lvbjogNDQ3LCBkYXRl
 OiAyMDEwLTEyLTEyIDE4OjAyOjQ4DQovLyBDb3B5cmlnaHQgKGMpIDIwMDgtMTAgIE1hcnRpbiBX
 ZW5kdCAoaHR0cDovL2R5bmF0cmVlLmdvb2dsZWNvZGUuY29tLykNCi8vIER1YWwgbGljZW5zZWQg
@@ -1508,7 +1568,7 @@ KHNvdXJjZU5vZGUpe3NvdXJjZU5vZGUudHJlZS5fb25EcmFnRXZlbnQoInN0b3AiLHNvdXJjZU5v
 ZGUsbnVsbCxldmVudCx1aSxkcmFnZ2FibGUpO319fSk7ZGlkUmVnaXN0ZXJEbmQ9dHJ1ZTt9O30p
 KGpRdWVyeSk7]]></Resource>
     <Resource ID="846e749c-25f6-61ab-5f0f-5a9180d6c68b" Name="theme_sprite" Type="gif"><![CDATA[R0lGODlhVABAAPf/AACAgP///0xMTK2tnJCQkIiIiJSUlO/v7/f39zQ0NOfn5wAAAO7Lh/Pz85ycnH9/f+Li4rCfNpiYmP/yrvzppPbfmPnjnefn3o6fn/vmobGOSff37/TblO719fLYkPD29vL396CgpOvcJbGxsczd3enKf+vNgqmpqfT4+O3Qh/7sp+z09ObZK/DUi6Wlpefx8fb6+t7WMdayavj7+/DRiOHy8v3+/r2ZVNKvaNXm5ujHfPv9/d/s7O3Lge7OhLGPStfTOfL6+vn8/PTakt3NXO/Qh+TaOuvr69TSRfLWjtno6P/xrOrLgPvoo+zPhfnlnvfgmvzrpuTBe/DPhvzoo/LYpdzLVurHgtm2bty4ceK+ePDTisDR0frkn+jIfPTclf7rp7W1td+7dO3LgvLXkMasePbel8rb27XGxvfhm+refP3uqaS1tf/1sezy8vz9/e/v5/j8/Pb7+/389vz78Ozhgaa3t7vMzPHMa//+/cm5Q+3ihbHDw/Dfafn4662trf7+/i629O/5+eX09EHJ/sunYOr39+vIg/r9/e3KhtHQP/Xoz+fEfvPkdvbueOzpgujFf66/v93Si6u4uNPLR8W4aci6YvP6+u7ouvX8/JmqqurdxPTx23Z2dmxsbOXZhObeo/n24tbHXevhmv7//8+rZGBgYL3OzubDfezJhO3Khb29veLDf97QcMGdVvvtjMLU1MXW1vXw0LjJyfz1rc6saMibOevcJvfim/3tqPnloK6MR+zLgf3uqv7vqPLSd6+DKP7vq9nl5eXHgtbFLvjfjMWiW76RMs+/UMOWNciqbtrUPeTXLLqMLuC2U+PTs9zVTMXFxezdKfrwndbRPNfPVy8vL9bGMta0a/PZkd3r6+zj0sakYNPFOuvdae3hcNrLXM22idbITPrmmPnvl9C/UtmuTM2gPti2cptvF/PlfKW3t8ecRNWzb/Toh/jhjfn+/tvp6deqReC8bcfY2BgYGNHDR+nbYbGEKLWIK/rnod3NWsGndObw8Pbdl////yH5BAEAAP8ALAAAAABUAEAAQAj/AP8JHEiw4D8ABhMORKgwIcOGBQFInEixokSIBhEOCBDgQUeOAzL+28hxAccAISOOPGkSZEaLMGPKnEmzps2bMwuG3Dmy5wCNHz165LkT6IKjR1H6HGkUqUmiTHE+FJhS4VSMB3VCvIpRKtetArnEQQHiQ4cVL3goqcFFIEMpTyrInStXnxS3ArXErfDE1pe/X3BpWZRVYJ5Wexp58tRITas8WB0K1HSSlA0bOxDFgacJ778bU3qIHj0F9I1Nhf89U2YM2y6rlSLInk2bdiUBChQEOHBgw0mOAgAIIFBg94EGJwsQCI7bBQEDEhxIMGAgTADmxJ9Hn25AOfPcCXg3/0hAHrhw4uGPk0/g/WtDoL9dqiQZv+rClfGVRpQa+X7/1JG5ZxV/BNkn0gAIJpjggQoqyGCDCL6Ek1bvjQRhhPNdaGBWGm7o1X+F0XMJWmrlkAMaAZzhhmepLKHCizC+uEQqnh2yRDDj/OIMGDyCEcwhnhE0ihpqjAKiSP+ggZkQM8BAlllBoOEZFkmkYOWVSbSTRD9YFCZDlSkkkQ8TZDJBAyEyZOVHOd4sAwQQjzzyJhDUIOPHPwJcoOcFucHB2wYIYEfAoIQWyhwEiEKQ2xHiBXpeoZAuJ1yiiirA6HGODhepocL1hgAC+V13XgGfxteeAAe4YMCg0EFnHXYFrP+qHXSnYopAAvnB+imuyUkKooCS/QeshDf9ip9Q8hEEXwAt6acsfsye5CGB/S37m4fQXntgqNNOKKyx3wpLLVVgFVjuQBs+a+574/ZUIX0eJXsffdrOxy2xNlFoFbTxOjvvvfbm122x6+4bLrrnBthuVwIJQ8LDED+8grpVMGDxxRhX4VnFGHesMYBHMvxPLHKYRaISJtYQi2eQRJHByzC/HAUknjHicgZRyNPFzl1QwEiQAn2yxyuv1PFJyP7dsUOTT571giF3eCaGGR5UbbUZrLBigxiFZUG1B2Ycs8UWLbSQTQdZFDaHKHX0cY819YhDSTWizBEyQ5EEAMgbOzD/6SQIckTimQxFlGD44UXUUgQhOBTmCg2GFwHMGJSPMYUrqAHAiR5GsOA5C0d9zgIzenDi1emopz5Tnnzm9mcAn8KamwLiBXAqBCdQp7sBDpyQKXG7U+fA7ZXSrl7so84uHnuSCuBnqOYNV1x+px6hqvAO8P7qqLo7kP3wzTO6HnmgRo/e+KCe+mn5uT666aDMrQ+9oO83L3+o9L8fXEEhJOyuwQirUMEc0q7+vUtDD4JQAhuEr5rwDyzwkta2SiLBgEVLXm4pIASD8hGo/GQlTnnKUj64kRAqhSgfIogB9xVBDHKIJRV8Fn2aNbB8qRCCCMzQhRbooP14ayArDFYA/wFILgFWS4NGLCIR/ydEhf0wQOCq1q8W5j+RSVFcT8SKtWL4L4FNsD4NpImxSIIsf+GFXlw8I8CURcV3caSM2EKjC7c4xzaycI1dBKMF68XGLFoRigdzIsGuSEhAHlF1iEykImWir2CdIROCMMQgBlGDGsBCRf5JRBsmwMlOcrINifCMKt6BBzwUwxeebIMqgCYQOljBCnTASLr8IyKnlYgNuFyHZ66wBgr48pe+XMMVdtlLCvTCHFRIJhVyQTOQhYIItKAFEUIBkVl6BhZxKIstUWZJz6CiCRYIpzjD2QRUeEYK4LRAE84BhXZCQRd3AZAsiDCNTnSCHPuQRUM86P8ThpwCEX8zWVoGcQrPaCENHEioQjnwhGGIgTAMEQNCOZCGZJDhomTwx9ZSgwlwuKMPpjBFH9RhBUwgjSGzsIHfmrYCQczCM1kYQtlm2oIhoGMIIEgbQ7Ag05o2wwlAdUILtNElhoACHN+AhiKOoghFIMEeoLibQPhACr6ttCyX4MPgtmCCrnp1CzjYQjzaUZhScNUEW8CHF9bqBR8EohRZkYQ4jBCDuh6lrnXthiSOxBA7cGRvfWOaHOzgmUL4QAeITawPuOHWQhSmDOyYBy98kI4fWNayZXCLJa4hjVuI4LOOcMRnR0sMS4BrEhhIrWpXOwnPlEEDsI2tbDMLsm3ohIMfS8SIAHbL297yVji+DS5zhOtb4BL3t8ftrXGTK5w9Kc9TvyuAdKc73eZBIAwncMEJtnuCEawiutSlrnUR9dwGIE964a0uc1pnPN/ATlTSc91xOHI757CKVX+Ab3bu+5zblZd8+i2AfMfDvO/AgSPu/Q2sOIKcXn3HObyLDnRGEODnSCd7EjiVpchD4ASUD1YcXg8CatWb+Y2qwb+p1QkszLsJV7jFGCbxAUSs4FHNGMC2ax6gStU+9Kb3VA1YhQtGQOQR/GEE0Qjwj4EsP/aZb8mnSu5ul3tcKhPXysLFcnC1XNyAAAA7]]></Resource>
-    <Resource ID="60e4ffa1-5abb-04b1-bb0d-c8497644f290" Name="theme" Type="css"><![CDATA[PHN0eWxlPg0KLyoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+    <Resource ID="60e4ffa1-5abb-04b1-bb0d-c8497644f290" Name="theme_old" Type="css"><![CDATA[PHN0eWxlPg0KLyoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
 KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCiAqIFRyZWUgY29udGFpbmVyDQogKi8N
 CnVsLmR5bmF0cmVlLWNvbnRhaW5lcg0Kew0KCWZvbnQtZmFtaWx5OiB0YWhvbWEsIGFyaWFsLCBo
 ZWx2ZXRpY2E7DQoJZm9udC1zaXplOiAxMHB0OyAvKiBmb250IHNpemUgc2hvdWxkIG5vdCBiZSB0
@@ -1695,6 +1755,385 @@ KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
 KioqKioqKioqKg0KICogQ3VzdG9tIG5vZGUgY2xhc3NlcyAoc2FtcGxlKQ0KICovDQoNCnNwYW4u
 Y3VzdG9tMSBhDQp7DQoJYmFja2dyb3VuZC1jb2xvcjogbWFyb29uOw0KCWNvbG9yOiB5ZWxsb3c7
 DQp9DQo8L3N0eWxlPg==]]></Resource>
+    <Resource ID="6bf6d09d-ab91-63f6-e115-62920c3e5b2e" Name="load" Type="gif"><![CDATA[R0lGODlhEAAQAPQAAP///yyy0vn8/FrC25nZ6DCz00u92Nzy97bk7z641Y3V5oDQ4+j2+anf7M/t
+9GfH3nPL4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05F
+VFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAA
+EAAQAAAFUCAgjmRpnqUwFGwhKoRgqq2YFMaRGjWA8AbZiIBbjQQ8AmmFUJEQhQGJhaKOrCksgEla
++KIkYvC6SJKQOISoNSYdeIk1ayA8ExTyeR3F749CACH5BAkKAAAALAAAAAAQABAAAAVoICCKR9KM
+aCoaxeCoqEAkRX3AwMHWxQIIjJSAZWgUEgzBwCBAEQpMwIDwY1FHgwJCtOW2UDWYIDyqNVVkUbYr
+6CK+o2eUMKgWrqKhj0FrEM8jQQALPFA3MAc8CQSAMA5ZBjgqDQmHIyEAIfkECQoAAAAsAAAAABAA
+EAAABWAgII4j85Ao2hRIKgrEUBQJLaSHMe8zgQo6Q8sxS7RIhILhBkgumCTZsXkACBC+0cwF2GoL
+LoFXREDcDlkAojBICRaFLDCOQtQKjmsQSubtDFU/NXcDBHwkaw1cKQ8MiyEAIfkECQoAAAAsAAAA
+ABAAEAAABVIgII5kaZ6AIJQCMRTFQKiDQx4GrBfGa4uCnAEhQuRgPwCBtwK+kCNFgjh6QlFYgGO7
+baJ2CxIioSDpwqNggWCGDVVGphly3BkOpXDrKfNm/4AhACH5BAkKAAAALAAAAAAQABAAAAVgICCO
+ZGmeqEAMRTEQwskYbV0Yx7kYSIzQhtgoBxCKBDQCIOcoLBimRiFhSABYU5gIgW01pLUBYkRItAYA
+qrlhYiwKjiWAcDMWY8QjsCf4DewiBzQ2N1AmKlgvgCiMjSQhACH5BAkKAAAALAAAAAAQABAAAAVf
+ICCOZGmeqEgUxUAIpkA0AMKyxkEiSZEIsJqhYAg+boUFSTAkiBiNHks3sg1ILAfBiS10gyqCg0Ua
+FBCkwy3RYKiIYMAC+RAxiQgYsJdAjw5DN2gILzEEZgVcKYuMJiEAOwAAAAAAAAAAAA==]]></Resource>
+    <Resource ID="e267fd73-2105-27fe-8b4d-6292b730711f" Name="book" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAA8AAAAQCAYAAADJViUEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOjY2MThBRTZDMDc3RDExRTBCRUJDOEM2ODNENTQwOEUwIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOjY2MThBRTZEMDc3RDExRTBCRUJDOEM2ODNENTQwOEUwIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjYxOEFFNkEwNzdEMTFFMEJFQkM4
+QzY4M0Q1NDA4RTAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjYxOEFFNkIwNzdEMTFFMEJF
+QkM4QzY4M0Q1NDA4RTAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz4ilIwNAAAB2UlEQVR42oxTu0oDQRQ9MztJ3ISNZtHCRLQX
+S1sRbBRtRBAr/yI2loJg4R/4Af6EhZ8gPsHKRsVGskbz2N3Z8d7ZZBIQ0Quz7OOce+499654uLvF
+zfXV6ubm1mW3n0BnGsbgzzAEEk+P94cLc7PHaRyj3UvR0wbZP8iNRgM4Oz2+27035ujG/DuiKDJa
+a6Oqvvdy8YzFRFC6JSo5SZDCcwpZltkS+fB9pVKx90SGUlKYGmGnJEM7aH90kQrliBxBEEAIYc94
+QuYi69MLiycTpATBLIjBSikkVI3v+/A8z723ZPZGMzn30GbVZuQoB5M6nY79Vq1WR8qUA2kMxFbM
+x+SUj9Twg3C9cRQKhXw8A1UOxbisR8dW9IWoxYZJR2YVLr1cLudVae0MVEKScpfIxVHZ6digWalU
+KiGmPTBj22PJhEfMPcc5WXoScmDYEMRETvpDmbSs22liO4M/UaSr54hDknWEHJc0Ddczi9AkBuRP
+vL/nS5J/N25EwwSWRB7wsigjlYwj4MPPlYsTVLQWo+WnnrlUTsIkPmEYotVqQYUz83M7C8BywPAZ
+hNN//xS8NLVabVKsr62c7G1v7L++vX21++Qdla9/+atI1avX60Gz2Tygx/NvAQYAnmJHEaKoNTsA
+AAAASUVORK5CYII=]]></Resource>
+    <Resource ID="91f05d42-8c45-45a5-dceb-629321703fbd" Name="book_open" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAWCAYAAADJqhx8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOjdEQTY1NjQ0MDc3RDExRTA4NjkwOTk1MTUxQTA1M0M3IiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOjdEQTY1NjQ1MDc3RDExRTA4NjkwOTk1MTUxQTA1M0M3Ij4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0RBNjU2NDIwNzdEMTFFMDg2OTA5
+OTUxNTFBMDUzQzciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0RBNjU2NDMwNzdEMTFFMDg2
+OTA5OTUxNTFBMDUzQzciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz6vG4CZAAAEB0lEQVR42qRUXWscVRh+zjkzszO7s5/5MCEa
+k7TGRCuIbVoRRKFQFLwS/A9e+B+88s4fIF6IFEGQorE31iKKWBqKH9FaSxradTU22Waz2c3O7s6c
+mTnn+M4k/gIH3p09H+9znud53zPMGIP/87Bv7xEAw1PjcfRLc2fPP+21IbSM9gJbjSQz2lhIEmli
+KVmlVkXPWvJcNnrv2enhu7HisHxHw+LQvdCV799c9Ct6Cu+cb7lvXTBozMwCwj8+SqdoN//A3e4h
+fv5LF4PRGEpzcEUEsig7ygiW4M5DH29/uoA3PpjBrW0NJWNoUwC4j+5Y4FF/DGNSxYh29vDMgywY
+jYWtAE8SmsTGbhVf3ibwaEBbj31i2V5iAqayQR4WYeSLBgkhqOMhiwlMYrruwSm7RNVACFriApyS
+BM/+M9pKYfLkkx9O6IhpOqJhDCtnyf7bQUCK5CgIWsgAc1CagyYTdEbLohDJCUiMVMUwSQKVqlxm
+r9eHbVuwiIIgNllwTZQUGUD1IjhKtiQtREQxxTjs4/72NpqtJoEp1Ko1FIseeC6H5zIsnflpGFHT
+dHqcB+MSSo1Qq9QxN19CENE0JZQrZTjUF1xICtJP6qysEUkWDNMwuQRiQCYqHZLGCorVOoWXeyAj
+Ca3ZsYnkS85AqbwTqRc0NOkXhQR8SBKYoA6MEfaOEJoIFTrdsmzYBQeMWOYMMtWlGmHRwJAXRqRw
+nTSvAlhEDGjuRGumOU3T/O26BZR8H44mKT98s47ZOWJe4LlxLjHQBJD5IKMAchxSFdJcQrlSIVDa
+ZwuqBOCoEPz655fRoHYnxkRRoUQMlKJ2JRCnYKPamEC90aBOZejut0kWJSlpnqyVSIbFeRiMcPWL
+74Q02iu6Gh7JUJo8IJ0yDtF6cB9bW1uUSMxKU9gZW9Q3aXWiWiqunVvz+ERR8JvrHx/++lv7Vq00
+SV5QBZIRmSpRm6xh6Znnsby8DMdxcPnqje8/+vCzT+pJeIe73mOWbdli7fyL7NzZF5TT37tRDaJg
+qBunWvsHZdd3MDV6uNn/fePr3Uedzn7nIJwrm/U3X376ypmV062CVwpJ1kAEQYCi3+ArS49Hc3bn
+9ikEmzPFybQjppfmy2nz7KRz3SmVHwyHwcbK6mp79cxzI2N4V0bhQau1EzLfLyKm5rt06TX7lVdf
+qiwvzlV4Iit3u+WLnu9Ov35hsfnEwlJi2fYh9UV7GIz2BkeD3jCIxz/+tJlaQlgEMDB/Nu/FjZLf
+r1dryerqir44n14TVqFSLNdcGccRlfJoNBp3h8PxYKf7t7zy1TUT9aPse5DdWJ53mU51Gg3Gg2F3
+KP2FWXdqYrKTfU1GR0EayoiuJouM1iqhW7rb/QdqYPCvAAMA1zsKH8rrwEEAAAAASUVORK5CYII=
+]]></Resource>
+    <Resource ID="12c333ec-ae73-4919-03c0-6293f7c4ea1a" Name="line" Type="gif"><![CDATA[R0lGODlhEAAQAPcAAAAAAIAAAACAAICAAAAAgIAAgACAgMDAwMDcwKbK8P///6Wlpf//////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+///////////////78KCgpICAgP8AAAD/AP//AAAA//8A/wD//////yH5BAEAAP4ALAAAAAAQABAA
+AAgpAP0JFHhvoMGDCBMiLKiwocOBDB9KXDixosGIFidizPhwI8eGHj8KDAgAOw==]]></Resource>
+    <Resource ID="1571c3be-ff03-158f-def0-62949b350537" Name="sprites" Type="gif"><![CDATA[R0lGODlhYADIAPf/AFW4/9bRyjxDVZXI/9LS0qnS+wkQc8TFxFewggJn6MS1p4yqynSqqKjZ7vf2
+7aro/1+EpP+EhvHt6nSwMOfn3azR9PHx8Xm5pqqtnf//7P9jYQFn2Wq9aQ+FyuTk5AJkyv8AAoPf
+/////5fNmSx385PGRiOR3wCb/o60vFnX/3LGcQZqqczu//9PUVmd2bvwx/L3+wY2ovz39YW07Re2
+/+rq6gWK/f/+8VKo//vw6QBW9gJ402G1lVV0lc3Ny0eHlUd5lfr7+rrL2ghou/T09CSK6Pf39//8
++ca/t2qMquzs7G6cr+jo6AFk9MXG0IaGhqqelZucmf8cF/n4+Pz8/I3HiGOo2Rim/+7q5iG7/6a2
+y73S3NnW6OHd2aa40O7u7kqb/4uNiiSQvv//99PNyWGl2bW43IuXmySC9P748OLi42iu3JKTkV6i
+2VlbWNrU0BtShfb49O+uMPHFH+bo5cjW6e7w7avfoxilGQABAL3O1L7BvSDO9vD+8a690aSmoru9
+urTY/KHL8+j26kLOYajWouLr83+Bfg5ayLS2s629xHaWsu/v5UzWaNT44LbGzACFhLfc/wD//7/f
+/bbG2d/253K9bTl86s/31wBy4LTvwKutq58AAN3f3NHX3R95/e7/+aDI3VFhfej/8Ozx9ABCrv+8
+um6Tsni9dKW1u+7v+eDs+7Xn/0pVbJLnpv8jJ/3KyHbe/dTW09/g6hmVHECw4abQ7l+//9XV1Y+L
+hu7m4NfY1q3N9t3Y1QB3//Xv6Pnw4zClzf//5evr6+zs61mg4Hm17SKZ0oOZvYbJ/7TF1peOgxCW
+/yyV4AVknT+f4+fbyDrDMABejmuMtL/U4P3a2v3+/Xmi1v769yadz6Kfo4mfwyGW2GCk1W+v16q7
+zaDN/P+hoDqP/8LX4ufn5+fj4E+Zi4mIh+3t7QCA5p6/1SatI+Hd71Z6rUW9RXmFhQSl/bHf/9Lq
+/VaZlv8+RJTW/3WUo37GorS1vnp7tUzXU4DS/973/Lfdy/7//P///yH/C1hNUCBEYXRhWE1QPD94
+cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1w
+bWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4w
+LWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4
+bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8
+cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5j
+b20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0v
+IiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNl
+UmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1N
+Okluc3RhbmNlSUQ9InhtcC5paWQ6NjFCMkJFMEMwNzdDMTFFMDgwMDNEQ0EyOUJGRTg1RjYiIHht
+cE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjFCMkJFMEQwNzdDMTFFMDgwMDNEQ0EyOUJGRTg1RjYi
+PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MUIyQkUwQTA3
+N0MxMUUwODAwM0RDQTI5QkZFODVGNiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MUIyQkUw
+QjA3N0MxMUUwODAwM0RDQTI5QkZFODVGNiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRG
+PiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq
+6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7Kx
+sK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4
+d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/
+Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcG
+BQQDAgEAACH5BAEAAP8ALAAAAABgAMgAAAj/AP/9E3HAx4GDCBMKHFgwocMDCwkafIgwYkOKBy1O
+xKgRY0aBEtLkwOKhpMmSEEGKJHnSZMp/IUe2dLkwJsuZL23ORFlz5U4PL6Gk2CeiqFGjBBYKJXr0
+aFKBS5s6VTpUKlKqTK0+/RfVqoitCmgAsIYtiNkpRowQASuWrNkgaNWyHVv2bNq1C8PSfRsXr0C9
+bu3Kzdu2Lty7YLPcuiEBHbphw6agTby48ePIk/MqZuwYsmQjlDlf/hzasufMfzebxgxac+UvX5RY
+IELlq2vGsGXTtp36dezZtUvnBs77nwLVw3cL/6087xUAjCHXsGDEggWwz6MPm179unPoEqRT/7eO
+Hbz47uW1cyf/Xf1473+fjznyNm3a8vPr28dP36z91vEBkJ9/+303YBD/8afffc7hkIEExCixHTqD
+xecghBLWQKFfxl1xYYQTVtjhhxluiB2JIXKogIcPgqihiAow4yAWTNRYAxHs/SVjBjTaiCN8xu3Y
+IxM35hjkjDUS+SNYQiZZJJAxIumjkVE+WMOVNcRWA5MXYpmlElvmtaMEXmrJpZVYmilml2mCeSaZ
+bYb5lw1g3OCAWj9+oSKdduJpnZ5g8XknEXnuWeeghQZ6qJ8WAJqXoIw6OicYwpSjxqXDxGZopZeq
+kakSm1qKqaaKcjoqqKWK6impj1Kq6qcq+v8iDo81kiMhEVOAJSutTNg6DK66ztqjr8Dmteuwt+Zq
+rLC1Jhssr8QqKxASACTjVXHUWuvVVtley2213i7U7bbigkuuQFFAsUwu5zzh7rvnsLFQuuu2+667
+8c6rLrv34isvuvvae2++ANfb7xME/0Mvv/0mzMsnJOhwSR0LbIPMAjMUY8JCD0c8ccUXZ7yxQB1L
+TLHFGGvMMcQmg5zyyP+U/DHKIq/s8ckhqywQOCxPPMYYN0BDiQsw83zzz0EPXXTPdSAtNNELGW2y
+00pHzTTVUO98NdBPw1zAJzqYnIY1IgTgRdb/fB32xGOXfbbXYItNttloqy2323XHzfbcby//ZPfe
+eMNcARpNFF4HMHNrgfbghTdxeOKLE2444mUrLrjkjlMegOULMT455Jc3/njlkTeRgOM31PYG5wIx
+fnodqYuweumvxz576LWrzvo/rqOuO+2+y7774AkUD3ttm7dxefEJHF+58p2jwbzzyS9vfOzVRz89
+9lpA37r01yPfveBFJLBB82lMYQ0S33jPe/nn15H++u2Tbz766rPvfgXw40///v2TX/7q17kAzk9/
+5MvEB5oXgF0EgQzKKEMCF1iHBj4wghNkoAMhKMECKlCDF+xg64rwwQpuEIMepKAFOQgzW5DwAxuo
+wy+YYI0uCEGE/3ChAmM4wxresIUv5CEN/22IQx3CUIZD/OFCjChEHxYxiEh0ouBMsIMhfKBpRXmD
+EKwwxSpecQxZ3GIXrYhF2Ymxc1QkIxjNyEU0erGMWmxj69L4xTDKMYfceOMv0BGEXmzhjrbIIxn3
+2Mc/tlCQVySkHwGJSBnycZGH1OMjDbnERiqSkgIJZAeGMAQZfsEab6DGGg65yU7+4pOhHGUlS+lJ
+UIqSlJxsZSphaUpUvnKVsTylK1UpkAYcowMr6KQuhmGNcoyDl//wJTCFSUxjIlOZwazDMIt5TJhB
+k5nUfOYvozlNZ1pzm9j05kIakA0xOGMFdZCBNaxBhi08s5znTOc62/lOc6JTnex0pzXhef/Peepz
+nPyUZz7rGU980tOawbBnHd6Aiyl4IhTeaMY4ExpPhjoUohLtJUXRadGHRnSiCu0oRkFa0YZ6NKPJ
+3OhCTTrSXtZCDNJApwiCIIKHduMZ43xpTOsw05qG4qY5halMaWpTnLpUqDwl6k+NmkydDtWnQD3q
+Tnta1IVY9apYzapWt8rVrnr1q1yFg1jHStaxLqSsaBXrWdNa1rWy1awCeStZ3SrXs1LgrhSgAx0Y
+YQc7OCAOcDirHAZL2MLKIbBxxWte99rXvyL2H3AwrGQfCwfF6pWvfgWsYCVbWMriVa90aGwcNBtX
+OczhtKhF7WHtelfQipa0kDVtalO72sT/jqAKuM3tCAoB28jOlraeXWxo/eqP0VLWtK4l7hxqC9nW
+6rWxeDCuYOeQXAfgYbmerQIHOGCJ7nJABVXorWm3211LfBe7dq2uP4rrj+NSd7gOWC96E1tdPES3
+vdN9rl/tO9/mane7AOZAFfBb2jkEGMD9hYNe/dHY9TrYvQwmrnyZq2A64AG69l2vey+8X/5SmA7/
+RYUKUMHdERA4tgbmgIhJbIkE73W98XWwhqcLYxm7mBH2ta594zDjAufYvtF1sXYtMWIVfNfE7uVu
+kc9LYb7K+MkQfrI/EsxXIO/4wdO18n2pPGQiG1kFSJ4ud73MZMo2WMon9m2MbUzhvtoB/8g8xnKB
+33zlKbf5v19WcZgLvN08oyLBmY0zlKc72icD+q9xwIOU3TtaRTsY0FUwL3dJDOY0m1bSlqB0ghEt
+aBm797enpTCn2evp6YJ604WowghWfdvdWvrUCR5tp0tdWs4SlrKyRrOlbT1YXI/2Zz/zxxh6HFte
+U1iuao0rsim7bLq+1dlshXZawUrtalv72tjOtra3ze1ue/vb4NaqHyAABwj4oavjhoS50U3udXN1
+3OU+97vbLe+tptvdWaVEuVPRCUWQWw9Z1YO6UyEHRSQBEgDHqr4hoIh+JwEOCb+qHsqtiII/POJW
+nTjD72BwOFAi4OquuMERjlU99IDfFP/oxF7H/fGMn3ywy5XDIyCA8X9QogeKWCxfWS5xnMN8sDOv
+ucm1cIdCFP0OM2/5QkxecdMCneZXhQPKVY7ZRzxWIJAg+GxlDomo5/yyVb86ZCu+datHPRVHN7rR
+zW5VSJCdto/o+kLG3YmUM9avdkhCvcctW0bwNdR6nzsE8kqBO7hjBIz4a+AFwvfTGn4EoT7F3iGQ
+9sov/h+Nn8MdNh/5ekMgFa3FrB1GO/OFfN60fnfzcikBAdN//Q76iMY6RjBaPbReIAw3LexlD3k5
+sN71at+80Ytue9frfvOc9/3tIVt3/Tpg9NLFet/dHIdQy535e3VHNKJBC1rI+tPajwb/HmgRasoe
+/fzBfywkZIt8zi/3+gzfK2ZlHYfi457s1K++HOz/D4bzdQTrMH605w+/d3+mBYACuFz8t3HD14B3
+sIBk1353oIDLN26il2v+cHl+kASyBX2htgh7lwR9VQkjQAsjMHr+AIJzx4GnVYKQt1wqyHhJEHzo
+J3kryH7uJwcxGFeP8FrFNXFXBQmPIFuqJXBR9wgSQH/rpW9HSIShBoRWBQePQINGB4ULIYROqIDX
+JxC29whKaHtKx4UQMIROt39Ql3FjmGv1d4ZLN4Y/Z4ZCN4Y0yHpxSIYxZ3s1Z3NwkAReqAcXB3JJ
+QAn7twgkp3B7qAdxQAmLAHEBBwen/yCIerCIeaiHj/iAf1hykPCIg1iIWQVv+CZuEKBu9QaK8cZu
+pThvp2hvofiJ4daKrviKsBiLsjiLtJhVGEBtt1iL3vYHutiLspiLXwWMvphtvDiMxghuwthVyXiM
+1FaMzPiM2XaL0vgP05iM1UiN2LiM0PgPzriN3hiM3+iK3RiO5IhV2liOxIiO6mhV57iO1TaO7hiO
+7RiPXwWP9HiP+JiP+riP/LiPPkBtsbCN/whWAQlWf2CPWcUHfGBtgBAGYPUAKdBVBwlWCmmQdBAF
+X8UHD7CQYAUIeZAHX/UAkiAJEnmRGbmR9egPdPAvXMUHLICSXuWRbgCSXSWSIUCSXP/1ByrJklvl
+kjCZk+tFB4fQVS7JAqzAkVslkzNZk5IQAjcpkUE5lC3JAkaJlFqlkyvpVT5plVmllEu5VTbplDi5
+VVjJk1q1lV71ByaplUfpVWHwkR/pkFuVAiM5khGZk2tJlG2ZlgiJVRX5jBOZkVy5VQP5VQX5jIXp
+VYfZj4zZmI75mJAZmZI5mf4IkAJpmQbZl1f1l9TWkA95l2SpmVbFmSWJkVr5kzH5kSE5kqV5koOZ
+VWWplS/5mlglkzTJVTY5lle5k7KJmrupklLZk1S5l0mZB27wlWDZlE8JlMBJlMNJmwsRm87pm7Vp
+nMd5m1kVlstJlrw5ndAZnXnZksT/uVVvCZdyqVV0WZegeZXh2ZPjGZoU+Z20GJhaKZ8LkZhdtZjH
+iJ9cpZ+U+Z+OaQoRoAERAAtYpWu6to4gAAJcZQotsKAQqgEGuhAIimbqCKEMmlUasKBSoAEa0AJS
+AAJSEA4UWqFPdqEQyglYFQEiGgHVcARHgA0gKqITaqInio4YqqJWVQ2vAAIRcATW4A8ysKGv8KAt
+IBAV6mgOhqILqqMLEQ4iWg0iIKQbKgWmYAoLWg3/gKAZJmNMCgJOKhAs2gLrNaQiagr+IAI9SqIy
+pqRAdqPlmKNXtaEacARmaqUO9qARsKUOlmFvCqdxCqZh+g8sSg93iqbrZQ0hyqZ9/2plFrqOnDCo
+/wALIvqgeOpgLPoKSNqmXSplCpqhWGWpr4Co68WjIECifNqmCPqlWQULIdoCpBoO9AAC9FCiNrpe
+Xyqp/xAOIQoCRdqjvmoKtnqrnxqpWgULD4qhLTChm3qr/uCOxspV1RAO1Mqsw2qjAGpVzoqr2dqt
+8Qio3aYKcZBVfTAIo9AH4Vau53pt/pAPBpAPz2pV6oqu1sYFBmAAs4BVg+AKmGCu4Lav/ToK1uYP
+92oA1nBVAOuv1WYGBZuvVlUJhNAImjAI9NptECuxFFtt1lCw8boQFzuxFctVDnYEDGsAMcAOD0sI
+L4CxIZtVs/Zko/UPELuyINtVnf8WAzg7BesVszPLsl11DTgbtKWAs6WAsgLhCITgCJrQCJjQB6DA
+VTBwDR8wtVRLtdcwrkirtEzrtFB7DaXwtUMLtqVwtf+QtUvbtE+7VR+ACGzbtm3rAqogEBDrCI7w
+AkmbtlrlD1W7t1N7sHNbt3crsmvrtm77AX6btIDrCHibVcaQCY77uI6bDqsgC3KbtCuLtlwVB8aw
+AZzbuZ1rDPk6t5fLtVuluZ57usZABzJruVu7uFklY/FgAzZwAqvQCR6rsj6buYK2CfiwB06AD07g
+BJ6wujSbsVwlrg6WDsrrYLPgBMSbu18VDydwAvAwuVY1CBFbs96GvdD7Vf4guzb/0LECwb3aC1by
+QL3We738uq7fBrDsS23+ML0nIL7/4L4t61WqAAP+YLtX1Qf+e7/b9r8A3FWqsA8nsA8OuxAC7K0L
+MQuqoJLOy8ASPMEUXMH/IK7kaq4DTJn2iq/6yq8K660l68Ep272TObIle7IpW7z0ip2OCbRBGwND
+K8NGW7ZJe7Zcq5qQObiEy7ZwW7l0a7eK+w9wWcRGfMRInMREvMQu3IqNC7mPK7mUu7p127pE3MSM
+CbuyS7v8+7zai8WPKb3oO8Xjm73G263nW71kPL7ru8GSmb/7i1ULbMF0XMd2rI4IgADmsMc/8ANA
+AAHqYFU8wAN5vMfm0Md/HMgL/7EHjNzIjoxVjhzJe3BVhuAPEzAB1qAOC7AAi9DJi3BVlozJmszJ
+nnxVCDAPDDAPS2APKNDKrdwOVnXKqbzKrvzKVrUHMjBsDjZsBwAIV4XLurxevOzLJVoCJZCohpDM
+hjADPVDMx+wP1qDMy9zMC4EA0zANmwwE2pAIgAAIifDNA2nN2LwA2szN3gzOArEHcZDLT3YAcUDM
+6bzOwbxe7gzPE2DMxjwBVDAJ/AwDM8DMAnHP+KzP/DwJ/gzQAmHNp3AKKAAEPiALT7YJCT0NC93Q
+Dx3RAgEIo8XODnbO8KzR8ixjHh3Q+XzJ/jAJkRAJMAAKMCAKJF0ClzwBJ53SK//d0tW80EuAAoP8
+B47sDxL9DwiA0w0dBTzdyD6d0bLG0UHZBR+d1PNMB0y9qZc8pdaA0oFw1TbNp1MNzVaN1S6d0Kew
+BDkNBN3MAgMgD/zgD8UY1GLd0GV91mldjCC90YLwZImwEHO9znUtY3f9D+oQyifd1YFQAFn91ybN
+z5Fw1YOd1UC9BAzAAEOtDQPQDg9wC2qd0I4N2UAQBZJN2ZZdjIkga4IQB4IwBnvtD339D6E9WqNd
+2qfd1wsgYymt2AVA2K0gELHtYLN91bUNA7ed0I891m/NAvVw2UAd3G4NCGZN3Ma92qwtCKXtYKnt
+3KQN3cEM2zCA2LRd2wVgCL//vQDZLdjc3d2/fdwMcAEMsNlFzcj+YJoI8Njord49bZqrDd32bd2o
+vRD1fd/43deLQAraPdjcDQ6GIAAC8d8BPt4EbuDADd8/0M2gRQft3eDn/eCAEOET/g+bQH/2/Wtj
+8NMazuHQ7eE//d+7reALfuCkcOIDnuLAfQEw/gNEPd8vHuMzbtSmueGsTdo8vs4gruM83tobXeIr
+vt0FAA4DMAAFruKJzdu1jeRKzuBADeMxDuGg5Q//ggBUfgEWjuH/AuQ7Tn8/Tn89LmslDgNN3uJJ
+TgQMvgho7uRHDuVsXs1bLuPrvQdYntB1fuPs/S9RQOaAbpoKA+hkbpo94AkwuEAK0qzMpOADDH7o
+ib7oydzoUq7lMH4PP3AQbtZX2qDnl57pB7DpdtDp/8AGhE5/LGnqpz5a/7IIPfDqoiAKrdAKAlDr
+tf7Vrg7rsk7rti4AXw3Ug8wDXP4O73AGxs7ZKYEAwT7sxX7s2pAST7Dqo/UECxHt0k7ttNgPI8AA
+P+BV2s7tXHUI4j7u5D7uC1Hu6C7ud7zu7N7u7v7u8B7v8j7v9F7v9n7v+J7v+r7v/N7v/v7vAH9V
+AQEAOw==]]></Resource>
+    <Resource ID="874e5ad0-7a30-2eab-e2e4-6296c661f3a6" Name="theme" Type="css"><![CDATA[DQovKiBUcmVlIGNvbnRhaW5lciAqLw0KdWwuZHluYXRyZWUtY29udGFpbmVyDQp7DQoJZm9udC1m
+YW1pbHk6IHRhaG9tYSwgYXJpYWwsIGhlbHZldGljYTsNCglmb250LXNpemU6IDEwcHQ7IC8qIGZv
+bnQgc2l6ZSBzaG91bGQgbm90IGJlIHRvbyBiaWcgKi8NCgl3aGl0ZS1zcGFjZTogbm93cmFwOw0K
+CXBhZGRpbmc6IDNweDsNCg0KCWJhY2tncm91bmQtY29sb3I6IHdoaXRlOw0KCSNib3JkZXI6IDFw
+eCBkb3R0ZWQgZ3JheTsNCg0KCW92ZXJmbG93OiBhdXRvOw0KfQ0KDQp1bC5keW5hdHJlZS1jb250
+YWluZXIgdWwNCnsNCglwYWRkaW5nOiAwIDAgMCAxNnB4Ow0KCW1hcmdpbjogMDsNCn0NCg0KdWwu
+ZHluYXRyZWUtY29udGFpbmVyIGxpDQp7DQoJbGlzdC1zdHlsZS1pbWFnZTogbm9uZTsNCglsaXN0
+LXN0eWxlLXBvc2l0aW9uOiBvdXRzaWRlOw0KCWxpc3Qtc3R5bGUtdHlwZTogbm9uZTsNCgktbW96
+LWJhY2tncm91bmQtY2xpcDpib3JkZXI7DQoJLW1vei1iYWNrZ3JvdW5kLWlubGluZS1wb2xpY3k6
+IGNvbnRpbnVvdXM7DQoJLW1vei1iYWNrZ3JvdW5kLW9yaWdpbjogcGFkZGluZzsNCgliYWNrZ3Jv
+dW5kLWF0dGFjaG1lbnQ6IHNjcm9sbDsNCgliYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsN
+CgliYWNrZ3JvdW5kLXJlcGVhdDogcmVwZWF0LXk7DQoJYmFja2dyb3VuZC1pbWFnZTogdXJsKCIv
+MTJjMzMzZWMtYWU3My00OTE5LTAzYzAtNjI5M2Y3YzRlYTFhLmdpZiIpOw0KCWJhY2tncm91bmQt
+cG9zaXRpb246IDAgMDsNCgkvKg0KCWJhY2tncm91bmQtaW1hZ2U6IHVybCgiaWNvbnNfOTZ4MjU2
+LmdpZiIpOw0KCWJhY2tncm91bmQtcG9zaXRpb246IC04MHB4IC02NHB4Ow0KCSovDQoJbWFyZ2lu
+OiAwOw0KCXBhZGRpbmc6IDFweCAwIDAgMDsNCn0NCi8qIFN1cHByZXNzIGxpbmVzIGZvciBsYXN0
+IGNoaWxkIG5vZGUgKi8NCnVsLmR5bmF0cmVlLWNvbnRhaW5lciBsaS5keW5hdHJlZS1sYXN0c2li
+DQp7DQoJYmFja2dyb3VuZC1pbWFnZTogbm9uZTsNCn0NCi8qIFN1cHByZXNzIGxpbmVzIGlmIGxl
+dmVsIGlzIGZpeGVkIGV4cGFuZGVkIChvcHRpb24gbWluRXhwYW5kTGV2ZWwpICovDQp1bC5keW5h
+dHJlZS1uby1jb25uZWN0b3IgPiBsaQ0Kew0KCWJhY2tncm91bmQtaW1hZ2U6IG5vbmU7DQp9DQoN
+Ci8qIFN0eWxlLCB3aGVuIGNvbnRyb2wgaXMgZGlzYWJsZWQgKi8NCi51aS1keW5hdHJlZS1kaXNh
+YmxlZCB1bC5keW5hdHJlZS1jb250YWluZXINCnsNCglvcGFjaXR5OiAwLjU7DQovKglmaWx0ZXI6
+IGFscGhhKG9wYWNpdHk9NTApOyAvKiBZaWVsZHMgYSBjc3Mgd2FybmluZyAqLw0KCWJhY2tncm91
+bmQtY29sb3I6IHNpbHZlcjsNCn0NCg0KLyogQ29tbW9uIGljb24gZGVmaW5pdGlvbnMNCiAqLw0K
+c3Bhbi5keW5hdHJlZS1lbXB0eSwNCnNwYW4uZHluYXRyZWUtdmxpbmUsDQpzcGFuLmR5bmF0cmVl
+LWNvbm5lY3RvciwNCnNwYW4uZHluYXRyZWUtZXhwYW5kZXIsDQpzcGFuLmR5bmF0cmVlLWljb24s
+DQpzcGFuLmR5bmF0cmVlLWNoZWNrYm94LA0Kc3Bhbi5keW5hdHJlZS1yYWRpbywNCnNwYW4uZHlu
+YXRyZWUtZHJhZy1oZWxwZXItaW1nLA0KI2R5bmF0cmVlLWRyb3AtbWFya2VyDQp7DQoJd2lkdGg6
+IDE2cHg7DQoJaGVpZ2h0OiAxNnB4Ow0KCWRpc3BsYXk6IC1tb3otaW5saW5lLWJveDsgLyogQCBG
+RiAxKzIgKi8NCglkaXNwbGF5OiBpbmxpbmUtYmxvY2s7IC8qIFJlcXVpcmVkIHRvIG1ha2UgYSBz
+cGFuIHNpemVhYmxlICovDQoJdmVydGljYWwtYWxpZ246IHRvcDsNCgliYWNrZ3JvdW5kOiB1cmwo
+Ii8xNTcxYzNiZS1mZjAzLTE1OGYtZGVmMC02Mjk0OWIzNTA1MzcuZ2lmIikgbGVmdCB0b3Agbm8t
+cmVwZWF0Ow0KfQ0KDQovKiogVXNlZCBieSAnaWNvbicgbm9kZSBvcHRpb246ICovDQp1bC5keW5h
+dHJlZS1jb250YWluZXIgaW1nDQp7DQoJd2lkdGg6IDE2cHg7DQoJaGVpZ2h0OiAxNnB4Ow0KCW1h
+cmdpbi1sZWZ0OiAzcHg7DQoJdmVydGljYWwtYWxpZ246IHRvcDsNCglib3JkZXItc3R5bGU6IG5v
+bmU7DQp9DQoNCg0KLyogTGluZXMgYW5kIGNvbm5lY3RvcnMNCiAqLw0KDQpzcGFuLmR5bmF0cmVl
+LWNvbm5lY3Rvcg0Kew0KCWJhY2tncm91bmQtcG9zaXRpb246IC0xNnB4IC02NHB4Ow0KfQ0KDQov
+KiBFeHBhbmRlciBpY29uDQogKiBOb3RlOiBJRTYgZG9lc24ndCBjb3JyZWN0bHkgZXZhbHVhdGUg
+bXVsdGlwbGVzIGNsYXNzIG5hbWVzLA0KICoJCSBzbyB3ZSBjcmVhdGUgY29tYmluZWQgY2xhc3Mg
+bmFtZXMgdGhhdCBjYW4gYmUgdXNlZCBpbiB0aGUgQ1NTLg0KICoNCiAqIFByZWZpeDogZHluYXRy
+ZWUtZXhwLQ0KICogMXN0IGNoYXJhY3RlcjogJ2UnOiBleHBhbmRlZCwgJ2MnOiBjb2xsYXBzZWQN
+CiAqIDJuZCBjaGFyYWN0ZXIgKG9wdGlvbmFsKTogJ2QnOiBsYXp5IChEZWxheWVkKQ0KICogM3Jk
+IGNoYXJhY3RlciAob3B0aW9uYWwpOiAnbCc6IExhc3Qgc2libGluZw0KICovDQoNCnNwYW4uZHlu
+YXRyZWUtZXhwYW5kZXINCnsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAwcHggLTgwcHg7DQoJY3Vy
+c29yOiBwb2ludGVyOw0KfQ0KLmR5bmF0cmVlLWV4cC1jbCBzcGFuLmR5bmF0cmVlLWV4cGFuZGVy
+IC8qIENvbGxhcHNlZCwgbm90IGRlbGF5ZWQsIGxhc3Qgc2libGluZyAqLw0Kew0KCWJhY2tncm91
+bmQtcG9zaXRpb246IDBweCAtOTZweDsNCn0NCi5keW5hdHJlZS1leHAtY2Qgc3Bhbi5keW5hdHJl
+ZS1leHBhbmRlciAvKiBDb2xsYXBzZWQsIGRlbGF5ZWQsIG5vdCBsYXN0IHNpYmxpbmcgKi8NCnsN
+CgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtNjRweCAtODBweDsNCn0NCi5keW5hdHJlZS1leHAtY2Rs
+IHNwYW4uZHluYXRyZWUtZXhwYW5kZXIgLyogQ29sbGFwc2VkLCBkZWxheWVkLCBsYXN0IHNpYmxp
+bmcgKi8NCnsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtNjRweCAtOTZweDsNCn0NCi5keW5hdHJl
+ZS1leHAtZSBzcGFuLmR5bmF0cmVlLWV4cGFuZGVyLCAgLyogRXhwYW5kZWQsIG5vdCBkZWxheWVk
+LCBub3QgbGFzdCBzaWJsaW5nICovDQouZHluYXRyZWUtZXhwLWVkIHNwYW4uZHluYXRyZWUtZXhw
+YW5kZXIgIC8qIEV4cGFuZGVkLCBkZWxheWVkLCBub3QgbGFzdCBzaWJsaW5nICovDQp7DQoJYmFj
+a2dyb3VuZC1wb3NpdGlvbjogLTMycHggLTgwcHg7DQp9DQouZHluYXRyZWUtZXhwLWVsIHNwYW4u
+ZHluYXRyZWUtZXhwYW5kZXIsICAvKiBFeHBhbmRlZCwgbm90IGRlbGF5ZWQsIGxhc3Qgc2libGlu
+ZyAqLw0KLmR5bmF0cmVlLWV4cC1lZGwgc3Bhbi5keW5hdHJlZS1leHBhbmRlciAgLyogRXhwYW5k
+ZWQsIGRlbGF5ZWQsIGxhc3Qgc2libGluZyAqLw0Kew0KCWJhY2tncm91bmQtcG9zaXRpb246IC0z
+MnB4IC05NnB4Ow0KfQ0KLmR5bmF0cmVlLWxvYWRpbmcgc3Bhbi5keW5hdHJlZS1leHBhbmRlcg0K
+ew0KYmFja2dyb3VuZC1pbWFnZTogdXJsKCIvNmJmNmQwOWQtYWI5MS02M2Y2LWUxMTUtNjI5MjBj
+M2U1YjJlLmdpZiIpOw0KfQ0KDQoNCi8qIENoZWNrYm94IGljb24NCiAqLw0Kc3Bhbi5keW5hdHJl
+ZS1jaGVja2JveA0Kew0KCW1hcmdpbi1sZWZ0OiAzcHg7DQoJYmFja2dyb3VuZC1wb3NpdGlvbjog
+MHB4IC0zMnB4Ow0KfQ0Kc3Bhbi5keW5hdHJlZS1jaGVja2JveDpob3Zlcg0Kew0KCWJhY2tncm91
+bmQtcG9zaXRpb246IC0xNnB4IC0zMnB4Ow0KfQ0KDQouZHluYXRyZWUtcGFydHNlbCBzcGFuLmR5
+bmF0cmVlLWNoZWNrYm94DQp7DQoJYmFja2dyb3VuZC1wb3NpdGlvbjogLTY0cHggLTMycHg7DQp9
+DQouZHluYXRyZWUtcGFydHNlbCBzcGFuLmR5bmF0cmVlLWNoZWNrYm94OmhvdmVyDQp7DQoJYmFj
+a2dyb3VuZC1wb3NpdGlvbjogLTgwcHggLTMycHg7DQp9DQoNCi5keW5hdHJlZS1zZWxlY3RlZCBz
+cGFuLmR5bmF0cmVlLWNoZWNrYm94DQp7DQoJYmFja2dyb3VuZC1wb3NpdGlvbjogLTMycHggLTMy
+cHg7DQp9DQouZHluYXRyZWUtc2VsZWN0ZWQgc3Bhbi5keW5hdHJlZS1jaGVja2JveDpob3Zlcg0K
+ew0KCWJhY2tncm91bmQtcG9zaXRpb246IC00OHB4IC0zMnB4Ow0KfQ0KDQovKiBSYWRpb2J1dHRv
+biBpY29uDQogKiBUaGlzIGlzIGEgY3VzdG9taXphdGlvbiwgdGhhdCBtYXkgYmUgYWN0aXZhdGVk
+IGJ5IG92ZXJyaWRpbmcgdGhlICdjaGVja2JveCcNCiAqIGNsYXNzIG5hbWUgYXMgJ2R5bmF0cmVl
+LXJhZGlvJyBpbiB0aGUgdHJlZSBvcHRpb25zLg0KICovDQpzcGFuLmR5bmF0cmVlLXJhZGlvDQp7
+DQoJbWFyZ2luLWxlZnQ6IDNweDsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAwcHggLTQ4cHg7DQp9
+DQpzcGFuLmR5bmF0cmVlLXJhZGlvOmhvdmVyDQp7DQoJYmFja2dyb3VuZC1wb3NpdGlvbjogLTE2
+cHggLTQ4cHg7DQp9DQoNCi5keW5hdHJlZS1wYXJ0c2VsIHNwYW4uZHluYXRyZWUtcmFkaW8NCnsN
+CgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtNjRweCAtNDhweDsNCn0NCi5keW5hdHJlZS1wYXJ0c2Vs
+IHNwYW4uZHluYXRyZWUtcmFkaW86aG92ZXINCnsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtODBw
+eCAtNDhweDsNCn0NCg0KLmR5bmF0cmVlLXNlbGVjdGVkIHNwYW4uZHluYXRyZWUtcmFkaW8NCnsN
+CgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtMzJweCAtNDhweDsNCn0NCi5keW5hdHJlZS1zZWxlY3Rl
+ZCBzcGFuLmR5bmF0cmVlLXJhZGlvOmhvdmVyDQp7DQoJYmFja2dyb3VuZC1wb3NpdGlvbjogLTQ4
+cHggLTQ4cHg7DQp9DQoNCi8qIE5vZGUgdHlwZSBpY29uDQogKiBOb3RlOiBJRTYgZG9lc24ndCBj
+b3JyZWN0bHkgZXZhbHVhdGUgbXVsdGlwbGVzIGNsYXNzIG5hbWVzLA0KICoJCSBzbyB3ZSBjcmVh
+dGUgY29tYmluZWQgY2xhc3MgbmFtZXMgdGhhdCBjYW4gYmUgdXNlZCBpbiB0aGUgQ1NTLg0KICoN
+CiAqIFByZWZpeDogZHluYXRyZWUtaWNvLQ0KICogMXN0IGNoYXJhY3RlcjogJ2UnOiBleHBhbmRl
+ZCwgJ2MnOiBjb2xsYXBzZWQNCiAqIDJuZCBjaGFyYWN0ZXIgKG9wdGlvbmFsKTogJ2YnOiBmb2xk
+ZXINCiAqLw0KDQpzcGFuLmR5bmF0cmVlLWljb24gLyogRGVmYXVsdCBpY29uICovDQp7DQoJbWFy
+Z2luLWxlZnQ6IDNweDsNCgliYWNrZ3JvdW5kLWltYWdlOiB1cmwoIi9lMjY3ZmQ3My0yMTA1LTI3
+ZmUtOGI0ZC02MjkyYjczMDcxMWYucG5nIik7DQoJaGVpZ2h0OiAyMnB4ICFpbXBvcnRhbnQ7DQp9
+DQoNCi5keW5hdHJlZS1pY28tY2Ygc3Bhbi5keW5hdHJlZS1pY29uICAvKiBDb2xsYXBzZWQgRm9s
+ZGVyICovDQp7DQoJLy9iYWNrZ3JvdW5kLXBvc2l0aW9uOiAwcHggLTE2cHg7DQoJYmFja2dyb3Vu
+ZC1pbWFnZTogdXJsKCIvOTFmMDVkNDItOGM0NS00NWE1LWRjZWItNjI5MzIxNzAzZmJkLnBuZyIp
+Ow0KCWhlaWdodDogMjJweCAhaW1wb3J0YW50Ow0KCWJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBl
+YXQ7DQp9DQoNCi5keW5hdHJlZS1pY28tZWYgc3Bhbi5keW5hdHJlZS1pY29uICAvKiBFeHBhbmRl
+ZCBGb2xkZXIgKi8NCnsNCgkvL2JhY2tncm91bmQtcG9zaXRpb246IC02NHB4IC0xNnB4Ow0KCWJh
+Y2tncm91bmQtaW1hZ2U6IHVybCgiLzkxZjA1ZDQyLThjNDUtNDVhNS1kY2ViLTYyOTMyMTcwM2Zi
+ZC5wbmciKTsNCgliYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0Ow0KCWhlaWdodDogMjJweCAh
+aW1wb3J0YW50Ow0KfQkNCg0KLyogU3RhdHVzIG5vZGUgaWNvbnMgKi8NCg0KLmR5bmF0cmVlLXN0
+YXR1c25vZGUtd2FpdCBzcGFuLmR5bmF0cmVlLWljb24NCnsNCmJhY2tncm91bmQtaW1hZ2U6IHVy
+bCgiLzZiZjZkMDlkLWFiOTEtNjNmNi1lMTE1LTYyOTIwYzNlNWIyZS5naWYiKTsNCn0NCg0KLmR5
+bmF0cmVlLXN0YXR1c25vZGUtZXJyb3Igc3Bhbi5keW5hdHJlZS1pY29uDQp7DQoJYmFja2dyb3Vu
+ZC1wb3NpdGlvbjogMHB4IC0xMTJweDsNCn0NCg0KLyogTm9kZSB0aXRsZXMgKi8NCg0KLyogQENo
+cm9tZTogb3RoZXJ3aXNlIGhpdCBhcmVhIG9mIG5vZGUgdGl0bGVzIGlzIGJyb2tlbiAoaXNzdWUg
+MTMzKQ0KICAgUmVtb3ZlZCBhZ2FpbiBmb3IgaXNzdWUgMTY1OyAoMTMzIGNvdWxkbid0IGJlIHJl
+cHJvZHVjZWQpICovDQpzcGFuLmR5bmF0cmVlLW5vZGUNCnsNCi8qICBkaXNwbGF5OiAtbW96LWlu
+bGluZS1ib3g7IC8qIEAgRkYgMSsyICovDQovKiAgZGlzcGxheTogaW5saW5lLWJsb2NrOyAvKiBS
+ZXF1aXJlZCB0byBtYWtlIGEgc3BhbiBzaXplYWJsZSAqLw0KfQ0KDQoNCi8qIFJlbW92ZSBibHVl
+IGNvbG9yIGFuZCB1bmRlcmxpbmUgZnJvbSB0aXRsZSBsaW5rcyAqLw0KdWwuZHluYXRyZWUtY29u
+dGFpbmVyIGENCi8qLCB1bC5keW5hdHJlZS1jb250YWluZXIgYTp2aXNpdGVkKi8NCnsNCgljb2xv
+cjogYmxhY2s7IC8qIGluaGVyaXQgZG9lc24ndCB3b3JrIG9uIElFICovDQoJdGV4dC1kZWNvcmF0
+aW9uOiBub25lOw0KCXZlcnRpY2FsLWFsaWduOiB0b3A7DQoJbWFyZ2luOiAwcHg7DQoJbWFyZ2lu
+LWxlZnQ6IDNweDsNCi8qCW91dGxpbmU6IDA7IC8qIEAgRmlyZWZveCwgcHJldmVudCBkb3R0ZWQg
+Ym9yZGVyIGFmdGVyIGNsaWNrICovDQp9DQoNCnVsLmR5bmF0cmVlLWNvbnRhaW5lciBhOmhvdmVy
+DQp7DQovKgl0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsgKi8NCgliYWNrZ3JvdW5kOiAjRjJG
+N0ZEOyAvKiBsaWdodCBibHVlICovDQoJYm9yZGVyLWNvbG9yOiAjQjhENkZCOyAvKiBkYXJrZXIg
+bGlnaHQgYmx1ZSAqLw0KfQ0KDQpzcGFuLmR5bmF0cmVlLW5vZGUgYQ0Kew0KCWZvbnQtd2VpZ2h0
+OiBub3JtYWw7DQoJZGlzcGxheTogaW5saW5lLWJsb2NrOyAvKiBCZXR0ZXIgYWxpZ25tZW50LCB3
+aGVuIHRpdGxlIGNvbnRhaW5zIDxicj4gKi8NCi8qCXZlcnRpY2FsLWFsaWduOiB0b3A7Ki8NCglw
+YWRkaW5nLWxlZnQ6IDNweDsNCglwYWRkaW5nLXJpZ2h0OiAzcHg7IC8qIE90aGVyd2lzZSBpdGFs
+aWMgZm9udCB3aWxsIGJlIG91dHNpZGUgYm91bmRzICovDQoJLyoJbGluZS1oZWlnaHQ6IDE2cHg7
+IC8qIHNob3VsZCBiZSB0aGUgc2FtZSBhcyBpbWcgaGVpZ2h0LCBpbiBjYXNlIDE2IHB4ICovDQp9
+DQpzcGFuLmR5bmF0cmVlLWZvbGRlciBhDQp7DQoJZm9udC13ZWlnaHQ6IG5vcm1hbDsNCn0NCgkN
+CgkJDQp1bC5keW5hdHJlZS1jb250YWluZXIgYTpmb2N1cywNCnNwYW4uZHluYXRyZWUtZm9jdXNl
+ZCBhOmxpbmsgIC8qIEBJRSAqLw0Kew0KCWJhY2tncm91bmQtY29sb3I6ICNFRkVCREU7IC8qIGdy
+YXkgKi8NCn0NCg0Kc3Bhbi5keW5hdHJlZS1oYXMtY2hpbGRyZW4gYQ0Kew0KfQ0KDQpzcGFuLmR5
+bmF0cmVlLWV4cGFuZGVkIGENCnsNCn0NCg0Kc3Bhbi5keW5hdHJlZS1zZWxlY3RlZCBhDQp7DQoJ
+Y29sb3I6IGdyZWVuOw0KCWZvbnQtc3R5bGU6IGl0YWxpYzsNCn0NCg0Kc3Bhbi5keW5hdHJlZS1h
+Y3RpdmUgYQ0Kew0KCWJhY2tncm91bmQtY29sb3I6ICMzMTY5QzYgIWltcG9ydGFudDsNCgljb2xv
+cjogd2hpdGUgIWltcG9ydGFudDsgLyogQCBJRTYgKi8NCn0NCg0KLyogRHJhZyduJ2Ryb3Agc3Vw
+cG9ydA0KICovDQoNCi8qKiogSGVscGVyIG9iamVjdCAqLw0KZGl2LmR5bmF0cmVlLWRyYWctaGVs
+cGVye30NCmRpdi5keW5hdHJlZS1kcmFnLWhlbHBlciBhDQp7DQoJYm9yZGVyOiAxcHggc29saWQg
+Z3JheTsNCgliYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsNCglwYWRkaW5nLWxlZnQ6IDVweDsNCglw
+YWRkaW5nLXJpZ2h0OiA1cHg7DQoJb3BhY2l0eTogMC44Ow0KfQ0Kc3Bhbi5keW5hdHJlZS1kcmFn
+LWhlbHBlci1pbWcNCnsNCgkvKg0KCXBvc2l0aW9uOiByZWxhdGl2ZTsNCglsZWZ0OiAtMTZweDsN
+CgkqLw0KfQ0KZGl2LmR5bmF0cmVlLWRyYWctaGVscGVyIC8qLmR5bmF0cmVlLWRyb3AtYWNjZXB0
+Ki8NCnsNCi8qICAgIGJvcmRlci1jb2xvcjogZ3JlZW47DQoJYmFja2dyb3VuZC1jb2xvcjogcmVk
+OyovDQp9DQpkaXYuZHluYXRyZWUtZHJvcC1hY2NlcHQgc3Bhbi5keW5hdHJlZS1kcmFnLWhlbHBl
+ci1pbWcNCnsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtMzJweCAtMTEycHg7DQp9DQpkaXYuZHlu
+YXRyZWUtZHJhZy1oZWxwZXIuZHluYXRyZWUtZHJvcC1yZWplY3QNCnsNCglib3JkZXItY29sb3I6
+IHJlZDsNCn0NCmRpdi5keW5hdHJlZS1kcm9wLXJlamVjdCBzcGFuLmR5bmF0cmVlLWRyYWctaGVs
+cGVyLWltZw0Kew0KCWJhY2tncm91bmQtcG9zaXRpb246IC0xNnB4IC0xMTJweDsNCn0NCg0KLyoq
+KiBEcm9wIG1hcmtlciBpY29uICovDQoNCiNkeW5hdHJlZS1kcm9wLW1hcmtlcg0Kew0KCXdpZHRo
+OiAyNHB4Ow0KCXBvc2l0aW9uOiBhYnNvbHV0ZTsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAwIC0x
+MjhweDsNCn0NCiNkeW5hdHJlZS1kcm9wLW1hcmtlci5keW5hdHJlZS1kcm9wLWFmdGVyLA0KI2R5
+bmF0cmVlLWRyb3AtbWFya2VyLmR5bmF0cmVlLWRyb3AtYmVmb3JlDQp7DQoJd2lkdGg6NjRweDsN
+CgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAwIC0xNDRweDsNCn0NCiNkeW5hdHJlZS1kcm9wLW1hcmtl
+ci5keW5hdHJlZS1kcm9wLWNvcHkNCnsNCgliYWNrZ3JvdW5kLXBvc2l0aW9uOiAtNjRweCAtMTI4
+cHg7DQp9DQojZHluYXRyZWUtZHJvcC1tYXJrZXIuZHluYXRyZWUtZHJvcC1tb3ZlDQp7DQoJYmFj
+a2dyb3VuZC1wb3NpdGlvbjogLTY0cHggLTEyOHB4Ow0KfQ0KDQovKioqIFNvdXJjZSBub2RlIHdo
+aWxlIGRyYWdnaW5nICovDQoNCnNwYW4uZHluYXRyZWUtZHJhZy1zb3VyY2UNCnsNCgkvKiBib3Jk
+ZXI6IDFweCBkb3R0ZWQgZ3JheTsgKi8NCgliYWNrZ3JvdW5kLWNvbG9yOiAjZTBlMGUwOw0KfQ0K
+c3Bhbi5keW5hdHJlZS1kcmFnLXNvdXJjZSBhDQp7DQoJY29sb3I6IGdyYXk7DQp9DQoNCi8qKiog
+VGFyZ2V0IG5vZGUgd2hpbGUgZHJhZ2dpbmcgY3Vyc29yIGlzIG92ZXIgaXQgKi8NCg0Kc3Bhbi5k
+eW5hdHJlZS1kcm9wLXRhcmdldA0Kew0KCS8qYm9yZGVyOiAxcHggc29saWQgZ3JheTsqLw0KfQ0K
+c3Bhbi5keW5hdHJlZS1kcm9wLXRhcmdldCBhDQp7DQoJLypiYWNrZ3JvdW5kLXJlcGVhdDogbm8t
+cmVwZWF0Ow0KCWJhY2tncm91bmQtcG9zaXRpb246IHJpZ2h0Ow0KCWJhY2tncm91bmQtaW1hZ2U6
+IHVybCgiZHJvcF9jaGlsZC5naWYiKTsqLw0KfQ0Kc3Bhbi5keW5hdHJlZS1kcm9wLXRhcmdldC5k
+eW5hdHJlZS1kcm9wLWFjY2VwdCBhDQp7DQoJLypib3JkZXI6IDFweCBzb2xpZCBncmVlbjsqLw0K
+CWJhY2tncm91bmQtY29sb3I6ICMzMTY5QzYgIWltcG9ydGFudDsNCgljb2xvcjogd2hpdGUgIWlt
+cG9ydGFudDsgLyogQCBJRTYgKi8NCgl0ZXh0LWRlY29yYXRpb246IG5vbmU7DQp9DQpzcGFuLmR5
+bmF0cmVlLWRyb3AtdGFyZ2V0LmR5bmF0cmVlLWRyb3AtcmVqZWN0DQp7DQoJLypib3JkZXI6IDFw
+eCBzb2xpZCByZWQ7Ki8NCn0NCnNwYW4uZHluYXRyZWUtZHJvcC10YXJnZXQuZHluYXRyZWUtZHJv
+cC1hZnRlciBhDQp7DQoJLypiYWNrZ3JvdW5kLXJlcGVhdDogcmVwZWF0LXg7DQoJYmFja2dyb3Vu
+ZC1wb3NpdGlvbjogYm90dG9tOw0KCWJhY2tncm91bmQtaW1hZ2U6IHVybCgiZHJvcF9hcHBlbmQu
+Z2lmIik7Ki8NCn0NCg0KDQovKiBDdXN0b20gbm9kZSBjbGFzc2VzIChzYW1wbGUpDQogKi8NCg0K
+c3Bhbi5jdXN0b20xIGENCnsNCgliYWNrZ3JvdW5kLWNvbG9yOiBtYXJvb247DQoJY29sb3I6IHll
+bGxvdzsNCn0NCg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -1708,7 +2147,8 @@ class VDOM_tree(VDOM_object):
 
 	def render(self, parent, contents=""):
 		
-		id = 'o_' + (self.id).replace('-', '_')
+		woid = (self.id).replace('-', '_')
+		id = 'o_' + woid
 
 		if self.visible == "1":
 			vis=""
@@ -1723,11 +2163,12 @@ class VDOM_tree(VDOM_object):
 		style=u"%s z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx; overflow: visible;"%(vis, self.zindex, self.position, self.top, self.left, self.width, self.height)
 
 		resultIO.write(u"""
-			<div class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
-			"style" : style,
-			"id" : id,
-			"contents" : contents,
-			"data" : self.data
+			<div objtype="tree" objectname="%(oname)s" ver="2011.09.13" class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
+			"oname":    self.name,
+			"style":    style,
+			"id":       id,
+			"contents": contents,
+			"data" :    self.data
 			}
 		)
 
@@ -1736,41 +2177,41 @@ class VDOM_tree(VDOM_object):
 
 		result_s = u"""</div>
 <script type='text/javascript' charset="UTF-8">
-jQuery(document).ready(function(){
-	jQuery('#%(id)s').dynatree({
-        title: '%(title)s',
-        rootVisible: %(showtitle)s,
+jQuery(document).ready(function($){
+	$q('#%(id)s').dynatree({
+		title: '%(title)s',
+		rootVisible: %(showtitle)s,
 		checkbox: %(checkbox)s,
 		keyboard: %(keyboard)s,
 		autoCollapse: %(autoCollapse)s,
-		%(children)s
+		children: %(children)s,
 		selectMode: %(selectMode)s,
-        %(fx)s
-        debugLevel: 0,
-		
+		fx: %(fx)s,
+		debugLevel: 0,
+
 		onActivate: function(node) {
 			var id='%(id)s'; 
 			console.info(id);
 			console.info(node);
 			console.info(node.data.title);
-            execEventBinded(id.substring(2, id.length), "activate", {
+			execEventBinded(id.substring(2, id.length), "activate", {
 				title:node.data.title,
 				key:node.data.key,
 				isFolder:node.data.isFolder
 			});
 		},
-      	onDeactivate: function(node) {
+		onDeactivate: function(node) {
 			
 		},
 		onSelect: function(flag, node) {
 			var id='%(id)s'; 
-            execEventBinded(id.substring(2, id.length), "select", {} );
-        },
+			execEventBinded(id.substring(2, id.length), "select", {} );
+		},
 		
 		onExpand: function(node) {
 			fixfooter()
 		},
-		
+
 		dnd: {
 			onDragStart: function(node) {
 				/** This function MUST be defined to enable dragging for the tree.
@@ -1787,18 +2228,28 @@ jQuery(document).ready(function(){
 		}
 
 	});
+
+	$j("#%(id)s li").droppable({
+		accept: '.special',
+		hoverClass: 'drophover',
+		drop: function(e,u){
+			execEventBinded('%(woid)s', "dragdrop", {"params": "some parameters"});
+		}
+	});
+
 });
 </script>""" % {
-"id" : id,
-"title" : self.title,
-"showtitle" : self.showtitle,
-"o"	: "%o",
-"checkbox" 		: self.checkbox,
-"keyboard" 		: self.keyboard,
-"autoCollapse" 	: self.autoCollapse,
-"children"		: "" if not self.initAjax 	else "children: %(initAjax)s, " % {"initAjax" : self.initAjax},
-"selectMode" 	: self.selectMode,
-"fx"			: "" if not self.fx 		else "fx: %(fx)s, " % {"fx" : self.fx},
+"woid"          : woid,
+"id"            : id,
+"title"         : "false" if self.showtitle == "0" else '"%s"' % (self.title).replace('"', '&quot;'),
+"showtitle"     : "false" if self.showtitle == "0" else "true",
+"o"             : "%o",
+"checkbox"      : self.checkbox,
+"keyboard"      : self.keyboard,
+"autoCollapse"  : self.autoCollapse,
+"children"      : "null" if not self.initAjax else "%(initAjax)s" % {"initAjax" : self.initAjax},
+"selectMode"    : self.selectMode,
+"fx"            : "null" if not self.fx else "%(fx)s" % {"fx" : self.fx},
 }
 		result += result_s
 		return VDOM_object.render(self, parent, contents=result)
@@ -1819,7 +2270,7 @@ jQuery(document).ready(function(){
 	##################################################
 	]]></SourceCode>
   <Libraries>
-    <Library Target="Html"><![CDATA[<link rel="stylesheet" media="screen" type="text/css" href='/60e4ffa1-5abb-04b1-bb0d-c8497644f290.css'/>
+    <Library Target="Html"><![CDATA[<link rel="stylesheet" media="screen" type="text/css" href='/874e5ad0-7a30-2eab-e2e4-6296c661f3a6.css'/>
 			<script src="/ad49e7da-131b-ae4a-ccb8-636655ffea66.js" type="text/javascript" charset="UTF-8"></script>
 			]]></Library>
   </Libraries>
@@ -1828,72 +2279,77 @@ jQuery(document).ready(function(){
       <Userinterfaceevents>
         <Event Name="activate">
           <Parameters>
-            <Parameter Name="key" Order="" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="title" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="key" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="title" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
         <Event Name="blur">
           <Parameters>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
         <Event Name="click">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="deactivate">
-          <Parameters>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
-          </Parameters>
-        </Event>
-        <Event Name="focus">
-          <Parameters>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(923)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="deactivate">
+          <Parameters>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(912)"/>
+          </Parameters>
+        </Event>
+        <Event Name="focus">
+          <Parameters>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
+          </Parameters>
+        </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(924)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dragdrop">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
         <Event Name="select">
@@ -1908,18 +2364,16 @@ jQuery(document).ready(function(){
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-eval("dialog_win_" + this.domCont.id + ".hide();");
-jQuery('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').show();
-                    ]]></SourceCode>
+$q(this.domCont).fadeOut(fade);
+]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadHTMLData">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="HTMLdata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-eval("dialog_win_" + this.domCont.id + ".show();");
-jQuery('object[classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"],object[type=application/x-shockwave-flash],embed[src$="swf"]').hide();
-					]]></SourceCode>
+jQuery(this.domCont).html(HTMLdata);
+                    ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
@@ -1931,13 +2385,13 @@ this.domCont.style.width = parseInt(newZindex);
 this.domCont.style.height = parseInt(newZindex);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadHTMLData">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="HTMLdata" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).html(HTMLdata);
-                    ]]></SourceCode>
+$q(this.domCont).fadeIn(fade);
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
