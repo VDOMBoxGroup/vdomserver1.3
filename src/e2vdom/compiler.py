@@ -51,8 +51,16 @@ def compile_registations(container, parent):
 		"Obj_%(container)s_EventEngine=new VDOM_EventEngine(Obj_%(container)s_Dispatcher, EventQueue);"%\
 		{"container": container.id.replace("-", "_")})
 
+	lines.append(
+		"function VDOM_Obj_Type_%(type)s(id, eventEngine){this.Base=VDOM_Object;this.Base(id, eventEngine)};\n"\
+		"VDOM_Obj_Type_%(type)s.prototype=new VDOM_Object;"%\
+		{"type": container.id.replace("-", "_")})
+
 	application=managers.request_manager.get_request().application()
-	for source_object in container.object.get_objects():
+	#for source_object in [container.object.get_objects(), container.object]:
+	aa = container.object.get_objects()
+	aa[container.id] = container.object
+	for source_object in aa:
 		#print "[E2VDOM] Container", container.id
 		events=application.events_by_object.get(source_object, None)
 		#print "[E2VDOM] Events", events
