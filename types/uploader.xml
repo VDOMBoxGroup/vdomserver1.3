@@ -89,7 +89,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>150</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(306)</Help>
       <InterfaceType>0</InterfaceType>
@@ -101,7 +101,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>20</DefaultValue>
+      <DefaultValue>22</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(307)</Help>
       <InterfaceType>0</InterfaceType>
@@ -122,11 +122,26 @@
       <ErrorValidationMessage>#Lang(210)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(233)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(234)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(235)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Uploader</Sentence>
       <Sentence ID="002">File uploader</Sentence>
+      <Sentence ID="233">Class</Sentence>
+      <Sentence ID="234">CSS class name</Sentence>
+      <Sentence ID="235">Incorrect value</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Hide the object</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
@@ -295,9 +310,11 @@ class VDOM_uploader(VDOM_object):
 				.format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
 						height = self.height, display = display)
 		id = u"o_" + (self.id).replace('-', '_')
-	
-		result = u"""<input id="{id}" name="{name}" style="{style}" tabindex="{tabind}" type="file" size="{size}">"""\
-			.format(id = id, name = self.name, style = style, tabind = self.tabindex, size = (int(self.width) - 85)/6+1)
+
+		classname = u"""class="%s" """ % self.classname if self.classname else u""
+
+		result = u"""<input id="{id}" name="{name}" style="{style}" tabindex="{tabind}" type="file" size="{size}" {classname} />""" \
+			.format(id = id, name = self.name, style = style, tabind = self.tabindex, classname = classname, size = (int(self.width) - 85)/6+1)
 
 		return VDOM_object.render(self, parent, contents=result)
 
