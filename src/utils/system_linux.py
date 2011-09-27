@@ -99,7 +99,7 @@ def set_dns(pdns, sdns):
 
 def get_date_and_time():
 	try:
-		outp = subprocess.check_output(['date', '+%Y.%m.%d %H:%M:%S'])
+		outp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'])
 		return outp.strip()
 	except Exception, e:
 		debug("Error: " + str(e))
