@@ -220,9 +220,9 @@ class VDOM_file_manager(object):
 			os.makedirs(path)
 		except: pass
 		
-	def create_app_storage_directory(self, application_id):
+	def create_app_storage_user_directory(self, application_id,folder_name):
 		"""create directory to store app databases"""
-		path = self.__get_app_storage_file_path(application_id, None )
+		path = self.__get_app_storage_file_path(application_id, folder_name )
 		try:
 			os.makedirs(path)
 		except: pass

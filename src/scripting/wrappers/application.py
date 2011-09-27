@@ -76,12 +76,16 @@ class VDOM_file_storage(object):
 	
 	def abs_path(self, filename):
 		from scripting.wrappers import application
-		return managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename))
+		return os.path.abspath(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename)))
 	
 	def exists(self, filename):
 		from scripting.wrappers import application
 		return managers.file_manager.exists(app_storage, application.id, None, self.__norm_filename(filename))
-		
+	
+	def mkdir(self, foldername):
+		from scripting.wrappers import application
+		managers.file_manager.create_app_storage_user_directory(application.id, self.__norm_filename(foldername))
+		                               
 	def __norm_filename(self, filename):
 		norm_name = os.path.normpath(filename)
 		if norm_name[:2]== "..":
