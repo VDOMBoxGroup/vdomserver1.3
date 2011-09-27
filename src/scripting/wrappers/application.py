@@ -1,7 +1,7 @@
 
-import re, managers, threading
-
-
+import re, managers, threading,os
+from utils.exception import VDOM_exception_file_access
+from file_access import storage as app_storage
 #from file_access import application_storage
 DBSCHEMA_ID = '753ea72c-475d-4a29-96be-71c522ca2097'
 DBTABLE_ID = '92269b6e-4b6b-4882-852f-f7ef0e89c079'
@@ -48,11 +48,46 @@ class VDOM_objects(object):
 class VDOM_file_storage(object):
 	
 	def __init__(self):
-		self.__app_id = application.id
-
-	def exists(self, name):
 		pass
 		
+	def open(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.get_fd(app_storage, application.id, None, self.__norm_filename(filename))
+
+	def readall(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.read(app_storage, application.id, None, self.__norm_filename(filename))
+
+	def write(self, filename, content):
+		from scripting.wrappers import application
+		return managers.file_manager.write(app_storage, application.id, None, self.__norm_filename(filename),content)
+	
+	def write_async(self, filename, content):
+		from scripting.wrappers import application
+		return managers.file_manager.write(app_storage, application.id, None, self.__norm_filename(filename),content,False, True)
+	
+	def getsize(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.size(app_storage, application.id, None, self.__norm_filename(filename))
+	
+	def delete(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.delete(app_storage, application.id, None, self.__norm_filename(filename))
+	
+	def abs_path(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename))
+	
+	def exists(self, filename):
+		from scripting.wrappers import application
+		return managers.file_manager.exists(app_storage, application.id, None, self.__norm_filename(filename))
+		
+	def __norm_filename(self, filename):
+		norm_name = os.path.normpath(filename)
+		if norm_name[:2]== "..":
+			raise VDOM_exception_file_access("Provided file name is invalid")
+		return norm_name
+	
 class VDOM_cursor_object(object):
 
 	def __init__(self, connection, cursor):
@@ -235,7 +270,7 @@ class VDOM_application(object):
 		self._objects=VDOM_objects()
 		self._databases=VDOM_databases()
 		self._resources=VDOM_resources()
-		#self._storage=VDOM_file_storage()
+		self._storage=VDOM_file_storage()
 
 	def _get_id(self):
 		if getattr(self.__db, "app_id", None):

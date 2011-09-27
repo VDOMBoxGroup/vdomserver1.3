@@ -161,6 +161,8 @@ try: os.makedirs(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket")
 except: pass
 try: os.makedirs(VDOM_CONFIG["LIB-DIRECTORY"])
 except: pass
+try: os.makedirs(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"])
+except: pass
 
 # change directory access rights
 
