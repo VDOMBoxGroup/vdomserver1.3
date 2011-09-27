@@ -69,3 +69,9 @@ class VDOM_exception_vdommem(VDOM_exception):
 
 	def __init__(self, s):
 		VDOM_exception.__init__(self, "VDOM memory error: " + s)
+		
+		
+class VDOM_exception_file_access(VDOM_exception):
+
+	def __init__(self, s):
+		VDOM_exception.__init__(self, "VDOM file access error: " + s)

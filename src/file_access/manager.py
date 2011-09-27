@@ -9,6 +9,7 @@ import file_access
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
 import utils.mutex as mutex
+import base64
 from daemon import VDOM_file_manager_writer
 
 
@@ -66,6 +67,15 @@ class VDOM_file_manager(object):
 			dirpath = self.__get_path( restype, application_id, file_name)
 		return os.path.exists( dirpath )
 
+	def size(self, restype, application_id, object_id, file_name ):
+		"""Checks if object exists"""
+		if object_id:
+			dirpath = self.__get_path( restype, object_id,file_name)
+		else:
+			dirpath = self.__get_path( restype, application_id, file_name)
+		return os.path.getsize( dirpath )
+
+	
 	def write(self, restype, application_id, object_id, file_name, content, encode = False, async = False):
 		"""Writes <content> to object file"""
 		if object_id:
@@ -73,7 +83,7 @@ class VDOM_file_manager(object):
 		else:
 			dirpath = self.__get_path( restype, application_id, "")
 		if not os.path.isdir(dirpath) and restype in \
-		        (file_access.type_source, file_access.resource, file_access.database):
+		        (file_access.type_source, file_access.resource, file_access.database, file_access.storage):
 			try:
 				os.makedirs(dirpath)
 			except: pass
@@ -96,10 +106,10 @@ class VDOM_file_manager(object):
 					fh.write(content)
 				fh.close()
 		except:
-			mut.unlock()
 			raise
 			#raise VDOM_exception(_("Can't write file %s") % path)
-		mut.unlock()
+		finally:
+			mut.unlock()
 
 	def write_file(self, fname, fdata):
 		"""general file write"""
@@ -121,7 +131,8 @@ class VDOM_file_manager(object):
 		except Exception, e:
 			traceback.print_exc(file=sys.stderr)
 			return []
-	def read_file(self, fname):
+		
+	def read_file(self, fname):#Not used! Remove?
 		"""general file read"""
 		file = open(fname, "rb")
 		fdata = file.read()
@@ -148,7 +159,12 @@ class VDOM_file_manager(object):
 		else:
 			fh = open( self.__get_path( restype, application_id, file_name ), "rb" )
 		
-		content = fh.read()
+		content = ""
+		while 1:
+			buf = fh.read()
+			if not buf:
+				break
+			content += buf
 		fh.close()
 		return content
 	
@@ -200,6 +216,13 @@ class VDOM_file_manager(object):
 		path = os.path.join( VDOM_CONFIG["FILE-ACCESS-DIRECTORY"],
 								databases_path,
 								owner_id)
+		try:
+			os.makedirs(path)
+		except: pass
+		
+	def create_app_storage_directory(self, application_id):
+		"""create directory to store app databases"""
+		path = self.__get_app_storage_file_path(application_id, None )
 		try:
 			os.makedirs(path)
 		except: pass
@@ -272,6 +295,8 @@ class VDOM_file_manager(object):
 		elif( restype == file_access.database ):
 			return self.__get_database_file_path(owner_id, object_name )
 		
+		elif( restype == file_access.storage ):
+			return self.__get_app_storage_file_path(owner_id, object_name )
 		
 	def __get_application_file_path( self, application_id ):
 		"""return path to appl.xml. Input: application_id: string"""
@@ -325,3 +350,12 @@ class VDOM_file_manager(object):
 								object_name)
 		else:
 			return os.path.join( VDOM_CONFIG[ "FILE-ACCESS-DIRECTORY" ], databases_path)
+
+		
+	def __get_app_storage_file_path(self, application_id="", file_name=""):
+		"""return path to app storage files. Input: owner_id: string, object_name: string"""
+		if file_name:
+			#object_name = base64.b64encode(file_name,"_!")
+			return os.path.join(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"],application_id,file_name)
+		else:
+			return os.path.join(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"],application_id)
