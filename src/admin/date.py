@@ -20,7 +20,7 @@ def run(request):
 			f = os.popen("hwclock -w")
 			outp = f.read()
 			f.close()
-			except Exception, e:
+		except Exception, e:
 			error = "Error: " + str(e)
 
 	the_date = get_date_and_time()
