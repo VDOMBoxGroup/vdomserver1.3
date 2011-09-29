@@ -356,6 +356,8 @@ class VDOM_list(VDOM_object):
 jQuery(document).ready(function($){
 	var obj_id = '%(id)s'
 	$('#%(id)s ul li').click(function(){
+		$(this).parent().children().removeClass("active");
+		$(this).addClass("active");
 		var elem_id = $(this).attr('id');
 		execEventBinded(obj_id.substring(2, obj_id.length), "itemclick", {itemid:elem_id});
 	});
