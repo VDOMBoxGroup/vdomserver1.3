@@ -134,6 +134,18 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>selecteditem</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(314)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
@@ -229,10 +241,10 @@
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
       <Sentence ID="904"></Sentence>
-      <Sentence ID="905"></Sentence>
+      <Sentence ID="905">Parametr</Sentence>
       <Sentence ID="906"></Sentence>
-      <Sentence ID="907">list element id</Sentence>
-      <Sentence ID="908"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908">list element id</Sentence>
       <Sentence ID="909"></Sentence>
       <Sentence ID="911"></Sentence>
       <Sentence ID="912"></Sentence>
@@ -242,7 +254,10 @@
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
-      <Sentence ID="919">Parametr</Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="114">Selected item</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="314">set class "active" to item with this id</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -336,17 +351,19 @@ class VDOM_list(VDOM_object):
 		rslt = u"<div id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s>\n<ul>" % {"id": id, "style": style, "cssclass": cssclass}
 		res_buffer.write(rslt)
 		for key, value in data.items():
+			active = u'class="active"' if key == self.selecteditem else u""
 			if isinstance(value, list):
 				if len(value) == 3:
 					image = u"<img src=\"%s\" />" % (value[1])
-					li = u"<li id=\"%(elem_id)s\">%(left_image)s%(content)s%(right_image)s</li>" % {"elem_id": unicode(key), "content": unicode(value[0]),
-																								 "left_image": image if value[2] == "left" else u"",
-																								 "right_image": image if value[2] == "right" else u""}
+					li = u"<li id=\"%(elem_id)s\" %(active)s>%(left_image)s%(content)s%(right_image)s</li>" % {"elem_id": unicode(key), "content": unicode(value[0]),
+																											   "active": active,
+																											   "left_image": image if value[2] == "left" else u"",
+																											   "right_image": image if value[2] == "right" else u""}
 					res_buffer.write(li)
 				else:
 					raise Exception("Must be 3 parameters in string %s" % unicode(value))
 			elif isinstance(value, unicode):
-				li = u"<li id=\"%(elem_id)s\">%(content)s</li>" % {"elem_id": unicode(key), "content": unicode(value)}
+				li = u"<li id=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": unicode(key), "active": active, "content": unicode(value)}
 				res_buffer.write(li)
 		
 			else:
@@ -446,48 +463,48 @@ def set_attr(app_id, object_id, param):
         </Event>
         <Event Name="custom">
           <Parameters>
-            <Parameter Name="param" Order="" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="param" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
         <Event Name="itemclick">
           <Parameters>
-            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(908)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
         <Event Name="mousemove">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
