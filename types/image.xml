@@ -134,6 +134,18 @@
       <ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
+	<Attribute>
+      <Name>externalurl</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(309)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
     <Attribute>
       <Name>hint</Name>
       <DisplayName>#Lang(111)</DisplayName>
@@ -171,6 +183,7 @@
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="107">Height</Sentence>
       <Sentence ID="108">Value</Sentence>
+	  <Sentence ID="109">External URL</Sentence>
       <Sentence ID="110">TabIndex</Sentence>
       <Sentence ID="111">Hint</Sentence>
       <Sentence ID="201">Incorrect value, must be positive integer</Sentence>
@@ -181,6 +194,7 @@
       <Sentence ID="206">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="207">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="208">Incorrect value</Sentence>
+	  <Sentence ID="209">Incorrect value</Sentence>
       <Sentence ID="210">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="211">Incorrect value, must contain only printable chars</Sentence>
       <Sentence ID="301">Hierarchy of object</Sentence>
@@ -191,6 +205,7 @@
       <Sentence ID="306">Weight in pixels</Sentence>
       <Sentence ID="307">Height in pixels</Sentence>
       <Sentence ID="308">Value of the object</Sentence>
+	  <Sentence ID="309">External link to image</Sentence>
       <Sentence ID="310">Tab index</Sentence>
       <Sentence ID="311">Hint(ToolTip) on mouseover</Sentence>
       <Sentence ID="401">Invisible</Sentence>
@@ -275,6 +290,7 @@
       <Sentence ID="106">Ширина</Sentence>
       <Sentence ID="107">Высота</Sentence>
       <Sentence ID="108">Значение</Sentence>
+	  <Sentence ID="109">Ссылка</Sentence>
       <Sentence ID="110">Tab индекс</Sentence>
       <Sentence ID="111">Подсказка</Sentence>
       <Sentence ID="201">Неправильное значение, должно быть целое положительное число</Sentence>
@@ -285,6 +301,7 @@
       <Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="208">Неправильное значение</Sentence>
+	  <Sentence ID="209">Неправильное значение</Sentence>
       <Sentence ID="210">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="211">Неправильное значение, должно содержать только печатные символы</Sentence>
       <Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
@@ -295,6 +312,7 @@
       <Sentence ID="306">Ширина объекта в пикселях</Sentence>
       <Sentence ID="307">Высота объекта в пикселях</Sentence>
       <Sentence ID="308">Значение</Sentence>
+	  <Sentence ID="309">Ссылка на изображение</Sentence>
       <Sentence ID="310">Tab индекс</Sentence>
       <Sentence ID="311">Всплывающая подсказка при наведении курсора мыши</Sentence>
       <Sentence ID="401">Не отображается</Sentence>
@@ -379,6 +397,7 @@
       <Sentence ID="106">Largeur</Sentence>
       <Sentence ID="107">Hauteur</Sentence>
       <Sentence ID="108">Fichier</Sentence>
+	  <Sentence ID="109">External URL</Sentence>
       <Sentence ID="110">TabIndex</Sentence>
       <Sentence ID="111">Hint</Sentence>
       <Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
@@ -389,6 +408,7 @@
       <Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="207">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="208">Valeur Incorrecte</Sentence>
+	  <Sentence ID="209">Valeur Incorrecte</Sentence>
       <Sentence ID="210">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="211">Incorrect value, must contain only printable chars</Sentence>
       <Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -399,6 +419,7 @@
       <Sentence ID="306">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="307">Hauteur de l'objet en pixels</Sentence>
       <Sentence ID="308">Fichier image</Sentence>
+	  <Sentence ID="309">External link to image</Sentence>
       <Sentence ID="310">Tab index</Sentence>
       <Sentence ID="311">Hint(ToolTip) on mouseover</Sentence>
       <Sentence ID="401">Invisible</Sentence>
@@ -491,6 +512,8 @@ class VDOM_image(VDOM_object):
 			
 #		link=src.util.id.id2link(self.value)
 		link=utils.id.id2link1(self.value)
+		if self.externalurl and not self.value:
+			link=self.externalurl
 		style="z-index: %s;position: %s;top: %spx;left: %spx"%(self.zindex, self.position, self.top, self.left)
 		id = 'o_' + (self.id).replace('-', '_')
 		title = iw = ih = ""
