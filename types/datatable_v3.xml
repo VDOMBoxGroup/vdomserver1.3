@@ -860,7 +860,7 @@ class VDOM_datatable_v3(VDOM_object):
 			key = json.loads(self.key) #self.key if isinstance(self.key, unicode) else json.loads(self.key)
 		except:
 			key = self.key
-			
+
 		if self.hiddenfields:
 			try:
 				hidden = json.loads(self.hiddenfields)
@@ -877,16 +877,17 @@ class VDOM_datatable_v3(VDOM_object):
 		data = []
 		keys = []
 		for value in src_data:
-			if isinstance(value, list) and len(header) == len(value):
-				row = dict(zip(header, value))
-				data.append(row)
-				if key and key in header:
-					keys.append(row[key])
-			else:
-				data.append(value)
-				if key and key in header:
-					keys.append(value[key]) 
-		
+			if len(header) == len(value):
+				if isinstance(value, list):
+					row = dict(zip(header, value))
+					data.append(row)
+					if key and key in header:
+						keys.append(row[key])
+				else:
+					data.append(value)
+					if key and key in header:
+						keys.append( value[key] )
+
 		if self.selectedrows:
 			try:
 				selectedRows = json.loads(self.selectedrows)
