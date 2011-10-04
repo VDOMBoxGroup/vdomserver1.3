@@ -359,10 +359,12 @@ class VDOM_dbtable(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 		
 def on_delete(app_id, object_id, param):
-	from database.dbobject import VDOM_sql_query
+	import managers
 	object = application.objects.search(object_id)
-	q = VDOM_sql_query(app_id, object.parent.id, "DROP TABLE IF EXISTS \'%s\'"%object.name)
-	q.commit()
+	db = managers.database_manager.get_database(application.id, object.parent.id)
+	if db:
+		table = db.get_table(object_id,object.name)
+		table.remove()
 	return ""
 
 def get_table(app_id,object_id):

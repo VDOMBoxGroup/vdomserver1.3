@@ -99,6 +99,14 @@ class VDOM_database_table:
 		database = managers.database_manager.get_database(self.owner_id, self.database_id)
 		cur = database.get_connection().cursor()
 		cur.execute("create table \'%s\'%s"%(self.name, fields_list))
+		self.restore_structure(True)
+	
+	def remove(self):
+		database = managers.database_manager.get_database(self.owner_id, self.database_id)
+		cur = database.get_connection().cursor()
+		cur.execute("DROP TABLE IF EXISTS \'%s\'"%(self.name,))
+		database.tables_list=database.get_tables_list()
+		del database.tables_index[self.id]
 		
 	def get_structure(self):
 		"""geting XML representation of table structure"""
@@ -115,7 +123,7 @@ class VDOM_database_table:
 		result += "</tablestructure>"
 		return result
 	
-	def restore_structure(self):
+	def restore_structure(self, internal_usage = False):
 		"""restoring XML representation from database"""
 		self.headers=[]
 		self.headersindex = {}
@@ -135,7 +143,8 @@ class VDOM_database_table:
 				self.headers.append(text)
 				self.headersindex[text] = i
 			i+=1
-		managers.request_manager.get_request().session().value("headers",self.headers)
+		if not internal_usage:
+			managers.request_manager.get_request().session().value("headers",self.headers)
 	
 	def parse_declaration(self):
 		"""Parsing table declaration"""
@@ -152,9 +161,11 @@ class VDOM_database_table:
 			declaration = table_def.group("declaration")
 			for column in map(unicode.strip,declaration.split(',')):
 				constraints = {}
-				match = re.search(r"\A(?P<col_name>\w+|\'.*?\')(?:\s+(?P<type>(?:INTEGER|TEXT|NUMERIC|BLOB|REAL)\(?\d*(?:,\d+)?\)?))?(?:\s+(?:(?P<notnull>NOT NULL)|(?P<unique>UNIQUE)|(?P<primarykeyauto>PRIMARY KEY AUTOINCREMENT)|(?P<primarykey>PRIMARY KEY)|(?P<default>DEFAULT (?:(?:')[\S ]+(?:')|\w+))))*", column, re.DOTALL | re.IGNORECASE)
+				match = re.search(r"\A`?(?P<col_name>[\w_]+|\'.*?\')`?(?:\s+(?P<type>(?:INTEGER|TEXT|NUMERIC|BLOB|REAL)\(?\d*(?:,\d+)?\)?))?(?:\s+(?:(?P<notnull>NOT NULL)|(?P<unique>UNIQUE)|(?P<primarykeyauto>PRIMARY KEY AUTOINCREMENT)|(?P<primarykey>PRIMARY KEY)|(?P<default>DEFAULT (?:(?:')[\S ]+(?:')|\w+))))*", column, re.DOTALL | re.IGNORECASE)
 				if match:
 					col_name = un_quote(match.group("col_name"))
+					if col_name.upper() in ("PRIMARY","UNIQUE","CHECK","FOREIGN"):
+						continue
 					col_type = match.group("type")
 					if not col_type:
 						col_type = "TEXT"

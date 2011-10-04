@@ -85,10 +85,17 @@ class VDOM_file_storage(object):
 	def mkdir(self, foldername):
 		from scripting.wrappers import application
 		managers.file_manager.create_app_storage_user_directory(application.id, self.__norm_filename(foldername))
-		                               
+
+	def rmtree(self, foldername):
+		from scripting.wrappers import application
+		managers.file_manager.delete_app_storage_user_directory(application.id, self.__norm_filename(foldername))
+		
 	def __norm_filename(self, filename):
+		from scripting.wrappers import application
 		norm_name = os.path.normpath(filename)
-		if norm_name[:2]== "..":
+		rel_path = os.path.relpath(os.path.abspath(managers.file_manager.get_path(app_storage, application.id, None, norm_name)),
+		                           os.path.abspath(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"]))
+		if rel_path[:36]!= application.id:
 			raise VDOM_exception_file_access("Provided file name is invalid")
 		return norm_name
 	
@@ -239,7 +246,7 @@ class VDOM_resources(object):
 	def delete(self, resource_id):
 		"""Delete resource"""
 		from scripting.wrappers import application
-		managers.resource_manager.delete_resource(application.id, resource_id)
+		managers.resource_manager.delete_resource(application.id, resource_id,True)
 
 	def create_temporary(self, object_id, label, data, resource_format="res", name=""):
 		"""Create temporary resource with lable"""

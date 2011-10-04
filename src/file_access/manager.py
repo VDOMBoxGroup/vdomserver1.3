@@ -227,6 +227,13 @@ class VDOM_file_manager(object):
 			os.makedirs(path)
 		except: pass
 		
+	def delete_app_storage_user_directory(self, application_id,folder_name):
+		"""create directory to store app databases"""
+		path = self.__get_app_storage_file_path(application_id, folder_name )
+		try:
+			shutil.rmtree(path)
+		except: pass
+		
 	def clear(self, restype, application_id, object_id):
 		"""Deletes all files of type"""
 		if object_id:
