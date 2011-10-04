@@ -555,7 +555,10 @@ class VDOM_objectview(VDOM_object):
 		js = u"""<script type="text/javascript">
 		%(id)s_doo = false;
 		$j(document).ready(function(){
-			$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
+			//$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
+			//$j("#%(id)s>.%(class)s-item").live('click', function(e){
+			$j("#%(id)s>.%(class)s-item").bind('click dblclick', function(e){
+				if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
 				var t = $j(this);
 				if (e.type == 'dblclick') {
 					%(id)s_doo = false;
@@ -565,7 +568,7 @@ class VDOM_objectview(VDOM_object):
 						if (%(id)s_doo == true) {
 							execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
 						}
-					}, 200);
+					}, 300);
 					%(id)s_doo = true;
 				}
 				return false;
@@ -583,8 +586,8 @@ class VDOM_objectview(VDOM_object):
 				containment: 'document',
 				zIndex: 99999,
 				opacity: 0.6,
-				revert: true,
-				revertDuration: 300,
+				//revert: true,
+				//revertDuration: 300,
 				helper: 'clone',
 				option: 'accept',
 				cursorAt: { left: 1, top: 1 },
@@ -599,7 +602,7 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""<div objtype='objectview' ver='2.6/2011-10-03' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
+		result = u"""<div objtype='objectview' ver='2.7/2011-10-04' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
 			id = id, name = self.name, js = js,
 			style = style.strip(), style_items = style_items.strip(), 
 			classname = classname.strip(), contents = inner_render
