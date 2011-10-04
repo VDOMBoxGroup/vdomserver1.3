@@ -121,7 +121,7 @@ __builtin__.decrease_objects_count = decrease_objects_count
 __builtin__.system_options = {"server_license_type": "0",	# online server, 1=development
 				"firmware" : "N/A",
 				"card_state" : "0",	# 0 - no card, 1 - card ok
-				"object_amount" : "1500"}
+				"object_amount" : "0"}
 
 # verify that server is not running
 
