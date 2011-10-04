@@ -888,6 +888,14 @@ vdom_ui_startResizeXY(this.domCont);
 vdom_ui_startResizeY(this.domCont);
 					]]></SourceCode>
         </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="goTo">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="url" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+document.location.href=url; return false;
+					]]></SourceCode>
+        </Action>
       </Container>
     </Actions>
   </E2vdom>
