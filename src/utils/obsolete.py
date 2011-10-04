@@ -69,7 +69,6 @@ def my_debug(_data, tag="", console=None):
 	global tags
 	from storage.storage import VDOM_config
 	if tags is None:
-		import managers
 		tags=managers.storage.read_object("DEBUG-TAGS") or []
 	debug_on = True
 	if "1" != VDOM_CONFIG_1["DEBUG"]:

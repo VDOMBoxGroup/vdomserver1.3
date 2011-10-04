@@ -897,7 +897,7 @@ class VDOM_button(VDOM_object):
 							align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
 						self.finalimage = im.save_temporary(application.id, self.id, "image")
 				if self.rollover:
-					resource = application.resources.get_resource_by_label(self.id, "rollover")
+					resource = application.resources.get_by_label(self.id, "rollover")
 					if resource:
 						self.finalrollover = resource.id
 					else:

@@ -13,7 +13,7 @@ wait = 0
 def wait_for_options():
 	global wait
 	if not (FREEBSD or LINUX):
-		debug("Platform does not support a smart card (%s,%s,%s)" % (LINUX, FREEBSD, sys.platform))
+		print ("Platform %s does not support a smart card. Need %s or %s. " % (sys.platform, LINUX, FREEBSD))
 		return
 	wait = 1
 
