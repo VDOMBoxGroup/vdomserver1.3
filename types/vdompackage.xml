@@ -440,7 +440,7 @@ class VDOM_vdompackage(VDOM_object):
 			"%(contents)s\n"\
 			"<script type=\"text/javascript\" src=\"/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v=152\"></script>\n"\
 			"""<script>jQuery(document).ready(function($){
-			$('[typename="vdomclass"]').show();
+			$("[objtype='vdomclass']").show();
 			});</script>"""\
 			"</body>\n"\
 			"</html>"%\
