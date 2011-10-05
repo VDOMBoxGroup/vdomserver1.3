@@ -534,13 +534,13 @@ class VDOM_formcolorpicker(VDOM_object):
 					""".format(width = fixw, height = fixh, border = border)
 
 		result = \
-			u"""<div style="%(div_style)s">
-					<input id="%(id)s" name="%(name)s" style="%(inp_style)s" 
+			u"""<div id="%(id)s" style="%(div_style)s">
+					<input id="inp_%(id)s" name="%(name)s" style="%(inp_style)s" 
 						type="text" tabindex="%(tabind)s" value="%(value)s" />
 				</div>
 				<script type="text/javascript">
 					jQuery(document).ready(function(){
-						jQuery("#%(id)s").colorInput({
+						jQuery("#inp_%(id)s").colorInput({
 							hideInput:%(hide)s,textAccept:"%(title_OK)s",textCancel:"%(title_Canc)s",change:function(){
 								execEventBinded("%(clean_id)s","changecolor",{color:this.value});} });});
 				</script>
