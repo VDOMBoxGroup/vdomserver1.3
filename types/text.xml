@@ -760,7 +760,7 @@ class VDOM_text(VDOM_object):
 			"color" : "#%s"%self.color if self.color else None,
 			"text-decoration": self.textdecoration or None}
 
-		result="<div objectname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
+		result="<div objname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
 			"oname": self.name,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),
