@@ -85,6 +85,11 @@ def send_pong():
 	send_to_card("pong")
 
 
+def run_scheduler_task(num):
+	import managers
+	managers.scheduler_manager.on_signal(num)
+
+
 def execute(data):
 	parts = data.split(" ")
 	if "option" == parts[0]:
@@ -98,6 +103,8 @@ def execute(data):
 		set_network()
 	elif "getnetwork" == parts[0]:
 		send_network()
+	elif "scheduler_task" == parts[0]:
+		run_scheduler_task(parts[1])
 	elif "ping" == parts[0]:
 		send_pong()
 
@@ -105,3 +112,4 @@ def check_application_license(application_id, license_type):
 	return send_to_card_and_wait( 
 	    "getlicense %s %s" % (str(application_id), str(license_type)),
 	    "%s/%s" % (str(application_id), str(license_type)) ) == "1"
+
