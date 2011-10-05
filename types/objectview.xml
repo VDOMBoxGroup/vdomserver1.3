@@ -590,7 +590,7 @@ class VDOM_objectview(VDOM_object):
 				//revertDuration: 300,
 				helper: 'clone',
 				option: 'accept',
-				cursorAt: { left: 1, top: 1 },
+				cursorAt: { left: -5, top: -5 },
 				start: function(e,u){
 					execEventBinded('%(woid)s', "dragstart", {"params": "some parameters"});
 				}
