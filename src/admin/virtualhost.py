@@ -25,11 +25,11 @@ def run(request):
 			newvhostsite = args["newvhostsite"][0]
 			if "" != newvhost and newvhostsite in allapp:
 				vh.set_site(newvhost, newvhostsite)
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 		else:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect virtual host name";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect virtual host name";</script>')
 	else:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 
 	sites = vh.get_sites()
 

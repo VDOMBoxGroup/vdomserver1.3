@@ -33,9 +33,9 @@ def run(request):
 				error = "OK, new type is applied immediately"
 			else:
 				error = "Incorrect file"
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: %s";</script>' % escape(error, quote=True))
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: %s";</script>' % escape(error, quote=True))
 		except Exception, e:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: Error. %s";</script>' % escape(str(e), quote=True))
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Type update: Error. %s";</script>' % escape(str(e), quote=True))
 			request.write(traceback.format_exc())
 
 	request.write("""<html>

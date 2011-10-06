@@ -1,5 +1,4 @@
-﻿
-import managers
+﻿import managers
 from utils.exception import VDOM_exception
 
 def run(request):
@@ -33,9 +32,9 @@ def run(request):
 						obj.member_of.append(gr.login)
 			except Exception, e:
 				error = str(e)
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The new user is created";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The new user is created";</script>')
 		else:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 
 		request.write("""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">

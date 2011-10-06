@@ -12,7 +12,7 @@ def run(request):
 
 	args = request.arguments().arguments()
 	if "appfile" in args and "" != args["appfile"][0]:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Updating...";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Updating...";</script>')
 		tmpfilename = ""
 		try:
 			# save file
@@ -25,18 +25,18 @@ def run(request):
 			# call update function
 			outp = update_application(tmpfilename, request.server().virtual_hosting())
 			if outp[0]:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+				request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
 			else:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Update error: %s";</script>' % escape(outp[1], quote=True))
+				request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Update error: %s";</script>' % escape(outp[1], quote=True))
 		except Exception as e:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: %s";</script>' % escape(str(e), quote=True))
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: %s";</script>' % escape(str(e), quote=True))
 			traceback.print_exc(file=debugfile)
 		try:
 			os.remove(tmpfilename)
 		except Exception as e:
 			pass
 	else:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')
 
 	request.write("""<html>
 <head>
@@ -52,7 +52,7 @@ a:visited {
 	color: #000000;
 }
 </style>
-<script language="javascript">
+<script type="text/javascript">
 function LoadImgWait(){
 	document.getElementById('Imgload').style.display='';
 	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installing...";

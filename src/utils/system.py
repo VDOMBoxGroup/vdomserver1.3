@@ -56,10 +56,15 @@ def set_virtual_card( user, password, guid ):
 	
 	return send_to_card_and_wait("""virtualcard %s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid), "carderror")
 
-
+def login_virtual_card( user, password):
+	if user == "1":
+		return [("guid1","name1"),("guid2","name2"), ("guid3","name3")]
+	else:
+		raise VDOM_exception ("Virtual card connection failed")
 	
 	
 
 
 import managers
+from utils.exception import VDOM_exception
 from utils.card_connect import send_to_card,send_to_card_and_wait
