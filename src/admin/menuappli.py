@@ -59,9 +59,8 @@ function MM_swapImage() { //v3.0
 <body onload="MM_preloadImages('images/bt-install_s.gif','images/bt-uninstall_s.gif','images/bt-track_s.gif','images/bt-export_s.gif','images/bt-virtualhost_s.jpg','Images/bt-objects_s.gif')">
 <center>
   <p align="left" class="Texte">Application Management </p>
-  <table width="565" border="0">
+  <table width="560" border="0">
   <tr>
-    <td><div align="center"></div></td>
     <td><div align="center"><a href="install.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('install','','images/bt-install_s.gif',1)"><img src="images/bt-install.jpg" alt="Install" name="install" border="0" id="Image6" /></a></div></td>
     <td><div align="center"></div></td>
     <td><div align="center"><a href="uninstall.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('uninstall','','images/bt-uninstall_s.gif',1)"><img src="images/bt-uninstall.jpg" alt="Uninstall" name="uninstall" border="0" id="uninstall" /></a></div></td>
@@ -75,10 +74,8 @@ function MM_swapImage() { //v3.0
     <td><div align="center"><a href="appbackup.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('appbackup','','images/bt-appbackup_s.gif',1)"><img src="images/bt-appbackup.jpg" alt="Applications backup" name="appbackup" border="0" id="appbackup" /></a></div></td>
     <td><div align="center"></div></td>
     <td><div align="center"><a href="apprestore.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('apprestore','','images/bt-apprestore_s.gif',1)"><img src="images/bt-apprestore.jpg" alt="Applications restore" name="apprestore" border="0" id="apprestore" /></a></div></td>
-    <td><div align="center"></div></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
     <td valign="top"><div align="center" class="Texte Style2" onmouseover="MM_swapImage('install','','images/bt-install_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="install.py" class="txt-liens">Install</a></div></td>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('uninstall','','images/bt-uninstall_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="uninstall.py">Uninstall</a></div></td>
@@ -92,7 +89,6 @@ function MM_swapImage() { //v3.0
     <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('appbackup','','images/bt-appbackup_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="appbackup.py">Applications backup</a></div></td>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('apprestore','','images/bt-apprestore_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="apprestore.py">Applications restore</a></div></td>
-    <td>&nbsp;</td>
   </tr>
 </table>
 </center>

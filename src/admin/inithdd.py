@@ -35,7 +35,7 @@ a:visited {
 	if "init" in args:
 		f = open("/etc/inithdd", "wt")
 		f.close()
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Rebooting server";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Rebooting server";</script>')
 		f = os.popen("reboot")
 		outp = f.read()
 		f.close()

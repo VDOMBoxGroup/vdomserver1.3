@@ -14,10 +14,10 @@ def run(request):
 			u = managers.user_manager.get_user_by_id(uid)
 			if u:
 				managers.user_manager.remove_user(u.login)
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The group %s is removed";</script>' % u.login)
+				request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The group %s is removed";</script>' % u.login)
 				Delgrp = 1
 		if Delgrp != 1:	
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 
 		request.write("""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">

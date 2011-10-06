@@ -6,9 +6,9 @@ from cgi import escape
 
 def run(request):
 	sess = request.session()
-	if not sess.value("appmngmtok"):
-		request.write("Authentication failed")
-		raise VDOM_exception("Authentication failed")
+	#if not sess.value("appmngmtok"):
+		#request.write("Authentication failed")
+		#raise VDOM_exception("Authentication failed")
 
 	error = ""
 	args = request.arguments().arguments()
@@ -17,19 +17,75 @@ def run(request):
 	pis_login = ""
 	pis_password = ""
 	pis_system_guid = ""
-	if "pis_login" in args and "pis_password" in args and "pis_system_guid" in args:
+	show_form = ""
+	if "pis_login" in args and "pis_password" in args:
+		try:
+			from utils.system import login_virtual_card
+			pis_login = args["pis_login"][0]
+			pis_password = args["pis_password"][0]
+			syst_list = login_virtual_card(pis_login,pis_password)
+			sess.value("s_pis_login",pis_login) 
+			sess.value("s_pis_password",pis_password)
+			systems = "".join(["<option value=%s>%s</option>" %(s_id, s_name) for (s_id, s_name) in syst_list])
+			show_form = template_systems % (systems,)
+		except Exception, e:
+			error = "Error: " + str(e) + "\n"
+			show_form = template_login
+			
+	elif "pis_system_guid" in args and sess.value("s_pis_login") and sess.value("s_pis_password"):
 		try:
 			from utils.system import set_virtual_card
-			pis_login = args["pis_login"]
-			pis_password = args["pis_password"]
-			pis_system_guid = args["pis_system_guid"]
+			pis_login = sess.value("s_pis_login")
+			pis_password = sess.value("s_pis_password")
+			pis_system_guid = args["pis_system_guid"][0]
 			set_virtual_card(pis_login,pis_password,pis_system_guid)
 			error = "Please restart server to apply changes"
 		except Exception, e:
-			error = "Error: " + str(e) + "<br>\n"
-		error = '<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual card configuration: %s";</script>' % escape(error, quote=True)
+			error = "Error: " + str(e) + "\n"
+			show_form = template_login
+	else:
+		show_form = template_login
+	error = '<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual card configuration: %s";</script>' % escape(error.strip(), quote=True)
+	request.write(template_page%(error,show_form))
+	
+	
+template_login = """<form method="post" action="" enctype="multipart/form-data">
+      <table border="0">
+        <tr>
+          <td class="Style2"><div align="right">PIS login : 
+          </div></td>
+          <td><input type="text" name="pis_login" value=""/>
+          </td>
+	</tr>
+	</tr>
+          <td class="Style2"><div align="right">PIS password :
+          </div></td>
+          <td><input type="password" name="pis_password" value=""/>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+        </tr>
+    </table>
+</form>"""
 
-	request.write("""<html xmlns="http://www.w3.org/1999/xhtml">
+template_systems = """<form method="post" action="" enctype="multipart/form-data">
+      <table border="0">
+        <tr>
+          <td class="Style2"><div align="right">System guid: 
+          </div></td>
+          <td><select name=pis_system_guid>%s</select>
+          </td>
+	</tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+        </tr>
+    </table>
+</form>
+"""
+template_page = """<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans nom</title>
@@ -61,30 +117,4 @@ a:visited {
 <body>
 <center>
 <p align="left"><span class="Texte"><a href="config.py">Configuration</a> &gt; Virtual Card</span></p>
-<form method="post" action="" enctype="multipart/form-data">
-      <table border="0">
-        <tr>
-          <td class="Style2"><div align="right">PIS login : 
-          </div></td>
-          <td><input type="text" name="pis_login" value="%s"/>
-          </td>
-	</tr>
-	</tr>
-          <td class="Style2"><div align="right">PIS password :
-          </div></td>
-          <td><input type="password" name="pis_password" value="%s"/>
-          </td>
-        </tr>
-        <tr>
-          <td class="Style2"><div align="right">System guid: 
-          </div></td>
-          <td><input type="text" name="pis_system_guid" value="%s"/>
-          </td>
-	</tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
-        </tr>
-    </table>
-</form></center></body></html>""" % (error, pis_login, pis_password, pis_system_guid))
-
+%s</center></body></html>"""

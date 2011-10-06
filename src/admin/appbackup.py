@@ -48,7 +48,7 @@ a:visited {
 }
 </style>
 
-<script language="javascript">
+<script type="text/javascript">
 function LoadImgWait(){
 	document.getElementById('Imgload').style.display='';
 	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Copying files to external device...";

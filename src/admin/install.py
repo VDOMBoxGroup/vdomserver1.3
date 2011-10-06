@@ -14,7 +14,7 @@ def run(request):
 	if "appfile" in args and "appfile" in request.files and "vhname" in args and "format" in args and "" != args["appfile"][0] and "" != args["vhname"][0] and "" != args["format"][0]:
 		# perform installation
 		#request.write('Installing...<br><br>')
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installing...";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installing...";</script>')
 		#request.write(str(args) + '<br><br>')
 		vhname = args["vhname"][0].lower()
 		ok = True
@@ -23,10 +23,10 @@ def run(request):
 				ok = False
 		vh = request.server().virtual_hosting()
 		if not ok:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect virtual host name";</script>')
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect virtual host name";</script>')
 		elif "" != vhname and vh.get_site(vhname):
 			#request.write('Virtual host name "%s" already exists' % vhname)
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual host name \'%s\' already exists";</script>' % vhname)
+			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual host name \'%s\' already exists";</script>' % vhname)
 		else:
 			try:
 				# #request.write(tmpfilename + "<br>")
@@ -36,23 +36,23 @@ def run(request):
 				outp = import_application(request.files["appfile"][0].name,args["format"][0])
 				if None != outp[0] and "" != outp[0]:
 					#request.write("OK, application id = %s" % outp)
-					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+					request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
 					if "" != vhname and ok:
 						vh.set_site(vhname, outp[0])	# outp[0] contains the application ID
 				elif "" == outp[0]:
 					#request.write("This application seems to be already installed")
-					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="This application seems to be already installed";</script>')
+					request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="This application seems to be already installed";</script>')
 				else:
 					#request.write("Installation error")
-					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installation error: %s";</script>' % escape(outp[1], quote=True))
+					request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installation error: %s";</script>' % escape(outp[1], quote=True))
 			except Exception, e:
 				traceback.print_exc()
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: ' + escape(str(e), quote=True) + '<br>";</script>')
+				request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: ' + escape(str(e), quote=True) + '<br>";</script>')
 
 	elif "appfile" in args and "vhname" in args and "format" in args:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect parameters";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Incorrect parameters";</script>')
 	else:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')
+		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')
 
 	request.write("""<html>
 <head>
@@ -68,7 +68,7 @@ a:visited {
 	color: #000000;
 }
 </style>
-<script language="javascript">
+<script type="text/javascript">
 function LoadImgWait(){
 	document.getElementById('Imgload').style.display='';
 	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Installing...";
