@@ -1,301 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-	<Information>
-		<Name>desktopapplication</Name>
-		<DisplayName>#Lang(001)</DisplayName>
-		<Description>#Lang(002)</Description>
-		<ClassName>VDOM_desktopapplication</ClassName>
-		<ID>a15989f1-a6fc-4393-952a-b3e19dd4bf46</ID>
-		<Icon>#Res(9fa28fbf-a5f5-4c8a-9073-33e9af96d58d)</Icon>
-		<EditorIcon>#Res(da63f82c-f098-47bd-be19-03482237a02b)</EditorIcon>
-		<StructureIcon>#Res(a3cc8d24-2519-4d1e-80ed-661f903506ee)</StructureIcon>
-		<Moveable>0</Moveable>
-		<Resizable>0</Resizable>
-		<Container>3</Container>
-		<RenderType/>
-		<Category>#Lang(003)</Category>
-		<Dynamic>1</Dynamic>
-		<Version>1</Version>
-		<InterfaceType>1</InterfaceType>
-		<OptimizationPriority>1</OptimizationPriority>
-		<Containers/>
-		<Languages>en_US, ru_RU, fr_FR</Languages>
-	</Information>
-	<Attributes>
-		<Attribute>
-			<Name>hierarchy</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<Help>#Lang(301)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(302)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<Help>#Lang(303)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>title</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(304)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(500)</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>description</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(305)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(100)</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>active</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(306)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>background</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(307)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>entrypoint</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(308)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>ObjectList(dd7a56de-7a14-4f0b-9370-c34d9aa5469b)</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>smallIcon</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(309)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>File()</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>mediumIcon</Name>
-			<DisplayName>#Lang(110)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(210)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(310)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>File()</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>bigIcon</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(311)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>File()</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-	</Attributes>
-	<Languages>
-		<Language Code="en_US">
-			<Sentence ID="001">Desktop application</Sentence>
-			<Sentence ID="002">Container with desktop application objects</Sentence>
-			<Sentence ID="003">Desktop</Sentence>
-			<Sentence ID="101">Hierarchy</Sentence>
-			<Sentence ID="102">Visibility</Sentence>
-			<Sentence ID="103">Z-index</Sentence>
-			<Sentence ID="104">Title</Sentence>
-			<Sentence ID="105">Description</Sentence>
-			<Sentence ID="106">Activity</Sentence>
-			<Sentence ID="107">Background</Sentence>
-			<Sentence ID="108">Entry point</Sentence>
-			<Sentence ID="109">Small icon</Sentence>
-			<Sentence ID="110">Medium icon</Sentence>
-			<Sentence ID="111">Big icon</Sentence>
-			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
-			<Sentence ID="203">Incorrect value, must be integer from 0 to 99</Sentence>
-			<Sentence ID="204">Incorrect value, must be string</Sentence>
-			<Sentence ID="205">Incorrect value, must be string</Sentence>
-			<Sentence ID="206">Incorrect value, must be 0 or 1</Sentence>
-			<Sentence ID="207">Incorrect value, must be 0 or 1</Sentence>
-			<Sentence ID="208">Incorrect value, must be string</Sentence>
-			<Sentence ID="209">Incorrect value</Sentence>
-			<Sentence ID="210">Incorrect value</Sentence>
-			<Sentence ID="211">Incorrect value</Sentence>
-			<Sentence ID="301">Hierarchy of object</Sentence>
-			<Sentence ID="302">Show or not object</Sentence>
-			<Sentence ID="303">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="304">Title of the container</Sentence>
-			<Sentence ID="305">Description of the container</Sentence>
-			<Sentence ID="306">Activity of the container</Sentence>
-			<Sentence ID="307">Run in background or not</Sentence>
-			<Sentence ID="308">Entry point of the application</Sentence>
-			<Sentence ID="309">Small icon of the container</Sentence>
-			<Sentence ID="310">Medium icon of the container</Sentence>
-			<Sentence ID="311">Big icon of the container</Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-			<Sentence ID="403">Inactive</Sentence>
-			<Sentence ID="404">Active</Sentence>
-			<Sentence ID="405">No</Sentence>
-			<Sentence ID="406">Yes</Sentence>
-		</Language>
-		<Language Code="ru_RU">
-			<Sentence ID="001">Настольное приложение</Sentence>
-			<Sentence ID="002">Контейнер, содержащий объекты настольного приложения</Sentence>
-			<Sentence ID="003">Desktop</Sentence>
-			<Sentence ID="101">Иерархия</Sentence>
-			<Sentence ID="102">Отображение</Sentence>
-			<Sentence ID="103">Z-Индекс</Sentence>
-			<Sentence ID="104">Заголовок</Sentence>
-			<Sentence ID="105">Описание</Sentence>
-			<Sentence ID="106">Активность</Sentence>
-			<Sentence ID="107">Фоновое</Sentence>
-			<Sentence ID="108">Точка входа</Sentence>
-			<Sentence ID="109">Малая иконка</Sentence>
-			<Sentence ID="110">Средняя иконка</Sentence>
-			<Sentence ID="111">Большая иконка</Sentence>
-			<Sentence ID="201">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="202">Неправильное значение, должно быть 0 или 1</Sentence>
-			<Sentence ID="203">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-			<Sentence ID="204">Неправильное значение, должна быть строка</Sentence>
-			<Sentence ID="205">Неправильное значение, должна быть строка</Sentence>
-			<Sentence ID="206">Неправильное значение, должно быть 0 или 1</Sentence>
-			<Sentence ID="207">Неправильное значение, должно быть 0 или 1</Sentence>
-			<Sentence ID="208">Неправильное значение, должна быть строка</Sentence>
-			<Sentence ID="209">Неправильное значение</Sentence>
-			<Sentence ID="210">Неправильное значение</Sentence>
-			<Sentence ID="211">Неправильное значение</Sentence>
-			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
-			<Sentence ID="302">Отображается объект или нет</Sentence>
-			<Sentence ID="303">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="304">Заголовок контейнера</Sentence>
-			<Sentence ID="305">Описание контейнера</Sentence>
-			<Sentence ID="306">Активность контейнера</Sentence>
-			<Sentence ID="307">Запускать как фоновое или нет</Sentence>
-			<Sentence ID="308">Точка входа приложения</Sentence>
-			<Sentence ID="309">Малая иконка контейнера</Sentence>
-			<Sentence ID="310">Средняя иконка контейнера</Sentence>
-			<Sentence ID="311">Большая иконка контейнера</Sentence>
-			<Sentence ID="401">Не отображается</Sentence>
-			<Sentence ID="402">Отображается</Sentence>
-			<Sentence ID="403">Неактивен</Sentence>
-			<Sentence ID="404">Активен</Sentence>
-			<Sentence ID="405">Нет</Sentence>
-			<Sentence ID="406">Да</Sentence>
-		</Language>
-		<Language Code="fr_FR">
-			<Sentence ID="001">Application desktop</Sentence>
-			<Sentence ID="002">Conteneur avec des objets d'application Desktop</Sentence>
-			<Sentence ID="003">Desktop</Sentence>
-			<Sentence ID="101">Hiérarchie</Sentence>
-			<Sentence ID="102">Visibilité</Sentence>
-			<Sentence ID="103">Z-index</Sentence>
-			<Sentence ID="104">Titre</Sentence>
-			<Sentence ID="105">Description</Sentence>
-			<Sentence ID="106">Activité</Sentence>
-			<Sentence ID="107">Fond</Sentence>
-			<Sentence ID="108">Point d'entrée</Sentence>
-			<Sentence ID="109">Petite icône</Sentence>
-			<Sentence ID="110">Moyennes icône</Sentence>
-			<Sentence ID="111">Grande icône</Sentence>
-			<Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-			<Sentence ID="203">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
-			<Sentence ID="204">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
-			<Sentence ID="205">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
-			<Sentence ID="206">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-			<Sentence ID="207">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-			<Sentence ID="208">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
-			<Sentence ID="209">Valeur Incorrecte</Sentence>
-			<Sentence ID="210">Valeur Incorrecte</Sentence>
-			<Sentence ID="211">Valeur Incorrecte</Sentence>
-			<Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-			<Sentence ID="302">Afficher ou cacher l'objet</Sentence>
-			<Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-			<Sentence ID="304">Titre du conteneur</Sentence>
-			<Sentence ID="305">Description du conteneur</Sentence>
-			<Sentence ID="306">Activité du conteneur</Sentence>
-			<Sentence ID="307">Exécuter en arrière-plan ou non</Sentence>
-			<Sentence ID="308">Point d'entrée de l'application</Sentence>
-			<Sentence ID="309">Petite icône du conteneur</Sentence>
-			<Sentence ID="310">Moyennes icône du conteneur</Sentence>
-			<Sentence ID="311">Grande icône du conteneur</Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-			<Sentence ID="403">Inactif</Sentence>
-			<Sentence ID="404">Actif</Sentence>
-			<Sentence ID="405">Non</Sentence>
-			<Sentence ID="406">Oui</Sentence>
-		</Language>
-	</Languages>
-	<Resources>
-		<Resource ID="9fa28fbf-a5f5-4c8a-9073-33e9af96d58d" Name="Icon" Type="png"><![CDATA[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]]></Resource>
-		<Resource ID="da63f82c-f098-47bd-be19-03482237a02b" Name="Icon" Type="jpg"><![CDATA[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]]></Resource>
-		<Resource ID="a3cc8d24-2519-4d1e-80ed-661f903506ee" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAC4AAAA3CAYAAABzYHhkAAAT5ElEQVR4nGL8//8/w99/f5mZmZj/PnjxWGbpnlUJhy+etnn36a2YpPI/flG5v/zMHD/4/v3/x8rFxvdGnFv2liSv0jUpPqXL0rxK18R4ZO8IcIo+Y2Nm/8WABfxn+M/07/8/JgaG/wyMDIz/GRkY/zMwQmkKAAAAAP//Yvz79y8zExPT31mbF6ZUz23tffPmDR8XL9t/ey9hRllFTgaGf4wMDP+ZGBgYGBj+/f/H8Offb4Z///8wMDAwMrAwsTJwsvB842MXeibMJXVfnEfupgSPwnUJXoWbolxS9wU4xZ6xs3D8wG71f8Z///8xwzkkeggAAAD//2L8//8/w6S1s3Pyu/Mmc/IJ/2NnY/vvHizEICHDxvjt6z9GRog5jHALGJn+MzIw/GdgYGD4//8/07//fxn//P8D8dC/Pwz/Gf4zsDCyMrCzcP/lZxd+IcwleV+MR+6mFK/idQkeheuiPDJ3hTklnnCwcn3F56H/cEsZ/zFi8RAAAAD//2ySvQrCMBRGvy8Wf9IGIYPGQcVdcOyou8/ia7p2cCiog+DWsYggJPc6iFte4BwOHDa3y3Z/Op6F6uKHsqtLUx+meL8EZpADZ0yg/gqpxH+PZKJEJIlIGqEqMCwwLqy4ke/8JDxm5fK6cJs2VOt2Xq3u3oanHbqeeQ9FxSiUBPAFAAD//2KZvHZW7qfvX3n5ufn+MrL/ZVbW5GL4/es/AyMTUY5mYGBgYPzP8J/x/3/0GGb8z8rE9p+NmR3JQwyM//7/Zf7447XEu+/PJG68OWUB8RAzAzsz538eNsG3gpziD8V5ZG+L8yhcl+RVuC7OI3dbmEviEQ+bwDsmRqa/MNMBAAAA//9iVIk0vvv07Qslhv/M/4VEWBi9w0WIdjG5AJqe/zGieejvf0gM/fn3m+H//38MjIzMDGzMHAw8rPwfBDnFHolyy96R4FG4JsmrcAMAAAD//7zRsQ2AMBADQDsFVFS0kTIOomX/Rcj/21SUtIxwOm7nuAEvcxp9rDiuHREGP75+AJmgXpCtVk6WAqmEXCAbHgAAAP//tJIhEgAgDMPaW4H/f5igJnAYKnMREQ0w3db7Pb4MYYGRrpJyqAyWvJsdAAAA//+UlLENACAMw9yW/092GdgQQnBAbHnJ2JZ/IiEzqCps0QXICNYnNLZXxpPnEDQBAAD//4yRwQqAIBAFZ901pf7/O4MoQa2tS2fr3WcYeDYCRsFqQp6NvRysWyFqJE0JAao3Tu9oMLItBFH8vj6s7+0/9wAAAP//Itnh//8xMHBwMjN8+/qH4fTJxwxSXOoMXiY+DMaqhgyiAiIMjIwMDF9+fWB49ukew7XXJxmuvjrB8PX3JwZuVj6cjmdkZGCAlUpMjEwM////Z/hPwBMAAAAA//8iyeH//0McfefGF4aj+94yVIRUMBSFZzCws7My/IdU6XC1WmIWDK4q0QzPPz9gWHN1IsPpJzsZuNj4GDCLTQaGXz//MbCwsDAwMv1l+Pb7CwMLEwsDKxM7XscDAAAA//8iOjv+/8fAwM7BxHDj8leGnWtfMMwunM5QGZfLwMLKxPD331+G////wSubP39/M/z+AynSJHnlGXIt+hlCdPIZvv36zMAELQH+/2dgYGVjZHj17A/DklkPGDzESxi6vDYy1NgvZjCUdGT48ecbXC02AAAAAP//jNQhDsJAEEDRPzO7dQ0GAQ5TgkQ1WCSmEo0g4QR4bsQBuAxpEAgMSTFdtoNCknCC/9T/C/6NPO6Zy/nKaX9ku27oU0JFMTVEFNOASSBYpAgFDgzuZM80iwOb+Y6uf6JiuDuqwq19Eb2krlaM4pRqvGRSzngPCfj95A8AAAD//yI6xBkZmRgO7n7OoKmsy1AWlcvAwMDAwMrCwsDIyMjw/z8kmdx4e5KhZkM6g09lBMPaQ1ugIcYID7kQ7TwGRUFthp9/vjEwMzEz/P/HyPD08RcGbSVVBhlRaahjGRj+E1ESAQAAAP//hNQrDsJAFEbh89+mTAXrQKBQLAINSXUFDskeWAmKLZBgcCR4EhRiEgICDI+2d7AYwg6O+HL+hqcEnSDi6U083plNKkJe0LQNkvDkSOJw3bPYTIm25dbdMZ6XLNcrTMLd8dSSZ4FRr6L2Gpl4PcTl/GTYHwB87TTDZJgM/eDyAQAA//8iHOL/IWX1jSsfGQSExBn8rT0ZGBgYGJihLTBYZG6+MYvh3/+/DOwMAgym5pIMcpoiDFUz2hi+/4KELiO0CDaUdGCQ4VdmYGL9xfDyxWeG3y/fM1jpmCAsY2Bg+PX3O8PX358Yvv/5yvDrL/ZWMQAAAP//IuhwJmYGhp/fGRju3/vIYKljxCAlLAkP5f8M/xkYGZkYPvx4zfDg/VUGDhYuhj//fjP8/vOHQVNHkOHh4/sMBy4chYTm/38Mf//9ZWBn4WTg/WTEsGL+Q4Zk00aGzTN2MLiYOEADA1LIKQhqM5jJuDNoiJgwSPIoYHUXAAAA///CWxz+/8/AwMLCyPD+3V+G7+9/MFjpmkIc8e8fAxMzpLxlZGRkePnlIcOXXx8Z2Fm4IMni738GYTE2Bgbmfwynrp1j8DRzhecDBgYGBk1RM4Z3j/oZVMW0GTTl1Rj+/vsLdTgkFi1lvRksZDwZGBmZGJ5/vs/QsC8Cw20AAAAA///CH+L/GRiYmBkZ3r/9zcDwj5lBX0WLgYGBgYER3gKDRO2bb88Z/vz7zcDIwMjAyAhJq5zcTAzMXCwMNx/fg+thZILo01PRZODi42f48/cPbosJVEAAAAAA//8imFQYGRkYPrz/xcDEzsmgICEHEYOGHMzoTz/eQpqhUP6/fwwMrKwMDNzcrAzP37yEWMTIBNcnJSzBoKkmxXDx/iWGp6+fw0MaBv78/cvw+88/FLvQAQAAAP//Ilxz/mdg+PzpNwMvFzeDKL8w1DPQThVUybffn1E8wsAAyRscHCwM7z9/guv5Dw1JTnZOhogoLYbUzmQGE2kXhsNTNzL8//+f4R/DPwZmRmaG7TcXMuy6vYJBhFuSAanvgAIAAAAA//98lU0KgCAYRJ/5Q4hQ979bJ4g2LTQx/Vq4EYr2A/OGGZh/cNV3nmIh+IXgw6cs35HxLER6U85p4pUotWC1BYGGMCmFtyvWGIweEXr01E72vJHkoLaK0/PL8wEAAP//hJfBCoAwDENft66bxf//V60WD55kA+8heRAI5H/HgYhks0FXW2oiYzoeIqBaOOLkumOC87aTmXx7ek2KVJoMrDpdfZn5AAAA//8iqhz/+/c/AwszMwMTExOy+XAAafWhuxySsf/++wt1ICpgZWKDJh1saRjSOvz//x/OWhQAAAD//yKyrQIp9hhx9uewlwCMUClsskyMxA0h4AIAAAAA//8iyuFMTIwMf//9Y/iHpUnKwMCAvVqGOpiREXu5QGnPCAAAAP//Iqo4ZGGFpNXff37DHYUMWBhZsbad//39z8DMxMTAhGWA5ve/n9CijryROAAAAAD//yIc4owMDOzsLAzffnxn+PELe7uBlZkdw/7/DAwMf/7+Y2BlZWVgYUZ2OCT8f/z5Bi0iyQMAAAAA//8iWHMyMjIwcHND+pYfv36CCv+HO46BgYGBk5WbATKoiXDa/38MDL9//WXgZOeAFIVQCVg++frrIySJkelyAAAAAP//IiqN8/KxMnz/8Y3h5fvXEAf/RziQgYGBgYdNgIGBASn0GCEO//nzLwMfFy9EDqqJkYGR4c+/3wyffr5jYGZkIdi3xAUAAAAA///C73CoA/gF2RgY/vxkuPfsIdThqJYJcIiidLMYGRkY/vyBVFxigkIMDAyQnhDMjZ9+voM4nImFgdwgBwAAAP//Ihjif//9Z+AXZGFgYGFguHjnKpq/IGEuwiXFwMbCCSkpoO33nz/+M/z89odBXkIG7llY6L788ojh66+PDMyMzGSncQAAAAD//8LrcEZGBoa/f/4z8PAxMfAKczKcvHqOgYGBgYEZXhFBHC7KLcMgwC7C8BfaT2RiZmD4/OEPA8Ov/wy6yppQ0xAtvnvvLjP8/vsLmsaRnY5ITkyMTAysLCwMzMzYy3sAAAAA//8iXOX/Y2BgZWdgUFDiZzh74zLDo1ePoV02SPv63/9/DJysPAxKQjoMv/79ZGBkYGJgYmJkeProOwMrJy+Dja4FxCKkbti1VycYWKDJBKU8h/qBh02Q4evvjwwv371hePfxI9YWIgAAAP//Iqo4/Pf3P4OaBi/D549vGDYf28nAwMCAUY3bK4Yw/Pv7l4GZ7R/Dz29MDKeOPmAIdfJmUJNRYfj37x8DIyMkJJ98usNw++1FBg5WLgZWNiaGz9++MDAwQGpmWG1qJe/FYC2SwKD8J4AhVXcCgyiPNCSGkDwAAAAA//8iqgL6/es/g4QMG4OEEh/D9PWLGH79+cXAwszM8J/hP3zkSVvMgiFML5/h06fvDFvWPWSw1XNhmJjXCjWDkeEfA8Sj+++tYvj66xMDCwszg5gYJ8PDF08Znr97AQ1wSJDzsgkzFLm2MLQltDE46TozwIfnkJocAAAAAP//Iq6twsDA8J/xH4OtkwTD1VsXGaasm83AwMDA8PvPH7jD/v//z+CnkcFQZ7eGYU35Roa9E9cwiPCLQMZWGP4yMDOyMNx7d5nh0IP1DNxsfAy/fv1mUNfhZ/j48RXDyj2bIPb8g+UDtCE4LDkYAAAA//8iagiOkZGB4ffP/wwSMiwM1u4yDJVT2xhMNY0YbHUtGX7/+c3AxMTEwMzExPD//z8GVSlVBlUpSCkCSb//GZgZWRg+/XzHMOdsLcPff78Z2Fk4GX7//scgJMbM4Booy9CxqptBXFiUIcTen4GZgZHh//9/DJ9/fWB4+OE6w6knOxnefHvGwMrMhtJSBAAAAP//YuTxkPvPyMjA8OvnfwZZRXYGt0DcA/v//zMwcHAwM5w68pbh5vm/DEtrZjN4WTpCynVoGv73/x/D//+Qkgc2nvjk422G6afKGJ5+usvAycoDH/z8/5+BgZ2dieHLl18ML19+ZVCTUWYQFxJj+PHnG8P77y8ZPv54A8/86BkUAAAA//8iyeEwyzg5WRge3v/McPH0RwZv/VCGZM94Bh0lTQZWaG8G5uBvvz8zrL06meHwgw0Mf/79gowCoI3YwoasWViYGH78+sHw+88fyIwDEyu05GHEOsoLAAAA//8ieQ6CkZGB4fu3PwwyctwMfuHSDHcZNzEYJVgxtC7uY2BgYGD4+xdhyZ9/vxgO3l/LwMDAwMDFyovVAYxMkFGBnz//MjAzsDFwsHIzsLNwMjAzQicLsA9N/wcAAAD//yJr8oSRiYHh169/DD++/WVQUxVnEJTgZdh6bA8DAwMDAxMzMzzJ8LELM7ipxjB8+PGK4ePPt9A0jz0qGRkZUHo9eNsw/xn+AAAAAP//ImtGAm7RPwaG/4x/GNQ1BBnOHL3KcOneFQY9JR3IgBG0dg3UymaQ4VNlePHpEcOxJ5sZPvx4hbP9ToSt///9/8PIzy76DAAAAP//omy6ipGB4ffv/wzqurwMf/5/Y5ixcSEDAwMDw5+/f+ANMRZGVgYrOR+GIJ0sBl42AYa///4w4MxABAATI+O/339/MqgKG+0HAAAA//+iyOGMjAwMf3//Z+AVYGRwdJdlmLl2McP2E3sZ2FjZ4A7/z/CfiPkfosD//wz/mZiZ2H47KAbPAgAAAP//oniCkJGJgeHnj38M2oY8DPY+wgxpkzIZZmyaz/Dh82eG//8RbZRvvz8z/Pn/G+fIFA7T/zMyMv1jYmT+w8LE+vv991eMDgqhU9RFjY4DAAAA//8iuTjEBWBl/LfvvxmePP3AICkgxaAoKcfAzsbO8P33Z4aPP95BR7ww0zZkYha6ggK62OA/wz/mf/8gCxz+/vv97/ffX0y28kErUk1bYliYWP4CAAAA//8iO3NiWM7IwPDj+18GFmZmBjUVMYZfv78x3P94CT61DZ1m+Q9ZCcEEb+P+Z/jH/PffX8a//34z/v33h+Hvv78MjAyQfiwXK98XcU6xx6JcMrfNZNyXmst6rIIMtP9nBAAAAP//YoGsevhPlQlwSPP6P8PPH3/+MzKy/OdkZYMv1/j3/y/z339/GH//+834598fhn//IGte2CAO/CrAIf9YlFvmtiSvwnVJXsWrkrwKN0W4pB7wcQi9ZmJk/sfAwMDw//8/JgZorAAAAAD//2L58+cPAxsb2z8Ght9MJCU/iFP/MzIyoIXgf+Z///8w/v77i/Hvn9/wEGRhZmfgZuX7KsYh/1iUW/oOxIFKVyV4FG6KckvdR3YgOoAsyPnPwMTIDM/lAAAAAP//YhETEH7y9O1zWXZm7r///zMwY3c843+kxS4oaRARghAzWWEO5BZ9Isotc1uCV+G6FK/iNQkehZsi3NL3+TmEXuFy4P///5j/w2MfuhiBkfE/E5YhWwAAAAD//2LZ07/BLqQubtPFK5d0WZil/kIGU5n+MzEiVgH9/f+H8c9fyAqGv/+hIcjEzsDNxvddlEMOEoI8itckeRWvSfDK3xDllrnPzy70iokJtwP/QRfMQAMFsgSEkekvsZEOAAAA//9i/P//P8Prj2+EvUqiNz/+dtkyOEbu39dv35n+M0AGMlmZ2Bi4WHk/CXCIPRHhlr4jwaNwQ5JX4Zo4j/xNUW6pB/zswngdiC0EiXQbXgAAAAD//2L88/cPMzMT899X797zZs9O3i6h/VZPlk/9rASvwnVpPpVLUryK18S4Ze8IcIq+ZGZixt7i+f+P+R/DP2jDlhFpqRPZnXiCAAAAAP//AwA8HhemGOSongAAAABJRU5ErkJggg==]]></Resource>
-	</Resources>
-	<SourceCode>
-		<![CDATA[
+  <Information>
+    <Name>desktopapplication</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_desktopapplication</ClassName>
+    <ID>a15989f1-a6fc-4393-952a-b3e19dd4bf46</ID>
+    <Icon>#Res(9fa28fbf-a5f5-4c8a-9073-33e9af96d58d)</Icon>
+    <EditorIcon>#Res(878430c5-fefc-c2aa-e684-edb2e1a68a5a)</EditorIcon>
+    <StructureIcon>#Res(efe510fa-e762-b3f8-03b6-edb2d88987e2)</StructureIcon>
+    <Moveable>0</Moveable>
+    <Resizable>0</Resizable>
+    <Container>3</Container>
+    <Category>#Lang(003)</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1.0.6720</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers/>
+    <Languages>en_US ,ru_RU ,fr_FR</Languages>
+    <RenderType/>
+    <HTTPContentType/>
+    <Handlers/>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>title</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>description</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>active</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>background</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>entrypoint</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>ObjectList(dd7a56de-7a14-4f0b-9370-c34d9aa5469b)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>smallIcon</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>mediumIcon</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>bigIcon</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Desktop application</Sentence>
+      <Sentence ID="002">Container with desktop application objects</Sentence>
+      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy of object</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Show or not object</Sentence>
+      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
+      <Sentence ID="104">Title</Sentence>
+      <Sentence ID="204">Title of the container</Sentence>
+      <Sentence ID="304">Incorrect value, must be string</Sentence>
+      <Sentence ID="105">Description</Sentence>
+      <Sentence ID="205">Description of the container</Sentence>
+      <Sentence ID="305">Incorrect value, must be string</Sentence>
+      <Sentence ID="106">Activity</Sentence>
+      <Sentence ID="206">Activity of the container</Sentence>
+      <Sentence ID="306">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="403">Inactive</Sentence>
+      <Sentence ID="404">Active</Sentence>
+      <Sentence ID="107">Background</Sentence>
+      <Sentence ID="207">Run in background or not</Sentence>
+      <Sentence ID="307">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="405">No</Sentence>
+      <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="108">Entry point</Sentence>
+      <Sentence ID="208">Entry point of the application</Sentence>
+      <Sentence ID="308">Incorrect value, must be string</Sentence>
+      <Sentence ID="109">Small icon</Sentence>
+      <Sentence ID="209">Small icon of the container</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="111">Medium icon</Sentence>
+      <Sentence ID="211">Medium icon of the container</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="112">Big icon</Sentence>
+      <Sentence ID="212">Big icon of the container</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Настольное приложение</Sentence>
+      <Sentence ID="002">Контейнер, содержащий объекты настольного приложения</Sentence>
+      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="401">Не отображается</Sentence>
+      <Sentence ID="402">Отображается</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Заголовок</Sentence>
+      <Sentence ID="204">Заголовок контейнера</Sentence>
+      <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
+      <Sentence ID="105">Описание</Sentence>
+      <Sentence ID="205">Описание контейнера</Sentence>
+      <Sentence ID="305">Неправильное значение, должна быть строка</Sentence>
+      <Sentence ID="106">Активность</Sentence>
+      <Sentence ID="206">Активность контейнера</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="403">Неактивен</Sentence>
+      <Sentence ID="404">Активен</Sentence>
+      <Sentence ID="107">Фоновое</Sentence>
+      <Sentence ID="207">Запускать как фоновое или нет</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="405">Нет</Sentence>
+      <Sentence ID="406">Да</Sentence>
+      <Sentence ID="108">Точка входа</Sentence>
+      <Sentence ID="208">Точка входа приложения</Sentence>
+      <Sentence ID="308">Неправильное значение, должна быть строка</Sentence>
+      <Sentence ID="109">Малая иконка</Sentence>
+      <Sentence ID="209">Малая иконка контейнера</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="111">Средняя иконка</Sentence>
+      <Sentence ID="211">Средняя иконка контейнера</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="112">Большая иконка</Sentence>
+      <Sentence ID="212">Большая иконка контейнера</Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Application desktop</Sentence>
+      <Sentence ID="002">Conteneur avec des objets d'application Desktop</Sentence>
+      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
+      <Sentence ID="104">Titre</Sentence>
+      <Sentence ID="204">Titre du conteneur</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
+      <Sentence ID="105">Description</Sentence>
+      <Sentence ID="205">Description du conteneur</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
+      <Sentence ID="106">Activité</Sentence>
+      <Sentence ID="206">Activité du conteneur</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="403">Inactif</Sentence>
+      <Sentence ID="404">Actif</Sentence>
+      <Sentence ID="107">Fond</Sentence>
+      <Sentence ID="207">Exécuter en arrière-plan ou non</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="405">Non</Sentence>
+      <Sentence ID="406">Oui</Sentence>
+      <Sentence ID="108">Point d'entrée</Sentence>
+      <Sentence ID="208">Point d'entrée de l'application</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
+      <Sentence ID="109">Petite icône</Sentence>
+      <Sentence ID="209">Petite icône du conteneur</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="111">Moyennes icône</Sentence>
+      <Sentence ID="211">Moyennes icône du conteneur</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="112">Grande icône</Sentence>
+      <Sentence ID="212">Grande icône du conteneur</Sentence>
+      <Sentence ID="312">Valeur Incorrecte</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="9fa28fbf-a5f5-4c8a-9073-33e9af96d58d" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="da63f82c-f098-47bd-be19-03482237a02b" Name="Icon" Type="jpg"><![CDATA[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]]></Resource>
+    <Resource ID="a3cc8d24-2519-4d1e-80ed-661f903506ee" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="efe510fa-e762-b3f8-03b6-edb2d88987e2" Name="qt16.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAA0AAAAQCAYAAADNo/U5AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41
+LjlAPLDLAAACjklEQVQ4T22TW0zSURzHafXQU+uxtdXmeuihl/ACMyZGbrrlJVNRK8UH0yJIFi0v
+LWuWW+Va6pyKGeYFqEkqEBCgiWJq6kyTWUMdFzU1l9LFUV6/HRmy/quH387Zzvn8fr/z/X0P7VgG
+M5t9K8h28SVzTaAJWxJpT3Vf10dVifWRolxDdHyeIZZ5tzMtoKw3Z//IXNee9c3VXbRDqUdd8VXH
+ka1i+CNLFbKVrWJuXFaHuvmaE44rGtaAUMNW52g5ZSTRVdoBbgC4TwO9QFYbA/xWDgrbk5FnjAGB
+KMl8ibcoUJqUDd37Fky7JzHxdQSSwXwCMSFQnEWJJQuXyH4b9EMXGoNQqn6E3+se1A8+QIX2MWaW
+7SgyZKJG/wRmuxI5Og4V4kqY6BjpwOLKLG6aEsCrjoNzwQVFl9y7LnnmIRu9/zdExzkJB6NTY3C6
+PyHXGI3E8nC4vkxD1iNF/8cBWBwq3Hh9mgqdr4mA1T4Oh3scRCEklIfBMe+EvKcOPdY+mCZl4PuE
+8b2JjlQJG0O2Ycx8myDKxSKp/KS3Un13NSxjb/8HBYJbw4Bx2OjtvbCdi/TKGAK5UGa8h64PFgLJ
+/SPwq8d7HoxCRR5+rXmgttahoVMK55IN4hYumi1KfP7uRO27Iq/slDllNIRD2fsC7hU3Fn/O4dkw
+udQWCnFrImqHbuPOm2Sq5Ds2SpEGoamzkUg/g4p+8T+OIC75Qam0DWa2hEAgS0L3pA7N1lK/C8gZ
+8SNjVaSLqKUdTDni8XuPGJX0vE6yLfM1oVN8DatP+IqtFGk5D/ONsZnF5nS6elyyl0YX0Et4TaxZ
+8iXMYn1U5TV9pDDXEBNXYDoTXGzmHZYMFOyzLvTv3tzaoO3EH9q0Bmo3u1TEAAAAAElFTkSuQmCC
+]]></Resource>
+    <Resource ID="878430c5-fefc-c2aa-e684-edb2e1a68a5a" Name="qt24.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41
+LjlAPLDLAAAEPklEQVRIS42Ve0xbVRzHYcbEP4yPaExMzIzGsJgIutHHaKc8KkYUVjAiG0OpK+Ud
+HguOxwILj9CxBzKrUxc6zbZsIYP1Ybu1rOA6yoQqqGs6u6EyhGUbssEckNnee7+ee8rqNkrZvTm5
+p6fnfM73d36/8/uFVe6rezJSId0tKheMKo7GzObqxUypSTa+1ZJsqbQkt7ScUSk0Z8tjWuyq5ywX
+Dz0xPjPyMMsx4XzjwIWRL218nz6vZEs0T6c9z310RMDl6kVYaHyfU+mEXI4umlXpBFyhcd10iSne
+RdqJKqu8taE3K3e7bUP8weHmVe5rg4/Pe2dXEPCKsKdSXpp+uTDiDmiZr5huqtIL6WZ5erG3wCCZ
+LDBKL5SZZbZqq/yLsEffXonIklUPCAxYEGw+2UzMBgWqdCJs1Eqw51QVzJ5v0eXWoNmuQJ5h7bIb
+LwYSmKwhGpZBG1iWBcexYEm77ZuHydOOfEMM+A1T1AkYGLOizpYOYnpgo0XA9756DbUHmsCwDHys
+F50uDXL2KvD3zHX6+/OBLVB0CPGhOpfO2eMouEf5IqCk5lX8POICCQP8NeNBgUGKD7RrUNeuJmo5
+DI+dRc7X76N7gFhAlHe4WrG9JyO4Qt6U2IpYTN28Thc7J6zI0QmgOi5GcnUGBdz4Zwa12ib4GAb8
+w49dnBoODlR2CpFUkwqvz0uBvX90EGA08o1ixJYn0TG+ZX62Hv0uJ+0fHFajviczOPDjY0Kk1W30
+LySvdeQQVcgDpaUycmY++t8mjRy2n85QdSHPkAemhgD6GD8wS5NKgH3/A5fyst/kNHiZu032K3y9
+7C0K4JVntCXdq3ApIO+UuE/icePWDI2/wXELNZmPs8QKOVXnZf9F8i7pgwH5expTuRrnL12gSkan
+3TSQs48KsVldTBVO3PwdCc1ROPWjfcHkQuKQEIH9zqdR+FKvpWrmvbeww74ZsfWRBHCaqjZ5tEjc
+GQmDw0Ln9I+exIH+XSReJdTTiwJb2UWuXnUcLk9d8cfd3CRco27avzY7DpInkXWYnGtbMeZuz9Pb
+M3S5h1oSFMgPKjoEyGhNQb/7B+Ig4lny/jbpxLbutEC8KbuEKDLEgeRHcrcFS9/lO0k2zyCGZFsk
+Bs4PUdMcYwaUmxNDZhviPF/IfJjevhpb9tXQm8NwDM5ddQRMuyu7B7J8+YlE57IJNn2/ADvMVTj9
+ZxeO/Lrz/pzoLxV6EUPUXVXblXHLAfkszOUZRJxSt4bUFiGXb1g7Rzw6UWRc90vFyaTOmu7URpIT
+Nxw7t/cFctbhYc/II9xRJRFkEa0XtFYo+cKkF7FF370xSQ59qNSU0FlrS29s6N2U2fR9ttjs+WYl
+qX6PBKofR6tfOK168uqsF2X1ImeZ+c1LWy3vGqus6xt39xVktvWXRLc6ip/tGzU+NjV35SG+opHQ
+CSexuFA6WX/ZvO/5D48Xsd0mu5LeAAAAAElFTkSuQmCC]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -311,9 +352,12 @@ class VDOM_desktopapplication(VDOM_object):
 	def wysiwyg(self, parent, contents=""):
 		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\"></container>"%(self.id, self.visible, self.zindex, self.hierarchy)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
-		]]>
-	</SourceCode>
-	<Libraries>
-	</Libraries>
-	<E2vdom/>
+		]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents/>
+    </Events>
+    <Actions/>
+  </E2vdom>
 </Type>
