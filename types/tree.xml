@@ -65,7 +65,7 @@
       <Name>top</Name>
       <DisplayName>#Lang(104)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -77,7 +77,7 @@
       <Name>left</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -2184,7 +2184,7 @@ class VDOM_tree(VDOM_object):
 		style=u"%s z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx; overflow: visible;"%(vis, self.zindex, self.position, self.top, self.left, self.width, self.height)
 
 		resultIO.write(u"""
-			<div objtype="tree" objname="%(oname)s" ver="2011.09.23" class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
+			<div objtype="tree" objname="%(oname)s" ver="2011.10.12" class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
 			"oname":    self.name,
 			"style":    style,
 			"id":       id,
@@ -2277,14 +2277,7 @@ jQuery(document).ready(function($){
 						ditem = ui.helper.context.attributes.index.value || '';
 					}
 				}
-				execEventBinded('%(woid)s', "dragdrop", {
-					params: JSON.stringify({
-						 title:       node.data.title
-						,key:         node.data.key
-						,droppedItem: ditem
-						,droppedObj:  dobj
-					}) 
-				});
+				execEventBinded('%(woid)s', "drop", {itemid: node.data.key});
 /*
 				var copynode;
 				if(sourceNode) {
@@ -2422,7 +2415,7 @@ jQuery(document).ready(function($){
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(924)"/>
           </Parameters>
         </Event>
-        <Event Name="dragdrop">
+        <Event Name="drop">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(925)"/>
           </Parameters>
