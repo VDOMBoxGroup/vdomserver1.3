@@ -396,7 +396,7 @@ class VDOM_list(VDOM_object):
 		css = self.style % {"id": id}
 		res_buffer.write(css)
 		res_buffer.write(u"</style>\n")
-		rslt = u"<div objtype='list' objname='%(name)s' id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s>\n<ul>" % {
+		rslt = u"<div objtype='list' objname='%(name)s' ver='2011-10-12' id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s>\n<ul>" % {
 			"name": self.name, "id": id, "style": style, "cssclass": cssclass
 		}
 		res_buffer.write(rslt)
@@ -444,14 +444,17 @@ jQuery(document).ready(function($){
 		return false;
 
 	});
-/*
-	$('#%(id)s ul li').droppable({
+
+	$('#%(id)s li').droppable({
+		//greedy: true,
+		//activeClass: "ui-state-hover",
+		hoverClass: "ui-state-active",
 		drop: function(e, ui) {
-			execEventBinded('%(woid)s', "dragdrop", {itemid: t.attr('id')});
+			execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('id')});
 		}
 	});
-*/
-	/*
+
+/*
 	var obj_id = '%(id)s';
 	$('#%(id)s ul li').click(function(){
 		$(this).parent().children().removeClass("active");
@@ -546,7 +549,7 @@ def set_attr(app_id, object_id, param):
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="dragdrop">
+        <Event Name="drop">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(925)"/>
           </Parameters>
