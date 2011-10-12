@@ -552,6 +552,13 @@ class VDOM_formtext(VDOM_object):
 					""".format(id = id, name = self.name, tabind = self.tabindex, 
 							style = style, classn = self.classname, mode = mode, value = self.value)
 
+		result += u"""<script type='text/javascript'>
+$j(document).ready(function($){
+	$('#%(id)s').blur(function(){
+		execEventBinded("%(clean_id)s", "blur", {});
+	});
+});</script>""" % { "id": id, "clean_id": clean_id }
+
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
@@ -626,6 +633,11 @@ class VDOM_formtext(VDOM_object):
           </Parameters>
         </Event>
         <Event Name="valuechange">
+          <Parameters>
+            <Parameter Name="itemValue" Order="" VbType="" Help="#Lang(151)"/>
+          </Parameters>
+        </Event>
+        <Event Name="blur">
           <Parameters>
             <Parameter Name="itemValue" Order="" VbType="" Help="#Lang(151)"/>
           </Parameters>
