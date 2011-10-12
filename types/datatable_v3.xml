@@ -1012,7 +1012,7 @@ if (window.selectionmode_"""+id+""" === 'multi') {
 }
 """+id+"""_doo = false;
 
-$("""+id+"""_tds).live('click dblclick', function(e){
+$("""+id+"""_tds).bind('click dblclick', function(e){
 
 	var t = $(this);
 	var cell_data = t.html(), cell_index = t.attr("index");
@@ -1086,12 +1086,28 @@ window.header_"""+id+""" = """ + json.dumps(vheader) + """
 var params_"""+id+""" = [];
 %(select)s
 %(headerselect)s
+
+	$('#%(id)s tr').draggable({
+		connectToDynatree: true
+		,appendTo: 'body'
+		,containment: 'document'
+		,zIndex: 99999
+		,opacity: 0.6
+		,helper: 'clone'
+		,option: 'accept'
+		,cursor: 'default'
+		,cursorAt: { left: -2, top: 4 }
+		,start: function(e,u){
+			execEventBinded('%(idn)s', "dragstart", {itemid: u.helper.attr('index')});
+		}
+	});
+
 });
-</script>		
+</script>
 <style type="text/css">
 %(css)s
 </style>
-<div id="%(id)s" style="%(style)s" %(class)s>
+<div objtype='datatable' objname="%(name)s" ver="2011-10-12" id="%(id)s" style="%(style)s" %(class)s>
 <table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
 <caption>%(title)s</caption>
 %(theader)s
@@ -1100,15 +1116,18 @@ var params_"""+id+""" = [];
 </tbody>
 </table>
 </div>
-""" % {"select": select,
-	   "headerselect": js_headerselect,
-	   "css": self.style % {"id": id},
-	   "id": id,
-	   "style": style,
-	   "class": cssclass,
-	   "title": self.title,
-	   "theader": theader if self.showheader == '1' else '',
-	   "tdata": tdata}
+""" % {
+		"name": self.name,
+		"select": select,
+		"headerselect": js_headerselect,
+		"css": self.style % {"id": id},
+		"id": id,
+		"idn": idn,
+		"style": style,
+		"class": cssclass,
+		"title": self.title,
+		"theader": theader if self.showheader == '1' else '',
+		"tdata": tdata }
 		
 		return VDOM_object.render(self, parent, contents=result)
 	
@@ -1282,6 +1301,11 @@ background:#effdff !important;
         <Event Name="rowsselected">
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(924)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dragstart">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
