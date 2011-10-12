@@ -586,13 +586,17 @@ class VDOM_objectview(VDOM_object):
 				containment: 'document',
 				zIndex: 99999,
 				opacity: 0.6,
-				//revert: true,
-				//revertDuration: 300,
 				helper: 'clone',
 				option: 'accept',
-				cursorAt: { left: -5, top: -5 },
+				cursor: 'default',
+				cursorAt: { left: -2, top: 4 },
+				//cursorAt: { left: 20, bottom: -2 },
+				//cursorAt: { left: -5, top: -5 },
 				start: function(e,u){
-					execEventBinded('%(woid)s', "dragstart", {"params": "some parameters"});
+					execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')});
+				}
+				,helper: function(e) {
+					return $("<div class='ui-widget-header'>drop item to...</div>");
 				}
 			});
 		});
@@ -602,7 +606,7 @@ class VDOM_objectview(VDOM_object):
 			,"class":  classname_item
 		}
 
-		result = u"""<div objtype='objectview' ver='2.7/2011-10-04' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
+		result = u"""<div objtype='objectview' ver='2011-10-12' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
 			id = id, name = self.name, js = js,
 			style = style.strip(), style_items = style_items.strip(), 
 			classname = classname.strip(), contents = inner_render
