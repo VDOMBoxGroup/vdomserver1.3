@@ -605,7 +605,7 @@ class VDOM_formdate(VDOM_object):
 				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
 						width = fixw, height = fixh, display = display, modestyle = modestyle)
 
-		result = u"""<input id="{id}" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
+		result = u"""<input id="{id}" ver="2011-10-12" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
 					value="{value}" class="{classn}" autocomplete="{auto}" {mode} /> {js}
 			""".format(id = id, name = self.name, style = style, tabind = self.tabindex, 
 						value = self.value, classn = self.classname, auto = auto, mode = mode, js = js)
@@ -638,10 +638,7 @@ class VDOM_formdate(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 		]]></SourceCode>
-  <Libraries>
-    <Library Target="Html"><![CDATA[<link rel="stylesheet" media="screen" type="text/css" href='/56fed0d8-8fd7-6aa6-74fb-62d840eb4289.css'/>
-]]></Library>
-  </Libraries>
+  <Libraries />
   <E2vdom>
     <Events>
       <Userinterfaceevents>
