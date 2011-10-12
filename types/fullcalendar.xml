@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.250.0</Version>
+    <Version>1.268.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -146,28 +146,28 @@
       <RegularExpressionValidation>\d{4}-(1[0-2])|(0?[0-9])-([0-2]\d)|(0?\d)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>firstDay</Name>
+      <Name>timeFormat</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1)</CodeInterface>
+      <CodeInterface>TextField()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>[0,6]</RegularExpressionValidation>
+      <RegularExpressionValidation>12|24</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>timeFormat</Name>
+      <Name>firstDay</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>24</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>[24,12]</RegularExpressionValidation>
+      <RegularExpressionValidation>[0-6]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -234,36 +234,39 @@
       <Sentence ID="111">displayDate</Sentence>
       <Sentence ID="211">Alignment of the text</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">firstDay</Sentence>
-      <Sentence ID="212">firstDay</Sentence>
-      <Sentence ID="312">week day must belong interval (0, 6)</Sentence>
-      <Sentence ID="113">timeFormat</Sentence>
-      <Sentence ID="213">time format</Sentence>
-      <Sentence ID="313">time format error</Sentence>
+      <Sentence ID="112">timeFormat</Sentence>
+      <Sentence ID="212">timeFormat</Sentence>
+      <Sentence ID="312">time format should be 12 or 24</Sentence>
+      <Sentence ID="113">firstDay</Sentence>
+      <Sentence ID="213">firstDay</Sentence>
+      <Sentence ID="313">first should be between 0 and 6</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
       <Sentence ID="904">Top</Sentence>
-      <Sentence ID="905">day</Sentence>
-      <Sentence ID="906">Left</Sentence>
-      <Sentence ID="907">Top</Sentence>
+      <Sentence ID="905">start</Sentence>
+      <Sentence ID="906">start</Sentence>
+      <Sentence ID="907">end</Sentence>
       <Sentence ID="908">id</Sentence>
-      <Sentence ID="909">id</Sentence>
-      <Sentence ID="911">start</Sentence>
-      <Sentence ID="912">end</Sentence>
-      <Sentence ID="913">Left</Sentence>
-      <Sentence ID="914">Top</Sentence>
-      <Sentence ID="915">Left</Sentence>
-      <Sentence ID="916">Top</Sentence>
-      <Sentence ID="917"></Sentence>
-      <Sentence ID="918"></Sentence>
+      <Sentence ID="909">Left</Sentence>
+      <Sentence ID="911">Top</Sentence>
+      <Sentence ID="912">id</Sentence>
+      <Sentence ID="913">id</Sentence>
+      <Sentence ID="914">start</Sentence>
+      <Sentence ID="915">end</Sentence>
+      <Sentence ID="916">id</Sentence>
+      <Sentence ID="917">start</Sentence>
+      <Sentence ID="918">end</Sentence>
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921">Top</Sentence>
       <Sentence ID="922">Left</Sentence>
       <Sentence ID="923">Top</Sentence>
-      <Sentence ID="925">end</Sentence>
-      <Sentence ID="926">start</Sentence>
-	  <Sentence ID="980">instance</Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926">Left</Sentence>
+      <Sentence ID="927">Top</Sentence>
+      <Sentence ID="928">Left</Sentence>
+      <Sentence ID="929">Top</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
@@ -328,9 +331,9 @@
       <Sentence ID="111">Отображаемая дата</Sentence>
       <Sentence ID="211">Расположение текста</Sentence>
       <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">firstDay</Sentence>
-      <Sentence ID="212">firstDay</Sentence>
-      <Sentence ID="312">week day must belong interval (0, 6)</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="113"></Sentence>
       <Sentence ID="213"></Sentence>
       <Sentence ID="313"></Sentence>
@@ -339,25 +342,28 @@
       <Sentence ID="903">Лево</Sentence>
       <Sentence ID="904">Верх</Sentence>
       <Sentence ID="905"></Sentence>
-      <Sentence ID="906">Лево</Sentence>
-      <Sentence ID="907">Верх</Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
       <Sentence ID="908"></Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
+      <Sentence ID="909">Лево</Sentence>
+      <Sentence ID="911">Верх</Sentence>
       <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Лево</Sentence>
-      <Sentence ID="914">Верх</Sentence>
-      <Sentence ID="915">Лево</Sentence>
-      <Sentence ID="916">Верх</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
       <Sentence ID="919">Лево</Sentence>
       <Sentence ID="921">Верх</Sentence>
       <Sentence ID="922">Лево</Sentence>
       <Sentence ID="923">Верх</Sentence>
+      <Sentence ID="924"></Sentence>
       <Sentence ID="925"></Sentence>
-      <Sentence ID="926"></Sentence>
-	  <Sentence ID="980">номер</Sentence>
+      <Sentence ID="926">Лево</Sentence>
+      <Sentence ID="927">Верх</Sentence>
+      <Sentence ID="928">Лево</Sentence>
+      <Sentence ID="929">Верх</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
@@ -422,9 +428,9 @@
       <Sentence ID="111">displayDate</Sentence>
       <Sentence ID="211">Alignement du texte</Sentence>
       <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="112">firstDay</Sentence>
-      <Sentence ID="212">firstDay</Sentence>
-      <Sentence ID="312">week day must belong interval (0, 6)</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="113"></Sentence>
       <Sentence ID="213"></Sentence>
       <Sentence ID="313"></Sentence>
@@ -433,25 +439,28 @@
       <Sentence ID="903">Gauche</Sentence>
       <Sentence ID="904">Haut</Sentence>
       <Sentence ID="905"></Sentence>
-      <Sentence ID="906">Gauche</Sentence>
-      <Sentence ID="907">Haut</Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
       <Sentence ID="908"></Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
+      <Sentence ID="909">Gauche</Sentence>
+      <Sentence ID="911">Haut</Sentence>
       <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Gauche</Sentence>
-      <Sentence ID="914">Haut</Sentence>
-      <Sentence ID="915">Gauche</Sentence>
-      <Sentence ID="916">Haut</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
       <Sentence ID="919">Gauche</Sentence>
       <Sentence ID="921">Haut</Sentence>
       <Sentence ID="922">Gauche</Sentence>
       <Sentence ID="923">Haut</Sentence>
+      <Sentence ID="924"></Sentence>
       <Sentence ID="925"></Sentence>
-      <Sentence ID="926"></Sentence>
-	  <Sentence ID="980"></Sentence>
+      <Sentence ID="926">Gauche</Sentence>
+      <Sentence ID="927">Haut</Sentence>
+      <Sentence ID="928">Gauche</Sentence>
+      <Sentence ID="929">Haut</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1977,81 +1986,73 @@ from dateutil.relativedelta import *
 import random
 
 class VDOM_fullcalendar(VDOM_object):
-	"""all_day parameter"""
-	"""date formate"""
-	"""dayClick and daysSelect merged"""
-	VERSION = "version 09.23"
+	
+	VERSION = "version 07.25"
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
-		var t="%(time_format)s";
-		var time_format="H:mm";
-		if (t == 12) {
-			time_format="h(:mm)p'm'";
-		}
 		$("#%(id_out)s").fullCalendar({
 			header: {
 				left: '',
 				center: '',
 				right: ''
 			},
-			allDayDefault: false,
-			timeFormat: time_format,
 			eventSources: %(event_sources)s,
+			//events: [ {'title': "hello", 'start': '2011-07-07', 'end': '2011-07-07'}],
 			eventClick: function(event) {
 				var id="%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "eventClick", {"id":event.id});
+				execEventBinded(id.substring(2, id.length), "eventClick", {id:event.id});
+			//	alert(event.id + " " + event.title + " " + event.start + " " + event.end + " " + event.allDay)
 			},
-			firstDay: %(first)s,
+			dayClick: function(date) {
+				var id="%(id_out)s";
+				var year=date.getFullYear();
+				var month=date.getMonth() + 1;
+				if (month < 10) {
+					month = "0" + month.toString();
+				}
+				var day=date.getDate();
+				if (day < 10){
+					day = "0" + day.toString();
+				}
+				var to_day = year.toString() + '-' + month + '-' + day;
+				execEventBinded(id.substring(2, id.length), "dayClick", {"start":to_day});
+			},
 			editable: true,
-			eventDrop: function(event, dayDelta, allDay, view) {
+			eventDrop: function(event, allDay) {
+				startDate = event.start;
+				start = startDate.getFullYear() + "-" + 
+						(startDate.getMonth() + 1).toString() + "-" + 
+						startDate.getDate() + " " + 
+						startDate.getHours() + ":" + 
+						startDate.getMinutes();
+				endDate = event.end;
+				end = 	endDate.getFullYear() + "-" + 
+						(endDate.getMonth() + 1).toString()  + "-"  + 
+						endDate.getDate() + " " + 
+						endDate.getHours() + ":" + 
+						endDate.getMinutes();
+				event.allDay = allDay;
 				var id = "%(id_out)s";
-				//alert(event.start.toString() + event.end.toString());
-				date = event.start;
-				event_start = 	date.getFullYear().toString() + '-' + 
-								(date.getMonth() + 1).toString() + '-' + 
-								date.getDate().toString() + " " + 
-								date.getHours().toString() + ":" + 
-								date.getMinutes().toString();
-				date = event.end;
-				event_end = 	date.getFullYear().toString() + '-' + 
-								(date.getMonth() + 1).toString() + '-' + 
-								date.getDate().toString() + " " + 
-								date.getHours().toString() + ":" + 
-								date.getMinutes().toString();
-				if (event.instance >= 0) {
-					execEventBinded(id.substring(2, id.length), "eventDrag", {"id":event.id, "start":event_start, "end":event_end, "instance":event.instance, "allday": event.allDay})
-				}
-				else {
-					execEventBinded(id.substring(2, id.length), "eventDrag", {"id":event.id, "start":event_start, "end":event_end, "allday": event.allDay})
-				}
+				execEventBinded(id.substring(2, id.length), "eventDrag", {id:event.id, start: start, end:end})
 			},
-			eventResize: function(event, allDay) {
+			eventResize: function(event) {
+				startDate = event.start;
+				start = startDate.getFullYear() + "-" + 
+						(startDate.getMonth() + 1).toString() + "-" + 
+						startDate.getDate() + " " + 
+						startDate.getHours() + ":" + 
+						startDate.getMinutes();
+				endDate = event.end;
+				end = 	endDate.getFullYear() + "-" + 
+						(endDate.getMonth() + 1).toString()  + "-"  + 
+						endDate.getDate() + " " + 
+						endDate.getHours() + ":" + 
+						endDate.getMinutes();
 				var id = "%(id_out)s";
-				date = event.start;
-				event_start = 	date.getFullYear().toString() + '-' + 
-								(date.getMonth() + 1).toString() + '-' + 
-								date.getDate().toString() + " " + 
-								date.getHours().toString() + ":" + 
-								date.getMinutes().toString();
-				date = event.end;
-				event_end = 	date.getFullYear().toString() + '-' + 
-								(date.getMonth() + 1).toString() + '-' + 
-								date.getDate().toString() + " " + 
-								date.getHours().toString() + ":" + 
-								date.getMinutes().toString();
-				if (event.instance >= 0) {
-					execEventBinded(id.substring(2, id.length), "eventDrag", {"id":event.id, "start":event_start, "end":event_end, "instance":event.instance, "allday": event.allDay})
-				}
-				else {
-					execEventBinded(id.substring(2, id.length), "eventDrag", {"id":event.id, "start":event_start, "end":event_end, "allday": event.allDay})
-				}
+				execEventBinded(id.substring(2, id.length), "eventResize", {id:event.id, start: start, end:end})
 			},
-			dayClick: function(startDate, endDate) {
-				var id = "%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "dayClick", {"start": start});
-			},
-			selectable: "true",
+			selectable: true,
 			select: function(startDate, endDate, allDay) {
 				$("#%(id_out)s").fullCalendar('unselect');
 				var id = "%(id_out)s";
@@ -2068,10 +2069,10 @@ class VDOM_fullcalendar(VDOM_object):
 						startDate.getMinutes();
 				
 				event.allDay = allDay;
-				event = { start: startDate, end: endDate, title: "new Event", allDay: event.allDay, };
+				event = { start: startDate, end: endDate, title: "new Event", id: "-1", allDay: event.allDay };
 				$("#%(id_out)s").fullCalendar('renderEvent', event);
-				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end":end});
-			},
+				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end": end});
+			}			
 		});
 		$("#%(id_out)s").fullCalendar("changeView", "%(current_view)s");
 		$("#%(id_out)s").fullCalendar("gotoDate", new Date(parseInt(%(year)s), parseInt(%(month)s - 1), parseInt(%(day)s)));
@@ -2080,12 +2081,10 @@ class VDOM_fullcalendar(VDOM_object):
 </script>"""
 
 	def render(self, parent, contents=""):
-		time_format = self.timeFormat
 		view = {"month": "month", "week": "agendaWeek", "day": "agendaDay"}
-		current_view = view[self.view]
 		id_out = 'o_' + (self.id).replace('-', '_')
+		current_view = view[self.view]
 		year_month_day = self.displayDate.split('-') if self.displayDate else str(datetime.date.today()).split('-')
-		first_day = self.firstDay if self.firstDay else 0
 		style_params = {"zindex": self.zindex, 
 						"top": self.top, 
 						"left": self.left, 
@@ -2097,80 +2096,54 @@ class VDOM_fullcalendar(VDOM_object):
 					left: %(left)spx; 
 					width: %(width)spx; 
 					height: %(height)spx;"""%style_params
-		render_params = {"id_out": id_out,
-					"first": first_day,
+		render_params = {"id_out": id_out,  
 					"current_view": current_view, 
-					"year": str(year_month_day[0]), 
+					"year": year_month_day[0], 
 					"month": year_month_day[1], 
 					"day": year_month_day[2],
-					"event_sources": self.parse_events(),
-					"time_format": time_format
-					}
-		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)
+					"event_sources": self.parse_events()}
+		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)	
 		
-	def get_start(event):
-		if hasattr(event, 'dtstart'):
-			start = event.dtstart.value.strftime("%Y-%m-%d %H:%M")
-		else:
-			start = datetime.datetime.today().strftime("%Y-%m-%d %H:%M")
-		return start
-		
-	def get_end(event, start):
-		if hasattr(event, 'dtend'):
-			end = event.dtend.value.strftime("%Y-%m-%d %H:%M")
-		else:
-			end = start
-		return end
 	
-	def get_date(self, date):
-		str_date = str(date)
-		a = datetime.datetime.strptime(str_date, "%Y-%m-%d %H:%M")
-		return a.strftime("%Y-%m-%d %H:%M")
-
 	def parse_events(self):
+		#eventSources = [{events:[{title: "sldkfj", start:"sldfj", end: "dlsf"}], color: "sldfj"}]
 		event_sources = []
 		if self.events:
 			calendar = vobject.readOne(self.events)
 			for event in calendar.vevent_list:
-				start = getattr(event, 'dtstart', vobject.base.ContentLine('DTSTART', '', str(datetime.datetime.today().strftime("%Y-%m-%d %H:%M"))))
-				end = getattr(event, 'dtend', vobject.base.ContentLine('DTEND', '', start.value))
+				startDate = getattr(event, 'dtstart', vobject.base.ContentLine('DTSTART', '', str(datetime.date.today())))
+				endDate = getattr(event, 'dtend', vobject.base.ContentLine('DTEND', '', str(startDate.value)))
 				summary = getattr(event, 'summary', vobject.base.ContentLine('SUMMARY', '', 'Event'))
 				description = getattr(event, 'description', vobject.base.ContentLine('DESCRIPTION', '', 'Event'))
+				#raise Exception(summary, description)
+				#raise Exception(str(endDate).replace('<', '&lt'))
 				color = getattr(event, 'color', vobject.base.ContentLine('COLOR','','blue'))
-				allday = getattr( event, 'allday', vobject.base.ContentLine( 'ALLDAY', '', 'false' ) )
-				id = getattr(event, 'id', vobject.base.ContentLine('ID', '', "-1"))	#random id. 
-																			# WARNING: if few events have the same ids 
-																			#they will change simultaneously
-				#raise Exception(startDate.value)
+				id = getattr(event, 'id', vobject.base.ContentLine('ID', '', random.randint(1000000, 2000000000)))
 				if event.rruleset == None:
 					event_sources.append({ "events": [{ "id": id.value,
 										"title": summary.value, 
 										"description":description.value,
-										"start": start.value.strftime("%Y-%m-%d %H:%M"),
-										"end": end.value.strftime("%Y-%m-%d %H:%M"),
-										"allDay": "false" }],
-										"allDayDefault": "false",
-										"color": color.value})
+										"start": startDate.value.strftime("%Y-%m-%d %H:%M:%S"), 
+										"end": endDate.value.strftime("%Y-%m-%d %H:%M:%S"),
+										"allDay": True if len(str(startDate.value)) == len(str(endDate.value)) == 10 else False }],
+										"color": color.value,
+										"id": id.value})
 																	#if time is not set event lasts allDay, 
 																	#otherwise - from start_time to end_time
-					
 				else:
-					i = 0
 					for rev in event.rruleset:
 						event_sources.append({ "events": [{
 										"title": summary.value, 
 										"description":description.value,
 										"id": id.value,
-										"start": rev.strftime("%Y-%m-%d %H:%M"),
-										"end": (rev + relativedelta(end.value, start.value)).strftime("%Y-%m-%d %H:%M"),
-										"instance": i,
-										"allDay": "false" }],
-										"allDayDefault": "false",
-										"color": color.value, })
-						i += 1
-		#raise Exception(event_sources)
+										"start": rev.strftime("%Y-%m-%d %H:%M:%S"), 
+										"end": (rev + relativedelta(endDate.value, startDate.value)).strftime("%Y-%m-%d %H:%M:%S"),
+										"allDay": "true" }],
+										"color": color.value})
+		
 		return json.dumps(event_sources)
-
+	
+		
 	def wysiwyg(self, parent, contents=""):
 		minsize = min(int(self.width), int(self.height))
 		result=""\
@@ -2193,7 +2166,6 @@ class VDOM_fullcalendar(VDOM_object):
 				"height20":		str(int(self.height) - 20)
 				}
 		return VDOM_object.wysiwyg(self, parent, contents=result)
-
 	]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<link rel='stylesheet' type='text/css' href='/02dfd9db-16fe-3690-73e1-baf58cd3e6f5.res'/>]]></Library>
@@ -2216,62 +2188,69 @@ class VDOM_fullcalendar(VDOM_object):
         </Event>
         <Event Name="dayClick">
           <Parameters>
-            <Parameter Name="day" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
         <Event Name="daysSelect">
           <Parameters>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(925)"/>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(926)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
         <Event Name="eventClick">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
         <Event Name="eventDrag">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(912)"/>
-			<Parameter Name="instance" Order="" VbType="" Help="#Lang(980)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="eventResize">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(919)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mousemove">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(922)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(923)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(925)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(926)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(927)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(928)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(929)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -2302,15 +2281,11 @@ class VDOM_fullcalendar(VDOM_object):
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="next">
           <Parameters/>
-          <SourceCode><![CDATA[
-			var id = this.domCont.id;
-			$id.fullCalendar('next');
-			]]></SourceCode>
+          <SourceCode><![CDATA[this.domCont.fullCalendar('next')]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="prev">
           <Parameters/>
-          <SourceCode><![CDATA[
-]]></SourceCode>
+          <SourceCode><![CDATA[$("#%(id_out)s").fullCalendar('prev')]]></SourceCode>
         </Action>
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
           <Parameters>
