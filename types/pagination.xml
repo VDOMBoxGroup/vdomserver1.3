@@ -718,6 +718,7 @@ class VDOM_pagination(VDOM_object):
 				  left: %(left)spx;
 				  width: %(width)spx;
 				  height: %(height)spx;
+				  z-index: %(zindex)s;
 			">
 
 				%(table)s
@@ -730,6 +731,7 @@ class VDOM_pagination(VDOM_object):
 				"left": self.left,
 				"width": self.width, 
 				"height": self.height,
+				"zindex": self.zindex,
 
 				"table": table,
 
