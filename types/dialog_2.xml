@@ -176,7 +176,7 @@
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2)|(#Lang(410)|3))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
@@ -302,6 +302,7 @@ border:3px solid #ccc;
       <Sentence ID="407">User Defined</Sentence>
       <Sentence ID="408">Square</Sentence>
       <Sentence ID="409">Rounded</Sentence>
+	  <Sentence ID="410">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">User defined style for dialog</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
@@ -395,6 +396,7 @@ border:3px solid #ccc;
       <Sentence ID="407">Пользовательский</Sentence>
       <Sentence ID="408">Стандартный</Sentence>
       <Sentence ID="409"></Sentence>
+	  <Sentence ID="410">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">CSS стили для диалога</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
@@ -485,6 +487,7 @@ border:3px solid #ccc;
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Standard</Sentence>
       <Sentence ID="409"></Sentence>
+	  <Sentence ID="410">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">User defined style for dialog</Sentence>
       <Sentence ID="315">Valeur Incorrecte</Sentence>
@@ -734,13 +737,47 @@ border-radius:6px;
 -webkit-border-radius:6px;
 }
 	"""
+	
+	pro_suite = """.boxy-wrapper { position: absolute; }
+.boxy-wrapper.fixed { position: fixed; }
+.boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
+
+.boxy-wrapper .title-bar {
+position: relative;
+background-color: #e9e9e9;
+padding:1px;
+font-size:10px;
+text-align:center;
+}
+.boxy-wrapper .title-bar a.close{
+position: absolute;
+background: url("/3938bd92-e009-2767-09e2-1da56035c24a.png") -95px -128px;
+height: 18px;
+width: 19px;
+top: 6px;
+right: 6px;
+outline:none !important;
+}
+.boxy-wrapper .title-bar a.close:hover{
+border: 0px inset #999999;
+}
+.boxy-inner {
+border:0px !important;
+background-color:#fff !important;
+box-shadow: 0 0 40px #000;
+    box-shadow: 0 0 40px #000;
+    -moz-box-shadow: 0 0 40px #000;
+    -webkit-box-shadow: 0 0 40px #000;
+}"""
 	# set attributes
 	if "skin" in param:
 		if param["skin"]["value"] == "1":
 			o.set_attributes({"style": css_square})
 		elif param["skin"]["value"] == "2":
 			o.set_attributes({"style": css_rounded})
-	if "style" in param and param["style"]["value"] != css_square and param["style"]["value"] != css_rounded:		
+		elif param["skin"]["value"] == "3":
+			o.set_attributes({"style": css_rounded})
+	if "style" in param and param["style"]["value"] != css_square and param["style"]["value"] != css_rounded and param["style"]["value"] != pro_suite:		
 		o.set_attributes({"skin": 0}) 	
 	
 	return ""	
