@@ -1036,6 +1036,9 @@ $("""+id+"""_tds).bind('click dblclick', function(e){
 						$("#"""+id+""" table tr[row]").removeClass('row_selected');
 						t.parent().addClass('row_selected');
 						execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
+					} else {
+						$("#"""+id+""" table tr[row]").removeClass('row_clicked');
+						t.parent().addClass('row_clicked');
 					}
 					execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
 
@@ -1222,8 +1225,9 @@ background: #f0f0f0;
 #%(id)s .row {
 cursor:pointer;
 }
-#%(id)s .row_selected {
-background:#effdff !important;
+#%(id)s .row_selected,
+#%(id)s .row_clicked {
+background:#fdeeb5 !important;
 }
 """	
 		
