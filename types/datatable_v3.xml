@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.7.6720</Version>
+    <Version>3.8.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -183,62 +183,62 @@
     </Attribute>
     <Attribute>
       <Name>selectedrows</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(319)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>selectionmode</Name>
-      <DisplayName>#Lang(115)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>style</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2)|(#Lang(411)|3))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -302,47 +302,47 @@
       <Sentence ID="114">Hidden fields</Sentence>
       <Sentence ID="214">Fields wich should be hidden</Sentence>
       <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selection mode</Sentence>
-      <Sentence ID="215">Mode of row selecting</Sentence>
-      <Sentence ID="315"></Sentence>
+      <Sentence ID="115">Selected rows</Sentence>
+      <Sentence ID="215">Rows which should be checked</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="116">Selection mode</Sentence>
+      <Sentence ID="216">Mode of row selecting</Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="116">Style</Sentence>
-      <Sentence ID="216">CSS style defined by user</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="117">Skin</Sentence>
-      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="117">Style</Sentence>
+      <Sentence ID="217">CSS style defined by user</Sentence>
       <Sentence ID="317"></Sentence>
+      <Sentence ID="118">Skin</Sentence>
+      <Sentence ID="218">Defined skin</Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Default</Sentence>
-      <Sentence ID="118">CSS Class</Sentence>
-      <Sentence ID="218">CSS Class</Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="409">EOF</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
+      <Sentence ID="119">CSS Class</Sentence>
+      <Sentence ID="219">CSS Class</Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
-      <Sentence ID="904">Left</Sentence>
-      <Sentence ID="905">Left</Sentence>
-      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="904">keyField</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">headerData</Sentence>
       <Sentence ID="907">Left</Sentence>
-      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="908"></Sentence>
       <Sentence ID="909">Left</Sentence>
       <Sentence ID="911">left</Sentence>
       <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Left</Sentence>
-      <Sentence ID="914">left</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
-      <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
+      <Sentence ID="918">Left</Sentence>
+      <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
-      <Sentence ID="922">Left</Sentence>
-      <Sentence ID="923">Left</Sentence>
-      <Sentence ID="924"></Sentence>
-      <Sentence ID="119">Selected rows</Sentence>
-      <Sentence ID="219">Incorrect value</Sentence>
-      <Sentence ID="319">Rows which should be checked</Sentence>
+      <Sentence ID="922"></Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -403,47 +403,47 @@
       <Sentence ID="114">Hidden fields</Sentence>
       <Sentence ID="214">Fields wich should be hidden</Sentence>
       <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selection mode</Sentence>
-      <Sentence ID="215">Mode of row selecting</Sentence>
-      <Sentence ID="315"></Sentence>
+      <Sentence ID="115">Selected rows</Sentence>
+      <Sentence ID="215">Rows which should be checked</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="116">Selection mode</Sentence>
+      <Sentence ID="216">Mode of row selecting</Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="116">Style</Sentence>
-      <Sentence ID="216">CSS style defined by user</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="117">Skin</Sentence>
-      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="117">Style</Sentence>
+      <Sentence ID="217">CSS style defined by user</Sentence>
       <Sentence ID="317"></Sentence>
+      <Sentence ID="118">Skin</Sentence>
+      <Sentence ID="218">Defined skin</Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Default</Sentence>
-      <Sentence ID="118">CSS Class</Sentence>
-      <Sentence ID="218">CSS Class</Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="409">EOF</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
+      <Sentence ID="119">CSS Class</Sentence>
+      <Sentence ID="219">CSS Class</Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
-      <Sentence ID="904">Left</Sentence>
-      <Sentence ID="905">Left</Sentence>
-      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="904">keyField</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">headerData</Sentence>
       <Sentence ID="907">Left</Sentence>
-      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="908"></Sentence>
       <Sentence ID="909">Left</Sentence>
       <Sentence ID="911">left</Sentence>
       <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Left</Sentence>
-      <Sentence ID="914">left</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
-      <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
+      <Sentence ID="918">Left</Sentence>
+      <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
-      <Sentence ID="922">Left</Sentence>
-      <Sentence ID="923">Left</Sentence>
-      <Sentence ID="924"></Sentence>
-      <Sentence ID="119">Selected rows</Sentence>
-      <Sentence ID="219">Incorrect value</Sentence>
-      <Sentence ID="319">Rows which should be checked</Sentence>
+      <Sentence ID="922"></Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">datatablev3</Sentence>
@@ -504,47 +504,47 @@
       <Sentence ID="114">Hidden fields</Sentence>
       <Sentence ID="214">Fields wich should be hidden</Sentence>
       <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selection mode</Sentence>
-      <Sentence ID="215">Mode of row selecting</Sentence>
-      <Sentence ID="315"></Sentence>
+      <Sentence ID="115">Selected rows</Sentence>
+      <Sentence ID="215">Rows which should be checked</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="116">Selection mode</Sentence>
+      <Sentence ID="216">Mode of row selecting</Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="116">Style</Sentence>
-      <Sentence ID="216">CSS style defined by user</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="117">Skin</Sentence>
-      <Sentence ID="217">Defined skin</Sentence>
+      <Sentence ID="117">Style</Sentence>
+      <Sentence ID="217">CSS style defined by user</Sentence>
       <Sentence ID="317"></Sentence>
+      <Sentence ID="118">Skin</Sentence>
+      <Sentence ID="218">Defined skin</Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Default</Sentence>
-      <Sentence ID="118">CSS Class</Sentence>
-      <Sentence ID="218">CSS Class</Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="409">EOF</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
+      <Sentence ID="119">CSS Class</Sentence>
+      <Sentence ID="219">CSS Class</Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
-      <Sentence ID="904">Left</Sentence>
-      <Sentence ID="905">Left</Sentence>
-      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="904">keyField</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">headerData</Sentence>
       <Sentence ID="907">Left</Sentence>
-      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="908"></Sentence>
       <Sentence ID="909">Left</Sentence>
       <Sentence ID="911">left</Sentence>
       <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Left</Sentence>
-      <Sentence ID="914">left</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
-      <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
+      <Sentence ID="918">Left</Sentence>
+      <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
-      <Sentence ID="922">Left</Sentence>
-      <Sentence ID="923">Left</Sentence>
-      <Sentence ID="924"></Sentence>
-      <Sentence ID="119">Selected rows</Sentence>
-      <Sentence ID="219">Incorrect value</Sentence>
-      <Sentence ID="319">Rows which should be checked</Sentence>
+      <Sentence ID="922"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -817,7 +817,12 @@ g5Xa8lnbL1mMaFDwq1NvyV4FZpYXhng95tFHH8M+EhtZhbNFxvFZ3nzFO7CvX7/2f7fV/JP+eIDC
 Tvd2EqOdlDmx+TY3N1v+SWxNTI7j9ZMnRJW//tQz1r4h3lpHQJeiUczMzGBs7KoMxOrq6h/PHw9s
 5c9BeApElvUpLHXIzjFrSp7j5WxkVtI7XpZk1v/o/xzk/8Mf+PyPAAMA1h52NxfieK4AAAAASUVO
 RK5CYII=]]></Resource>
+    <Resource ID="168eab1b-d9e1-9d79-01ce-0211fc938fbf" Name="picture" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAAcAAAAbCAIAAAA/JAJkAAAAXklEQVR42o3KtxHAIADAQHv/Uck5
+gwewClT+6T3nPL9e1r33ta61QOecoGOMa+29g7bWQGutoKUU0JwzaEoJNMYIGkIA9d6DOudArbWg
+xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
+<<<<<<< .mine
+  <SourceCode><![CDATA[  import json  class VDOM_datatable_v3(VDOM_object): 	def render(self, parent, contents=""):			idn = (self.id).replace('-', '_')		id = u'o_' + idn		display = u" display:none; " if self.visible == "0" else u""				style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\				.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)				cssclass = "class = \"%s\"" % self.cssclass if self.cssclass else ""				if self.header:			try:				header = json.loads(self.header)				if isinstance(header, int):					raise Exception (u"Incorrect value in header %s" % self.header)			except:				raise Exception (u"Incorrect value in header %s" % self.header)		else:			header = []		if self.data:			try:				src_data = json.loads(self.data)				if isinstance(src_data, int):					raise Exception (u"Incorrect value in data %s" % self.data)			except:				raise Exception (u"Incorrect value in data %s" % self.data)		else:			src_data = []				try:			key = json.loads(self.key) #self.key if isinstance(self.key, unicode) else json.loads(self.key)		except:			key = self.key		if self.hiddenfields:			try:				hidden = json.loads(self.hiddenfields)				if isinstance(hidden, int):					hidden = [hidden]			except:				if self.hiddenfields in header:					hidden = [self.hiddenfields]				else:					raise Exception (u"Incorrect value in hidden fields  %s" % self.hiddenfields)		else:			hidden = []					data = []		keys = []		for value in src_data:			if len(header) == len(value):				if isinstance(value, list):					row = dict(zip(header, value))					data.append(row)					if key and key in header:						keys.append(row[key])				else:					data.append(value)					if key and key in header:						keys.append( value[key] )		if self.selectedrows:			try:				selectedRows = json.loads(self.selectedrows)				if isinstance(selectedRows, list):					js_multiselect = """window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";for (var j in window.selectedRows_"""+id+"""){	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){		for (var i=0; i < window.keys_"""+id+""".length; i++){			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){				$("#"""+id+""" table tr").attr('index', function(index, attr){					if (attr == i+1){						$(this).children("td").children("input").attr('checked', 'checked');						$(this).addClass('row_selected');					}				});			}		}	}	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){		$("#"""+id+""" table tr").attr('index', function(index, attr){			if (attr == window.selectedRows_"""+id+"""[j]){				$(this).children("td").children("input").attr('checked', 'checked');				$(this).addClass('row_selected');			}		});	}}"""				else:					raise Exception (u"Attribute must be list")			except:				raise Exception (u"Incorrect value in selected rows")		else:			js_multiselect = u""		js_headerselect = u"""$("#"""+id+""" table tr th:not([checkbox])").click(function(){var hname_"""+id+""" = $(this).html();execEventBinded('"""+idn+"""', "headerselected", {headername:hname_"""+id+"""}); });		"""				js_multiselect += u"""window.selectionmode_"""+id+""" = 'multi';$("#"""+id+""" table tr th input:checkbox").click(function(){	if(this.checked){		$("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){		  params_"""+id+""".push(window.keys_"""+id+"""[i]);		  });			}else{				$("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');		params_"""+id+""" = [];	}	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});  });$("#"""+id+""" table tr td input:checkbox").click(function(){	if(this.checked){		$(this).parent().parent().addClass('row_selected');	}else{		$(this).parent().parent().removeClass('row_selected');	}	params_"""+id+""" = [];	$("#"""+id+""" table tr td input:checkbox").each(function(i, e){		if (this.checked){		   params_"""+id+""".push(window.keys_"""+id+"""[i]);		}	});	if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){		$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');	}else{		$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');	}	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});  });if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){	$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');}else{	$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');}"""		js_cellclick = u"""/*$("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){	var cell_data = $(this).html();	var cell_index = $(this).attr("index");	var header_data = header_""" + id + """[cell_index - 1];	var param = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];	params_"""+id+"""[0] = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];	if(window.selectionmode_"""+id+""" != 'multi'){		$("#"""+id+""" table tr[row]").each(function(){			if($(this).hasClass('row_selected')){				$(this).removeClass('row_selected');			}		});		$(this).parent().addClass('row_selected');		execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});	}	execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});});*//*if (window.selectionmode_"""+id+""" === 'multi' ) {	$("#"""+id+""":last table tr[row] td:nth-child(1)").live('click', function(){		//$('input[type="checkbox"]', this).click();		var x = $('input[type="checkbox"]', this);		var stat = !x.attr("checked");		x.attr("checked", stat);	});}*//*"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox]):not(:first)");*/if (window.selectionmode_"""+id+""" === 'multi') {	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not(:nth-child(1))");} else {	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td");}"""+id+"""_doo = false;$("""+id+"""_tds).bind('click dblclick', function(e){	var t = $(this);	var cell_data = t.html(), cell_index = t.attr("index");	var header_data = header_""" + id + """[cell_index - 1];	var param = window.keys_"""+id+"""[(t.parent().attr("index"))-1];	params_"""+id+"""[0] = window.keys_"""+id+"""[(t.parent().attr("index"))-1];	if (e.type == 'dblclick') {		"""+id+"""_doo = false;		/* double click */		execEventBinded('"""+idn+"""', "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});	} else {		if (typeof """+id+"""_tout === 'undefined') {			"""+id+"""_tout = setTimeout(function() {				if ("""+id+"""_doo == true) {					/* click */					if(window.selectionmode_"""+id+""" != 'multi'){						$("#"""+id+""" table tr[row]").removeClass('row_selected');						t.parent().addClass('row_selected');						execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});					}					execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});					$("#"""+id+""" table tr[row]").removeClass('active');					t.parent().addClass('active');				}				delete """+id+"""_tout;			}, 200);		}		"""+id+"""_doo = true;	}	return false;});"""		tdata = u""		theader = u""		vheader = [h for h in header if h not in hidden]		if vheader:			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>\n' if self.selectionmode == "1" else u'<tr header class="thead">'			for (index, colname) in zip(range(len(vheader)), vheader):				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>\n'			theader += u'</tr>'		for (row_i, row) in zip(range(len(data)), data):			if (row_i + 1) % 2:				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' oddrow">\n'			else:				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' even">\n'						tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox"></td>\n' if self.selectionmode == "1" else ""			if vheader:				for (index, col) in zip(range(len(vheader)), vheader):					try:						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>\n'					except:						raise Exception ("In row (%s) no column %s"%(json.dumps(row), col))			else:				for (index, val) in zip(range(len(row)), row):					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>\n'			tdata += u"</tr>\n"					select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick		result = u"""<script type="text/javascript">jQuery(document).ready(function($){var id_"""+id+""" = '"""+id+"""';window.keys_"""+id+""" = """ + json.dumps(keys) + """;window.header_"""+id+""" = """ + json.dumps(vheader) + """var params_"""+id+""" = [];%(select)s%(headerselect)s	$('#%(id)s tr').draggable({		connectToDynatree: true		,appendTo: 'body'		,containment: 'document'		,zIndex: 99999		,opacity: 0.6		,helper: 'clone'		,option: 'accept'		,cursor: 'default'		,cursorAt: { left: -2, top: 4 }		,start: function(e,u){			execEventBinded('%(idn)s', "dragstart", {itemid: u.helper.attr('index')});		}	});});</script><style type="text/css">%(css)s</style><div objtype='datatable' objname="%(name)s" ver="2011-10-12" id="%(id)s" style="%(style)s" %(class)s><table width="100%%" height="100%%" border="2" cellpadding="5" class="table"><caption>%(title)s</caption>%(theader)s<tbody>%(tdata)s</tbody></table></div>""" % {		"name": self.name,		"select": select,		"headerselect": js_headerselect,		"css": self.style % {"id": id},		"id": id,		"idn": idn,		"style": style,		"class": cssclass,		"title": self.title,		"theader": theader if self.showheader == '1' else '',		"tdata": tdata }				return VDOM_object.render(self, parent, contents=result)		def wysiwyg(self, parent, contents=""):		try:			header = json.loads(self.header)		except:			header = []		try:			src_data = json.loads(self.data)		except:			src_data = []					data = []		theader = ""		tdata = ""		for value in src_data:			if isinstance(value, list) and len(header) == len(value):				row = dict(zip(header, value))				data.append(row)			else:				data.append(value)		for colname in header:			theader += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"14\" color=\"#000000\" textalign=\"center\">"+unicode(colname)+u"</text></cell>"					for row in data:			tdata += u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\">"			if header and len(header) == len(row):				for col in header:					tdata += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"12\" color=\"#000000\" textalign=\"center\">"+unicode(row[col])+u"</text></cell>"			else:				for val in row:					tdata += u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\"><text fontsize=\"12\" color=\"#000000\" textalign=\"center\">"+unicode(val)+u"</text></cell>"						tdata +=u"</row>"					result=u"<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\					u"<table zindex=\"%s\" top=\"0\" left=\"0\" width=\"%s\" height=\"%s\" backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\" >"\						u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"1\">%s"\						u"</row>"\						u"%s"\					u"</table>"\				u"%s</container>"%(					self.id, self.zindex, self.hierarchy, self.top, self.left, self.width, self.height,					self.zindex, self.width, self.height,					theader,					tdata,					contents)				return VDOM_object.wysiwyg(self, parent, contents=result)			def set_attr(app_id, object_id, param):		eof_style = """#%(id)s caption{}#%(id)s table.table{ border-collapse:collapse; border: none; height: 0;}#%(id)s .thead{ font-size:12px; text-align:left; color:#7d7d4f; padding:0 6px;}#%(id)s .th-cell{ background:#efefec; border: none; padding-left:6px; font-size:12px;}#%(id)s .th-cell-0{ width:10px; border-radius:    6px 0px 0px 6px; -moz-border-radius:  6px 0px 0px 6px; -webkit-border-radius: 6px 0px 0px 6px;}/* Set this to the last header cell. Here we had 4 header cell, so I put it to 3.*/#%(id)s .th-cell-3{ width:10px; border-radius:    0px 6px 6px 0px; -moz-border-radius:  0px 6px 6px 0px; -webkit-border-radius: 0px 6px 6px 0px; padding: 0 16px;}#%(id)s table.table td.cell{ border: none;}#%(id)s table.table td.cell:hover{ color: #006699;}#%(id)s tr.even{}#%(id)s .row{}#%(id)s .row:hover{ background: #fafafa !important;}#%(id)s .row_selected{ background:#effdff!important;}"""		css = """#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}"""	pro_suite = """#%(id)s table{height:0px !important;border-collapse:collapse;border:0px;margin-top:10px;}#%(id)s caption{text-align:left;font-size:18px;margin-bottom:15px;}#%(id)s table .thead {background:#fff url("/168eab1b-d9e1-9d79-01ce-0211fc938fbf.png");background-repeat:repeat-x;background-position:bottom right;border:0px;border-top:1px solid #ececec;border-bottom:1px solid #ececec;border-radius: 4px; -moz-border-radius:4px; -webkit-border-radius: 4px;}#%(id)s table .thead .th-cell {border:0px;text-align:left;}#%(id)s table .thead .th-cell-0{border:0px;border-left:1px solid #ececec;border-radius: 4px; -moz-border-radius:4px; -webkit-border-radius: 4px; width:32px;}#%(id)s table .thead .th-cell-2{border:0px;border-right:1px solid #ececec;border-radius: 4px; -moz-border-radius:4px; -webkit-border-radius: 4px;}#%(id)s table tr td{border:0px;text-align:left;border-bottom:1px dotted #bfbfbf;line-height:27px;}"""			o = application.objects.search(object_id)			# set attributes		if "skin" in param:		if param["skin"]["value"] == "1":			o.set_attributes({"style": css})		elif param["skin"]["value"] == "2":			o.set_attributes({"style": eof_style})		elif param["skin"]["value"] == "3":			o.set_attributes({"style": pro_suite})	if "style" in param and param["style"]["value"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:				o.set_attributes({"skin": 0}) 			return ""	 =======
   <SourceCode><![CDATA[
 
   
@@ -1243,6 +1248,7 @@ background:#fdeeb5 !important;
 	
 	return ""	
  
+>>>>>>> .r7391
  ]]></SourceCode>
   <Libraries/>
   <E2vdom>
@@ -1257,59 +1263,59 @@ background:#fdeeb5 !important;
         </Event>
         <Event Name="celldblclick">
           <Parameters>
-            <Parameter Name="keyField" Order="" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="cellData" Order="" VbType="" Help="#Lang(902)"/>
-            <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="keyField" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="cellData" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="headerData" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
         <Event Name="custom">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
         <Event Name="headerselected">
           <Parameters>
-            <Parameter Name="headername" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="headername" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
         <Event Name="mousemove">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(922)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
         <Event Name="rowsselected">
           <Parameters>
-            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
         <Event Name="dragstart">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
