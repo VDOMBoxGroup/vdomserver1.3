@@ -14,16 +14,17 @@ def run(request):
 	if "datestr" in args and "" != args["datestr"][0]:
 		try:
 			s = args["datestr"][0]
-			s = s.replace(" ", "-")
-			if not re.match( "^([0-9]{4}).([0-9]{2}).([0-9]{2})-([0-9]{2}):([0-9]{2}):([0-9]{2})$", s):
+			#s = s.replace(" ", "-")
+			if not re.match( "^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$", s):
 				raise Exception("Wrong Date format!")
-			f = os.popen("date %s" % (s))
+			f = os.popen("""date -s  "%s" """ % (s))
 			outp = f.read()
 			f.close()
 
 			f = os.popen("hwclock -w")
 			outp = f.read()
 			f.close()
+
 		except Exception, e:
 			error = "Error: " + str(e)
 
