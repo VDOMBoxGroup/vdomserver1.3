@@ -29,7 +29,7 @@ def run(request):
 			systems = "".join(["<option value=%s>%s</option>" %(s_id, s_name) for (s_id, s_name) in syst_list])
 			show_form = template_systems % (systems,)
 		except Exception, e:
-			error = "Error: " + str(e) + "\n"
+			error = u"Error: " + unicode(e) + u"\n"
 			show_form = template_login
 			
 	elif "pis_system_guid" in args and sess.value("s_pis_login") and sess.value("s_pis_password"):
@@ -38,18 +38,20 @@ def run(request):
 			pis_login = sess.value("s_pis_login")
 			pis_password = sess.value("s_pis_password")
 			pis_system_guid = args["pis_system_guid"][0]
-			set_virtual_card(pis_login,pis_password,pis_system_guid)
-			error = "Please restart server to apply changes"
+			error = set_virtual_card(pis_login,pis_password,pis_system_guid)
+			if not error:
+				error = "Timeout"
 		except Exception, e:
 			error = "Error: " + str(e) + "\n"
 			show_form = template_login
+		show_form = template_login
 	else:
 		show_form = template_login
-	error = '<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual card configuration: %s";</script>' % escape(error.strip(), quote=True)
-	request.write(template_page%(error,show_form))
+	error = u'<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Virtual card configuration: %s";</script>' % escape(error.strip(), quote=True)
+	request.write((template_page%(error,show_form)).encode("utf-8"))
 	
 	
-template_login = """<form method="post" action="" enctype="multipart/form-data">
+template_login = u"""<form method="post" action="" enctype="multipart/form-data">
       <table border="0">
         <tr>
           <td class="Style2"><div align="right">PIS login : 
@@ -70,7 +72,7 @@ template_login = """<form method="post" action="" enctype="multipart/form-data">
     </table>
 </form>"""
 
-template_systems = """<form method="post" action="" enctype="multipart/form-data">
+template_systems = u"""<form method="post" action="" enctype="multipart/form-data">
       <table border="0">
         <tr>
           <td class="Style2"><div align="right">System guid: 
@@ -85,7 +87,7 @@ template_systems = """<form method="post" action="" enctype="multipart/form-data
     </table>
 </form>
 """
-template_page = """<html xmlns="http://www.w3.org/1999/xhtml">
+template_page = u"""<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans nom</title>
