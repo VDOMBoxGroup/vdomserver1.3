@@ -5,4 +5,4 @@ REQUEST_SECTION="request"
 
 ON_START="onstart"
 ON_FINISH="onfinish"
-
+ON_UNINSTALL="onuninstall"

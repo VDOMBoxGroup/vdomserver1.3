@@ -5,7 +5,7 @@ from metaimporter import VDOM_metaimporter
 from utils.threads import VDOM_daemon
 from daemon import VDOM_xml_synchronizer
 from utils.card_connect import send_to_card
-
+from names import APPLICATION_SECTION, ON_UNINSTALL
 
 class VDOM_xml_manager(object):
 	"""XML Manager class"""
@@ -343,6 +343,7 @@ class VDOM_xml_manager(object):
 		"""uninstall application, delete application xml file"""
 		if not managers.acl_manager.session_user_has_access2(appid, appid, security.delete_application):
 			raise VDOM_exception_sec(_("Deleting application is not allowed"))
+		
 		autolock = VDOM_named_mutex_auto("uninstall_" + appid)
 		appobj = None
 		try:
@@ -350,6 +351,17 @@ class VDOM_xml_manager(object):
 		except:
 			raise
 			##return True
+		
+		
+		on_uninstall=appobj.global_actions[APPLICATION_SECTION][APPLICATION_SECTION+ON_UNINSTALL]
+		if on_uninstall.code:
+			__import__(appobj.id)
+			try:
+				managers.engine.special(appobj, on_uninstall, namespace={})
+			except Exception as e:
+				debug("Error while executing application onuninstall action: %s"%str(e))
+				traceback.print_exc(file=debugfile)
+						
 		
 		# delete all objects from this application
 		l = []
