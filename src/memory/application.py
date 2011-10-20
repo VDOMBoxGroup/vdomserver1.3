@@ -2,7 +2,7 @@
 
 import re, sys, os, SOAPpy, thread, threading
 from threading import Condition
-from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH
+from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH,ON_UNINSTALL
 from parser import VDOM_parser
 
 
@@ -112,7 +112,11 @@ class VDOM_application(VDOM_parser):
 		if on_start.code:
 			#threading.currentThread().application=self.id
 			__import__(self.id)
-			managers.engine.special(self, on_start, namespace={})
+			try:
+				managers.engine.special(self, on_start, namespace={})
+			except:
+				debug("Error while executing application onstart action: %s"%str(e))
+				traceback.print_exc(file=debugfile)
 			#threading.currentThread().application=None
 
 	def __repr__(self):
@@ -503,6 +507,8 @@ class VDOM_application(VDOM_parser):
 				VDOM_server_action("", APPLICATION_SECTION+ON_START, "", "", "", ON_START))
 		application_actions.setdefault(APPLICATION_SECTION+ON_FINISH,
 				VDOM_server_action("", APPLICATION_SECTION+ON_FINISH, "", "", "", ON_FINISH))
+		application_actions.setdefault(APPLICATION_SECTION+ON_UNINSTALL,
+				VDOM_server_action("", APPLICATION_SECTION+ON_UNINSTALL, "", "", "", ON_UNINSTALL))
 		
 	def test4res(self, value, owner):
 		"""test for #Res(N)"""
