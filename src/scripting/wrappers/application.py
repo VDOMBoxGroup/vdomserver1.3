@@ -220,7 +220,7 @@ class VDOM_databases(object):
 			obj = application_memmory.search_object(obj_id)
 			obj.set_name(db_name)
 			obj.set_attributes({"title": title, "description": description})
-			database = managers.database_manager.get_database(application_id, obj_id)
+			database = managers.database_manager.get_database(application.id, obj_id)
 			database.name = db_name
 			database.open()
 		return database
