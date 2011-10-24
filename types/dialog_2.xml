@@ -176,7 +176,7 @@
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2)|(#Lang(410)|3))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2)|(#Lang(411)|3))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
@@ -210,7 +210,7 @@ border: 1px inset #999999;
 background-color:#fff !important;
 border:3px solid #ccc;
 }</DefaultValue>
-	  <Visible>1</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>3</InterfaceType>
       <CodeInterface>MultiLine(100000)</CodeInterface>
@@ -244,16 +244,20 @@ border:3px solid #ccc;
       <Sentence ID="602">LoadHTML</Sentence>
       <Sentence ID="702">HTMLdata</Sentence>
       <Sentence ID="802">Data in HTML format</Sentence>
-      <Sentence ID="503">Change size of the object</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="803">New width value</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="804">New height value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="503">Load HTML-data</Sentence>
+      <Sentence ID="603">LoadHTML</Sentence>
+      <Sentence ID="703">HTMLdata</Sentence>
+      <Sentence ID="803">Data in HTML format</Sentence>
+      <Sentence ID="504">Change size of the object</Sentence>
+      <Sentence ID="604">resizeTo</Sentence>
+      <Sentence ID="704">Width</Sentence>
+      <Sentence ID="804">New width value</Sentence>
+      <Sentence ID="705">Height</Sentence>
+      <Sentence ID="805">New height value</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy of the object</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
@@ -302,10 +306,13 @@ border:3px solid #ccc;
       <Sentence ID="407">User Defined</Sentence>
       <Sentence ID="408">Square</Sentence>
       <Sentence ID="409">Rounded</Sentence>
-	  <Sentence ID="410">ProSuite</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">User defined style for dialog</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -322,9 +329,6 @@ border:3px solid #ccc;
       <Sentence ID="915">Top</Sentence>
       <Sentence ID="916">Left</Sentence>
       <Sentence ID="917">Top</Sentence>
-      <Sentence ID="116">Class</Sentence>
-      <Sentence ID="216">CSS class name</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Диалоговое окно v2</Sentence>
@@ -338,16 +342,20 @@ border:3px solid #ccc;
       <Sentence ID="602">Загрузить HTML</Sentence>
       <Sentence ID="702">HTML-данные</Sentence>
       <Sentence ID="802">Данные в формате HTML</Sentence>
-      <Sentence ID="503">Изменить размеры объекта</Sentence>
-      <Sentence ID="603">Изменить размеры</Sentence>
-      <Sentence ID="703">Ширина</Sentence>
-      <Sentence ID="803">Новое значение ширины</Sentence>
-      <Sentence ID="704">Высота</Sentence>
-      <Sentence ID="804">Новое значение высоты</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="705">Задержка</Sentence>
-      <Sentence ID="805">Время задержки</Sentence>
+      <Sentence ID="503">Загрузить данные в формате HTML</Sentence>
+      <Sentence ID="603">Загрузить HTML</Sentence>
+      <Sentence ID="703">HTML-данные</Sentence>
+      <Sentence ID="803">Данные в формате HTML</Sentence>
+      <Sentence ID="504">Изменить размеры объекта</Sentence>
+      <Sentence ID="604">Изменить размеры</Sentence>
+      <Sentence ID="704">Ширина</Sentence>
+      <Sentence ID="804">Новое значение ширины</Sentence>
+      <Sentence ID="705">Высота</Sentence>
+      <Sentence ID="805">Новое значение высоты</Sentence>
+      <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="706">Задержка</Sentence>
+      <Sentence ID="806">Время задержки</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
@@ -396,10 +404,13 @@ border:3px solid #ccc;
       <Sentence ID="407">Пользовательский</Sentence>
       <Sentence ID="408">Стандартный</Sentence>
       <Sentence ID="409"></Sentence>
-	  <Sentence ID="410">ProSuite</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">CSS стили для диалога</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="901">Лево</Sentence>
       <Sentence ID="902">Верх</Sentence>
       <Sentence ID="903">Лево</Sentence>
@@ -429,16 +440,20 @@ border:3px solid #ccc;
       <Sentence ID="602">LoadHTML</Sentence>
       <Sentence ID="702">HTMLdata</Sentence>
       <Sentence ID="802">Data in HTML format</Sentence>
-      <Sentence ID="503">Change size of the object</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="803">New width value</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="804">New height value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="503">Load HTML-data</Sentence>
+      <Sentence ID="603">LoadHTML</Sentence>
+      <Sentence ID="703">HTMLdata</Sentence>
+      <Sentence ID="803">Data in HTML format</Sentence>
+      <Sentence ID="504">Change size of the object</Sentence>
+      <Sentence ID="604">resizeTo</Sentence>
+      <Sentence ID="704">Width</Sentence>
+      <Sentence ID="804">New width value</Sentence>
+      <Sentence ID="705">Height</Sentence>
+      <Sentence ID="805">New height value</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
@@ -487,10 +502,13 @@ border:3px solid #ccc;
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Standard</Sentence>
       <Sentence ID="409"></Sentence>
-	  <Sentence ID="410">ProSuite</Sentence>
+      <Sentence ID="411">ProSuite</Sentence>
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="215">User defined style for dialog</Sentence>
       <Sentence ID="315">Valeur Incorrecte</Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -590,6 +608,23 @@ BwQ6NdcJ+k6Md1LA5f5ONdhJ8vZ5J0vLHT99srkGOjmJbd/G1r2Nriqnse1AZt1AalU5jW2HsuuG
 fUf2gHvfB9z3u0BGRkZGRkbGplHcnkgguQoSqtUXuhbs/wPtMwqV0HUJAvj5vk32b8IDuL23yn7q
 AXZ5u32hbRX7d3o82Df1FZXvbh9QOfhyxldr/+3xgXU9oKmvsHyr7F/XA269/eveBXrsv7N9QALe
 /tvjA0kPWAXGbvebkbHn+D/J5nMcHzx1UAAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="ac84402d-b5d7-dcc7-fb33-357b0426918f" Name="dialog-butts-bg" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAAQAAAAyCAIAAAD0sO2ZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOkUwMDJEMDk0RkJDRjExRTBBNDhFQkFBQUFCOTBDRUQ5IiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkUwMDJEMDk1RkJDRjExRTBBNDhFQkFBQUFCOTBDRUQ5Ij4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTAwMkQwOTJGQkNGMTFFMEE0OEVC
+QUFBQUI5MENFRDkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTAwMkQwOTNGQkNGMTFFMEE0
+OEVCQUFBQUI5MENFRDkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz7TmRIkAAAAMElEQVR42mK8ffs2AwywcHJyIjjc3NwIDhAg
+OExMTAgOIyMjnIMQHuWMckjjAAQYAN1NA1AnQeNjAAAAAElFTkSuQmCC]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -743,12 +778,24 @@ border-radius:6px;
 .boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
 
 .boxy-wrapper .title-bar {
-position: relative;
-background-color: #e9e9e9;
-padding:1px;
-font-size:10px;
-text-align:center;
+background-color: #fff !important;
+margin-left:12px !important;
+margin-right:12px !important;
+margin-top:8px !important;
+padding-bottom:8px !important;
+text-align:left;
+font-weight:normal;
+border-bottom:1px solid #e5e5e5;
+
 }
+.boxy-wrapper .title-bar h2{
+font-size:24px;
+text-align:left;
+font-weight:normal;
+margin:0px;
+padding:0px;
+}
+
 .boxy-wrapper .title-bar a.close{
 position: absolute;
 background: url("/3938bd92-e009-2767-09e2-1da56035c24a.png") -95px -128px;
@@ -756,18 +803,16 @@ height: 18px;
 width: 19px;
 top: 6px;
 right: 6px;
-outline:none !important;
+display:none !important;
 }
 .boxy-wrapper .title-bar a.close:hover{
-border: 0px inset #999999;
+border: 1px inset #999999;
 }
+
 .boxy-inner {
-border:0px !important;
 background-color:#fff !important;
-box-shadow: 0 0 40px #000;
-    box-shadow: 0 0 40px #000;
-    -moz-box-shadow: 0 0 40px #000;
-    -webkit-box-shadow: 0 0 40px #000;
+border:3px solid #ccc;
+background: url("/ac84402d-b5d7-dcc7-fb33-357b0426918f.png") left bottom repeat-x;
 }"""
 	# set attributes
 	if "skin" in param:
@@ -862,26 +907,26 @@ eval("dialog_win_" + this.domCont.id + ".hide();");
 /*eval("dialog_win_" + this.domCont.id + ".setTitle(\""+title.replace('"','&quot;')+"\");");*/
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setContent">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setContent">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="content" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="content" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".setContent(\""+content.replace('"','&quot;')+"\");");*/
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="width" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="width" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="height" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 eval("dialog_win_" + this.domCont.id + ".resize("+parseInt(width,10)+","+parseInt(height,10)+");");
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 eval("dialog_win_" + this.domCont.id + ".show();");
