@@ -321,8 +321,7 @@ class VDOM_xml_manager(object):
 			if app_object.server_version != "" and VDOM_server_version < app_object.server_version:
 				return (None, "Server version (%s) is unsuitable for this application (%s)" % (VDOM_server_version, app_object.server_version))
 			app_object.server_version = VDOM_server_version
-			inf = app_object.information_element.get_child_by_name("information")
-			inf.get_child_by_name("serverversion").value = VDOM_server_version
+			app_object.information_element.get_child_by_name("serverversion").value = VDOM_server_version
 			app_object.sync()
 			debug(_("Loaded application \'") + str(app_object.id) + "\'")
 		except Exception, e:
