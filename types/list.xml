@@ -6,9 +6,9 @@
     <Description>#Lang(002)</Description>
     <ClassName>VDOM_list</ClassName>
     <ID>2fa03ef7-5ebb-5d9a-6f49-ad4c87a673ab</ID>
-    <Icon>#Res(59b1abd7-2950-a9f0-1000-ad4c87a6f24a)</Icon>
-    <EditorIcon>#Res(aff45fa6-3271-2065-e26e-ad4c87a60593)</EditorIcon>
-    <StructureIcon>#Res(016bf2f0-647b-fd47-b9cb-ad4c87a6c39c)</StructureIcon>
+    <Icon>#Res(44658ffb-dd0a-f840-b05c-45a09ed19df5)</Icon>
+    <EditorIcon>#Res(913f46fc-628c-e67d-80a0-7ea396286b74)</EditorIcon>
+    <StructureIcon>#Res(744b2c33-e910-3639-cec5-31ff68d89f85)</StructureIcon>
     <Moveable>1</Moveable>
     <Resizable>3</Resizable>
     <Container>1</Container>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>150</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>200</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -120,6 +120,30 @@
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectedrows</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(319)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectionmode</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>layout</Name>
@@ -148,7 +172,7 @@
     <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>#%(id)s li.selected { background: #fdeeb5; } #%(id)s li.active { background: #fbdf75 !important; }</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
@@ -237,6 +261,8 @@
       <Sentence ID="313"></Sentence>
       <Sentence ID="405">User defined</Sentence>
       <Sentence ID="406">Default</Sentence>
+      <Sentence ID="407">Single</Sentence>
+      <Sentence ID="408">Multi</Sentence>
       <Sentence ID="114">CSS class</Sentence>
       <Sentence ID="214">CSS class</Sentence>
       <Sentence ID="314">incorrect value</Sentence>
@@ -258,10 +284,16 @@
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
       <Sentence ID="919"></Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="215">Mode of row selecting</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="119">Selected rows</Sentence>
+      <Sentence ID="219">Incorrect value</Sentence>
+      <Sentence ID="319">Rows which should be checked</Sentence>
     </Language>
   </Languages>
   <Resources>
-    <Resource ID="59b1abd7-2950-a9f0-1000-ad4c87a6f24a" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAMpUlEQVR42s3baXBb1RUA4CNZq1d5
+    <Resource ID="44658ffb-dd0a-f840-b05c-45a09ed19df5" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAMpUlEQVR42s3baXBb1RUA4CNZq1d5
 j23ZlrzGWRqThKRNp60zkMwUEggt/KGF2C2kbEkMDC3TQp2wlKWAoaEt/0z/FjLQUtqZpBmHdoYS
 MCFhcRJ7iDds41WWdy2We859975337OMFSyTvMyde9+TI+vTOXd5i02wwtvu3bs9WMlF3jpFeeut
 tzpX8nOYVgBWjdUeLD/AUjM3NwfT0zMwFw7DDNby5kx0QoLFAolUJyTQoZNY3sHyJsLPXHFQHrVa
@@ -319,7 +351,7 @@ qVcu6HIL9UNxpmFMXTltR0dHoKWlBT6/+Dn96m/uwWQD2MPBtXS7oqy0HCorK1WYmHeV1ZVVHZwI
 ygaisIYVg4yAnjt/jp3XXrhwnn7Vq3A5HjVfBFyLZW9qaqqnuKgYVldVgdvthpycHO1SDB956bfS
 HTIxuhJ0cGgIenp64Ny5Vujq6gK/30+oK+OPBxZB6/4chFZV+fn5kIjTkrvAzZ9oUaaX3i96YRon
 /L6+Ppz42Z+KnIQr+c9BloB74Ar4A5//A3ppskjjPKCMAAAAAElFTkSuQmCC]]></Resource>
-    <Resource ID="aff45fa6-3271-2065-e26e-ad4c87a60593" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
+    <Resource ID="913f46fc-628c-e67d-80a0-7ea396286b74" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
 jCAtsCEkETZSbdJswkNKaCskRBcwt6CGSoBZVbQ4qdoGhxBaMIYkLRQ5NE1Ioy6SdlHluryyIPuu
 aHcg/gCqqsEvwMbPsd2ZATu01y4sOtLVtX3nzm/O+c75xjJ0OKwfW0GlUpFYLCY2v9WMU6kUoT+D
 skCJlPlKlEgkUK4hk8tINBKFF6svXHl5eUI0GgXnnJPwZ0cBhYWFJBKJiGP2MVxUVMQB6GSD+Hw+
@@ -341,7 +373,7 @@ pQVtbW39w67TqWIpKisrI9XV1bC8uMwbLRQKZRF51glnz5whe3t7osfrxlarlWvAFt/c3OSAXINp
 N/PNDDxfeu7SaDTZz4Nv5+5DeXk5oXQxEglj5z0+AVpbW1FnZyei4vNG+/dgkSiVShKPxWF5aZmn
 iJ7rUsDDBw9BIVfQMyDBRaa1T2ilQJzEEX05I3A2AH1Gdvw7sPDLQm7A4/nHwP5+0BeoBnLq1YRH
 wHatgAOLoOZM3fOVVfDvhwAm7Pr6uovOFwghGcDfTBa9Nz1vVyYAAAAASUVORK5CYII=]]></Resource>
-    <Resource ID="016bf2f0-647b-fd47-b9cb-ad4c87a6c39c" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADQklEQVR42m2TXUhTYRjHz3mc7sM4
+    <Resource ID="744b2c33-e910-3639-cec5-31ff68d89f85" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADQklEQVR42m2TXUhTYRjHz3mc7sM4
 LxVGgixLkpab60JombWprYKsoLLRhq4PU/uyIuoi+mRFpUIfF1kSVPODkrKbULqxlLIuIojoc63o
 DVllrt6hszO3Z71nFcvoOZybl5ff+/8/z/8R67bXwWXvZUxJSZFava10WdkyEolEMBAIAD8T4vG4
 oFQsFkPg9eTxE1a7tVbPj0KOcoco7ti2A9rb21GWZanjRgcNBoMkOzsbLRYLjI2NCaIoJgDRaBTT
@@ -374,7 +406,10 @@ class VDOM_list(VDOM_object):
 		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
 				.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
 		
-		cssclass = u"class = \"%s\"" % self.cssclass if self.cssclass else u""
+		if self.cssclass != "" or self.selectionmode == "1":
+			cssclass = u"class='%s %s'" % ( self.cssclass if self.cssclass else "", u"multiselect" if self.selectionmode == "1" else "" )
+		else:
+			cssclass = ""
 		
 		if self.data:
 			try:
@@ -385,23 +420,37 @@ class VDOM_list(VDOM_object):
 				raise Exception (u"Incorrect value in data %s" % self.data)
 		else:
 			data = {}
-			
-		hlayout = u"#%(id)s ul li{\n\tdisplay: inline;\n}" % {"id": id} if self.layout == "0" else u""
+
+		selectedRows = []
+		if self.selectedrows:
+			try:
+				selectedRows = json.loads(self.selectedrows)
+				if isinstance(selectedRows, list):
+					js_multiselect = ""
+				else:
+					raise Exception (u"Attribute must be list")
+			except:
+				raise Exception (u"Incorrect value in selected rows")
+		else:
+			js_multiselect = u""
+
+
+		hlayout = u"#%(id)s ul li{display: inline;}" % {"id": id} if self.layout == "0" else u""
 		
-		css = u"#%(id)s ul{\n\tlist-style: none outside none;\n\tmargin: 0;\n\tpadding: 0;\n}\n%(hlayout)s" % {"id": id, "hlayout": hlayout}
+		css = u"#%(id)s ul{list-style: none outside none;margin: 0;padding: 0;}%(hlayout)s" % {"id": id, "hlayout": hlayout}
 		
 		res_buffer = StringIO.StringIO(u"")
-		res_buffer.write(u"<style type=\"text/css\">\n")
+		res_buffer.write(u"<style type='text/css'>")
 		res_buffer.write(css)
 		css = self.style % {"id": id}
 		res_buffer.write(css)
-		res_buffer.write(u"</style>\n")
-		rslt = u"<div objtype='list' objname='%(name)s' ver='2011-10-12' id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s>\n<ul>" % {
+		res_buffer.write(u"</style>")
+		rslt = u"<div objtype='list' objname='%(name)s' ver='2011-10-25' id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s><ul>" % {
 			"name": self.name, "id": id, "style": style, "cssclass": cssclass
 		}
 		res_buffer.write(rslt)
 		for key, value in data.items():
-			active = u'class="active"' if key == self.selecteditem else u""
+			active = u'class="list-item-%s %s %s"' % ( key, "active" if key == self.selecteditem else "", "selected" if key in selectedRows else "")
 			if isinstance(value, list):
 				if len(value) == 3:
 					image = u"<img src=\"%s\" />" % value[1]
@@ -415,34 +464,48 @@ class VDOM_list(VDOM_object):
 				else:
 					raise Exception("Must be 3 parameters in string %s" % unicode(value))
 			elif isinstance(value, unicode):
-				li = u"<li id=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": unicode(key), "active": active, "content": unicode(value)}
+				li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": unicode(key), "active": active, "content": unicode(value)}
 				res_buffer.write(li)
 		
 			else:
 				raise Exception("Incorrect value in string %s" % unicode(value))
-		res_buffer.write(u"</ul>\n</div>\n")
+		res_buffer.write(u"</ul></div>")
 		js_script = u"""<script type="text/javascript">
 jQuery(document).ready(function($){
-	var %(id)s_doo = false;
+	var %(id)s_doo = false, m = $('#%(id)s').hasClass('multiselect');
 	$('#%(id)s ul li').bind('click dblclick', function(e){
-
 		var t = $(this);
 		t.parent().children().removeClass("active");
+		if (m) {
+			if (t.hasClass("selected")) t.removeClass("selected"); 
+			else t.addClass("selected"); 
+		}
 		t.addClass("active");
-
 		if (e.type == 'dblclick') {
 			%(id)s_doo = false;
-			execEventBinded('%(woid)s', "itemdblclick", {itemid: t.attr('id')});
+			if (m) {
+				var a = [];
+				t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
+				execEventBinded('%(woid)s', "rowsselected", {keyList: a });
+			} else {
+				execEventBinded('%(woid)s', "itemdblclick", {itemid: t.attr('itemid')});
+			}
 		} else {
 			setTimeout(function() {
 				if (%(id)s_doo == true) {
-					execEventBinded('%(woid)s', "itemclick", {itemid: t.attr('id')});
+					%(id)s_doo = false;
+					if (m) {
+						var a = [];
+						t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
+						execEventBinded('%(woid)s', "rowsselected", {keyList: a });
+					} else {
+						execEventBinded('%(woid)s', "itemclick", {itemid: t.attr('itemid')});
+					}
 				}
 			}, 300);
 			%(id)s_doo = true;
 		}
 		return false;
-
 	});
 
 	$('#%(id)s li').droppable({
@@ -450,7 +513,7 @@ jQuery(document).ready(function($){
 		//activeClass: "ui-state-hover",
 		hoverClass: "ui-state-active",
 		drop: function(e, ui) {
-			execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('id')});
+			execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('itemid')});
 		}
 	});
 
@@ -459,7 +522,7 @@ jQuery(document).ready(function($){
 	$('#%(id)s ul li').click(function(){
 		$(this).parent().children().removeClass("active");
 		$(this).addClass("active");
-		var elem_id = $(this).attr('id');
+		var elem_id = $(this).attr('itemid');
 		execEventBinded(obj_id.substring(2, obj_id.length), "itemclick", {itemid:elem_id});
 	});
 */
@@ -549,6 +612,11 @@ def set_attr(app_id, object_id, param):
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
+        <Event Name="rowsselected">
+          <Parameters>
+            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(924)"/>
+          </Parameters>
+        </Event>
         <Event Name="drop">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(925)"/>
@@ -573,6 +641,28 @@ vdom_ui_hide(this.domCont, fade);
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), ii = this.domCont.id;
+if (t.hasClass('multiselect')){
+	var a = [], k = t.find('li[itemid]');
+	k.addClass('selected');
+	k.each(function(i,e){ a.push($q(e).attr('itemid')); });
+	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), ii = this.domCont.id;
+if (t.hasClass('multiselect')){
+	t.find('li[itemid]').removeClass('selected');
+	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:[]});
+}
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
