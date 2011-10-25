@@ -207,9 +207,9 @@ class VDOM_databases(object):
 			try:
 				return object.__getattribute__(self, name)
 			except:
-				if getattr(self.__db, 'database', None) is None:
-					self.__db.database = VDOM_database(name)
-				return self.__db.database
+				if getattr(VDOM_databases.__db, 'database', None) is None:
+					VDOM_databases.__db.database = VDOM_database(name)
+				return VDOM_databases.__db.database
 	
 	def create(self, db_name, title="DBSchema", description=""):
 		from scripting.wrappers import application
@@ -275,7 +275,7 @@ class VDOM_resources(object):
 		
 	
 class VDOM_application(object):
-	__db = threading.local()
+	__app = threading.local()
 	
 	def __init__(self):
 		self._objects=VDOM_objects()
@@ -284,8 +284,8 @@ class VDOM_application(object):
 		self._storage=VDOM_file_storage()
 
 	def _get_id(self):
-		if getattr(self.__db, "app_id", None):
-			return self.__db.app_id
+		if getattr(VDOM_application.__app, "app_id", None):
+			return VDOM_application.__app.app_id
 		else:
 			return managers.request_manager.current.app_id()
 
@@ -296,7 +296,7 @@ class VDOM_application(object):
 		return managers.request_manager.current.application().app_map
 	
 	def set_app_id(self, app_id):
-		self.__db.app_id = app_id
+		VDOM_application.__app.app_id = app_id
 	
 	id=property(_get_id)
 	name=property(_get_name)
