@@ -208,8 +208,8 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">list</Sentence>
-      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="001">List</Sentence>
+      <Sentence ID="002">Horizontal or vertical list</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="501">Hides object</Sentence>
       <Sentence ID="601">hide</Sentence>
@@ -454,7 +454,7 @@ class VDOM_list(VDOM_object):
 			if isinstance(value, list):
 				if len(value) == 3:
 					image = u"<img src=\"%s\" />" % value[1]
-					li = u"<li id=\"%(elem_id)s\" %(active)s>%(left_image)s%(content)s%(right_image)s</li>" % {
+					li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(left_image)s%(content)s%(right_image)s</li>" % {
 						"elem_id":     unicode(key),
 						"content":     unicode(value[0]),
 						"active":      active,
