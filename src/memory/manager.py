@@ -583,9 +583,10 @@ class VDOM_xml_manager(object):
 			self.__sem.unlock()
 
 	def uninstall_abnormal(self, app):
-		for o in app.o_tmp:
-			self.modify_objects_count(-1)
-		del app.o_tmp
+		if hasattr(app, "o_tmp"):
+			for o in app.o_tmp:
+				self.modify_objects_count(-1)
+			del app.o_tmp
 		if hasattr(app, "id"):
 			managers.resource_manager.invalidate_resources(app.id)
 			managers.database_manager.delete_database(app.id)
