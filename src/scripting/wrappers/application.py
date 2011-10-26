@@ -207,9 +207,10 @@ class VDOM_databases(object):
 			try:
 				return object.__getattribute__(self, name)
 			except:
-				if getattr(VDOM_databases.__db, 'database', None) is None:
-					VDOM_databases.__db.database = VDOM_database(name)
-				return VDOM_databases.__db.database
+				#if getattr(VDOM_databases.__db, 'database', None) is None:
+				#	VDOM_databases.__db.database = VDOM_database(name)
+				#temporary to fix bug
+				return VDOM_database(name)#VDOM_databases.__db.database
 	
 	def create(self, db_name, title="DBSchema", description=""):
 		from scripting.wrappers import application
