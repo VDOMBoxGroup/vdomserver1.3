@@ -8,6 +8,7 @@ import shutil, thread, time,types
 import file_access
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
+from utils.system import *
 import utils.mutex as mutex
 import base64
 from daemon import VDOM_file_manager_writer
@@ -105,6 +106,45 @@ class VDOM_file_manager(object):
 				else:
 					fh.write(content)
 				fh.close()
+		except:
+			raise
+			#raise VDOM_exception(_("Can't write file %s") % path)
+		finally:
+			mut.unlock()
+			
+	def two_step_write(self, restype, application_id, object_id, file_name, content, encode = False, async=False):
+		if object_id:
+			dirpath = self.__get_path( restype, object_id,"")
+		else:
+			dirpath = self.__get_path( restype, application_id, "")
+		if not os.path.isdir(dirpath) and restype in \
+		        (file_access.type_source, file_access.resource, file_access.database, file_access.storage):
+			try:
+				os.makedirs(dirpath)
+			except: pass
+		if object_id:
+			path = self.__get_path( restype, object_id, file_name )
+		else:
+			path = self.__get_path( restype, application_id, file_name )			
+		mut = mutex.VDOM_named_mutex(path)
+		mut.lock()
+		try:
+			new_path = path+".new"
+			if encode:
+				content = content.encode("utf-8")
+			if async:
+				ret = self.write_async(new_path, content)
+				self.__sem.lock()
+				move(new_path, path)
+				self.__sem.unlock()
+			else:
+				fh = open(new_path, "wb")
+				if  type(content) == types.FileType or hasattr(content, "read"):
+					shutil.copyfileobj(content, fh)
+				else:
+					fh.write(content)
+				fh.close()
+				move(new_path, path)
 		except:
 			raise
 			#raise VDOM_exception(_("Can't write file %s") % path)
