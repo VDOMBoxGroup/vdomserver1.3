@@ -175,3 +175,18 @@ def get_vfs_users():
 		debug("Error: " + str(e))
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return r
+
+def move(src, dst):
+	try:
+		subprocess.check_call(["mv", src, dst])
+	except CalledProcessError, e:
+		debug ("Error: return code: %s"%str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+		
+def copy(src, dst):
+	try:
+		subprocess.check_call(["cp", src, dst])
+	except CalledProcessError, e:
+		debug ("Error: return code: %s"%str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+		
