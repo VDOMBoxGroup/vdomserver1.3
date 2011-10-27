@@ -147,6 +147,18 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>focused</Name>
+      <DisplayName>#Lang(161)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(361)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(407)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(261)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>autocomplete</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>1</DefaultValue>
@@ -212,6 +224,9 @@
       <Sentence ID="111">Border</Sentence>
       <Sentence ID="112">Mode</Sentence>
       <Sentence ID="113">Autocomplete</Sentence>
+      <Sentence ID="161">Focused</Sentence>
+      <Sentence ID="261">Set focus after render</Sentence>
+      <Sentence ID="361">Incorrect value</Sentence>
       <Sentence ID="124">Class</Sentence>
       <Sentence ID="201">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="202">Fade</Sentence>
@@ -552,12 +567,19 @@ class VDOM_formtext(VDOM_object):
 					""".format(id = id, name = self.name, tabind = self.tabindex, 
 							style = style, classn = self.classname, mode = mode, value = self.value)
 
+		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
+
 		result += u"""<script type='text/javascript'>
 $j(document).ready(function($){
 	$('#%(id)s').blur(function(){
-		execEventBinded("%(clean_id)s", "blur", {});
+		var cnt = $.trim($(this).val()).length;
+		execEventBinded("%(clean_id)s", "blur", { charCount: cnt });
 	});
-});</script>""" % { "id": id, "clean_id": clean_id }
+	$('#%(id)s').focusin(function(){
+		execEventBinded("%(clean_id)s", "focus", {});
+	});
+	%(focused)s
+});</script>""" % { "id": id, "clean_id": clean_id, "focused": focused }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -636,6 +658,9 @@ $j(document).ready(function($){
           <Parameters>
             <Parameter Name="itemValue" Order="" VbType="" Help="#Lang(151)"/>
           </Parameters>
+        </Event>
+        <Event Name="focus">
+          <Parameters />
         </Event>
         <Event Name="blur">
           <Parameters>
