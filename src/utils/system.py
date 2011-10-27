@@ -5,12 +5,14 @@ import sys, socket
 
 LINUX = sys.platform.startswith("linux")
 FREEBSD = sys.platform.startswith("frebsd")
-
+WIN = sys.platform.startswith("win")
 
 if  LINUX:
 	from utils.system_linux import *
 elif FREEBSD:
 	from utils.system_freebsd import *
+elif WIN:
+	from utils.system_windows import *
 else:
 	from utils.system_freebsd import *
 
