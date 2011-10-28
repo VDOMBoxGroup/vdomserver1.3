@@ -116,7 +116,7 @@ class VDOM_xml_manager(object):
 						xmlstr = self.__applications[the_id].get_xml_as_string()
 						if len(xmlstr) > 0:
 							try:
-								managers.file_manager.two_step_write(file_access.application_xml, the_id, None, None, xmlstr, False)
+								managers.file_manager.two_step_write(file_access.application_xml, the_id, None, None, xmlstr, False, False)
 							except Exception, e:
 								debug("\nApplication '%s' save error: %s\n" % (the_id, str(e)))
 			finally:
