@@ -15,111 +15,110 @@
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
     <Version>1.1.6200</Version>
-    <InterfaceType>3</InterfaceType>
+    <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers>set_attr</Handlers>
     <RemoteMethods/>
-    <RenderType/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
   <Attributes>
     <Attribute>
       <Name>designcolor</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue>EEEEEE</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
-      <DisplayName>#Lang(101)</DisplayName>
+      <DisplayName>#Lang(102)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(301)</Help>
+      <Help>#Lang(202)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(102)</DisplayName>
+      <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(302)</Help>
+      <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>zindex</Name>
-      <DisplayName>#Lang(103)</DisplayName>
+      <DisplayName>#Lang(104)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(303)</Help>
+      <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>top</Name>
-      <DisplayName>#Lang(104)</DisplayName>
+      <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(304)</Help>
+      <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
-      <DisplayName>#Lang(105)</DisplayName>
+      <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(305)</Help>
+      <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>source_object</Name>
-      <DisplayName>#Lang(106)</DisplayName>
+      <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(306)</Help>
+      <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>ObjectList()</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>source_object_cache</Name>
-      <DisplayName>#Lang(107)</DisplayName>
+      <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(307)</Help>
+      <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>ObjectList()</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
@@ -127,89 +126,95 @@
     <Language Code="en_US">
       <Sentence ID="001">Copy</Sentence>
       <Sentence ID="002">Copy object</Sentence>
-      <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Source object</Sentence>
-      <Sentence ID="201">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="202">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="203">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="204">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="205">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="206">Incorrect object</Sentence>
-      <Sentence ID="301">Hierarchy of the object</Sentence>
-      <Sentence ID="302">Show object or not</Sentence>
-      <Sentence ID="303">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="304">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="306">Target object for copy</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Color in WYSIWYG</Sentence>
+      <Sentence ID="201">Color in design mode</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="202">Hierarchy of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="103">Visibility</Sentence>
+      <Sentence ID="203">Show object or not</Sentence>
+      <Sentence ID="303">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="107"></Sentence>
-      <Sentence ID="307">Cashed target object</Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="123">Color in WYSIWYG</Sentence>
-      <Sentence ID="223">Color in design mode</Sentence>
-      <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Top</Sentence>
+      <Sentence ID="205">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="206">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Source object</Sentence>
+      <Sentence ID="207">Target object for copy</Sentence>
+      <Sentence ID="307">Incorrect object</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="208">Cashed target object</Sentence>
+      <Sentence ID="308"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Копия объекта</Sentence>
       <Sentence ID="002">Копия</Sentence>
-      <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
-      <Sentence ID="104">Верх</Sentence>
-      <Sentence ID="105">Лево</Sentence>
-      <Sentence ID="106">Исходный объект</Sentence>
-      <Sentence ID="201">Неправильное значение</Sentence>
-      <Sentence ID="202">Неправильное значение</Sentence>
-      <Sentence ID="203">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-      <Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="206">Неправильный объект</Sentence>
-      <Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="302">Отображать объект или нет</Sentence>
-      <Sentence ID="303">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="306">Целевой объект для копирования</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Color in WYSIWYG</Sentence>
+      <Sentence ID="201">Color in design mode</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Иерархия</Sentence>
+      <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="302">Неправильное значение</Sentence>
+      <Sentence ID="103">Отображение</Sentence>
+      <Sentence ID="203">Отображать объект или нет</Sentence>
+      <Sentence ID="303">Неправильное значение</Sentence>
       <Sentence ID="401">Невидимый</Sentence>
       <Sentence ID="402">Видимый</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="107"></Sentence>
-      <Sentence ID="307">Копия целевого объекта в кэше</Sentence>
-      <Sentence ID="207"></Sentence>
+      <Sentence ID="104">Z-Индекс</Sentence>
+      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="105">Верх</Sentence>
+      <Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="106">Лево</Sentence>
+      <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="107">Исходный объект</Sentence>
+      <Sentence ID="207">Целевой объект для копирования</Sentence>
+      <Sentence ID="307">Неправильный объект</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="208">Копия целевого объекта в кэше</Sentence>
+      <Sentence ID="308"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Copie d'objet</Sentence>
       <Sentence ID="002">Copie d'objet</Sentence>
-      <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="102">Visibilité</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="106">Objet Source</Sentence>
-      <Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="202">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="203">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="206">Object Incorrect</Sentence>
-      <Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="302">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="303">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="306">Objet source qui sera copié</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Color in WYSIWYG</Sentence>
+      <Sentence ID="201">Color in design mode</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="102">Hiérarchie</Sentence>
+      <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="103">Visibilité</Sentence>
+      <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="107"></Sentence>
-      <Sentence ID="307">Cashed target object</Sentence>
-      <Sentence ID="207"></Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="105">Haut</Sentence>
+      <Sentence ID="205">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="106">Gauche</Sentence>
+      <Sentence ID="206">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="107">Objet Source</Sentence>
+      <Sentence ID="207">Objet source qui sera copié</Sentence>
+      <Sentence ID="307">Object Incorrect</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="208">Cashed target object</Sentence>
+      <Sentence ID="308"></Sentence>
     </Language>
   </Languages>
   <Resources>
