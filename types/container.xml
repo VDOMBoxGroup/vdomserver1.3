@@ -217,6 +217,54 @@
       <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>backgroundcolor</Name>
+      <DisplayName>#Lang(110)</DisplayName>
+      <DefaultValue></DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(210)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(310)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+	<Attribute>
+	  <Name>backgroundimage</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(317)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>resource_cache</Name>
+      <DisplayName>#Lang(136)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(312)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface/>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(230)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>backgroundrepeat</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(318)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(430)|0)|(#Lang(431)|1)|(#Lang(432)|2)|(#Lang(433)|3))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -295,6 +343,9 @@
       <Sentence ID="109">Title appearance</Sentence>
       <Sentence ID="209">Container title appearance</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="110">Background color</Sentence>
+      <Sentence ID="210">Background color</Sentence>
+      <Sentence ID="310">Incorrect value</Sentence>
       <Sentence ID="403">Title off</Sentence>
       <Sentence ID="404">H1</Sentence>
       <Sentence ID="405">H2</Sentence>
@@ -326,6 +377,12 @@
       <Sentence ID="115">Class</Sentence>
       <Sentence ID="215">CSS class name</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="117">Background image</Sentence>
+      <Sentence ID="217">Background image</Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
+      <Sentence ID="118">Background image</Sentence>
+      <Sentence ID="218">Background image</Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Cursor position</Sentence>
@@ -353,6 +410,10 @@
       <Sentence ID="316">Set parent's position</Sentence>
       <Sentence ID="420">True</Sentence>
       <Sentence ID="421">False</Sentence>
+      <Sentence ID="430">repeat</Sentence>
+      <Sentence ID="431"><![CDATA[no-repeat]]></Sentence>
+      <Sentence ID="432"><![CDATA[repeat-x]]></Sentence>
+      <Sentence ID="433"><![CDATA[repeat-y]]></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Контейнер</Sentence>
@@ -626,7 +687,7 @@
   </Resources>
   <SourceCode><![CDATA[
 
-import e2vdom
+import e2vdom, utils
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -658,10 +719,25 @@ class VDOM_container(VDOM_object):
 		
 		height = u"height: %spx;" % self.height if self.heightauto == "0" else u""
 
+		background_color = u"background-color: %s;" % self.backgroundcolor if self.backgroundcolor != "" else u""
+
+		background_image = u"background-image: url('%s');" % utils.id.id2link1(self.backgroundimage) if self.backgroundimage != "" else u""
+
+		if self.backgroundrepeat == '1':
+			background_repeat = 'no-repeat'
+		elif self.backgroundrepeat == '2':
+			background_repeat = 'repeat-x'
+		elif self.backgroundrepeat == '3':
+			background_repeat = 'repeat-y'
+		else:
+			background_repeat = ''
+		background_repeat = u"background-repeat: %s;" % background_repeat if self.backgroundrepeat != "" else u""
+
 		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
-					width: {width}px; overflow: {overflow}; {height}"""\
-				.format(display = display, zind = self.zindex, pos = self.position, 
-						top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
+					width: {width}px; overflow: {overflow}; {height} {background_color} {background_image} {background_repeat}"""\
+				.format(display = display, zind = self.zindex, pos = self.position,
+					background_color = background_color, background_image = background_image, background_repeat = background_repeat,
+					top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
 
 		id = u"o_" + (self.id).replace('-', '_')
 		footer = u"""rel="footer" """ if self.footer == "1" else u""
