@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.15.6720</Version>
+    <Version>1.16.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -123,86 +123,86 @@
     </Attribute>
     <Attribute>
       <Name>selectedrows</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(319)</Help>
+      <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>selectionmode</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>layout</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selecteditem</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>#%(id)s li.selected { background: #fdeeb5; } #%(id)s li.active { background: #fbdf75 !important; }</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>layout</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>selecteditem</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>style</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>#%(id)s li.selected { background: #fdeeb5; } #%(id)s li.active { background: #fbdf75 !important; }</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>skin</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -219,6 +219,10 @@
       <Sentence ID="602">show</Sentence>
       <Sentence ID="702">fade</Sentence>
       <Sentence ID="802">Show effect</Sentence>
+      <Sentence ID="503">Shows object</Sentence>
+      <Sentence ID="603">show</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="604"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy</Sentence>
       <Sentence ID="301">incorrect value</Sentence>
@@ -245,51 +249,42 @@
       <Sentence ID="108">Data</Sentence>
       <Sentence ID="208">Data in JSON format</Sentence>
       <Sentence ID="308">incorrect value</Sentence>
-      <Sentence ID="109">Layout</Sentence>
-      <Sentence ID="209">Defines horizontal or vertical layout</Sentence>
-      <Sentence ID="309">incorrect value</Sentence>
-      <Sentence ID="403">Horizontal</Sentence>
-      <Sentence ID="404">Vertical</Sentence>
-      <Sentence ID="111">Selected item</Sentence>
-      <Sentence ID="211">set class "active" to item with this id</Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="212">CSS style defined by user</Sentence>
+      <Sentence ID="109">Selected rows</Sentence>
+      <Sentence ID="209">Rows which should be checked</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="111">Selection mode</Sentence>
+      <Sentence ID="211">Mode of row selecting</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="403">Single</Sentence>
+      <Sentence ID="404">Multi</Sentence>
+      <Sentence ID="112">Layout</Sentence>
+      <Sentence ID="212">Defines horizontal or vertical layout</Sentence>
       <Sentence ID="312">incorrect value</Sentence>
-      <Sentence ID="113">Skin</Sentence>
-      <Sentence ID="213">Defined skin</Sentence>
+      <Sentence ID="405">Horizontal</Sentence>
+      <Sentence ID="406">Vertical</Sentence>
+      <Sentence ID="113">Selected item</Sentence>
+      <Sentence ID="213">set class "active" to item with this id</Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="405">User defined</Sentence>
-      <Sentence ID="406">Default</Sentence>
-      <Sentence ID="407">Single</Sentence>
-      <Sentence ID="408">Multi</Sentence>
-      <Sentence ID="114">CSS class</Sentence>
-      <Sentence ID="214">CSS class</Sentence>
+      <Sentence ID="114">Style</Sentence>
+      <Sentence ID="214">CSS style defined by user</Sentence>
       <Sentence ID="314">incorrect value</Sentence>
-      <Sentence ID="901"></Sentence>
-      <Sentence ID="902"></Sentence>
-      <Sentence ID="903"></Sentence>
+      <Sentence ID="115">Skin</Sentence>
+      <Sentence ID="215">Defined skin</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="407">User defined</Sentence>
+      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="116">CSS class</Sentence>
+      <Sentence ID="216">CSS class</Sentence>
+      <Sentence ID="316">incorrect value</Sentence>
+      <Sentence ID="901">Parametr</Sentence>
+      <Sentence ID="902">list element id</Sentence>
+      <Sentence ID="903">list element id</Sentence>
       <Sentence ID="904"></Sentence>
-      <Sentence ID="905">Parametr</Sentence>
-      <Sentence ID="906"></Sentence>
-      <Sentence ID="907"></Sentence>
-      <Sentence ID="908">list element id</Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912"></Sentence>
-      <Sentence ID="913"></Sentence>
-      <Sentence ID="914"></Sentence>
-      <Sentence ID="915"></Sentence>
-      <Sentence ID="916"></Sentence>
-      <Sentence ID="917"></Sentence>
-      <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
-      <Sentence ID="115">Selection mode</Sentence>
-      <Sentence ID="215">Mode of row selecting</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="119">Selected rows</Sentence>
-      <Sentence ID="219">Incorrect value</Sentence>
-      <Sentence ID="319">Rows which should be checked</Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="505">toggle</Sentence>
+      <Sentence ID="605">toggle</Sentence>
+      <Sentence ID="703">id</Sentence>
+      <Sentence ID="803">id</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -599,27 +594,27 @@ def set_attr(app_id, object_id, param):
       <Userinterfaceevents>
         <Event Name="custom">
           <Parameters>
-            <Parameter Name="param" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="param" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
         <Event Name="itemclick">
           <Parameters>
-            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
         <Event Name="itemdblclick">
           <Parameters>
-            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
         <Event Name="rowsselected">
           <Parameters>
-            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
         <Event Name="drop">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(925)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -634,15 +629,7 @@ def set_attr(app_id, object_id, param):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-vdom_ui_show(this.domCont, fade);
-                    ]]></SourceCode>
-        </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
 var t = $(this.domCont), ii = this.domCont.id;
@@ -654,7 +641,7 @@ if (t.hasClass('multiselect')){
 }
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
 var t = $(this.domCont), ii = this.domCont.id;
@@ -663,6 +650,32 @@ if (t.hasClass('multiselect')){
 	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:[]});
 }
 ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+vdom_ui_show(this.domCont, fade);
+                    ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="toggle">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(803)" ScriptName="id" Help="#Lang(703)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), ii = this.domCont.id;
+if (t.hasClass('multiselect')){
+	l = t.find('li[itemid="'+id+'"]');
+	if (l.hasClass('selected')){
+		l.removeClass('selected');
+	}else{
+		l.addClass('selected');
+	}
+	var a = [], k = t.find('li.selected[itemid]');
+	k.each(function(i,e){ a.push($q(e).attr('itemid')); });
+	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});}		  
+		  ]]></SourceCode>
         </Action>
       </Container>
     </Actions>
