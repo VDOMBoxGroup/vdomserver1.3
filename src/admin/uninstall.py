@@ -25,9 +25,9 @@ def run(request):
 					if vh.get_site(s) == aid:
 						vh.set_site(s, None)
 	if not p:
-		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been uninstalled";</script>')
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been uninstalled";</script>')
 	elif True != p:
-		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % p)
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % p)
 
 	applst = managers.xml_manager.get_applications()
 

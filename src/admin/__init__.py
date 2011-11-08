@@ -47,3 +47,6 @@ from admin.vfs import run
 from admin.vfs_update import run
 from admin.virtualhost import run
 from admin.vcard import run
+from admin.sdconfig import run
+from admin.getbackup import run
+from admin.restore import run

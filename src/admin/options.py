@@ -37,10 +37,6 @@ def run(request):
 		param["boximg"] = "box-v-v.jpg"
 		if "0" == system_options["card_state"]:
 			param["boximg"] = "box-v-r.jpg"
-		elif "2" == system_options["card_state"]:
-			param["boximg"] = "box-v-r-blink-1.gif"
-		elif "3" == system_options["card_state"]:
-			param["boximg"] = "box-v-r-blink-2.gif"
 		request.write("""
 <html>
 <head>

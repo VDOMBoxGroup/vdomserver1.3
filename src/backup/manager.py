@@ -1,4 +1,4 @@
-import managers, version
+import managers, os, utils.uuid
 from scheduler.task import VDOM_backup_task
 from storage_driver import backup_storage_manager
 from backup import backup
@@ -11,26 +11,17 @@ class VDOM_backup_manager(object):
         backup_storage_manager.restore()
         
     def backup(self, app_id, drv_id):
-        appl = managers.xml_manager.get_application(app_id)
         sd = backup_storage_manager.get_driver(drv_id)
-        path = sd.path
-        meta_info = appl.info_map
-        server_version = version.VDOM_server_version
-        vh = managers.request_manager.current.server().virtual_hosting()
-        sites = vh.get_sites()
-        vhosts = []
-        for site in sites:
-            if vh.get_site(site) == app_id:
-                vhosts.append(site)
-                
-        backup.backup(app_id, path, meta_info, server_version, vhosts)
+        path = sd.mount()                
+        backup.backup(app_id, path)
+        sd.umount()
     
     def get_schedule(self, driver_id):
         schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
         schedule = []
         for key in schedule_list:
             if schedule_list[key][0].driver == driver_id:
-                schedule.append(schedule_list[key])
+                schedule.append((key, schedule_list[key]))
         if schedule and len(schedule) == 1:
             return schedule[0]
         else:
@@ -43,18 +34,33 @@ class VDOM_backup_manager(object):
     def update_schedule(self, driver_id, app_list, interval, rotation):
         schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
         for key in schedule_list:
-            if driver.id == schedule_list[key][0].driver:
+            if driver_id == schedule_list[key][0].driver:
                 schedule_list[key][0].applications = app_list
                 schedule_list[key][0].rotation = rotation
                 managers.scheduler_manager.update(key, schedule_list[key][0], interval)
         
-    def del_schedule(self, task_id):
-        managers.scheduler_manager.dell_task(task_id)
+    def del_schedule(self, driver_id):
+        schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+        schedule = []
+        is_dirty_index = False
+        for key in schedule_list:
+            if schedule_list[key][0].driver == driver_id:
+                schedule.append(key)
+                is_dirty_index = True
+        if is_dirty_index and schedule and len(schedule) == 1:
+            managers.scheduler_manager.dell_task(schedule[0])
     
     def get_storages(self):
-        return backup_storage_manager.get_drivers()
+        drivers = backup_storage_manager.get_drivers()
+        if drivers:
+            return drivers
+        else:
+            return dict()
     
-    def add_storages(self, driver):
+    def get_storage(self, drv_id):
+        return backup_storage_manager.get_driver(drv_id)
+        
+    def add_storage(self, driver):
         backup_storage_manager.add_driver(driver)
         
     def del_storage(self, driver):
@@ -71,17 +77,28 @@ class VDOM_backup_manager(object):
                 managers.scheduler_manager.dell_task(key)
                 
     
-    def get_revision_list(self):
-        pass
+    def get_app_list(self, driver_id):
+        driver = backup_storage_manager.get_driver(driver_id)
+        driver_path = driver.mount()
+        app_list = VDOM_restore().list_apps(driver_path)
+        driver.umount()
+        return app_list
     
-    def restore(self, driver_path, app_id, revision_number):
-        xml_path = ""
-        ldap_path = ""
-        storage_path = ""
-        xapian_path = ""
-        dirs = {"application": xml_path,
-                "storage": storage_path,
-                "ldap": ldap_path,
-                "xapian": xapian_path}
-        VDOM_restore.restore(driver_path, app_id, revision_number, dirs)
+    def get_revision_list(self, driver_id, app_id):
+        driver = backup_storage_manager.get_driver(driver_id)
+        driver_path = driver.mount()
+        revisions_list = VDOM_restore().revisions(driver_path, app_id)
+        driver.umount()
+        return revisions_list
     
+    def get_revision_info(self, driver_id, app_id, rev_num):
+        driver = backup_storage_manager.get_driver(driver_id)
+        driver_path = driver.mount()
+        revision_info = VDOM_restore().revision_info(driver_path, app_id, rev_num)
+        driver.umount()
+        return revision_info
+    
+    def restore(self, driver_id, app_id, revision_number):
+        driver = backup_storage_manager.get_driver(driver_id)
+        VDOM_restore().restore(driver, app_id, revision_number)
+        

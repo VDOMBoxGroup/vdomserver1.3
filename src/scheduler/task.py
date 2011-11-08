@@ -7,12 +7,11 @@ class VDOM_scheduler_task(object):
     
 class VDOM_backup_task(VDOM_scheduler_task):
     
-    
-
     def __init__(self, drv_id, apps, rot):
         self.__driver_id = drv_id
         self.__app_list = apps
         self.__rotation = rot
+        self.in_cron = False
     
     def run(self):
         for app in self.__app_list:

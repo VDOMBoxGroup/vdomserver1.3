@@ -127,7 +127,7 @@ def run(request):
   </TR>
 </form>
 </table>
-<script type="text/javascript">
+<script language="javascript">
 var HFrm = 20*%s+4;
 parent.RedimFrm(%s,HFrm);
 </script>""" % (_uid, _appid, _oid, NbTree, _right, cptln, NbTree)

@@ -87,7 +87,7 @@ def send_pong():
 
 def run_scheduler_task(num):
 	import managers
-	managers.scheduler_manager.on_signal(num)
+	managers.scheduler_manager.on_signal(num.strip('\n'))
 
 
 def execute(data):
@@ -112,4 +112,3 @@ def check_application_license(application_id, license_type):
 	return send_to_card_and_wait( 
 	    "getlicense %s %s" % (str(application_id), str(license_type)),
 	    "%s/%s" % (str(application_id), str(license_type)) ) == "1"
-

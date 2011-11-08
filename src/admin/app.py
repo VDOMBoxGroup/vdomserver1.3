@@ -90,7 +90,7 @@ function MM_swapImage() { //v3.0
 //-->
 </script>
 <!-- DEBUT DU SCRIPT Help-->
-<script type="text/javascript">
+<SCRIPT LANGUAGE="JavaScript">
 function ChangeMessage(message,champ)
   {
   if(document.getElementById)

@@ -5,53 +5,158 @@ from utils.system import get_external_drives
 from utils.exception import VDOM_exception
 
 def run(request):
-	sess = request.session()
-	if not sess.value("appmngmtok"):
-		request.write("Authentication failed")
-		raise VDOM_exception("Authentication failed")
+        sess = request.session()
+        if not sess.value("appmngmtok"):
+                request.write("Authentication failed")
+                raise VDOM_exception("Authentication failed")
 
-	args = request.arguments().arguments()
-	applst = managers.xml_manager.get_applications()
-	sm = managers.server_manager
-
-	if "history" in args and "" != args["history"][0] and "interval" in args and "" != args["interval"][0] and "device" in args:
-		hist_i = int(args["history"][0])
-		int_i = int(args["interval"][0])
-		dev = args["device"][0]
-		l = []
-		for a in args.keys():
-			aid = "-".join(a.split("_"))
-			if aid in applst:
-				l.append(aid)
-		sm.cancel_backup()
-		sm.configure_backup(l, hist_i, int_i, dev)
-	if "sharebackup" in args and "device" in args:
-		dev = args["device"][0]
-		sm.sharebackup(dev)
-		
-	request.write("""<html>
+        args = request.arguments().arguments()
+	request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="";</script>')
+        applst = managers.xml_manager.get_applications()
+        sm = managers.server_manager
+        drivers = managers.backup_manager.get_storages()
+        if "device" in args and "abs" in args:
+                if args["device"][0] == "ed":
+                        request.redirect("/sdconfig.py")
+			return
+        if "devid" in args:
+                drv = managers.backup_manager.get_storage(args["devid"][0])
+                if drv.type == "external_drive":
+                        request.redirect("/sdconfig.py?devid=%s" % drv.id)
+			return
+	if "save" in args:
+		if "drv[]" in args:
+			crontab = []
+			for drv in args["drv[]"]:
+				task_id, schedule = managers.backup_manager.get_schedule(drv)
+				schedule[0].in_cron = True
+				managers.scheduler_manager.update(task_id, schedule[0], schedule[1])
+				crontab.append((task_id, schedule[1]))
+			managers.scheduler_manager.build_crontab(crontab)
+		elif "drv[]" not in args:
+			managers.scheduler_manager.clean_crontab()
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Crontab built successfully";</script>')
+        request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Uninstall</title>
-<style type="text/css">
+<style>
+body {
+margin:0;
+padding:0;
+font-family:Arial;
+background-color:#f8f8f8;
+}
 
 .Texte {
-	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #000000;
+ font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+ font-size: 12px;
+ color: #000000;
 }
-a:link {
-	color: #000000;
+
+.wrapper {
+
+width:100%;
+height:100%;
+margin:0px;
+padding:0;
 }
-a:visited {
-	color: #000000;
+
+.block {
+width:605px;
+background-color:#fff;
+border:1px solid #ccc;
+margin:15px;
+ box-shadow: 0 0 10px #c6c6c6;
+    -moz-box-shadow: 0 0 10px #c6c6c6;
+    -webkit-box-shadow: 0 0 10px #c6c6c6;
+}
+
+.block h2 {
+color:#5e5e5e;
+font-size:18px;
+font-weight:normal;
+margin-left:18px;
+}
+
+table.devices {
+width:100%;
+font-size:14px;
+border-collapse:collapse;
+}
+table.devices td {
+border-bottom:1px solid #d6d6d6;
+line-height:28px;
+
+}
+
+table.devices td.name {
+padding-left:24px;
+}
+
+table.devices td.ext-drive {
+background: url(images/exthdd.png);
+background-position:left 50%;
+background-repeat:no-repeat;
+}
+table.devices td.cloud-drive {
+background: url(images/cloud.png);
+background-position:left 50%;
+background-repeat:no-repeat;
+}
+
+table.devices td.check {
+width:24px;
+padding-left:15px;
+}
+
+table.devices td.options a {
+font-size:10px;
+color:#7f7f7f;
+padding-right:10px;
+text-decoration:none;
+} 
+table.devices td.options a:hover {
+color:#000;
+}
+table.devices td.options {
+text-align:right;
+} 
+
+.submit-gray {
+background:#e9e9e9;
+width:100%;
+height:50px;
+text-align:center;
+}
+.submit-gray input {
+margin-top:15px;
+}
+
+.block select{
+width:240px;
+margin-left:15px;
+}
+.radiob {
+margin-left:15px;
+margin-top:15px;
+}
+
+.radiob p{
+font-size:14px;
+
+}
+
+.radiob p span{
+color:#4a4a4a;
+font-size:10px;
 }
 </style>
 
-<script type="text/javascript">
+<script language="javascript">
 function LoadImgWait(){
 	document.getElementById('Imgload').style.display='';
-	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Copying files to external device...";
+	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Saving backup configuration...";
 }
 </script>
 </head>
@@ -62,49 +167,30 @@ function LoadImgWait(){
 <div id="Imgload" style="position:absolute; z-index:100; top:0px; left:0px; width:100%; height:100%; background-color:#FFFFFF; display:none" align="center"><br><br><img src="/images/loading.gif" border="0"></div>
 
 <p class="Texte"><a href="menuappli.py">Application Management</a> &gt; Backup</p>
-<table width="100%" height="85%" border="0">
-   <tr>
-     <td>
-""")
-	request.write('<form method=post action="/appbackup.py" enctype="multipart/form-data">')
-	request.write('<table border="0" width="500">')
-	request.write('<tr><td width="123">&nbsp;</td><td align="center" class="Texte">Select applications to backup</td></tr>')
-	for appid in applst:
-		obj = managers.xml_manager.get_application(appid)
-		a = "_".join(appid.split("-"))
-		sss = ""
-		if appid in sm.backup_app:
-			sss = "checked"
-		request.write('<tr><td width="123">&nbsp;</td><td class="Texte"><input type=checkbox name=%s value=%s %s>%s</input></td></tr>' % (a, "1", sss, "%s (%s)" % (obj.name.encode("utf-8"), appid)))
-	devs = ""
-	drives = get_external_drives()
-	devs += """<option value="none">None</option>"""
-	devs += "".join( [ """<option %(selected)s value="%(device)s">Usb disk %(label)s</option>""" % {
-			"selected": "selected" if dev["device"] == sm.backup_dev else "",
-			"device": dev["device"],
-			"label": dev["label"]
-			} for dev in drives ] )
-			
-	request.write('<tr><td width="123">&nbsp;</td><td class="Texte">History: <input type=text name=history value="%s"/></td></tr>' % str(sm.history))
-	request.write('<tr><td width="123">&nbsp;</td><td class="Texte">Interval (min): <input type=text name=interval value="%s"/></td></tr>' % str(sm.interval))
-	request.write('<tr><td width="123">&nbsp;</td><td class="Texte">To device: <select name=device>%s</select></td></tr>' % devs)
-	request.write('<tr><td width="123">&nbsp;</td><td>');
-	request.write('<input type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">')
-	request.write('</td></tr></table>')
-	request.write('</form>')
-	request.write("""</td>
-   </tr>""")
-	
-	request.write('<form method="post" onsubmit="LoadImgWait();" action="/appbackup.py" enctype="multipart/form-data">')
-	request.write('<table border="0" width="500"')
-	request.write('<tr><td width="123">&nbsp;</td><td align="center" class="Texte">Box VFS backup</td></tr>')
-	request.write('<tr><td width="123">&nbsp;</td><td class="Texte">To device: <select name=device>%s</select></td></tr>' % devs)
-	request.write('<tr><td width="123">&nbsp;</td><td>');
-	request.write('<input type="submit" name="sharebackup" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">')
-	request.write('</td></tr></table>')
-	request.write('</form>')
-	request.write("""</td>
-   </tr>
- </table>
+<form method=post action="/appbackup.py" enctype="multipart/form-data">
+<div class="wrapper"> 
+  <div class="block">
+   <h2>Enabled backup storage</h2>
+   <table class="devices">""")
+	tasks_in_cron = managers.scheduler_manager.get_crontab()
+        for driver in drivers:
+		task_id, schedule = managers.backup_manager.get_schedule(driver)
+		driver_icon = "ext-drive" if drivers[driver].type == "external_drive" else "cloud-drive"
+		checked = 'checked = "checked"' if task_id in dict(tasks_in_cron) else ''
+                request.write("""
+     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Restore from backup</a><a href="/appbackup.py?devid=%(drv)s">Config</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
+	request.write("""
+   </table>
+   <div class="submit-gray"><input type="submit" name="save" value="Save changes"/ onclick="LoadImgWait();"></div>
+  </div>
+  <div class="block" style="padding-bottom:15px;">
+   <h2>Add new backup storage</h2>
+   <select name="device">
+    <option value="ed">External device</option>
+   </select>
+   <input type="submit" name="abs" value="Add storage"/>
+  </div>
+</div>
+</form>
 </body>
 </html>""")
