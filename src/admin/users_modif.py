@@ -45,7 +45,7 @@ li {
 
 <body topmargin="2">
 <p class="Texte"><a href="users.py">Users</a> &gt; Select user</p>
-<script type="text/javascript">
+<script language="javascript">
 var ListUserGestion = new Array();
 ListUserGestion[0] = new Array();
 ListUserGestion[1] = new Array();
@@ -104,7 +104,7 @@ function add_li(sId, inc, NameTab) {
 	</tr>
 </table>
 </div>
-<script type="text/javascript">
+<script language="javascript">
 for(i=0; i<ListUserGestion[0].length; i++){
 	add_li('ListUG',i,'ListUserGestion');
 };
@@ -112,6 +112,6 @@ for(i=0; i<ListUser[0].length; i++){
 	add_li('ListUA',i,'ListUser');
 };
 </script>""")
-	request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+	request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 	request.write("""</body>
 </html>""")

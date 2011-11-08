@@ -245,7 +245,7 @@ a:visited {
 -->
 </style>
 <script type="text/javascript" src="images/tree.js"></script>
-<script type="text/javascript">
+<script language="javascript">
 function RedimFrm(NumT, HtFrm){
 	document.getElementById('FRights' + NumT).height=HtFrm;
 }

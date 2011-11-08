@@ -11,7 +11,7 @@ def run(request):
 		request.write("Authentication failed")
 		raise VDOM_exception("Authentication failed")
 
-	request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
+	request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Waiting for action";</script>')
 
 	args = request.arguments().arguments()
 	ll = get_vfs_users()
@@ -26,14 +26,14 @@ def run(request):
 			f = os.popen('/sbin/vfs_adduser "%s"' % x)
 			z = f.read()
 			f.close()
-			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User has been added";</script>')
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User has been added";</script>')
 		else:
-			request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User name is incorrect";</script>')
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User name is incorrect";</script>')
 	elif "deluser" in args and args["deluser"][0] in ll:
 		f = os.popen('/sbin/vfs_deluser "%s"' % args["deluser"][0])
 		z = f.read()
 		f.close()
-		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User has been removed";</script>')
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="User has been removed";</script>')
 
 	request.write("""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

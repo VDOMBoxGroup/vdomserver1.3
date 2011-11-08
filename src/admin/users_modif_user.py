@@ -1,4 +1,5 @@
-﻿import managers
+﻿
+import managers
 from utils.exception import VDOM_exception
 
 def run(request):
@@ -75,7 +76,7 @@ input{
 				if obj.login in group.members:
 					group.members.remove(obj.login)
 		managers.user_manager.sync()
-		request.write('<script type="text/javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Modifications have been registered";</script>')
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Modifications have been registered";</script>')
 
 	elif obj and not obj.system and "description" in args and "" != args["description"][0]:
 		obj.description = args["description"][0]
