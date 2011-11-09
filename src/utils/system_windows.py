@@ -182,14 +182,14 @@ def get_vfs_users():
 
 def move(src, dst):
 	try:
-		subprocess.check_call(["move", "/Y", os.path.abspath(src), os.path.abspath(dst), ">", "nil"], shell=True)
+		subprocess.check_call(["move", "/Y", os.path.abspath(src), os.path.abspath(dst), ">", "nul"], shell=True)
 	except Exception, e:
 		debug ("Error: return code: %s"%str(e))
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_windows")
 		
 def copy(src, dst):
 	try:
-		subprocess.check_call(["copy", os.path.abspath(src), os.path.abspath(dst), "/Y", ">", "nil"], shell=True)
+		subprocess.check_call(["copy", os.path.abspath(src), os.path.abspath(dst), "/Y", ">", "nul"], shell=True)
 	except Exception, e:
 		debug ("Error: return code: %s"%str(e))
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_windows")
