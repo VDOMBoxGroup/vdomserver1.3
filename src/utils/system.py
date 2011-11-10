@@ -1,4 +1,4 @@
-import sys, socket
+import sys, socket, json
 
 
 
@@ -50,20 +50,24 @@ def console_debug(data):
 
 
 def set_virtual_card( user, password, guid ):
-	shost, sl, sp = ("partner.vdom-box-international.com", "card", "card")
-	
+	shost, sl, sp = "partner.vdom-box-international.com", "card", "card"
 	f = open('/etc/opt/virtcard', 'w')
 	f.write( """%s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid) )
 	f.close()
 	
-	return send_to_card_and_wait("""virtualcard %s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid), "carderror")
+	#a = send_to_card_and_wait("""vcard host """ +  json.dumps([ shost, sl, sp ]), "vcard_error")
+	return send_to_card_and_wait("""vcard setup """ +  json.dumps([ user, password, guid ]), "vcard_error", 30, 0.5)
 
 def login_virtual_card( user, password):
-	if user == "1":
-		return [("guid1","name1"),("guid2","name2"), ("guid3","name3")]
-	else:
-		raise VDOM_exception ("Virtual card connection failed")
-	
+	if "vcard_systemlist" in system_options:
+		del system_options["vcard_systemlist"]
+	a = send_to_card_and_wait("vcard login " + json.dumps([ user, password ]), "vcard_error", 30, 0.5)
+	systems = system_options.get("vcard_systemlist", None)
+	if not systems:
+		raise Exception(system_options.get("vcard_error", "Connection to partners timeout"))
+	return [ (key, value) for key, value in systems.iteritems() ]
+
+
 	
 
 

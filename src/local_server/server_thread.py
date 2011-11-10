@@ -28,7 +28,7 @@ class VDOM_local_server_thread(VDOM_thread):
 			ret = select.select([self.__local_socket], [], [], self.quantum)
 			for r in ret[0]:
 				if r == self.__local_socket:
-					(string, address) = self.__local_socket.recvfrom(1024)
+					(string, address) = self.__local_socket.recvfrom(102400)
 					if "stop" == string:
 						#self.__stop = True
 						debug("Stop from %s - ignore\n"%address[0])
