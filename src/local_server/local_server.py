@@ -1,9 +1,11 @@
 """local server"""
 
-import socket, sys, time, select
+import socket, sys, time, select, json
 
 from utils.system import *
 from utils.card_connect import send_to_card,send_to_card_and_wait
+import managers
+
 
 
 card_port = 4444
@@ -40,6 +42,20 @@ def wait_for_options():
 
 def send_option(name, value):
 	send_to_card(" ".join(["option", name, value]))
+
+
+
+def process_vcard(cmd, json_str):
+	
+	debug( json_str )
+	param = json.loads(json_str)
+	
+	
+	if cmd == "error":
+		system_options["vcard_error"] = param
+	elif cmd == "systemlist":
+		system_options["vcard_systemlist"] = param
+
 
 def process_option(name, value):
 	system_options[name] = value
@@ -81,17 +97,18 @@ def send_network():
 	send_option("server_sdns", sdns)
 
 
+
+
 def send_pong():
 	send_to_card("pong")
 
 
 def run_scheduler_task(num):
-	import managers
 	managers.scheduler_manager.on_signal(num.strip('\n'))
 
 
 def execute(data):
-	parts = data.split(" ")
+	parts = data.split(" ", 2)
 	if "option" == parts[0]:
 		name = value = ""
 		if len(parts) > 1:
@@ -103,10 +120,18 @@ def execute(data):
 		set_network()
 	elif "getnetwork" == parts[0]:
 		send_network()
+	elif "getauth" == parts[0]:
+		send_option("auth", managers.user_manager.get_user_by_name("root").password)
 	elif "scheduler_task" == parts[0]:
 		run_scheduler_task(parts[1])
 	elif "ping" == parts[0]:
 		send_pong()
+	elif "vcard" == parts[0]:
+		vcard, cmd, json_str = parts
+		process_vcard( cmd, json_str )
+
+
+
 
 def check_application_license(application_id, license_type):
 	return send_to_card_and_wait( 
