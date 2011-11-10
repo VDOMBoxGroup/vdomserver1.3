@@ -527,7 +527,7 @@ class VDOM_image(VDOM_object):
 			self.height = 0
 		if int(self.height) > 0:
 			ih = 'height="%s"' % self.height
-		result="<div id=\"%s\" style=\" %s %s\"><img src=\"%s\" %s %s tabindex=\"%s\" %s></div>"%(id, type, style, link, iw, ih, self.tabindex, title)
+		result="<div id=\"%s\" style=\" %s %s\"><img src=\"%s\" %s %s tabindex=\"%s\" %s /></div>"%(id, type, style, link, iw, ih, self.tabindex, title)
 		
 		
 		return VDOM_object.render(self, parent, contents=result)
@@ -713,7 +713,7 @@ jQuery(this.domCont).attr('alt', text);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(227)" ScriptName="resource" Help="#Lang(228)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).attr('src', resource);
+jQuery('img',this.domCont).attr('src', resource);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(113)" InterfaceName="#Lang(114)" MethodName="show">
