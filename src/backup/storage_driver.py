@@ -8,6 +8,10 @@ class VDOM_storage_driver(object):
 
     def __init__(self):
         self.id = str(utils.uuid.uuid4())
+        
+    @staticmethod
+    def get_sd_size(mount_point):
+        return(None, None, None, None) # (size, used, free, percent)
 
     def mount(self):
         pass
