@@ -61,6 +61,8 @@ function MM_swapImage() { //v3.0
     <td><div align="center"></div></td>
     <td><div align="center"><a href="ip.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Ip','','Images/ip-address_s.jpg',1)"><img src="Images/ip-address.jpg" alt="IP" name="Ip" border="0" id="Ip" /></a></div></td>
     <td><div align="center"></div></td>
+    <td><div align="center"><a href="ssl_server.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('ssl','','Images/server_ssl_1.gif',1)"><img src="Images/server_ssl_0.png" alt="SSL" name="ssl" border="0" id="ssl" /></a></div></td>
+    <td><div align="center"></div></td>
     <td><div align="center"><a href="date.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Date','','Images/date_s.gif',1)"><img src="Images/date.jpg" alt="Date" name="Date" border="0" id="Date" /></a></div></td>
     <td><div align="center"></div></td>
     <td><div align="center"><a href="track.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('track','','images/bt-track_s.gif',1)"><img src="images/bt-track.jpg" alt="Track" name="track" border="0" id="track" /></a></div></td>
@@ -79,6 +81,8 @@ function MM_swapImage() { //v3.0
   <tr>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="Texte Style2" onmouseover="MM_swapImage('Ip','','Images/ip-address_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="ip.py" class="Texte-liens">IP Address</a></div></td>
+    <td>&nbsp;</td>
+    <td valign="top"><div align="center" class="Texte Style2" onmouseover="MM_swapImage('ssl','','Images/server_ssl_1.gif',1)" onmouseout="MM_swapImgRestore()"><a href="ssl_server.py" class="Texte-liens">SSL Server</a></div></td>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="Texte-liens" onmouseover="MM_swapImage('Date','','Images/date_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="date.py">Date</a></div></td>
     <td>&nbsp;</td>
