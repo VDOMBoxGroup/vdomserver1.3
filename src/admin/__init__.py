@@ -50,3 +50,4 @@ from admin.vcard import run
 from admin.sdconfig import run
 from admin.getbackup import run
 from admin.restore import run
+from admin.ssl_server import run
