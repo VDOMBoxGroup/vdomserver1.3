@@ -59,7 +59,7 @@
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>top</Name>
@@ -886,7 +886,8 @@ class VDOM_calendar(VDOM_object):
         
       styles_bodies += """ .special_%s{background-color: #000000; color: #FFFFFF;}"""%(self.id)
 
-      style="overflow: visible; position: absolute; z-index: " + self.zindex + "; top: " + self.top + "px; left: " + self.left + "px; width: " + self.width + "px;"
+      zindex = '' if int(self.zindex) == '0' else 'z-index:' + self.zindex;
+      style = "overflow: visible; position: absolute; " + zindex + "; top: " + self.top + "px; left: " + self.left + "px; width: " + self.width + "px;"
 
       if str(self.skin) == "0":
         cur_skin = "/5e390dc2-367f-4eef-b12c-dfbb063bd518.res"
