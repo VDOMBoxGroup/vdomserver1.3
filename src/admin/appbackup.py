@@ -174,7 +174,10 @@ function LoadImgWait(){
    <table class="devices">""")
 	tasks_in_cron = managers.scheduler_manager.get_crontab()
         for driver in drivers:
-		task_id, schedule = managers.backup_manager.get_schedule(driver)
+		try:
+			task_id, schedule = managers.backup_manager.get_schedule(driver)
+		except:
+			task_id, schedule = None, None
 		driver_icon = "ext-drive" if drivers[driver].type == "external_drive" else "cloud-drive"
 		checked = 'checked = "checked"' if task_id in dict(tasks_in_cron) else ''
                 request.write("""
