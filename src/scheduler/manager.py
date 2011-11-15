@@ -39,9 +39,10 @@ class VDOM_scheduler_manager(object):
         def update (self, task_id, task, interval):
                 if task_id in self.__task_list:
                         self.__task_list[task_id] = (task, interval)
-                        managers.storage.write_object_async(VDOM_CONFIG["SCHEDULER-MANAGER-INDEX-STORAGE-RECORD"],self.__task_list)	    
+                        managers.storage.write_object_async(VDOM_CONFIG["SCHEDULER-MANAGER-INDEX-STORAGE-RECORD"],self.__task_list)
+			return True
                 else:
-                        pass
+                        return False
 
         def dell_task(self, task_id):
                 remove_list = []
