@@ -59,7 +59,23 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
             return devs
 
 
-
+    def change_device(self, dev):
+        if dev != self.__dev:
+            try:
+                self.__dev = dev
+                cmd = """sh /opt/boot/mount_and_get_path.sh -p -d %s"""%dev
+                out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+                out.wait()
+                rc = out.returncode
+    
+                if rc == 0:
+                    self.__uuid = str(out.stdout.read()).strip('\n')
+                    return True
+            except:
+                return False
+        else:
+            return False
+        
     def mount(self):
         debug("MOUNT")
         # SEARCH for not mounted drives
@@ -118,5 +134,7 @@ class VDOM_backup_storage_manager(object):
     def get_driver(self, id):
         if id in self.__index:
             return self.__index[id]
+        else:
+            return None
 
 backup_storage_manager = VDOM_backup_storage_manager()
