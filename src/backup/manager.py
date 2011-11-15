@@ -37,7 +37,8 @@ class VDOM_backup_manager(object):
             if driver_id == schedule_list[key][0].driver:
                 schedule_list[key][0].applications = app_list
                 schedule_list[key][0].rotation = rotation
-                managers.scheduler_manager.update(key, schedule_list[key][0], interval)
+                return managers.scheduler_manager.update(key, schedule_list[key][0], interval)
+            else: return False
         
     def del_schedule(self, driver_id):
         schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
