@@ -33,12 +33,16 @@ class VDOM_backup_manager(object):
     
     def update_schedule(self, driver_id, app_list, interval, rotation):
         schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+        schedule = []
         for key in schedule_list:
             if driver_id == schedule_list[key][0].driver:
                 schedule_list[key][0].applications = app_list
                 schedule_list[key][0].rotation = rotation
-                return managers.scheduler_manager.update(key, schedule_list[key][0], interval)
-            else: return False
+                schedule.append([key, schedule_list[key][0]])
+        if len(schedule) == 1:
+            return managers.scheduler_manager.update(schedule[0][0], schedule[0][1], interval)
+        else: return False
+        
         
     def del_schedule(self, driver_id):
         schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
