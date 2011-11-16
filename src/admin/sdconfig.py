@@ -16,6 +16,22 @@ def run(request):
 	dev_option_tag = apps_tag = ""
 	driver = None
 	
+	hidden_tag = ""
+	apps_tag = ""
+	for app in applst:
+		appname = managers.xml_manager.get_application(app).name
+		apps_tag += """
+          <p><input type="checkbox" name="backup_app[]" value="%(appid)s" checked>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
+	                 {"appid": app, "appname": appname}
+	
+	hourly_selected = ""
+	week_display = ''
+	daily_selected = " selected"
+	week_days = "*"
+	daily_display = ''
+	hourly_display = ' style="display:none;"'
+	d_backup_time = "00-00"
+	h_backup_time = '1'
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
 		managers.backup_manager.del_storage(driver)
@@ -24,22 +40,6 @@ def run(request):
 		driver = managers.backup_manager.get_storage(args["devid"][0])
 		hidden_tag = """
 <input type="hidden" name="devid" value="%s">""" % driver.id
-	else:
-		hidden_tag = ""
-		apps_tag = ""
-		for app in applst:
-			appname = managers.xml_manager.get_application(app).name
-			apps_tag += """
-         <p><input type="checkbox" name="backup_app[]" value="%(appid)s" checked>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
-			         {"appid": app, "appname": appname}
-		
-		hourly_selected = ""
-		week_display = ''
-		daily_selected = " selected"
-		week_days = "*"
-		daily_display = ''
-		hourly_display = ' style="display:none;"'
-		backup_time = "00-00"
 	
 	if "save" in args:
 		ok = True
@@ -47,12 +47,12 @@ def run(request):
 			driver = VDOM_sd_external_drive(args["devselect"][0])
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
-			if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]", args["daily_int"][0]):
+			if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
 				days_of_week = "*" if len(args["week-day[]"]) == 7 else ",".join(args["week-day[]"])
 				minutes = args["daily_int"][0].split('-')[1]
 				hours = args["daily_int"][0].split('-')[0]
 				interval = (minutes, hours, "*", "*", days_of_week)
-			elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])", args["hourly_int"][0]):
+			elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])$", args["hourly_int"][0]):
 				hours = "*/" + args["hourly_int"][0]
 				interval = ("*", hours, "*", "*", "*")
 			elif args["int1"][0] == "daily" and "week-day[]" not in args:
@@ -70,7 +70,7 @@ def run(request):
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: There is no application for backup";</script>')
 	for dev in dev_list:
-		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(dev)s</option>" % {"dev": dev, "selected": " selected" if driver and dev == driver.dev else ""}		
+		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and dev == driver.dev else ""}		
 	if "devid" in args or "save" in args:
 		schedule = managers.backup_manager.get_schedule(driver.id)
 		if schedule:			
@@ -79,7 +79,7 @@ def run(request):
 			for app in applst:
 				appname = managers.xml_manager.get_application(app).name
 				apps_tag += """
-			 <p><input type="checkbox" name="backup_app[]" value="%(appid)s"%(checked)s>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
+          <p><input type="checkbox" name="backup_app[]" value="%(appid)s"%(checked)s>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
 					 {"appid": app, "appname": appname, "checked": " checked" if app in backup_apps else ""}
 			schedule1 = schedule[1][1]
 			if "*" in schedule1[1]:
@@ -89,7 +89,8 @@ def run(request):
 				week_days = "*"
 				daily_display = ' style="display:none;"'
 				hourly_display = ''
-				backup_time = "1" if schedule1[1] == "*" else schedule1[1].split('/')[1]
+				h_backup_time = "1" if schedule1[1] == "*" else schedule1[1].split('/')[1]
+				d_backup_time = '00-00'
 			else:
 				daily_selected = " selected"
 				week_display = ""
@@ -97,9 +98,14 @@ def run(request):
 				week_days = schedule1[4]
 				daily_display = ''
 				hourly_display = ' style="display:none;"'
-				backup_time = schedule1[1] + "-" + schedule1[0]
+				d_backup_time = schedule1[1] + "-" + schedule1[0]
+				h_backup_time = '1'
 		
-
+	if driver:
+		path = driver.mount()
+		(size, used, free, percent) = driver.get_sd_size(path)
+	else:
+		(size, used, free, percent) = ("0", "0", "0", "0%")
         request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -307,12 +313,14 @@ background:#000;
  border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-}
+}""")
+	request.write("""
 .progress .bar-holder {
 overflow:hidden;
-width:50%;
+width:%s;
 
-}
+}""" % percent)
+	request.write("""
 .free-mem {
 font-size:12px;
 margin-top:15px;
@@ -365,16 +373,16 @@ function ChangeBackup(obj){
 <form name="configBackup" method=post enctype="multipart/form-data">%s
 <div class="wrapper"> 
  <div class="block">
-  <h2><img src="images/exthdd.png" align="absmiddle"/> Config External Drive 1</h2>
-  <div class="fields fl-left">""" % hidden_tag)
+  <h2><img src="images/exthdd.png" align="absmiddle"/> Config %s</h2>
+  <div class="fields fl-left">""" % (hidden_tag, driver.name if driver else "External Drive"))
 	request.write("""
    <div><label for="devselect">Device :</label><select name="devselect">%s</select></div>""" % dev_option_tag)
 	request.write("""
    <div><label for="int1">Backup :</label><select name="int1" onchange="ChangeBackup(this);"><option value="daily"%s>Daily</option><option value="hourly"%s>Hourly</option></select></div>""" % (daily_selected, hourly_selected))
 	request.write("""
-   <div id="x_daily"%(display)s><label for="daily_int">Backup at : </label><input type="text" name="daily_int" value="%(value)s"></div>""" % {"display": daily_display, "value": backup_time})
+   <div id="x_daily"%(display)s><label for="daily_int">Backup at : </label><input type="text" name="daily_int" value="%(value)s"></div>""" % {"display": daily_display, "value": d_backup_time})
 	request.write("""
-   <div id="x_hourly"%(display)s><label for="hourly_int">Backup every </label><input type="text" name="hourly_int" value="%(value)s"><label for="hourly_int"> hour(s)</label></div>""" % {"display": hourly_display, "value": backup_time})
+   <div id="x_hourly"%(display)s><label for="hourly_int">Backup every </label><input type="text" name="hourly_int" value="%(value)s"><label for="hourly_int"> hour(s)</label></div>""" % {"display": hourly_display, "value": h_backup_time})
 	request.write("""
    <div class="clear"> </div>
   </div>""")
@@ -399,7 +407,7 @@ function ChangeBackup(obj){
 	       "sun": " checked" if "7" in week_days or week_days == '*' else ""})
 	request.write("""
   <div class="hdd-state fl-right" align="center">
-	<div class="head"><h2><img src="images/exthdd.png" align="absmiddle"/> Backup HDD 1</h2></div>
+	<div class="head"><h2><img src="images/exthdd.png" align="absmiddle"/> %(driver)s</h2></div>
 
 	<div class="progress" align="left">
 		<div class="bar-holder">
@@ -407,13 +415,13 @@ function ChangeBackup(obj){
 		</div>
 	</div>
 
-	<div class="free-mem">35Gb of 50Gb is free</div>
+	<div class="free-mem">%(free)sGb of %(size)sGb is free</div>
 
 	<div class="erase"><a href="sdconfig.py?erase=%(dev)s">Erase this storage</a></div>
 
   </div>
   <div class="clear"> </div>
- </div>""" % {"dev": driver.id if driver else ""})
+ </div>""" % {"driver": driver.name if driver else "External Drive", "free": free, "size": size, "dev": driver.id if driver else ""})
 	request.write("""
  <div class="block">
 	<h2>Backup following applications :</h2>
