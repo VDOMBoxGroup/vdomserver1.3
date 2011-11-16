@@ -12,21 +12,22 @@ def run(request):
         args = request.arguments().arguments()
         request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Please, choose a revision";</script>')
         if "devid" in args and "appid" in args:
-                revs = managers.backup_manager.get_revision_list(args["devid"][0], args["appid"][0])
-                app_name = managers.xml_manager.get_application(args["appid"][0]).name
+                appid = args["appid"][0].split("|")[0]
+                revs = managers.backup_manager.get_revision_list(args["devid"][0], appid)
+                app_name = args["appid"][0].split("|")[1]
                 driver_name = managers.backup_manager.get_storage(args["devid"][0]).name
         else:
                 request.redirect("/getbackup.py?devid=%s&devname=%s" % (args["devid"][0], managers.backup_manager.get_storage(args["devid"][0]).name))
                 return
         if "devid" in args and "appid" in args and "rev" in args:
-                rev_info = managers.backup_manager.get_revision_info(args["devid"][0], args["appid"][0], args["rev"][0])
-                managers.backup_manager.restore(args["devid"][0], args["appid"][0], args["rev"][0])
+                rev_info = managers.backup_manager.get_revision_info(args["devid"][0], appid, args["rev"][0])
+                managers.backup_manager.restore(args["devid"][0], appid, args["rev"][0])
                 vh = request.server().virtual_hosting()
                 if rev_info["virtual_hosts"]:
                         sites = rev_info["virtual_hosts"].split(', ')
                         if sites:
                                 for site in sites:
-                                        vh.set_site(site, args["appid"][0])
+                                        vh.set_site(site, appid)
                 request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been restored";</script>')
                 
         request.write("""<html>
