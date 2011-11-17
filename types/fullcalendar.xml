@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.268.0</Version>
+    <Version>1.269.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -267,6 +267,8 @@
       <Sentence ID="927">Top</Sentence>
       <Sentence ID="928">Left</Sentence>
       <Sentence ID="929">Top</Sentence>
+      <Sentence ID="930"></Sentence>
+      <Sentence ID="931"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
@@ -364,6 +366,8 @@
       <Sentence ID="927">Верх</Sentence>
       <Sentence ID="928">Лево</Sentence>
       <Sentence ID="929">Верх</Sentence>
+      <Sentence ID="930"></Sentence>
+      <Sentence ID="931"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
@@ -461,6 +465,8 @@
       <Sentence ID="927">Haut</Sentence>
       <Sentence ID="928">Gauche</Sentence>
       <Sentence ID="929">Haut</Sentence>
+      <Sentence ID="930"></Sentence>
+      <Sentence ID="931"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1987,7 +1993,8 @@ import random
 
 class VDOM_fullcalendar(VDOM_object):
 	
-	VERSION = "version 07.25"
+	VERSION = "version 11.16"
+	"""all day, endDate, new Event = *"""
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
@@ -1997,6 +2004,7 @@ class VDOM_fullcalendar(VDOM_object):
 				center: '',
 				right: ''
 			},
+			firstDay: %(first_day)s,
 			eventSources: %(event_sources)s,
 			//events: [ {'title': "hello", 'start': '2011-07-07', 'end': '2011-07-07'}],
 			eventClick: function(event) {
@@ -2020,13 +2028,28 @@ class VDOM_fullcalendar(VDOM_object):
 			},
 			editable: true,
 			eventDrop: function(event, allDay) {
+				//alert( event )
 				startDate = event.start;
+				//alert( startDate )
 				start = startDate.getFullYear() + "-" + 
 						(startDate.getMonth() + 1).toString() + "-" + 
 						startDate.getDate() + " " + 
 						startDate.getHours() + ":" + 
 						startDate.getMinutes();
-				endDate = event.end;
+				//alert( event.end )
+				var endDate = event.end
+				if (event.end == null) {
+					endDate = event.start
+				}
+				else {
+					endDate = event.end
+				}
+				//endDate = event.end;
+				//if (endDate == "null") {
+					//endDate = startDate;
+				//}
+				//alert( endDate )
+				//alert( event.start )
 				end = 	endDate.getFullYear() + "-" + 
 						(endDate.getMonth() + 1).toString()  + "-"  + 
 						endDate.getDate() + " " + 
@@ -2034,7 +2057,7 @@ class VDOM_fullcalendar(VDOM_object):
 						endDate.getMinutes();
 				event.allDay = allDay;
 				var id = "%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "eventDrag", {id:event.id, start: start, end:end})
+				execEventBinded(id.substring(2, id.length), "eventDrag", {id:event.id, start: start, end:end, instance: event.instance})
 			},
 			eventResize: function(event) {
 				startDate = event.start;
@@ -2043,14 +2066,20 @@ class VDOM_fullcalendar(VDOM_object):
 						startDate.getDate() + " " + 
 						startDate.getHours() + ":" + 
 						startDate.getMinutes();
-				endDate = event.end;
+				var endDate = event.end
+				if (event.end == null) {
+					endDate = event.start
+				}
+				else {
+					endDate = event.end
+				}
 				end = 	endDate.getFullYear() + "-" + 
 						(endDate.getMonth() + 1).toString()  + "-"  + 
 						endDate.getDate() + " " + 
 						endDate.getHours() + ":" + 
 						endDate.getMinutes();
 				var id = "%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "eventResize", {id:event.id, start: start, end:end})
+				execEventBinded(id.substring(2, id.length), "eventResize", {id:event.id, start: start, end:end, instance: event.instance})
 			},
 			selectable: true,
 			select: function(startDate, endDate, allDay) {
@@ -2069,7 +2098,7 @@ class VDOM_fullcalendar(VDOM_object):
 						startDate.getMinutes();
 				
 				event.allDay = allDay;
-				event = { start: startDate, end: endDate, title: "new Event", id: "-1", allDay: event.allDay };
+				event = { start: startDate, end: endDate, title: "*", id: "-1", allDay: event.allDay };
 				$("#%(id_out)s").fullCalendar('renderEvent', event);
 				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end": end});
 			}			
@@ -2080,7 +2109,9 @@ class VDOM_fullcalendar(VDOM_object):
 	});
 </script>"""
 
-	def render(self, parent, contents=""):
+	def render(self, parent, contents=""):		
+		visibility = "hidden" if self.visible == "0" else "visible"
+
 		view = {"month": "month", "week": "agendaWeek", "day": "agendaDay"}
 		id_out = 'o_' + (self.id).replace('-', '_')
 		current_view = view[self.view]
@@ -2089,19 +2120,23 @@ class VDOM_fullcalendar(VDOM_object):
 						"top": self.top, 
 						"left": self.left, 
 						"width": self.width, 
-						"height": self.height} 
+						"height": self.height,
+						"visibility": visibility} 
+		#raise Exception( style_params )
 		mainstyle="""z-index:%(zindex)s; 
 					position:absolute; 
 					top: %(top)spx; 
 					left: %(left)spx; 
 					width: %(width)spx; 
-					height: %(height)spx;"""%style_params
+					height: %(height)spx;
+					visibility: %(visibility)s;"""%style_params
 		render_params = {"id_out": id_out,  
 					"current_view": current_view, 
 					"year": year_month_day[0], 
 					"month": year_month_day[1], 
 					"day": year_month_day[2],
-					"event_sources": self.parse_events()}
+					"event_sources": self.parse_events(),
+					"first_day": self.firstDay}
 		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)	
 		
 	
@@ -2110,10 +2145,12 @@ class VDOM_fullcalendar(VDOM_object):
 		event_sources = []
 		if self.events:
 			calendar = vobject.readOne(self.events)
+			cal_list = []
 			for event in calendar.vevent_list:
 				startDate = getattr(event, 'dtstart', vobject.base.ContentLine('DTSTART', '', str(datetime.date.today())))
 				endDate = getattr(event, 'dtend', vobject.base.ContentLine('DTEND', '', str(startDate.value)))
 				summary = getattr(event, 'summary', vobject.base.ContentLine('SUMMARY', '', 'Event'))
+				cal_list.append( [startDate.value, endDate.value, summary.value] )
 				description = getattr(event, 'description', vobject.base.ContentLine('DESCRIPTION', '', 'Event'))
 				#raise Exception(summary, description)
 				#raise Exception(str(endDate).replace('<', '&lt'))
@@ -2125,12 +2162,14 @@ class VDOM_fullcalendar(VDOM_object):
 										"description":description.value,
 										"start": startDate.value.strftime("%Y-%m-%d %H:%M:%S"), 
 										"end": endDate.value.strftime("%Y-%m-%d %H:%M:%S"),
-										"allDay": True if len(str(startDate.value)) == len(str(endDate.value)) == 10 else False }],
+										"allDay": "true" if len(str(startDate.value)) == len(str(endDate.value)) == 10 else "false",
+										"instance": "-1"}],
 										"color": color.value,
 										"id": id.value})
 																	#if time is not set event lasts allDay, 
 																	#otherwise - from start_time to end_time
 				else:
+					instance = 1
 					for rev in event.rruleset:
 						event_sources.append({ "events": [{
 										"title": summary.value, 
@@ -2138,9 +2177,11 @@ class VDOM_fullcalendar(VDOM_object):
 										"id": id.value,
 										"start": rev.strftime("%Y-%m-%d %H:%M:%S"), 
 										"end": (rev + relativedelta(endDate.value, startDate.value)).strftime("%Y-%m-%d %H:%M:%S"),
-										"allDay": "true" }],
+										"allDay": "true" if len(str(startDate.value)) == len(str(endDate.value)) == 10 else "false",
+										"instance": instance }],
 										"color": color.value})
-		
+						instance += 1
+			#raise Exception( cal_list )
 		return json.dumps(event_sources)
 	
 		
@@ -2214,6 +2255,7 @@ class VDOM_fullcalendar(VDOM_object):
             <Parameter Name="id" Order="" VbType="" Help="#Lang(913)"/>
             <Parameter Name="start" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="end" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="instance" Order="" VbType="" Help="#Lang(930)"/>
           </Parameters>
         </Event>
         <Event Name="eventResize">
@@ -2221,6 +2263,7 @@ class VDOM_fullcalendar(VDOM_object):
             <Parameter Name="id" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="start" Order="" VbType="" Help="#Lang(917)"/>
             <Parameter Name="end" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="instance" Order="" VbType="" Help="#Lang(931)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown">
