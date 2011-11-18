@@ -74,8 +74,6 @@ function MM_swapImage() { //v3.0
     <td><div align="center"></div></td>
     <td><div align="center"><a href="appbackup.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('appbackup','','images/bt-appbackup_s.gif',1)"><img src="images/bt-appbackup.jpg" alt="Applications backup" name="appbackup" border="0" id="appbackup" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="apprestore.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('apprestore','','images/bt-apprestore_s.gif',1)"><img src="images/bt-apprestore.jpg" alt="Applications restore" name="apprestore" border="0" id="apprestore" /></a></div></td>
-    <td><div align="center"></div></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -90,8 +88,6 @@ function MM_swapImage() { //v3.0
     <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('virtualhost','','images/bt-virtualhost_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="virtualhost.py">Virtual Host</a></div></td>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('appbackup','','images/bt-appbackup_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="appbackup.py">Applications backup</a></div></td>
-    <td>&nbsp;</td>
-    <td valign="top"><div align="center" class="txt-liens" onmouseover="MM_swapImage('apprestore','','images/bt-apprestore_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="apprestore.py">Applications restore</a></div></td>
     <td>&nbsp;</td>
   </tr>
 </table>
