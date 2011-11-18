@@ -415,13 +415,13 @@ function ChangeBackup(obj){
 		</div>
 	</div>
 
-	<div class="free-mem">%(free)sGb of %(size)sGb is free</div>
+	<div class="free-mem">%(free)s of %(size)s is free</div>
 
 	<div class="erase"><a href="sdconfig.py?erase=%(dev)s">Erase this storage</a></div>
 
   </div>
   <div class="clear"> </div>
- </div>""" % {"driver": driver.name if driver else "External Drive", "free": free, "size": size, "dev": driver.id if driver else ""})
+ </div>""" % {"driver": driver.name if driver else "External Drive", "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else ""})
 	request.write("""
  <div class="block">
 	<h2>Backup following applications :</h2>
@@ -434,3 +434,18 @@ function ChangeBackup(obj){
 </form>
 </body>
 </html>""")
+	
+def humanize_bytes(bytes, precision=1):
+	abbrevs = (
+		    (1<<40L, 'PB'),
+		    (1<<30L, 'TB'),
+		    (1<<20L, 'GB'),
+		    (1<<10L, 'MB'),
+		    (1, 'kB')
+		)
+	if bytes == 1:
+	    return '1 kB'
+	for factor, suffix in abbrevs:
+	    if bytes >= factor:
+		break
+	return '%.*f %s' % (precision, bytes / factor, suffix)
