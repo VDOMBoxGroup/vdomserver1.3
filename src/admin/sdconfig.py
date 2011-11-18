@@ -11,6 +11,9 @@ def run(request):
                 raise VDOM_exception("Authentication failed")
  
         args = request.arguments().arguments()
+	if "cancel" in args:
+		request.redirect("/appbackup.py")
+		return
         applst = managers.xml_manager.get_applications()
         dev_list = VDOM_sd_external_drive.get_device_list()
 	dev_option_tag = apps_tag = ""
@@ -54,7 +57,7 @@ def run(request):
 				interval = (minutes, hours, "*", "*", days_of_week)
 			elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])$", args["hourly_int"][0]):
 				hours = "*/" + args["hourly_int"][0]
-				interval = ("*", hours, "*", "*", "*")
+				interval = ("0", hours, "*", "*", "*")
 			elif args["int1"][0] == "daily" and "week-day[]" not in args:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: you must choose one or more days!";</script>')
 				ok = False
