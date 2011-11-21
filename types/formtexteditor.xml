@@ -389,7 +389,8 @@ class VDOM_formtexteditor(VDOM_object):
 			""".format(zind = self.zindex, top = self.top, left = self.left, 
 					width = self.width, height = self.height, display = display)
 
-		style_area = u"""padding: 2px 5px; font: 14px tahoma; width: {width}px; height:{height}px""".format(width = self.width, height = self.height)
+		#style_area = u"""padding: 2px 5px; font: 14px tahoma; width: {width}px; height:{height}px""".format(width = self.width, height = self.height)
+		style_area = u"""font: 14px tahoma;"""
 
 		result = u"""
 <script type="text/javascript">$q(document).ready(function($) {
