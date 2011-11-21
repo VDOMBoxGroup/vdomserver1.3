@@ -107,7 +107,7 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 
             if rc == 0:
                 devs = str(out.stdout.read())
-		devs = [tuple(devs.split(";")) for devs in devs.strip().split("\n")]
+		devs = [tuple(devs.split(";")) for devs in devs.strip().split("\n")] if devs else []
                 return devs
             else:
                 return devs
