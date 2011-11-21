@@ -1,5 +1,7 @@
 import os, traceback, json, re
 import managers
+from datetime import time
+from random import randint
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
 from backup.storage_driver import VDOM_sd_external_drive
@@ -33,7 +35,8 @@ def run(request):
 	week_days = "*"
 	daily_display = ''
 	hourly_display = ' style="display:none;"'
-	d_backup_time = "00-00"
+	t = time(randint(0, 5), randint(0, 59))
+	d_backup_time = t.strftime("%H-%M")
 	h_backup_time = '1'
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
@@ -73,7 +76,7 @@ def run(request):
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: There is no application for backup";</script>')
 	for dev in dev_list:
-		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and dev == driver.dev else ""}		
+		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and dev[0] == driver.dev else ""}		
 	if "devid" in args or "save" in args:
 		schedule = managers.backup_manager.get_schedule(driver.id)
 		if schedule:			
