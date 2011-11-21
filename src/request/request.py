@@ -232,13 +232,17 @@ class VDOM_request:
 		headers = self.__headers_out.headers()
 		headers[name] = value
 
-	def send_file(self, filename, length, handler, content_type=None):
+	def send_file(self, filename, length, handler, content_type=None,cache_control=True):
 		f_content_type = content_type if content_type else "application/octet-stream"
 		self.add_header("Content-type", f_content_type)
 		if content_type:
 			self.add_header("Content-Disposition", "inline; filename=\"%s\""%filename)
 		else:
 			self.add_header("Content-Disposition", "attachment; filename=\"%s\""%filename)
+			
+		if cache_control:
+			self.add_header("Cache-Control", "max-age=86400")
+			
 		self.add_header("Content-Length",str(length))
 		self.set_nocache()
 		self.write_handler(handler)

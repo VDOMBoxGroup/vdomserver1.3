@@ -50,8 +50,8 @@ class VDOM_response(object):
 		else: raise ValueError
 		if not continue_render: managers.engine.terminate()
 
-	def send_file(self, filename, length, handler, content_type=None):
-		return managers.request_manager.current.send_file(filename, length, handler, content_type)
+	def send_file(self, filename, length, handler, content_type=None, cache_control=True):
+		return managers.request_manager.current.send_file(filename, length, handler, content_type,cache_control)
 
 	def redirect(self, target):
 		managers.request_manager.current.redirect(target)
