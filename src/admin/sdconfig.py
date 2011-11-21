@@ -110,7 +110,11 @@ def run(request):
 	if driver:
 		try:
 			path = driver.mount()
-			(size, used, free, percent) = driver.get_sd_size(path)
+			if path:
+				(size, used, free, percent) = driver.get_sd_size(path)
+				driver.umount()
+			else:
+				raise Exception
 		except:
 			(size, used, free, percent) = ("0", "0", "0", "0%")
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: this external device doesn\'t setup in server";</script>')
