@@ -108,8 +108,12 @@ def run(request):
 				h_backup_time = '1'
 		
 	if driver:
-		path = driver.mount()
-		(size, used, free, percent) = driver.get_sd_size(path)
+		try:
+			path = driver.mount()
+			(size, used, free, percent) = driver.get_sd_size(path)
+		except:
+			(size, used, free, percent) = ("0", "0", "0", "0%")
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: this external device doesn\'t setup in server";</script>')
 	else:
 		(size, used, free, percent) = ("0", "0", "0", "0%")
         request.write("""<html>
