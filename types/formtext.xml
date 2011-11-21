@@ -552,7 +552,7 @@ class VDOM_formtext(VDOM_object):
 		border = u"border-width: 0px;" if self.multiline == "0" and self.border == "0" else u""
 		
 		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px;
-					padding: 2px 5px 2px 5px; {display} {border} font: 14px tahoma
+					padding: 2px 5px; {display} {border} font: 14px tahoma
 				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
 						width = fixw, height = fixh, display = display, border = border)
 
@@ -560,7 +560,7 @@ class VDOM_formtext(VDOM_object):
 			result = u"""<input id="{id}" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
 							value="{value}" class="{classn}" autocomplete="{auto}" {mode} />
 					""".format(id = id, name = self.name, style = style, tabind = self.tabindex, 
-							value = self.value, classn = self.classname, auto = auto, mode = mode)
+							value = (self.value).replace('"', '&quot;'), classn = self.classname, auto = auto, mode = mode)
 		else:
 			result = u"""<textarea id="{id}" name="{name}" tabindex="{tabind}" 
 							style="{style}" class="{classn}" {mode}>{value}</textarea>
@@ -709,7 +709,8 @@ t.attr('style', t.attr('style') + ';' + cssStyleValue);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(236)" ScriptName="value" Help="#Lang(237)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-vdom_evt_setvalue(this, value);
+/*vdom_evt_setvalue(this, value);*/
+vdom_evt_setvalue(this, $q('<div/>').html(value).html());
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(126)" InterfaceName="#Lang(127)" MethodName="show">
