@@ -6,6 +6,7 @@ from utils.threads import VDOM_daemon
 from daemon import VDOM_xml_synchronizer
 from utils.card_connect import send_to_card
 from names import APPLICATION_SECTION, ON_UNINSTALL
+from database.dbobject import VDOM_sql_query
 
 class VDOM_xml_manager(object):
 	"""XML Manager class"""
@@ -445,6 +446,9 @@ class VDOM_xml_manager(object):
 		file.write("\t<Databases>\n")
 		lst = managers.database_manager.list_databases(app.id)
 		for ll in lst:
+			query = VDOM_sql_query(app.id, ll, "VACUUM")
+			query.commit()
+			query.close()
 			do = managers.database_manager.get_database(app.id, ll)
 			data = managers.file_manager.read(file_access.database, app.id, None, do.filename)
 			if "" != do.name and len(data) > 0:
