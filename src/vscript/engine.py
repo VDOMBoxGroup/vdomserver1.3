@@ -27,7 +27,7 @@ from shadow import shadow
 from . import byref, byval, exitloop
 from auxiliary import as_value, as_is, as_array, as_integer, as_double, as_string, as_boolean, as_generic, as_date
 
-from prepare import tablepath, tablename, lexer, parser
+from prepare import lexer, parser # CHECK: from prepare import tablepath, tablename, lexer, parser
 from wrapper import vdomtypewrapper, vdomobjectwrapper
 from integration import server, request, response, session
 
@@ -69,7 +69,7 @@ def vsetup(skip_wrappers=None):
 	if skip_wrappers is not None:
 		options.skip_wrappers=skip_wrappers
 
-def vcompile(script, bytecode=1, package=None, lines=None):
+def vcompile(script, filename=None, bytecode=1, package=None, lines=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
 	debug("[VScript] Wait for mutex...")
 	mutex=auto_mutex("vscript_engine_compile_mutex")
 	debug("[VScript] Done")
@@ -89,7 +89,7 @@ def vcompile(script, bytecode=1, package=None, lines=None):
 		print "- - - - - - - - - - - - - - - - - - - -"
 		code=u"\n".join([u"%s%s"%(u"\t"*ident, string) for line, ident, string in source])
 		if bytecode:
-			code=compile(code, vscript_source_string, u"exec")
+			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
 		return code, source
 	except errors.generic, error:
 		show_exception_details(None, error, error_type=errors.generic.compilation)
@@ -104,8 +104,7 @@ def vcompile(script, bytecode=1, package=None, lines=None):
 def vexecute(code, source, object=None, namespace=None):
 	try:
 		try:
-			if namespace is None:
-				namespace={}
+			if namespace is None: namespace={}
 			namespace[u"v_this"]=variant(vdomobjectwrapper(object) if object else v_nothing)
 			namespace[u"v_server"]=server
 			namespace[u"v_request"]=request
