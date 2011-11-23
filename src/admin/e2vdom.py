@@ -91,6 +91,11 @@ def run(request):
 
 			if request.action_result:
 				request.write(request.action_result.encode("utf-8"))
+				
+				rr = ""
+				for key in r:
+					rr += """<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"),r[key][2],r[key][3],r[key][0])
+				request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
 			elif err:
 				if VDOM_CONFIG_1["DEBUG"] == "1":
 					request.write("<ERROR><![CDATA[%s]]></ERROR>"%err.getvalue())
