@@ -10,11 +10,11 @@
     <EditorIcon>#Res(0d93a246-f752-f4fe-fe38-8ced8b402b9c)</EditorIcon>
     <StructureIcon>#Res(31611fa8-8ba0-7677-72d1-8a00e3608efb)</StructureIcon>
     <Moveable>1</Moveable>
-    <Resizable>1</Resizable>
+    <Resizable>3</Resizable>
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.0.6720</Version>
+    <Version>2.2.6720</Version>
     <InterfaceType>2</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form,vdomclass</Containers>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>200</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -560,71 +560,7 @@ mcBjsb4++Pjye4CmE0lQfb42Obe6bGe/NK26h2Qpr7mUIspYvWwtEEWB2buTS7NTk13BUAgHtFo2
 NDwIKD634FVU1SZyZC3HgcizbYCtIgT9XsgbZahY9kdcoEu243gEo+caGpsK4Wd0+Pb6EP/82nX4
 H7kq4ARvgLBEAAAAAElFTkSuQmCC]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
-
-
-class VDOM_richtext(VDOM_object):
-
-	def render(self, parent, contents=""):
-		if self.visible == "1":
-			invisible = ""
-		else:
-			invisible = "display:none;"
-
-		if self.classname == "":
-			classname = ""
-		else:
-			classname = " class='%s' " % ( self.classname )
-
-		style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;%s"%(self.zindex, self.position, self.top, self.left, self.width, invisible)
-		styles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : "", "height" : "", "overflow" : ""}
-		if "" != self.align:
-			styles["text-align"] = " %s;" % self.align
-		if "" != self.color:
-			styles["color"] = " #%s;" % self.color
-		if "" != self.font:
-			styles["font"] = " %s;" % self.font
-		if "1" == self.underlined:
-			styles["text-decoration"] += " underline"
-		if "1" == self.strikethrough:
-			styles["text-decoration"] += " line-through"
-		if "" != styles["text-decoration"]:
-			styles["text-decoration"] += ";"
-		if "" != self.height and "0" != self.height:
-			styles["height"] = " %spx; " % self.height
-			styles["overflow"] = " auto; "
-
-		for key in styles:
-			if "" != styles[key]:
-				style += (key + ":" + styles[key])
-
-		the_value = self.value
-		#if "" == the_value:
-		#  the_value = "Text"
-
-		id = 'o_' + (self.id).replace('-', '_')
-
-		result="<div id=\"%s\" style=\"%s\" %s>%s</div>"%(id, style, classname, the_value)
-
-		return VDOM_object.render(self, parent, contents=result)
-
-	def wysiwyg(self, parent, contents=""):
-		the_value = self.value
-		if "" == the_value:
-			the_value = '<font color="#444444">[empty]</font>'
-		f = ""
-		c = ""
-		if "" != self.color:
-			c = "color=\"%s\"" % self.color
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
-			"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" %s %s editable=\"%s\">%s</htmltext>"\
-			"%s</container>"%(
-				self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width,
-				0, 0, self.width, f, c, "value", "<![CDATA[" + the_value + "]" + "]>",
-				contents)
-		return VDOM_object.wysiwyg(self, parent, contents=result)
-
-    ]]></SourceCode>
+  <SourceCode><![CDATA[class VDOM_richtext(VDOM_object):	def render(self, parent, contents=""):		if self.visible == "1":			invisible = ""		else:			invisible = "display:none;"		if self.classname == "":			classname = ""		else:			classname = " class='%s' " % ( self.classname )		style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;%s"%(self.zindex, self.position, self.top, self.left, self.width, invisible)		styles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : "", "height" : "", "overflow" : ""}		if "" != self.align:			styles["text-align"] = " %s;" % self.align		if "" != self.color:			styles["color"] = " #%s;" % self.color		if "" != self.font:			styles["font"] = " %s;" % self.font		if "1" == self.underlined:			styles["text-decoration"] += " underline"		if "1" == self.strikethrough:			styles["text-decoration"] += " line-through"		if "" != styles["text-decoration"]:			styles["text-decoration"] += ";"		if "" != self.height and "0" != self.height:			styles["height"] = " %spx; " % self.height			styles["overflow"] = " auto; "		for key in styles:			if "" != styles[key]:				style += (key + ":" + styles[key])		the_value = self.value		#if "" == the_value:		#  the_value = "Text"		id = 'o_' + (self.id).replace('-', '_')		result="<div id=\"%s\" style=\"%s\" %s>%s</div>"%(id, style, classname, the_value)		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		the_value = self.value		if "" == the_value:			the_value = '<font color="#444444">[empty]</font>'		f = ""		c = ""		if "" != self.color:			c = "color=\"%s\"" % self.color		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\			"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" %s %s editable=\"%s\">%s</htmltext>"\			"%s</container>"%(				self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,				0, 0, self.width, self.height, f, c, "value", "<![CDATA[" + the_value + "]" + "]>",				contents)		return VDOM_object.wysiwyg(self, parent, contents=result)    ]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
