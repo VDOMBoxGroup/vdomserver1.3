@@ -593,7 +593,7 @@ class VDOM_objectview(VDOM_object):
 				//cursorAt: { left: 20, bottom: -2 },
 				//cursorAt: { left: -5, top: -5 },
 				start: function(e,u){
-					execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')});
+					execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')}, true);
 				}
 				,helper: function(e) {
 					return $("<div class='ui-widget-header'>drop item to...</div>");
@@ -765,6 +765,19 @@ this.domCont.style.height = parseInt(height);
           </Parameters>
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="showItems">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="items" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$j('>div[dataid]',this.domCont).fadeOut(100);
+for (x in items) {
+	console.info(x);
+	console.info('>div[dataid="'+items[x]+'"]');
+	$j('>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
+}
 ]]></SourceCode>
         </Action>
       </Container>
