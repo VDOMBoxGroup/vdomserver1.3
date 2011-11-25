@@ -156,7 +156,7 @@
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[a-zA-Z0-9.!,-_]{0,50}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[^"]{0,500}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>resource_cache</Name>
