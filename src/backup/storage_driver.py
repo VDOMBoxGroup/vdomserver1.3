@@ -170,6 +170,13 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
             return str(out.stderr.read())
         
     dev = property(lambda self: self.__dev)
+    
+class VDOM_cloud_storage_driver(VDOM_storage_driver):
+    
+    def mount(self):
+	pass
+    def umount(self):
+	pass
 
 class VDOM_backup_storage_manager(object):
 
