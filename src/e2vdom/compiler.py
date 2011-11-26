@@ -39,6 +39,16 @@ def compile_declarations_n_libraries(container):
 
 	return "\n".join(lines), libraries
 
+def compile_registations_render_params(parameters):
+	a = []
+	for parameter in parameters:
+		x = parameter.value.replace(r'\"', '"')
+		if x[0] == '"':
+			a.append( r'\"' + x[1:-1].replace('"', r'&quot;') + r'\"' )
+		else:
+			a.append( x.replace('"', r'\"') )
+	return ','.join(a)
+
 def compile_registations(container, parent):
 	lines=[]
 
@@ -88,14 +98,19 @@ def compile_registations(container, parent):
 							#	target="\"Object_%s:bubbleEvent(\"%s\")\""%(container.id.replace("-", "_"), self.name)
 							#	# schedule dispatch
 					else:
-#						if action.target_object in container.object.objects:
-						target="\"Obj_%s:%s(%s)\""%(action.target_object.replace("-", "_"), action.method_name,
-							", ".join([parameter.value.replace('"',r'\"') for parameter in action.parameters])  )
-#						else:
-#							target="\'Obj_%s:bubbleEvent(\"%s\")\'"%(container.id.replace("-", "_"), action.method_name)
+						#if action.target_object in container.object.objects:
+						target="\"Obj_%s:%s(%s)\"" % ( action.target_object.replace("-", "_"), action.method_name,
+							#", ".join([parameter.value.replace('"',r'\"') for parameter in action.parameters]) )
+							compile_registations_render_params(action.parameters) )
+						#print compile_registations_render_params(action.parameters)
+						#else:
+						#	target="\'Obj_%s:bubbleEvent(\"%s\")\'"%(container.id.replace("-", "_"), action.method_name)
 					lines.append(
 						"Obj_%(container)s_Dispatcher.addDispatchEvent(%(source)s, %(target)s);"%\
 						{"container": container.id.replace("-", "_"), "source": source, "target": target})
+					#print "Obj_%(container)s_Dispatcher.addDispatchEvent(%(source)s, %(target)s);"%\
+					#	{"container": container.id.replace("-", "_"), "source": source, "target": target}
+
 
 	for object in container.object.get_objects_list():
 		lines.append(
