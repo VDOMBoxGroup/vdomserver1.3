@@ -596,7 +596,8 @@ class VDOM_objectview(VDOM_object):
 					execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')}, true);
 				}
 				,helper: function(e) {
-					return $("<div class='ui-widget-header'>drop item to...</div>");
+					//return $("<div class='ui-widget-header'>drop item to...</div>");
+					return $("<div style='width:50px;height:20px;background:#555'></div>");
 				}
 			});
 		});
@@ -772,10 +773,8 @@ vdom_ui_show(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="items" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$j('>div[dataid]',this.domCont).fadeOut(100);
+$j('>div[dataid]',this.domCont).hide(0);
 for (x in items) {
-	console.info(x);
-	console.info('>div[dataid="'+items[x]+'"]');
 	$j('>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
 }
 ]]></SourceCode>
