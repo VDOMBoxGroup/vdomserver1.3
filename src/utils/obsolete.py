@@ -118,29 +118,27 @@ __builtin__.debug = my_debug
 __builtin__.debugfile = my_debugfile()
 __builtin__.increase_objects_count = increase_objects_count
 __builtin__.decrease_objects_count = decrease_objects_count
-__builtin__.system_options = {"server_license_type": "0",	# online server, 1=development
-				"firmware" : "N/A",
-				"card_state" : "0",	# 0 - no card, 1 - card ok
-				"object_amount" : "0"}
+
+from utils.card_connect import system_options_reinit
+system_options_reinit()
+
 
 # verify that server is not running
 
-addr_try = VDOM_CONFIG["SERVER-ADDRESS"]
-if addr_try == "":
-	addr_try = "localhost"
+addr_try = VDOM_CONFIG["SERVER-ADDRESS"] or "localhost"
 sock = socket.socket()
-ok = False
 try:
 	sock.connect((addr_try, VDOM_CONFIG["SERVER-PORT"]))
-except:
-	# exception means connection failed, thus server should not be running
-	ok = True
-	print "Tried", addr_try, ":", VDOM_CONFIG["SERVER-PORT"], "- no response"
-sock.close()
-if not ok:
 	print(_("Server is already running"))
 	print "Got response on", addr_try, ":", VDOM_CONFIG["SERVER-PORT"]
 	os._exit(0)
+except:
+	# exception means connection failed, thus server should not be running
+	print "Tried", addr_try, ":", VDOM_CONFIG["SERVER-PORT"], "- no response"
+finally:
+	sock.close()
+
+
 
 # enforce directory structure
 

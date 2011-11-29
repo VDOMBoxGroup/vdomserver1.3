@@ -28,8 +28,8 @@ def run(request):
 			sess.value("s_pis_password",pis_password)
 			systems = "".join(["<option value=%s>%s</option>" %(s_id, s_name) for (s_id, s_name) in syst_list])
 			show_form = template_systems % (systems,)
-		except Exception, e:
-			error = u"Error: " + unicode(e) + u"\n"
+		except Exception as e:
+			error = unicode(e) + u"\n"
 			show_form = template_login
 			
 	elif "pis_system_guid" in args and sess.value("s_pis_login") and sess.value("s_pis_password"):
@@ -41,8 +41,8 @@ def run(request):
 			error = set_virtual_card(pis_login,pis_password,pis_system_guid)
 			if not error:
 				error = "Timeout"
-		except Exception, e:
-			error = "Error: " + str(e) + "\n"
+		except Exception as e:
+			error = unicode(e) + u"\n"
 			show_form = template_login
 		show_form = template_login
 	else:
