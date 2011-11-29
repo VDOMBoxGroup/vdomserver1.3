@@ -10,7 +10,6 @@ class _class(object):
 _object=_class()
 
 
-
 none=type(None)
 function=type(_function)
 method=type(_object._function)

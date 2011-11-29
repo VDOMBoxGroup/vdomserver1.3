@@ -1,8 +1,6 @@
 
 import ply.lex as lex
-
-import errors, lexemes
-
+from . import errors, lexemes
 from source import *
 
 
@@ -484,7 +482,7 @@ def p_statement_remark(p):
 
 def p_statement_use(p):
 	"""statement : USE NAME"""
-	p[0]=vuse(p[2][1], line=p[2][0], package=p.parser.package)
+	p[0]=vuse(p[2][1], line=p[2][0], package=p.parser.package, environment=p.parser.environment)
 
 def p_statement_declaration(p):
 	"""statement : declarations"""
@@ -1142,7 +1140,7 @@ def p_subscripts_continues(p):
 
 def p_source(p):
 	"""source : statements_m"""
-	p[0]=vsource(p[1], package=p.parser.package)
+	p[0]=vsource(p[1], package=p.parser.package, environment=p.parser.environment)
 
 
 

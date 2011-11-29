@@ -1,15 +1,10 @@
 
 import utils.exception
-
-import errors
-
+from . import errors
 
 
-__all__=["v_genericerror",
-	"v_servererror", "v_scripterror",
-	"v_subscriptoutofrange",
-	"v_divizionbyzero", "v_overflow"]
-
+__all__=["v_genericerror", "v_servererror", "v_scripterror",
+	"v_subscriptoutofrange", "v_divizionbyzero", "v_overflow"]
 
 
 v_genericerror=errors.python

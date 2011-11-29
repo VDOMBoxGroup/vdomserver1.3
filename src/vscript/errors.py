@@ -2,7 +2,6 @@
 python=Exception
 
 
-
 class generic(python):
 
 	compilation=u"compilation"

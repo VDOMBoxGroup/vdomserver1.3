@@ -1,6 +1,5 @@
 
-import errors
-
+from . import errors
 
 
 prefix=u"v_"
@@ -22,13 +21,11 @@ tokens=reserved+(u"PYTHON",
 literals=[u'&', u'(', u')', u'*', u'+', u',', u'-', u'.', u'/', u':', u'<', u'=', u'>', u'\\', u'^']
 
 
-
 words=reserved
 reserved={}
 for word in words:
     reserved[word.lower()]=word
 del words
-
 
 
 def t_vcr(t):

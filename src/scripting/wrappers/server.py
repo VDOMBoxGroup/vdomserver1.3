@@ -1,8 +1,19 @@
 
 import managers, version, utils
+from vscript.engine import vcompile, vexecute
 
+
+class VDOM_vscript(object):
+
+	def execute(self, source, **keywords):
+		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
+		code, vsource=vcompile(source, environment=environment)
+		vexecute(code, vsource, environment=environment)
 
 class VDOM_server(object):
+
+	def __init__(self):
+		self._vscript=VDOM_vscript()
 
 	def _get_version(self):
 		return version.VDOM_server_version
@@ -13,3 +24,4 @@ class VDOM_server(object):
 	version=property(_get_version)
 	mailer=property(lambda self: managers.email_manager)
 	guid=property(_get_guid)
+	vscript=property(lambda self: self._vscript)
