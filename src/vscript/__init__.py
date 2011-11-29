@@ -1,96 +1,21 @@
 
-import random, re
-from copy import copy, deepcopy
-
-import utils.exception
-
-import options, errors, types
-
-from array import array
-from empty import empty, v_empty
-from null import null, v_null
-from integer import integer
-from double import double, nan, infinity
-from date import date
-from string import string
-from boolean import boolean, v_true_value, v_false_value
-from generic import generic
-from error import error
-from nothing import nothing, v_nothing
-from variant import variant
-from constant import constant
-from shadow import shadow
-
-import auxiliary
-
-
-
-def check(value):
-	if isinstance(value, (types.function, types.method)):
-		try:
-			return value()
-		except TypeError, error:
-			result=re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", error.message)
-			if result:
-				raise errors.wrong_number_of_arguments(name=result.group(1))
-			else:
-				raise
-	else:
-		return value
-
-
-
-def byref(value):
-	if not isinstance(value, (variant, constant, shadow)):
-		value=variant(value=value)
-	return value
-
-def byval(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	return variant(value=deepcopy(value))
-
-
-
-def redim(variable, subscripts, preserve=False):
-	if isinstance(variable, (variant, constant, shadow))\
-		and hasattr(variable.value, "redim"):
-		variable.value.redim(auxiliary.as_value(subscripts), preserve=preserve)
-	else:
-		raise errors.type_mismatch
-
-def erase(variable):
-	if isinstance(variable, (variant, constant, shadow))\
-		and hasattr(variable.value, "erase"):
-		variable.value.erase()
-	else:
-		raise errors.type_mismatch
-
-
-
-def randomize(seed=None):
-	random.seed(seed)
-
-def echo(*arguments):
-	debug(" ".join([unicode(auxiliary.as_value(argument)) for argument in arguments]), console=True)
-
-#def concat(value1, value2):
-#	return unicode(value1)+unicode(value2)
-
-def concat(*arguments):
-	return string(u"".join(unicode(argument) for argument in arguments))
-
-
-
-class exitloop(Exception):
-	pass
-
-class exitdo(exitloop):
-	pass
-
-class exitfor(exitloop):
-	pass
-
+from .subtypes.array import array
+from .subtypes.binary import binary
+from .subtypes.boolean import boolean, v_true_value, v_false_value
+from .subtypes.date import date
+from .subtypes.double import double, nan, infinity
+from .subtypes.empty import empty, v_empty
+from .subtypes.error import error
+from .subtypes.generic import generic
+from .subtypes.integer import integer
+from .subtypes.nothing import nothing, v_nothing
+from .subtypes.null import null, v_null
+from .subtypes.string import string
+from .variables.variant import variant
+from .variables.constant import constant
+from .variables.shadow import shadow
+from .essentials import check, byref, byval, redim, erase, randomize, echo, concat, \
+	exitloop, exitdo, exitfor
 
 
 empty.add_table={
@@ -178,7 +103,6 @@ empty.pow_table={
 	shadow: empty.pow_variant}
 
 
-
 empty.eq_table={
 	empty: empty.eq_empty,
 	null: empty.with_null,
@@ -252,7 +176,6 @@ empty.ge_table={
 	shadow: empty.ge_variant}
 
 
-
 empty.and_table={
 	empty: empty.and_empty,
 	null: empty.and_null,
@@ -288,7 +211,6 @@ empty.xor_table={
 	variant: empty.xor_variant,
 	constant: empty.xor_variant,
 	shadow: empty.xor_variant}
-
 
 
 null.add_table={
@@ -376,7 +298,6 @@ null.pow_table={
 	shadow: null.pow_variant}
 
 
-
 null.eq_table={
 	empty: null.with_null,
 	null: null.with_null,
@@ -450,7 +371,6 @@ null.ge_table={
 	shadow: null.ge_variant}
 
 
-
 null.and_table={
 	empty: null.with_null,
 	null: null.with_null,
@@ -486,7 +406,6 @@ null.xor_table={
 	variant: null.xor_variant,
 	constant: null.xor_variant,
 	shadow: null.xor_variant}
-
 
 
 integer.add_table={
@@ -574,7 +493,6 @@ integer.pow_table={
 	shadow: integer.pow_variant}
 
 
-
 integer.eq_table={
 	empty: integer.eq_empty,
 	null: integer.with_null,
@@ -648,7 +566,6 @@ integer.ge_table={
 	shadow: integer.ge_variant}
 
 
-
 integer.and_table={
 	empty: integer.and_empty,
 	null: integer.and_null,
@@ -684,7 +601,6 @@ integer.xor_table={
 	variant: integer.xor_variant,
 	constant: integer.xor_variant,
 	shadow: integer.xor_variant}
-
 
 
 double.add_table={
@@ -772,7 +688,6 @@ double.pow_table={
 	shadow: double.pow_variant}
 
 
-
 double.eq_table={
 	empty: double.eq_empty,
 	null: double.with_null,
@@ -846,7 +761,6 @@ double.ge_table={
 	shadow: double.ge_variant}
 
 
-
 double.and_table={
 	empty: double.and_empty,
 	null: double.and_null,
@@ -882,7 +796,6 @@ double.xor_table={
 	variant: double.xor_variant,
 	constant: double.xor_variant,
 	shadow: double.xor_variant}
-
 
 
 date.add_table={
@@ -970,7 +883,6 @@ date.pow_table={
 	shadow: date.pow_variant}
 
 
-
 date.eq_table={
 	empty: date.eq_empty,
 	null: date.with_null,
@@ -1044,7 +956,6 @@ date.ge_table={
 	shadow: date.ge_variant}
 
 
-
 date.and_table={
 	empty: date.and_empty,
 	null: date.and_null,
@@ -1080,7 +991,6 @@ date.xor_table={
 	variant: date.xor_variant,
 	constant: date.xor_variant,
 	shadow: date.xor_variant}
-
 
 
 string.add_table={
@@ -1168,7 +1078,6 @@ string.pow_table={
 	shadow: string.pow_variant}
 
 
-
 string.eq_table={
 	empty: string.eq_empty,
 	null: string.with_null,
@@ -1242,7 +1151,6 @@ string.ge_table={
 	shadow: string.ge_variant}
 
 
-
 string.and_table={
 	empty: string.and_empty,
 	null: string.and_null,
@@ -1278,7 +1186,6 @@ string.xor_table={
 	variant: string.xor_variant,
 	constant: string.xor_variant,
 	shadow: string.xor_variant}
-
 
 
 boolean.add_table={
@@ -1366,7 +1273,6 @@ boolean.pow_table={
 	shadow: boolean.pow_variant}
 
 
-
 boolean.eq_table={
 	empty: boolean.eq_empty,
 	null: boolean.with_null,
@@ -1440,7 +1346,6 @@ boolean.ge_table={
 	shadow: boolean.ge_variant}
 
 
-
 boolean.and_table={
 	empty: boolean.and_empty,
 	null: boolean.and_null,
@@ -1478,6 +1383,5 @@ boolean.xor_table={
 	shadow: boolean.xor_variant}
 
 
-
-from exceptions import *
-from library import *
+from .exceptions import *
+from .library import *

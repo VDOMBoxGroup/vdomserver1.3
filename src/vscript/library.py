@@ -1,29 +1,25 @@
 
 import random, datetime, re
-
-import errors, types
-
-from array import array
-from empty import empty, v_empty
-from null import null, v_null
-from integer import integer
-from double import double, nan, infinity
-from date import date, decode_date, encode_date, encode_time
-from string import string
-from boolean import boolean, v_true_value, v_false_value
-from generic import generic
-from nothing import nothing, v_nothing
-from variant import variant
-from constant import constant
-from shadow import shadow
-
-from . import byref, byval
-from auxiliary import as_value, as_is, as_array, as_integer, as_double, as_string, as_boolean, as_generic, as_date, as_date
-
 from calendar import weekday, Calendar, month_name, month_abbr, day_name, day_abbr
-
-import version
-
+from . import errors, types, version
+from .subtypes.array import array
+from .subtypes.binary import binary
+from .subtypes.boolean import boolean, v_true_value, v_false_value
+from .subtypes.date import date
+from .subtypes.double import double, nan, infinity
+from .subtypes.empty import empty, v_empty
+from .subtypes.error import error
+from .subtypes.generic import generic
+from .subtypes.integer import integer
+from .subtypes.nothing import nothing, v_nothing
+from .subtypes.null import null, v_null
+from .subtypes.string import string
+from .variables.variant import variant
+from .variables.constant import constant
+from .variables.shadow import shadow
+from .essentials import byref, byval
+from .conversions import as_is, as_value, as_specific, as_array, as_binary, \
+	as_boolean, as_date, as_double, as_generic, as_integer, as_string, pack, unpack
 
 
 __all__=["v_array", "v_subarray", "v_filter", "v_lbound", "v_ubound", "v_join",
@@ -42,7 +38,6 @@ __all__=["v_array", "v_subarray", "v_filter", "v_lbound", "v_ubound", "v_join",
 	"v_rgb",
 	"v_scriptengine", "v_scriptenginebuildversion",
 	"v_scriptenginemajorversion", "v_scriptengineminorversion"]
-
 
 
 def ireplace(s1, s2, s3, count=0):
@@ -153,7 +148,6 @@ def inc_second(year, month, day, hour, minute, second, cnt):
 	return year, month, day, hour, minute, second
 
 
-
 def v_array(*arguments):
 	values=[]
 	for value in arguments:
@@ -198,7 +192,6 @@ def v_join(list, delimiter=None):
 	return string(delimiter.join([as_string(item) for item in list]))
 
 
-
 def v_abs(number):
 	return integer(abs(as_integer(number)))
 
@@ -222,7 +215,6 @@ def v_oct(number):
 
 def v_chr(number):
 	return string(unichr(as_integer(number)))
-
 
 
 def v_asc(string1):
@@ -339,7 +331,6 @@ def v_replace(expression, find, replacewith, start=None, count=None, compare=Non
 			return string(expression[start:].replace(find, replacewith, count))
 
 
-
 def v_space(number):
 	number=as_integer(number)
 	if number<0:
@@ -399,7 +390,6 @@ def v_split(expression, delimiter=None, count=None, compare=None):
 	return array(values=values)
 
 
-
 def v_exp(number):
 	number=as_double(number)
 	# 709.782712893 - highest value from MSDN
@@ -420,7 +410,6 @@ def v_log(number):
 	if number<=0:
 		raise errors.invalid_procedure_call(name=u"log")
 	return double(math.log(number))
-
 
 
 last_random=random.random()
@@ -449,7 +438,6 @@ def v_sqr(number):
 	return double(math.sqrt(number))
 
 
-
 def v_atn(number):
 	number=as_double(number)
 	return double(math.atan(number))
@@ -465,7 +453,6 @@ def v_sin(number):
 def v_tan(number):
 	number=as_double(number)
 	return double(math.tan(number))
-
 
 
 def v_cbool(expression):
@@ -494,7 +481,6 @@ def v_clng(expression):
 
 def v_cstr(expression):
 	return string(unicode(as_value(expression)))
-
 
 
 def v_date():
@@ -739,7 +725,6 @@ def v_year(vbdate):
 	return integer(year)
 
 
-
 def v_vartype(value):
 	value=as_is(value)
 	return integer(value.get_type_code())
@@ -747,7 +732,6 @@ def v_vartype(value):
 def v_typename(value):
 	value=as_is(value)
 	return integer(value.get_type_name())
-
 
 
 def v_isarray(value):
@@ -779,11 +763,9 @@ def v_isobject(value):
 	return v_true_value if isinstance(value, generic) else v_false_value
 
 
-
 def v_rgb(red, green, blue):
 	red, green, blue=as_number(red), as_number(green), as_number(blue)
 	return integer(blue+(green*256)+(red*65535))
-
 
 
 def v_scriptengine():

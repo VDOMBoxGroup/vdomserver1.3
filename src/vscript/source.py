@@ -1,8 +1,7 @@
 
 from copy import copy, deepcopy
-
-import errors, lexemes, library, exceptions
-
+from . import errors, lexemes, library, exceptions
+from register import register
 
 
 __all__=[u"vname", u"vmybase", u"vmy", u"vmyclass", u"vnames",
@@ -20,11 +19,6 @@ __all__=[u"vname", u"vmybase", u"vmy", u"vmyclass", u"vnames",
 	u"vinherits", u"vclass", u"vsource"]
 
 
-
-NOT_AN_ARGUMENT="NOT AN ARGUMENT"
-
-
-
 no_explicit=1 # try to emulate OPTION EXPLICIT OFF behaviour
 
 absent="ABSENT"
@@ -36,54 +30,6 @@ python_default=u"__call__"
 python_constructor=u"__init__"
 python_destructor=u"__del__"
 python_result="result"
-
-
-
-class vnamemanager(object):
-
-	def get_names(self):
-		return {}
-
-	names=property(get_names)
-
-class vgenericnamemanager(vnamemanager):
-
-	def __init__(self, names):
-		self._names=names
-
-	def get_names(self):
-		return self._names
-
-	names=property(get_names)
-
-class vinitialnamemanager(vnamemanager):
-
-	def __init__(self, names):
-		self._names=names
-
-	def import_names(self, module_name, alias=NOT_AN_ARGUMENT):
-		if alias==NOT_AN_ARGUMENT:
-			alias=module_name
-		#module=__import__("src!.vscript.%s"%module_name).__dict__["vscript"].__dict__[module_name]
-		module=__import__("vscript.%s"%module_name).__dict__[module_name]
-		for name in dir(module):
-			if name.startswith(lexemes.prefix):
-				self._names[name]=alias
-
-	def get_names(self):
-		global namemanager
-		self.import_names("exceptions", alias=None)
-		self.import_names("library", alias=None)
-		self.import_names("extensions")
-		self.import_names("wrappers")
-		namemanager=vgenericnamemanager(self._names)
-		return self._names
-		
-	names=property(get_names)
-
-namemanager=vinitialnamemanager({u"v_this": None, u"v_server": None,
-	u"v_request": None, u"v_response": None, u"v_session": None})
-
 
 
 class vself(object):
@@ -462,16 +408,18 @@ class vset(vstatement):
 
 class vuse(vstatement):
 
-	def __init__(self, name, line, package=None):
+	def __init__(self, name, line, package=None, environment=None):
 		vstatement.__init__(self, line)
 		self.name=name[2:]
 		self.package=package
 		self.module=__import__("%s.%s"%(self.package, self.name)).__dict__[self.name] \
 			if package else __import__(self.name)
 		self.names=[]
-		default_names=namemanager.names
+		internal=register.names
 		for name in dir(self.module):
-			if name.startswith(lexemes.prefix) and name not in default_names:
+			if name.startswith(lexemes.prefix):
+				if name in internal: continue
+				if name in environment: continue
 				self.names.append(name)
 
 	def scope_names(self, mysource, myclass, myprocedure):
@@ -1326,8 +1274,9 @@ class vnamestack(list):
 
 class vsourcenames(object):
 
-	def __init__(self):
-		self.internal_names=namemanager.names
+	def __init__(self, environment):
+		self.internal=register.names
+		self.environment=environment
 		self.names={}
 		self.imports={}
 
@@ -1341,13 +1290,17 @@ class vsourcenames(object):
 		self.names[name]=value
 
 	def __contains__(self, name):
-		if name in self.internal_names:
-			alias=self.internal_names[name]
-			names=self.imports.setdefault(alias, set())
-			names.add(name)
+		if name in self.internal:
+			alias=self.internal[name]
+			if alias:
+				try: names=self.imports[alias]
+				except KeyError: names=self.imports[alias]=set()
+				names.add(name)
 			return True
-		if name in self.names:
+		elif name in self.environment:
 			return True
+		else:
+			return name in self.names
 
 	def compose(self, ident):
 		contents=[(None, ident, u"from vscript.%s import %s"%(name, u", ".join(names))) \
@@ -1358,9 +1311,9 @@ class vsourcenames(object):
 
 class vsource(object):
 
-	def __init__(self, statements, package=None):
+	def __init__(self, statements, package=None, environment=None):
 		self.line=0
-		self.names=vsourcenames()
+		self.names=vsourcenames(environment)
 		self.statements=statements
 		self.package=package
 		self.collect_names()

@@ -1,35 +1,13 @@
 
 import sys, traceback, os.path, re
-
+from copy import copy, deepcopy
+import managers
 from utils.mutex import VDOM_named_mutex_auto as auto_mutex
-
-import managers, log
-
-import ply.lex as lex
-import ply.yacc as yacc
-
-import options, errors, types, lexemes, syntax
-
-from array import array
-from empty import empty, v_empty
-from null import null, v_null
-from integer import integer
-from double import double, nan, infinity
-from date import date
-from string import string
-from boolean import boolean, v_true_value, v_false_value
-from generic import generic
-from nothing import nothing, v_nothing
-from variant import variant
-from constant import constant
-from shadow import shadow
-
-from . import byref, byval, exitloop
-from auxiliary import as_value, as_is, as_array, as_integer, as_double, as_string, as_boolean, as_generic, as_date
-
-from prepare import lexer, parser # CHECK: from prepare import tablepath, tablename, lexer, parser
-from wrapper import vdomtypewrapper, vdomobjectwrapper
-from integration import server, request, response, session
+from . import errors, types, lexemes, syntax
+from .variables import variant
+from .essentials import exitloop
+from .prepare import lexer, parser
+from .wrappers import vdomtypewrapper, vdomobjectwrapper, server, request, response, session
 
 
 
@@ -37,7 +15,7 @@ vscript_source_string=u"<vscript>"
 
 vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
-
+vscript_default_environment={u"v_this": None, u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None}
 
 
 def show_exception_details(source, error, error_type=errors.generic.runtime):
@@ -65,11 +43,7 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 	del exclass, exexception, extraceback, history
 	managers.log_manager.error_bug(error, "vscript")
 
-def vsetup(skip_wrappers=None):
-	if skip_wrappers is not None:
-		options.skip_wrappers=skip_wrappers
-
-def vcompile(script, filename=None, bytecode=1, package=None, lines=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
+def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
 	debug("[VScript] Wait for mutex...")
 	mutex=auto_mutex("vscript_engine_compile_mutex")
 	debug("[VScript] Done")
@@ -78,8 +52,14 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None): # CHE
 		print "- - - - - - - - - - - - - - - - - - - -"
 		for line, statement in enumerate(script.split("\n")):
 			print (u"  %s      %s"%(unicode(line+1).ljust(4), statement.expandtabs(4))).encode("utf-8")
-		lexer.lineno, parser.package=1, package
-		source=parser.parse(script, lexer=lexer, debug=0, tracking=0).compose(0)
+		lexer.lineno=1
+		try:
+			parser.package=package
+			parser.environment=vscript_default_environment if environment is None else environment
+			source=parser.parse(script, lexer=lexer, debug=0, tracking=0).compose(0)
+		finally:
+			parser.package=None
+			parser.environment=None
 		if lines: source[0:0]=((None, 0, line) for line in lines)
 		print "- - - - - - - - - - - - - - - - - - - -"
 		for line, data in enumerate(source):
@@ -101,15 +81,18 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None): # CHE
 	finally:
 		del mutex
 
-def vexecute(code, source, object=None, namespace=None):
+def vexecute(code, source, object=None, namespace=None, environment=None):
 	try:
 		try:
 			if namespace is None: namespace={}
-			namespace[u"v_this"]=variant(vdomobjectwrapper(object) if object else v_nothing)
-			namespace[u"v_server"]=server
-			namespace[u"v_request"]=request
-			namespace[u"v_response"]=response
-			namespace[u"v_session"]=session
+			if environment is None:
+				namespace[u"v_this"]=variant(vdomobjectwrapper(object) if object else v_nothing)
+				namespace[u"v_server"]=server
+				namespace[u"v_request"]=request
+				namespace[u"v_response"]=response
+				namespace[u"v_session"]=session
+			else:
+				namespace.update(environment)
 			exec code in namespace
 		except exitloop:
 			exclass, exexception, extraceback=sys.exc_info()

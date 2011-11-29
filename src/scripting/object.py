@@ -99,7 +99,6 @@ class VDOM_object(object):
 #		self.__attributes=None
 #		self.__objects=None
 
-
 	def __get_name(self):
 		return self.__object.name
 

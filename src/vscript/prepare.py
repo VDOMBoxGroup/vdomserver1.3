@@ -1,10 +1,8 @@
 
 import sys, os
-
 import ply.lex as lex
 import ply.yacc as yacc
-
-import lexemes, syntax
+from . import lexemes, syntax
 
 
 tablepath=os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), VDOM_CONFIG["TEMP-DIRECTORY"]))
