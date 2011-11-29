@@ -1,5 +1,5 @@
 
-import sys, os, thread, socket, select
+import sys, os, thread, socket, select,traceback
 
 from version import VDOM_server_version
 from utils.threads import VDOM_thread

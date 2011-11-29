@@ -4,7 +4,7 @@ from utils.threads import VDOM_server as VDOM_threads_server
 #from file_access import VDOM_file_manager_writer
 #from memory import VDOM_xml_synchronizer
 from local_server import VDOM_local_server_thread
-from web import VDOM_web_server_thread
+from web import VDOM_web_server_thread,VDOM_secure_web_server_thread
 
 
 class VDOM_server(VDOM_threads_server):
@@ -22,3 +22,6 @@ class VDOM_server(VDOM_threads_server):
 		
 		self.__web_server_thread=VDOM_web_server_thread()
 		self.__web_server_thread.start()
+		
+		self.__secure_web_server_thread=VDOM_secure_web_server_thread()
+		self.__secure_web_server_thread.start()

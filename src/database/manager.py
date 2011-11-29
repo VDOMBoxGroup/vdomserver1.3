@@ -93,7 +93,7 @@ class VDOM_database_manager(object):
 			database = db[0]
 			return database
 		else:
-			pass
+			managers.log_manager.info_server("Database lookup by name  failed %s. name: %s, owner: %s" % (str(db), db_name, owner_id), "db_manager")
 	
 	def create_database(self, owner_id, id):
 		"""Creation of new database"""
