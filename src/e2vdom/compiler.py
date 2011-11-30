@@ -43,10 +43,11 @@ def compile_registations_render_params(parameters):
 	a = []
 	for parameter in parameters:
 		x = parameter.value.replace(r'\"', '"')
-		if x[0] == '"':
-			a.append( r'\"' + x[1:-1].replace('"', r'&quot;') + r'\"' )
-		else:
-			a.append( x.replace('"', r'\"') )
+		if len(x) > 0:
+			if x[0] == '"':
+				a.append( r'\"' + x[1:-1].replace('"', r'&quot;') + r'\"' )
+			else:
+				a.append( x.replace('"', r'\"') )
 	return ','.join(a)
 
 def compile_registations(container, parent):
