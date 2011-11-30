@@ -146,6 +146,18 @@
       <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>draggable</Name>
+      <DisplayName>#Lang(120)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(220)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(320)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>overflow</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -243,6 +255,8 @@
       <Sentence ID="404">Hidden</Sentence>
       <Sentence ID="405">Scroll</Sentence>
       <Sentence ID="406">Visible</Sentence>
+      <Sentence ID="411">No</Sentence>
+      <Sentence ID="412">Yes</Sentence>
       <Sentence ID="112">Hierarchy</Sentence>
       <Sentence ID="212">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="312">Hierarchy of the object</Sentence>
@@ -265,6 +279,9 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
+      <Sentence ID="120">Drag'n'drop</Sentence>
+      <Sentence ID="220">Use drag'n'drop</Sentence>
+      <Sentence ID="320"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -552,6 +569,32 @@ class VDOM_objectview(VDOM_object):
 			,"layout": layout
 		}
 
+		if self.draggable == '1':
+			js_drag = u"""
+$j("#%(id)s>.%(class)s-item").draggable({
+	connectToDynatree: true,
+	appendTo: 'body',
+	containment: 'document',
+	zIndex: 99999,
+	opacity: 0.6,
+	helper: 'clone',
+	option: 'accept',
+	cursor: 'default',
+	cursorAt: { left: -2, top: 4 },
+	//cursorAt: { left: 20, bottom: -2 },
+	//cursorAt: { left: -5, top: -5 },
+	start: function(e,u){
+		execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')}, true);
+	}
+	,helper: function(e) {
+		//return $("<div class='ui-widget-header'>drop item to...</div>");
+		return $("<div style='width:50px;height:20px;background:#555'></div>");
+	}
+});
+""" % { "id": id, "woid": woid, "class": classname_item }
+		else:
+			js_drag = ""
+
 		js = u"""<script type="text/javascript">
 		%(id)s_doo = false;
 		$j(document).ready(function(){
@@ -580,29 +623,11 @@ class VDOM_objectview(VDOM_object):
 				execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
 				return false;
 			});
-			$j("#%(id)s>.%(class)s-item").draggable({
-				connectToDynatree: true,
-				appendTo: 'body',
-				containment: 'document',
-				zIndex: 99999,
-				opacity: 0.6,
-				helper: 'clone',
-				option: 'accept',
-				cursor: 'default',
-				cursorAt: { left: -2, top: 4 },
-				//cursorAt: { left: 20, bottom: -2 },
-				//cursorAt: { left: -5, top: -5 },
-				start: function(e,u){
-					execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')}, true);
-				}
-				,helper: function(e) {
-					//return $("<div class='ui-widget-header'>drop item to...</div>");
-					return $("<div style='width:50px;height:20px;background:#555'></div>");
-				}
-			});
+			%(js_drag)s
 		});
 		</script>""" % {
-			"id":      id
+			"js_drag": js_drag
+			,"id":     id
 			,"woid":   woid
 			,"class":  classname_item
 		}
