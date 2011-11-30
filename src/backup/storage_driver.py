@@ -76,22 +76,22 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 
 		
 		try:
-		cmd = """sh /opt/boot/mount_and_get_path.sh -p -d %s"""%dev
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+			cmd = """sh /opt/boot/mount_and_get_path.sh -p -d %s"""%dev
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-		if rc == 0:
-			self.__uuid = str(out.stdout.read()).strip('\n')
-		
-		cmd = """sh /opt/boot/mount_and_get_path.sh -n -d %s"""%dev
-		
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+			if rc == 0:
+				self.__uuid = str(out.stdout.read()).strip('\n')
+			
+			cmd = """sh /opt/boot/mount_and_get_path.sh -n -d %s"""%dev
+			
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-		if rc == 0:
-			self.name = str(out.stdout.read()).strip('\n')
+			if rc == 0:
+				self.name = str(out.stdout.read()).strip('\n')
 		except:
 			pass
 
