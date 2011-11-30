@@ -11,16 +11,16 @@ class VDOM_storage_driver(object):
 		
 	@staticmethod
 	def get_sd_size(mount_point):
-	cmd = """sh /opt/boot/get_disksize.sh -s -m %s"""%mount_point
-		try:
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+		cmd = """sh /opt/boot/get_disksize.sh -s -m %s"""%mount_point
+			try:
+				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+				out.wait()
+				rc = out.returncode
 
-			if rc == 0:
-				size = str(out.stdout.read()).strip('\n')
-		except:
-			size = "-0"
+				if rc == 0:
+					size = str(out.stdout.read()).strip('\n')
+			except:
+				size = "-0"
 
 	cmd = """sh /opt/boot/get_disksize.sh -u -m %s"""%mount_point
 		try:
@@ -210,7 +210,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 	try:
 	# Get share status
 
-		cmd = """sh /opt/boot/mount_iscsi.sh -S -l %s -p %s """%(self.__clound_login, self.__clound_login)
+		cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s """%(self.__clound_login, self.__clound_login)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
@@ -243,7 +243,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 	if self.__clound_share_status == 0:
 	# Get and Install openvpn configs
 
-		cmd = """sh /opt/boot/mount_iscsi.sh -G -l %s -p %s """%(self.__clound_login, self.__clound_login)
+		cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__clound_login, self.__clound_login)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
@@ -260,7 +260,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 	if self.__clound_configs == 1 and self.__clound_share_status == 0:
 	# Configs exist. Now: Connect
-		cmd = """sh /opt/boot/mount_iscsi.sh -C -l %s -p %s """%(self.__clound_login, self.__clound_login)
+		cmd = """sh /opt/boot/mount_iscsi.sh -C """
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
