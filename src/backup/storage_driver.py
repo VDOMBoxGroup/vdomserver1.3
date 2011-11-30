@@ -256,7 +256,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			self.__clound_configs = 1
 		else:
 			raise Exception("Crap!")
-	except:
+	else:
 		pass
 
 
