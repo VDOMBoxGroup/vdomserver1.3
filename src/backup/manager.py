@@ -29,7 +29,9 @@ class VDOM_backup_manager(object):
             return schedule[0]
         else:
             return None
-        
+    def get_schedule_list(self):
+	return managers.scheduler_manager.fetch(VDOM_backup_task)
+    
     def add_schedule(self, driver_id, app_list, interval, rotation):
         schedule = VDOM_backup_task(driver_id, app_list, rotation)
         return managers.scheduler_manager.add_task(schedule, interval)
