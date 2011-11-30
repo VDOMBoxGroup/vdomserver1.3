@@ -341,9 +341,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
-	pass
+		pass
 	def umount(self):
-	pass
+		pass
 
 class VDOM_backup_storage_manager(object):
 
