@@ -27,13 +27,21 @@ def run(request):
 	if "save" in args:
 		if "drv[]" in args:
 			crontab = []
-			for drv in args["drv[]"]:
+			for drv in drivers:
 				task_id, schedule = managers.backup_manager.get_schedule(drv)
-				schedule[0].in_cron = True
-				managers.scheduler_manager.update(task_id, schedule[0], schedule[1])
-				crontab.append((task_id, schedule[1]))
+				if drv in args["drv[]"]:
+					schedule[0].in_cron = True
+					managers.scheduler_manager.update(task_id, schedule[0], schedule[1])
+					crontab.append((task_id, schedule[1]))
+				else: 
+					schedule[0].in_cron = False
+					managers.scheduler_manager.update(task_id, schedule[0], schedule[1])
 			managers.scheduler_manager.build_crontab(crontab)
 		elif "drv[]" not in args:
+			schedule_list = managers.backup_manager.get_schedule_list()
+			for tid in schedule_list:
+				schedule_list[tid][0].in_cron = False
+				managers.scheduler_manager.update(tid, schedule_list[tid][0], schedule_list[tid][1])
 			managers.scheduler_manager.clean_crontab()
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Crontab built successfully";</script>')
         request.write("""<html>
