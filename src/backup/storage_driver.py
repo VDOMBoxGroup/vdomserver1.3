@@ -285,7 +285,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				rc = out.returncode
 
 				if rc == 0:
-				# Logged in. Probe and Mount!
+				# Logged in. Probe
 					self.__dev = str(out.stdout.read()).strip('\n')
 
 					cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s"""%dev
@@ -294,6 +294,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					rc = out.returncode
 
 					if rc == 0:
+					# mount
 						self.__uuid = str(out.stdout.read()).strip('\n')
 
 						cmd = """sh /opt/boot/mount_iscsi.sh -M -u %s """%(self.__uuid)
@@ -316,10 +317,10 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 							else:
 							# Umount wrong. Try to reinit or just forget.
 								debug("iSCSI - Smth wrong on UMOUNT")
-				else:
-					# Mount wrong! Exit.
-					debug("iSCSI MOUNT failed! Exit.")
-					raise Exception("iSCSI MOUNT failed! Exit.")
+					else:
+						# Mount wrong! Exit.
+						debug("iSCSI MOUNT failed! Exit.")
+						raise Exception("iSCSI MOUNT failed! Exit.")
 				else:
 				# Login to target failed. Exit.
 					debug("iSCSI Login to target failed! Exit.")
