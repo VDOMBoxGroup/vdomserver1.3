@@ -12,51 +12,51 @@ class VDOM_storage_driver(object):
 	@staticmethod
 	def get_sd_size(mount_point):
 		cmd = """sh /opt/boot/get_disksize.sh -s -m %s"""%mount_point
-			try:
-				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-				out.wait()
-				rc = out.returncode
+		try:
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-				if rc == 0:
-					size = str(out.stdout.read()).strip('\n')
-			except:
-				size = "-0"
+			if rc == 0:
+				size = str(out.stdout.read()).strip('\n')
+		except:
+			size = "-0"
 
 	cmd = """sh /opt/boot/get_disksize.sh -u -m %s"""%mount_point
-		try:
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+	try:
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
 
-			if rc == 0:
-				used = str(out.stdout.read()).strip('\n')
-		except:
-			used = "-0"
+		if rc == 0:
+			used = str(out.stdout.read()).strip('\n')
+	except:
+		used = "-0"
 
 	cmd = """sh /opt/boot/get_disksize.sh -f -m %s"""%mount_point
-		try:
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+	try:
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
 
-			if rc == 0:
-				free = str(out.stdout.read()).strip('\n')
-		except:
-			free = "-0"
+		if rc == 0:
+			free = str(out.stdout.read()).strip('\n')
+	except:
+		free = "-0"
 
 	cmd = """sh /opt/boot/get_disksize.sh -p -m %s"""%mount_point
-		try:
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+	try:
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
 
-			if rc == 0:
-				percent = str(out.stdout.read()).strip('\n')
-		except:
-			percent = "0%"
+		if rc == 0:
+			percent = str(out.stdout.read()).strip('\n')
+	except:
+		percent = "0%"
 
 
-		return(size, used, free, percent) # (size, used, free, percent)
+	return(size, used, free, percent) # (size, used, free, percent)
 
 	def mount(self):
 		pass
@@ -77,21 +77,21 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 		
 		try:
 		cmd = """sh /opt/boot/mount_and_get_path.sh -p -d %s"""%dev
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
 
-			if rc == 0:
-				self.__uuid = str(out.stdout.read()).strip('\n')
+		if rc == 0:
+			self.__uuid = str(out.stdout.read()).strip('\n')
 		
 		cmd = """sh /opt/boot/mount_and_get_path.sh -n -d %s"""%dev
 		
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
 
-			if rc == 0:
-				self.name = str(out.stdout.read()).strip('\n')
+		if rc == 0:
+			self.name = str(out.stdout.read()).strip('\n')
 		except:
 			pass
 
@@ -107,7 +107,7 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 
 			if rc == 0:
 				devs = str(out.stdout.read())
-		devs = [tuple(devs.split(";")) for devs in devs.strip().split("\n")] if devs else []
+				devs = [tuple(devs.split(";")) for devs in devs.strip().split("\n")] if devs else []
 				return devs
 			else:
 				return devs
@@ -126,22 +126,25 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 	
 				if rc == 0:
 					self.__uuid = str(out.stdout.read()).strip('\n')
-		else: return False
-		cmd = """sh /opt/boot/mount_and_get_path.sh -n -d %s"""%dev
-		
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+				else: 
+					return False
+				cmd = """sh /opt/boot/mount_and_get_path.sh -n -d %s"""%dev
+				
+				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+				out.wait()
+				rc = out.returncode
 	
-		if rc == 0:
-			self.name = str(out.stdout.read()).strip('\n')
-		else: return False
-		except:
-		return False
-		return True
+				if rc == 0:
+					self.name = str(out.stdout.read()).strip('\n')
+				else: 
+					return False
+			
+			except:
+				return False
+				return True
 		else:
 			return False
-		
+
 	def mount(self):
 		debug("MOUNT")
 		# SEARCH for not mounted drives
