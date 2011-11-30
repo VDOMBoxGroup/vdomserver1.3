@@ -552,8 +552,9 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="HTML" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.innerHTML=HTML;
-					]]></SourceCode>
+/*this.domCont.innerHTML=HTML;*/
+jQuery(this.domCont).html(HTML);
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
