@@ -560,7 +560,7 @@ class VDOM_formtext(VDOM_object):
 			result = u"""<input id="{id}" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
 							value="{value}" class="{classn}" autocomplete="{auto}" {mode} />
 					""".format(id = id, name = self.name, style = style, tabind = self.tabindex, 
-							value = (self.value).replace('"', '&quot;'), classn = self.classname, auto = auto, mode = mode)
+							value = unicode(self.value).replace('"', '&quot;'), classn = self.classname, auto = auto, mode = mode)
 		else:
 			result = u"""<textarea id="{id}" name="{name}" tabindex="{tabind}" 
 							style="{style}" class="{classn}" {mode}>{value}</textarea>
