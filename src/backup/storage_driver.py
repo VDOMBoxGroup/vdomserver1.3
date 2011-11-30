@@ -22,41 +22,41 @@ class VDOM_storage_driver(object):
 		except:
 			size = "-0"
 
-	cmd = """sh /opt/boot/get_disksize.sh -u -m %s"""%mount_point
-	try:
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+		cmd = """sh /opt/boot/get_disksize.sh -u -m %s"""%mount_point
+		try:
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-		if rc == 0:
-			used = str(out.stdout.read()).strip('\n')
-	except:
-		used = "-0"
+			if rc == 0:
+				used = str(out.stdout.read()).strip('\n')
+		except:
+			used = "-0"
 
-	cmd = """sh /opt/boot/get_disksize.sh -f -m %s"""%mount_point
-	try:
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+		cmd = """sh /opt/boot/get_disksize.sh -f -m %s"""%mount_point
+		try:
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-		if rc == 0:
-			free = str(out.stdout.read()).strip('\n')
-	except:
-		free = "-0"
+			if rc == 0:
+				free = str(out.stdout.read()).strip('\n')
+		except:
+			free = "-0"
 
-	cmd = """sh /opt/boot/get_disksize.sh -p -m %s"""%mount_point
-	try:
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
+		cmd = """sh /opt/boot/get_disksize.sh -p -m %s"""%mount_point
+		try:
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
 
-		if rc == 0:
-			percent = str(out.stdout.read()).strip('\n')
-	except:
-		percent = "0%"
+			if rc == 0:
+				percent = str(out.stdout.read()).strip('\n')
+		except:
+			percent = "0%"
 
 
-	return(size, used, free, percent) # (size, used, free, percent)
+		return(size, used, free, percent) # (size, used, free, percent)
 
 	def mount(self):
 		pass
