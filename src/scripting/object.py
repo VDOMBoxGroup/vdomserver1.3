@@ -40,7 +40,7 @@ class VDOM_descriptor(object):
 			raise AttributeError
 
 	def __set__(self, master, value):
-		if master.stage is stage_normal:
+		if master.stage is stage_normal or master.stage is stage_action:
 			# debug("[Descriptor] Set %s attribute '%s', value %s"%(master.id, self.__name, repr(value)))
 			master.update_state=state_require_update
 			if master.compute_state is compute_up_to_date:
