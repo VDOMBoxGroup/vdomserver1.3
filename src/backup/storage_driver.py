@@ -175,12 +175,12 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 	dev = property(lambda self: self.__dev)
 	
 class VDOM_cloud_storage_driver(VDOM_storage_driver):
-	def __init__(self, dev):
+	def __init__(self):
 		self.id = str(utils.uuid.uuid4())
 		self.name = "Cloud iSCSI Drive"
 		self.type = "cloud_drive"
 		self.__path = None
-		self.__dev = dev
+		self.__dev = None
 		self.__uuid = None
 		self.__clound_login = None
 		self.__clound_pass = None
