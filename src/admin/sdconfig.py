@@ -4,7 +4,7 @@ from datetime import time
 from random import randint
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
-from backup.storage_driver import VDOM_sd_external_drive
+from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver
 
 def run(request):
         sess = request.session()
@@ -19,8 +19,9 @@ def run(request):
         applst = managers.xml_manager.get_applications()
         dev_list = VDOM_sd_external_drive.get_device_list()
 	dev_option_tag = apps_tag = ""
+	drv_icon = ""
 	driver = None
-	
+	default_drv_name = ""
 	hidden_tag = ""
 	apps_tag = ""
 	for app in applst:
@@ -46,11 +47,23 @@ def run(request):
 		driver = managers.backup_manager.get_storage(args["devid"][0])
 		hidden_tag = """
 <input type="hidden" name="devid" value="%s">""" % driver.id
-	
+	if "type" in args:
+		hidden_tag += """
+<input type="hidden" name="type" value="%s">""" % args["type"][0]
+		if args["type"][0] == "external":
+			default_drv_name = "External Drive"
+			drv_icon = "images/exthdd.png"
+		elif args["type"][0] == "cloud":
+			default_drv_name = "Cloud Storage"
+			drv_icon = "images/cloud.png"
 	if "save" in args:
 		ok = True
 		if not driver:
-			driver = VDOM_sd_external_drive(args["devselect"][0])
+			if "type" in args:
+				if args["type"][0] == "external":
+					driver = VDOM_sd_external_drive(args["devselect"][0])
+				elif args["type"][0] == "cloud":
+					driver = VDOM_cloud_storage_driver()
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
 			if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
@@ -68,7 +81,7 @@ def run(request):
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: Incorrect time format!";</script>')
 				ok = False
 			if ok:
-				if driver.change_device(args["devselect"][0]):
+				if hasattr(driver, "change_device") and driver.change_device(args["devselect"][0]):
 					managers.backup_manager.add_storage(driver)
 				if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, "0"):
 					managers.backup_manager.add_storage(driver)
@@ -387,9 +400,10 @@ function ChangeBackup(obj){
 <form name="configBackup" method=post enctype="multipart/form-data">%s
 <div class="wrapper"> 
  <div class="block">
-  <h2><img src="images/exthdd.png" align="absmiddle"/> Config %s</h2>
-  <div class="fields fl-left">""" % (hidden_tag, driver.name if driver else "External Drive"))
-	request.write("""
+  <h2><img src="%s" align="absmiddle"/> Config %s</h2>
+  <div class="fields fl-left">""" % (hidden_tag, drv_icon, driver.name if driver else default_drv_name))
+	if "type" in args and args["type"][0] == "external":
+		request.write("""
    <div><label for="devselect">Device :</label><select name="devselect">%s</select></div>""" % dev_option_tag)
 	request.write("""
    <div><label for="int1">Backup :</label><select name="int1" onchange="ChangeBackup(this);"><option value="daily"%s>Daily</option><option value="hourly"%s>Hourly</option></select></div>""" % (daily_selected, hourly_selected))
@@ -421,7 +435,7 @@ function ChangeBackup(obj){
 	       "sun": " checked" if "7" in week_days or week_days == '*' else ""})
 	request.write("""
   <div class="hdd-state fl-right" align="center">
-	<div class="head"><h2><img src="images/exthdd.png" align="absmiddle"/> %(driver)s</h2></div>
+	<div class="head"><h2><img src="%(icon)s" align="absmiddle"/> %(driver)s</h2></div>
 
 	<div class="progress" align="left">
 		<div class="bar-holder">
@@ -435,7 +449,7 @@ function ChangeBackup(obj){
 
   </div>
   <div class="clear"> </div>
- </div>""" % {"driver": driver.name if driver else "External Drive", "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else ""})
+ </div>""" % {"icon": drv_icon, "driver": driver.name if driver else default_drv_name, "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else ""})
 	request.write("""
  <div class="block">
 	<h2>Backup following applications :</h2>
