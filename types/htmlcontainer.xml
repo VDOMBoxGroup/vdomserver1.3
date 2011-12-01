@@ -2458,7 +2458,7 @@ class VDOM_htmlcontainer(VDOM_object):
 	<script type="text/javascript">
 	var APPLICATION_ID="%(application)s", SESSION_ID="%(session)s", SERVER_URL="/e2vdom.py", E2VDEBUG=%(e2vdebug)s, E2VSTATE="%(e2vstate)s";
 	</script>
-	<script type="text/javascript" src="/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v=152"></script>
+	<script type="text/javascript" src="/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v=20111201"></script>
 	%(jqui)s
 	%(testFunc)s
 	<script type="text/javascript" src="/3e932470-0e08-446c-a866-30c00e6d812a.res"></script>
@@ -2494,7 +2494,7 @@ class VDOM_htmlcontainer(VDOM_object):
 			});
 		});
 	</script>
-	<!-- type ver 2011-11-30, VDOM server %(server_ver)s -->
+	<!-- type ver 2011-12-01, VDOM server %(server_ver)s -->
 </body>
 </html>""" % {
 				"e2vstate":     "0",

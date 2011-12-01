@@ -467,9 +467,9 @@ class VDOM_list(VDOM_object):
 		res_buffer.write(u"</ul></div>")
 		js_script = u"""<script type="text/javascript">
 jQuery(document).ready(function($){
-	var %(id)s_doo = false, m = $('#%(id)s').hasClass('multiselect');
-	$('#%(id)s ul li').bind('click dblclick', function(e){
-		var t = $(this);
+	var %(id)s_doo = false, m = $j('#%(id)s').hasClass('multiselect');
+	$j('#%(id)s ul li').bind('click dblclick', function(e){
+		var t = $j(this);
 		t.parent().children().removeClass("active");
 		if (m) {
 			if (t.hasClass("selected")) t.removeClass("selected"); 
@@ -503,12 +503,12 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
-	$('#%(id)s li').droppable({
+	$j('#%(id)s li').droppable({
 		//greedy: true,
 		//activeClass: "ui-state-hover",
 		hoverClass: "ui-state-active",
 		drop: function(e, ui) {
-			execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('itemid')});
+			execEventBinded('%(woid)s', "drop", {itemid: $j(this).attr('itemid')});
 		}
 	});
 
