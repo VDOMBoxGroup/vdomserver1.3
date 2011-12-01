@@ -539,8 +539,8 @@ class VDOM_formcolorpicker(VDOM_object):
 						type="text" tabindex="%(tabind)s" value="%(value)s" />
 				</div>
 				<script type="text/javascript">
-					jQuery(document).ready(function(){
-						jQuery("#inp_%(id)s").colorInput({
+					$j(document).ready(function(){
+						$j("#inp_%(id)s").colorInput({
 							hideInput:%(hide)s,textAccept:"%(title_OK)s",textCancel:"%(title_Canc)s",change:function(){
 								execEventBinded("%(clean_id)s","changecolor",{color:this.value});} });});
 				</script>
@@ -660,7 +660,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(216)" ScriptName="cssStyleValue" Help="#Lang(217)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this).attr('style', cssStyleValue);
+$j(this).attr('style', cssStyleValue);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(122)" InterfaceName="#Lang(123)" MethodName="setValue">
