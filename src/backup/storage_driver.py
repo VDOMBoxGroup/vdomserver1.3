@@ -196,7 +196,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
 				debug("Can't get login from Smartcard")
-
+				raise Exception("Can't get login from Smartcard")
 			else:
 				self.__clound_login = result
 
@@ -205,6 +205,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
 				debug("Can't get password from Smartcard")
+				raise Exception("Can't get pass from Smartcard")
 			else:
 				self.__clound_pass = result
 		except:
