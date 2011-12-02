@@ -191,7 +191,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		# Get login/pass for cloud
 
 			from utils.card_connect import send_to_card_and_wait
-			result = send_to_card_and_wait("getlicense %s %s" % (application.id, "106"),"%s/%s" % (application.id, "106"))
+			result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
 			if result == "None":
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
@@ -200,7 +200,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			else:
 				self.__clound_login = result
 
-			result = send_to_card_and_wait("getlicense %s %s" % (application.id, "107"),"%s/%s" % (application.id, "107"))
+			result = send_to_card_and_wait("getlicense %s %s" % ("0", "107"),"%s/%s" % ("0", "107"))
 			if result == "None":
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
