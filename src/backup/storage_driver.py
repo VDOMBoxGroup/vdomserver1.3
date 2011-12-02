@@ -192,24 +192,26 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			from utils.card_connect import send_to_card_and_wait
 			result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
-			if result == "None":
+			self.__clound_login = result
+			#if result == "None":
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
-				debug("Can't get login from Smartcard")
-				raise Exception("Can't get login from Smartcard")
-			else:
-				self.__clound_login = result
+			#	debug("Can't get login from Smartcard")
+			#	raise Exception("Can't get login from Smartcard")
+			#else:
+			#	self.__clound_login = result
 
 			result = send_to_card_and_wait("getlicense %s %s" % ("0", "107"),"%s/%s" % ("0", "107"))
-			if result == "None":
+			self.__clound_pass = result
+			#if result == "None":
 				# no such field in license
 				#return int(result) if result not in [None, "None"] else 0
-				debug("Can't get password from Smartcard")
-				raise Exception("Can't get pass from Smartcard")
-			else:
-				self.__clound_pass = result
+			#	debug("Can't get password from Smartcard")
+			#	raise Exception("Can't get pass from Smartcard")
+			#else:
+			#	self.__clound_pass = result
 		except:
-			pass
+			raise Exception("Can't get data from Smartcard %s %s"%(self.__clound_login, self.__clound_login))
 
 		try:
 		# Get share status
