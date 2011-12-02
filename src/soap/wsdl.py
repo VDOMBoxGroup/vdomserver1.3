@@ -29,6 +29,7 @@ methods = {
 	"get_resource" : ["sid", "skey", "ownerid", "resid"],
 	"create_object" : ["sid", "skey", "appid", "parentid", "typeid", "name", "attr"],
 	"create_objects" : ["sid", "skey", "appid", "parentid", "objects"],
+        "copy_object" : ["sid", "skey", "appid", "objid", "parentid"],
 	"update_object" : ["sid", "skey", "appid", "objid", "data"],
 	"render_wysiwyg" : ["sid", "skey", "appid", "objid", "parentid", "dynamic"],
 	"get_object_script_presentation" : ["sid", "skey", "appid", "objid"],

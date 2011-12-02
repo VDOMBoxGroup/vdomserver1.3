@@ -447,6 +447,20 @@ class VDOM_web_services_server(object):
 
 		app.sync()
 		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
+	
+	def copy_object(self, sid, skey, appid, parentid, objid):
+		"""copy object in application"""
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		ret = self.__find_application(appid)	# returns (app, error_message)
+		if not ret[0]:
+			return ret[1]
+		app = ret[0]
+		if objid == parentid:
+			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
+		new_obj_id = self.__copy_object(app, parentid, objid)
+		obj = managers.xml_manager.search_object(appid, new_obj_id)
+		app.sync()
+		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 
 	def delete_object(self, sid, skey, appid, objid):
 		"""delete object from application"""
@@ -761,6 +775,59 @@ class VDOM_web_services_server(object):
 					result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
 			result += "</Objectlist>\n"
 		return result
+	
+	def __copy_object(self, app, parentid, objid):
+		"""copy object in application"""
+		obj = app.search_object(objid)
+		typeid = obj.type.id
+		attr = {name:value.value for name, value in obj.get_attributes().items()}
+		name = obj.name
+		try:
+			container = app.search_object(parentid)
+		except:
+			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
+		ret = app.create_object(typeid, container)
+		obj_id = ret[1]
+		copy_object = app.search_object(obj_id)
+		if parentid != obj.parent.id:
+			try:
+				copy_object.set_name(name)
+			except:
+				#raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj_id, str(name)))
+				pass
+		if attr:
+			copy_object.set_attributes(attr)
+		if 1 == obj.type.container:
+			xml_actions = ''
+		else:
+			xml_actions = '<ServerActions>\n'
+			for _name in obj.actions["name"]:
+				x = obj.actions["name"][_name]
+				xml_actions += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()), x.name, x.top, x.left, x.state)
+				xml_actions += """<![CDATA[%s]]>\n""" % x.code
+				xml_actions += "</Action>\n"
+			xml_actions += '</ServerActions>\n'
+		if xml_actions:
+			try:
+				root = xml_object(srcdata=xml_actions.encode("utf-8"))
+				if "serveractions" != root.lname:
+					raise VDOM_exception_element(root.lname)
+				for child in root.children:
+					if "action" == child.lname:
+						_id = child.attributes["id"]
+						_name = child.attributes["name"]
+						if not _id or not _name:
+							raise VDOM_exception_element("server action")
+			except Exception, e:
+				if root:
+					root.delete()
+				raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+			root.name = "Actions"
+			copy_object.set_actions(root)
+			root.delete()
+		for ob in obj.objects:
+			self.__copy_object(app, ob, obj_id)
+		return obj_id
 
 	def __set_attributes(self, obj, attr):
 		"""set several attributes' value"""
