@@ -248,7 +248,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 		if self.__clound_share_status != 1:
 		# Get and Install openvpn configs
-
+			debug("Try to get configs! Login: %s Pass: %s"%(self.__clound_login, self.__clound_pass))
 			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__clound_login, self.__clound_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
@@ -257,14 +257,15 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			if rc == 0:
 			# Got configs 
 				self.__clound_configs = 1
+				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs,self.__clound_login, self.__clound_pass))
 			else:
-				raise Exception("Crap!")
+				raise Exception("Crap! %s %s"%(self.__clound_login, self.__clound_pass))
 		else:
 			raise Exception("Crap! Stop! ")
 
 
 
-		if self.__clound_configs == 1 and self.__clound_share_status == 0:
+		if self.__clound_configs == 1:
 		# Configs exist. Now: Connect
 			cmd = """sh /opt/boot/mount_iscsi.sh -C """
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
