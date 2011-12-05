@@ -483,13 +483,21 @@ class VDOM_bar(VDOM_object):
 	def render(self, parent, contents=""):
 		display = u"display:none;" if self.visible == "0" else u""
 
-		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+
+		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
 					width: {width}px; height: {height}px; background: #{color}"""\
-				.format(display = display, zind = self.zindex, pos = self.position, 
+				.format(display = display, zind = style_zindex, pos = self.position, 
 						top = self.top, left = self.left, width = self.width, height = self.height, color = self.color)
 		id = u"o_" + (self.id).replace('-', '_')
 
-		result = u"""<div id="{id}" style="{style}">{contents}</div>""".format(id = id, style = style, contents = contents)
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='text' objname='%s' ver='2011-12-02'" % self.name
+		else:
+			debug_info = u""
+
+		result = u"""<div {debug_info} id="{id}" style="{style}">{contents}</div>""".format(
+			debug_info = debug_info, id = id, style = style, contents = contents)
 
 		return VDOM_object.render(self, parent, contents=result)
 
