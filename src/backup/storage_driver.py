@@ -292,7 +292,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					# Logged in. Probe
 						self.__dev = str(out.stdout.read()).strip('\n')
 
-						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s"""%dev
+						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s"""%self.__dev
 						out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 						out.wait()
 						rc = out.returncode
