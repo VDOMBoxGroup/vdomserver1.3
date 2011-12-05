@@ -24,7 +24,10 @@ def run(request):
         if "devid" in args:
                 drv = managers.backup_manager.get_storage(args["devid"][0])
                 if drv.type == "external_drive":
-                        request.redirect("/sdconfig.py?devid=%s" % drv.id)
+                        request.redirect("/sdconfig.py?devid=%s&type=%s" % (drv.id, "external"))
+			return
+		elif drv.type == "cloud_drive":
+			request.redirect("/sdconfig.py?devid=%s&type=%s" % (drv.id, "cloud"))
 			return
 	if "save" in args:
 		if "drv[]" in args:
