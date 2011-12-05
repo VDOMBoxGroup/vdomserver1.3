@@ -380,8 +380,8 @@
       <Sentence ID="117">Background image</Sentence>
       <Sentence ID="217">Background image</Sentence>
       <Sentence ID="317">Incorrect value</Sentence>
-      <Sentence ID="118">Background image</Sentence>
-      <Sentence ID="218">Background image</Sentence>
+      <Sentence ID="118">Background repeat</Sentence>
+      <Sentence ID="218">Background repeat</Sentence>
       <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
@@ -724,18 +724,19 @@ class VDOM_container(VDOM_object):
 		background_image = u"background-image: url('%s');" % utils.id.id2link1(self.backgroundimage) if self.backgroundimage != "" else u""
 
 		if self.backgroundrepeat == '1':
-			background_repeat = 'no-repeat'
+			background_repeat = 'background-repeat:no-repeat;'
 		elif self.backgroundrepeat == '2':
-			background_repeat = 'repeat-x'
+			background_repeat = 'background-repeat:repeat-x;'
 		elif self.backgroundrepeat == '3':
-			background_repeat = 'repeat-y'
+			background_repeat = 'background-repeat:repeat-y;'
 		else:
-			background_repeat = ''
-		background_repeat = u"background-repeat: %s;" % background_repeat if self.backgroundrepeat != "" else u""
+			background_repeat = u''
 
-		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+
+		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
 					width: {width}px; overflow: {overflow}; {height} {background_color} {background_image} {background_repeat}"""\
-				.format(display = display, zind = self.zindex, pos = self.position,
+				.format(display = display, zind = style_zindex, pos = self.position,
 					background_color = background_color, background_image = background_image, background_repeat = background_repeat,
 					top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
 
@@ -751,8 +752,13 @@ class VDOM_container(VDOM_object):
 						.format(twrap = self.titlewrap, title = self.title)
 			cont_tag = u"""<div class="content">%s</div>""" % contents
 
-		result = u"""<div {footer} id="{id}" style="{style}" {classname}>{title_tag}{cont_tag}</div>"""\
-				.format(footer =  footer, id = id, style = style, classname = classname, title_tag = title_tag, cont_tag = cont_tag)
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='container' objname='%s' ver='2011-12-02'" % self.name
+		else:
+			debug_info = u""
+
+		result = u"""<div {debug_info} {footer} id="{id}" style="{style}" {classname}>{title_tag}{cont_tag}</div>"""\
+				.format(debug_info = debug_info, footer =  footer, id = id, style = style, classname = classname, title_tag = title_tag, cont_tag = cont_tag)
 
 		return VDOM_object.render(self, parent, contents=result)
 
