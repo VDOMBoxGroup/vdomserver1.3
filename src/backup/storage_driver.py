@@ -316,8 +316,18 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 								rc = out.returncode
 
 								if rc == 0:
-								# Umount OK. All OK!
-									debug("iSCSI init done.")
+								# Umount OK. All OK! Now - logout from target.
+									debug("iSCSI %s Logout ."%target)
+									
+									cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(target)
+									out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+									out.wait()
+									rc = out.returncode
+									
+									if rc == 0:
+										debug("Logged out from %s " % target)
+									else:
+										raise Exception("Ololo pwpw")
 								else:
 								# Umount wrong. Try to reinit or just forget.
 									debug("iSCSI - Smth wrong on UMOUNT")
