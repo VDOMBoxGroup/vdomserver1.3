@@ -246,7 +246,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		except:
 			pass
 
-		if self.__clound_share_status == 0:
+		if self.__clound_share_status != 1:
 		# Get and Install openvpn configs
 
 			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__clound_login, self.__clound_pass)
@@ -260,7 +260,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			else:
 				raise Exception("Crap!")
 		else:
-			pass
+			raise Exception("Crap! Stop! ")
 
 
 
