@@ -747,9 +747,9 @@ class VDOM_text(VDOM_object):
 			"%spx"%self.fontsize or "12px",
 			self.fontfamily or None]
 
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
 		style={
 			"display": "none" if self.visible=="0" else None,
-			"z-index": self.zindex,
 			"position": self.position,
 			"overflow": "auto",
 			"top": "%spx"%self.top,
@@ -760,8 +760,14 @@ class VDOM_text(VDOM_object):
 			"color" : "#%s"%self.color if self.color else None,
 			"text-decoration": self.textdecoration or None}
 
-		result="<div objname=\"%(oname)s\" id=\"%(id)s\" style=\"%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
-			"oname": self.name,
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='text' objname='%s' ver='2011-12-02'" % self.name
+		else:
+			debug_info = u""
+
+		result="<div %(debug_info)s id=\"%(id)s\" style=\"%(zind)s%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
+			"zind": style_zindex,
+			"debug_info": self.name,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),
 			"css": "; %s"%self.css if self.css else "",
