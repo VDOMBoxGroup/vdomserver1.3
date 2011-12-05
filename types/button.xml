@@ -1056,9 +1056,11 @@ class VDOM_button(VDOM_object):
 		width_style = u"width:%spx;" % self.width if self.width else u""
 		height_style = u"height:%spx;" % self.height if self.height else u""
 
-		style = u"""overflow:hidden;position:absolute;z-index:{zindex};left:{left}px;top:{top}px;
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+
+		style = u"""overflow:hidden;position:absolute;{zindex}left:{left}px;top:{top}px;
 					{wstyle}{hstyle}text-align:{align};border:{border}px solid black;
-				""".format(zindex = self.zindex, left = self.left, top = self.top, 
+				""".format(zindex = style_zindex, left = self.left, top = self.top, 
 						wstyle = width_style, hstyle = height_style, align = self.align, border = self.border)
 
 		display = u" display:none; " if self.visible == "0" else u""
@@ -1072,11 +1074,16 @@ class VDOM_button(VDOM_object):
 		else:
 			anchor = self.get_anchor(u"javascript://")
 
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='text' objname='%s' ver='2011-12-02'" % self.name
+		else:
+			debug_info = u""
+
 		return u"""{ocss}
-					<div id="{id}" tabindex="{tabind}" style="{style}{disp}">
+					<div {debug_info} id="{id}" tabindex="{tabind}" style="{style}{disp}">
 						{anchor}{repr}</a>
 					</div>{styleblk}{scriptblk}
-				""".format(ocss = overcss, id = id_out, tabind = self.tabindex, style = style, disp = display,
+				""".format(debug_info = debug_info, ocss = overcss, id = id_out, tabind = self.tabindex, style = style, disp = display,
 						anchor = anchor, repr = representation, styleblk = styleblock, scriptblk = scriptblock)
 		
 		
