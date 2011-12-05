@@ -328,7 +328,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					else:
 					# Login to target failed. Exit.
 						debug("iSCSI Login to target failed! Exit.")
-						raise Exception("iSCSI Login to target failed! Exit.")
+						raise Exception("iSCSI Login to target %s failed! Exit."%target)
 				else:
 				# No such targets. Exit
 					debug("iSCSI targets not found! Exit.")
