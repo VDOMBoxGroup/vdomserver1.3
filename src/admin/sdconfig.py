@@ -133,6 +133,15 @@ def run(request):
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: this external device doesn\'t setup in server";</script>')
 	else:
 		(size, used, free, percent) = ("0", "0", "0", "0%")
+	if "backupNow" in args:
+		if "devid" in args:
+			if "backup_app[]" in args:
+				for appid in args["backup_app[]"]:
+					managers.backup_manager.backup(appid, args["devid"][0])
+			else:
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
+		else:
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Storage driver not found";</script>')
         request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -457,7 +466,7 @@ function ChangeBackup(obj){
         </div>
  </div>""" % apps_tag)
 	request.write("""
-<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes"/></center>
+<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes"/> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now"/></center>
 </div>
 </form>
 </body>
