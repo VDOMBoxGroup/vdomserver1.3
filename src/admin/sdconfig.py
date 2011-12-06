@@ -17,7 +17,7 @@ def run(request):
 		request.redirect("/appbackup.py")
 		return
         applst = managers.xml_manager.get_applications()
-        dev_list = VDOM_sd_external_drive.get_device_list() if args["type"][0] == "external" else []
+        dev_list = VDOM_sd_external_drive.get_device_list()
 	dev_option_tag = apps_tag = ""
 	drv_icon = ""
 	driver = None
@@ -91,7 +91,7 @@ def run(request):
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: There is no application for backup";</script>')
 	for dev in dev_list:
-		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and dev[0] == driver.dev else ""}		
+		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and hasattr(driver, 'dev') and dev[0] == driver.dev else ""}		
 	if "devid" in args or "save" in args:
 		schedule = managers.backup_manager.get_schedule(driver.id)
 		if schedule:			
