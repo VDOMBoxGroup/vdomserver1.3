@@ -64,6 +64,8 @@ def run(request):
 					driver = VDOM_sd_external_drive(args["devselect"][0])
 				elif args["type"][0] == "cloud":
 					driver = VDOM_cloud_storage_driver()
+				hidden_tag += """
+<input type="hidden" name="devid" value="%s">""" % driver.id
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
 			if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
