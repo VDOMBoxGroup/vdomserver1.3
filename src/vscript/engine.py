@@ -7,15 +7,18 @@ from . import errors, types, lexemes, syntax
 from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
-from .wrappers import vdomtypewrapper, vdomobjectwrapper, server, request, response, session
-
+from .wrappers import vdomtypewrapper, vdomobjectwrapper, server, request, response, session, \
+	v_vdomdbconnection, v_vdomdbrecordset, v_vdomimaging, v_vdombox, v_remoteserver
 
 
 vscript_source_string=u"<vscript>"
+vscript_wrappers_name="wrappers"
 
 vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
-vscript_default_environment={u"v_this": None, u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None}
+vscript_default_environment={u"v_this": None, u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
+	"v_vdomdbconnection": vscript_wrappers_name, "v_vdomdbrecordset": vscript_wrappers_name,
+	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name, "v_remoteserver": vscript_wrappers_name}
 
 
 def show_exception_details(source, error, error_type=errors.generic.runtime):

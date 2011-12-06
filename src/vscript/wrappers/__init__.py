@@ -7,3 +7,4 @@ from .session import session
 from .sqlite import v_vdomdbconnection, v_vdomdbrecordset
 from .imaging import v_vdomimaging
 from .vdombox import v_vdombox
+from .remote import v_remoteserver

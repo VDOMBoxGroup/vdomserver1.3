@@ -6,6 +6,7 @@ from ..subtypes import *
 from ..variables import *
 from ..conversions import *
 from .escapes import escape, unescape, escape_page, unescape_page
+from .remote import v_remoteserver
 
 
 
@@ -197,6 +198,9 @@ class server(generic):
 		sender, recipient=as_string(sender), as_string(recipient)
 		subject, message=as_string(subject), as_string(message)
 		managers.email_manager.send(sender, recipient, subject, message)
+
+	def v_remote(self, url, login, password, id):
+		return v_remoteserver(url, login, password, id)
 
 
 server=server()
