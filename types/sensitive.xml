@@ -1,306 +1,421 @@
-<?xml version="1.0" encoding="utf-8"?><Type>
-	<Information>
-		<Name>sensitive</Name>
-		<DisplayName>#Lang(001)</DisplayName>
-		<Description>#Lang(002)</Description>
-		<ClassName>VDOM_Sensitive</ClassName>
-		<ID>7b39c919-de7f-4b77-b048-aae8bcf8edf5</ID>
-		<Icon>#Res(ca6ea90d-9819-49b3-973c-263a653ce671)</Icon>
-		<EditorIcon>#Res(fbe1c37a-4020-445d-a077-92c6f75de4b3)</EditorIcon>
-		<StructureIcon>#Res(f653a653-c350-42dc-892e-c1997a488e4e)</StructureIcon>
-		<Moveable>1</Moveable>
-		<Resizable>3</Resizable>
-		<Category>Standard</Category>
-		<Dynamic>0</Dynamic>
-		<Version>1</Version>
-		<InterfaceType>1</InterfaceType>
-		<OptimizationPriority>1</OptimizationPriority>
-		<Containers>htmlcontainer,dialog,container,tablecell,vdomclass</Containers>
-		<Container>1</Container>
-		<Languages>en_US, ru_RU, fr_FR</Languages>
-	</Information>
-	<Attributes>
-		<Attribute>
-			<Name>hierarchy</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(301)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(202)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(302)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(203)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(303)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(204)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(304)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(205)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(305)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>width</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<DefaultValue>50</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(206)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(306)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>height</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<DefaultValue>50</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(207)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(307)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<Colorgroup>1</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>border</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(208)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(308)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<Colorgroup>4</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>containerlink</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>(^$|^[a-zA-z\d]{8}-[a-zA-z\d]{4}-[a-zA-z\d]{4}-[a-zA-z\d]{4}-[a-zA-z\d]{12}$)</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(309)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>Pagelink()</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>link</Name>
-			<DisplayName>#Lang(110)</DisplayName>
-			<DefaultValue/>
-			<RegularExpressionValidation>[a-zA-Z0-9._/]{0,200}</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(210)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(310)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(200)</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-		<Attribute>
-			<Name>target</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<DefaultValue>_blank</DefaultValue>
-			<RegularExpressionValidation>(_blank|_self|_parent|_top)</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(211)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<Help>#Lang(311)</Help>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(404)|_blank)|(#Lang(405)|_self)|(#Lang(406)|_parent)|(#Lang(407)|_top))</CodeInterface>
-			<Colorgroup>2</Colorgroup>
-		</Attribute>
-
-
-	</Attributes>
-	<Languages>
-		<Language Code="en_US">
-			<Sentence ID="001">Sensitive</Sentence>
-			<Sentence ID="002">Sensitive area</Sentence>
-			<Sentence ID="101">Hierarchy</Sentence>
-			<Sentence ID="102">Visibility</Sentence>
-			<Sentence ID="103">Z-Index</Sentence>
-			<Sentence ID="104">Top</Sentence>
-			<Sentence ID="105">Left</Sentence>
-			<Sentence ID="106">Width</Sentence>
-			<Sentence ID="107">Height</Sentence>
-			<Sentence ID="108">Border</Sentence>
-			<Sentence ID="109">Container link</Sentence>
-			<Sentence ID="110">External link</Sentence>
-			<Sentence ID="111">Target window</Sentence>
-			<Sentence ID="201">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="202">Incorrect value</Sentence>
-			<Sentence ID="203">Incorrect value, must be integer from 0 to 99</Sentence>
-			<Sentence ID="204">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="205">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="206">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="207">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="208">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="209">Incorrect value, must be valid internal container</Sentence>
-			<Sentence ID="210">Incorrect value, must be valid link</Sentence>
-			<Sentence ID="211">Incorrect value</Sentence>
-			<Sentence ID="301">Hierarchy of object</Sentence>
-			<Sentence ID="302">Show or not object</Sentence>
-			<Sentence ID="303">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="304">Distance from the top edge of the parent object in pixels</Sentence>
-			<Sentence ID="305">Distance from the left edge of the parent object in pixels</Sentence>
-			<Sentence ID="306">Weight of the object in pixels</Sentence>
-			<Sentence ID="307">Height of the object in pixels</Sentence>
-			<Sentence ID="308">Border width of the object in pixels</Sentence>
-			<Sentence ID="309">Link to the internal container</Sentence>
-			<Sentence ID="310">Link to the external web page</Sentence>
-			<Sentence ID="311">Target window for link</Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-			<Sentence ID="404">None</Sentence>
-			<Sentence ID="404">New window</Sentence>
-			<Sentence ID="405">Same window</Sentence>
-			<Sentence ID="406">Parent window</Sentence>
-			<Sentence ID="407">Top window</Sentence>
-		</Language>
-		<Language Code="ru_RU">
-			<Sentence ID="001">Кнопка</Sentence>
-			<Sentence ID="002">Кнопка в виде ссылки или изображения</Sentence>
-			<Sentence ID="101">Иерархия</Sentence>
-			<Sentence ID="102">Отображение</Sentence>
-			<Sentence ID="103">Z-Индекс</Sentence>
-			<Sentence ID="104">Верх</Sentence>
-			<Sentence ID="105">Лево</Sentence>
-			<Sentence ID="106">Ширина</Sentence>
-			<Sentence ID="107">Высота</Sentence>
-			<Sentence ID="108">Граница</Sentence>
-			<Sentence ID="109">Ссылка на контейнер</Sentence>
-			<Sentence ID="110">Внешняя ссылка</Sentence>
-			<Sentence ID="111">Целевое окно</Sentence>
-			<Sentence ID="201">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="202">Неправильное значение</Sentence>
-			<Sentence ID="203">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-			<Sentence ID="204">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="205">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="206">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="207">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="208">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="209">Неправильное значение, должно быть существующий контейнер</Sentence>
-			<Sentence ID="210">Неправильное значение, должно быть допустимой ссылкой</Sentence>
-			<Sentence ID="211">Неправильное значение</Sentence>
-			<Sentence ID="301">Приоритет в потоке гипертекста</Sentence>
-			<Sentence ID="302">Отображается объект или нет</Sentence>
-			<Sentence ID="303">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="304">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="305">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="306">Ширина объекта в пикселях</Sentence>
-			<Sentence ID="307">Высота объекта в пикселях</Sentence>
-			<Sentence ID="308">Толщина границы объекта в пикселях</Sentence>
-			<Sentence ID="309">Ссылка на внутренний контейнер</Sentence>
-			<Sentence ID="310">Ссылка на внешную Веб-страницу</Sentence>
-			<Sentence ID="311">Целевое окно для ссылки</Sentence>
-			<Sentence ID="401">Не отображается</Sentence>
-			<Sentence ID="402">Отображается</Sentence>
-			<Sentence ID="403">Нет</Sentence>
-			<Sentence ID="404">Новое окно</Sentence>
-			<Sentence ID="405">То же окно</Sentence>
-			<Sentence ID="406">Родительское окно</Sentence>
-			<Sentence ID="407">Верхнее окно</Sentence>
-		</Language>
-		<Language Code="fr_FR">
-			<Sentence ID="001">Zone Sensible</Sentence>
-			<Sentence ID="002">Zone Sensible</Sentence>
-			<Sentence ID="101">Hiérarchie</Sentence>
-			<Sentence ID="102">Visibilité</Sentence>
-			<Sentence ID="103">Z-Index</Sentence>
-			<Sentence ID="104">Haut</Sentence>
-			<Sentence ID="105">Gauche</Sentence>
-			<Sentence ID="106">Largeur</Sentence>
-			<Sentence ID="107">Hauteur</Sentence>
-			<Sentence ID="108">Bordure</Sentence>
-			<Sentence ID="109">Liens vers conteneur interne</Sentence>
-			<Sentence ID="110">Lien externe</Sentence>
-			<Sentence ID="111">Fenetre cible</Sentence>
-			<Sentence ID="201">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="202">Incorrect value</Sentence>
-			<Sentence ID="203">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
-			<Sentence ID="204">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="205">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="206">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="207">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="208">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="209">Valeur Incorrecte, doit être un conteneur interne valide</Sentence>
-			<Sentence ID="210">Valeur Incorrecte, doit être un lien valide</Sentence>
-			<Sentence ID="211">Valeur Incorrecte</Sentence>
-			<Sentence ID="301">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-			<Sentence ID="302">Afficher ou cacher l'objet</Sentence>
-			<Sentence ID="303">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-			<Sentence ID="304">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-			<Sentence ID="305">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-			<Sentence ID="306">Largeur de l'objet en pixels</Sentence>
-			<Sentence ID="307">Hauteur de l'objet en pixels</Sentence>
-			<Sentence ID="308">Epaisseur de la bordure de l'objet en pixels</Sentence>
-			<Sentence ID="309">Lien vers un conteneur interne</Sentence>
-			<Sentence ID="310">Lien vers une adresse externe</Sentence>
-			<Sentence ID="311">Fenêtre cible du lien</Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-			<Sentence ID="404">Aucun</Sentence>
-			<Sentence ID="404">Nouvelle fenêtre</Sentence>
-			<Sentence ID="405">Même fenêtre</Sentence>
-			<Sentence ID="406">Fenêtre Parente</Sentence>
-			<Sentence ID="407">Fenêtre du niveau le plus haut</Sentence>
-		</Language>
-	</Languages>
-	<Resources>
-		<Resource ID="ca6ea90d-9819-49b3-973c-263a653ce671" Name="Icon" Type="png"><![CDATA[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]]>
-		</Resource>
-		<Resource ID="fbe1c37a-4020-445d-a077-92c6f75de4b3" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]>
-		</Resource>
-		<Resource ID="f653a653-c350-42dc-892e-c1997a488e4e" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAASBQTFRFosHv/Pn+Tqj7/Pj93uDhaaa/vsrZWcT9T7b/eajli6bmocLuitf+4ufwjL3279H02sDgl77vs9X3n9j+Sdv/ss7ydZ63Nc3/Zb77i7Hqd6/yP63XZbHzmcHxl8v39/D5l7jFv8fdjLXx3b/issDH3OX0e9f/X+3/Qfb/aNb/frHpUtH/M5Xu687x0NbjlabBldX96Onp3ODi+vb7N9T/+PT5jazl9O/1j9n/ncj+4uv1zdTbQdH/9O73eN//+vr6lrC8IrL84dTkS+f/qbXAxdfzgcH2Oe//7/P7/f39/vz+6NPwWMP/ddT/zNDTaen/dOD/8Nv1U7v7SKvRodP6X6fuf9v/Xq/nVJDHyr7MYavCM83x8/PzirbJWMz/////iXORdAAAAGB0Uk5T//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8Ac23kQwAAAI5JREFUeNpi0DWW549HAgzKpuYCKALxaIAh0IvRG0XAidk2EkOLtRQnt6uqB0IggkMnVFDSjEsRJuDiGOdjECLEoAe3RcxEU81CWMsKLhAT7GwXxiPHJwp3h1+0eoCvhJusEi/MYQ7u/jbaQTKW+jABzyiNWGkRdiY2uNNZFOINWcXD7VH9omKE6TmAAAMAjz9NMbzaCr4AAAAASUVORK5CYILzvgMrQkxAdG+/005oG9qo2/rrgMJcOdnXdXU8kvy3du3aJWfSgEUHRiIRev3N16mmtua5YA/VH5TOiT/ogCAB2I/neyc4X+DhCk6g1+BDr7zyCh1+/TCtW7duSUGaApOEuEApKyuj3t4nNDqS2xqhpPKZVZjw8OAw5RcW1O7atdNpb29vXDCjSCGIrh2cPgASkbW0tIQbRMvCqM1qfn4+cdCjI2zGlVWV875bUqqECdqo23pap7/nAzURFikkobXpjp3blzV1GKA4C1MMds2aNdRwpIEqKivmfde0DW1Fm9H2bP6ajdHTEAN9vX1Kn3LverkyvexgXbPUYN9qeIvK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]]>
-		</Resource>
-		<Resource ID="7d0e6d03-2fc2-4e3d-9c6b-acab5c2e97d5" Name="Icon" Type="gif"><![CDATA[R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==]]>
-		</Resource>
-	</Resources>
-	<SourceCode>
-	<![CDATA[
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>sensitive</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_Sensitive</ClassName>
+    <ID>7b39c919-de7f-4b77-b048-aae8bcf8edf5</ID>
+    <Icon>#Res(ca6ea90d-9819-49b3-973c-263a653ce671)</Icon>
+    <EditorIcon>#Res(fbe1c37a-4020-445d-a077-92c6f75de4b3)</EditorIcon>
+    <StructureIcon>#Res(f653a653-c350-42dc-892e-c1997a488e4e)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>0</Dynamic>
+    <Version>1.0.6720</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer,dialog,container,tablecell,vdomclass</Containers>
+    <Languages>en_US ,ru_RU ,fr_FR</Languages>
+    <Handlers/>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>border</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>containerlink</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Pagelink()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>(^$|^[a-zA-z\d]{8}-[a-zA-z\d]{4}-[a-zA-z\d]{4}-[a-zA-z\d]{4}-[a-zA-z\d]{12}$)</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>link</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(200)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>[a-zA-Z0-9._/]{0,200}</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>target</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>_blank</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|_blank)|(#Lang(404)|_self)|(#Lang(405)|_parent)|(#Lang(406)|_top))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>(_blank|_self|_parent|_top)</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Sensitive</Sentence>
+      <Sentence ID="002">Sensitive area</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Visibility</Sentence>
+      <Sentence ID="601">Visibility</Sentence>
+      <Sentence ID="701">Incorrect value</Sentence>
+      <Sentence ID="801">Incorrect value</Sentence>
+      <Sentence ID="502">Visibility</Sentence>
+      <Sentence ID="602">Visibility</Sentence>
+      <Sentence ID="702">Incorrect value</Sentence>
+      <Sentence ID="802">Incorrect value</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="201">Hierarchy of object</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="202">Show or not object</Sentence>
+      <Sentence ID="302">Incorrect value</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="206">Weight of the object in pixels</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="108">Border</Sentence>
+      <Sentence ID="208">Border width of the object in pixels</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="109">Container link</Sentence>
+      <Sentence ID="209">Link to the internal container</Sentence>
+      <Sentence ID="309">Incorrect value, must be valid internal container</Sentence>
+      <Sentence ID="111">External link</Sentence>
+      <Sentence ID="211">Link to the external web page</Sentence>
+      <Sentence ID="311">Incorrect value, must be valid link</Sentence>
+      <Sentence ID="112">Target window</Sentence>
+      <Sentence ID="212">Target window for link</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="403">None</Sentence>
+      <Sentence ID="404">Same window</Sentence>
+      <Sentence ID="405">Parent window</Sentence>
+      <Sentence ID="406">Top window</Sentence>
+      <Sentence ID="901">Left</Sentence>
+      <Sentence ID="902">Top</Sentence>
+      <Sentence ID="903">Left</Sentence>
+      <Sentence ID="904">Top</Sentence>
+      <Sentence ID="905">Left</Sentence>
+      <Sentence ID="906">Top</Sentence>
+      <Sentence ID="907">Left</Sentence>
+      <Sentence ID="908">Top</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912">Left</Sentence>
+      <Sentence ID="913">Top</Sentence>
+      <Sentence ID="914">Left</Sentence>
+      <Sentence ID="915">Top</Sentence>
+      <Sentence ID="916">Left</Sentence>
+      <Sentence ID="917">Top</Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Кнопка</Sentence>
+      <Sentence ID="002">Кнопка в виде ссылки или изображения</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Отображение</Sentence>
+      <Sentence ID="601">Отображение</Sentence>
+      <Sentence ID="701">Неправильное значение</Sentence>
+      <Sentence ID="801">Неправильное значение</Sentence>
+      <Sentence ID="502">Отображение</Sentence>
+      <Sentence ID="602">Отображение</Sentence>
+      <Sentence ID="702">Неправильное значение</Sentence>
+      <Sentence ID="802">Неправильное значение</Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="302">Неправильное значение</Sentence>
+      <Sentence ID="401">Не отображается</Sentence>
+      <Sentence ID="402">Отображается</Sentence>
+      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="108">Граница</Sentence>
+      <Sentence ID="208">Толщина границы объекта в пикселях</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="109">Ссылка на контейнер</Sentence>
+      <Sentence ID="209">Ссылка на внутренний контейнер</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть существующий контейнер</Sentence>
+      <Sentence ID="111">Внешняя ссылка</Sentence>
+      <Sentence ID="211">Ссылка на внешную Веб-страницу</Sentence>
+      <Sentence ID="311">Неправильное значение, должно быть допустимой ссылкой</Sentence>
+      <Sentence ID="112">Целевое окно</Sentence>
+      <Sentence ID="212">Целевое окно для ссылки</Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="403">Новое окно</Sentence>
+      <Sentence ID="404">То же окно</Sentence>
+      <Sentence ID="405">Родительское окно</Sentence>
+      <Sentence ID="406">Верхнее окно</Sentence>
+      <Sentence ID="901">Лево</Sentence>
+      <Sentence ID="902">Верх</Sentence>
+      <Sentence ID="903">Лево</Sentence>
+      <Sentence ID="904">Верх</Sentence>
+      <Sentence ID="905">Лево</Sentence>
+      <Sentence ID="906">Верх</Sentence>
+      <Sentence ID="907">Лево</Sentence>
+      <Sentence ID="908">Верх</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912">Лево</Sentence>
+      <Sentence ID="913">Верх</Sentence>
+      <Sentence ID="914">Лево</Sentence>
+      <Sentence ID="915">Верх</Sentence>
+      <Sentence ID="916">Лево</Sentence>
+      <Sentence ID="917">Верх</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Zone Sensible</Sentence>
+      <Sentence ID="002">Zone Sensible</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="501">Visibilité</Sentence>
+      <Sentence ID="601">Visibilité</Sentence>
+      <Sentence ID="701">Incorrect value</Sentence>
+      <Sentence ID="801">Incorrect value</Sentence>
+      <Sentence ID="502">Visibilité</Sentence>
+      <Sentence ID="602">Visibilité</Sentence>
+      <Sentence ID="702">Incorrect value</Sentence>
+      <Sentence ID="802">Incorrect value</Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="302">Incorrect value</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="108">Bordure</Sentence>
+      <Sentence ID="208">Epaisseur de la bordure de l'objet en pixels</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="109">Liens vers conteneur interne</Sentence>
+      <Sentence ID="209">Lien vers un conteneur interne</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, doit être un conteneur interne valide</Sentence>
+      <Sentence ID="111">Lien externe</Sentence>
+      <Sentence ID="211">Lien vers une adresse externe</Sentence>
+      <Sentence ID="311">Valeur Incorrecte, doit être un lien valide</Sentence>
+      <Sentence ID="112">Fenetre cible</Sentence>
+      <Sentence ID="212">Fenêtre cible du lien</Sentence>
+      <Sentence ID="312">Valeur Incorrecte</Sentence>
+      <Sentence ID="403">Aucun</Sentence>
+      <Sentence ID="404">Même fenêtre</Sentence>
+      <Sentence ID="405">Fenêtre Parente</Sentence>
+      <Sentence ID="406">Fenêtre du niveau le plus haut</Sentence>
+      <Sentence ID="901">Gauche</Sentence>
+      <Sentence ID="902">Haut</Sentence>
+      <Sentence ID="903">Gauche</Sentence>
+      <Sentence ID="904">Haut</Sentence>
+      <Sentence ID="905">Gauche</Sentence>
+      <Sentence ID="906">Haut</Sentence>
+      <Sentence ID="907">Gauche</Sentence>
+      <Sentence ID="908">Haut</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912">Gauche</Sentence>
+      <Sentence ID="913">Haut</Sentence>
+      <Sentence ID="914">Gauche</Sentence>
+      <Sentence ID="915">Haut</Sentence>
+      <Sentence ID="916">Gauche</Sentence>
+      <Sentence ID="917">Haut</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="ca6ea90d-9819-49b3-973c-263a653ce671" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOkVDNTI4MTBFMUZERjExRTE4MjVERTYwN0RBNTkwMzc1IiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkVDNTI4MTBGMUZERjExRTE4MjVERTYwN0RBNTkwMzc1Ij4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUM1MjgxMEMxRkRGMTFFMTgyNURF
+NjA3REE1OTAzNzUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUM1MjgxMEQxRkRGMTFFMTgy
+NURFNjA3REE1OTAzNzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz6LLeQDAAACaklEQVR42uxYzWsTURCf3SytW5TSQ0jEGEIP
+roGUgkHEi3gW/wAvggg1VtbWtrT33tp6Eg9+FO9tT70ohNwCuVQiOUSjJCSyh1ICSUqapIn52M4s
+3RKEygaadXd5A8ObN7uw89v5zbzZ5VRVBScIDw4RBoQBYUAYEHuJYPRGpQIfdPv5Fnyk9f0jePYv
+36B+eQc2Oz1Q+33+CYgYiY8zeiASEP3hZgkBMgrEMdQynJEH7yD8PwL8MgtJ1rXO46vZwQ3yTHaO
+sGJnxc6AsK7FqGUKELMHRkdlZJCXZ+lid0xGWNdisxabtRi1nDtrCVZ6q8u38zOvv05u9vui0Sg0
+m01otVpnSntZlq1LLfelRmTx1q/IUKllxqzV7XbhxlVxZm7q+4uhjShmSK/XA6/XC9K1saez0jfZ
+tsVOGdEo5nbDzetXnqze/fHJlhnpdDpaVgiQx+OBy6PcNLo3Lrxr6VkZxt/4w2PYPyp0z4CQEM0Q
+3HI+n3fhdulCRhQzJB6Pq+FwGBqNBlBcpIIggKIokM1m32DrfWWL9qtTq185jgOfzweBQGAeb3lr
+iwORKOVyuTQlm+d5iMVidbR/IsgpVD0NLy1f7MViERKJRKtarYIoigRoDP0P8fIolQLaK7iKlgeS
+SqUO2u32vWQy+btSqUAwGOQQzFq9XtfGE5TjU7UuEAx4D8HcQXMP7YVcLgeSJAECe4y+cducIxjw
+fVyU0+1uoVA4KJfLEAqFeAS4QFmp1Wpa17L694hGmVKppAVM9ZDJZMDv91O2FvHSiC261t+jCso2
+AllPp9P76PuM+z+2OBDZpy7KiQADAPOZWunJ3/fZAAAAAElFTkSuQmCC]]></Resource>
+    <Resource ID="fbe1c37a-4020-445d-a077-92c6f75de4b3" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+    <Resource ID="f653a653-c350-42dc-892e-c1997a488e4e" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOkE3RUJDQTIxMUZFMzExRTFCRjNBREFGNERDQkE0MUExIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkE3RUJDQTIyMUZFMzExRTFCRjNBREFGNERDQkE0MUExIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QTdFQkNBMUYxRkUzMTFFMUJGM0FE
+QUY0RENCQTQxQTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QTdFQkNBMjAxRkUzMTFFMUJG
+M0FEQUY0RENCQTQxQTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz66JLK3AAAA10lEQVR42mI89/rPgXk3fh5I0mB3IEQzAAGQ
+7TDZhosBBhhzDn9tYCASQA1DMYAJZjIxAOQSdDEmbIL4XIBhAKUuYCHVBUqsXxg+fvxImgt4WBjY
++Fj/s5PtAn7W/5xR8n/D3zJw32Jg+E1eGAANkRRl+KpOUSzwsv6XAFI3SHYBMyMDIxIX5Ip7cAOQ
+4xcX7SPPao1mpiIQP4QlZby2t+iCA00XiC8hCcNdxPj//3+8BkDjHGRAIxAHATFIwzIgjibFAGQA
+MqgO5goWBtJBExCzwTgAAQYAdhZoQJ8S9NIAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="7d0e6d03-2fc2-4e3d-9c6b-acab5c2e97d5" Name="Icon" Type="gif"><![CDATA[R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[
 
 class VDOM_Sensitive(VDOM_object):
 
@@ -369,82 +484,80 @@ class VDOM_Sensitive(VDOM_object):
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
-	]]>
-	</SourceCode>
-	<Libraries>
-	</Libraries>
-	<E2vdom>
-		<Events>
-			<Userinterfaceevents>
-				<Event Name="mousemove">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="mousedown">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseup">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseover">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseout">
-					<Parameters>
-						<Parameter Help="#Lang(745)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(745)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="click">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="dblclick">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-				<Event Name="ctrlclick">
-					<Parameters>
-						<Parameter Help="#Lang(105)" Name="X" Order="" VbType=""/>
-						<Parameter Help="#Lang(104)" Name="Y" Order="" VbType=""/>
-					</Parameters>
-				</Event>
-			</Userinterfaceevents>
-		</Events>
-		<Actions>
-			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-				<Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="hide">
-					<Parameters>
-						<Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
-					</Parameters>
-					<Sourcecode><![CDATA[
+	]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="click">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="ctrlclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade);
-					]]></Sourcecode>
-				</Action>
-				<Action Description="#Lang(102)" InterfaceName="#Lang(102)" MethodName="show">
-					<Parameters>
-						<Parameter DefaultValue="0" Help="#Lang(202)" Interface="" InterfaceName="#Lang(202)" RegularExpressionValidation=".*" ScriptName="fade"/>
-					</Parameters>
-					<Sourcecode><![CDATA[
+					]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
-					]]></Sourcecode>
-				</Action>
-			</Container>
-		</Actions>
-	</E2vdom>
+					]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
 </Type>
