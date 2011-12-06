@@ -122,6 +122,18 @@
       <RegularExpressionValidation>.+</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>overflow</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(416)|0)|(#Lang(417)|1)|(#Lang(418)|2)|(#Lang(419)|3))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>classname</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
@@ -305,6 +317,13 @@
       <Sentence ID="915">Top</Sentence>
       <Sentence ID="916">Left</Sentence>
       <Sentence ID="917">Top</Sentence>
+      <Sentence ID="118">Overflow</Sentence>
+      <Sentence ID="218">Overflow mode</Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="416">Auto</Sentence>
+      <Sentence ID="417">Hidden</Sentence>
+      <Sentence ID="418">Scroll</Sentence>
+      <Sentence ID="419">Visible</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Текст</Sentence>
@@ -560,7 +579,85 @@ mcBjsb4++Pjye4CmE0lQfb42Obe6bGe/NK26h2Qpr7mUIspYvWwtEEWB2buTS7NTk13BUAgHtFo2
 NDwIKD634FVU1SZyZC3HgcizbYCtIgT9XsgbZahY9kdcoEu243gEo+caGpsK4Wd0+Pb6EP/82nX4
 H7kq4ARvgLBEAAAAAElFTkSuQmCC]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[class VDOM_richtext(VDOM_object):	def render(self, parent, contents=""):		if self.visible == "1":			invisible = ""		else:			invisible = "display:none;"		if self.classname == "":			classname = ""		else:			classname = " class='%s' " % ( self.classname )		style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;%s"%(self.zindex, self.position, self.top, self.left, self.width, invisible)		styles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : "", "height" : "", "overflow" : ""}		if "" != self.align:			styles["text-align"] = " %s;" % self.align		if "" != self.color:			styles["color"] = " #%s;" % self.color		if "" != self.font:			styles["font"] = " %s;" % self.font		if "1" == self.underlined:			styles["text-decoration"] += " underline"		if "1" == self.strikethrough:			styles["text-decoration"] += " line-through"		if "" != styles["text-decoration"]:			styles["text-decoration"] += ";"		if "" != self.height and "0" != self.height:			styles["height"] = " %spx; " % self.height			styles["overflow"] = " auto; "		for key in styles:			if "" != styles[key]:				style += (key + ":" + styles[key])		the_value = self.value		#if "" == the_value:		#  the_value = "Text"		id = 'o_' + (self.id).replace('-', '_')		result="<div id=\"%s\" style=\"%s\" %s>%s</div>"%(id, style, classname, the_value)		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		the_value = self.value		if "" == the_value:			the_value = '<font color="#444444">[empty]</font>'		f = ""		c = ""		if "" != self.color:			c = "color=\"%s\"" % self.color		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\			"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" %s %s editable=\"%s\">%s</htmltext>"\			"%s</container>"%(				self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,				0, 0, self.width, self.height, f, c, "value", "<![CDATA[" + the_value + "]" + "]>",				contents)		return VDOM_object.wysiwyg(self, parent, contents=result)    ]]></SourceCode>
+  <SourceCode><![CDATA[
+
+
+class VDOM_richtext(VDOM_object):
+
+	def render(self, parent, contents=""):
+		if self.visible == "1":
+			invisible = ""
+		else:
+			invisible = "display:none;"
+
+		if self.classname == "":
+			classname = ""
+		else:
+			classname = " class='%s' " % ( self.classname )
+
+		if self.overflow == "1":
+			overflow = u"hidden"
+		elif self.overflow == "2":
+			overflow = u"scroll"
+		elif self.overflow == "3":
+			overflow = u"visible"
+		else:
+			overflow = u"auto"
+
+		style = u"z-index:%s;position:%s;top:%spx;left:%spx;width:%spx;%s" % (self.zindex, self.position, self.top, self.left, self.width, invisible)
+		styles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : "", "height" : "", "overflow" : overflow}
+		if "" != self.align:
+			styles["text-align"] = "%s" % self.align
+		if "" != self.color:
+			styles["color"] = "#%s" % self.color
+		if "" != self.font:
+			styles["font"] = "%s" % self.font
+		if "1" == self.underlined:
+			styles["text-decoration"] += "underline"
+		if "1" == self.strikethrough:
+			styles["text-decoration"] += "line-through"
+		#if "" != self.height and "0" != self.height:
+		#	styles["height"] = " %spx; " % self.height
+		#	styles["overflow"] = " auto; "
+		if "" != self.height:
+			styles["height"] = "%spx" % self.height
+
+		for key in styles:
+			if "" != styles[key]:
+				style += (key + ":" + styles[key]) + ';'
+
+		the_value = self.value
+		#if "" == the_value:
+		#  the_value = "Text"
+
+		id = 'o_' + (self.id).replace('-', '_')
+
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='richtext' objname='%s' ver='2011-12-06'" % self.name
+		else:
+			debug_info = u""
+
+		result = u"<div %s id=\"%s\" style=\"%s\" %s>%s</div>" % (debug_info, id, style, classname, the_value)
+
+		return VDOM_object.render(self, parent, contents=result)
+
+	def wysiwyg(self, parent, contents=""):
+		the_value = self.value
+		if "" == the_value:
+			the_value = '<font color="#444444">[empty]</font>'
+		f = ""
+		c = ""
+		if "" != self.color:
+			c = "color=\"%s\"" % self.color
+		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
+			"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" %s %s editable=\"%s\">%s</htmltext>"\
+			"%s</container>"%(
+				self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
+				0, 0, self.width, self.height, f, c, "value", "<![CDATA[" + the_value + "]" + "]>",
+				contents)
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+    ]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
