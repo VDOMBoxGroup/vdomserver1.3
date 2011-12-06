@@ -376,7 +376,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				return False
 		else:
 		# Login failed
-		return False
+			return False
 
 	def umount(self):
 		cmd = """sh /opt/boot/mount_iscsi.sh -U -u %s """%(self.__uuid)
