@@ -1290,17 +1290,16 @@ class vsourcenames(object):
 		self.names[name]=value
 
 	def __contains__(self, name):
-		if name in self.internal:
-			alias=self.internal[name]
-			if alias:
-				try: names=self.imports[alias]
-				except KeyError: names=self.imports[alias]=set()
-				names.add(name)
-			return True
-		elif name in self.environment:
-			return True
-		else:
-			return name in self.names
+		alias=self.internal.get(name, KeyError)
+		if alias is KeyError:
+			alias=self.environment.get(name, KeyError)
+			if alias is KeyError:
+				return name in self.names
+		if isinstance(alias, basestring):
+			try: names=self.imports[alias]
+			except KeyError: names=self.imports[alias]=set()
+			names.add(name)
+		return True
 
 	def compose(self, ident):
 		contents=[(None, ident, u"from vscript.%s import %s"%(name, u", ".join(names))) \
