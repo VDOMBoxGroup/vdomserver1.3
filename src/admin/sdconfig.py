@@ -68,28 +68,29 @@ def run(request):
 <input type="hidden" name="devid" value="%s">""" % driver.id
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
-			if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
-				days_of_week = "*" if len(args["week-day[]"]) == 7 else ",".join(args["week-day[]"])
-				minutes = args["daily_int"][0].split('-')[1]
-				hours = args["daily_int"][0].split('-')[0]
-				interval = (minutes, hours, "*", "*", days_of_week)
-			elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])$", args["hourly_int"][0]):
-				hours = "*/" + args["hourly_int"][0]
-				interval = ("0", hours, "*", "*", "*")
-			elif args["int1"][0] == "daily" and "week-day[]" not in args:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: you must choose one or more days!";</script>')
-				ok = False
-			else:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: Incorrect time format!";</script>')
-				ok = False
-			if ok:
-				if hasattr(driver, "change_device") and driver.change_device(args["devselect"][0]):
-					managers.backup_manager.add_storage(driver)
-				if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, "0"):
-					managers.backup_manager.add_storage(driver)
-					managers.backup_manager.add_schedule(driver.id, backup_apps, interval, "0")
 		else:
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: There is no application for backup";</script>')
+			backup_apps = []
+		if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
+			days_of_week = "*" if len(args["week-day[]"]) == 7 else ",".join(args["week-day[]"])
+			minutes = args["daily_int"][0].split('-')[1]
+			hours = args["daily_int"][0].split('-')[0]
+			interval = (minutes, hours, "*", "*", days_of_week)
+		elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])$", args["hourly_int"][0]):
+			hours = "*/" + args["hourly_int"][0]
+			interval = ("0", hours, "*", "*", "*")
+		elif args["int1"][0] == "daily" and "week-day[]" not in args:
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: you must choose one or more days!";</script>')
+			ok = False
+		else:
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: Incorrect time format!";</script>')
+			ok = False
+		if ok:
+			if hasattr(driver, "change_device") and driver.change_device(args["devselect"][0]):
+				managers.backup_manager.add_storage(driver)
+			if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, "0"):
+				managers.backup_manager.add_storage(driver)
+				managers.backup_manager.add_schedule(driver.id, backup_apps, interval, "0")
+		
 	for dev in dev_list:
 		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and hasattr(driver, 'dev') and dev[0] == driver.dev else ""}		
 	if "devid" in args or "save" in args:
