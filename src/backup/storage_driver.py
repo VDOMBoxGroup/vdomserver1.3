@@ -356,19 +356,19 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
-		# Login to iSCSI tgt
+		debug("# Login to iSCSI tgt")
 		cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(self.__cloud_target)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
-
+		debug("!!!rc=%s!!!uuid=%s!!!!target=%s" % (rc, self.__uuid, self.__cloud_target))
 		if rc == 0:
-		# Logged in tgt
+			debug("# Logged in tgt")
 			cmd = """sh /opt/boot/mount_iscsi.sh -M -u %s """%(self.__uuid)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
-
+			debug("!!!rc=%s!!!uuid=%s!!!!target=%s" % (rc, self.__uuid, self.__cloud_target))
 			if rc == 0:
 			# if OK
 				self.__path = str(out.stdout.read()).strip('\n')
