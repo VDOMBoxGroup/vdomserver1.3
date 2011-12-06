@@ -132,7 +132,7 @@ def run(request):
 				raise Exception
 		except:
 			(size, used, free, percent) = ("0", "0", "0", "0%")
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: this external device doesn\'t setup in server";</script>')
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: storage driver has not mounted";</script>')
 	else:
 		(size, used, free, percent) = ("0", "0", "0", "0%")
 	if "backupNow" in args:
