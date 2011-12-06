@@ -186,6 +186,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		self.__cloud_pass = None
 		self.__cloud_share_status = None
 		self.__cloud_configs = None
+		self.__cloud_target = None
 
 		try:
 		# Get login/pass for cloud
