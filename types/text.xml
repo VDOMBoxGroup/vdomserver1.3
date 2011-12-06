@@ -761,13 +761,13 @@ class VDOM_text(VDOM_object):
 			"text-decoration": self.textdecoration or None}
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='text' objname='%s' ver='2011-12-02'" % self.name
+			debug_info = u"objtype='text' objname='%s' ver='2011-12-06'" % self.name
 		else:
 			debug_info = u""
 
 		result="<div %(debug_info)s id=\"%(id)s\" style=\"%(zind)s%(style)s%(css)s\" class=\"%(classname)s\">%(value)s</div>"%{
 			"zind": style_zindex,
-			"debug_info": self.name,
+			"debug_info": debug_info,
 			"id": self.id_special,
 			"style": "; ".join(["%s: %s"%(key, value) for key, value in style.iteritems() if value]),
 			"css": "; %s"%self.css if self.css else "",
