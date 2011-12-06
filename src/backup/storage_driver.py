@@ -281,9 +281,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 				if rc == 0:
 				# Got targets. Login.
-					target = str(out.stdout.read()).strip('\n')
+					self.__cloud_target = str(out.stdout.read()).strip('\n')
 
-					cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(target)
+					cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(self.__cloud_target)
 					out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 					out.wait()
 					rc = out.returncode
@@ -317,15 +317,15 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 								if rc == 0:
 								# Umount OK. All OK! Now - logout from target.
-									debug("iSCSI %s Logout ."%target)
+									debug("iSCSI %s Logout ."%self.__cloud_target )
 									
-									cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(target)
+									cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(self.__cloud_target )
 									out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 									out.wait()
 									rc = out.returncode
 									
 									if rc == 0:
-										debug("Logged out from %s " % target)
+										debug("Logged out from %s " % self.__cloud_target )
 									else:
 										raise Exception("Ololo pwpw")
 								else:
@@ -338,7 +338,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					else:
 					# Login to target failed. Exit.
 						debug("iSCSI Login to target failed! Exit.")
-						raise Exception("iSCSI Login to target %s failed! Exit."%target)
+						raise Exception("iSCSI Login to target %s failed! Exit."%self.__cloud_target )
 				else:
 				# No such targets. Exit
 					debug("iSCSI targets not found! Exit.")
@@ -355,9 +355,49 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
-		pass
+		# Login to iSCSI tgt
+		cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(self.__cloud_target)
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+
+		if rc == 0:
+		# Logged in tgt
+			cmd = """sh /opt/boot/mount_iscsi.sh -M -u %s """%(self.__uuid)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+
+			if rc == 0:
+			# if OK
+				self.__path = str(out.stdout.read()).strip('\n')
+				return self.__path
+			else:
+				return False
+		else:
+		# Login failed
+		return False
+
 	def umount(self):
-		pass
+		cmd = """sh /opt/boot/mount_iscsi.sh -U -u %s """%(self.__uuid)
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+
+		if rc == 0:
+			cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(self.__cloud_target )
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			
+			if rc == 0:
+				debug("Logged out from %s " % self.__cloud_target )
+				return True
+			else:
+				raise Exception("Ololo pwpw")
+		else:
+			debug("Can't umount %s in %s"%(self.__dev, self.__path))
+			return False
 
 class VDOM_backup_storage_manager(object):
 
