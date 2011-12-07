@@ -452,13 +452,26 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 							if rc == 0:
 							# Mounted ok, nothing to do. Umount
 								self.__path = str(out.stdout.read()).strip('\n')
-								return self.__path
+								cmd = """sh /opt/boot/mount_iscsi.sh -D """
+								out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+								out.wait()
+								rc = out.returncode
+								
+								if rc == 0:
+									debug("OVPN disconnected." )
+									debug("--------")
+									debig("SELF.__PATH = %s"%self.__path)
+									debug("--------")
+									return self.__path
+								else:
+									debug("OVPN dicsonnect failed.")
+									return False
 							else:
+								debug("iSCSI Mount failed.")
 								return False
-
 						else:
-							# Mount wrong! Exit.
-							debug("iSCSI MOUNT %s %s failed! Exit."%(self.__dev, self.__uuid))
+							# Probe wrong! Exit.
+							debug("iSCSI Probe dev: %s  uuid: %s failed! Exit."%(self.__dev, self.__uuid))
 							raise Exception("iSCSI MOUNT failed! Exit.")
 					else:
 					# Login to target failed. Exit.
@@ -494,9 +507,20 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			
 			if rc == 0:
 				debug("Logged out from %s " % self.__cloud_target )
-				return True
+				
+				cmd = """sh /opt/boot/mount_iscsi.sh -D """
+				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+				out.wait()
+				rc = out.returncode
+				
+				if rc == 0:
+					debug("OVPN disconnected OK!" )
+					return True
+				else:
+					debug("OVPN disconnect FAILED!" )
+					return False
 			else:
-				raise Exception("Ololo pwpw")
+				raise Exception("LOGOUT FROM TARGET FAILED! pwpwpw")
 		else:
 			debug("Can't umount %s in %s"%(self.__dev, self.__path))
 			return False
