@@ -356,7 +356,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
-try:
+		try:
 		# Get share status
 
 			cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
