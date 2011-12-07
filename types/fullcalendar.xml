@@ -3018,7 +3018,7 @@ class VDOM_fullcalendar(VDOM_object):
 				var id = "%(id_out)s";
 				execEventBinded(id.substring(2, id.length), "eventDrag", {id:event.id, start: start, end:end, instance: event.instance, allDay:event.allDay})
 			},
-			eventResize: function(event) {
+			eventResize: function( startDate, endDate, dayDelta, minuteDelta, allDay ) {
 				startDate = event.start;
 				start = startDate.getFullYear() + "-" + 
 						(startDate.getMonth() + 1).toString() + "-" + 
@@ -3041,7 +3041,7 @@ class VDOM_fullcalendar(VDOM_object):
 				execEventBinded(id.substring(2, id.length), "eventResize", {id:event.id, start: start, end:end, instance: event.instance, allDay:event.allDay })
 			},
 			selectable: true,
-			select: function(startDate, endDate, allDay) {
+			select: function(startDate, allDay) {
 				$("#%(id_out)s").fullCalendar('unselect');
 				var id = "%(id_out)s";
 				end = 	endDate.getFullYear() + "-" + 
