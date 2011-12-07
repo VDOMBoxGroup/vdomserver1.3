@@ -224,30 +224,30 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			if rc == 0:
 			# state: ok
-				self.__clound_share_status = 0
+				self.__cloud_share_status = 0
 
 			elif rc == 1:
 			# state: empty
-				self.__clound_share_status = 1
+				self.__cloud_share_status = 1
 				debug("To be activated! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 2: 
 			# state: extended
-				self.__clound_share_status = 2
+				self.__cloud_share_status = 2
 				debug("Extended! Need in extention. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 3:
 			# state: reduced
-				self.__clound_share_status = 3
+				self.__cloud_share_status = 3
 				debug("Reduced! Need in reinit. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			else:
-				self.__clound_share_status = 10
+				self.__cloud_share_status = 10
 				debug("Crap! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		except:
 			pass
 
-		if self.__clound_share_status != 1:
+		if self.__cloud_share_status != 1:
 		# Get and Install openvpn configs
 			debug("Try to get configs! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
@@ -257,7 +257,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			if rc == 0:
 			# Got configs 
-				self.__clound_configs = 1
+				self.__cloud_configs = 1
 				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
 				raise Exception("Crap! %s %s"%(self.__cloud_login, self.__cloud_pass))
@@ -266,7 +266,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 
 
-		if self.__clound_configs == 1:
+		if self.__cloud_configs == 1:
 		# Configs exist. Now: Connect
 			cmd = """sh /opt/boot/mount_iscsi.sh -C """
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
@@ -366,30 +366,30 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			if rc == 0:
 			# state: ok
-				self.__clound_share_status = 0
+				self.__cloud_share_status = 0
 
 			elif rc == 1:
 			# state: empty
-				self.__clound_share_status = 1
+				self.__cloud_share_status = 1
 				debug("To be activated! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 2: 
 			# state: extended
-				self.__clound_share_status = 2
+				self.__cloud_share_status = 2
 				debug("Extended! Need in extention. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 3:
 			# state: reduced
-				self.__clound_share_status = 3
+				self.__cloud_share_status = 3
 				debug("Reduced! Need in reinit. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 			else:
-				self.__clound_share_status = 10
+				self.__cloud_share_status = 10
 				debug("Crap! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		except:
 			pass
 
-		if self.__clound_share_status != 1:
+		if self.__cloud_share_status != 1:
 		# Get and Install openvpn configs
 			debug("Try to get configs! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
@@ -399,7 +399,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			if rc == 0:
 			# Got configs 
-				self.__clound_configs = 1
+				self.__cloud_configs = 1
 				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
 				raise Exception("Crap! %s %s"%(self.__cloud_login, self.__cloud_pass))
@@ -408,7 +408,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 
 
-		if self.__clound_configs == 1:
+		if self.__cloud_configs == 1:
 		# Configs exist. Now: Connect
 			cmd = """sh /opt/boot/mount_iscsi.sh -C """
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
@@ -460,7 +460,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 								if rc == 0:
 									debug("OVPN disconnected." )
 									debug("--------")
-									debig("SELF.__PATH = %s"%self.__path)
+									debug("SELF.__PATH = %s"%self.__path)
 									debug("--------")
 									return self.__path
 								else:
@@ -494,12 +494,14 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 
 	def umount(self):
+		debug("-- Umount start \n UUID: %s  DEV: %s PATH: %s"%(self.__uuid, self.__dev, self.__path))
 		cmd = """sh /opt/boot/mount_iscsi.sh -U -u %s """%(self.__uuid)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
 
 		if rc == 0:
+			debug("-- Umount OK! \n UUID: %s  DEV: %s PATH: %s"%(self.__uuid, self.__dev, self.__path))
 			cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(self.__cloud_target )
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
