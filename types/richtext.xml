@@ -742,7 +742,9 @@ class VDOM_richtext(VDOM_object):
 		#if "" != self.height and "0" != self.height:
 		#	styles["height"] = " %spx; " % self.height
 		#	styles["overflow"] = " auto; "
-		if "" != self.height:
+		#if "" != self.height:
+		#	styles["height"] = "%spx" % self.height
+		if "" != self.height and "0" != self.height:
 			styles["height"] = "%spx" % self.height
 
 		for key in styles:
