@@ -109,6 +109,10 @@ class VDOM_protocol_information(object):
 	name=property(_get_name)
 	version=property(_get_version)
 
+class VDOM_shared_variables(object):
+	def __getitem__(self, name):
+		return managers.request_manager.current.shared_variables.get(name)
+
 class VDOM_request(object):
 	
 	def __init__(self):
@@ -117,6 +121,7 @@ class VDOM_request(object):
 		self._client=VDOM_client_information()
 		self._server=VDOM_server_information()
 		self._protocol=VDOM_protocol_information()
+		self._shared_vars = VDOM_shared_variables()
 
 	def _get_environment(self):
 		return managers.request_manager.current.environment().environment()
@@ -138,3 +143,4 @@ class VDOM_request(object):
 	client=property(lambda self: self._client)
 	server=property(lambda self: self._server)
 	protocol=property(lambda self: self._protocol)
+	shared_variables = property(lambda self: self._shared_vars)

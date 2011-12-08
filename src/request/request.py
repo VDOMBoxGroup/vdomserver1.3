@@ -121,7 +121,7 @@ class VDOM_request:
 		self.nokeepalive = False
 		self.__binary = False
 		self.fh = None
-
+		self.shared_variables = {}
 	
 	def collect_files(self):
 		"""Replacement for destructor needed for temp files cleanup"""
