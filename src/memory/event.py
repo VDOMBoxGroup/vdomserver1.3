@@ -1,4 +1,5 @@
 """e2vdom info module"""
+import json, managers
 
 class VDOM_event_info():
 	"""event info class"""
@@ -122,6 +123,9 @@ class VDOM_client_server_events:
 								raise VDOM_exception_element("parameter")
 							params[param_name] = [child2.value.encode("utf8")]
 					self.events[(source_obj_id, event_name)] = params
+				elif child.lname == "sv":
+					managers.request_manager.current.shared_variables = json.loads(child.value)
+					
 		except VDOM_exception:
 			raise
 		except Exception, e:
