@@ -20,7 +20,7 @@
     <Containers>dbschema</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers>on_delete</Handlers>
-    <RemoteMethods/>
+    <RemoteMethods>get_data,get_structure,get_count,add_row,add_column,delete_column,delete_row,update_row, update_column</RemoteMethods>
     <WCAG/>
     <XMLScriptName/>
   </Information>
