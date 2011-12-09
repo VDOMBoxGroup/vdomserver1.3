@@ -60,11 +60,17 @@ def run(request):
 		ok = True
 		if not driver:
 			if "type" in args:
-				if args["type"][0] == "external":
-					driver = VDOM_sd_external_drive(args["devselect"][0])
-				elif args["type"][0] == "cloud":
-					driver = VDOM_cloud_storage_driver()
-				hidden_tag += """
+				try:
+					if args["type"][0] == "external":
+						driver = VDOM_sd_external_drive(args["devselect"][0])
+					elif args["type"][0] == "cloud":
+						
+							driver = VDOM_cloud_storage_driver()
+				except Exception as e:
+					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
+					ok = False
+				if ok:
+					hidden_tag += """
 <input type="hidden" name="devid" value="%s">""" % driver.id
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
@@ -130,10 +136,10 @@ def run(request):
 				(size, used, free, percent) = driver.get_sd_size(path)
 				driver.umount()
 			else:
-				raise Exception
-		except:
+				raise Exception("Storage driver hasn't been mounted")
+		except Exception as e:
 			(size, used, free, percent) = ("0", "0", "0", "0%")
-			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: storage driver has not mounted";</script>')
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 	else:
 		(size, used, free, percent) = ("0", "0", "0", "0%")
 	if "backupNow" in args:
