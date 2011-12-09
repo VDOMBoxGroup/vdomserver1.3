@@ -20,7 +20,7 @@ class VDOM_storage_driver(object):
 			if rc == 0:
 				size = str(out.stdout.read()).strip('\n')
 		except:
-			size = "-0"
+			size = "0"
 
 		cmd = """sh /opt/boot/get_disksize.sh -u -m %s"""%mount_point
 		try:
@@ -31,7 +31,7 @@ class VDOM_storage_driver(object):
 			if rc == 0:
 				used = str(out.stdout.read()).strip('\n')
 		except:
-			used = "-0"
+			used = "0"
 
 		cmd = """sh /opt/boot/get_disksize.sh -f -m %s"""%mount_point
 		try:
@@ -42,7 +42,7 @@ class VDOM_storage_driver(object):
 			if rc == 0:
 				free = str(out.stdout.read()).strip('\n')
 		except:
-			free = "-0"
+			free = "0"
 
 		cmd = """sh /opt/boot/get_disksize.sh -p -m %s"""%mount_point
 		try:
@@ -385,9 +385,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			else:
 				self.__cloud_share_status = 10
-				debug("Crap! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
-		except:
-			pass
+				raise Exception("Crap! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+		except Exception as e:
+			raise Exception(str(e))
 
 		if self.__cloud_share_status != 1:
 		# Get and Install openvpn configs
