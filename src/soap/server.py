@@ -797,6 +797,7 @@ class VDOM_web_services_server(object):
 				pass
 		if attr:
 			copy_object.set_attributes(attr)
+
 		if 1 == obj.type.container:
 			xml_actions = ''
 		else:
@@ -826,7 +827,7 @@ class VDOM_web_services_server(object):
 			copy_object.set_actions(root)
 			root.delete()
 		for ob in obj.objects:
-			self.__copy_object(app, ob, obj_id)
+			self.__copy_object(app, obj_id, ob)
 		return obj_id
 
 	def __set_attributes(self, obj, attr):
