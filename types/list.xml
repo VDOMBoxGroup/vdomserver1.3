@@ -170,6 +170,18 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>dragdrop</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>#%(id)s li.selected { background: #fdeeb5; } #%(id)s li.active { background: #fbdf75 !important; }</DefaultValue>
@@ -285,6 +297,9 @@
       <Sentence ID="903">list element id</Sentence>
       <Sentence ID="904"></Sentence>
       <Sentence ID="905"></Sentence>
+      <Sentence ID="117">Drag'n'drop</Sentence>
+      <Sentence ID="217">Use drag'n'drop</Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -512,6 +527,20 @@ class VDOM_list(VDOM_object):
 		
 			else:
 				raise Exception("Incorrect value in string %s" % unicode(value))
+
+		if self.dragdrop == "1":
+			dragdrop = u"""
+$('#%(id)s li').droppable({
+	//greedy: true,
+	//activeClass: "ui-state-hover",
+	hoverClass: "ui-state-active",
+	drop: function(e, ui) {
+		execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('itemid')});
+	}
+});""" % { "id": id, "woid": woid }
+		else:
+			dragdrop = u""
+
 		res_buffer.write(u"</ul></div>")
 		js_script = u"""<script type="text/javascript">
 jQuery(document).ready(function($){
@@ -551,26 +580,9 @@ jQuery(document).ready(function($){
 		return false;
 	});
 
-	$j('#%(id)s li').droppable({
-		//greedy: true,
-		//activeClass: "ui-state-hover",
-		hoverClass: "ui-state-active",
-		drop: function(e, ui) {
-			execEventBinded('%(woid)s', "drop", {itemid: $j(this).attr('itemid')});
-		}
-	});
-
-/*
-	var obj_id = '%(id)s';
-	$('#%(id)s ul li').click(function(){
-		$(this).parent().children().removeClass("active");
-		$(this).addClass("active");
-		var elem_id = $(this).attr('itemid');
-		execEventBinded(obj_id.substring(2, obj_id.length), "itemclick", {itemid:elem_id});
-	});
-*/
+	%(dragdrop)s
 });
-</script>""" % { "woid": woid, "id": id }
+</script>""" % { "woid": woid, "id": id, "dragdrop": dragdrop }
 		res_buffer.write(js_script)
 		result = res_buffer.getvalue()
 		res_buffer.close()
