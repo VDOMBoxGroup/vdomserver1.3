@@ -32,6 +32,7 @@ def run(request):
 	
 	hourly_selected = ""
 	week_display = ''
+	rotation_value = "10"
 	daily_selected = " selected"
 	week_days = "*"
 	daily_display = ''
@@ -76,6 +77,10 @@ def run(request):
 			backup_apps = args["backup_app[]"]
 		else:
 			backup_apps = []
+		if "rotation" in args:
+			rotation_value = args["rotation"][0]
+		else:
+			rotation_value = "10"
 		if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
 			days_of_week = "*" if len(args["week-day[]"]) == 7 else ",".join(args["week-day[]"])
 			minutes = args["daily_int"][0].split('-')[1]
@@ -93,9 +98,9 @@ def run(request):
 		if ok:
 			if hasattr(driver, "change_device") and driver.change_device(args["devselect"][0]):
 				managers.backup_manager.add_storage(driver)
-			if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, "0"):
+			if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, rotation_value):
 				managers.backup_manager.add_storage(driver)
-				managers.backup_manager.add_schedule(driver.id, backup_apps, interval, "0")
+				managers.backup_manager.add_schedule(driver.id, backup_apps, interval, rotation_value)
 		
 	for dev in dev_list:
 		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and hasattr(driver, 'dev') and dev[0] == driver.dev else ""}		
@@ -103,6 +108,7 @@ def run(request):
 		schedule = managers.backup_manager.get_schedule(driver.id)
 		if schedule:			
 			backup_apps = schedule[1][0].applications
+			rotation_value = schedule[1][0].rotation
 			apps_tag = ""
 			for app in applst:
 				appname = managers.xml_manager.get_application(app).name
@@ -146,7 +152,7 @@ def run(request):
 		if "devid" in args:
 			if "backup_app[]" in args:
 				for appid in args["backup_app[]"]:
-					managers.backup_manager.backup(appid, args["devid"][0])
+					managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
 			else:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
 		else:
@@ -429,6 +435,8 @@ function ChangeBackup(obj){
    <div id="x_daily"%(display)s><label for="daily_int">Backup at : </label><input type="text" name="daily_int" value="%(value)s"></div>""" % {"display": daily_display, "value": d_backup_time})
 	request.write("""
    <div id="x_hourly"%(display)s><label for="hourly_int">Backup every </label><input type="text" name="hourly_int" value="%(value)s"><label for="hourly_int"> hour(s)</label></div>""" % {"display": hourly_display, "value": h_backup_time})
+	request.write("""
+   <div id="rotation"><label for="rotation">Rotation </label><input type="text" name="rotation" value="%(value)s"></div>""" % {"value": rotation_value})
 	request.write("""
    <div class="clear"> </div>
   </div>""")
