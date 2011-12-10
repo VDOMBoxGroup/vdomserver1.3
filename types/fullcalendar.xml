@@ -2960,18 +2960,25 @@ class VDOM_fullcalendar(VDOM_object):
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
+		var t="%(time_format)s";
+		var time_format="H:mm{ - H:mm}";
+		if (t == 12) {
+			time_format="h(:mm){ - h(:mm)p'm'}";
+		}
 		$("#%(id_out)s").fullCalendar({
 			header: {
 				left: '',
 				center: '',
 				right: ''
 			},
+			timeFormat: time_format,
 			firstDay: %(first_day)s,
 			eventSources: %(event_sources)s,
 			eventClick: function(event) {
 				var id="%(id_out)s";
 				execEventBinded(id.substring(2, id.length), "eventClick", {id:event.id});
 			},
+			/*
 			dayClick: function(date) {
 				var id="%(id_out)s";
 				var year=date.getFullYear();
@@ -2985,7 +2992,7 @@ class VDOM_fullcalendar(VDOM_object):
 				}
 				var start = year.toString() + '-' + month + '-' + day;
 				execEventBinded(id.substring(2, id.length), "dayClick", {"start":start});
-			},
+			},*/
 			editable: true,
 			eventDrop: function(event, dayDelta, minuteDelta, allDay) {
 				startDate = event.start;
@@ -3018,7 +3025,7 @@ class VDOM_fullcalendar(VDOM_object):
 				var id = "%(id_out)s";
 				execEventBinded(id.substring(2, id.length), "eventDrag", {id:event.id, start: start, end:end, instance: event.instance, allDay:event.allDay})
 			},
-			eventResize: function( startDate, endDate, dayDelta, minuteDelta, allDay ) {
+			eventResize: function(event) {
 				startDate = event.start;
 				start = startDate.getFullYear() + "-" + 
 						(startDate.getMonth() + 1).toString() + "-" + 
@@ -3041,7 +3048,7 @@ class VDOM_fullcalendar(VDOM_object):
 				execEventBinded(id.substring(2, id.length), "eventResize", {id:event.id, start: start, end:end, instance: event.instance, allDay:event.allDay })
 			},
 			selectable: true,
-			select: function(startDate, allDay) {
+			select: function(startDate, endDate, allDay) {
 				$("#%(id_out)s").fullCalendar('unselect');
 				var id = "%(id_out)s";
 				end = 	endDate.getFullYear() + "-" + 
@@ -3075,6 +3082,8 @@ class VDOM_fullcalendar(VDOM_object):
 		id_out = 'o_' + (self.id).replace('-', '_')
 		current_view = view[self.view]
 		year_month_day = self.displayDate.split('-') if self.displayDate else str(datetime.date.today()).split('-')
+		#time_format = "'H:mm{ - H:mm}'" if self.timeFormat == "24" else "'h:mm{ - h:mm}'"
+		
 		style_params = {"zindex": self.zindex, 
 						"top": self.top, 
 						"left": self.left, 
@@ -3095,7 +3104,8 @@ class VDOM_fullcalendar(VDOM_object):
 					"month": year_month_day[1], 
 					"day": year_month_day[2],
 					"event_sources": self.parse_events(),
-					"first_day": self.firstDay}
+					"first_day": self.firstDay,
+					"time_format": self.timeFormat }
 		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)	
 		
 	
@@ -3121,7 +3131,7 @@ class VDOM_fullcalendar(VDOM_object):
 				#allDay = True if str(startDate.value) == str(endDate.value) else False
 				if event.rruleset == None:
 					event_sources.append({ "events": [{ "id": id.value,
-										"title": str(summary.value).replace( "&comma&", ","), 
+										"title": (summary.value).replace( "&comma&", ","), 
 										"description":description.value,
 										"start": startDate.value.strftime("%Y-%m-%d %H:%M:%S"), 
 										"end": endDate.value.strftime("%Y-%m-%d %H:%M:%S"),
@@ -3132,7 +3142,7 @@ class VDOM_fullcalendar(VDOM_object):
 					instance = 1
 					for rev in event.rruleset:
 						event_sources.append({ "events": [{
-										"title": str(summary.value).replace( "&comma&", ","), 
+										"title": (summary.value).replace( "&comma&", ","), 
 										"description":description.value,
 										"id": id.value,
 										"start": rev.strftime("%Y-%m-%d %H:%M:%S"), 
