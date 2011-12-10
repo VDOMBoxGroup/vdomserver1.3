@@ -10,13 +10,13 @@ class VDOM_backup_manager(object):
     def __init__(self):
         backup_storage_manager.restore()
         
-    def backup(self, app_id, drv_id):
+    def backup(self, app_id, drv_id, rotation):
         sd = backup_storage_manager.get_driver(drv_id)
         path = sd.mount()
         if not path:
             debug("Storage driver is not mounted")
 	    return
-        backup.backup(app_id, path)
+        backup.backup(app_id, path, rotation)
         sd.umount()
     
     def get_schedule(self, driver_id):
