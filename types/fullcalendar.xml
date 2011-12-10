@@ -2985,6 +2985,7 @@ class VDOM_fullcalendar(VDOM_object):
 	"""back to all resources, allDay works, resources work """
 	VERSION	= "version 12.10"
 	""" time format, dayClick = daysSelect, Mozilla events """
+	""" day names """
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
@@ -3003,6 +3004,9 @@ class VDOM_fullcalendar(VDOM_object):
 			},
 			axisFormat: time_format,
 			timeFormat: time_format,
+			dayNamesShort: %(day_names)s,
+			dayNames: %(day_names)s, //%(day_names)s,
+			
 			firstDay: %(first_day)s,
 			eventSources: %(event_sources)s,
 			eventClick: function(event) {
@@ -3105,6 +3109,13 @@ class VDOM_fullcalendar(VDOM_object):
 		current_view = view[self.view]
 		year_month_day = self.displayDate.split('-') if self.displayDate else str(datetime.date.today()).split('-')
 		#time_format = "'H:mm{ - H:mm}'" if self.timeFormat == "24" else "'h:mm{ - h:mm}'"
+		day_names = []
+		for name in self.dayNames:
+			day_names.append( name )	
+		if len(self.dayNames) < 7:
+			day_names = (['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+		#day_names = [ "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",  ]
+		#day_names = [ 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' ]
 		
 		style_params = {"zindex": self.zindex, 
 						"top": self.top, 
@@ -3127,12 +3138,12 @@ class VDOM_fullcalendar(VDOM_object):
 					"day": year_month_day[2],
 					"event_sources": self.parse_events(),
 					"first_day": self.firstDay,
-					"time_format": self.timeFormat }
+					"time_format": self.timeFormat,
+					"day_names": json.dumps(self.dayNames), }
 		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)	
 		
 	
 	def parse_events(self):
-		#eventSources = [{events:[{title: "sldkfj", start:"sldfj", end: "dlsf"}], color: "sldfj"}]
 		event_sources = []
 		if self.events:
 			calendar = vobject.readOne(self.events)
