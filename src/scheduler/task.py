@@ -15,7 +15,7 @@ class VDOM_backup_task(VDOM_scheduler_task):
     
     def run(self):
         for app in self.__app_list:
-            managers.backup_manager.backup(app, self.__driver_id)
+            managers.backup_manager.backup(app, self.__driver_id, self.__rotation)
     
     def __get_drv_id(self):
         return self.__driver_id
