@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.275.0</Version>
+    <Version>1.280.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -152,7 +152,7 @@
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
+      <CodeInterface>DropDown((#Lang(406)|12)|(#Lang(407)|24))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>12|24</RegularExpressionValidation>
@@ -164,7 +164,7 @@
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
+      <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-6]</RegularExpressionValidation>
@@ -239,7 +239,7 @@
       <Sentence ID="312">time format should be 12 or 24</Sentence>
       <Sentence ID="113">firstDay</Sentence>
       <Sentence ID="213">firstDay</Sentence>
-      <Sentence ID="313">first should be between 0 and 6</Sentence>
+      <Sentence ID="313">first day should be between 0 and 6</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -269,6 +269,8 @@
       <Sentence ID="929">Top</Sentence>
       <Sentence ID="931">Left</Sentence>
       <Sentence ID="932">Top</Sentence>
+      <Sentence ID="406">12</Sentence>
+      <Sentence ID="407">24</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
@@ -368,6 +370,8 @@
       <Sentence ID="929">Верх</Sentence>
       <Sentence ID="931">Лево</Sentence>
       <Sentence ID="932">Верх</Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
@@ -467,6 +471,8 @@
       <Sentence ID="929">Haut</Sentence>
       <Sentence ID="931">Gauche</Sentence>
       <Sentence ID="932">Haut</Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -2943,9 +2949,8 @@ dW5kZWZpbmVkID8gZShpKS5wb3NpdGlvbigpLmxlZnQgOiBsZWZ0c1tpXTsNCgl9Ow0KCQ0KCXQu
 cmlnaHQgPSBmdW5jdGlvbihpKSB7DQoJCXJldHVybiByaWdodHNbaV0gPSByaWdodHNbaV0gPT09
 IHVuZGVmaW5lZCA/IHQubGVmdChpKSArIGUoaSkud2lkdGgoKSA6IHJpZ2h0c1tpXTsNCgl9Ow0K
 CQ0KCXQuY2xlYXIgPSBmdW5jdGlvbigpIHsNCgkJZWxlbWVudHMgPSB7fTsNCgkJbGVmdHMgPSB7
-fTsNCgkJcmlnaHRzID0ge307DQoJfTsNCgkNCn0NCg0KfSkoalF1ZXJ5KTsNCg==]]>
-</Resource>
-</Resources>
+fTsNCgkJcmlnaHRzID0ge307DQoJfTsNCgkNCn0NCg0KfSkoalF1ZXJ5KTsNCg==]]></Resource>
+  </Resources>
   <SourceCode><![CDATA[
 import json
 import vobject
@@ -2957,13 +2962,17 @@ class VDOM_fullcalendar(VDOM_object):
 	
 	VERSION = "version 12.07"
 	"""back to all resources, allDay works, resources work """
+	VERSION	= "version 12.10"
+	""" time format, dayClick = daysSelect, Mozilla events """
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
 		var t="%(time_format)s";
-		var time_format="H:mm{ - H:mm}";
-		if (t == 12) {
-			time_format="h(:mm){ - h(:mm)p'm'}";
+		if (t == 24 || t == "24") {
+			time_format = "H:mm{ - H:mm}";
+		}
+		else {
+			time_format="h(:mm)tt{ - h(:mm)tt}";
 		}
 		$("#%(id_out)s").fullCalendar({
 			header: {
@@ -2996,13 +3005,11 @@ class VDOM_fullcalendar(VDOM_object):
 			editable: true,
 			eventDrop: function(event, dayDelta, minuteDelta, allDay) {
 				startDate = event.start;
-				//alert( startDate )
 				start = startDate.getFullYear() + "-" + 
 						(startDate.getMonth() + 1).toString() + "-" + 
 						startDate.getDate() + " " + 
 						startDate.getHours() + ":" + 
 						startDate.getMinutes();
-				//alert( event.end )
 				var endDate = event.end
 				if (event.end == null) {
 					endDate = event.start
@@ -3010,12 +3017,6 @@ class VDOM_fullcalendar(VDOM_object):
 				else {
 					endDate = event.end
 				}
-				//endDate = event.end;
-				//if (endDate == "null") {
-					//endDate = startDate;
-				//}
-				//alert( endDate )
-				//alert( event.start )
 				end = 	endDate.getFullYear() + "-" + 
 						(endDate.getMonth() + 1).toString()  + "-"  + 
 						endDate.getDate() + " " + 
@@ -3049,7 +3050,6 @@ class VDOM_fullcalendar(VDOM_object):
 			},
 			selectable: true,
 			select: function(startDate, endDate, allDay) {
-				$("#%(id_out)s").fullCalendar('unselect');
 				var id = "%(id_out)s";
 				end = 	endDate.getFullYear() + "-" + 
 						(endDate.getMonth() + 1).toString()  + "-"  + 
@@ -3063,9 +3063,9 @@ class VDOM_fullcalendar(VDOM_object):
 						startDate.getHours() + ":" + 
 						startDate.getMinutes();
 				
-				event.allDay = allDay;
-				event = { start: startDate, end: endDate, title: "*", id: "-1", allDay: event.allDay };
+				event = { start: startDate, end: endDate, title: "*", id: "-1", allDay: allDay };
 				$("#%(id_out)s").fullCalendar('renderEvent', event);
+				$("#%(id_out)s").fullCalendar('unselect');
 				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end": end, allDay:event.allDay});
 			}			
 		});
