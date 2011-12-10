@@ -5,17 +5,17 @@ import shlex
 class VDOM_backup(object):
     
 
-    def backup(self, app_id, path):
+    def backup(self, app_id, path, rotation):
         if not path:
 	    debug("Storage driver is not mounted")
 	    return
         el = VDOM_extracter.get_extracters(app_id)
         all_path = {key: value.extract() for key, value in el.items()}
         src_path = {key: value for key, value in all_path.items() if value}
-        return self.__do_backup(app_id, path, src_path)
+        return self.__do_backup(app_id, path, src_path, rotation)
 		
 			
-    def __do_backup(self, app_id, path, src_path):
+    def __do_backup(self, app_id, path, src_path, rotation):
 	debug("DO_BACKUP Called PATH: %s"%(path))
 	cmd = """sh /opt/boot/repo_browse.sh -p %s -g %s -l""" % (path, app_id)
 	out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
@@ -44,7 +44,7 @@ class VDOM_backup(object):
 	    prev = "--prev %s " % prev_rev if prev_rev else ""
 	    ok = True
 	    for dirname in src_path:
-		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s %s --current %s -n %s  -p %s """%(app_id, path, prev, current_rev, dirname, src_path[dirname])
+		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s --rotate %s %s --current  %s -n %s  -p %s """%(app_id, path, rotation, prev, current_rev, dirname, src_path[dirname])
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
