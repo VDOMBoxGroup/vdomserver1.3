@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.280.0</Version>
+    <Version>1.282.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -169,6 +169,18 @@
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-6]</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>dayNames</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>[*,*,*,*,*,*,*]</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -237,9 +249,14 @@
       <Sentence ID="112">timeFormat</Sentence>
       <Sentence ID="212">timeFormat</Sentence>
       <Sentence ID="312">time format should be 12 or 24</Sentence>
+      <Sentence ID="406">12</Sentence>
+      <Sentence ID="407">24</Sentence>
       <Sentence ID="113">firstDay</Sentence>
       <Sentence ID="213">firstDay</Sentence>
       <Sentence ID="313">first day should be between 0 and 6</Sentence>
+      <Sentence ID="114">dayNames</Sentence>
+      <Sentence ID="214">list with short names of weekdays</Sentence>
+      <Sentence ID="314">enter list with names of weekdays.</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -269,8 +286,6 @@
       <Sentence ID="929">Top</Sentence>
       <Sentence ID="931">Left</Sentence>
       <Sentence ID="932">Top</Sentence>
-      <Sentence ID="406">12</Sentence>
-      <Sentence ID="407">24</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
@@ -338,9 +353,14 @@
       <Sentence ID="112"></Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="312"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
       <Sentence ID="113"></Sentence>
       <Sentence ID="213"></Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="901">Лево</Sentence>
       <Sentence ID="902">Верх</Sentence>
       <Sentence ID="903">Лево</Sentence>
@@ -370,8 +390,6 @@
       <Sentence ID="929">Верх</Sentence>
       <Sentence ID="931">Лево</Sentence>
       <Sentence ID="932">Верх</Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
@@ -439,9 +457,14 @@
       <Sentence ID="112"></Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="312"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
       <Sentence ID="113"></Sentence>
       <Sentence ID="213"></Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -471,8 +494,6 @@
       <Sentence ID="929">Haut</Sentence>
       <Sentence ID="931">Gauche</Sentence>
       <Sentence ID="932">Haut</Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -2980,6 +3001,7 @@ class VDOM_fullcalendar(VDOM_object):
 				center: '',
 				right: ''
 			},
+			axisFormat: time_format,
 			timeFormat: time_format,
 			firstDay: %(first_day)s,
 			eventSources: %(event_sources)s,
