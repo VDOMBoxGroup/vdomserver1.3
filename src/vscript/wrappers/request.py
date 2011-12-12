@@ -220,6 +220,43 @@ class servervariables_collection(generic):
 		u"UNENCODED_URL": variable_unencoded_url,
 		u"SCRIPT_NAME": variable_script_name}
 
+
+
+class parameters_collection_iterator(object):
+
+	def __init__(self, iterator):
+		self.__iterator=iterator
+
+	def next(self):
+		return variant(string(unicode(self.__iterator.next())))
+
+class parameters_collection(generic):
+
+	def __init__(self):
+		pass
+
+	def __call__(self, index, let=None, set=None):
+		index=as_integer(index)
+		if let is not None:
+			raise errors.object_has_no_property
+		elif set is not None:
+			raise errors.object_has_no_property
+		else:
+			arguments=managers.request_manager.get_request().arguments().arguments()
+			try:
+				return arguments["xml_data"][0][index]
+			except KeyError:
+				return v_empty
+
+	def __iter__(self):
+		arguments=managers.request_manager.get_request().arguments().arguments()
+		try:
+			return arguments_collection_iterator(iter(arguments["xml_data"][0]))
+		except KeyError:
+			return v_empty
+
+
+
 class request(generic):
 	
 	def __init__(self):
@@ -228,6 +265,7 @@ class request(generic):
 		self.v_form=self.v_arguments
 		self.v_querystring=self.v_arguments
 		self.v_servervariables=servervariables_collection()
+		self.v_parameters=parameters_collection()
 
 
 
