@@ -23,7 +23,8 @@ class VDOMService:
 		self._sid 				= None
 		self._skey 				= None
 
-		self._server 	= SOAPpy.SOAPProxy("https://%s:443/SOAP"%url,namespace="http://services.vdom.net/VDOMServices")
+		#self._server 	= SOAPpy.SOAPProxy("https://%s:443/SOAP"%url,namespace="http://services.vdom.net/VDOMServices")
+		self._server 	= SOAPpy.SOAPProxy("http://%s/SOAP"%url,namespace="http://services.vdom.net/VDOMServices")
 		self._protector = None
 
 
