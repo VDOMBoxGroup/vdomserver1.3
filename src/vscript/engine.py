@@ -18,7 +18,11 @@ vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
 vscript_default_environment={u"v_this": None, u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
 	"v_vdomdbconnection": vscript_wrappers_name, "v_vdomdbrecordset": vscript_wrappers_name,
-	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name, "v_remoteserver": vscript_wrappers_name}
+	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name, "v_remoteserver": vscript_wrappers_name,
+	"v_wholeconnection": vscript_wrappers_name, "v_wholeapplication": vscript_wrappers_name,
+	"v_wholeerror": vscript_wrappers_name, "v_wholeconnectionerror": vscript_wrappers_name, "v_wholenoconnectionerror": vscript_wrappers_name,
+	"v_wholeremotecallerror": vscript_wrappers_name, "v_wholeincorrectresponse": vscript_wrappers_name,
+	"v_wholenoapierror": vscript_wrappers_name, "v_wholenoapplication": vscript_wrappers_name}
 
 
 def show_exception_details(source, error, error_type=errors.generic.runtime):

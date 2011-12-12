@@ -39,6 +39,13 @@ class response(generic):
 		else:
 			return boolean(v_true_value)
 
+	def v_result(self, let=None, set=None):
+		if let is not None:
+			managers.request_manager.get_request().session().value("response", value=as_string(let))
+		elif set is not None:
+			raise errors.object_has_no_property
+		else:
+			return string(managers.request_manager.get_request().session().value("response"))
 
 
 response=response()
