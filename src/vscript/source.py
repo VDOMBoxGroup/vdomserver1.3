@@ -124,11 +124,15 @@ class vnames(list):
 		self.line=line
 
 	def join(self, name):
-		self.append(name)
+		self.append(vname(name))
 		return self
 
+	def scope_names(self, mysource, myclass, myprocedure):
+		for name in self:
+			name.scope_names(mysource, myclass, myprocedure)
+
 	def __unicode__(self):
-		return u", ".join([name for name in self])
+		return u", ".join([unicode(name) for name in self])
 
 class vmy(vname):
 
@@ -784,6 +788,9 @@ class vtrycatch(vstatement):
 	def __init__(self, statements, exceptions=None, name=None, line=None):
 		vstatement.__init__(self, line)
 		self.exceptions=exceptions
+		if self.exceptions:
+			for exception in self.exceptions:
+				exception.check=0
 		self.name=name
 		self.statements=statements
 
@@ -794,6 +801,7 @@ class vtrycatch(vstatement):
 	def scope_names(self, mysource, myclass, myprocedure):
 		vstatement.scope_names(self, mysource, myclass, myprocedure)
 		mysource.trys.enter(self.name)
+		self.exceptions.scope_names(mysource, myclass, myprocedure)
 		self.statements.scope_names(mysource, myclass, myprocedure)
 		mysource.trys.leave()
 
