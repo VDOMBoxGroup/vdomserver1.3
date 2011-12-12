@@ -2986,6 +2986,8 @@ class VDOM_fullcalendar(VDOM_object):
 	VERSION	= "version 12.10"
 	""" time format, dayClick = daysSelect, Mozilla events """
 	""" day names """
+	VERSION = "version 12.12"
+	""" setTimeout( 'removeEvents', 30000 ) """
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
@@ -2996,6 +2998,10 @@ class VDOM_fullcalendar(VDOM_object):
 		else {
 			time_format="h(:mm)tt{ - h(:mm)tt}";
 		}
+		day_names = %(day_names)s
+		if (day_names == '' || day_names == '[]') {
+			day_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+		}
 		$("#%(id_out)s").fullCalendar({
 			header: {
 				left: '',
@@ -3004,8 +3010,8 @@ class VDOM_fullcalendar(VDOM_object):
 			},
 			axisFormat: time_format,
 			timeFormat: time_format,
-			dayNamesShort: %(day_names)s,
-			dayNames: %(day_names)s, //%(day_names)s,
+			dayNamesShort: day_names,
+			dayNames: day_names,
 			
 			firstDay: %(first_day)s,
 			eventSources: %(event_sources)s,
@@ -3087,9 +3093,10 @@ class VDOM_fullcalendar(VDOM_object):
 						(startDate.getMonth() + 1).toString() + "-" + 
 						startDate.getDate() + " " + 
 						startDate.getHours() + ":" + 
-						startDate.getMinutes();
-				
+						startDate.getMinutes();			
+						
 				event = { start: startDate, end: endDate, title: "*", id: "-1", allDay: allDay };
+				setTimeout( '$("#%(id_out)s").fullCalendar( "removeEvents", "-1"  )',30000);
 				$("#%(id_out)s").fullCalendar('renderEvent', event);
 				$("#%(id_out)s").fullCalendar('unselect');
 				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end": end, allDay:event.allDay});
