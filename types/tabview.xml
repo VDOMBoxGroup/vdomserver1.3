@@ -618,7 +618,7 @@ jQuery(document).ready(function($){
 				execEventBinded("%(id)s".substring(2, "%(id)s".length), "tabchanged", {ID:tabview_children_%(id)s[i][0], Name:tabview_children_%(id)s[i][1], Hierarchy:tabview_children_%(id)s[i][2]});
 			}
 		}
-		
+		return false;
 	});
 });
 </script>""" % { "id": id, "arr": str(children_array) }
