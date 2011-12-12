@@ -55,6 +55,7 @@ class array_iterator(object):
 
 	def next(self):
 		edge=len(self.subscripts)-1
+		if edge<0: return
 		iterators=[None]*len(self.subscripts)
 		iterators[edge]=iter(self.values)
 		level=edge
