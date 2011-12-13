@@ -18,9 +18,9 @@ class whole_error(v_scripterror):
 
 class whole_connection_error(whole_error):
 
-	def __init__(self, url, login, line=None):
+	def __init__(self, url, login, message, line=None):
 		whole_error.__init__(self,
-			message=u"Unable to connect to %s as %s"%(url, login),
+			message=u"Unable to connect to %s as %s (message)"%(url, login, message),
 			line=line)
 
 class whole_no_connection_error(whole_error):
@@ -32,9 +32,9 @@ class whole_no_connection_error(whole_error):
 
 class whole_remote_call_error(whole_error):
 
-	def __init__(self, url, line=None):
+	def __init__(self, url, message, line=None):
 		whole_error.__init__(self,
-			message=u"Unable to make remote call to %s"%url,
+			message=u"Unable to make remote call to %s (%s)"%(url, message),
 			line=line)
 
 class whole_incorrect_response(whole_error):
@@ -46,16 +46,16 @@ class whole_incorrect_response(whole_error):
 
 class whole_no_api_error(whole_error):
 
-	def __init__(self, application, line=None):
+	def __init__(self, line=None):
 		whole_error.__init__(self,
-			message=u"Application %s has no API support"%application,
+			message=u"Application has no API support",
 			line=line)
 
 class whole_no_application(whole_error):
 
-	def __init__(self, application, line=None):
+	def __init__(self, line=None):
 		whole_error.__init__(self,
-			message=u"Application %s not found"%application,
+			message=u"Application not found",
 			line=line)
 
 
@@ -75,7 +75,7 @@ def search_for_application_id(name, string):
 			if u"".join(node.data for node in application_node.getElementsByTagName("Name")[0].childNodes if node.nodeType==node.TEXT_NODE).lower()==name:
 				return u"".join(node.data for node in application_node.getElementsByTagName("Id")[0].childNodes \
 					if node.nodeType==node.TEXT_NODE)
-		raise whole_no_application(string)
+		return None
 	except KeyError:
 		raise whole_incorrect_response
 
@@ -85,7 +85,7 @@ def search_for_api_container(string):
 		for object_node in document.getElementsByTagName("Objects")[0].getElementsByTagName("Object"):
 			if object_node.attributes["Name"].nodeValue.lower()=="api":
 				return object_node.attributes["ID"].nodeValue
-		raise whole_no_api_error(string)
+		return None
 	except KeyError:
 		raise whole_incorrect_response
 
@@ -100,35 +100,63 @@ def search_for_action_names(string):
 
 class v_wholeapplication(generic):
 
-	def __init__(self, url, service):
+	def __init__(self, url, service, application):
 		self.url=url
 		self.service=service
+		self.application=application
+		self.container=None
+
+	def search_container(self):
 		try:
 			result=self.service.remote("get_top_objects", None, False)
-		except:
-			raise whole_remote_call_error(self.url)
+		except Exception as error:
+			raise whole_remote_call_error(self.url, error)
 		self.container=search_for_api_container(result)
+		if not self.container:
+			raise whole_no_api_error
 
-	def v_methods(self, let=None, set=None):
+	def v_application(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("application")
 		else:
+			return string(self.application)
+
+	def v_container(self, let=None, set=None):
+		if let is not None:
+			self.container=as_string(let)
+		elif set is not None:
+			raise errors.object_has_no_property("container")
+		else:
 			if not self.service:
 				raise whole_no_connection_error
+			if not self.container:
+				self.search_container()
+			return string(self.container) if self.container else v_empty
+
+	def v_actions(self, let=None, set=None):
+		if let is not None or set is not None:
+			raise errors.object_has_no_property("actions")
+		else:
+			if not self.service:
+				raise whole_no_connection_error
+			if not self.container:
+				self.search_container()
 			try:
 				result=self.service.remote("get_server_actions_list", [self.container], False)
-			except:
-				raise whole_remote_call_error(self.url)
+			except Exception as error:
+				raise whole_remote_call_error(self.url, error)
 			names=search_for_action_names(result)
 			return array(values=[string(name) for name in names if name.lower()!="onload"])
 
 	def v_invoke(self, name, *arguments):
 		if not self.service:
 			raise whole_no_connection_error
+		if not self.container:
+			self.search_container()
 		try:
 			result=self.service.call(self.container, as_string(name), [as_string(argument) for argument in arguments])
-		except:
-			raise whole_remote_call_error(self.url)
+		except Exception as error:
+			raise whole_remote_call_error(self.url, error)
 		return string(result)
 
 class v_wholeconnection(generic):
@@ -142,32 +170,33 @@ class v_wholeconnection(generic):
 		self.password=hashlib.md5(as_string(password)).hexdigest()
 		try:
 			self.service=VDOM_service.connect(self.url, self.login, self.password, None)
-		except:
-			raise whole_connection_error(self.url, self.login)
+		except Exception as error:
+			raise whole_connection_error(self.url, self.login, error)
 
 	def v_close(self):
 		self.service=None
 
-	def v_applications(self, name, let=None, set=None):
+	def v_applications(self, name, container=None, let=None, set=None):
 		if let is not None or set is not None:
-			raise errors.object_has_no_property("application")
+			raise errors.object_has_no_property("applications")
 		else:
 			if not self.service:
 				raise whole_no_connection_error
 			try:
 				result=self.service.remote("list_applications", None, True)
-			except:
-				raise whole_remote_call_error(self.url)
+			except Exception as error:
+				raise whole_remote_call_error(self.url, error)
 			application=search_for_application_id(as_string(name), result)
+			if not application: raise whole_no_application
 			try:
 				service=VDOM_service.connect(self.url, self.login, self.password, application)
-			except:
-				raise whole_connection_error(self.url, self.login)
-			return v_wholeapplication(self.url, service)
+			except Exception as error:
+				raise whole_connection_error(self.url, self.login, error)
+			return v_wholeapplication(self.url, service, application)
 
 	def v_isconnected(self, let=None, set=None):
 		if let is not None or set is not None:
-			raise errors.object_has_no_property("application")
+			raise errors.object_has_no_property("isconnected")
 		else:
 			if not self.service:
 				return v_false_value

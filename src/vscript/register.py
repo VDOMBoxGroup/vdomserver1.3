@@ -1,4 +1,7 @@
 
+from . import lexemes
+
+
 class vregister(object):
 
 	def __init__(self, names):
@@ -33,4 +36,4 @@ class vinitialregister(vregister):
 	names=property(get_names)
 
 
-register=vregister({})
+register=vinitialregister({})
