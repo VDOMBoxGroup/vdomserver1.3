@@ -40,12 +40,14 @@ def run(request):
 	t = time(randint(0, 5), randint(0, 59))
 	d_backup_time = t.strftime("%H-%M")
 	h_backup_time = '1'
+	crypt_box = ""
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
 		managers.backup_manager.del_storage(driver)
 		driver = None
 	if "devid" in args:
 		driver = managers.backup_manager.get_storage(args["devid"][0])
+		
 		hidden_tag = """
 <input type="hidden" name="devid" value="%s">""" % driver.id
 	if "type" in args:
@@ -60,13 +62,17 @@ def run(request):
 	if "save" in args:
 		ok = True
 		if not driver:
+			if "crypt-dev" in args:
+				crypt = True
+			else:
+				crypt = False
 			if "type" in args:
 				try:
 					if args["type"][0] == "external":
-						driver = VDOM_sd_external_drive(args["devselect"][0])
+						driver = VDOM_sd_external_drive(args["devselect"][0], crypt)
 					elif args["type"][0] == "cloud":
 						
-							driver = VDOM_cloud_storage_driver()
+							driver = VDOM_cloud_storage_driver(crypt)
 				except Exception as e:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 					ok = False
@@ -136,6 +142,7 @@ def run(request):
 				h_backup_time = '1'
 		
 	if driver:
+		crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
 		try:
 			path = driver.mount()
 			if path:
@@ -332,7 +339,6 @@ padding:0;
 }
 .hdd-state {
 width:150px;
-height:128px;
 border:1px solid #dcdcdc;
 background: url(images/gr-bg.png);
 background-position:bottom left;
@@ -384,6 +390,11 @@ margin-top:15px;
 .hdd-state .erase a{
 font-size:14px;
 color:#fe0000;
+}
+
+.hdd-state .crypt {
+margin-top:15px;
+font-size:12px
 }
 
 .fl-left {
@@ -471,11 +482,13 @@ function ChangeBackup(obj){
 
 	<div class="free-mem">%(free)s of %(size)s is free</div>
 
+	<div class="crypt"><label><input type="checkbox" name="crypt-dev"%(crypt)s>Crypt disk</label></div>
+	
 	<div class="erase"><a href="sdconfig.py?erase=%(dev)s">Erase this storage</a></div>
 
   </div>
   <div class="clear"> </div>
- </div>""" % {"icon": drv_icon, "driver": driver.name if driver else default_drv_name, "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else ""})
+ </div>""" % {"icon": drv_icon, "driver": driver.name if driver else default_drv_name, "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else "", "crypt": crypt_box})
 	request.write("""
  <div class="block">
 	<h2>Backup following applications :</h2>
