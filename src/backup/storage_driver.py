@@ -66,13 +66,14 @@ class VDOM_storage_driver(object):
 
 class VDOM_sd_external_drive(VDOM_storage_driver):
 
-	def __init__(self, dev):
+	def __init__(self, dev, crypt=False):
 		self.id = str(utils.uuid.uuid4())
 		self.name = "External Drive"
 		self.type = "external_drive"
 		self.__path = None
 		self.__dev = dev
 		self.__uuid = None
+		self.crypt = crypt
 
 		
 		try:
@@ -175,10 +176,11 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 	dev = property(lambda self: self.__dev)
 	
 class VDOM_cloud_storage_driver(VDOM_storage_driver):
-	def __init__(self):
+	def __init__(self, crypt=False):
 		self.id = str(utils.uuid.uuid4())
 		self.name = "Cloud iSCSI Drive"
 		self.type = "cloud_drive"
+		self.crypt = crypt
 		self.__path = None
 		self.__dev = None
 		self.__uuid = None
