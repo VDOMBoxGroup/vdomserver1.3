@@ -14,11 +14,11 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.5.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon</Containers>
-    <Languages>en_US</Languages>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>set_attr</Handlers>
     <RemoteMethods/>
     <WCAG/>
@@ -165,7 +165,7 @@
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1)|(#Lang(411)|2)|(#Lang(412)|3))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
@@ -197,79 +197,241 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Object View</Sentence>
-      <Sentence ID="002">Multiplicate container with objects</Sentence>
+      <Sentence ID="002">Multiplicated container for objects</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Change size of the object</Sentence>
-      <Sentence ID="602">resizeTo</Sentence>
-      <Sentence ID="702">Width</Sentence>
-      <Sentence ID="802">New width value</Sentence>
-      <Sentence ID="703">Height</Sentence>
-      <Sentence ID="803">New height value</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Time of appearance</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="111">Layout</Sentence>
+      <Sentence ID="112">Drag-and-drop</Sentence>
+      <Sentence ID="113">Overflow</Sentence>
+      <Sentence ID="114">Hierarchy</Sentence>
+      <Sentence ID="115">CSS Class</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Incorrect value</Sentence>
+      <Sentence ID="209">Description of objects list</Sentence>
+      <Sentence ID="211">Items layout</Sentence>
+      <Sentence ID="212">Define if drag-and-drop is used or not</Sentence>
+      <Sentence ID="213">Overflow control mode</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Names of CSS classes</Sentence>
+      <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">List of containers with item pattern</Sentence>
+      <Sentence ID="309">Incorrect, must be JSON</Sentence>
+      <Sentence ID="311">Incorrect value, must be either 0, 1 or 2</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="314">Hierarchy of the object</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="108">VDOMClass</Sentence>
-      <Sentence ID="208">Incorrect value</Sentence>
-      <Sentence ID="308">List of containers with item pattern</Sentence>
-      <Sentence ID="109">Data</Sentence>
-      <Sentence ID="209">Describe objects list</Sentence>
-      <Sentence ID="309">Incorrect, must be JSON</Sentence>
-      <Sentence ID="111">Layout</Sentence>
-      <Sentence ID="211">Items layout</Sentence>
-      <Sentence ID="311">Incorrect, must be 0, 1 or 2</Sentence>
       <Sentence ID="403">Horizontal</Sentence>
       <Sentence ID="404">Vertical</Sentence>
       <Sentence ID="405">Vertical wide</Sentence>
-      <Sentence ID="112">Drag'n'drop</Sentence>
-      <Sentence ID="212">Use drag'n'drop</Sentence>
-      <Sentence ID="312"></Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="113">Overflow</Sentence>
-      <Sentence ID="213">Overflow mode</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="408">Auto</Sentence>
       <Sentence ID="409">Hidden</Sentence>
       <Sentence ID="411">Scroll</Sentence>
       <Sentence ID="412">Visible</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Resize the object width and height</Sentence>
+      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="504">Show the items of the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">resizeTo</Sentence>
+      <Sentence ID="603">Show</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">New value of width</Sentence>
+      <Sentence ID="803">New value of height</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Object View</Sentence>
+      <Sentence ID="002">Multiplicated container for objects</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="111">Layout</Sentence>
+      <Sentence ID="112">Drag-and-drop</Sentence>
+      <Sentence ID="113">Overflow</Sentence>
       <Sentence ID="114">Hierarchy</Sentence>
-      <Sentence ID="214">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="115">CSS Class</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Incorrect value</Sentence>
+      <Sentence ID="209">Description of objects list</Sentence>
+      <Sentence ID="211">Items layout</Sentence>
+      <Sentence ID="212">Define if drag-and-drop is used or not</Sentence>
+      <Sentence ID="213">Overflow control mode</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Names of CSS classes</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308">List of containers with item pattern</Sentence>
+      <Sentence ID="309">Incorrect, must be JSON</Sentence>
+      <Sentence ID="311">Incorrect, must be 0, 1 or 2</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="314">Hierarchy of the object</Sentence>
-      <Sentence ID="115">Class</Sentence>
-      <Sentence ID="215">CSS class name</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">Horizontal</Sentence>
+      <Sentence ID="404">Vertical</Sentence>
+      <Sentence ID="405">Vertical wide</Sentence>
+      <Sentence ID="406">No</Sentence>
+      <Sentence ID="407">Yes</Sentence>
+      <Sentence ID="408">Auto</Sentence>
+      <Sentence ID="409">Hidden</Sentence>
+      <Sentence ID="411">Scroll</Sentence>
+      <Sentence ID="412">Visible</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Resize the object width and height</Sentence>
+      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="504">Show the items of the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">resizeTo</Sentence>
+      <Sentence ID="603">Show</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">New value of width</Sentence>
+      <Sentence ID="803">New value of height</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Объектное представление</Sentence>
+      <Sentence ID="002">Используется для объектного представления элементов</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="109">Данные</Sentence>
+      <Sentence ID="111">Расположение</Sentence>
+      <Sentence ID="112">Перемещение</Sentence>
+      <Sentence ID="113">Переполнение</Sentence>
+      <Sentence ID="114">Иерархия</Sentence>
+      <Sentence ID="115">Класс CSS</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="202">Отображение объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Неправильное значение</Sentence>
+      <Sentence ID="209">Описание списка объектов</Sentence>
+      <Sentence ID="211">Расположение элементов</Sentence>
+      <Sentence ID="212">Использовать перемещение или нет</Sentence>
+      <Sentence ID="213">Режим переполнения</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Имена классов CSS</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Список контейнеров с шаблонами элементов</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть в формате JSON</Sentence>
+      <Sentence ID="311">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="314">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="403">Горизонтальный</Sentence>
+      <Sentence ID="404">Вертикальный</Sentence>
+      <Sentence ID="405">Ширина по вертикали</Sentence>
+      <Sentence ID="406">Нет</Sentence>
+      <Sentence ID="407">Да</Sentence>
+      <Sentence ID="408">Авто</Sentence>
+      <Sentence ID="409">Скрытый</Sentence>
+      <Sentence ID="411">Прокрутка</Sentence>
+      <Sentence ID="412">Отображать</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Изменить ширину и высоту</Sentence>
+      <Sentence ID="503">Показать объект</Sentence>
+      <Sentence ID="504">Показать элементы объекта</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">resizeTo</Sentence>
+      <Sentence ID="603">Показать</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Ширина</Sentence>
+      <Sentence ID="703">Высота</Sentence>
+      <Sentence ID="704">Исчезновение</Sentence>
+      <Sentence ID="705">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Новое значение ширины</Sentence>
+      <Sentence ID="803">Новое значение высоты</Sentence>
+      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="805">Время появления</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -374,7 +536,45 @@ AF9fzxe1twtF9uL4VOvNcG3aZPShRSdE6IM08N0QWKJ5RUfmXkvnf9p3OHIVGjJWn1+7JFa6PZE0
 aOmWZNq4B7oBbGaRQA5o8vk0jxNk/tgJE5vpClHX3Ji9IRRy79h/KLJWZ2RYZzTtw5wfadT9sCAf
 oomQZ31DY3YrdNh3HDkS+SxVEO800OQnolkerE46RRY8HgUzhizGxtQIf0pwuqpR9yQLj0XwjDuI
 iQkEyZ2K5scGmX7S6/8EGACZm+6vXzttpgAAAABJRU5ErkJggg==]]></Resource>
-    <Resource ID="6a33cda8-1a1e-fa04-798c-40263e48c0a3" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="6a33cda8-1a1e-fa04-798c-40263e48c0a3" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6RkY0MEQwNDExNDI4MTFFMTk4RjFEODAzOUEyNzIxRDQiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6RkY0MEQwNDIxNDI4MTFFMTk4RjFEODAzOUEyNzIxRDQiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGRjQwRDAzRjE0MjgxMUUxOThGMUQ4MDM5QTI3
+MjFENCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGRjQwRDA0MDE0MjgxMUUxOThGMUQ4MDM5
+QTI3MjFENCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PqNgd48AAAS/SURBVEhLrVZpb1RlFH7uOlvn3pmutJYSgQqlra0JmohG
+If4D+cif8YfoJz6ZmGiIkigJRlAqJVJaWig0UixbgVnudDrL3X3ObcG2UxNJPDczc9/lnOe8Z3ne
+UWIK/gcJEUOD0mFJ2QkQxxESvCjmbwQoKjRd71ASj16Z+q1exe16Ew0X8BBhKKfhs0I3hs10oqc0
+m804k5GBqMQIoxCKAIURAj/knArXd1Ha3MTh4eHXYJedMq5WNnDMtHHIyND4ViCohkWvhqbu4xQd
+1c6e/fyLS5d/gu976O7uhmmk6LgGVdPx6MkjfP3NeXx5/iv0vT2KYwdHXgPMbjTQraRRilysR21o
+igIn9LHi16HzfdDI4979Jei2bdFxBfO3FnDz+g0cOTqKuYUbuHP/FhZvL6C32IODY5PIW13/hIrO
++ggxondhmN43owB3vTryqoHpdAEGoxHrBp6lTai6YcK2bNiFPLoKFqplBzPXrmBl5T5GRg7i0OhR
+DI8cIoCF8tOnWH+0hvKdJZ7UQMhQtuOQBjUM6ClYBAgJ3uB8yFzGQUgATUOaSJrCGogYGhUcZ1C0
+C+jr6UN//wHkeAqV6z1DQzjAMPWMjUFlsMWInJ6mEsOREjPN8uG7nIJhV2XIeSismCDw0PZcJipG
+KpNFniC57n5oZhYRk/9axAsad/nRaUjiLyWS2OEjIVI557faUA0m1Q9DhPSIPiVVJPWQSeWR630L
+Wq6ISNVhcd9O+dgq4ImygV/dMurUSbyn4gs6ebVVwVJ7HRM5m6CUKIqw+uABlpfvolZx8N3Fb2EP
+DuDkqU8wdWIc749NQBOv95EmjX9ffYmVTQ8ZVcGJrhw+tW2+a1u7BWCntFvt+MIPF+K1Z093zf+1
++nDv1l1jN2RG9pFdnZw0CsOlMfH7ydrDhxgYGGB+Mvuu7zfZcW6XiXGc6r4G+ml8dubafzYuGztO
+UKvXYDDh2ULxjQxJLtLMk7qH8BIAqeOrGw7mNlt4j8lS2JmLxSzOsLmOZ3Z08B7IgJq/1MpYbrTJ
+Wxr5KEAxo+IMy/tIOpfsVq7XnfjC8wpGzTwOGzm0WG5S0zpLbpnt/1xtY5REd+74+C7zPzol/Fze
+wLhpJXpB0m4JEWOJZFfTfHzgB1Cr/DqRsuHEHma9EkphE5WwhZteBW32xTt6EfN/rnaE66UbYCJl
+oRS7mGEvPItaeBw0MUc9qegxvYDFtTWoPnH7tBQmSbuTZgENxnIz8vFuqoApzg2SY/Ss2QEgHg9p
+GUxTZ4IOlsmk0qJT1DtuWIlNg9cAe1RJFvyEPRT0qmbCiio5xpN7QY7t7aCJbSih5IA6omeSZno0
+g2THy4nxldxEEmeWvGpwMUlG8siVs0VaSRNuxxWu13GCNPUS/uFeecSVkBPCf2JRLMSSA7HlMixy
+ElHZSlSyzDnZqoG3XgeA7PASstsuTCE6jmUkRCcF69Mx9WTeQkVt4XcSVIlEJQgB+VZieqVdxnzr
+MT4q9HYAnLaLWFeamGlVUWcopHrE91Lg4o+2g3vuC0znt8lOloTbLzkVzNcaMDWVpJXFadZz6l9I
+7hWiT8sXq2XcZQ/luHeaN9+HVp7X5nbo9/5tIbEmZfamIneIRjbdK38DySWLitiAqEwAAAAASUVO
+RK5CYII=]]></Resource>
     <Resource ID="4a9c9c5e-24f8-3635-d791-40263e48fe58" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
@@ -845,6 +1045,11 @@ $j("#%(id)s>.%(class)s-item").draggable({
   <E2vdom>
     <Events>
       <Userinterfaceevents>
+        <Event Name="dragstart">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
         <Event Name="itemclick">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(901)"/>
@@ -855,19 +1060,14 @@ $j("#%(id)s>.%(class)s-item").draggable({
             <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseover">
-          <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
-          </Parameters>
-        </Event>
         <Event Name="itemmouseout">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart">
+        <Event Name="itemmouseover">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
