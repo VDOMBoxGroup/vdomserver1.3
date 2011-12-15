@@ -244,14 +244,22 @@ class parameters_collection(generic):
 		else:
 			arguments=managers.request_manager.get_request().arguments().arguments()
 			try:
-				return arguments["xml_data"][0][index]
+				data=arguments["xml_data"][0]
+				if isinstance(data, list):
+					return data[index]
+				else:
+					return data if index==0 else v_empty
 			except KeyError:
 				return v_empty
 
 	def __iter__(self):
 		arguments=managers.request_manager.get_request().arguments().arguments()
 		try:
-			return arguments_collection_iterator(iter(arguments["xml_data"][0]))
+			data=arguments["xml_data"][0]
+			if isinstance(data, list):
+				return arguments_collection_iterator(iter())
+			else:
+				return arguments_collection_iterator(iter([data]))
 		except KeyError:
 			return v_empty
 
