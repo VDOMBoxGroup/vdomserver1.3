@@ -104,9 +104,6 @@ class v_wholeapplication(generic):
 		self.url=url
 		self.service=service
 		self.application=application
-		self.container=None
-
-	def search_container(self):
 		try:
 			result=self.service.remote("get_top_objects", None, False)
 		except Exception as error:
@@ -122,15 +119,9 @@ class v_wholeapplication(generic):
 			return string(self.application)
 
 	def v_container(self, let=None, set=None):
-		if let is not None:
-			self.container=as_string(let)
-		elif set is not None:
+		if let is not None or set is not None:
 			raise errors.object_has_no_property("container")
 		else:
-			if not self.service:
-				raise whole_no_connection_error
-			if not self.container:
-				self.search_container()
 			return string(self.container) if self.container else v_empty
 
 	def v_actions(self, let=None, set=None):
@@ -139,8 +130,6 @@ class v_wholeapplication(generic):
 		else:
 			if not self.service:
 				raise whole_no_connection_error
-			if not self.container:
-				self.search_container()
 			try:
 				result=self.service.remote("get_server_actions_list", [self.container], False)
 			except Exception as error:
@@ -151,10 +140,15 @@ class v_wholeapplication(generic):
 	def v_invoke(self, name, *arguments):
 		if not self.service:
 			raise whole_no_connection_error
-		if not self.container:
-			self.search_container()
 		try:
-			result=self.service.call(self.container, as_string(name), [as_string(argument) for argument in arguments])
+			if arguments:
+				if len(arguments)==1:
+					parameter=as_string(arguments[0])
+				else:
+					parameter=[as_string(argument) for argument in arguments]
+			else:
+				parameter=None
+			result=self.service.call(self.container, as_string(name), parameter)
 		except Exception as error:
 			raise whole_remote_call_error(self.url, error)
 		return string(result)
