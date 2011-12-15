@@ -387,7 +387,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			else:
 				self.__cloud_share_status = 10
-				raise Exception("Crap! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				raise Exception("Unknown status! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		except Exception as e:
 			raise Exception(str(e))
 
@@ -404,9 +404,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				self.__cloud_configs = 1
 				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
-				raise Exception("Crap! %s %s"%(self.__cloud_login, self.__cloud_pass))
+				raise Exception("Can't get configs for Cloud. Check something. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		else:
-			raise Exception("Crap! Stop! ")
+			raise Exception("Space is not active! Stop!")
 
 
 
