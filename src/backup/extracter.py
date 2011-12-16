@@ -67,11 +67,11 @@ class VDOM_app_info_extracter(VDOM_extracter):
     def extract(self):
         import version
         from datetime import datetime
-        from web import vhosting
+        #from web import virtual_hosts
         appl = managers.xml_manager.get_application(self.app_id)
         current_server = version.VDOM_server_version
         backup_time = datetime.now().isoformat()
-        vh = vhosting.VDOM_vhosting()
+        vh = managers.virtual_hosts
         sites = vh.get_sites()
         vh_list = []
         for site in sites:
