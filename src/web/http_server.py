@@ -5,7 +5,8 @@ import managers
 from utils.pid import VDOM_server_pid
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
-from vhosting import VDOM_vhosting
+#from vhosting import VDOM_vhosting
+#from web import virtual_hosts
 from soap.functions import *
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
@@ -27,7 +28,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		random.seed()
 
 		# initialize virtual hosting
-		self.__vhosting = VDOM_vhosting()
+		self.__vhosting = managers.virtual_hosts
 
 		#drop pid to file
 		self.__pidfile = VDOM_CONFIG["SERVER-PIDFILE"]
