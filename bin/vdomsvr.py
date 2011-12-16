@@ -6,7 +6,7 @@ import sys, gettext, os
 
 gettext.install("vdom2")
 sys.path.append("../src")
-
+import wingdbstub
 from utils import codecs
 from utils.card_connect import send_to_card
 import utils.obsolete
@@ -26,6 +26,7 @@ from resource import VDOM_resource_manager, VDOM_resource_editor
 from database import VDOM_database_manager
 from source import VDOM_source_swap, VDOM_source_cache, VDOM_compiler, VDOM_dispatcher
 from security import VDOM_acl_manager, VDOM_user_manager
+from web import VDOM_vhosting
 from request import VDOM_request_manager
 from engine import VDOM_engine
 from module import VDOM_module_manager
@@ -52,6 +53,7 @@ try:
 	managers.register("dispatcher", VDOM_dispatcher)
 	managers.register("acl_manager", VDOM_acl_manager)
 	managers.register("user_manager", VDOM_user_manager)
+	managers.register("virtual_hosts", VDOM_vhosting)
 	managers.register("request_manager", VDOM_request_manager)
 	managers.register("engine", VDOM_engine)
 	managers.register("module_manager", VDOM_module_manager)
