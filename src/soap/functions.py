@@ -103,7 +103,7 @@ def create_objects(sid, skey, appid, parentid, objects, _SOAPContext):
 
 # copy object in the application
 def copy_object(sid, skey, appid, objid, parentid, _SOAPContext):
-	return proxy([managers.soap_server.copy_object, sid, skey, appid, objid, parentid])
+	return proxy([managers.soap_server.copy_object, sid, skey, appid, parentid, objid])
 
 # update object in the application
 def update_object(sid, skey, appid, objid, data, _SOAPContext):
@@ -209,6 +209,12 @@ def install_application(sid, skey, vhname, appxml, _SOAPContext):
 
 def export_application(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.export_application, sid, skey, appid])
+
+def update_application(sid, skey, appxml, _SOAPContext):
+	return proxy([managers.soap_server.update_application, sid, skey, appxml])
+
+def check_application_exists(sid, skey, appid, _SOAPContext):
+	return proxy([managers.soap_server.check_application_exists, sid, skey, appid])
 
 def create_guid(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.create_guid, sid, skey])

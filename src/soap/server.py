@@ -14,7 +14,7 @@ import soaputils
 from utils.uuid import uuid4
 from memory import xml_object # memory.
 from database.dbobject import VDOM_sql_query
-from utils.app_management import import_application
+from utils.app_management import import_application, update_application
 from version import VDOM_server_version
 
 sessions = {}	# opened sessions
@@ -492,7 +492,10 @@ class VDOM_web_services_server(object):
 				typename = tp.name
 				if "" == typename:
 					typename = _("Not specified")
-				result += "<Type id=\"%s\" name=\"%s\"/>" % (typeid, typename)
+				version = tp.version
+				if "" == version:
+					version = _("Not specified")
+				result += "<Type id=\"%s\" name=\"%s\" version=\"%s\" />" % (typeid, typename, version)
 		result += "</Types>"
 		return result
 
@@ -1462,7 +1465,37 @@ class VDOM_web_services_server(object):
 		try: shutil.rmtree(path)
 		except: pass
 		return data.decode("utf-8")
-
+	
+	def update_application(self, sid, skey, appxml):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		tmpfilename = ""
+		try:
+			# save file
+			tmpfilename = tempfile.mkstemp(".xml", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+			os.close(tmpfilename[0])
+			tmpfilename = tmpfilename[1]
+			tmpfile = open(tmpfilename, "wb")
+			tmpfile.write(appxml.encode("utf-8"))
+			tmpfile.close()
+			# call update function
+			outp = update_application(tmpfilename, managers.virtual_hosts)
+			if outp[0]:
+				return """<Result>OK</Result>"""
+			else:
+				return self.__format_error(_("Update error: %s" % outp[1]))
+		except Exception as e:
+			return self.__format_error(_("Update error: %s" % str(e)))
+		
+	def check_application_exists(self, sid, skey, appid):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		result = ""
+		try:
+			ret = self.__find_application(appid)	# returns (app, error_message)
+			if ret[0]:
+				result = "true"
+		except:
+			result = "false"
+		return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
 ### ==================================================================================================================
 
 	def create_guid(self, sid, skey):
