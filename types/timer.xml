@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.7.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>2</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell</Containers>
@@ -125,55 +125,55 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Timer</Sentence>
-      <Sentence ID="002">Timer</Sentence>
+      <Sentence ID="002">Used to add the timer to the page</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Freeze time</Sentence>
+      <Sentence ID="501">Pause time reading</Sentence>
       <Sentence ID="601">freezeTime</Sentence>
       <Sentence ID="701">Freeze period</Sentence>
-      <Sentence ID="801">Freeze period</Sentence>
-      <Sentence ID="502">Set interval</Sentence>
+      <Sentence ID="801">Pause time, indicated in milliseconds</Sentence>
+      <Sentence ID="502">Set new interval</Sentence>
       <Sentence ID="602">setInterval</Sentence>
       <Sentence ID="702">New interval</Sentence>
-      <Sentence ID="802">New interval</Sentence>
-      <Sentence ID="503">Start timer</Sentence>
+      <Sentence ID="802">Interval, time is indicated in milliseconds</Sentence>
+      <Sentence ID="503">Start time reading</Sentence>
       <Sentence ID="603">Start</Sentence>
       <Sentence ID="703">New interval</Sentence>
-      <Sentence ID="803">New interval</Sentence>
-      <Sentence ID="504">Start timer</Sentence>
+      <Sentence ID="803">Interval, time is indicated in milliseconds</Sentence>
+      <Sentence ID="504">Start new interval</Sentence>
       <Sentence ID="604">Start</Sentence>
       <Sentence ID="704">New interval</Sentence>
-      <Sentence ID="804">New interval</Sentence>
-      <Sentence ID="505">Stop timer</Sentence>
+      <Sentence ID="804">Interval, time is indicated in milliseconds</Sentence>
+      <Sentence ID="505">Stop time reading</Sentence>
       <Sentence ID="605">Stop</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Top</Sentence>
-      <Sentence ID="202">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="202">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="302">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="103">Left</Sentence>
-      <Sentence ID="203">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="203">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="104">Width</Sentence>
-      <Sentence ID="204">Weight in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="204">Width of the object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="105">Height</Sentence>
       <Sentence ID="205">Height in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="106">Interval</Sentence>
-      <Sentence ID="206">Event time, msec</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="206">Event time, time is indicated in milliseconds</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="107">Autostart</Sentence>
-      <Sentence ID="207">Start after page load</Sentence>
-      <Sentence ID="307">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="207">Define if the timer starts after loading the page or not</Sentence>
+      <Sentence ID="307">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="108">Once</Sentence>
-      <Sentence ID="208">Generate only one event and stop</Sentence>
-      <Sentence ID="308">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="208">Define whether to start once or not</Sentence>
+      <Sentence ID="308">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="901">Count of operations</Sentence>
+      <Sentence ID="901">Number of time changes</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Таймер</Sentence>
@@ -202,27 +202,27 @@
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="102">Верх</Sentence>
       <Sentence ID="202">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="103">Лево</Sentence>
       <Sentence ID="203">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="104">Ширина</Sentence>
       <Sentence ID="204">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="105">Высота</Sentence>
       <Sentence ID="205">Высота объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="106">Интервал</Sentence>
       <Sentence ID="206">Интервал генерации события</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="107">Запущен</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="107">Автозапуск</Sentence>
       <Sentence ID="207">Старт сразу после загрузки страницы</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="307">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="401">Нет</Sentence>
       <Sentence ID="402">Да</Sentence>
       <Sentence ID="108">Один раз</Sentence>
       <Sentence ID="208">Сгенерировать только одно событие</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="308">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
       <Sentence ID="901">Количество срабатываний</Sentence>
@@ -370,41 +370,43 @@ mT9f9Rnjl3r0Njw4EOs61/EXILj7gPGbFcwxKjFr2zZUgHqAK6F5hXpiZQSYLH3dJeUHWNbL+P4/
 HMfNzq9voCXLVnzt/x1EbSeOVY6OjNznet5auG1D4T8cVhealeOk+j06CkNOYtsLUy7FEgkqKaug
 hQ2N6Dn0L/WE91oMuR6PsWf5nxTcxGnyq3o8fV3+pWW2zvt/AQYAWuqv0GJFw24AAAAASUVORK5C
 YII=]]></Resource>
-    <Resource ID="53013121-5dc7-9d18-0d57-dbb308819b5e" Name="Icon" Type="jpg"><![CDATA[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]]></Resource>
+    <Resource ID="53013121-5dc7-9d18-0d57-dbb308819b5e" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6NEZBQTQwODExNDI4MTFFMTgxMDBCQzgyOTYyQzFDOTkiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6NEZBQTQwODIxNDI4MTFFMTgxMDBCQzgyOTYyQzFDOTkiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0RkFBNDA3RjE0MjgxMUUxODEwMEJDODI5NjJD
+MUM5OSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0RkFBNDA4MDE0MjgxMUUxODEwMEJDODI5
+NjJDMUM5OSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PoyYsVUAAARfSURBVEhLtZXZb1RlGMZ/s3Q63TudMlO6shpopVghIAIG
+UaKJiXd6YSSYGIRojMTlQjRG0QQvjH8AXnjhrUZISaCVglWaNI3KoixDF+h0prO0Q2fpmTPnzDkz
+vlNioXaxF/jmnJzkO9/3PO/2vJ8lL8b/aNblYitqhlcPv8ulkQhpZXq5x1g2gaPIjre2luISB+PB
+4MMnGB2L8PtAP7ExP5VVVQ+fwOVy8+hjW3hi22Y83rplE1iWU+RoNMzoyBC6oqIYOt66Jla1tFBV
+PTeSq75BGj0ealz315ck8F3/i7OnO7l2/QYNq1cR9IdwjwfQnSU4mxvZuncvT27fToWrlu87z9LV
+08fXxz7Au8I9G+GiBBe6u+nuOsOOnbt5+tl9VFRW4LviY43vKurdGP6BP+iLBih++SU2bNjEqfN9
+vP/GAdw11XPStyBBb89PnO85x6G336F+Zf3sAXM8SHpwiELvWRIp0qc6+e2XiyQ/+5iNm9rZ3NY2
+rzbz2nTw2jV6BPytI+/NgBtmDiOXw5Sjhk22l5eC0wk1NZS9tp/W1lYcHx1lLBRkaFjI/2VzCLSM
+ys8XzvHUnmfwSLF0w6Qg9HwuT46C4G3kHUVYix3ytQtZGa4jh3H775A6fZKrUrPC3gdtDsGtm9eJ
+x1NslcLFEwlyZsFvyYjNIlmxYCktoaiqEtuKWook15k7d7j95XFyUvRySddkeJywvA+auHHfRoeH
+qW9pIpczUVWVaSUF4pHFKuDOUjInf2DqxAn0iQiaksbUtEJQWEpsOCcmMCJhLl++xMr6hlnQ2QgM
+wyAUGsdZWi6zRiWbzWJkDUyJovDPyGdRkyn0qUmydgv5YkF22GQ9j67LXkUjJQSxyejCXaRndb76
+4hiGo5oXX3hO0uuUvOdmNheyapUoUjmDhGlgl7kkfssjkVlsEq1GIDyFr+tH2h7ZyP7XD86PwGa1
+YYqnj7evFwA5pGXQtSyappPVdbSMhlM6ymsvwiO8HmH1iPcucWyFwO1aXUc6nqC+oWnhIttsNpG+
+i4B/VFKUJhFPkhESQ1JVICikTMsIkaQvnc6gSI3iiWki4QnuTsUZvHVLvjE2dXQs3kVt7e0EpDOS
+yQQTkzFC4chMNykCqKbVmShUuRcUJcPU3TjBsSB+eUWt9HZ109GxVQahd3ElZ6Woxz89ittbz8rm
+tQQDQRzOYkpLpD2l760WK1nzXiSJVIrp5DTNq5sx0ykGfr3Ah598TsuatUuPimHfTb779hua1m0k
+Z3Vw+7ZflGzMgEtN0dSsCFAThZusX7uO6nI7/b3nOXjoTbbt2j1PyQvOoht/XuFM5ykhsFPpaWA8
+FGMyGiU6laS6qpSqigpaZJpG/UMo8Riv7D/Alh0754EXFhadphEZbP0XexmR+ZLRRA+iqEB4Eo+7
+EkNGCqKL1tY29ux7nsaWVQuCL0nwz4lwMEAoMEZMIlBE2SVlFbhlVDQ0NlPX2HhPD0vYsm60JRH+
+4+ffGEotYPGcF0IAAAAASUVORK5CYII=]]></Resource>
     <Resource ID="e5d7633d-36d5-41ac-2408-92ec4617ad1e" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
