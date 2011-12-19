@@ -98,6 +98,18 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>deltamove</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>.+</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>color</Name>
       <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>CCCCCC</DefaultValue>
@@ -122,28 +134,16 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>deltamove</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>.+</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>classname</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -696,13 +696,19 @@ class VDOM_splitter(VDOM_object):
 
 		attributes = self.object.parent.get_attributes()
 		if self.direction == "0":
-			h = int(attributes["height"].value)
+			if "height" in attributes:
+				h = int(attributes["height"].value)
+			else:
+				h = 50
 			w = int(self.width)
 			l = int(self.left)
 			t = 0
 		else:
 			h = int(self.width)
-			w = int(attributes["width"].value)
+			if "width" in attributes:
+				w = int(attributes["width"].value)
+			else:
+				w = 50
 			l = 0
 			t = int(self.top)
 
@@ -755,8 +761,8 @@ class VDOM_splitter(VDOM_object):
 			"contents":  contents }
 
 		js = u"""<script type='text/javascript'>
-		$q(function($){
-			$("#%(id)s").draggable({
+		$j(function($){
+			$j("#%(id)s").draggable({
 				axis: "%(axis)s", containment: "parent",
 				start: function(e,u){
 					execEventBinded('%(idn)s', "dragstart", {"X": u.position.left+%(dl)s, "Y": u.position.top+%(dt)s});
@@ -790,7 +796,10 @@ class VDOM_splitter(VDOM_object):
 	def wysiwyg(self, parent, contents=""):
 		attributes = self.object.parent.get_attributes()
 		if self.direction == "0":
-			h = int(attributes["height"].value)
+			if "height" in attributes:
+				h = int(attributes["height"].value)
+			else:
+				h = 50
 			w = int(self.width)
 			l = int(self.left)
 			t = 0
@@ -802,7 +811,10 @@ class VDOM_splitter(VDOM_object):
 			m3y = h / 2 + 6
 		else:
 			h = int(self.width)
-			w = int(attributes["width"].value)
+			if "width" in attributes:
+				w = int(attributes["width"].value)
+			else:
+				w = 50
 			l = 0
 			t = int(self.top)
 			m1x = w / 2 - 6
