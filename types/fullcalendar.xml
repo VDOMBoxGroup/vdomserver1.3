@@ -2988,6 +2988,8 @@ class VDOM_fullcalendar(VDOM_object):
 	""" day names """
 	VERSION = "version 12.12"
 	""" setTimeout( 'removeEvents', 30000 ) """
+	VERSION = "version 12.19"
+	""" textColor, default = write """
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
 	RENDER_SCRIPT = """<script type="text/javascript"> 
 	$(document).ready(function() {
@@ -3019,21 +3021,6 @@ class VDOM_fullcalendar(VDOM_object):
 				var id="%(id_out)s";
 				execEventBinded(id.substring(2, id.length), "eventClick", {id:event.id});
 			},
-			/*
-			dayClick: function(date) {
-				var id="%(id_out)s";
-				var year=date.getFullYear();
-				var month=date.getMonth() + 1;
-				if (month < 10) {
-					month = "0" + month.toString();
-				}
-				var day=date.getDate();
-				if (day < 10){
-					day = "0" + day.toString();
-				}
-				var start = year.toString() + '-' + month + '-' + day;
-				execEventBinded(id.substring(2, id.length), "dayClick", {"start":start});
-			},*/
 			editable: true,
 			eventDrop: function(event, dayDelta, minuteDelta, allDay) {
 				startDate = event.start;
@@ -3161,15 +3148,12 @@ class VDOM_fullcalendar(VDOM_object):
 				summary = getattr(event, 'summary', vobject.base.ContentLine('SUMMARY', '', 'Event'))
 				cal_list.append( [startDate.value, endDate.value, summary.value] )
 				description = getattr(event, 'description', vobject.base.ContentLine('DESCRIPTION', '', 'Event'))
-				#raise Exception(summary, description)
-				#raise Exception(str(endDate).replace('<', '&lt'))
 				color = getattr(event, 'color', vobject.base.ContentLine('COLOR','','blue'))
 				id = getattr(event, 'id', vobject.base.ContentLine('ID', '', '-1'))
 				allDay = getattr( event, 'allday', vobject.base.ContentLine('ALLDAY','','false'))
 				allDay = True if allDay.value == "true" else False
-				#raise Exception( allDay )
-				#allDay = True if str(startDate.value) == str(endDate.value) else False
-				if event.rruleset == None:
+				textColor = getattr(event, 'textcolor', vobject.base.ContentLine('TEXTCOLOR', '', 'white'))
+				if event.rruleset is None:
 					event_sources.append({ "events": [{ "id": id.value,
 										"title": (summary.value).replace( "&comma&", ","), 
 										"description":description.value,
@@ -3177,7 +3161,8 @@ class VDOM_fullcalendar(VDOM_object):
 										"end": endDate.value.strftime("%Y-%m-%d %H:%M:%S"),
 										"allDay": allDay,
 										"instance": "-1"}],
-										"color": color.value})
+										"color": color.value,
+										"textColor": textColor.value})
 				else:
 					instance = 1
 					for rev in event.rruleset:
@@ -3189,7 +3174,8 @@ class VDOM_fullcalendar(VDOM_object):
 										"end": (rev + relativedelta(endDate.value, startDate.value)).strftime("%Y-%m-%d %H:%M:%S"),
 										"allDay": allDay,
 										"instance": instance }],
-										"color": color.value})
+										"color": color.value,
+										"textColor": textColor.value})
 						instance += 1
 		return json.dumps(event_sources)
 	
