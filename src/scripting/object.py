@@ -52,6 +52,16 @@ class VDOM_descriptor(object):
 	def __delete__(self, master):
 		raise AttributeError
 
+class VDOM_object_actions(object):
+
+	def __init__(self, owner):
+		self.owner=owner
+
+	def __getattr__(self, name):
+		def invoke(*arguments):
+			self.owner.action(name, param=arguments);
+		return invoke
+
 class VDOM_object(object):
 
 	def __init__(self, id):
@@ -170,6 +180,8 @@ class VDOM_object(object):
 		raise AttributeError
 
 	type=property(__get_type, __set_type)
+
+	actions=property(lambda self: VDOM_object_actions(self))
 
 	def execute(self, action_name, context):
 		# debug("[Object] Execute context %s, self.__id %s"%(context, self.__id))
