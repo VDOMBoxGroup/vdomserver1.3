@@ -729,18 +729,21 @@ var tabview_children_%(id)s = %(arr)s;
           </Parameters>
           <SourceCode><![CDATA[
 var id = this.domCont.id;		  
-eval('var x=tabview_children_'+this.domCont.id+';');
+eval('var x=tabview_children_'+id+';');
 if (typeof x !== 'undefined') {
-	$q('#'+this.domCont.id+' div.content>div').hide();
-  $q.each(x, function() {
- if (openTab == this[0] || openTab == this[1] || openTab == this[2]) {
-        $q('#'+this[3]).show();
-		execEventBinded(id.substring(2, id.length), "tabchanged", {ID:this[0], Name:this[1], hierarchy:this[2]});		
-      } else {
-        $q('#'+this[3]).hide();
-      }
+	$q('#'+id+' div.content_'+id+'>div').hide();
+	$q.each(x, function(i, el) {
+		var tab = $q('#ul_'+id+' a[href="#'+el[3]+'"]')
+			if (openTab == el[0] || openTab == el[1] || openTab == el[2]) {
+				$q('#'+el[3]).show();
+				if (tab){ tab.addClass('active'); }
+				execEventBinded(id.substring(2, id.length), "tabchanged", {ID:el[0], Name:el[1], hierarchy:el[2]});		
+			} else {
+				$q('#'+el[3]).hide();
+				if (tab){ tab.removeClass('active'); }
+			}
    
-  });
+	});
 }]]></SourceCode>
         </Action>
       </Container>
