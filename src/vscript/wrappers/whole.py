@@ -69,7 +69,7 @@ v_wholenoapplication=whole_no_application
 
 
 def search_for_application_id(name, string):
-	document, name=xml.dom.minidom.parseString(string), name.lower()
+	document, name=xml.dom.minidom.parseString(string.encode("utf-8")), name.lower()
 	try:
 		for application_node in document.getElementsByTagName("Applications")[0].getElementsByTagName("Application"):
 			if u"".join(node.data for node in application_node.getElementsByTagName("Name")[0].childNodes if node.nodeType==node.TEXT_NODE).lower()==name:
@@ -80,7 +80,7 @@ def search_for_application_id(name, string):
 		raise whole_incorrect_response
 
 def search_for_api_container(string):
-	document=xml.dom.minidom.parseString(string)
+	document=xml.dom.minidom.parseString(string.encode("utf-8"))
 	try:
 		for object_node in document.getElementsByTagName("Objects")[0].getElementsByTagName("Object"):
 			if object_node.attributes["Name"].nodeValue.lower()=="api":
@@ -90,7 +90,7 @@ def search_for_api_container(string):
 		raise whole_incorrect_response
 
 def search_for_action_names(string):
-	document=xml.dom.minidom.parseString(string)
+	document=xml.dom.minidom.parseString(string.encode("utf-8"))
 	try:
 		return [action_node.attributes["Name"].nodeValue \
 			for action_node in document.getElementsByTagName("ServerActions")[0].getElementsByTagName("Action")]
