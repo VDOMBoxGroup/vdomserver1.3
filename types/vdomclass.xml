@@ -465,7 +465,8 @@ class VDOM_vdomclass(VDOM_object):
 		#clean_id = (application.id).replace('-', '_')
 		
 		if self.classname == "":
-			classname = ""
+			#classname = ""
+			classname = " class='%s' " % (self.classauto)
 		else:
 			classname = " class='%s %s' " % (self.classauto, self.classname)
 		
