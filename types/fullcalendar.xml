@@ -6,9 +6,9 @@
     <Description>#Lang(002)</Description>
     <ClassName>VDOM_fullcalendar</ClassName>
     <ID>036a5b8f-483f-48ca-fe57-6b767d76173f</ID>
-    <Icon>#Res(31e094d1-d1ac-40d9-a3e3-980c6046fe0c)</Icon>
-    <EditorIcon>#Res(9fb2658d-748f-4115-87da-7c52aca00ab5)</EditorIcon>
-    <StructureIcon>#Res(2a475c2a-decc-4da1-a38a-15b55f87df85)</StructureIcon>
+    <Icon>#Res(20f5266f-e408-3f37-87f4-3736e9f9198b)</Icon>
+    <EditorIcon>#Res(ecb154fa-703f-9e5b-d61b-a2104109bea7)</EditorIcon>
+    <StructureIcon>#Res(980e8f18-e19b-3978-ce80-3cb2c373f050)</StructureIcon>
     <Moveable>1</Moveable>
     <Resizable>3</Resizable>
     <Container>1</Container>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>140</DefaultValue>
+      <DefaultValue>200</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -497,9 +497,115 @@
     </Language>
   </Languages>
   <Resources>
-    <Resource ID="31e094d1-d1ac-40d9-a3e3-980c6046fe04" Name="Icon" Type="png"><![CDATA[]]></Resource>
-    <Resource ID="9fb2658d-748f-4115-87da-7c52aca00ab4" Name="Icon" Type="jpg"><![CDATA[]]></Resource>
-    <Resource ID="2a475c2a-decc-4da1-a38a-15b55f87df84" Name="Icon" Type="png"><![CDATA[]]></Resource>
+    <Resource ID="20f5266f-e408-3f37-87f4-3736e9f9198b" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOjdBODk3NDU3MjQ5QTExRTFBMzFBQTIxRUZENDYzMEE5IiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOjdBODk3NDU4MjQ5QTExRTFBMzFBQTIxRUZENDYzMEE5Ij4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0E4OTc0NTUyNDlBMTFFMUEzMUFB
+MjFFRkQ0NjMwQTkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0E4OTc0NTYyNDlBMTFFMUEz
+MUFBMjFFRkQ0NjMwQTkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz4JRYQYAAAI/0lEQVR42sxZfYxVxRU/c98FFpbduvAWwoZW
+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
+6JfL6roAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="ecb154fa-703f-9e5b-d61b-a2104109bea7" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOkE3RUYwODVGMjQ5NTExRTFCQTAxRjk4OUQyNkQ4QjREIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkE3RUYwODYwMjQ5NTExRTFCQTAxRjk4OUQyNkQ4QjREIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QTdFRjA4NUQyNDk1MTFFMUJBMDFG
+OTg5RDI2RDhCNEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QTdFRjA4NUUyNDk1MTFFMUJB
+MDFGOTg5RDI2RDhCNEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz7MtuiCAAACGElEQVR42kxSS2gUQRDt3oyE7AjJkpWFXXPQ
+qwc95CKigh4EPXnwoATFgyh+I+LVq4jgJwkSjYKniKDgWRBR/B2E4ElENAFdNcvOoomMO931sapn
+EraZaWaq3qv3qrpt6/Flw8Tgyf2Tx6BnIqOLTb6Y9UVkAWRp5FoLhkAIDI4JC5CVVTKrDAQlQCaY
+CDpN+VeRUElx1ppSX0GwNqDB6O6ZKcL0z0olq1upT9HCtiUVJFQCgRGfrPq2nULwqJZVhqyE705d
+O3rqPOeibFCyHJJkohwqbTLKpwWJBjkMcCxI+kGsMPtz2d2euGF61uGT4xxo9960Hs0lEtnciC/t
+HZH6SGx/LDu1Zyxxrq5DzW1cedq8uLvx6svS1WfNQ6PVfZuGlrpQAhIhC8RI5ImEhmRmp29Ktxd2
+1QGpf01wSOwAZt8nkRS8f+t6r6UDx87I7lENSKNPPnTWrY22bSjPfUvnkyyS6Njxc+rB5J0RhK6F
+AMiTL359TbLxndWNw/3Tr9vffzv7ud1ldaVDgDA7IYgTAJp6ubjQcWd3DG9pxOsrsXgBIvup1X0w
+M9Frac/YCQ/4bv7vnbfJavD09trB0apo2o+LKYWeZCzSutR2Hp8/nNm6/4hMoD40MFKJQVPk0Tjk
+CLm4maJIGkUPoGNBqlfK9Uqcya2TESlashzlh6+nyGEscnFIa9QGy7XBgS4UhQXqSff/AgwALvPF
+NxWnjTQAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="980e8f18-e19b-3978-ce80-3cb2c373f050" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+PSJ4bXAuaWlkOkE3RUYwODVGMjQ5NTExRTFCQTAxRjk4OUQyNkQ4QjREIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkE3RUYwODYwMjQ5NTExRTFCQTAxRjk4OUQyNkQ4QjREIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QTdFRjA4NUQyNDk1MTFFMUJBMDFG
+OTg5RDI2RDhCNEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QTdFRjA4NUUyNDk1MTFFMUJB
+MDFGOTg5RDI2RDhCNEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz7MtuiCAAACGElEQVR42kxSS2gUQRDt3oyE7AjJkpWFXXPQ
+qwc95CKigh4EPXnwoATFgyh+I+LVq4jgJwkSjYKniKDgWRBR/B2E4ElENAFdNcvOoomMO931sapn
+EraZaWaq3qv3qrpt6/Flw8Tgyf2Tx6BnIqOLTb6Y9UVkAWRp5FoLhkAIDI4JC5CVVTKrDAQlQCaY
+CDpN+VeRUElx1ppSX0GwNqDB6O6ZKcL0z0olq1upT9HCtiUVJFQCgRGfrPq2nULwqJZVhqyE705d
+O3rqPOeibFCyHJJkohwqbTLKpwWJBjkMcCxI+kGsMPtz2d2euGF61uGT4xxo9960Hs0lEtnciC/t
+HZH6SGx/LDu1Zyxxrq5DzW1cedq8uLvx6svS1WfNQ6PVfZuGlrpQAhIhC8RI5ImEhmRmp29Ktxd2
+1QGpf01wSOwAZt8nkRS8f+t6r6UDx87I7lENSKNPPnTWrY22bSjPfUvnkyyS6Njxc+rB5J0RhK6F
+AMiTL359TbLxndWNw/3Tr9vffzv7ud1ldaVDgDA7IYgTAJp6ubjQcWd3DG9pxOsrsXgBIvup1X0w
+M9Frac/YCQ/4bv7vnbfJavD09trB0apo2o+LKYWeZCzSutR2Hp8/nNm6/4hMoD40MFKJQVPk0Tjk
+CLm4maJIGkUPoGNBqlfK9Uqcya2TESlashzlh6+nyGEscnFIa9QGy7XBgS4UhQXqSff/AgwALvPF
+NxWnjTQAAAAASUVORK5CYII=]]></Resource>
     <Resource ID="02dfd9db-16fe-3690-73e1-baf58cd3e6f4" Name="Style" Type="css"><![CDATA[LyoNCiAqIEZ1bGxDYWxlbmRhciB2MS41LjEgU3R5bGVzaGVldA0KICoNCiAqIENvcHlyaWdodCAo
 YykgMjAxMSBBZGFtIFNoYXcNCiAqIER1YWwgbGljZW5zZWQgdW5kZXIgdGhlIE1JVCBhbmQgR1BM
 IGxpY2Vuc2VzLCBsb2NhdGVkIGluDQogKiBNSVQtTElDRU5TRS50eHQgYW5kIEdQTC1MSUNFTlNF
@@ -2981,30 +3087,28 @@ import random
 
 class VDOM_fullcalendar(VDOM_object):
 	
-	VERSION = "version 12.07"
-	"""back to all resources, allDay works, resources work """
-	VERSION	= "version 12.10"
-	""" time format, dayClick = daysSelect, Mozilla events """
-	""" day names """
-	VERSION = "version 12.12"
-	""" setTimeout( 'removeEvents', 30000 ) """
+	# VERSION = "version 12.07"
+	# """back to all resources, allDay works, resources work """
+	# VERSION = "version 12.10"
+	# """ time format, dayClick = daysSelect, Mozilla events """
+	# """ day names """
+	# VERSION = "version 12.12"
+	# """ setTimeout( 'removeEvents', 30000 ) """
 	VERSION = "version 12.19"
-	""" textColor, default = write """
-	RENDER_DIV = """<div id="%s" style="%s"></div>"""	
+	# """ textColor, default = write """
+	RENDER_DIV = """<div id="%s" style="%s"></div>"""
 	RENDER_SCRIPT = """<script type="text/javascript"> 
-	$(document).ready(function() {
-		var t="%(time_format)s";
-		if (t == 24 || t == "24") {
+	$j(document).ready(function() {
+		if ("%(time_format)s" == 24) {
 			time_format = "H:mm{ - H:mm}";
+		} else {
+			time_format = "h(:mm)tt{ - h(:mm)tt}";
 		}
-		else {
-			time_format="h(:mm)tt{ - h(:mm)tt}";
-		}
-		day_names = %(day_names)s
+		var day_names = %(day_names)s;
 		if (day_names == '' || day_names == '[]') {
-			day_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+			day_names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		}
-		$("#%(id_out)s").fullCalendar({
+		$j("#%(id_out)s").fullCalendar({
 			header: {
 				left: '',
 				center: '',
@@ -3036,7 +3140,7 @@ class VDOM_fullcalendar(VDOM_object):
 				else {
 					endDate = event.end
 				}
-				end = 	endDate.getFullYear() + "-" + 
+				end = endDate.getFullYear() + "-" + 
 						(endDate.getMonth() + 1).toString()  + "-"  + 
 						endDate.getDate() + " " + 
 						endDate.getHours() + ":" + 
@@ -3083,14 +3187,14 @@ class VDOM_fullcalendar(VDOM_object):
 						startDate.getMinutes();			
 						
 				event = { start: startDate, end: endDate, title: "*", id: "-1", allDay: allDay };
-				setTimeout( '$("#%(id_out)s").fullCalendar( "removeEvents", "-1"  )',30000);
-				$("#%(id_out)s").fullCalendar('renderEvent', event);
-				$("#%(id_out)s").fullCalendar('unselect');
+				setTimeout( '$j("#%(id_out)s").fullCalendar("removeEvents", "-1")', 30000);
+				$j("#%(id_out)s").fullCalendar('renderEvent', event);
+				$j("#%(id_out)s").fullCalendar('unselect');
 				execEventBinded(id.substring(2, id.length), "daysSelect", {"id":event.id, "start":start, "end": end, allDay:event.allDay});
 			}			
 		});
-		$("#%(id_out)s").fullCalendar("changeView", "%(current_view)s");
-		$("#%(id_out)s").fullCalendar("gotoDate", new Date(parseInt(%(year)s), parseInt(%(month)s - 1), parseInt(%(day)s)));
+		$j("#%(id_out)s").fullCalendar("changeView", "%(current_view)s");
+		$j("#%(id_out)s").fullCalendar("gotoDate", new Date(parseInt(%(year)s), parseInt(%(month)s - 1), parseInt(%(day)s)));
 					
 	});
 </script>"""
@@ -3205,7 +3309,7 @@ class VDOM_fullcalendar(VDOM_object):
 	]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<script type='text/javascript' src='/16a5175b-61d2-cfe6-fb3e-ebc2b43a1c74.res'></script>]]></Library>
-    <Library Target="Html"><![CDATA[<link type="text/css" href="/02dfd9db-16fe-3690-73e1-baf58cd3e6f4.res'" />]]></Library>
+    <Library Target="Html"><![CDATA[<link rel="stylesheet" type="text/css" href="/02dfd9db-16fe-3690-73e1-baf58cd3e6f4.res" />]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
@@ -3299,7 +3403,9 @@ class VDOM_fullcalendar(VDOM_object):
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[	this.domCont.style.display = 'none';]]></SourceCode>
+          <SourceCode><![CDATA[
+this.domCont.style.display = 'none';
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
@@ -3307,23 +3413,29 @@ class VDOM_fullcalendar(VDOM_object):
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Effect" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[	vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
+          <SourceCode><![CDATA[
+vdom_ui_moveTo(this.domCont, newX, newY, Effect);
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-			this.domCont.style.zindex = parseInt(newZindex);
-					]]></SourceCode>
+this.domCont.style.zindex = parseInt(newZindex);
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="next">
           <Parameters/>
-          <SourceCode><![CDATA[this.domCont.fullCalendar('next')]]></SourceCode>
+          <SourceCode><![CDATA[
+this.domCont.fullCalendar('next');
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="prev">
           <Parameters/>
-          <SourceCode><![CDATA[$("#%(id_out)s").fullCalendar('prev')]]></SourceCode>
+          <SourceCode><![CDATA[
+this.domCont.fullCalendar('prev');
+]]></SourceCode>
         </Action>
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
           <Parameters>
@@ -3331,7 +3443,7 @@ class VDOM_fullcalendar(VDOM_object):
           </Parameters>
           <SourceCode><![CDATA[
 this.domCont.style.display = 'block';
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
