@@ -1421,7 +1421,7 @@ class VDOM_formdate(VDOM_object):
 
 		if self.inputmode == "1":
 			js = u"""<script type='text/javascript'>$j(function(){
-$j.datepicker.setDefaults($.datepicker.regional['%(regional)s']); 
+$j.datepicker.setDefaults($j.datepicker.regional['%(regional)s']); 
 $j.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
 /*$j('#%(id)s').datepicker('destroy').datepicker({ dateFormat: 'yy-mm-dd' });*/
 $j('#%(id)s').datepicker('destroy').datepicker();
