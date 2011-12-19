@@ -58,8 +58,10 @@ class VDOM_object_actions(object):
 		self.owner=owner
 
 	def __getattr__(self, name):
+		name="_".join([reduce(lambda x, y: "%s%s%s"%(x, y[0].upper(), y[1:]) if y else "%s_"%x,
+			part.split("_")) for part in name.split("__")])
 		def invoke(*arguments):
-			self.owner.action(name, param=arguments);
+			self.owner.action(name, param=[argument for argument in arguments]);
 		return invoke
 
 class VDOM_object(object):
