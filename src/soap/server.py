@@ -803,32 +803,108 @@ class VDOM_web_services_server(object):
 
 		if 1 == obj.type.container:
 			xml_actions = ''
+			server_actions_element = None
 		else:
 			xml_actions = '<ServerActions>\n'
 			for _name in obj.actions["name"]:
 				x = obj.actions["name"][_name]
-				xml_actions += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()), x.name, x.top, x.left, x.state)
+				xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()), x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
 				xml_actions += """<![CDATA[%s]]>\n""" % x.code
 				xml_actions += "</Action>\n"
 			xml_actions += '</ServerActions>\n'
 		if xml_actions:
 			try:
-				root = xml_object(srcdata=xml_actions.encode("utf-8"))
-				if "serveractions" != root.lname:
-					raise VDOM_exception_element(root.lname)
-				for child in root.children:
+				server_actions_element = xml_object(srcdata=xml_actions.encode("utf-8"))
+				if "serveractions" != server_actions_element.lname:
+					raise VDOM_exception_element(server_actions_element.lname)
+				for child in server_actions_element.children:
 					if "action" == child.lname:
 						_id = child.attributes["id"]
 						_name = child.attributes["name"]
 						if not _id or not _name:
 							raise VDOM_exception_element("server action")
+						
 			except Exception, e:
-				if root:
-					root.delete()
+				if server_actions_element:
+					server_actions_element.delete()
 				raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-			root.name = "Actions"
-			copy_object.set_actions(root)
-			root.delete()
+			server_actions_element.name = "Actions"
+			copy_object.set_actions(server_actions_element)	
+			app.sync()
+		xml_events = "<Events>\n"
+		if obj and obj.toplevel.id in app.events:
+			if obj.id in app.events[obj.toplevel.id]:
+				src_id = obj.id
+				for ev_name in app.events[obj.toplevel.id][src_id]:			
+					xml_events += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (copy_object.id, copy_object.name, copy_object.type.id, copy_object.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
+					for a in app.events[obj.toplevel.id][src_id][ev_name].actions:
+						xml_events += """<Action ID="%s"/>\n""" % a
+					xml_events += "</Event>\n"
+		xml_events += "</Events>"
+		events_element = None
+		try:
+			events_element = xml_object(srcdata=xml_events.encode("utf-8"))
+			if not events_element:
+				raise VDOM_exception_element("Events")			
+			for child in events_element.children:
+				if "event" == child.lname:
+					src_id = child.attributes["objsrcid"]
+					name = child.attributes["name"]
+					if not src_id or not name:
+						raise VDOM_exception_element("Event")
+					for act in child.children:
+						if "action" == act.lname:
+							_id = act.attributes["id"]
+							if not _id:
+								raise VDOM_exception_element("event.action")
+		except Exception, e:
+			if events_element:
+				events_element.delete()
+			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+		xml_client_action = "<ClientActions>\n"	
+		if obj:
+			for a_id in app.actions:
+				a = app.actions[a_id]
+				if a.target_object == obj.id:
+					xml_client_action += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()).upper(), copy_object.id, copy_object.name, a.method_name, a.top, a.left, a.state)
+					for p in a.parameters:
+						xml_client_action += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
+					xml_client_action += "</Action>\n"
+		xml_client_action += "</ClientActions>\n"
+		try:
+			client_actions_element = xml_object(srcdata=xml_client_action.encode("utf-8"))
+			if not client_actions_element:
+				raise VDOM_exception_element("ClientActions")
+			# client actions
+			for child in client_actions_element.children:
+				if "action" == child.lname:
+					_id = child.attributes["id"]
+					tgt_id = child.attributes["objtgtid"]
+					mn = child.attributes["methodname"]
+					if not tgt_id or not mn or not _id:
+						raise VDOM_exception_element("client action")
+					for par in child.children:
+						if "parameter" == par.lname:
+							par_name = par.attributes["scriptname"]
+							par_value = par.get_value_as_xml()
+							if not par_name:
+								raise VDOM_exception_element("Parameter")
+		except Exception, e:
+			if client_actions_element:
+				client_actions_element.delete()
+			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+		if copy_object:
+			app.set_e2vdom_events(copy_object, events_element)
+			app.set_e2vdom_actions(copy_object, client_actions_element)
+			if server_actions_element:
+				for child in server_actions_element.children:
+					if "action" == child.lname:
+						if 1 != copy_object.type.container:
+							copy_object.set_action_attributes(child)
+				server_actions_element.delete()
+		client_actions_element.delete()
+		events_element.delete()
+		app.sync()
 		for ob in obj.objects:
 			self.__copy_object(app, obj_id, ob)
 		return obj_id
