@@ -337,7 +337,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 						else:
 							# Mount wrong! Exit.
 							debug("iSCSI MOUNT %s %s failed! Exit."%(self.__dev, self.__uuid))
-							raise Exception("iSCSI MOUNT failed! Exit.")
+							raise Exception("iSCSI MOUNT %s %s failed! Exit."%(self.__dev, self.__uuid))
 					else:
 					# Login to target failed. Exit.
 						debug("iSCSI Login to target failed! Exit.")
