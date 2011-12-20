@@ -102,7 +102,7 @@ def create_objects(sid, skey, appid, parentid, objects, _SOAPContext):
 	return proxy([managers.soap_server.create_objects, sid, skey, appid, parentid, objects])
 
 # copy object in the application
-def copy_object(sid, skey, appid, objid, parentid, _SOAPContext):
+def copy_object(sid, skey, appid, parentid, objid, _SOAPContext):
 	return proxy([managers.soap_server.copy_object, sid, skey, appid, parentid, objid])
 
 # update object in the application
