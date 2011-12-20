@@ -2,8 +2,8 @@
 <Type>
   <Information>
     <Name>mysqlconnector</Name>
-    <DisplayName>#Lang(002)</DisplayName>
-    <Description>#Lang(001)</Description>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
     <ClassName>VDOM_mysqlconnector</ClassName>
     <ID>c69c89ba-13ea-488f-8f98-66306b3aa194</ID>
     <Icon>#Res(102e782e-aa0b-4564-b5fd-e121cd6f7bf7)</Icon>
@@ -14,14 +14,13 @@
     <Container>1</Container>
     <Category>Database</Category>
     <Dynamic>1</Dynamic>
-    <Version>1</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
-    <RenderType/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
@@ -125,22 +124,22 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Container, that represents connection to database</Sentence>
-      <Sentence ID="002">MySQL Connector</Sentence>
+      <Sentence ID="001">MySQL Connector</Sentence>
+      <Sentence ID="002">Container, that represents connection to database</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show or not object</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="302">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Container title</Sentence>
-      <Sentence ID="203">Container title</Sentence>
+      <Sentence ID="203">Title of the object</Sentence>
       <Sentence ID="303">Incorrect value</Sentence>
       <Sentence ID="104">Description</Sentence>
-      <Sentence ID="204">Description of the container</Sentence>
+      <Sentence ID="204">Description of the object</Sentence>
       <Sentence ID="304">Incorrect value, must be string</Sentence>
       <Sentence ID="105">Server</Sentence>
       <Sentence ID="205">Server to connect</Sentence>
@@ -156,25 +155,25 @@
       <Sentence ID="308">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
-      <Sentence ID="001">Контейнер, предоставляющий соединение с базой данных</Sentence>
-      <Sentence ID="002">MySQL Connector</Sentence>
+      <Sentence ID="001">MySQL Connector</Sentence>
+      <Sentence ID="002">Контейнер, предоставляющий соединение с базой данных</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
-      <Sentence ID="401">Невидимый</Sentence>
-      <Sentence ID="402">Видимый</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="103">Заголовок контейнера</Sentence>
-      <Sentence ID="203">Заголовок контейнера</Sentence>
+      <Sentence ID="203">Заголовок объекта</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
       <Sentence ID="104">Описание</Sentence>
-      <Sentence ID="204">Описание контейнера</Sentence>
+      <Sentence ID="204">Описание объекта</Sentence>
       <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="105">Сервер</Sentence>
-      <Sentence ID="205">Сервер БД</Sentence>
+      <Sentence ID="205">Сервер базы данных</Sentence>
       <Sentence ID="305">Неправильное значение</Sentence>
       <Sentence ID="106">База данных</Sentence>
       <Sentence ID="206">Название базы данных</Sentence>
