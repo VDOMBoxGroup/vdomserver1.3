@@ -1069,20 +1069,20 @@ for (var j in window.selectedRows_"""+id+"""){
 	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
 		for (var i=0; i < window.keys_"""+id+""".length; i++){
 			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){
-				$("#"""+id+""" table tr").attr('index', function(index, attr){
+				$j("#"""+id+""" table tr").attr('index', function(index, attr){
 					if (attr == i+1){
-						$(this).children("td").children("input").attr('checked', 'checked');
-						$(this).addClass('row_selected');
+						$j(this).children("td").children("input").attr('checked', 'checked');
+						$j(this).addClass('row_selected');
 					}
 				});
 			}
 		}
 	}
 	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){
-		$("#"""+id+""" table tr").attr('index', function(index, attr){
+		$j("#"""+id+""" table tr").attr('index', function(index, attr){
 			if (attr == window.selectedRows_"""+id+"""[j]){
-				$(this).children("td").children("input").attr('checked', 'checked');
-				$(this).addClass('row_selected');
+				$j(this).children("td").children("input").attr('checked', 'checked');
+				$j(this).addClass('row_selected');
 			}
 		});
 	}
@@ -1095,8 +1095,8 @@ for (var j in window.selectedRows_"""+id+"""){
 		else:
 			js_multiselect = u""
 		js_headerselect = u"""
-$("#"""+id+""" table tr th:not([checkbox])").click(function(){
-var hname_"""+id+""" = $(this).html();
+$j("#"""+id+""" table tr th:not([checkbox])").click(function(){
+var hname_"""+id+""" = $j(this).html();
 execEventBinded('"""+idn+"""', "headerselected", {headername:hname_"""+id+"""});
  });		
 """
@@ -1104,60 +1104,60 @@ execEventBinded('"""+idn+"""', "headerselected", {headername:hname_"""+id+"""});
 		js_multiselect += u"""
 window.selectionmode_"""+id+""" = 'multi';
 
-$("#"""+id+""" table tr th input:checkbox").click(function(){
+$j("#"""+id+""" table tr th input:checkbox").click(function(){
 	if(this.checked){
-		$("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+		$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
 		  params_"""+id+""".push(window.keys_"""+id+"""[i]);
 		  });
 		
 	}else{		
-		$("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
 		params_"""+id+""" = [];
 	}
 	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
   });
 
-$("#"""+id+""" table tr td input:checkbox").click(function(){
+$j("#"""+id+""" table tr td input:checkbox").click(function(){
 	if(this.checked){
-		$(this).parent().parent().addClass('row_selected');
+		$j(this).parent().parent().addClass('row_selected');
 	}else{
-		$(this).parent().parent().removeClass('row_selected');
+		$j(this).parent().parent().removeClass('row_selected');
 	}
 	params_"""+id+""" = [];
-	$("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+	$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
 		if (this.checked){
 		   params_"""+id+""".push(window.keys_"""+id+"""[i]);
 		}
 	});
-	if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){
-		$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+	if($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()){
+		$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
 	}else{
-		$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+		$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 	}
 	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
   });
-if($("#"""+id+""" table tr td input:checkbox").size() == $("#"""+id+""" table tr td input:checked").size()){
-	$("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+if($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()){
+	$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
 }else{
-	$("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+	$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 }
 """
 
 		js_cellclick = u"""
 /*
-$("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
-	var cell_data = $(this).html();
-	var cell_index = $(this).attr("index");
+$j("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
+	var cell_data = $j(this).html();
+	var cell_index = $j(this).attr("index");
 	var header_data = header_""" + id + """[cell_index - 1];
-	var param = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
-	params_"""+id+"""[0] = window.keys_"""+id+"""[($(this).parent().attr("index"))-1];
+	var param = window.keys_"""+id+"""[($j(this).parent().attr("index"))-1];
+	params_"""+id+"""[0] = window.keys_"""+id+"""[($j(this).parent().attr("index"))-1];
 	if(window.selectionmode_"""+id+""" != 'multi'){
-		$("#"""+id+""" table tr[row]").each(function(){
-			if($(this).hasClass('row_selected')){
-				$(this).removeClass('row_selected');
+		$j("#"""+id+""" table tr[row]").each(function(){
+			if($j(this).hasClass('row_selected')){
+				$j(this).removeClass('row_selected');
 			}
 		});
-		$(this).parent().addClass('row_selected');
+		$j(this).parent().addClass('row_selected');
 		execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
 	}
 	execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
@@ -1166,26 +1166,26 @@ $("#"""+id+""" table tr[row] td:not([checkbox])").click(function(){
 
 /*
 if (window.selectionmode_"""+id+""" === 'multi' ) {
-	$("#"""+id+""":last table tr[row] td:nth-child(1)").live('click', function(){
-		//$('input[type="checkbox"]', this).click();
-		var x = $('input[type="checkbox"]', this);
+	$j("#"""+id+""":last table tr[row] td:nth-child(1)").live('click', function(){
+		//$j('input[type="checkbox"]', this).click();
+		var x = $j('input[type="checkbox"]', this);
 		var stat = !x.attr("checked");
 		x.attr("checked", stat);
 	});
 }
 */
 
-/*"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not([checkbox]):not(:first)");*/
+/*"""+id+"""_tds = $j("#"""+id+""":last table tr[row] td:not([checkbox]):not(:first)");*/
 if (window.selectionmode_"""+id+""" === 'multi') {
-	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td:not(:nth-child(1))");
+	"""+id+"""_tds = $j("#"""+id+""":last table tr[row] td:not(:nth-child(1))");
 } else {
-	"""+id+"""_tds = $("#"""+id+""":last table tr[row] td");
+	"""+id+"""_tds = $j("#"""+id+""":last table tr[row] td");
 }
 """+id+"""_doo = false;
 
-$("""+id+"""_tds).bind('click dblclick', function(e){
+$j("""+id+"""_tds).bind('click dblclick', function(e){
 
-	var t = $(this);
+	var t = $j(this);
 	var cell_data = t.html(), cell_index = t.attr("index");
 	var header_data = header_""" + id + """[cell_index - 1];
 	var param = window.keys_"""+id+"""[(t.parent().attr("index"))-1];
@@ -1204,15 +1204,15 @@ $("""+id+"""_tds).bind('click dblclick', function(e){
 
 					/* click */
 					if(window.selectionmode_"""+id+""" != 'multi'){
-						$("#"""+id+""" table tr[row]").removeClass('row_selected');
+						$j("#"""+id+""" table tr[row]").removeClass('row_selected');
 						t.parent().addClass('row_selected');
 						execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
 					} else {
-						$("#"""+id+""" table tr[row]").removeClass('row_clicked');
+						$j("#"""+id+""" table tr[row]").removeClass('row_clicked');
 						t.parent().addClass('row_clicked');
 					}
 					execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
-					$("#"""+id+""" table tr[row]").removeClass('active');
+					$j("#"""+id+""" table tr[row]").removeClass('active');
 					t.parent().addClass('active');
 				}
 				delete """+id+"""_tout;
@@ -1230,31 +1230,31 @@ $("""+id+"""_tds).bind('click dblclick', function(e){
 		theader = u""
 		vheader = [h for h in header if h not in hidden]
 		if vheader:
-			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>\n' if self.selectionmode == "1" else u'<tr header class="thead">'
+			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>' if self.selectionmode == "1" else u'<tr header class="thead">'
 			for (index, colname) in zip(range(len(vheader)), vheader):
-				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>\n'
+				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>'
 			theader += u'</tr>'
 		for (row_i, row) in zip(range(len(data)), data):
 			if (row_i + 1) % 2:
-				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' oddrow%(active)s">\n' % {"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""}
+				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' oddrow%(active)s">' % {"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""}
 			else:
-				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' even%(active)s">\n' % {"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""}
+				tdata += u'<tr row index="'+unicode(row_i+1)+'" class="row row-'+unicode(row_i+1)+' even%(active)s">' % {"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""}
 			
-			tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox"></td>\n' if self.selectionmode == "1" else ""
+			tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox"></td>' if self.selectionmode == "1" else ""
 			if vheader:
 				for (index, col) in zip(range(len(vheader)), vheader):
 					try:
-						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>\n'
+						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>'
 					except:
 						raise Exception ("In row (%s) no column %s"%(json.dumps(row), col))
 			else:
 				for (index, val) in zip(range(len(row)), row):
-					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>\n'
-			tdata += u"</tr>\n"
+					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>'
+			tdata += u"</tr>"
 
 		if self.draggable == '1':
 			js_drag = u"""
-$('#%(id)s tr').draggable({
+$j('#%(id)s tr').draggable({
 	connectToDynatree: true
 	,appendTo: 'body'
 	,containment: 'document'
@@ -1644,7 +1644,7 @@ var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
 if(selectionmode == 'multi'){
    eval('var keys = window.keys_'+id+';');
-   eval('var dth=jQuery("#'+id+' table input:checkbox");');
+   eval('var dth=$j("#'+id+' table input:checkbox");');
    dth.attr('checked', 'checked').parent().not("th").parent().addClass('row_selected');
    execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
 }
@@ -1657,7 +1657,7 @@ var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
 if(selectionmode == 'multi'){
    var keys = [];
-   eval('var dth=jQuery("#'+id+' table input:checkbox");');
+   eval('var dth=$j("#'+id+' table input:checkbox");');
    dth.removeAttr('checked').parent().not("th").parent().removeClass('row_selected');
    execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
 }
