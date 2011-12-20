@@ -700,12 +700,12 @@ class VDOM_list(VDOM_object):
 
 		if self.dragdrop == "1":
 			dragdrop = u"""
-$('#%(id)s li').droppable({
+$j('#%(id)s li').droppable({
 	//greedy: true,
 	//activeClass: "ui-state-hover",
 	hoverClass: "ui-state-active",
 	drop: function(e, ui) {
-		execEventBinded('%(woid)s', "drop", {itemid: $(this).attr('itemid')});
+		execEventBinded('%(woid)s', "drop", {itemid: $j(this).attr('itemid')});
 	}
 });""" % { "id": id, "woid": woid }
 		else:
@@ -862,7 +862,7 @@ vdom_ui_hide(this.domCont, fade);
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
-var t = $(this.domCont), ii = this.domCont.id;
+var t = $j(this.domCont), ii = this.domCont.id;
 if (t.hasClass('multiselect')){
 	var a = [], k = t.find('li[itemid]');
 	k.addClass('selected');
@@ -874,7 +874,7 @@ if (t.hasClass('multiselect')){
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
-var t = $(this.domCont), ii = this.domCont.id;
+var t = $j(this.domCont), ii = this.domCont.id;
 if (t.hasClass('multiselect')){
 	t.find('li[itemid]').removeClass('selected');
 	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:[]});
