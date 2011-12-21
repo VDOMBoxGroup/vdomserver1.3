@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>printtowebcontainer, desktopapplication, desktopshared, container</Containers>
@@ -128,59 +128,59 @@
       <Sentence ID="002">Desktop application script</Sentence>
       <Sentence ID="003">Desktop</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show or not object</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels. Can not be more than 2880</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="108">Source code</Sentence>
-      <Sentence ID="208">Script source code</Sentence>
+      <Sentence ID="208">Script source code of the object</Sentence>
       <Sentence ID="308">Incorrect value, must be string</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Скрипт</Sentence>
       <Sentence ID="002">Скрипт настольного приложения</Sentence>
-      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="003">Настольный</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Отображается объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
-      <Sentence ID="401">Не отображается</Sentence>
-      <Sentence ID="402">Отображается</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
-      <Sentence ID="203">Заголовок контейнера</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
       <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="105">Слева</Sentence>
       <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="106">Ширина</Sentence>
       <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="107">Высота</Sentence>
       <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="108">Исходный код</Sentence>
       <Sentence ID="208">Исходный код скрипта</Sentence>
       <Sentence ID="308">Неправильное значение, должна быть строка</Sentence>
