@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>printtowebcontainer</Containers>
@@ -140,33 +140,33 @@
       <Sentence ID="002">Print To Web Action</Sentence>
       <Sentence ID="003">PrintToWeb</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Z-Index</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="107">Title</Sentence>
-      <Sentence ID="207">Value of the object</Sentence>
+      <Sentence ID="207">Title of the object</Sentence>
       <Sentence ID="307">Incorrect value</Sentence>
       <Sentence ID="108">Description</Sentence>
-      <Sentence ID="208">Value of the object</Sentence>
+      <Sentence ID="208">Description of the object</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="109">Entry Point</Sentence>
-      <Sentence ID="209">Value of the object</Sentence>
+      <Sentence ID="209">Entry point of the object</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
@@ -174,33 +174,33 @@
       <Sentence ID="002">Команда PrintToWeb</Sentence>
       <Sentence ID="003">PrintToWeb</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Отображается объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение</Sentence>
-      <Sentence ID="401">Не отображается</Sentence>
-      <Sentence ID="402">Отображается</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
-      <Sentence ID="203">Заголовок контейнера</Sentence>
-      <Sentence ID="303">Неправильное значение, должна быть строка</Sentence>
-      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
       <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="105">Слева</Sentence>
       <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="106">Ширина</Sentence>
       <Sentence ID="206">Ширина объекта в пикселях</Sentence>
       <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="107">Название</Sentence>
-      <Sentence ID="207">Значение объекта</Sentence>
+      <Sentence ID="107">Заголовок</Sentence>
+      <Sentence ID="207">Заголовок объекта</Sentence>
       <Sentence ID="307">Неправильное значение</Sentence>
       <Sentence ID="108">Описание</Sentence>
-      <Sentence ID="208">Значение объекта</Sentence>
+      <Sentence ID="208">Описание объекта</Sentence>
       <Sentence ID="308">Неправильное значение</Sentence>
       <Sentence ID="109">Точка входа</Sentence>
-      <Sentence ID="209">Значение объекта</Sentence>
+      <Sentence ID="209">Точка входа</Sentence>
       <Sentence ID="309">Неправильное значение</Sentence>
     </Language>
     <Language Code="fr_FR">
@@ -400,35 +400,46 @@ fm972s5Pbq+vIz+dixyaXZb32nyVzHBzaNHTy34Xrut4/5O575XJ1Sg4wsJUYi6fhwyJ2J32ZHgg
 nFjKriMvy/CHAq81dNadDPhdjNfjoTElaYiSAlGTsK5soqDJ0AwdJXdIqY1fTV6md992y02zRFkp
 FovH/7FWNNPMFv8il8CKlIFeFHf5mvCvAAMArJ+noGIV4ZAAAAAASUVORK5CYII=]]></Resource>
     <Resource ID="e8a320aa-b4b9-5e35-42c7-edb93d519364" Name="ptw24.png" Type="png"><![CDATA[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
-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]]></Resource>
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6ODFDODI1QzIxRkRGMTFFMTg2MEJCMjAwRjk5NDI2NTAiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6ODFDODI1QzMxRkRGMTFFMTg2MEJCMjAwRjk5NDI2NTAiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4MUM4MjVDMDFGREYxMUUxODYwQkIyMDBGOTk0
+MjY1MCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4MUM4MjVDMTFGREYxMUUxODYwQkIyMDBG
+OTk0MjY1MCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PqMJ99kAAAU2SURBVEhLzZV5aNNnGMc/ORpjbZum0bYaa3rYtdZrxnpO
+mYp4oshQpkwGm7BD2ZTtDxlFxqAy2P5wDOYxhpNtKLpZdaXVsda1zms91DbVarW1aROT1qSmbe7k
+98vexuEBdQhD2AO/f17e9/k8z/c5foqYMF6gKV+g77jr/xlAiDmkqCTJz5244nlqEJXDyFJI5Cuj
+jKnp75NQKpX4giHSxySjGaGJA6OyjCwCiEYlEv85+1dASPLj8t1EIYVRKAJYuwMkJvkZ6E9m8hQF
+rbYc6v+MsX5NCj+32rlgvUttVydLTdkcfn19HPpMQKejjd5IOQki0lFqIUn0Aemp87H2mDl+eS/J
+yV5+q0ok4jay9eMkTgTucbQ8QP5oPW9Om4zZZGJVQf7wRW5p6eZITSm9rlaUiitcu32XQa+ZkZrl
+TM/L5ETjTPYcK+Zq51jcUjfdniPkjbzE3NmpvGbMIx0VU9IMz+6i0n2f4ZddHCrz8v5XU7G53+Vi
+12Rk8XDINi0341ClMsqg47236ujtSaKhKkCn083U3HGsNZvJMuiHBzQ03ODkqSo8fhcW20I2L5lP
+x4CDnLFajl6zxR/tXJYFCXq6pXG02xaRrdFhu+vEZzmO1W8hc7QOhVIxPOD7o2eYMXUB5pdLWL1s
+AnVWF66QzMpJRmwiwpZ7PlTi7c51uRQWpLLK3M1fzetI0xZgCKbyR03dUy38aNCqbXZWnK7AKocw
+vLqQH2+epCdYyRVnhKy0NCpvOGnzBjh7qyfuYFWBAYfrLI1tVYSSSrhae5/OMwPU1px+CqDoj4Rj
+x+60YxsYwGJpo+ynavTTRDdMV1OYJNPZVUTpum0snKgXsxAT/S/Cj2cf4+sTWZxrTcTapaXN1iva
+V8TbFyHS7EStelgv9a6yCg5X1uKydoExA6QIipCGkJgra0zDK/kOdFoVi/ecxmhIJjNxFEWZabw9
+z4Qkb+FW9146O9T4BqMQUpE8Ov2R86E1qtwyYwaupusoRiaiFScJSVp8d2MCEMM+6OPVSeupbasW
+g6ZEI1ZEVI7Q2G6n1tJDjuENzpe08MMn+5Evudjz0W52bNzySKI4YFq+ibkL5hLzDiIHoih1WiSf
+Cq9HYnJ6PstfWixatpWiMc30DgRxOPoIePpR++zoE/ycra2iSJdN161b5CTocF5qxtLU9HCKhZTx
+Ih/auU2kJyMFfciy2DPjU9DoU1mdM4t9104wZfw8AoNGBj1uep1OIoMDVPxaRtOFMwQjUfr6PfjC
+QWrO1VJQVEDRpEKiUjQOeLQq1u76kvLqc+gmGPl84wb2p7ThaG9F1RIS0FRGKzLRJShw2T2snp7N
+eOV9XD09aJJS+LaummAsyoEt21mzbHlcTqVahWZU4mNAZ899cja8Q8nmDSiDEXoTocwh0ScKN9Lt
+wBT2oQ3KOO0DmLSDrJiZLjanhvNOB1W3W6n/7iDFBYW0WizY7fcw5WaTlzcRhSyLBSuqMbR+D5b/
+TtDjxeUPMjYrnUkTTdgexLC0OGlssmG5dp177dcpnDiGhvIvUKvVdLg8pCTrMOqTcbvdfLh1m+gu
+mRHaEZTuLn0MUAjBhr7hzOf1caHxDjX1bbi9YTatLGbR7DwxCkrqLl8UekuYi2fR2NBARWUlbpeL
+b/buQ52Q8BDwpNNnQYYDnzr+C4ePHGbcOCNLly4lIyOD9o4OLM3NfLB9BxmZmc/+HwybyhOH4XCI
+T0tKKJ4zh4b6epYIgMGQRpo+jeyc3Mc3hwrwX+3Avr0xv98f6+/vj4XD4afc/Q3t1r/ffWAi9gAA
+AABJRU5ErkJggg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
