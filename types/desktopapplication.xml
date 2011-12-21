@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.2.6720</Version>
+    <Version>1.5.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -167,86 +167,86 @@
       <Sentence ID="003">Desktop</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Шndex</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Title</Sentence>
-      <Sentence ID="204">Title of the container</Sentence>
+      <Sentence ID="204">Title of the object</Sentence>
       <Sentence ID="304">Incorrect value, must be string</Sentence>
       <Sentence ID="105">Description</Sentence>
-      <Sentence ID="205">Description of the container</Sentence>
+      <Sentence ID="205">Description of the object</Sentence>
       <Sentence ID="305">Incorrect value, must be string</Sentence>
       <Sentence ID="106">Activity</Sentence>
-      <Sentence ID="206">Activity of the container</Sentence>
-      <Sentence ID="306">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="206">Activity of the object</Sentence>
+      <Sentence ID="306">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="403">Inactive</Sentence>
       <Sentence ID="404">Active</Sentence>
       <Sentence ID="107">Background</Sentence>
-      <Sentence ID="207">Run in background or not</Sentence>
-      <Sentence ID="307">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="207">Define whether it can be run in background or not</Sentence>
+      <Sentence ID="307">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
       <Sentence ID="108">Entry point</Sentence>
       <Sentence ID="208">Entry point of the application</Sentence>
       <Sentence ID="308">Incorrect value, must be string</Sentence>
       <Sentence ID="109">Small icon</Sentence>
-      <Sentence ID="209">Small icon of the container</Sentence>
+      <Sentence ID="209">Small icon of the object</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="111">Medium icon</Sentence>
-      <Sentence ID="211">Medium icon of the container</Sentence>
+      <Sentence ID="211">Medium icon of the object</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">Big icon</Sentence>
-      <Sentence ID="212">Big icon of the container</Sentence>
+      <Sentence ID="112">Large icon</Sentence>
+      <Sentence ID="212">Large icon of the object</Sentence>
       <Sentence ID="312">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Настольное приложение</Sentence>
       <Sentence ID="002">Контейнер, содержащий объекты настольного приложения</Sentence>
-      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="003">Настольное</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
       <Sentence ID="202">Отображается объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
-      <Sentence ID="401">Не отображается</Sentence>
-      <Sentence ID="402">Отображается</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="104">Заголовок</Sentence>
-      <Sentence ID="204">Заголовок контейнера</Sentence>
+      <Sentence ID="204">Заголовок объекта</Sentence>
       <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="105">Описание</Sentence>
-      <Sentence ID="205">Описание контейнера</Sentence>
+      <Sentence ID="205">Описание объекта</Sentence>
       <Sentence ID="305">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="106">Активность</Sentence>
-      <Sentence ID="206">Активность контейнера</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть 0 или 1</Sentence>
-      <Sentence ID="403">Неактивен</Sentence>
+      <Sentence ID="206">Активность объекта</Sentence>
+      <Sentence ID="306">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="403">Не активен</Sentence>
       <Sentence ID="404">Активен</Sentence>
       <Sentence ID="107">Фоновое</Sentence>
-      <Sentence ID="207">Запускать как фоновое или нет</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть 0 или 1</Sentence>
+      <Sentence ID="207">Запускать как фоновое приложение или нет</Sentence>
+      <Sentence ID="307">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
       <Sentence ID="108">Точка входа</Sentence>
       <Sentence ID="208">Точка входа приложения</Sentence>
       <Sentence ID="308">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="109">Малая иконка</Sentence>
-      <Sentence ID="209">Малая иконка контейнера</Sentence>
+      <Sentence ID="209">Малая иконка объекта</Sentence>
       <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="111">Средняя иконка</Sentence>
-      <Sentence ID="211">Средняя иконка контейнера</Sentence>
+      <Sentence ID="211">Средняя иконка объекта</Sentence>
       <Sentence ID="311">Неправильное значение</Sentence>
       <Sentence ID="112">Большая иконка</Sentence>
-      <Sentence ID="212">Большая иконка контейнера</Sentence>
+      <Sentence ID="212">Большая иконка объекта</Sentence>
       <Sentence ID="312">Неправильное значение</Sentence>
     </Language>
     <Language Code="fr_FR">
