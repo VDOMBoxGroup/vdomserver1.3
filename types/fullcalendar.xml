@@ -3176,12 +3176,6 @@ class VDOM_fullcalendar(VDOM_object):
 										"color": color.value,
 										"textColor": textColor.value})
 						instance += 1
-		event_sources.append({ "events": [{
-										"title": "test", 
-										"start": datetime.date.today().strftime("%Y-%m-%d %H:%M:%S"),
-										"allDay": True, }],
-										"textColor": "red",
-										"color": "green"})
 		return json.dumps(event_sources)
 	
 		
