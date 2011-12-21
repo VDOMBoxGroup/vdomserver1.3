@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.1.6720</Version>
+    <Version>1.4.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -94,38 +94,38 @@
       <Sentence ID="002">Container with shared module objects</Sentence>
       <Sentence ID="003">Desktop</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show or not object</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-index</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Title</Sentence>
-      <Sentence ID="204">Title of the container</Sentence>
+      <Sentence ID="204">Title of the object</Sentence>
       <Sentence ID="304">Incorrect value, must be string</Sentence>
       <Sentence ID="105">Description</Sentence>
-      <Sentence ID="205">Description of the container</Sentence>
+      <Sentence ID="205">Description of the object</Sentence>
       <Sentence ID="305">Incorrect value, must be string</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Разделяемый модуль</Sentence>
       <Sentence ID="002">Контейнер, содержащий объекты разделяемого модуля</Sentence>
-      <Sentence ID="003">Desktop</Sentence>
+      <Sentence ID="003">Настольный</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
       <Sentence ID="202">Отображается объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть 0 или 1</Sentence>
-      <Sentence ID="401">Не отображается</Sentence>
-      <Sentence ID="402">Отображается</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="104">Заголовок</Sentence>
       <Sentence ID="204">Заголовок контейнера</Sentence>
       <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
@@ -317,28 +317,48 @@ LvulKjrAGQIbBRRY1zqAvdvtlkCpDg0yCBPA0DsQsSyLtT6ztI8C8DOB/ogALgGlFH8q6Ux/ZNjI
 extBEmWhpE1JEgiBFFwIiqJYgjabDYu+nfj2ovViPMLxeHyrYprm2yauEQlUEATG2vqmafqSSkAc
 x6tx6nA4rO5/nuckOwJ8izO//UC2bdN/YOjzCM7n8yvLsg9/kiQfY/wIMABnkaggSgR/cQAAAABJ
 RU5ErkJggg==]]></Resource>
-    <Resource ID="0f0db1a5-ada7-bdaa-f758-edb40a587b28" Name="qt24.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABQAAAAYCAYAAAD6S912AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
-jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41
-LjlAPLDLAAAEPklEQVRIS42Ve0xbVRzHYcbEP4yPaExMzIzGsJgIutHHaKc8KkYUVjAiG0OpK+Ud
-HguOxwILj9CxBzKrUxc6zbZsIYP1Ybu1rOA6yoQqqGs6u6EyhGUbssEckNnee7+ee8rqNkrZvTm5
-p6fnfM73d36/8/uFVe6rezJSId0tKheMKo7GzObqxUypSTa+1ZJsqbQkt7ScUSk0Z8tjWuyq5ywX
-Dz0xPjPyMMsx4XzjwIWRL218nz6vZEs0T6c9z310RMDl6kVYaHyfU+mEXI4umlXpBFyhcd10iSne
-RdqJKqu8taE3K3e7bUP8weHmVe5rg4/Pe2dXEPCKsKdSXpp+uTDiDmiZr5huqtIL6WZ5erG3wCCZ
-LDBKL5SZZbZqq/yLsEffXonIklUPCAxYEGw+2UzMBgWqdCJs1Eqw51QVzJ5v0eXWoNmuQJ5h7bIb
-LwYSmKwhGpZBG1iWBcexYEm77ZuHydOOfEMM+A1T1AkYGLOizpYOYnpgo0XA9756DbUHmsCwDHys
-F50uDXL2KvD3zHX6+/OBLVB0CPGhOpfO2eMouEf5IqCk5lX8POICCQP8NeNBgUGKD7RrUNeuJmo5
-DI+dRc7X76N7gFhAlHe4WrG9JyO4Qt6U2IpYTN28Thc7J6zI0QmgOi5GcnUGBdz4Zwa12ib4GAb8
-w49dnBoODlR2CpFUkwqvz0uBvX90EGA08o1ixJYn0TG+ZX62Hv0uJ+0fHFajviczOPDjY0Kk1W30
-LySvdeQQVcgDpaUycmY++t8mjRy2n85QdSHPkAemhgD6GD8wS5NKgH3/A5fyst/kNHiZu032K3y9
-7C0K4JVntCXdq3ApIO+UuE/icePWDI2/wXELNZmPs8QKOVXnZf9F8i7pgwH5expTuRrnL12gSkan
-3TSQs48KsVldTBVO3PwdCc1ROPWjfcHkQuKQEIH9zqdR+FKvpWrmvbeww74ZsfWRBHCaqjZ5tEjc
-GQmDw0Ln9I+exIH+XSReJdTTiwJb2UWuXnUcLk9d8cfd3CRco27avzY7DpInkXWYnGtbMeZuz9Pb
-M3S5h1oSFMgPKjoEyGhNQb/7B+Ig4lny/jbpxLbutEC8KbuEKDLEgeRHcrcFS9/lO0k2zyCGZFsk
-Bs4PUdMcYwaUmxNDZhviPF/IfJjevhpb9tXQm8NwDM5ddQRMuyu7B7J8+YlE57IJNn2/ADvMVTj9
-ZxeO/Lrz/pzoLxV6EUPUXVXblXHLAfkszOUZRJxSt4bUFiGXb1g7Rzw6UWRc90vFyaTOmu7URpIT
-Nxw7t/cFctbhYc/II9xRJRFkEa0XtFYo+cKkF7FF370xSQ59qNSU0FlrS29s6N2U2fR9ttjs+WYl
-qX6PBKofR6tfOK168uqsF2X1ImeZ+c1LWy3vGqus6xt39xVktvWXRLc6ip/tGzU+NjV35SG+opHQ
-CSexuFA6WX/ZvO/5D48Xsd0mu5LeAAAAAElFTkSuQmCC]]></Resource>
+    <Resource ID="0f0db1a5-ada7-bdaa-f758-edb40a587b28" Name="qt24.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6QkFEREMzM0IxRkQ3MTFFMUEyRjc5MTVCQzM4ODBBMkEiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6QkFEREMzM0MxRkQ3MTFFMUEyRjc5MTVCQzM4ODBBMkEiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCQUREQzMzOTFGRDcxMUUxQTJGNzkxNUJDMzg4
+MEEyQSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCQUREQzMzQTFGRDcxMUUxQTJGNzkxNUJD
+Mzg4MEEyQSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PpXWeA0AAAVtSURBVEhLnVVbbBRlFP7msjN7r9XdbVN63TZUjNKEh4oJ
+GuObGl7RxBAUA/igYgyRKDE+SHzwxcTLgxpEHkw0PpBqCEjCA+CNINAGaGELtEBL6d6vM7tz2fGb
+Ka0ohagnmXTT+eec73LO+YV9+752Nr24GcFoFIokY2BlEv0DfHr60dHZge7OLnR3dWPVqlVQFAX/
+NWTHAYYeGUI01oqWSBjTVy+hkM/ix0tzKKRn0dRqqNd1mAIQUUOItcfR29NDIINoa0sg2dPrFe/v
+74ffr95RX9i79yvnsy+/QCIcQcYw4ZMV3O9XkM6XEIlEEQ1ICAZCuDZzA7ZlwGoClm2hUCphajK1
+lPDEiRMYHh6+o4AICBAdE9dzGfhtA4JegWXUEQmrCPll+OUApgsmDMuETboBohQFAYauoy85gJ6+
+JGSfD5qmL6sezzq4nLXQ2daOiiV5PjhGBYlYHLbdxEwmDZSuE4QNv6KiXC5hbnbGS9q0LO+xm00Y
+jcbyBVwGA/EIbmZKMKm3rBIhkdbKeciCSMQKmQQgST4mL6OQy0L1+8mC5tEXkI3A8/VG/S4MRJEI
+GmAuRBQHluBD1ZRRoR/FcgWqT4EgSahUKqgQvSwqcJhQFCktHx+/b5KBRSbLhSsnLNLTdAuCLEMn
+sJaQH2ZZgySLIHBkdRvVapVIeVhyWESAQ/mcpu354oZ9twIOu6JBw5pk0CXFkAg6mK9TmlAAflWB
+rpuo2zKoCZOLbkswseOxcJm5oNxo3iq0yMJ97wbTejIiITZwhv1+bS4PmoEGEU1MpYmUiWrzns5u
+e1o8LDKpjyZH+ags5iVyASwT9NNBOp2F5kiIOhXIbNFWoi9mb6KtVUUuW0RJNyhFEzL1ikkCWqi5
+a5oP9IKt7Ka+VWepxF8M+HZw4GGYtZprBuLREDRTh6HGUKtbqGpFKOyYENEGZQkqfYjwdyvlWcE6
+SU5ewi1As28PwZXFZWZZNvJaHsF4DKYo4/L1GYTY74pdg1kvIhSJLHQMTa1xFtwPE2QwSEbnFB9+
+ZTGTiQyy8cLVnu+XCnSu6MDE2fM4dWoMZ8+MosoDN0oNPBBSEQlFEQ6F4OOSEylJkn5UCWySf/1K
+AMODD2F83Trse+JJiHMcSLdjXOS3saF3C3ZnOLHHjh/H4Z8O48CBA8hlZgE5iLqmcal1QA0H0aS5
+6zs7sb2nG62ci6cmLmCkox3bs1kMsF82swlEro6utY8isnOn10FLBZbrgFQqhZN/nMQ7b+9CjDPx
+wpo1COeK2EqEY1oVm7jw9scS+EGvoZcytlPatTfT2H3pMnbRT5fJ3535RxUfp9jmEG7bsAFbn3se
+b54bxzYi/4Wshqj/aF8vPq+WMUF/VnPjzl6dxnoWjdPPRZnuYOCuhNHRMVycvIDUxUnEuD0r01fR
+ogawY/Q0UmhiBBIezxYAzs1jHSsArYw9+Tx2x+N4LZPF3noDo8X88hK5e8XgHiqUiphhR81dSSF7
+fhxaTcfBsTPYUa/hw1wJDwoKPuKa30/zpx0L/fzmdw7Dp3oDgWIR85TNG+JFk5cdw1v/5NZB/coU
+tjzzNL6PhnHatPCzP4gjvAO+yxUwwhWyhe38Fu+UTMNAkMzeo4yu/vf0YLGou4GCbW34pqbB4Pre
+E29DmjIUKyXkRAc59uF6rvedgQBb2ODk6yhSMm/Q7oX89neOaXCfR/GK4EeTPe9kMjhocR5CYa/D
+1lQ1vJ/NYaRcRXTjRt6ACxfRvy4g3NcKvPwSUpzcZ+dn8a4iYcon4QO9im+pd4aeCUOrcey33/Dq
+x58gyEvKuwtcD/5PlI8edcbfeN0JJ/ucjsGVzpFDh5ycpjmVWo1kDW70hfgTJ7nbHVGDrfgAAAAA
+SUVORK5CYII=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
