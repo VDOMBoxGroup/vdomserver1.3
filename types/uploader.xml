@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.1.6200</Version>
+    <Version>1.8.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form</Containers>
@@ -137,111 +137,111 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Uploader</Sentence>
-      <Sentence ID="002">File uploader</Sentence>
+      <Sentence ID="002">Allows to upload files</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Move object to selected point</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="503">Set new CSS style</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="503">Set new CSS style of the object</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="705">cssStyleValue</Sentence>
-      <Sentence ID="805">New CSS style value</Sentence>
+      <Sentence ID="805">CSS style value</Sentence>
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="107">Height</Sentence>
       <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="108">TabIndex</Sentence>
-      <Sentence ID="208">Tab index of the object on the page</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="109">Class</Sentence>
-      <Sentence ID="209">CSS class name</Sentence>
+      <Sentence ID="208">Index number of switching the elements on pressing the tab key</Sentence>
+      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="109">CSS Class</Sentence>
+      <Sentence ID="209">Names of CSS classes</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Загрузчик</Sentence>
       <Sentence ID="002">Загрузчик файлов</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Спрятать объект</Sentence>
-      <Sentence ID="601">Спрятать</Sentence>
-      <Sentence ID="701">Затухание</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">X</Sentence>
-      <Sentence ID="802">X-координата новой точки</Sentence>
-      <Sentence ID="703">Y</Sentence>
-      <Sentence ID="803">Y-координата новой точки</Sentence>
+      <Sentence ID="702">Координата новой точки по оси X</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="703">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
       <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при сдвиге</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
       <Sentence ID="503">Установить новый стиль CSS</Sentence>
       <Sentence ID="603">Установить стиль</Sentence>
-      <Sentence ID="705">Стиль</Sentence>
-      <Sentence ID="805">Новое значение стиля</Sentence>
+      <Sentence ID="705">Установить стиль CSS</Sentence>
+      <Sentence ID="805">Новое значение стиля CSS</Sentence>
       <Sentence ID="504">Показать объект</Sentence>
       <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="706">Задержка</Sentence>
-      <Sentence ID="806">Время задержки</Sentence>
+      <Sentence ID="706">Появление</Sentence>
+      <Sentence ID="806">Время появления в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Отображать объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение</Sentence>
-      <Sentence ID="401">Невидимый</Sentence>
-      <Sentence ID="402">Видимый</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должна быть строка</Sentence>
-      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
       <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="105">Слева</Sentence>
       <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="106">Ширина</Sentence>
       <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="107">Высота</Sentence>
       <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="108">Tab индекс</Sentence>
       <Sentence ID="208">Tab индекс объекта на странице</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="109">Class</Sentence>
-      <Sentence ID="209">CSS class name</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="109">Класс CSS</Sentence>
+      <Sentence ID="209">Имя класса CSS</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Envoi de fichier</Sentence>
@@ -293,7 +293,7 @@
       <Sentence ID="108">TabIndex</Sentence>
       <Sentence ID="208">Tab index of the object on the page</Sentence>
       <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="109">Class</Sentence>
+      <Sentence ID="109">CSS Class</Sentence>
       <Sentence ID="209">CSS class name</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
     </Language>
@@ -398,7 +398,46 @@ DvNFsd3MQyPqv5BDRvsqatBY6VE2nI39cbdXFjasVuILBZzU69gMnCifUvRfHbG69ac7fvPw0D9/
 bRt7uSF9gRYaHY2UfiFHjxo6zicXKUuUxpg/5TTr4HGRjRycuLO/zy9cvvQxBwbU4v+LL57pOPPT
 /hzs3fvvcuy3NpNRuSmih/baBdFkNP6V/hCHf3TrFmR0oKPjhR5RoNNs5cy4ouevPWeo9b8CDADF
 uFiPbZ2wuQAAAABJRU5ErkJggg==]]></Resource>
-    <Resource ID="60a44ff9-1ddb-47f9-bca4-56c3c41f0c02" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+    <Resource ID="60a44ff9-1ddb-47f9-bca4-56c3c41f0c02" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6NTNFNjA1RDQxRkRGMTFFMTlGRDNGNUQ2NzU4OEM4MkEiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6NTNFNjA1RDUxRkRGMTFFMTlGRDNGNUQ2NzU4OEM4MkEiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1M0U2MDVEMjFGREYxMUUxOUZEM0Y1RDY3NTg4
+QzgyQSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1M0U2MDVEMzFGREYxMUUxOUZEM0Y1RDY3
+NTg4QzgyQSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PjwSNGoAAAUNSURBVEhLlVXPb1RlFD3fe/Oj0zKdaecHLS0tAwQQjAai
+AQyYiMGVK+LGf0B3BuJG4sK4Mi5duDZsNNEYN6yMIU3ECEFIgBhaUEAobWfKzHQ6M+/3D8/93tBI
+UhQ7ef3me+9759x7zr13lGV3Ygz+ki8xYn4JggC2ZaPZaqG+UsfE5Dbs33fgydGn1pgvKKU2faYa
+zb8IJ9DJAcIDUQTH9dBut3Bn4U/8dvUazLSFD8+cxXhxdlOgZ900DD4xlAmDH8WdYSgo00AmncZw
+bgSlahlbt05ChRHm5r5Bz3r8/wg2ZGECihsVk4BkZEI2m8VoPo9yZQyzO/ei23Fx4cK36Nvt5yYx
+iEddBjZoBoFXMEmQZhb50Twq5Spqtd04fPQ4mvUW5i58B8t6PhIRBJGGTMwVK8QvITBTJnLMolwp
+IWXkMDG1B68ePoLHjQYuXjyPbr/5n5kYgiqAcSQU3EYkGhSEIVmk0iiOFRHGEZaXGpjddQCvv3EC
+ntXFwq1LCML+v5KoevNBLEaL7Amy0HDVexYUP57no7vexcPFR+h3ulhb76DdbNELATfx/nsfoFwq
+bUpEmIHNzEByEBuSDJJMhCydzmDLljx2zMxganobts9Mo7arhhnufc9Dv7f+zCyYwf1YKZZnoINJ
+OsJMyGLe14TMQiQMwgC+78O3Ha42emsdLNGP46+dRLFU3bzR6qv3Y5MmRLwkcN2QYr34Mmg9JSJy
+H5EtcDwEjNr1HFi5MXa8S4+2ozaS06cjNqlWXHeYKGAyPgJqOAHVSwKtpADEfIMZ8EwckoAjZHW1
+jj9uXsfp27N488fdOPhDDh99/mXyjgTKS8ZHQhCxcuTBxsPkttzTXqSEVaSKdBP6gYPVxjJ+v3YZ
+lTRQMkKMZflGFG4QyJcNAkMaS9B0FppFP9SC0QOwbLUfTD2IfWYRwbUttHtrMOmZhJYidgKfAEsG
+GxIxa7FQ/mkw0Ug+kaTIqJPJGiIKbRhel/XfgdttInY7SPMd5fCygCzcpzIY8EGt0GQJXseZTAoY
+Uk1aoxg+I/adDub7O+AaPkLHx5q1hlTQwvnuMdy8zdjZ8a8MLeDsu3uxbvE8K9LxFU5MekJwT9sq
+ajBgQdXySKqSheVYsBv38Nndt/H1XIxChn0xREzqP5yJMDocgVUNLzbR61NCgotfLT+Lrw6dE5MF
+k/0qI0L37aDuteuit4PG0gqKKWCchldZjSVmWOTBPPVVLg9SpiFboaIyKKs0xniNhwrZTEb6y9O1
+G7OJYlZCxDXiKntd0yR3xajlWzAe/gzj0S/6Mpd+hW+ZUD0GYqWQbs8jfHgJ8dJlqMUrwNIljpgQ
+6sHifNIAEjB7Ipneuqz02u+vo84M7t65gcbjRUpgo9NqwqHp7Rd/wvUbDMxI4VT1C3x8+h3+INFs
+vh4yuOHCFDNg44SMNqB4vkeDfJZjGOqGCuiWouMjhQJqLxzCS0fewp6XT2J631FUp/cjR3+jHmVl
+FlEqD3NkCoXKThSqOzE+sRtDuRwMfzBfApdEMmcIGjA1nwQRSWVO5XhwvFDEVs6barnC0TCO4eER
+SsRgqT+4RkHSuVpuKZAnI8N1bc4VGw4vm5fnWXrvui4cxyWR1DdD1b+iHIr8vTZpogz1QKa1nQHV
+0nv5kzP/bDRVbywmius5JN2bzCCO2MFoTQaJ1JiMiiD0YfUtrg7Ofe/g6pXb1DuDYwdX8OknZzZG
+hPaUGH8DRUeyHGUCsMwAAAAASUVORK5CYII=]]></Resource>
     <Resource ID="f62d2a27-202d-4af5-8650-adca45599eec" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
