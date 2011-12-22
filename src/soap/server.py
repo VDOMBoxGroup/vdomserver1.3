@@ -457,8 +457,17 @@ class VDOM_web_services_server(object):
 		app = ret[0]
 		if objid == parentid:
 			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
-		new_obj_id = self.__copy_object(app, parentid, objid)
-		obj = managers.xml_manager.search_object(appid, new_obj_id)
+		action_map = {}
+		event_map = {}
+		new_obj_id = self.__copy_object(app, parentid, objid, event_map, action_map)
+		obj = managers.xml_manager.search_object(appid, objid)
+		copy_obj = managers.xml_manager.search_object(appid, new_obj_id)
+		for (ob, ev_name) in event_map:
+			for act in app.events_by_object[ob][ev_name].actions:
+				if act in action_map:
+					new_ob = event_map[(ob, ev_name)][0]
+					app.events_by_object[new_ob][ev_name].actions.append(action_map[act])
+			
 		app.sync()
 		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 
@@ -779,7 +788,7 @@ class VDOM_web_services_server(object):
 			result += "</Objectlist>\n"
 		return result
 	
-	def __copy_object(self, app, parentid, objid):
+	def __copy_object(self, app, parentid, objid, event_map, action_map):
 		"""copy object in application"""
 		obj = app.search_object(objid)
 		typeid = obj.type.id
@@ -806,11 +815,11 @@ class VDOM_web_services_server(object):
 			server_actions_element = None
 		else:
 			xml_actions = '<ServerActions>\n'
-			for _name in obj.actions["name"]:
+			for _name in obj.actions["name"]:				
 				x = obj.actions["name"][_name]
-				xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()), x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
-				xml_actions += """<![CDATA[%s]]>\n""" % x.code
-				xml_actions += "</Action>\n"
+				actionid = copy_object.create_action(x.name, x.code)
+				xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" Language="" State="%s" />\n""" % (actionid, x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
+				action_map[x.id] = actionid
 			xml_actions += '</ServerActions>\n'
 		if xml_actions:
 			try:
@@ -828,18 +837,13 @@ class VDOM_web_services_server(object):
 				if server_actions_element:
 					server_actions_element.delete()
 				raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-			server_actions_element.name = "Actions"
-			copy_object.set_actions(server_actions_element)	
-			app.sync()
 		xml_events = "<Events>\n"
 		if obj and obj.toplevel.id in app.events:
 			if obj.id in app.events[obj.toplevel.id]:
 				src_id = obj.id
 				for ev_name in app.events[obj.toplevel.id][src_id]:			
-					xml_events += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (copy_object.id, copy_object.name, copy_object.type.id, copy_object.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
-					for a in app.events[obj.toplevel.id][src_id][ev_name].actions:
-						xml_events += """<Action ID="%s"/>\n""" % a
-					xml_events += "</Event>\n"
+					xml_events += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s" />\n""" % (copy_object.id, copy_object.name, copy_object.type.id, copy_object.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
+					event_map[(src_id, ev_name)] = (copy_object.id, ev_name)
 		xml_events += "</Events>"
 		events_element = None
 		try:
@@ -866,10 +870,12 @@ class VDOM_web_services_server(object):
 			for a_id in app.actions:
 				a = app.actions[a_id]
 				if a.target_object == obj.id:
-					xml_client_action += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (str(uuid4()).upper(), copy_object.id, copy_object.name, a.method_name, a.top, a.left, a.state)
+					actionid = str(uuid4()).upper()
+					xml_client_action += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (actionid, copy_object.id, copy_object.name, a.method_name, a.top, a.left, a.state)
 					for p in a.parameters:
 						xml_client_action += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
 					xml_client_action += "</Action>\n"
+					action_map[a_id] = actionid
 		xml_client_action += "</ClientActions>\n"
 		try:
 			client_actions_element = xml_object(srcdata=xml_client_action.encode("utf-8"))
@@ -906,7 +912,7 @@ class VDOM_web_services_server(object):
 		events_element.delete()
 		app.sync()
 		for ob in obj.objects:
-			self.__copy_object(app, obj_id, ob)
+			self.__copy_object(app, obj_id, ob, event_map, action_map)
 		return obj_id
 
 	def __set_attributes(self, obj, attr):
