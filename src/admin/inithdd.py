@@ -2,6 +2,7 @@
 import os
 from utils.exception import VDOM_exception
 import managers
+from utils.system import get_ip_and_mask
 def run(request):
 	sess = request.session()
 	if not sess.value("appmngmtok"):
@@ -45,7 +46,7 @@ a:visited {
           <td width="50" height="82" >&nbsp;</td>
           <td width="236" height="82" class="Texte">Initialize hard disk and reboot the server</td>
           <td width="200" height="82" class="Texte"><input type="button" value="Proceed" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" onclick="if(confirm('Do you want to Initialize HDD and destroy data on %s(%s) ? \\nList of applications: \\n%s')){document.location='/inithdd.py?init';}"/></td>
-"""%(request.app_vhname,request.environment().environment().get("SERVER_ADDR"),"\\n".join([managers.xml_manager.get_application(guid).name for guid in managers.xml_manager.get_applications()])))
+"""%(request.app_vhname,get_ip_and_mask()[0],"\\n".join([managers.xml_manager.get_application(guid).name for guid in managers.xml_manager.get_applications()])))
 
 	request.write("""
         </tr>
