@@ -448,29 +448,66 @@ class VDOM_web_services_server(object):
 		app.sync()
 		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 	
-	def copy_object(self, sid, skey, appid, parentid, objid):
+	def copy_object(self, sid, skey, appid, parentid, objid, tgt_appid = None):
 		"""copy object in application"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
 		app = ret[0]
+		tgt_app = None
+		if tgt_appid:
+			ret = self.__find_application(tgt_appid)	# returns (app, error_message)
+			if not ret[0]:
+				return ret[1]
+			tgt_app = ret[0]
+			appid = tgt_appid
+			managers.request_manager.current.set_application_id(appid)
 		if objid == parentid:
 			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
 		action_map = {}
 		event_map = {}
-		new_obj_id = self.__copy_object(app, parentid, objid, event_map, action_map)
-		obj = managers.xml_manager.search_object(appid, objid)
+		new_obj_id = self.__copy_object(app, parentid, objid, event_map, action_map, tgt_app)
+		if not tgt_app:
+			tgt_app = app
 		copy_obj = managers.xml_manager.search_object(appid, new_obj_id)
 		for (ob, ev_name) in event_map:
 			for act in app.events_by_object[ob][ev_name].actions:
 				if act in action_map:
 					new_ob = event_map[(ob, ev_name)][0]
-					app.events_by_object[new_ob][ev_name].actions.append(action_map[act])
+					tgt_app.events_by_object[new_ob][ev_name].actions.append(action_map[act])
 			
-		app.sync()
-		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
+		tgt_app.sync()
+		return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 
+	def xapp_copy_object(self, sid, skey, src_appid, src_objid, tgt_appid, tgt_parentid):
+		"""cross application object copying"""
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		ret1 = self.__find_application(src_appid)	# returns (app, error_message)
+		if not ret1[0]:
+			return ret1[1]
+		ret2 = self.__find_application(tgt_appid)	# returns (app, error_message)
+		if not ret2[0]:
+			return ret2[1]
+		src_app = ret1[0]
+		tgt_app = ret2[0]
+		managers.request_manager.current.set_application_id(tgt_appid)
+		if src_objid == tgt_parentid:
+			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
+		action_map = {}
+		event_map = {}
+		new_obj_id = self.__copy_object(src_app, tgt_parentid, src_objid, event_map, action_map, tgt_app)
+		obj = managers.xml_manager.search_object(src_appid, src_objid)
+		copy_obj = managers.xml_manager.search_object(tgt_appid, new_obj_id)
+		for (ob, ev_name) in event_map:
+			for act in src_app.events_by_object[ob][ev_name].actions:
+				if act in action_map:
+					new_ob = event_map[(ob, ev_name)][0]
+					tgt_app.events_by_object[new_ob][ev_name].actions.append(action_map[act])
+			
+		tgt_app.sync()
+		return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % tgt_appid)
+	
 	def delete_object(self, sid, skey, appid, objid):
 		"""delete object from application"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -788,20 +825,29 @@ class VDOM_web_services_server(object):
 			result += "</Objectlist>\n"
 		return result
 	
-	def __copy_object(self, app, parentid, objid, event_map, action_map):
+	def __copy_object(self, app, parentid, objid, event_map, action_map, newapp = None):
 		"""copy object in application"""
+		if newapp:
+			appl = newapp
+			do_compute = False
+		else: 
+			appl = app
+			do_compute = True
 		obj = app.search_object(objid)
 		typeid = obj.type.id
 		attr = {name:value.value for name, value in obj.get_attributes().items()}
 		name = obj.name
-		try:
-			container = app.search_object(parentid)
-		except:
-			raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
-		ret = app.create_object(typeid, container)
+		if parentid:
+			try:
+				container = appl.search_object(parentid)
+			except:
+				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
+			ret = appl.create_object(typeid, container, do_compute)
+		else:
+			ret = appl.create_object(typeid, None, do_compute)
 		obj_id = ret[1]
-		copy_object = app.search_object(obj_id)
-		if parentid != obj.parent.id:
+		copy_object = appl.search_object(obj_id)
+		if parentid and parentid != obj.parent.id:
 			try:
 				copy_object.set_name(name)
 			except:
@@ -900,8 +946,8 @@ class VDOM_web_services_server(object):
 				client_actions_element.delete()
 			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
 		if copy_object:
-			app.set_e2vdom_events(copy_object, events_element)
-			app.set_e2vdom_actions(copy_object, client_actions_element)
+			appl.set_e2vdom_events(copy_object, events_element)
+			appl.set_e2vdom_actions(copy_object, client_actions_element)
 			if server_actions_element:
 				for child in server_actions_element.children:
 					if "action" == child.lname:
@@ -910,9 +956,9 @@ class VDOM_web_services_server(object):
 				server_actions_element.delete()
 		client_actions_element.delete()
 		events_element.delete()
-		app.sync()
+		appl.sync()
 		for ob in obj.objects:
-			self.__copy_object(app, obj_id, ob, event_map, action_map)
+			self.__copy_object(app, obj_id, ob, event_map, action_map, newapp)
 		return obj_id
 
 	def __set_attributes(self, obj, attr):
