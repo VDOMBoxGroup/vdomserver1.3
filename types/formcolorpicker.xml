@@ -632,17 +632,15 @@ class VDOM_formcolorpicker(VDOM_object):
 					""".format(width = fixw, height = fixh, border = border)
 
 		result = \
-			u"""<div id="%(id)s" style="%(div_style)s">
-					<input id="inp_%(id)s" name="%(name)s" style="%(inp_style)s" 
-						type="text" tabindex="%(tabind)s" value="%(value)s" />
-				</div>
-				<script type="text/javascript">
-					$j(document).ready(function(){
-						$j("#inp_%(id)s").colorInput({
-							hideInput:%(hide)s,textAccept:"%(title_OK)s",textCancel:"%(title_Canc)s",change:function(){
-								execEventBinded("%(clean_id)s","changecolor",{color:this.value});} });});
-				</script>
-			""" % {"div_style": div_style, "id": id, "name": self.name, 
+			u"""<div id="%(id)s" style="%(div_style)s"><input id="inp_%(id)s" class='formcolorpicker' name="%(name)s" style="%(inp_style)s" type="text" tabindex="%(tabind)s" value="%(value)s" /></div>
+<script type="text/javascript">$j(document).ready(function(){
+	$j("#inp_%(id)s").colorInput({
+		hideInput:%(hide)s,textAccept:"%(title_OK)s",textCancel:"%(title_Canc)s",
+		change:function(){
+			execEventBinded("%(clean_id)s","changecolor",{color:this.value});
+		}
+	});
+});</script>""" % {"div_style": div_style, "id": id, "name": self.name, 
 					"inp_style": inp_style, "tabind": self.tabindex, "value": self.value,
 					"hide": hide, "title_OK": title_OK, "title_Canc": title_Canc, "clean_id": clean_id}
 
