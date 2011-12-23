@@ -73,6 +73,9 @@ class v_dictionary(generic):
 
 	
 	
+	def v_contains(self, key):
+		return localunpack(as_is(key)) in self.values
+
 	def v_extend(self, object, separator=None):
 		object=as_array(object)
 		if separator is None:
@@ -102,8 +105,6 @@ class v_dictionary(generic):
 		else:
 			for index, item in enumerate(object.values):
 				self.values[u"%s"%index]=item
-
-
 		
 	def v_length(self, let=None, set=None):
 		if let is not None or set is not None:
