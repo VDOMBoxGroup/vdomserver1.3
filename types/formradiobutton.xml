@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.5.6200</Version>
+    <Version>1.17.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>formradiogroup</Containers>
@@ -197,64 +197,64 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Form Radiobutton</Sentence>
-      <Sentence ID="002">Form radiobutton</Sentence>
+      <Sentence ID="002">Allows to select a single option from a group of choices</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">toggle state</Sentence>
+      <Sentence ID="501">Check the radiobutton</Sentence>
       <Sentence ID="601">check</Sentence>
-      <Sentence ID="502">disable</Sentence>
+      <Sentence ID="502">Disable the radiobutton</Sentence>
       <Sentence ID="602">disable</Sentence>
-      <Sentence ID="503">enable</Sentence>
+      <Sentence ID="503">Enable the radiobutton</Sentence>
       <Sentence ID="603">enable</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
       <Sentence ID="604">Hide</Sentence>
       <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="505">Move object to selected point</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="505">Move the object to a new position</Sentence>
       <Sentence ID="605">moveTo</Sentence>
       <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="506">Set new CSS style</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="506">Set new CSS style of the object</Sentence>
       <Sentence ID="606">setStyle</Sentence>
       <Sentence ID="705">cssStyleValue</Sentence>
-      <Sentence ID="805">New CSS style value</Sentence>
+      <Sentence ID="805">CSS Style value</Sentence>
       <Sentence ID="507">Show the object</Sentence>
       <Sentence ID="607">Show</Sentence>
       <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be integer between 0 and 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="107">Height</Sentence>
       <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="108">State</Sentence>
       <Sentence ID="208">Initial state of the radiobutton</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="403">Unchecked</Sentence>
       <Sentence ID="404">Checked</Sentence>
       <Sentence ID="109">Disable</Sentence>
-      <Sentence ID="209">Make object disable</Sentence>
+      <Sentence ID="209">Define if the radiobutton is disabled or not</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
@@ -262,18 +262,18 @@
       <Sentence ID="211">Label to the right of the radiobutton</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="112">Label align</Sentence>
-      <Sentence ID="212">Label location over element</Sentence>
+      <Sentence ID="212">Define the alignment of the label</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="407">right</Sentence>
-      <Sentence ID="408">left</Sentence>
+      <Sentence ID="407">Right</Sentence>
+      <Sentence ID="408">Left</Sentence>
       <Sentence ID="113">Value</Sentence>
       <Sentence ID="213">Returned value of the radiobutton</Sentence>
       <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="114">TabIndex</Sentence>
-      <Sentence ID="214">Tab index of the object on the page</Sentence>
+      <Sentence ID="214">Index number of switching the elements on pressing the tab key</Sentence>
       <Sentence ID="314">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="115">Class</Sentence>
-      <Sentence ID="215">CSS class name</Sentence>
+      <Sentence ID="115">CSS Class</Sentence>
+      <Sentence ID="215">Names of CSS classes</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
       <Sentence ID="901">New value for radiobutton</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
@@ -295,85 +295,85 @@
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Радиокнопка формы</Sentence>
-      <Sentence ID="002">Радиокнопка формы</Sentence>
+      <Sentence ID="002">Кнопка для выбора одного варианта из многих</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Спрятать объект</Sentence>
-      <Sentence ID="604">Спрятать</Sentence>
-      <Sentence ID="701">Затухание</Sentence>
+      <Sentence ID="501">Отметить радиокнопку</Sentence>
+      <Sentence ID="601">Отметить</Sentence>
+      <Sentence ID="502">Не использовать радиокнопку</Sentence>
+      <Sentence ID="602">Не использовать</Sentence>
+      <Sentence ID="503">Использовать радиокнопку</Sentence>
+      <Sentence ID="603">Использовать</Sentence>
+      <Sentence ID="504">Скрыть объект</Sentence>
+      <Sentence ID="604">Скрыть</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="801">Время исчезновения</Sentence>
       <Sentence ID="505">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="605">Сдвинуть</Sentence>
       <Sentence ID="702">X</Sentence>
-      <Sentence ID="802">X-координата новой точки</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
       <Sentence ID="703">Y</Sentence>
-      <Sentence ID="803">Y-координата новой точки</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
       <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при сдвиге</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
       <Sentence ID="506">Установить новый стиль CSS</Sentence>
       <Sentence ID="606">Установить стиль</Sentence>
       <Sentence ID="705">Стиль</Sentence>
       <Sentence ID="805">Новое значение стиля</Sentence>
       <Sentence ID="507">Показать объект</Sentence>
       <Sentence ID="607">Показать</Sentence>
-      <Sentence ID="706">Задержка</Sentence>
-      <Sentence ID="806">Время задержки</Sentence>
+      <Sentence ID="706">Появление</Sentence>
+      <Sentence ID="806">Время появления в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Отображать объект или нет</Sentence>
-      <Sentence ID="302">Неправильное значение</Sentence>
-      <Sentence ID="401">Невидимая</Sentence>
-      <Sentence ID="402">Видимая</Sentence>
-      <Sentence ID="103">Z-Индекс</Sentence>
+      <Sentence ID="202">Режим отображения объектов</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Верх</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
       <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Лево</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="105">Слева</Sentence>
       <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="106">Ширина</Sentence>
       <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="107">Высота</Sentence>
       <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="108">Состояние</Sentence>
       <Sentence ID="208">Начальное состояние радиокнопки</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="308">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="403">Не отмечена</Sentence>
       <Sentence ID="404">Отмечена</Sentence>
-      <Sentence ID="109"></Sentence>
-      <Sentence ID="209"></Sentence>
+      <Sentence ID="109">Отключить</Sentence>
+      <Sentence ID="209">Определяет, используется радиокнопка или нет</Sentence>
       <Sentence ID="309"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
+      <Sentence ID="405">Нет</Sentence>
+      <Sentence ID="406">Да</Sentence>
       <Sentence ID="111">Метка</Sentence>
       <Sentence ID="211">Текст справа от радиокнопки</Sentence>
       <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="212"></Sentence>
+      <Sentence ID="112">Выравнивание метки</Sentence>
+      <Sentence ID="212">Определяет выравнивание метки</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
+      <Sentence ID="407">По правому краю</Sentence>
+      <Sentence ID="408">По левому краю</Sentence>
       <Sentence ID="113">Значение</Sentence>
       <Sentence ID="213">Возвращаемое значение радиокнопки</Sentence>
       <Sentence ID="313">Неправильное значение</Sentence>
       <Sentence ID="114">Tab индекс</Sentence>
       <Sentence ID="214">Tab индекс объекта на странице</Sentence>
       <Sentence ID="314">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="115">Класс</Sentence>
-      <Sentence ID="215">Имя класса CSS</Sentence>
+      <Sentence ID="115">Класс CSS</Sentence>
+      <Sentence ID="215">Имена классов CSS</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="901">Новое значение</Sentence>
+      <Sentence ID="901">Новое значение радиокнопки</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение Y</Sentence>
       <Sentence ID="904">Текущее значение X</Sentence>
@@ -548,7 +548,34 @@ VGxDt8iFCezpOkeWHQONTOREFrmRof6+XkRGuELTvq1p2tb71z0YjhjAaKl18XHP2hXR431r7+O+
 zmnkddOmNaCCy2wue6rlcIs7Vhva4/oXq2t5E5vdKEDktQLqav5ZQd4IQFRnN6ERuVqqJdkEZ8uo
 gRQjIaMMYcTkdQnkwv+TTLx4jSpHVMenwCirMNHyzUdGpRKQ4hb1xdv7w5g4G5C6qyI4/xJgAFy0
 8CeFT/NWAAAAAElFTkSuQmCC]]></Resource>
-    <Resource ID="dbd5a117-b23c-4d62-85da-611bcc71d007" Name="Icon" Type="jpg"><![CDATA[/9j/4AAQSkZJRgABAgEASABIAAD/7QUaUGhvdG9zaG9wIDMuMAA4QklNA+0AAAAAABAASAAAAAEAAQBIAAAAAQABOEJJTQQNAAAAAAAEAAAAeDhCSU0D8wAAAAAACAAAAAAAAAAAOEJJTQQKAAAAAAABAAA4QklNJxAAAAAAAAoAAQAAAAAAAAACOEJJTQP1AAAAAABIAC9mZgABAGxmZgAGAAAAAAABAC9mZgABAKGZmgAGAAAAAAABADIAAAABAFoAAAAGAAAAAAABADUAAAABAC0AAAAGAAAAAAABOEJJTQP4AAAAAABwAAD/////////////////////////////A+gAAAAA/////////////////////////////wPoAAAAAP////////////////////////////8D6AAAAAD/////////////////////////////A+gAADhCSU0ECAAAAAAAEAAAAAEAAAJAAAACQAAAAAA4QklNBBQAAAAAAAQAAAADOEJJTQQMAAAAAAOKAAAAAQAAABgAAAAYAAAASAAABsAAAANuABgAAf/Y/+AAEEpGSUYAAQIBAEgASAAA/+4ADkFkb2JlAGSAAAAAAf/bAIQADAgICAkIDAkJDBELCgsRFQ8MDA8VGBMTFRMTGBEMDAwMDAwRDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAENCwsNDg0QDg4QFA4ODhQUDg4ODhQRDAwMDAwREQwMDAwMDBEMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAGAAYAwEiAAIRAQMRAf/dAAQAAv/EAT8AAAEFAQEBAQEBAAAAAAAAAAMAAQIEBQYHCAkKCwEAAQUBAQEBAQEAAAAAAAAAAQACAwQFBgcICQoLEAABBAEDAgQCBQcGCAUDDDMBAAIRAwQhEjEFQVFhEyJxgTIGFJGhsUIjJBVSwWIzNHKC0UMHJZJT8OHxY3M1FqKygyZEk1RkRcKjdDYX0lXiZfKzhMPTdePzRieUpIW0lcTU5PSltcXV5fVWZnaGlqa2xtbm9jdHV2d3h5ent8fX5/cRAAICAQIEBAMEBQYHBwYFNQEAAhEDITESBEFRYXEiEwUygZEUobFCI8FS0fAzJGLhcoKSQ1MVY3M08SUGFqKygwcmNcLSRJNUoxdkRVU2dGXi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]]></Resource>
+    <Resource ID="dbd5a117-b23c-4d62-85da-611bcc71d007" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
+ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
+IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
+ZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAy
+MDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJk
+ZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5z
+OnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0
+cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JU
+b29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3MiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5p
+aWQ6RkI3RTNEOUMxRkRGMTFFMTg3OUU5MzZEMjcyMjNCMTUiIHhtcE1NOkRvY3VtZW50SUQ9Inht
+cC5kaWQ6RkI3RTNEOUQxRkRGMTFFMTg3OUU5MzZEMjcyMjNCMTUiPiA8eG1wTU06RGVyaXZlZEZy
+b20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGQjdFM0Q5QTFGREYxMUUxODc5RTkzNkQyNzIy
+M0IxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGQjdFM0Q5QjFGREYxMUUxODc5RTkzNkQy
+NzIyM0IxNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94
+cGFja2V0IGVuZD0iciI/PpvF7eoAAAJoSURBVEhL7ZXdS1NhGMB/x+2c7Zxtztk+nFts6mxmZoV0
+1adRWM0srW67iEgI0iL7Z4r+hW4SCa+CirbSWSKiZjYMU4Jco5m67Wy9Bt45p8HufN6b98DzPr/n
++0gFIZRRKspo+5/pPUDJDJc9RdJOu0jP5cjmMui6jqIoyLKppPcbCiUB6d9pnj19wuDQCxYXv2E0
+GAk1HaC75zqdkavYbVXbgrYFLHyf52H/faLRD2iaCVVTyekF1jPraGaF7ps93Lndi88bKAopCsjk
+1rnbe4t3b2IEQ/VYLBYkcTbEqBhIp9IkkymuXLtE370BLJptS0jRIg8PDzIzNcPR4624vS5sDgsn
+z53lTHs7VpuV/UE/wQY/o7EosffRohEUBUxPTeLz1VDtdKKqZgYePOZyRwcdFyP09T/CYCjg9rhQ
+VIXE10n0fG7nEWSzGSQpLzz3YJIlTp04jd8XoFKtxGrVCAbqaW1pEwWvwOGoZiWdYm3tz84BkiSx
+z+XFJAqpKCYyq1kclU6crho81R7sAqTnRLvKMhZVxSy+pSJbZ8sUGY0y/lqv6BQNk2Lm1eth5ua+
+IBtk4bXMxOQEI/GYuBtEpDIeV63oMuuWERTtosWlBYZePmd8fAx7lZ3ZmVnCocNkRa4Tic+Ew41i
+LpaoCzQRiXTS3Ny6O8CG9mg8SjT2lk8TcTG5RvSMTr6Qp8IgsbKySqg+zLEjbXR13dj9HGy+iH8c
+YS4xzehYjOUfyyD+T6qmUVcX4lBTC+cvRP5/kjdfLid/Mj//hVTyF/l8HrNJoaHxIG63t+Q+KrmL
+SloooVD2db0HKFmiv4Ok1gDI5dYMAAAAAElFTkSuQmCC]]></Resource>
     <Resource ID="de533a49-3276-4479-8daf-ee661255c215" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
