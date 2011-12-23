@@ -108,3 +108,4 @@ def run(request):
 				#debug(rr)
 				#request.write("<ACTIONS><![CDATA[\n%s]]></ACTIONS>" % rr.encode("utf-8")) # no way - in %s CDATA already!
 				request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
+			request.write("<STATE value=\"%s\" />"%0)
