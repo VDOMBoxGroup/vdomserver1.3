@@ -165,7 +165,7 @@
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1)|(#Lang(411)|2)|(#Lang(412)|3))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
@@ -891,11 +891,11 @@ $j("#%(id)s>.%(class)s-item").draggable({
 	//cursorAt: { left: 20, bottom: -2 },
 	//cursorAt: { left: -5, top: -5 },
 	start: function(e,u){
-		execEventBinded('%(woid)s', "dragstart", {itemid: $(this).attr('dataid')}, true);
+		execEventBinded('%(woid)s', "dragstart", {itemid: $j(this).attr('dataid')}, true);
 	}
 	,helper: function(e) {
-		//return $("<div class='ui-widget-header'>drop item to...</div>");
-		return $("<div style='width:50px;height:20px;background:#555'></div>");
+		//return $j("<div class='ui-widget-header'>drop item to...</div>");
+		return $j("<div style='width:50px;height:20px;background:#555'></div>");
 	}
 });
 """ % { "id": id, "woid": woid, "class": classname_item }
