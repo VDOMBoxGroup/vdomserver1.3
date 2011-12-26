@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.17.6200</Version>
+    <Version>1.18.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>formradiogroup</Containers>
@@ -201,9 +201,9 @@
       <Sentence ID="003"></Sentence>
       <Sentence ID="501">Check the radiobutton</Sentence>
       <Sentence ID="601">check</Sentence>
-      <Sentence ID="502">Disable the radiobutton</Sentence>
+      <Sentence ID="502">Make the object disabled</Sentence>
       <Sentence ID="602">disable</Sentence>
-      <Sentence ID="503">Enable the radiobutton</Sentence>
+      <Sentence ID="503">Make the object enabled</Sentence>
       <Sentence ID="603">enable</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
       <Sentence ID="604">Hide</Sentence>
@@ -249,17 +249,17 @@
       <Sentence ID="207">Height of the object in pixels</Sentence>
       <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="108">State</Sentence>
-      <Sentence ID="208">Initial state of the radiobutton</Sentence>
+      <Sentence ID="208">Initial state of the object</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="403">Unchecked</Sentence>
       <Sentence ID="404">Checked</Sentence>
       <Sentence ID="109">Disable</Sentence>
-      <Sentence ID="209">Define if the radiobutton is disabled or not</Sentence>
+      <Sentence ID="209">Define if the object is disabled or not</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
       <Sentence ID="111">Label</Sentence>
-      <Sentence ID="211">Label to the right of the radiobutton</Sentence>
+      <Sentence ID="211">Label to the right of the object</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="112">Label align</Sentence>
       <Sentence ID="212">Define the alignment of the label</Sentence>
@@ -267,7 +267,7 @@
       <Sentence ID="407">Right</Sentence>
       <Sentence ID="408">Left</Sentence>
       <Sentence ID="113">Value</Sentence>
-      <Sentence ID="213">Returned value of the radiobutton</Sentence>
+      <Sentence ID="213">Returned value of the object</Sentence>
       <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="114">TabIndex</Sentence>
       <Sentence ID="214">Index number of switching the elements on pressing the tab key</Sentence>
@@ -309,9 +309,9 @@
       <Sentence ID="801">Время исчезновения</Sentence>
       <Sentence ID="505">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="605">Сдвинуть</Sentence>
-      <Sentence ID="702">X</Sentence>
+      <Sentence ID="702">Координата по оси X</Sentence>
       <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Y</Sentence>
+      <Sentence ID="703">Координата по оси Y</Sentence>
       <Sentence ID="803">Координата новой точки по оси Y</Sentence>
       <Sentence ID="704">Эффект</Sentence>
       <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
@@ -353,7 +353,7 @@
       <Sentence ID="404">Отмечена</Sentence>
       <Sentence ID="109">Отключить</Sentence>
       <Sentence ID="209">Определяет, используется радиокнопка или нет</Sentence>
-      <Sentence ID="309"></Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
       <Sentence ID="111">Метка</Sentence>
@@ -395,12 +395,12 @@
       <Sentence ID="001">Bouton Radio de Formulaire</Sentence>
       <Sentence ID="002">Bouton Radio de Formulaire</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="603"></Sentence>
+      <Sentence ID="501">Check the radiobutton</Sentence>
+      <Sentence ID="601">check</Sentence>
+      <Sentence ID="502">Make the object disabled</Sentence>
+      <Sentence ID="602">disable</Sentence>
+      <Sentence ID="503">Make the object enabled</Sentence>
+      <Sentence ID="603">enable</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
       <Sentence ID="604">Hide</Sentence>
       <Sentence ID="701">Fade</Sentence>
@@ -449,19 +449,19 @@
       <Sentence ID="308">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Non-coché</Sentence>
       <Sentence ID="404">Coché</Sentence>
-      <Sentence ID="109"></Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
+      <Sentence ID="109">Disable</Sentence>
+      <Sentence ID="209">Define if the radiobutton is disabled or not</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="405">No</Sentence>
+      <Sentence ID="406">Yes</Sentence>
       <Sentence ID="111">Texte</Sentence>
       <Sentence ID="211">Texte à droite du bouton radio</Sentence>
       <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="212"></Sentence>
+      <Sentence ID="112">Label align</Sentence>
+      <Sentence ID="212">Define the alignment of the label</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
+      <Sentence ID="407">Right</Sentence>
+      <Sentence ID="408">Left</Sentence>
       <Sentence ID="113">Valeur</Sentence>
       <Sentence ID="213">Retourne la valeur du bouton radio</Sentence>
       <Sentence ID="313">Valeur Incorrecte</Sentence>
