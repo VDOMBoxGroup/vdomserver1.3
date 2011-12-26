@@ -30,6 +30,7 @@ methods = {
 	"create_object" : ["sid", "skey", "appid", "parentid", "typeid", "name", "attr"],
 	"create_objects" : ["sid", "skey", "appid", "parentid", "objects"],
         "copy_object" : ["sid", "skey", "appid", "parentid", "objid", "tgt_appid"],
+        "move_object" : ["sid", "skey", "appid", "parentid", "objid"],
 	"update_object" : ["sid", "skey", "appid", "objid", "data"],
 	"render_wysiwyg" : ["sid", "skey", "appid", "objid", "parentid", "dynamic"],
 	"get_object_script_presentation" : ["sid", "skey", "appid", "objid"],
