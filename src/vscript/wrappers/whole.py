@@ -135,7 +135,7 @@ class v_wholeapplication(generic):
 			except Exception as error:
 				raise whole_remote_call_error(self.url, error)
 			names=search_for_action_names(result)
-			return array(values=[string(name) for name in names if name.lower()!="onload"])
+			return array([string(name) for name in names if name.lower()!="onload"])
 
 	def v_invoke(self, name, *arguments):
 		if not self.service:

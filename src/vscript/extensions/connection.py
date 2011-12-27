@@ -35,14 +35,14 @@ class v_proxy(generic):
 	def get(self, key, *arguments, **keywords):
 		if arguments:
 			raise errors.wrong_number_of_arguments
-		return self.values[as_string(key)]
+		return self.value[as_string(key)]
 
 	def let(self, *arguments, **keywords):
 		if not arguments:
 			return keywords["set"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
-		self.values[as_string(arguments[0])]=as_string(keywords["let"])
+		self.value[as_string(arguments[0])]=as_string(keywords["let"])
 
 	def set(self, *arguments, **keywords):
 		raise errors.type_mismatch		

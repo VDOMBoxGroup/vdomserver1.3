@@ -48,7 +48,7 @@ class array_iterator(object):
 
 	def __init__(self, subscripts, values):
 		self.subscripts=subscripts
-		self.values=values
+		self.value=values
 	
 	def __iter__(self):
 		return self.next()
@@ -57,7 +57,7 @@ class array_iterator(object):
 		edge=len(self.subscripts)-1
 		if edge<0: return
 		iterators=[None]*len(self.subscripts)
-		iterators[edge]=iter(self.values)
+		iterators[edge]=iter(self.value)
 		level=edge
 		while level<=edge:
 			if level:
@@ -75,18 +75,18 @@ class array_iterator(object):
 
 class array(object):
 
-	def __init__(self, subscripts=None, values=None):
-		if subscripts:
-			self.subscripts=subscripts
-			self.values=dim(subscripts)
+	def __init__(self, value=None, subscripts=None):
+		if value is not None:
+			self.subscripts=count(value)
+			self.value=value
 			self.static=None
-		elif values:
-			self.subscripts=count(values)
-			self.values=values
+		elif subscripts is not None:
+			self.subscripts=subscripts
+			self.value=dim(subscripts)
 			self.static=None
 		else:
 			self.subscripts=[]
-			self.values=[]
+			self.value=[]
 			self.static=None
 
 	def __call__(self, *arguments, **keywords):
@@ -102,7 +102,7 @@ class array(object):
 		if len(indexes)!=len(self.subscripts):
 			raise errors.subscript_out_of_range
 		try:
-			result=self.values
+			result=self.value
 			for index in reversed(indexes):
 				result=result[as_integer(index)]
 			return result
@@ -116,7 +116,7 @@ class array(object):
 		if len(indexes)!=len(self.subscripts):
 			raise errors.subscript_out_of_range
 		try:
-			elements=self.values
+			elements=self.value
 			for index in indexes[-1:0:-1]:
 				elements=elements[as_integer(index)]
 			elements[as_integer(indexes[0])]=as_value(keywords["let"])
@@ -130,7 +130,7 @@ class array(object):
 		if len(indexes)!=len(self.subscripts):
 			raise errors.subscript_out_of_range
 		try:
-			elements=self.values
+			elements=self.value
 			for index in indexes[-1:0:-1]:
 				elements=elements[as_integer(index)]
 			elements[as_integer(indexes[0])]=as_generic(keywords["set"])
@@ -155,23 +155,23 @@ class array(object):
 		if subscripts:
 			subscripts=[as_integer(subscript) for subscript in subscripts]
 			if preserve:
-				redim(self.values, subscripts, len(subscripts)-1)
+				redim(self.value, subscripts, len(subscripts)-1)
 			else:
-				self.values=dim(subscripts)
+				self.value=dim(subscripts)
 		else:
-			self.values=[]
+			self.value=[]
 		self.subscripts=deepcopy(subscripts)
 
 	def erase(self):
 		if self.static:
-			erase(self.values, len(self.subscripts)-1)
+			erase(self.value, len(self.subscripts)-1)
 		else:
-			del self.values[:]
+			del self.value[:]
 			self.subscripts=[]
 
 
 	def __iter__(self):
-		return array_iterator(self.subscripts, self.values).next()
+		return array_iterator(self.subscripts, self.value).next()
 
 
 	def __add__(self, another):
@@ -254,7 +254,7 @@ class array(object):
 
 
 	def __repr__(self):
-		return "ARRAY@%s:%s"%(object.__repr__(self)[-9:-1], list.__repr__(self.values))
+		return "ARRAY@%s:%s"%(object.__repr__(self)[-9:-1], list.__repr__(self.value))
 
 
 from .empty import empty, v_empty

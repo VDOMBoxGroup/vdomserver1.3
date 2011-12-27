@@ -98,20 +98,23 @@ def type_mismatch_handler(value):
 
 
 pack_table={
-	int: lambda value:integer(value),
-	str: lambda value:string(unicode(value)),
-	unicode: lambda value:string(value),
-	bool: lambda value:boolean(value),
-	None: lambda value:v_null}
+	int: lambda value: integer(value),
+	str: lambda value: string(unicode(value)),
+	unicode: lambda value: string(value),
+	bool: lambda value: boolean(value),
+	float: lambda value: double(value),
+	None: lambda value: v_null}
 
 def pack(value):
 	return pack_table.get(type(value), type_mismatch_handler)(value)
 
 unpack_table={
-	integer: lambda value:value.value,
-	string: lambda value:value.value,
-	boolean: lambda value:value.value,
-	v_null: lambda value:None}
+	integer: lambda value: value.value,
+	string: lambda value: value.value,
+	binary: lambda value: value.value,
+	boolean: lambda value: value.value,
+	double: lambda value: value.value,
+	v_null: lambda value: None}
 
 def unpack(value):
 	return unpack_table.get(type(value), type_mismatch_handler)(value)

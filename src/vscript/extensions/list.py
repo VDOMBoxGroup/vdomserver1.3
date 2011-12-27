@@ -18,12 +18,12 @@ class v_list(generic):
 
 	def __init__(self):
 		generic.__init__(self)
-		self.values=[]
+		self.value=[]
 
 
 	
 	def erase(self):
-		self.values.clear()
+		self.value.clear()
 
 	
 	
@@ -31,41 +31,41 @@ class v_list(generic):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("length")
 		else:
-			return integer(len(self.values))
+			return integer(len(self.value))
 
 	def v_append(self, value):
-		self.values.append(as_value(value))
+		self.value.append(as_value(value))
 
 	def v_insert(self, index, value):
 		self.insert(as_integer(index), as_value(value))
 
 	def v_remove(self, value):
-		self.values.remove(as_value(value))
+		self.value.remove(as_value(value))
 
 	def v_index(self, value):
-		return self.values.index(as_value(value))
+		return self.value.index(as_value(value))
 
 	def v_count(self, value):
-		return self.values.count(as_value(value))
+		return self.value.count(as_value(value))
 
 	def v_push(self, value):
-		self.values.append(as_value(value))
+		self.value.append(as_value(value))
 
 	def v_pop(self):
-		return self.values.pop()
+		return self.value.pop()
 		
 	
 	
 	def __iter__(self):
-		return v_list_iterator(iter(self.values))
+		return v_list_iterator(iter(self.value))
 
 
 	
 	def __len__(self):
-		return len(self.values)
+		return len(self.value)
 
 	def __nonzero__(self):
-		return len(self.values)
+		return len(self.value)
 
 	def __invert__(self):
-		return len(self.values)==0
+		return len(self.value)==0

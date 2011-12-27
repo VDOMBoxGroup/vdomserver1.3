@@ -35,7 +35,7 @@ def vscript_parse_object(*arguments):
 
 def vscript_parse_array(*arguments):
 	obj, end=default_parse_array(*arguments)
-	return array(values=obj), end
+	return array(obj), end
 
 def vscript_parse_string(*arguments):
 	obj, end=default_parse_string(*arguments)
@@ -58,10 +58,8 @@ class VScriptDecoder(JSONDecoder):
 class VScriptEncoder(JSONEncoder):
 
 	def default(self, object):
-		if isinstance(object, (double, integer, string)):
+		if isinstance(object, (double, integer, string, array, v_dictionary)):
 			return object.value
-		elif isinstance(object, (array, v_dictionary)):
-			return object.values
 		else:
 			return JSONEncoder.default(self, object)
 
