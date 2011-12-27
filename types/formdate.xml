@@ -182,15 +182,27 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
+      <Name>showbuttonpanel</Name>
       <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -279,9 +291,14 @@
       <Sentence ID="114">TabIndex</Sentence>
       <Sentence ID="214">Index number of switching the elements on pressing the tab key</Sentence>
       <Sentence ID="314">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="115">CSS Class</Sentence>
-      <Sentence ID="215">Names of CSS classes</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="115">Show buttons panel</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="315">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="116">CSS Class</Sentence>
+      <Sentence ID="216">Names of CSS classes</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -384,9 +401,14 @@
       <Sentence ID="114">Индекс табуляции</Sentence>
       <Sentence ID="214">Индекс табуляции объекта на странице</Sentence>
       <Sentence ID="314">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="115">Класс CSS</Sentence>
-      <Sentence ID="215">Имя класса CSS</Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="315">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="116">Класс CSS</Sentence>
+      <Sentence ID="216">Имя класса CSS</Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -489,9 +511,14 @@
       <Sentence ID="114">TabIndex</Sentence>
       <Sentence ID="214">Tab index of the object on the page</Sentence>
       <Sentence ID="314">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="115">Class</Sentence>
-      <Sentence ID="215">CSS class name</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -1422,10 +1449,9 @@ class VDOM_formdate(VDOM_object):
 		if self.inputmode == "1":
 			js = u"""<script type='text/javascript'>$j(function(){
 $j.datepicker.setDefaults($j.datepicker.regional['%(regional)s']); 
-$j.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
-/*$j('#%(id)s').datepicker('destroy').datepicker({ dateFormat: 'yy-mm-dd' });*/
+$j.datepicker.setDefaults({ dateFormat: 'yy-mm-dd', showButtonPanel: %(showb)s });
 $j('#%(id)s').datepicker('destroy').datepicker();
-});</script>""" % { "id": id, "regional": self.regional }
+});</script>""" % { "id": id, "regional": self.regional, "showb": "true" if self.showbuttonpanel == "1" else "false"  }
 			modestyle = u"background:url('/0f94d563-04ee-0283-2138-62c68af01145.res') right 50% no-repeat;"
 		else:
 			js = u""
@@ -1436,7 +1462,7 @@ $j('#%(id)s').datepicker('destroy').datepicker();
 				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
 						width = fixw, height = fixh, display = display, modestyle = modestyle)
 
-		result = u"""<input id="{id}" ver="2011-10-12" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
+		result = u"""<input id="{id}" ver="2011-12-26" name="{name}" style="{style}" type="text" tabindex="{tabind}" 
 					value="{value}" class="{classn}" autocomplete="{auto}" {mode} /> {js}
 			""".format(id = id, name = self.name, style = style, tabind = self.tabindex, 
 						value = self.value, classn = self.classname, auto = auto, mode = mode, js = js)
