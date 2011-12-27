@@ -211,9 +211,9 @@
       <Sentence ID="604">moveTo</Sentence>
       <Sentence ID="702">Effect</Sentence>
       <Sentence ID="802">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
       <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
       <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="505">Change the object's state to "Selected"</Sentence>
       <Sentence ID="605">Select</Sentence>
@@ -757,8 +757,8 @@ vdom_ui_hide(this.domCont, fade);
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="Effect" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="Координата по оси X" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Координата по оси Y" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
