@@ -193,12 +193,12 @@
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="702">Effect</Sentence>
+      <Sentence ID="802">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
+      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="503">Set new CSS style of the object</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="705">cssStyleValue</Sentence>
@@ -285,12 +285,12 @@
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">Координата по оси X</Sentence>
-      <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Координата по оси Y</Sentence>
-      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="702">Эффект</Sentence>
+      <Sentence ID="802">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
       <Sentence ID="503">Установить новый стиль CSS</Sentence>
       <Sentence ID="603">Установить стиль</Sentence>
       <Sentence ID="705">Стиль</Sentence>
@@ -377,12 +377,12 @@
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="502">Move object to selected point</Sentence>
       <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
+      <Sentence ID="702">Effect</Sentence>
+      <Sentence ID="802">Visual effect by moving</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
       <Sentence ID="503">Set new CSS style</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="705">cssStyleValue</Sentence>
@@ -778,9 +778,9 @@ vdom_ui_hide(this.domCont, fade);
         </Action>
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Effect" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="Координата по оси X" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="Координата по оси Y" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="Effect" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
