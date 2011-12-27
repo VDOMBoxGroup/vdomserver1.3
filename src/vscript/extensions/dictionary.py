@@ -28,9 +28,9 @@ class v_dictionary_iterator(generic):
 
 class v_dictionary(generic):
 
-	def __init__(self, values=None):
+	def __init__(self, value=None):
 		generic.__init__(self)
-		self.values=values or {}
+		self.value={} if value is None else value
 
 	def __call__(self, *arguments, **keywords):
 		if "let" in keywords:
@@ -50,31 +50,31 @@ class v_dictionary(generic):
 	def get(self, key, *arguments, **keywords):
 		if arguments:
 			raise errors.wrong_number_of_arguments
-		return self.values[localunpack(as_is(key))]
+		return self.value[localunpack(as_is(key))]
 
 	def let(self, *arguments, **keywords):
 		if not arguments:
 			return keywords["set"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
-		self.values[localunpack(as_is(arguments[0]))]=as_value(keywords["let"])
+		self.value[localunpack(as_is(arguments[0]))]=as_value(keywords["let"])
 
 	def set(self, *arguments, **keywords):
 		if not arguments:
 			return keywords["set"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
-		self.values[localunpack(as_is(arguments[0]))]=as_generic(keywords["set"])
+		self.value[localunpack(as_is(arguments[0]))]=as_generic(keywords["set"])
 
 
 	
 	def erase(self):
-		self.values.clear()
+		self.value.clear()
 
 	
 	
 	def v_contains(self, key):
-		return localunpack(as_is(key)) in self.values
+		return localunpack(as_is(key)) in self.value
 
 	def v_extend(self, object, separator=None):
 		object=as_array(object)
@@ -83,7 +83,7 @@ class v_dictionary(generic):
 		if len(object.subscripts)>1:
 			edge=len(object.subscripts)-1
 			iterators=[None]*len(object.subscripts)
-			iterators[edge]=-1, iter(object.values)
+			iterators[edge]=-1, iter(object.value)
 			level=edge
 			while level<=edge:
 				if level:
@@ -100,33 +100,33 @@ class v_dictionary(generic):
 					index, iterator=iterators[level]
 					indexes=separator.join(reversed([str(i1) for i1, i2 in iterators[1:]]))
 					for index, item in enumerate(iterator):
-						self.values[u"%s%s%s"%(index, separator, indexes)]=item
+						self.value[u"%s%s%s"%(index, separator, indexes)]=item
 					level+=1
 		else:
-			for index, item in enumerate(object.values):
-				self.values[u"%s"%index]=item
+			for index, item in enumerate(object.value):
+				self.value[u"%s"%index]=item
 		
 	def v_length(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("length")
 		else:
-			return integer(len(self.values))
+			return integer(len(self.value))
 
 	def v_remove(self, key):
-		del self.values[localunpack(as_is(key))]
+		del self.value[localunpack(as_is(key))]
 
 	
 	
 	def __iter__(self):
-		return v_dictionary_iterator(iter(self.values))
+		return v_dictionary_iterator(iter(self.value))
 
 
 	
 	def __len__(self):
-		return len(self.values)
+		return len(self.value)
 
 	def __nonzero__(self):
-		return len(self.values)
+		return len(self.value)
 
 	def __invert__(self):
-		return len(self.values)==0
+		return len(self.value)==0

@@ -149,10 +149,7 @@ def inc_second(year, month, day, hour, minute, second, cnt):
 
 
 def v_array(*arguments):
-	values=[]
-	for value in arguments:
-		values.append(as_value(value))
-	return array(values=values)
+	return array([as_value(argument) for argument in arguments])
 
 def v_subarray(value, *indexes):
 	return as_array(value).subarray(*indexes)
@@ -170,7 +167,7 @@ def v_filter(strings, value, include=None, compare=None):
 		if include and current_string.find(search_string)>=0 or \
 			not include and current_string.find(search_string)<0:
 			values.append(vstring)
-	return array(values=values)
+	return array(values)
 
 def v_lbound(arrayname, dimension=None):
 	arrayname=as_array(arrayname)
@@ -384,10 +381,7 @@ def v_split(expression, delimiter=None, count=None, compare=None):
 		strings=as_string(expression).split(delimiter)
 	if count>-1:
 		strings=strings[:count+1]
-	values=[]
-	for string1 in strings:
-		values.append(string(string1))
-	return array(values=values)
+	return array([string(string1) for string1 in strings])
 
 
 def v_exp(number):
