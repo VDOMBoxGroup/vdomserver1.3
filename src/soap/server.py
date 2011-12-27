@@ -467,9 +467,10 @@ class VDOM_web_services_server(object):
 			if objid == parentid:
 				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
 			obj = managers.xml_manager.search_object(appid, objid)
-			for o in obj.objects:
-				if o == parentid:
-					raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
+			if obj:
+				for o in obj.objects:
+					if o == parentid:
+						raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
 			action_map = {}
 			event_map = {}
 			new_obj_id = self.__copy_object(app, parentid, objid, event_map, action_map, tgt_app)
@@ -493,10 +494,31 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[1]
 		app = ret[0]
-		obj = managers.xml_manager.search_object(appid, objid)
-		parent = managers.xml_manager.search_object(appid, parentid)
-		obj.parent = parent
-		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
+		try:
+			obj = managers.xml_manager.search_object(appid, objid)
+			parent = managers.xml_manager.search_object(appid, parentid)
+			if 1 == parent.type.container:
+				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is not container"))
+			if objid == parentid:
+				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as moving object"))
+			if obj:
+				for o in obj.objects:
+					if o == parentid:
+						raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of moving object"))
+			obj.xml_obj.exclude()
+			parent.objects_element.append_as_copy(obj.xml_obj)
+			obj.parent.objects_list.remove(obj)
+			del obj.parent.objects[obj.id]
+			del obj.parent.objects_by_name[obj.name]
+			obj.parent = parent
+			obj.toplevel = parent.toplevel
+			parent.get_objects()[obj.id] = obj
+			parent.get_objects_list().append(obj)
+			parent.objects_by_name[obj.name] = obj
+			app.sync()
+			return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
+		except Exception, e:
+			return self.__format_error(str(e))		
 	
 	def delete_object(self, sid, skey, appid, objid):
 		"""delete object from application"""
@@ -837,7 +859,7 @@ class VDOM_web_services_server(object):
 			ret = appl.create_object(typeid, None, do_compute)
 		obj_id = ret[1]
 		copy_object = appl.search_object(obj_id)
-		if parentid and parentid != obj.parent.id:
+		if (parentid and parentid != obj.parent.id) or (newapp and newapp.id != app.id):
 			try:
 				copy_object.set_name(name)
 			except:
