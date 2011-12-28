@@ -3255,6 +3255,7 @@ class VDOM_fullcalendar(VDOM_object):
 				allDay = getattr( event, 'allday', vobject.base.ContentLine('ALLDAY','','false'))
 				allDay = True if allDay.value == "true" else False
 				textColor = getattr(event, 'textcolor', vobject.base.ContentLine('textColor', '', 'green'))
+				borderColor = getattr(event, 'bordercolor', vobject.base.ContentLine('bordercolor', '', 'green'))
 				
 				if event.rruleset is None:
 					event_sources.append({ "events": [{ "id": id.value,
@@ -3265,7 +3266,8 @@ class VDOM_fullcalendar(VDOM_object):
 										"allDay": allDay,
 										"instance": "-1"}],
 										"color": color.value,
-										"textColor": textColor.value})
+										"textColor": textColor.value,
+										"borderColor": borderColor.value})
 				else:
 					instance = 1
 					for rev in event.rruleset:
@@ -3278,7 +3280,8 @@ class VDOM_fullcalendar(VDOM_object):
 										"allDay": allDay,
 										"instance": instance }],
 										"color": color.value,
-										"textColor": textColor.value})
+										"textColor": textColor.value,
+										"borderColor": borderColor.value})
 						instance += 1
 		return json.dumps(event_sources)
 	
