@@ -455,8 +455,14 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[1]
 		app = ret[0]
+		
 		tgt_app = None
 		try:
+			obj = managers.xml_manager.search_object(appid, objid)
+			if obj:
+				for o in obj.objects:
+					if o == parentid:
+						raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
 			if tgt_appid:
 				ret = self.__find_application(tgt_appid)	# returns (app, error_message)
 				if not ret[0]:
@@ -466,22 +472,14 @@ class VDOM_web_services_server(object):
 				managers.request_manager.current.set_application_id(tgt_appid)
 			if objid == parentid:
 				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
-			obj = managers.xml_manager.search_object(appid, objid)
-			if obj:
-				for o in obj.objects:
-					if o == parentid:
-						raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
+			
 			action_map = {}
-			event_map = {}
-			new_obj_id = self.__copy_object(app, parentid, objid, event_map, action_map, tgt_app)
+			obj_map = {}
+			new_obj_id = self.__copy_object(app, parentid, objid, obj_map, action_map, tgt_app)
 			if not tgt_app:
 				tgt_app = app
 			copy_obj = managers.xml_manager.search_object(appid, new_obj_id)
-			for (ob, ev_name) in event_map:
-				for act in app.events_by_object[ob][ev_name].actions:
-					if act in action_map:
-						new_ob = event_map[(ob, ev_name)][0]
-						tgt_app.events_by_object[new_ob][ev_name].actions.append(action_map[act])
+			self.__copy_events_structure(app, obj, copy_obj, obj_map, action_map, tgt_app)
 				
 			tgt_app.sync()
 			return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
@@ -837,7 +835,7 @@ class VDOM_web_services_server(object):
 			result += "</Objectlist>\n"
 		return result
 	
-	def __copy_object(self, app, parentid, objid, event_map, action_map, newapp = None):
+	def __copy_object(self, app, parentid, objid, obj_map, action_map, newapp = None):
 		"""copy object in application"""
 		if newapp:
 			appl = newapp
@@ -867,7 +865,7 @@ class VDOM_web_services_server(object):
 				pass
 		if attr:
 			copy_object.set_attributes(attr)
-
+		obj_map[objid] = copy_object.id
 		if 1 == obj.type.container:
 			xml_actions = ''
 			server_actions_element = None
@@ -895,34 +893,7 @@ class VDOM_web_services_server(object):
 				if server_actions_element:
 					server_actions_element.delete()
 				raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-		xml_events = "<Events>\n"
-		if obj and obj.toplevel.id in app.events:
-			if obj.id in app.events[obj.toplevel.id]:
-				src_id = obj.id
-				for ev_name in app.events[obj.toplevel.id][src_id]:			
-					xml_events += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s" />\n""" % (copy_object.id, copy_object.name, copy_object.type.id, copy_object.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
-					event_map[(src_id, ev_name)] = (copy_object.id, ev_name)
-		xml_events += "</Events>"
-		events_element = None
-		try:
-			events_element = xml_object(srcdata=xml_events.encode("utf-8"))
-			if not events_element:
-				raise VDOM_exception_element("Events")			
-			for child in events_element.children:
-				if "event" == child.lname:
-					src_id = child.attributes["objsrcid"]
-					name = child.attributes["name"]
-					if not src_id or not name:
-						raise VDOM_exception_element("Event")
-					for act in child.children:
-						if "action" == act.lname:
-							_id = act.attributes["id"]
-							if not _id:
-								raise VDOM_exception_element("event.action")
-		except Exception, e:
-			if events_element:
-				events_element.delete()
-			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+		
 		xml_client_action = "<ClientActions>\n"	
 		if obj:
 			for a_id in app.actions:
@@ -958,7 +929,6 @@ class VDOM_web_services_server(object):
 				client_actions_element.delete()
 			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
 		if copy_object:
-			appl.set_e2vdom_events(copy_object, events_element)
 			appl.set_e2vdom_actions(copy_object, client_actions_element)
 			if server_actions_element:
 				for child in server_actions_element.children:
@@ -967,12 +937,49 @@ class VDOM_web_services_server(object):
 							copy_object.set_action_attributes(child)
 				server_actions_element.delete()
 		client_actions_element.delete()
-		events_element.delete()
 		appl.sync()
 		for ob in obj.objects:
-			self.__copy_object(app, obj_id, ob, event_map, action_map, newapp)
+			self.__copy_object(app, obj_id, ob, obj_map, action_map, newapp)
 		return obj_id
 
+	def __copy_events_structure(self, app, obj, new_obj, obj_map, action_map, tgt_app):
+		if not tgt_app:
+			tgt_app = app
+		result = "<Events>\n"
+		if obj and obj.toplevel.id in app.events:
+			for src_id in app.events[obj.toplevel.id]:
+				if src_id in obj_map:
+					for ev_name in app.events[obj.toplevel.id][src_id]:
+						result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (new_obj.id, new_obj.name, new_obj.type.id, new_obj.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
+						for a in app.events[obj.toplevel.id][src_id][ev_name].actions:
+							if a in action_map:
+								result += """<Action ID="%s"/>\n""" % action_map[a]
+						result += "</Event>\n"
+		result += "</Events>\n"
+		events_element = None
+		try:
+			events_element = xml_object(srcdata=result.encode("utf-8"))
+			if not events_element:
+				raise VDOM_exception_element("Events")			
+			for child in events_element.children:
+				if "event" == child.lname:
+					src_id = child.attributes["objsrcid"]
+					name = child.attributes["name"]
+					if not src_id or not name:
+						raise VDOM_exception_element("Event")
+					for act in child.children:
+						if "action" == act.lname:
+							_id = act.attributes["id"]
+							if not _id:
+								raise VDOM_exception_element("event.action")
+		except Exception, e:
+			if events_element:
+				events_element.delete()
+			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+		
+		tgt_app.set_e2vdom_events(new_obj, events_element)
+		events_element.delete()
+		
 	def __set_attributes(self, obj, attr):
 		"""set several attributes' value"""
 		attr_map = self.__parse_attr(attr, False)
