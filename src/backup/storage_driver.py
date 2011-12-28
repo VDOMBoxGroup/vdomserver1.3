@@ -190,6 +190,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		self.__cloud_configs = None
 		self.__cloud_target = None
 
+
 		try:
 		# Get login/pass for cloud
 
@@ -213,13 +214,17 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			#	raise Exception("Can't get pass from Smartcard")
 			#else:
 			#	self.__cloud_pass = result
-		except:
+			
+			if self.crypt:
+				crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
+
+			except:
 			raise Exception("Can't get data from Smartcard %s %s"%(self.__cloud_login, self.__cloud_pass))
 
 		try:
 		# Get share status
 
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
+			cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s %s"""%(self.__cloud_login, self.__cloud_pass, crypto_arg)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
@@ -231,7 +236,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			elif rc == 1:
 			# state: empty
 				self.__cloud_share_status = 1
-				debug("To be activated! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				debug("To be activated! Login: %s Pass: %s "%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 2: 
 			# state: extended
@@ -252,7 +257,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		if self.__cloud_share_status != 1:
 		# Get and Install openvpn configs
 			debug("Try to get configs! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
+			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s %s """%(self.__cloud_login, self.__cloud_pass, crypto_arg)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
@@ -295,7 +300,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					# Logged in. Probe
 						self.__dev = str(out.stdout.read()).strip('\n')
 
-						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s"""%self.__dev
+						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s %s"""%(self.__dev, crypto_arg)
 						out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 						out.wait()
 						rc = out.returncode
@@ -358,6 +363,8 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
+		crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
+
 		try:
 		# Get share status
 
@@ -437,7 +444,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 					# Logged in. Probe
 						self.__dev = str(out.stdout.read()).strip('\n')
 
-						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s"""%self.__dev
+						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s %s"""%(self.__dev, crypto_arg)
 						out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 						out.wait()
 						rc = out.returncode
