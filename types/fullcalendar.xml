@@ -3123,7 +3123,7 @@ class VDOM_fullcalendar(VDOM_object):
 			eventSources: %(event_sources)s,
 			eventClick: function(event) {
 				var id="%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "eventClick", {id:event.id});
+				execEventBinded(id.substring(2, id.length), "eventClick", {id:event.id, instance:event.instance});
 			},
 			editable: true,
 			eventDrop: function(event, dayDelta, minuteDelta, allDay) {
@@ -3345,6 +3345,7 @@ class VDOM_fullcalendar(VDOM_object):
         <Event Name="eventClick">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(911)"/>
+			<Parameter Name="instance" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
         <Event Name="eventDrag">
