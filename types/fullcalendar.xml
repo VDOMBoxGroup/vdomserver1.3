@@ -3227,7 +3227,8 @@ class VDOM_fullcalendar(VDOM_object):
 					width: %(width)spx; 
 					height: %(height)spx;
 					visibility: %(visibility)s;"""%style_params
-		render_params = {"id_out": id_out,  
+		render_params = {"id_out": id_out,
+					"weekMode":"liquid",
 					"current_view": current_view, 
 					"year": year_month_day[0], 
 					"month": year_month_day[1], 
