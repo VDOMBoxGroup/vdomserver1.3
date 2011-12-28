@@ -3114,6 +3114,7 @@ class VDOM_fullcalendar(VDOM_object):
 				center: '',
 				right: ''
 			},
+			weekMode: 'liquid',
 			axisFormat: time_format,
 			timeFormat: time_format,
 			dayNamesShort: day_names,
@@ -3228,7 +3229,6 @@ class VDOM_fullcalendar(VDOM_object):
 					height: %(height)spx;
 					visibility: %(visibility)s;"""%style_params
 		render_params = {"id_out": id_out,
-					"weekMode":"liquid",
 					"current_view": current_view, 
 					"year": year_month_day[0], 
 					"month": year_month_day[1], 
