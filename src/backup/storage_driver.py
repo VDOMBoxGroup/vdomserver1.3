@@ -218,8 +218,8 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			if self.crypt:
 				crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
 
-			except:
-				raise Exception("Can't get data from Smartcard %s %s"%(self.__cloud_login, self.__cloud_pass))
+		except:
+			raise Exception("Can't get data from Smartcard %s %s"%(self.__cloud_login, self.__cloud_pass))
 
 		try:
 		# Get share status
