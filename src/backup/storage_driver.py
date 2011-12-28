@@ -366,7 +366,12 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
 
 	def mount(self):
-		crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
+		
+		if self.crypt:		
+			crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
+		else:
+			crypto_arg = ""
+			
 
 		try:
 		# Get share status
@@ -484,7 +489,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 						else:
 							# Probe wrong! Exit.
 							debug("iSCSI Probe dev: %s  uuid: %s failed! Exit."%(self.__dev, self.__uuid))
-							raise Exception("iSCSI MOUNT failed! Exit.")
+							raise Exception("iSCSI PROBE failed! Exit.")
 					else:
 					# Login to target failed. Exit.
 						debug("iSCSI Login to target failed! Exit.")
