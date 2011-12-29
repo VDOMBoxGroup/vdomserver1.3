@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.2.6720</Version>
+    <Version>3.19.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -99,143 +99,100 @@
     </Attribute>
     <Attribute>
       <Name>deltamove</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>.+</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>color</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue>CCCCCC</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(318)</Help>
+      <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>direction</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(428)|0)|(#Lang(429)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>classname</Name>
-      <DisplayName>#Lang(109)</DisplayName>
+      <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
+      <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Splitter</Sentence>
-      <Sentence ID="002">Splitter</Sentence>
+      <Sentence ID="002">Used to split</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="601">Visibility</Sentence>
-      <Sentence ID="701">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="801">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="502">Visibility</Sentence>
-      <Sentence ID="602">Visibility</Sentence>
-      <Sentence ID="702">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="802">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="503">Visibility</Sentence>
-      <Sentence ID="603">Visibility</Sentence>
-      <Sentence ID="703">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="803">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="704">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="804">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="705">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="805">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="504">Visibility</Sentence>
-      <Sentence ID="604">Visibility</Sentence>
-      <Sentence ID="706">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="806">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="602">Show</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="117">Delta</Sentence>
-      <Sentence ID="217">Max pixels to move</Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
-      <Sentence ID="118">Color</Sentence>
-      <Sentence ID="218">Incorrect value, must be six hexadecimal digits</Sentence>
-      <Sentence ID="318">Color of the object</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Z-Index</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207"></Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="107">Delta</Sentence>
+      <Sentence ID="207">Maximum number of pixels to move</Sentence>
       <Sentence ID="307">Incorrect value</Sentence>
-      <Sentence ID="108">Value</Sentence>
-      <Sentence ID="208">Value of the object</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="109">CSS class</Sentence>
-      <Sentence ID="209">CSS class name(s)</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Andale Mono</Sentence>
-      <Sentence ID="406">Arial</Sentence>
-      <Sentence ID="407">Arial Black</Sentence>
-      <Sentence ID="408">Book Antiqua</Sentence>
-      <Sentence ID="409">Comic Sans MS</Sentence>
-      <Sentence ID="411">Courier New</Sentence>
-      <Sentence ID="412">Georgia</Sentence>
-      <Sentence ID="413">Helvetica</Sentence>
-      <Sentence ID="414">Impact</Sentence>
-      <Sentence ID="415">Symbol</Sentence>
-      <Sentence ID="416">Tahoma</Sentence>
-      <Sentence ID="417">Terminal</Sentence>
-      <Sentence ID="418">Times New Roman</Sentence>
-      <Sentence ID="419">Times</Sentence>
-      <Sentence ID="421">Verdana</Sentence>
-      <Sentence ID="422">Webdings</Sentence>
-      <Sentence ID="423">Wingdings</Sentence>
-      <Sentence ID="424">Italic</Sentence>
-      <Sentence ID="425">Normal</Sentence>
-      <Sentence ID="426">Bold</Sentence>
-      <Sentence ID="427">Normal</Sentence>
-      <Sentence ID="116">Direction</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
-      <Sentence ID="428">Vertical</Sentence>
-      <Sentence ID="429">Horizontal</Sentence>
-      <Sentence ID="431">Right</Sentence>
-      <Sentence ID="432">Underline</Sentence>
-      <Sentence ID="433">None</Sentence>
+      <Sentence ID="108">Color</Sentence>
+      <Sentence ID="208">Color of the object</Sentence>
+      <Sentence ID="308">Incorrect value, must be six hexadecimal digits</Sentence>
+      <Sentence ID="109">Direction</Sentence>
+      <Sentence ID="209">Define the type of direction</Sentence>
+      <Sentence ID="309">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="403">Vertical</Sentence>
+      <Sentence ID="404">Horizontal</Sentence>
+      <Sentence ID="111">CSS class</Sentence>
+      <Sentence ID="211">Names of CSS classes</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -272,125 +229,97 @@
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
+      <Sentence ID="941">Left</Sentence>
+      <Sentence ID="942">Top</Sentence>
+      <Sentence ID="943">Left</Sentence>
+      <Sentence ID="944">Top</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Разделитель</Sentence>
-      <Sentence ID="002">Разделитель</Sentence>
+      <Sentence ID="002">Используется для разделения</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="601">Visibility</Sentence>
-      <Sentence ID="701">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="801">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="502">Visibility</Sentence>
-      <Sentence ID="602">Visibility</Sentence>
-      <Sentence ID="702">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="802">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="503">Visibility</Sentence>
-      <Sentence ID="603">Visibility</Sentence>
-      <Sentence ID="703">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="803">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="704">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="804">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="705">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="805">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="504">Visibility</Sentence>
-      <Sentence ID="604">Visibility</Sentence>
-      <Sentence ID="706">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="806">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Hierarchy</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility</Sentence>
-      <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Z-Index</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="307">Incorrect value</Sentence>
-      <Sentence ID="108">Value</Sentence>
-      <Sentence ID="208">Value of the object</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="109">Underlined</Sentence>
-      <Sentence ID="209">Underlined text</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Andale Mono</Sentence>
-      <Sentence ID="406">Arial</Sentence>
-      <Sentence ID="407">Arial Black</Sentence>
-      <Sentence ID="408">Book Antiqua</Sentence>
-      <Sentence ID="409">Comic Sans MS</Sentence>
-      <Sentence ID="411">Courier New</Sentence>
-      <Sentence ID="412">Georgia</Sentence>
-      <Sentence ID="413">Helvetica</Sentence>
-      <Sentence ID="414">Impact</Sentence>
-      <Sentence ID="415">Symbol</Sentence>
-      <Sentence ID="416">Tahoma</Sentence>
-      <Sentence ID="417">Terminal</Sentence>
-      <Sentence ID="418">Times New Roman</Sentence>
-      <Sentence ID="419">Times</Sentence>
-      <Sentence ID="421">Verdana</Sentence>
-      <Sentence ID="422">Webdings</Sentence>
-      <Sentence ID="423">Wingdings</Sentence>
-      <Sentence ID="424">Italic</Sentence>
-      <Sentence ID="425">Normal</Sentence>
-      <Sentence ID="426">Bold</Sentence>
-      <Sentence ID="427">Normal</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
-      <Sentence ID="428">Left</Sentence>
-      <Sentence ID="429">Center</Sentence>
-      <Sentence ID="431">Right</Sentence>
-      <Sentence ID="432">Underline</Sentence>
-      <Sentence ID="433">None</Sentence>
-      <Sentence ID="901">Left</Sentence>
-      <Sentence ID="902">Top</Sentence>
-      <Sentence ID="903">Left</Sentence>
-      <Sentence ID="904">Top</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="502">Показать объект</Sentence>
+      <Sentence ID="602">Показать</Sentence>
+      <Sentence ID="702">Появление</Sentence>
+      <Sentence ID="802">Время появления в миллисекундах</Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="107">Сдвиг</Sentence>
+      <Sentence ID="207">Максимальное количество пикселей для перемещения</Sentence>
+      <Sentence ID="307">Неправильное значение</Sentence>
+      <Sentence ID="108">Цвет</Sentence>
+      <Sentence ID="208">Цвет объекта</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано шесть шестнадцатеричных цифр</Sentence>
+      <Sentence ID="109">Направление</Sentence>
+      <Sentence ID="209">Определение направления</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="403">Вертикальное</Sentence>
+      <Sentence ID="404">Горизонтальное</Sentence>
+      <Sentence ID="111">Класс CSS</Sentence>
+      <Sentence ID="211">Имена классов CSS</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="901">Слева</Sentence>
+      <Sentence ID="902">Сверху</Sentence>
+      <Sentence ID="903">Слева</Sentence>
+      <Sentence ID="904">Сверху</Sentence>
       <Sentence ID="905"></Sentence>
       <Sentence ID="906"></Sentence>
       <Sentence ID="907"></Sentence>
       <Sentence ID="908"></Sentence>
-      <Sentence ID="909">Left</Sentence>
-      <Sentence ID="911">Top</Sentence>
+      <Sentence ID="909">Слева</Sentence>
+      <Sentence ID="911">Сверху</Sentence>
       <Sentence ID="912"></Sentence>
       <Sentence ID="913"></Sentence>
       <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
-      <Sentence ID="916">Left</Sentence>
-      <Sentence ID="917">Top</Sentence>
+      <Sentence ID="916">Слева</Sentence>
+      <Sentence ID="917">Сверху</Sentence>
       <Sentence ID="918"></Sentence>
       <Sentence ID="919"></Sentence>
-      <Sentence ID="921">Left</Sentence>
-      <Sentence ID="922">Top</Sentence>
+      <Sentence ID="921">Слева</Sentence>
+      <Sentence ID="922">Сверху</Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
       <Sentence ID="925"></Sentence>
       <Sentence ID="926"></Sentence>
-      <Sentence ID="927">Left</Sentence>
-      <Sentence ID="928">Top</Sentence>
+      <Sentence ID="927">Слева</Sentence>
+      <Sentence ID="928">Сверху</Sentence>
       <Sentence ID="929"></Sentence>
       <Sentence ID="931"></Sentence>
       <Sentence ID="932"></Sentence>
       <Sentence ID="933"></Sentence>
-      <Sentence ID="934">Left</Sentence>
-      <Sentence ID="935">Top</Sentence>
+      <Sentence ID="934">Слева</Sentence>
+      <Sentence ID="935">Сверху</Sentence>
       <Sentence ID="936"></Sentence>
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
+      <Sentence ID="941">Слева</Sentence>
+      <Sentence ID="942">Сверху</Sentence>
+      <Sentence ID="943">Слева</Sentence>
+      <Sentence ID="944">Сверху</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Splitter</Sentence>
@@ -404,18 +333,6 @@
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="702">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="802">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="503">Visibilité</Sentence>
-      <Sentence ID="603">Visibilité</Sentence>
-      <Sentence ID="703">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="803">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="704">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="804">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="705">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="805">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="504">Visibilité</Sentence>
-      <Sentence ID="604">Visibilité</Sentence>
-      <Sentence ID="706">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="806">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
@@ -436,44 +353,20 @@
       <Sentence ID="106">Largeur</Sentence>
       <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="307">Valeur Incorrecte</Sentence>
-      <Sentence ID="108">Valeur</Sentence>
-      <Sentence ID="208">Valeur de l'object</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="109">Souligné</Sentence>
-      <Sentence ID="209">Texte souligné</Sentence>
+      <Sentence ID="107">Delta</Sentence>
+      <Sentence ID="207">Max pixels to move</Sentence>
+      <Sentence ID="307">Incorrect value</Sentence>
+      <Sentence ID="108">Color</Sentence>
+      <Sentence ID="208">Color of the object</Sentence>
+      <Sentence ID="308">Incorrect value, must be six hexadecimal digits</Sentence>
+      <Sentence ID="109">Direction</Sentence>
+      <Sentence ID="209"></Sentence>
       <Sentence ID="309">Valeur Incorrecte</Sentence>
-      <Sentence ID="403">Non</Sentence>
-      <Sentence ID="404">Oui</Sentence>
-      <Sentence ID="405">Andale Mono</Sentence>
-      <Sentence ID="406">Arial</Sentence>
-      <Sentence ID="407">Arial Black</Sentence>
-      <Sentence ID="408">Book Antiqua</Sentence>
-      <Sentence ID="409">Comic Sans MS</Sentence>
-      <Sentence ID="411">Courier New</Sentence>
-      <Sentence ID="412">Georgia</Sentence>
-      <Sentence ID="413">Helvetica</Sentence>
-      <Sentence ID="414">Impact</Sentence>
-      <Sentence ID="415">Symbol</Sentence>
-      <Sentence ID="416">Tahoma</Sentence>
-      <Sentence ID="417">Terminal</Sentence>
-      <Sentence ID="418">Times New Roman</Sentence>
-      <Sentence ID="419">Times</Sentence>
-      <Sentence ID="421">Verdana</Sentence>
-      <Sentence ID="422">Webdings</Sentence>
-      <Sentence ID="423">Wingdings</Sentence>
-      <Sentence ID="424">Italic</Sentence>
-      <Sentence ID="425">Normal</Sentence>
-      <Sentence ID="426">Gras</Sentence>
-      <Sentence ID="427">Normal</Sentence>
-      <Sentence ID="316">Valeur Incorrecte</Sentence>
-      <Sentence ID="428">Gauche</Sentence>
-      <Sentence ID="429">Centrer</Sentence>
-      <Sentence ID="431">Droite</Sentence>
-      <Sentence ID="432">Souligné</Sentence>
-      <Sentence ID="433">Aucun</Sentence>
+      <Sentence ID="403">Gauche</Sentence>
+      <Sentence ID="404">Centrer</Sentence>
+      <Sentence ID="111">Souligné</Sentence>
+      <Sentence ID="211">Texte souligné</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -510,6 +403,10 @@
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
+      <Sentence ID="941">Gauche</Sentence>
+      <Sentence ID="942">Haut</Sentence>
+      <Sentence ID="943">Gauche</Sentence>
+      <Sentence ID="944">Haut</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -873,44 +770,6 @@ def set_attr(app_id, object_id, param):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mousemove">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseup">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
-          </Parameters>
-        </Event>
         <Event Name="click">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
@@ -919,16 +778,6 @@ def set_attr(app_id, object_id, param):
             <Parameter Name="altKey" Order="" VbType="" Help="#Lang(924)"/>
             <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(925)"/>
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(926)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
-            <Parameter Name="button" Order="" VbType="" Help="#Lang(929)"/>
-            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(931)"/>
-            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(932)"/>
-            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(933)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick">
@@ -941,16 +790,64 @@ def set_attr(app_id, object_id, param):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(939)"/>
           </Parameters>
         </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(929)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(931)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(932)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(933)"/>
+          </Parameters>
+        </Event>
         <Event Name="dragstart">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(941)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(942)"/>
           </Parameters>
         </Event>
         <Event Name="dragstop">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(943)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(944)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="button" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="altKey" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="ctrlKey" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
