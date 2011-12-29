@@ -128,7 +128,7 @@
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|application/x-www-form-urlencoded)|(#Lang(404)|multipart/form-data)|(#Lang(405)|text/plain))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|application/x-www-form-urlencoded)|(#Lang(404)|multipart/form-data)|(#Lang(405)|text/plain)|(#Lang(421)|))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -281,6 +281,8 @@
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
       <Sentence ID="918">Parameters</Sentence>
+      <Sentence ID="421">None</Sentence>
+      <Sentence ID="422"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Форма</Sentence>
