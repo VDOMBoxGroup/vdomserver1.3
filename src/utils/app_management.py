@@ -61,7 +61,7 @@ def uninstall_application(appid):
 
 def update_application(path, vh):
 	appid = ""
-	tmpdir = ""					# directory for saving databases
+	tmpdbdir = ""					# directory for saving databases
 	tmpdir1 = ""				# directory for saving resources
 	tmpdir_app = ""				# directory for saving application
 	err_mess = ""
@@ -98,14 +98,14 @@ def update_application(path, vh):
 	debug("Save current databases...")
 	dbs = {}
 	try:
-		tmpdir = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+		tmpdbdir = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
 		dbpath = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], databases_path, appid)
 		r = managers.database_manager.list_databases(appid)
 		for item in r:
 			try:
 				obj = managers.database_manager.get_database(appid, item)
-				shutil.copy2(dbpath + "/" + obj.filename, tmpdir)
-				dbs[tmpdir + "/" + obj.filename] = {"id" : obj.id, "name" : obj.name, "owner": obj.owner_id, "type": "sqlite"}
+				shutil.copy2(dbpath + "/" + obj.filename, tmpdbdir)
+				dbs[tmpdbdir + "/" + obj.filename] = {"id" : obj.id, "name" : obj.name, "owner": obj.owner_id, "type": "sqlite"}
 				debug("Database %s saved" % obj.name)
 			except: pass
 	except: pass
@@ -135,8 +135,8 @@ def update_application(path, vh):
 		# nothing deleted (no del rights) - temp folders to be removed
 		if tmpdir_app:
 			shutil.rmtree(tmpdir_app, ignore_errors=True)
-		if tmpdir:
-			shutil.rmtree(tmpdir, ignore_errors=True)
+		if tmpdbdir:
+			shutil.rmtree(tmpdbdir, ignore_errors=True)
 		if tmpdir1:
 			shutil.rmtree(tmpdir1, ignore_errors=True)
 		raise
@@ -154,8 +154,8 @@ def update_application(path, vh):
 		ret = (None, "Unable to install new version - previous version seems to be not removed")
 		if tmpdir_app:
 			shutil.rmtree(tmpdir_app, ignore_errors=True)
-		if tmpdir:
-			shutil.rmtree(tmpdir, ignore_errors=True)
+		if tmpdbdir:
+			shutil.rmtree(tmpdbdir, ignore_errors=True)
 		if tmpdir1:
 			shutil.rmtree(tmpdir1, ignore_errors=True)
 		return ret
@@ -213,8 +213,8 @@ def update_application(path, vh):
 
 	if tmpdir_app:
 		shutil.rmtree(tmpdir_app, ignore_errors=True)
-	if tmpdir:
-		shutil.rmtree(tmpdir, ignore_errors=True)
+	#if tmpdbdir:
+	#	shutil.rmtree(tmpdbdir, ignore_errors=True)
 	if tmpdir1:
 		shutil.rmtree(tmpdir1, ignore_errors=True)
 	return ret
