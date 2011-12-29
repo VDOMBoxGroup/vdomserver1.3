@@ -38,7 +38,7 @@ def run(request):
 	daily_display = ''
 	hourly_display = ' style="display:none;"'
 	t = time(randint(0, 5), randint(0, 59))
-	d_backup_time = t.strftime("%H-%M")
+	d_backup_time = t.strftime("%H:%M")
 	h_backup_time = '1'
 	crypt_box = ""
 	if "erase" in args and args["erase"][0] != "":
@@ -87,10 +87,10 @@ def run(request):
 			rotation_value = args["rotation"][0]
 		else:
 			rotation_value = "10"
-		if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3])-[0-5][0-9]$", args["daily_int"][0]):
+		if "week-day[]" in args and "daily_int" in args and args["int1"][0] == "daily" and re.match("^([01]?[0-9]|2[0-3]):[0-5][0-9]$", args["daily_int"][0]):
 			days_of_week = "*" if len(args["week-day[]"]) == 7 else ",".join(args["week-day[]"])
-			minutes = args["daily_int"][0].split('-')[1]
-			hours = args["daily_int"][0].split('-')[0]
+			minutes = args["daily_int"][0].split(':')[1]
+			hours = args["daily_int"][0].split(':')[0]
 			interval = (minutes, hours, "*", "*", days_of_week)
 		elif args["int1"][0] == "hourly" and "hourly_int" in args and re.match("^([1-9]|1[0-9]|2[0-4])$", args["hourly_int"][0]):
 			hours = "*/" + args["hourly_int"][0]
@@ -107,6 +107,16 @@ def run(request):
 			if not managers.backup_manager.update_schedule(driver.id, backup_apps, interval, rotation_value):
 				managers.backup_manager.add_storage(driver)
 				managers.backup_manager.add_schedule(driver.id, backup_apps, interval, rotation_value)
+			drivers = managers.backup_manager.get_storages()
+			crontab = []
+			for drv in drivers:
+				task_id, schedule = managers.backup_manager.get_schedule(drv)
+				if schedule[0].in_cron:
+					crontab.append((task_id, schedule[1]))
+				
+			managers.scheduler_manager.build_crontab(crontab)
+			request.redirect("/appbackup.py")
+			return
 		
 	for dev in dev_list:
 		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and hasattr(driver, 'dev') and dev[0] == driver.dev else ""}		
@@ -130,7 +140,7 @@ def run(request):
 				daily_display = ' style="display:none;"'
 				hourly_display = ''
 				h_backup_time = "1" if schedule1[1] == "*" else schedule1[1].split('/')[1]
-				d_backup_time = '00-00'
+				d_backup_time = '00:00'
 			else:
 				daily_selected = " selected"
 				week_display = ""
@@ -138,7 +148,7 @@ def run(request):
 				week_days = schedule1[4]
 				daily_display = ''
 				hourly_display = ' style="display:none;"'
-				d_backup_time = schedule1[1] + "-" + schedule1[0]
+				d_backup_time = schedule1[1] + ":" + schedule1[0]
 				h_backup_time = '1'
 		
 	if driver:
@@ -408,8 +418,9 @@ float:right;
 
 <script language="javascript">
 function LoadImgWait(){
+        document.configBackup.style.display='none';
 	document.getElementById('Imgload').style.display='';
-	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Saving backup configuration...";
+	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Backing up...";
 }
 function ChangeBackup(obj){
 	if (obj.value == "hourly"){
@@ -432,7 +443,7 @@ function ChangeBackup(obj){
 
 <p class="Texte"><a href="menuappli.py">Application Management</a> &gt; <a href="appbackup.py">Backup</a> &gt; Config</p>""")
 	request.write("""
-<form name="configBackup" method=post enctype="multipart/form-data">%s
+<form name="configBackup" method=post onsubmit="LoadImgWait();" enctype="multipart/form-data">%s
 <div class="wrapper"> 
  <div class="block">
   <h2><img src="%s" align="absmiddle"/> Config %s</h2>
@@ -496,7 +507,7 @@ function ChangeBackup(obj){
         </div>
  </div>""" % apps_tag)
 	request.write("""
-<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes"/> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now"/></center>
+<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes" /> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now" onclick="LoadImgWait();"/></center>
 </div>
 </form>
 </body>

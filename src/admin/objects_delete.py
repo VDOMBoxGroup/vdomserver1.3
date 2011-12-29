@@ -14,17 +14,23 @@ def run(request):
 	args = request.arguments().arguments()
 	applst = managers.xml_manager.get_types()
 	p = False
-	for a in args.keys():
-		if a:
-			aid = "-".join(a.split("_"))
-			if aid in applst:
-				try:
-					obj = managers.xml_manager.get_type(aid)
-					fname = os.path.split(obj.filename)[1]
-					os.remove(os.path.join(VDOM_CONFIG["TYPES-LOCATION"], fname))
-					p = True
-				except Exception, e:
-					pass
+	if "remove_cache" in args:
+		l = os.listdir(VDOM_CONFIG["TYPES-LOCATION"])
+		for file_name in l:
+			os.remove(os.path.join(VDOM_CONFIG["TYPES-LOCATION"], file_name))
+		p = True
+	else:
+		for a in args.keys():			
+			if a and a != "remove_cache":
+				aid = "-".join(a.split("_"))
+				if aid in applst:
+					try:
+						obj = managers.xml_manager.get_type(aid)
+						fname = os.path.split(obj.filename)[1]
+						os.remove(os.path.join(VDOM_CONFIG["TYPES-LOCATION"], fname))
+						p = True
+					except Exception, e:
+						pass
 	if p: error = "Done, restart your VDOM Box for the changes to take effect"
 
 	request.write("""<html>
@@ -78,6 +84,8 @@ function MM_preloadImages() { //v3.0
 		request.write('<tr><td>&nbsp;</td><td class="Texte"><input type=checkbox name=%s value=%s>%s</input></td></tr>' % (item[1], "1", item[0]))
 	request.write('<tr><td>&nbsp;</td><td class="Texte">');
 	request.write('<input type=submit value="Remove" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">')
+	request.write('</td><td class="Texte">');
+	request.write('<input type=submit name="remove_cache" value="Remove cache" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">')
 	request.write('</td></tr></table>')
 	request.write('</form>')
 	request.write("""</center></body></html>""")
