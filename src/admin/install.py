@@ -36,7 +36,10 @@ def run(request):
 				outp = import_application(request.files["appfile"][0].name,args["format"][0])
 				if None != outp[0] and "" != outp[0]:
 					#request.write("OK, application id = %s" % outp)
-					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+					if "" == outp[1]:
+						request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+					else:
+						request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application id = %s installed with warning: %s";</script>' % (outp[0],escape(outp[1], quote=True)))
 					if "" != vhname and ok:
 						vh.set_site(vhname, outp[0])	# outp[0] contains the application ID
 				elif "" == outp[0]:

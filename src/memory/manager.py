@@ -299,7 +299,7 @@ class VDOM_xml_manager(object):
 
 ############################## external application management #########################################################
 
-	def import_application(self, path):
+	def import_application(self, path, ignore_version=False):
 		"""import application from a temporary path or single xml file"""
 		if not managers.acl_manager.session_user_has_access("vdombox", security.create_application):
 			raise VDOM_exception_sec(_("Installing application is not allowed"))
@@ -317,14 +317,21 @@ class VDOM_xml_manager(object):
 			(result, app_object) = self.load_application(p.work_xml_file)
 			if not result:			# previous version of application not removed?
 				return ("", "")
-			if app_object.server_version.split('.')[:2] != VDOM_server_version.split('.')[:2]:
-				raise Exception("This application could not be installed on server version %s.%s. Please contact your dealer for support."%tuple(VDOM_server_version.split('.')[:2]))
-			if app_object.server_version != "" and VDOM_server_version < app_object.server_version:
-				return (None, "Server version (%s) is unsuitable for this application (%s)" % (VDOM_server_version, app_object.server_version))
+			app_version = app_object.server_version or "0.0.0"
 			app_object.server_version = VDOM_server_version
 			app_object.information_element.get_child_by_name("serverversion").value = VDOM_server_version
 			app_object.sync()
+			
+			
+			app_object.set_info("Active", "1")
+			app_object.invalidate_libraries()
 			debug(_("Loaded application \'") + str(app_object.id) + "\'")
+			if not ignore_version:
+				if app_version.split('.')[:2] != VDOM_server_version.split('.')[:2]:
+					return (str(app_object.id), "This application could not be installed on server version %s.%s. Please contact your dealer for support."%tuple(VDOM_server_version.split('.')[:2]))
+				if VDOM_server_version.split('.')[2] < app_version.split('.')[2]:
+					return (str(app_object.id), "Server version (%s) is unsuitable for this application (%s)" % (VDOM_server_version, app_version))
+			
 		except Exception, e:
 			debug(_("Error loading application from path \'") + path + "\': " + str(e))
 			traceback.print_exc(file=debugfile)
@@ -333,10 +340,7 @@ class VDOM_xml_manager(object):
 			if hasattr(p, "id") and p.id:
 				managers.resource_manager.invalidate_resources(p.id)
 			return (None, str(e))
-		##if not result:			# previous version of application not removed?
-		##	return ("", "")
-		app_object.set_info("Active", "1")
-		app_object.invalidate_libraries()
+		
 		return (str(app_object.id), "")
 
 	def uninstall_application(self, appid, remove_db = True, remove_zero_res = True):

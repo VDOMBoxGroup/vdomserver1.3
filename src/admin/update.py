@@ -25,7 +25,11 @@ def run(request):
 			# call update function
 			outp = update_application(tmpfilename, request.server().virtual_hosting())
 			if outp[0]:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+				if "" == outp[0]:
+					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="OK, application id = %s";</script>' % outp[0])
+				else:
+					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application id = %s updated with warning: %s";</script>' % (outp[0],escape(outp[1], quote=True)))
+						
 			else:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Update error: %s";</script>' % escape(outp[1], quote=True))
 		except Exception as e:
