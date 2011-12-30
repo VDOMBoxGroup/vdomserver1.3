@@ -59,7 +59,7 @@ class VDOM_type(VDOM_parser):
 		# save xml to file
 		self.filename = "%s/%s.xml"%(VDOM_CONFIG["TYPES-LOCATION"],self.name)
 		if had_resources:
-			xml_obj.sync(self.filename)
+			xml_obj.sync(self.filename, keep_metadata = True)
 		if hasattr(self, "remote_methods"):
 			for func_name in self.remote_methods:
 				managers.dispatcher.add_remote_method(self.id, func_name)

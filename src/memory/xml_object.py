@@ -1,4 +1,4 @@
-
+import os
 from xml.dom.minidom import parse
 from xml.dom.minidom import parseString
 from xml.dom import Node
@@ -313,7 +313,12 @@ class xml_object(object):
 			result += self.__do_repr(a, l + 1)
 		return result
 
-	def sync(self, fname):
+	def sync(self, fname, keep_metadata=False):
+		if keep_metadata:
+			if os.path.exists(fname): 
+				times = os.stat(fname)[7:9] #(st_atime, st_mtime)
+			else:
+				times = None
 		f = open(fname, "wb")
 		if not self.parent:
 			f.write(self.xml_doc.toxml(encoding="utf-8"))
@@ -321,6 +326,9 @@ class xml_object(object):
 			f.write('<?xml version="1.0" ?>')
 			f.write(self.node.toxml(encoding="utf-8"))
 		f.close()
+		
+		if keep_metadata:
+			os.utime(fname,times)
 
 def f1():
 	x = xml_object("z.xml")
