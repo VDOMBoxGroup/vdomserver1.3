@@ -90,6 +90,8 @@ def update_application(path, vh):
 	except Exception, e:
 		if tmpappdir:
 			shutil.rmtree(tmpappdir, ignore_errors=True)
+		import traceback
+		traceback.print_exc(file=debugfile)
 		raise VDOM_exception(str(e) + err_mess)
 
 	names = vh.get_app_names(appid)			# virtual hosts
