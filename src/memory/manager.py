@@ -599,16 +599,15 @@ class VDOM_xml_manager(object):
 			zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="w", compression=zipfile.ZIP_DEFLATED)
 			l = os.listdir(path)
 			for file_name in l:
-				fz.write(os.path.join(path, file_name), "ldap.zip")
+				if file_name != "ldap.zip":
+					zf.write(os.path.join(path, file_name))
 				
 			zf.close()
 			data = managers.file_manager.read_file(os.path.join(path, "ldap.zip"))
 			data = base64.b64encode(data)
 			main_buf.write(data.encode("utf-8"))
-			main_buf.write("</LDAP>\n")
-			return main_buf.getvalue()
-		else:
-			pass
+		main_buf.write("</LDAP>\n")
+		return main_buf.getvalue()
 	    
 	def modify_objects_count(self, num):
 		self.__sem.lock()
