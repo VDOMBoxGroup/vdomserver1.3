@@ -498,7 +498,8 @@ class VDOM_xml_manager(object):
 				u += '\t\t\t\t<Right Target="%s" Access="%s"/>\n' % item
 			u += "\t\t\t\t</Rights>\n\t\t</User>\n"
 		u += "\t\t</Users>\n"
-		return "\t<Security>\n" + g + u + "\t</Security>\n"
+		l = self.__export_ldap(app)
+		return "\t<Security>\n" + g + u + l + "\t</Security>\n"
 
 	def __export_xml(self, app, path,embed_types = False):
 		"""export application as xml file"""
@@ -582,7 +583,33 @@ class VDOM_xml_manager(object):
 			
 		main_buf.write("\t</EmbeddedTypes>\n")
 		return main_buf.getvalue()
-		
+	
+	def __export_ldap(self, app):
+		from subprocess import *
+		import shlex, shutil, tempfile
+		from cStringIO import StringIO
+		main_buf = StringIO()
+		main_buf.write("\t\t<LDAP>")
+		path = tempfile.mkdtemp("", "ldap", VDOM_CONFIG["TEMP-DIRECTORY"])
+		cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (app.id, os.path.abspath(path))
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+		if rc == 0:
+			zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="w", compression=zipfile.ZIP_DEFLATED)
+			l = os.listdir(path)
+			for file_name in l:
+				fz.write(os.path.join(path, file_name), "ldap.zip")
+				
+			zf.close()
+			data = managers.file_manager.read_file(os.path.join(path, "ldap.zip"))
+			data = base64.b64encode(data)
+			main_buf.write(data.encode("utf-8"))
+			main_buf.write("</LDAP>\n")
+			return main_buf.getvalue()
+		else:
+			pass
+	    
 	def modify_objects_count(self, num):
 		self.__sem.lock()
 		try:
