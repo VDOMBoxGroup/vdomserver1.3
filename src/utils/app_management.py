@@ -62,8 +62,8 @@ def uninstall_application(appid):
 def update_application(path, vh):
 	appid = ""
 	tmpdbdir = ""					# directory for saving databases
-	tmpdir1 = ""				# directory for saving resources
-	tmpdir_app = ""				# directory for saving application
+	tmpresdir = ""				# directory for saving resources
+	tmpappdir = ""				# directory for saving application
 	err_mess = ""
 	try:
 		f = open(path, "rb")
@@ -85,11 +85,11 @@ def update_application(path, vh):
 		# temporal copy of installed application
 		debug("Save installed version...")
 		err_mess = ". Unable to save previous version of application"
-		tmpdir_app = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-		managers.xml_manager.export_application(appid, "xml", tmpdir_app)
+		tmpappdir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
+		managers.xml_manager.export_application(appid, "xml", tmpappdir)
 	except Exception, e:
-		if tmpdir_app:
-			shutil.rmtree(tmpdir_app, ignore_errors=True)
+		if tmpappdir:
+			shutil.rmtree(tmpappdir, ignore_errors=True)
 		raise VDOM_exception(str(e) + err_mess)
 
 	names = vh.get_app_names(appid)			# virtual hosts
@@ -98,7 +98,7 @@ def update_application(path, vh):
 	debug("Save current databases...")
 	dbs = {}
 	try:
-		tmpdbdir = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+		tmpdbdir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
 		dbpath = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], databases_path, appid)
 		r = managers.database_manager.list_databases(appid)
 		for item in r:
@@ -114,14 +114,14 @@ def update_application(path, vh):
 	debug("Save current resources...")
 	res_numb = 0
 	try:
-		tmpdir1 = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+		tmpresdir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
 		rpath1 = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], resources_path, appid)
 		lst = managers.resource_manager.list_resources(appid)
 		for ll in lst:
 			try:
 				ro = managers.resource_manager.get_resource(appid, ll)
 				if not ro.dependences:
-					shutil.copy2(rpath1 + "/" + ro.filename, tmpdir1)
+					shutil.copy2(rpath1 + "/" + ro.filename, tmpresdir)
 					res_numb += 1
 			except: pass
 	except: pass
@@ -133,12 +133,12 @@ def update_application(path, vh):
 		managers.xml_manager.uninstall_application(appid, remove_db=False, remove_zero_res=False)
 	except Exception, e:
 		# nothing deleted (no del rights) - temp folders to be removed
-		if tmpdir_app:
-			shutil.rmtree(tmpdir_app, ignore_errors=True)
+		if tmpappdir:
+			shutil.rmtree(tmpappdir, ignore_errors=True)
 		if tmpdbdir:
 			shutil.rmtree(tmpdbdir, ignore_errors=True)
-		if tmpdir1:
-			shutil.rmtree(tmpdir1, ignore_errors=True)
+		if tmpresdir:
+			shutil.rmtree(tmpresdir, ignore_errors=True)
 		raise
 		
 	# install new version
@@ -152,24 +152,26 @@ def update_application(path, vh):
 	
 	if "" == ret[0]:
 		ret = (None, "Unable to install new version - previous version seems to be not removed")
-		if tmpdir_app:
-			shutil.rmtree(tmpdir_app, ignore_errors=True)
+		if tmpappdir:
+			shutil.rmtree(tmpappdir, ignore_errors=True)
 		if tmpdbdir:
 			shutil.rmtree(tmpdbdir, ignore_errors=True)
-		if tmpdir1:
-			shutil.rmtree(tmpdir1, ignore_errors=True)
+		if tmpresdir:
+			shutil.rmtree(tmpresdir, ignore_errors=True)
 		return ret
 
 	app_exist = True
+	keep_backup = False
 	if not ret[0]:			# update error, restore previous version
 		debug("Install error, restore previous version...")
 		err_mess = ret[1]
 		app_exist = False
 		try:
-			rest_path = os.path.join(tmpdir_app, "%s.xml" % appid) 
-			ret = managers.xml_manager.import_application(rest_path)
+			rest_path = os.path.join(tmpappdir, "%s.xml" % appid) 
+			ret = managers.xml_manager.import_application(rest_path, ignore_version=True)
 			if not ret[0]:
 				ret = (None, err_mess + ". " + ret[1] + ". Please, contact your dealer")
+				keep_backup = True
 			else:
 				debug("Restored successfully")
 				app_exist = True
@@ -200,10 +202,10 @@ def update_application(path, vh):
 		debug("Restore resources...")
 		try: os.mkdir(rpath1)
 		except: pass
-		r2 = os.listdir(tmpdir1)
+		r2 = os.listdir(tmpresdir)
 		for item in r2:
 			try:
-				shutil.copy2(os.path.join(tmpdir1,item), os.path.join(rpath1,item))
+				shutil.copy2(os.path.join(tmpresdir,item), os.path.join(rpath1,item))
 			except:pass
 	
 		debug("Restore virtual hosts...")
@@ -211,11 +213,11 @@ def update_application(path, vh):
 			vh.set_site(n, appid)
 			debug("%s restored" % n)
 
-	if tmpdir_app:
-		shutil.rmtree(tmpdir_app, ignore_errors=True)
+	if tmpappdir and not keep_backup:
+		shutil.rmtree(tmpappdir, ignore_errors=True)
 	#if tmpdbdir:
 	#	shutil.rmtree(tmpdbdir, ignore_errors=True)
-	if tmpdir1:
-		shutil.rmtree(tmpdir1, ignore_errors=True)
+	if tmpresdir and not keep_backup:
+		shutil.rmtree(tmpresdir, ignore_errors=True)
 	return ret
 
