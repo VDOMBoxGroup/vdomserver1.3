@@ -585,29 +585,33 @@ class VDOM_xml_manager(object):
 		return main_buf.getvalue()
 	
 	def __export_ldap(self, app):
-		from subprocess import *
+		from subprocess import Popen, PIPE
 		import shlex, shutil, tempfile
 		from cStringIO import StringIO
 		main_buf = StringIO()
 		main_buf.write("\t\t<LDAP>")
 		path = tempfile.mkdtemp("", "ldap", VDOM_CONFIG["TEMP-DIRECTORY"])
-		cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (app.id, os.path.abspath(path))
-		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-		out.wait()
-		rc = out.returncode
-		if rc == 0:
-			zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="w", compression=zipfile.ZIP_DEFLATED)
-			l = os.listdir(path)
-			for file_name in l:
-				if file_name != "ldap.zip":
-					zf.write(os.path.join(path, file_name))
-				
-			zf.close()
-			data = managers.file_manager.read_file(os.path.join(path, "ldap.zip"))
-			data = base64.b64encode(data)
-			main_buf.write(data.encode("utf-8"))
-		main_buf.write("</LDAP>\n")
-		return main_buf.getvalue()
+		try:
+			cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (app.id, os.path.abspath(path))
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="w", compression=zipfile.ZIP_DEFLATED)
+				l = os.listdir(path)
+				for file_name in l:
+					if file_name != "ldap.zip":
+						zf.write(os.path.join(path, file_name))
+					
+				zf.close()
+				data = managers.file_manager.read_file(os.path.join(path, "ldap.zip"))
+				data = base64.b64encode(data)
+				main_buf.write(data.encode("utf-8"))
+		except:
+			pass
+		finally:
+			main_buf.write("</LDAP>\n")
+			return main_buf.getvalue()
 	    
 	def modify_objects_count(self, num):
 		self.__sem.lock()
