@@ -548,10 +548,11 @@ class VDOM_dbtable(VDOM_object):
 def on_delete(app_id, object_id, param):
 	import managers
 	object = application.objects.search(object_id)
-	db = managers.database_manager.get_database(application.id, object.parent.id)
-	if db:
-		table = db.get_table(object_id,object.name)
-		table.remove()
+	if managers.database_manager.check_database(application.id, object.parent.id):
+		db = managers.database_manager.get_database(application.id, object.parent.id)
+		if db:
+			table = db.get_table(object_id,object.name)
+			table.remove()
 	return ""
 
 def get_table(app_id,object_id):
