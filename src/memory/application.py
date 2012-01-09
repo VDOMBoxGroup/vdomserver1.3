@@ -20,6 +20,7 @@ class VDOM_application(VDOM_parser):
 			"id":		["id", "str(%s)", "Id"],
 			"name":		["name", "%s", "Name"],
 			"description":	["description", "%s", "Description"],
+		        "version":      ["version", "%s", "Version"],
 			"owner":	["owner", "%s", "Owner"],
 			"password":	["password", "%s", "Password"],
 			"active":	["active", "%s", "Active"],
@@ -300,6 +301,8 @@ class VDOM_application(VDOM_parser):
 				self.parse_security_groups(child)
 			elif "users" == child.lname:
 				self.parse_security_users(child)
+			elif "ldap" == child.lname:
+				self.parse_security_ldap(child)
 		xml_obj.delete()
 
 	def parse_security_groups(self, xml_obj):
@@ -312,6 +315,32 @@ class VDOM_application(VDOM_parser):
 			if "user" == child.lname:
 				self.parse_security_user(child)
 
+	def parse_security_ldap(self, xml_obj):
+		from subprocess import Popen, PIPE
+		import shlex, shutil, tempfile, base64, zipfile
+		bindata = base64.b64decode(xml_obj.value.strip())
+		
+		path = tempfile.mkdtemp("", "ldap", VDOM_CONFIG["TEMP-DIRECTORY"])
+		fh = open(os.path.join(path, "ldap.zip"), "wb")
+		fh.write(bindata)
+		fh.close()
+		zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="r")
+		zf.extractall(path)
+		zf.close()
+		os.remove(os.path.join(path, "ldap.zip"))
+				
+		cmd = """sh /opt/boot/ldap_backup.sh -g %s -r -i %s""" % (self.id, path)
+		try:
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+			    return True
+			else:
+			    pass
+		except:
+			pass
+		
 	def parse_security_group(self, xml_obj):
 		name = xml_obj.get_child_by_name("name")
 		desc = xml_obj.get_child_by_name("description")
