@@ -601,7 +601,7 @@ class VDOM_xml_manager(object):
 				l = os.listdir(path)
 				for file_name in l:
 					if file_name != "ldap.zip":
-						zf.write(file_name)
+						zf.write(os.path.join(path, file_name), file_name)
 					
 				zf.close()
 				data = managers.file_manager.read_file(os.path.join(path, "ldap.zip"))
