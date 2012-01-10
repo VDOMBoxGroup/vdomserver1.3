@@ -449,7 +449,7 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newZindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.zindex = parseInt(newZindex);
+this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="replaceData">

@@ -473,7 +473,7 @@ function vdom_ui_timerStartOnce(ob, interval)
 	$q(obj).stopTime();
 	obj.timerfreeze = 0;
 	$q(obj).oneTime(interval, function(i){
-		if (parseInt(obj.timerfreeze) == 0) {
+		if (parseInt(obj.timerfreeze,10) == 0) {
 console.info('vdom_ui_timerStartOnce');
 console.info(ob);
 			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
@@ -495,7 +495,7 @@ function vdom_ui_timerStart2(ob, interval)
 	$q(obj).stopTime();
 	obj.timerfreeze = 0;
 	$q(obj).everyTime(interval, function(i){
-		if (parseInt(obj.timerfreeze) == 0) {
+		if (parseInt(obj.timerfreeze,10) == 0) {
 console.info('vdom_ui_timerStart2');
 			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
 		}

@@ -2468,8 +2468,8 @@ jQuery(this.domCont).html(HTMLdata);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width = parseInt(newZindex);
-this.domCont.style.height = parseInt(newZindex);
+this.domCont.style.width = parseInt(newZindex,10);
+this.domCont.style.height = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">

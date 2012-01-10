@@ -850,8 +850,8 @@ jQuery(this.domCont).html(HTMLdata);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width=parseInt(width);
-this.domCont.style.height=parseInt(height);
+this.domCont.style.width=parseInt(width,10);
+this.domCont.style.height=parseInt(height,10);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setUrlTarget">

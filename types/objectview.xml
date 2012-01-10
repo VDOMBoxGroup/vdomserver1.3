@@ -1088,8 +1088,8 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(width);
-this.domCont.style.height = parseInt(height);
+this.domCont.style.width = parseInt(width,10);
+this.domCont.style.height = parseInt(height,10);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
