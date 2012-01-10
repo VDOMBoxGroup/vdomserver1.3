@@ -318,19 +318,20 @@ class VDOM_application(VDOM_parser):
 	def parse_security_ldap(self, xml_obj):
 		from subprocess import Popen, PIPE
 		import shlex, shutil, tempfile, base64, zipfile
-		bindata = base64.b64decode(xml_obj.value.strip())
-		
-		path = tempfile.mkdtemp("", "ldap", VDOM_CONFIG["TEMP-DIRECTORY"])
-		fh = open(os.path.join(path, "ldap.zip"), "wb")
-		fh.write(bindata)
-		fh.close()
-		zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="r")
-		zf.extractall(path)
-		zf.close()
-		os.remove(os.path.join(path, "ldap.zip"))
-				
-		cmd = """sh /opt/boot/ldap_backup.sh -g %s -r -i %s""" % (self.id, path)
 		try:
+			bindata = base64.b64decode(xml_obj.value.strip())
+			
+			path = tempfile.mkdtemp("", "ldap", VDOM_CONFIG["TEMP-DIRECTORY"])
+			fh = open(os.path.join(path, "ldap.zip"), "wb")
+			fh.write(bindata)
+			fh.close()
+			zf = zipfile.ZipFile(os.path.join(path, "ldap.zip"), mode="r")
+			zf.extractall(path)
+			zf.close()
+			os.remove(os.path.join(path, "ldap.zip"))
+					
+			cmd = """sh /opt/boot/ldap_backup.sh -g %s -r -i %s""" % (self.id, path)
+		
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
