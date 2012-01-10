@@ -7031,7 +7031,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="newZindex" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.zindex = parseInt(newZindex);
+this.domCont.style.zindex = parseInt(newZindex,10);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">

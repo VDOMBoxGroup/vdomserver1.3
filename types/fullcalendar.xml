@@ -3195,7 +3195,7 @@ class VDOM_fullcalendar(VDOM_object):
 			}			
 		});
 		$j("#%(id_out)s").fullCalendar("changeView", "%(current_view)s");
-		$j("#%(id_out)s").fullCalendar("gotoDate", new Date(parseInt(%(year)s), parseInt(%(month)s - 1), parseInt(%(day)s)));
+		$j("#%(id_out)s").fullCalendar("gotoDate", new Date(parseInt(%(year)s, 10), parseInt(%(month)s - 1, 10), parseInt(%(day)s, 10)));
 					
 	});
 </script>"""
@@ -3426,7 +3426,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-			this.domCont.style.zindex = parseInt(newZindex);
+			this.domCont.style.zindex = parseInt(newZindex,10);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="next">

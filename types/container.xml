@@ -914,7 +914,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.zindex = parseInt(newZindex);
+this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="resizeTo">
@@ -923,8 +923,8 @@ this.domCont.style.zindex = parseInt(newZindex);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="height" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width = parseInt(width);
-this.domCont.style.height = parseInt(height);
+this.domCont.style.width = parseInt(width,10);
+this.domCont.style.height = parseInt(height,10);
                     ]]></SourceCode>
         </Action>
 		<Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
@@ -940,7 +940,7 @@ jQuery(this.domCont).attr('class', cssClass);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="value" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-var nn = parseInt(value) / 100;
+var nn = parseInt(value,10) / 100;
 jQuery(this.domCont).css('opacity', nn);
                     ]]></SourceCode>
         </Action>

@@ -756,7 +756,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newZindex" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.zindex = parseInt(newZindex);
+this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
@@ -765,8 +765,8 @@ this.domCont.style.zindex = parseInt(newZindex);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="height" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(newZindex);
-this.domCont.style.height = parseInt(newZindex);
+this.domCont.style.width = parseInt(newZindex,10);
+this.domCont.style.height = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setTransparency">
@@ -774,7 +774,7 @@ this.domCont.style.height = parseInt(newZindex);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="value" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-var nn = parseInt(value) / 100;
+var nn = parseInt(value,10) / 100;
 jQuery(this.domCont).css('opacity', nn);
                     ]]></SourceCode>
         </Action>

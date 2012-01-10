@@ -699,8 +699,8 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width=parseInt(width);
-this.domCont.style.height=parseInt(height);
+this.domCont.style.width=parseInt(width,10);
+this.domCont.style.height=parseInt(height,10);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
@@ -722,7 +722,7 @@ jQuery(this.domCont).submit();
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-var j=jQuery, td=this.domCont, t=j(td), x1=parseInt('0'+t.attr('min'),10), x2=parseInt('0'+t.attr('max'));
+var j=jQuery, td=this.domCont, t=j(td), x1=parseInt('0'+t.attr('min'),10), x2=parseInt('0'+t.attr('max'),10);
 x2=(x2<x1)?x1:x2;
 var v=parseInt('0'+value,10);
 v=(v<x1)?x1:v;
