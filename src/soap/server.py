@@ -950,7 +950,7 @@ class VDOM_web_services_server(object):
 			for src_id in app.events[obj.toplevel.id]:
 				if src_id in obj_map:
 					for ev_name in app.events[obj.toplevel.id][src_id]:
-						result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (new_obj.id, new_obj.name, new_obj.type.id, new_obj.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
+						result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (obj_map[src_id], tgt_app.search_object(obj_map[src_id]).name, tgt_app.search_object(obj_map[src_id]).type.id, new_obj.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
 						for a in app.events[obj.toplevel.id][src_id][ev_name].actions:
 							if a in action_map:
 								result += """<Action ID="%s"/>\n""" % action_map[a]
