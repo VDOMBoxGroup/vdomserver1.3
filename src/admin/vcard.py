@@ -18,7 +18,10 @@ def run(request):
 	pis_password = ""
 	pis_system_guid = ""
 	show_form = ""
-	if "pis_login" in args and "pis_password" in args:
+	if "init" in args:
+		os.system( "/usr/locat/etc/init.d/card_process restart" )
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Reinitializing Virtcard process...";</script>')
+	elif "pis_login" in args and "pis_password" in args:
 		try:
 			from utils.system import login_virtual_card
 			pis_login = args["pis_login"][0]
@@ -68,6 +71,10 @@ template_login = u"""<form method="post" action="" enctype="multipart/form-data"
         <tr>
           <td>&nbsp;</td>
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+        </tr>
+         <tr>
+          <td height="82" class="Texte">Reinitialize Virtcard</td>
+          <td height="82" class="Texte"><input type="button" value="Proceed" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" onclick="if(confirm('Do you want to reinitialize Virtcard process? ')){document.location='/vcard.py?init';}"/></td>
         </tr>
     </table>
 </form>"""
