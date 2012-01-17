@@ -115,7 +115,7 @@ function ChangeMessage(message,champ)
           </tr>
           <tr>
             <td height="29">&nbsp;</td>
-            <td><span class="titresystem"><a href="/system">VDOM Server | Main</a></span></td>
+            <td><span class="titresystem"><a href="/app.py">VDOM Server | Main</a></span></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
           </tr>

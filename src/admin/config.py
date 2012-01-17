@@ -7,6 +7,20 @@ def run(request):
 		request.write("Authentication failed")
 		raise VDOM_exception("Authentication failed")
 	else:
+		if system_options["firmware"] == 'N/A':
+			ssh = False
+			vcard = False
+			inithdd = False
+			updatescreen = False
+		elif system_options["firmware"].startswith("virtcard"):
+			ssh = True
+			vcard = True
+			inithdd = False
+		else:#box with smartcard
+			ssh = True
+			vcard = False
+			inithdd = True
+			updatescreen = True
 		request.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -69,15 +83,24 @@ function MM_swapImage() { //v3.0
     <td><div align="center"></div></td>
     <td><div align="center"><a href="objects.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Objects','','Images/bt-objects-new_s.jpg',1)"><img src="Images/bt-objects-new.jpg" alt="Objects" name="Objects" border="0" id="Objects" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="ssh.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)"><img src="images/acces-distance.gif" alt="Remote access" name="ssh" border="0" id="ssh" /></a></div></td>
+    """)
+		if ssh:
+			request.write("""<td><div align="center"><a href="ssh.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)"><img src="images/acces-distance.gif" alt="Remote access" name="ssh" border="0" id="ssh" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="vcard.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('vcard','','images/virt_card_1.png',1)"><img src="images/virt_card_0.png" alt="Virtual card" name="vcard" border="0" id="vcard" /></a></div></td>
+    """)
+		if vcard:
+			request.write("""<td><div align="center"><a href="vcard.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('vcard','','images/virt_card_1.png',1)"><img src="images/virt_card_0.png" alt="Virtual card" name="vcard" border="0" id="vcard" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="scrupg.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)"><img src="images/screen_upgrade.jpg" alt="Screen upgrade" name="screen" border="0" id="screen" /></a></div></td>
+    """)
+		if updatescreen:
+			request.write("""<td><div align="center"><a href="scrupg.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)"><img src="images/screen_upgrade.jpg" alt="Screen upgrade" name="screen" border="0" id="screen" /></a></div></td>
     <td><div align="center"></div></td>
-    <td><div align="center"><a href="inithdd.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)"><img src="images/initialize_hard_disk.jpg" alt="Initialize hard disk" name="inithdd" border="0" id="inithdd" /></a></div></td>
+    """)
+		if inithdd:
+			request.write("""<td><div align="center"><a href="inithdd.py" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)"><img src="images/initialize_hard_disk.jpg" alt="Initialize hard disk" name="inithdd" border="0" id="inithdd" /></a></div></td>
     <td><div align="center"></div></td>
-    </tr>
+    """)
+		request.write("""</tr>
   <tr>
     <td>&nbsp;</td>
     <td valign="top"><div align="center" class="Texte Style2" onmouseover="MM_swapImage('Ip','','Images/ip-address_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="ip.py" class="Texte-liens">IP Address</a></div></td>
@@ -90,13 +113,21 @@ function MM_swapImage() { //v3.0
     <td>&nbsp;</td>
     <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('Objects','','Images/bt-objects-new_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="objects.py">Object</a></div></td>
     <td>&nbsp;</td>
-    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="ssh.py">Remote access</a></div></td>
+    """)
+		if ssh:
+			request.write("""<td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('ssh','','images/acces-distance_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="ssh.py">Remote access</a></div></td>
     <td>&nbsp;</td>
-    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('vcard','','images/virt_card_1.png',1)" onmouseout="MM_swapImgRestore()"><a href="vcard.py">Virtual card</a></div></td>
+    """)
+		if vcard:
+			request.write("""<td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('vcard','','images/virt_card_1.png',1)" onmouseout="MM_swapImgRestore()"><a href="vcard.py">Virtual card</a></div></td>
     <td>&nbsp;</td>
-    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="scrupg.py">Screen upgrade</a></div></td>
+    """)
+		if updatescreen:
+			request.write("""<td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('screen','','images/screen_upgrade_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="scrupg.py">Screen upgrade</a></div></td>
     <td>&nbsp;</td>
-    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="inithdd.py">Initialize hard disk</a></div></td>
+    """)
+		if inithdd:
+			request.write("""<td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="inithdd.py">Initialize hard disk</a></div></td>
     <td>&nbsp;</td>
     </tr>
 </table>
