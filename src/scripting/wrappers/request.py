@@ -113,6 +113,9 @@ class VDOM_shared_variables(object):
 	def __getitem__(self, name):
 		return managers.request_manager.current.shared_variables.get(name)
 
+	def keys(self):
+		return managers.request_manager.current.shared_variables.keys()
+
 class VDOM_request(object):
 	
 	def __init__(self):
