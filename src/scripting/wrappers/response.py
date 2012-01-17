@@ -28,6 +28,15 @@ class VDOM_shared_variables(object):
 	
 	def __setitem__(self, name, value):
 		managers.request_manager.current.shared_variables[name] = value
+
+	def __delitem__(self, name):
+		del managers.request_manager.current.shared_variables[name]
+	
+	def clear(self):
+		managers.request_manager.current.shared_variables.clear()
+	
+	def keys(self):
+		return managers.request_manager.current.shared_variables.keys()
 	
 	def copy(self):
 		return managers.request_manager.current.shared_variables.copy()
