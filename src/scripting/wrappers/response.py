@@ -22,10 +22,21 @@ class VDOM_headers(object):
 	def __iter__(self):
 		return iter(managers.request_manager.current.headers_out().headers())
 
+class VDOM_shared_variables(object):
+	def __getitem__(self, name):
+		return managers.request_manager.current.shared_variables.get(name)
+	
+	def __setitem__(self, name, value):
+		managers.request_manager.current.shared_variables[name] = value
+	
+	def copy(self):
+		return managers.request_manager.current.shared_variables.copy()
+		
 class VDOM_response(object):
 	
 	def __init__(self):
 		self._headers=VDOM_headers()
+		self._shared_vars = VDOM_shared_variables()
 
 	def _get_cookies(self):
 		return managers.request_manager.current.cookies()
@@ -43,6 +54,7 @@ class VDOM_response(object):
 	cookies=property(_get_cookies)
 	binary=property(_get_binary, _set_binary)
 	nocache=property(fset=_set_nocache)
+	shared_variables = property(lambda self: self._shared_vars)
 
 	def write(self, value, continue_render=False):
 		if isinstance(value, basestring): managers.request_manager.current.write(value)
