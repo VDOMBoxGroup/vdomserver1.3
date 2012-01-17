@@ -100,11 +100,11 @@
     <Attribute>
       <Name>skin</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>/5e390dc2-367f-4eef-b12c-dfbb063bd518.res</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(406)|/5e390dc2-367f-4eef-b12c-dfbb063bd518.res)|(#Lang(407)|/35d10781-dd3d-43a5-b507-82c9111adaa3.res)|(#Lang(408)|/ae4174eb-9a79-412e-815d-e7186d603935.res)|(#Lang(409)|/6c83b06c-fca0-4ae8-98d7-4504e4198601.res)|(#Lang(410)|/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res)|(#Lang(403)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^(/5e390dc2-367f-4eef-b12c-dfbb063bd518.res|/35d10781-dd3d-43a5-b507-82c9111adaa3.res|/ae4174eb-9a79-412e-815d-e7186d603935.res|/6c83b06c-fca0-4ae8-98d7-4504e4198601.res|/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res|0)$</RegularExpressionValidation>
@@ -525,6 +525,11 @@
       <Sentence ID="134">Weekday color</Sentence>
       <Sentence ID="234">Color of weekdays of the object</Sentence>
       <Sentence ID="334">Incorrect value</Sentence>
+      <Sentence ID="406">Blue</Sentence>
+      <Sentence ID="407">Green</Sentence>
+      <Sentence ID="408">Brown</Sentence>
+      <Sentence ID="409">System</Sentence>
+      <Sentence ID="410">Win2k</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Календарь</Sentence>
