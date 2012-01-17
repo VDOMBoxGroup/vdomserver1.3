@@ -1,6 +1,7 @@
 
 import managers
 from memory.event import VDOM_client_server_events
+import json
 
 def run(request):
 	args = request.arguments().arguments()
@@ -109,3 +110,4 @@ def run(request):
 				#request.write("<ACTIONS><![CDATA[\n%s]]></ACTIONS>" % rr.encode("utf-8")) # no way - in %s CDATA already!
 				request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
 			request.write("<STATE value=\"%s\" />"%0)
+			request.write("<SV><![CDATA[%s]]></SV>" % json.dumps(request.shared_variables))
