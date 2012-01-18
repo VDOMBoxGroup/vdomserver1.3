@@ -106,13 +106,9 @@ def compile_registations(container, parent):
 						#print compile_registations_render_params(action.parameters)
 						#else:
 						#	target="\'Obj_%s:bubbleEvent(\"%s\")\'"%(container.id.replace("-", "_"), action.method_name)
-					#lines.append(
-					#	"Obj_%(container)s_Dispatcher.addDispatchEvent(%(source)s, %(target)s);"%\
-					#	{"container": container.id.replace("-", "_"), "source": source, "target": target})
-					if (container.id != source_object): # exclude double events execute (for ex: double form submit)
-						lines.append(
-							"Obj_%(container)s_Dispatcher.addDispatchEvent(%(source)s, %(target)s);"%\
-							{"container": container.id.replace("-", "_"), "source": source, "target": target})
+					lines.append(
+						"Obj_%(container)s_Dispatcher.addDispatchEvent(%(source)s, %(target)s);"%\
+						{"container": container.id.replace("-", "_"), "source": source, "target": target})
 
 
 	for object in container.object.get_objects_list():
