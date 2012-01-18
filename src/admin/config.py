@@ -16,6 +16,7 @@ def run(request):
 			ssh = True
 			vcard = True
 			inithdd = False
+			updatescreen = False
 		else:#box with smartcard
 			ssh = True
 			vcard = False
