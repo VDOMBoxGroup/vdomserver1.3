@@ -649,7 +649,7 @@ class VDOM_db_column:
 	def __init__(self, name, constraints={}):
 		"""Constructor"""
 		self.name = name
-		self.id = str(utils.uuid.uuid4())
+		self.id = name#str(utils.uuid.uuid4())
 
 		if "type" in constraints:
 			self.type = constraints["type"]
