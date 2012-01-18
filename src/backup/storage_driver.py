@@ -178,7 +178,7 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 class VDOM_cloud_storage_driver(VDOM_storage_driver):
 	def __init__(self, crypt=False):
 		self.id = str(utils.uuid.uuid4())
-		self.name = "Cloud iSCSI Drive"
+		self.name = "Cloud Drive"
 		self.type = "cloud_drive"
 		self.crypt = crypt
 		self.__path = None
@@ -303,7 +303,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			else:
 			# Mount failed. Exit.
-				debug("MOUNT %s failed! Exit."%(self.__path))
+				debug("MOUNT %s failed! Exit."%(self.__cloud_login))
 				raise Exception("Mount %s failed! Exit."%self.__cloud_login)
 		else:
 		# No such configs. Nothing to do.
