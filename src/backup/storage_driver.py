@@ -227,7 +227,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		try:
 		# Get share status
 
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s %s"""%(self.__cloud_login, self.__cloud_pass, crypto_arg)
+			cmd = """sh /opt/boot/mount_sshfs.sh -Gs -l %s -p %s %s"""%(self.__cloud_login, self.__cloud_pass, crypto_arg)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
@@ -258,17 +258,17 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			pass
 
 		if self.__cloud_share_status != 1:
-		# Get and Install openvpn configs
-			debug("Try to get configs! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s %s """%(self.__cloud_login, self.__cloud_pass, crypto_arg)
+		# Write password to Cloud
+			debug("Try to write password to Cloud! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+			cmd = """sh /opt/boot/mount_sshfs.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
 
 			if rc == 0:
-			# Got configs 
+			# Password inserted
 				self.__cloud_configs = 1
-				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
+				debug("Password inserted %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
 				raise Exception("Can't get configs for Cloud. Check something. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		else:
@@ -277,106 +277,45 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 
 		if self.__cloud_configs == 1:
-		# Configs exist. Now: Connect
-			cmd = """sh /opt/boot/mount_iscsi.sh -C """
+		# Pasword presented. Now: Mount
+			cmd = """sh /opt/boot/mount_sshfs.sh -M -l %s  -p %s"""%(self.__cloud_login, self.__cloud_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
 
 			if rc == 0:
-			# Connected. Now scan for targets.
-				cmd = """sh /opt/boot/mount_iscsi.sh -S """
+			# Mounted ok, nothing to do. Umount
+				self.__path = str(out.stdout.read()).strip('\n')
+				debug("Mounted %s with %s : %s"%(self.__path, self.__cloud_login, self.__cloud_pass))
+
+				cmd = """sh /opt/boot/mount_sshfs.sh -U -m %s """%(self.__path)
 				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 				out.wait()
 				rc = out.returncode
 
 				if rc == 0:
-				# Got targets. Login.
-					self.__cloud_target = str(out.stdout.read()).strip('\n')
-
-					cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(self.__cloud_target)
-					out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-					out.wait()
-					rc = out.returncode
-
-					if rc == 0:
-					# Logged in. Probe
-						self.__dev = str(out.stdout.read()).strip('\n')
-
-						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s %s"""%(self.__dev, crypto_arg)
-						out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-						out.wait()
-						rc = out.returncode
-
-						if rc == 0:
-						# mount
-							self.__uuid = str(out.stdout.read()).strip('\n')
-
-							cmd = """sh /opt/boot/mount_iscsi.sh -M -u %s """%(self.__uuid)
-							out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-							out.wait()
-							rc = out.returncode
-
-							if rc == 0:
-							# Mounted ok, nothing to do. Umount
-								self.__path = str(out.stdout.read()).strip('\n')
-
-								cmd = """sh /opt/boot/mount_iscsi.sh -U -u %s """%(self.__uuid)
-								out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-								out.wait()
-								rc = out.returncode
-
-								if rc == 0:
-								# Umount OK. All OK! Now - logout from target.
-									debug("iSCSI %s Logout ."%self.__cloud_target )
-									
-									cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(self.__cloud_target )
-									out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-									out.wait()
-									rc = out.returncode
-									
-									if rc == 0:
-										debug("Logged out from %s " % self.__cloud_target )
-									else:
-										raise Exception("Ololo pwpw")
-								else:
-								# Umount wrong. Try to reinit or just forget.
-									debug("iSCSI - Smth wrong on UMOUNT")
-						else:
-							# Mount wrong! Exit.
-							debug("iSCSI MOUNT %s %s failed! Exit."%(self.__dev, self.__uuid))
-							raise Exception("iSCSI MOUNT %s %s failed! Exit."%(self.__dev, self.__uuid))
-					else:
-					# Login to target failed. Exit.
-						debug("iSCSI Login to target failed! Exit.")
-						raise Exception("iSCSI Login to target %s failed! Exit."%self.__cloud_target )
+				# Umount OK. All OK! Now - logout from target.
+					debug("Umounted %s ."%self.__path )
 				else:
-				# No such targets. Exit
-					debug("iSCSI targets not found! Exit.")
-					raise Exception("iSCSI targets not found! Exit.")
+				# Umount wrong! Exit.
+					debug("UMOUNT %s failed! Exit."%(self.__path))
+					raise Exception("UMOUNT %s failed! Exit."%(self.__path))
+
 			else:
-			# Can't connect openvpn.
-				debug("iSCSI cannot connect ovpn! Exit.")
-				raise Exception("iSCSI ovpn failed! Exit.")
-
-
+			# Mount failed. Exit.
+				debug("MOUNT %s failed! Exit."%(self.__path))
+				raise Exception("Mount %s failed! Exit."%self.__cloud_login)
 		else:
 		# No such configs. Nothing to do.
-			debug("iSCSI No such configs. Nothing to do. Exit.")
-			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
+			debug("There is no presented password. Nothing to do. Exit.")
+			raise Exception("There is no presented password. Nothing to do. Exit.")
 
 	def mount(self):
-		
-		if self.crypt:		
-			crypto_arg = "--crypto --crypto-pass %s"%(self.__cloud_pass)
-		else:
-			crypto_arg = ""
-			
 
 		try:
 		# Get share status
 
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gs -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
+			cmd = """sh /opt/boot/mount_sshfs.sh -Gs -l %s -p %s %s"""%(self.__cloud_login, self.__cloud_pass, crypto_arg)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
@@ -388,7 +327,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			elif rc == 1:
 			# state: empty
 				self.__cloud_share_status = 1
-				debug("To be activated! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				debug("To be activated! Login: %s Pass: %s "%(self.__cloud_login, self.__cloud_pass))
 
 			elif rc == 2: 
 			# state: extended
@@ -402,146 +341,64 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 			else:
 				self.__cloud_share_status = 10
-				raise Exception("Unknown status! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
-		except Exception as e:
-			raise Exception(str(e))
+				debug("Unknown status of space! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+		except:
+			pass
 
 		if self.__cloud_share_status != 1:
-		# Get and Install openvpn configs
-			debug("Try to get configs! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
-			cmd = """sh /opt/boot/mount_iscsi.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
+		# Write password to Cloud
+			debug("Try to write password to Cloud! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+			cmd = """sh /opt/boot/mount_sshfs.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
 
 			if rc == 0:
-			# Got configs 
+			# Password inserted
 				self.__cloud_configs = 1
-				debug("Configs got %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
+				debug("Password inserted %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
 				raise Exception("Can't get configs for Cloud. Check something. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 		else:
-			raise Exception("Space is not active! Stop!")
+			raise Exception("Space is not active! Stop! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
 
 
 
 		if self.__cloud_configs == 1:
-		# Configs exist. Now: Connect
-			cmd = """sh /opt/boot/mount_iscsi.sh -C """
+		# Pasword presented. Now: Mount
+			cmd = """sh /opt/boot/mount_sshfs.sh -M -l %s  -p %s"""%(self.__cloud_login, self.__cloud_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
 
 			if rc == 0:
-			# Connected. Now scan for targets.
-				cmd = """sh /opt/boot/mount_iscsi.sh -S """
-				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-				out.wait()
-				rc = out.returncode
+			# Mounted ok, nothing to do. Umount
+				self.__path = str(out.stdout.read()).strip('\n')
+				debug("Mounted %s"%(self.__path))
+				return self.__path
 
-				if rc == 0:
-				# Got targets. Login.
-					self.__cloud_target = str(out.stdout.read()).strip('\n')
-
-					cmd = """sh /opt/boot/mount_iscsi.sh -Li -t %s """%(self.__cloud_target)
-					out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-					out.wait()
-					rc = out.returncode
-
-					if rc == 0:
-					# Logged in. Probe
-						self.__dev = str(out.stdout.read()).strip('\n')
-
-						cmd = """sh /opt/boot/mount_iscsi.sh -P -d %s %s"""%(self.__dev, crypto_arg)
-						out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-						out.wait()
-						rc = out.returncode
-
-						if rc == 0:
-						# mount
-							self.__uuid = str(out.stdout.read()).strip('\n')
-
-							cmd = """sh /opt/boot/mount_iscsi.sh -M -u %s """%(self.__uuid)
-							out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-							out.wait()
-							rc = out.returncode
-
-							if rc == 0:
-							# Mounted ok, nothing to do. Umount
-								self.__path = str(out.stdout.read()).strip('\n')
-								cmd = """sh /opt/boot/mount_iscsi.sh -D """
-								out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-								out.wait()
-								rc = out.returncode
-								
-								if rc == 0:
-									debug("OVPN disconnected." )
-									debug("--------")
-									debug("SELF.__PATH = %s"%self.__path)
-									debug("--------")
-									return self.__path
-								else:
-									debug("OVPN dicsonnect failed.")
-									return False
-							else:
-								debug("iSCSI Mount failed.")
-								return False
-						else:
-							# Probe wrong! Exit.
-							debug("iSCSI Probe dev: %s  uuid: %s failed! Exit."%(self.__dev, self.__uuid))
-							raise Exception("iSCSI PROBE failed! Exit.")
-					else:
-					# Login to target failed. Exit.
-						debug("iSCSI Login to target failed! Exit.")
-						raise Exception("iSCSI Login to target %s failed! Exit."%self.__cloud_target )
-				else:
-				# No such targets. Exit
-					debug("iSCSI targets not found! Exit.")
-					raise Exception("iSCSI targets not found! Exit.")
 			else:
-			# Can't connect openvpn.
-				debug("iSCSI cannot connect ovpn! Exit.")
-				raise Exception("iSCSI ovpn failed! Exit.")
-
-
+			# Mount failed. Exit.
+				debug("MOUNT %s failed! Exit."%(self.__path))
+				raise Exception("Mount %s failed! Exit."%self.__cloud_login)
 		else:
 		# No such configs. Nothing to do.
-			debug("iSCSI No such configs. Nothing to do. Exit.")
-			raise Exception("iSCSI No such configs. Nothing to do. Exit.")
-
+			debug("There is no presented password. Nothing to do. Exit.")
+			raise Exception("There is no presented password. Nothing to do. Exit.")
+			
 
 	def umount(self):
-		debug("-- Umount start \n UUID: %s  DEV: %s PATH: %s"%(self.__uuid, self.__dev, self.__path))
-		cmd = """sh /opt/boot/mount_iscsi.sh -U -u %s """%(self.__uuid)
+		debug("-- Umount start \n PATH: %s"%(self.__path))
+		cmd = """sh /opt/boot/mount_sshfs.sh -U -m %s """%(self.__path)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
 
 		if rc == 0:
-			debug("-- Umount OK! \n UUID: %s  DEV: %s PATH: %s"%(self.__uuid, self.__dev, self.__path))
-			cmd = """sh /opt/boot/mount_iscsi.sh -Lo -t %s """%(self.__cloud_target )
-			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-			out.wait()
-			rc = out.returncode
-			
-			if rc == 0:
-				debug("Logged out from %s " % self.__cloud_target )
-				
-				cmd = """sh /opt/boot/mount_iscsi.sh -D """
-				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
-				out.wait()
-				rc = out.returncode
-				
-				if rc == 0:
-					debug("OVPN disconnected OK!" )
-					return True
-				else:
-					debug("OVPN disconnect FAILED!" )
-					return False
-			else:
-				raise Exception("LOGOUT FROM TARGET FAILED! pwpwpw")
+			debug("-- Umount OK! \n PATH: %s"%(self.__path))
+			return True
 		else:
-			debug("Can't umount %s in %s"%(self.__dev, self.__path))
+			debug("Umount %s failed! Login: %s "%(self.__path, self.__cloud_login))
 			return False
 
 class VDOM_backup_storage_manager(object):
