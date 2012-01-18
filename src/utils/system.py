@@ -50,11 +50,6 @@ def console_debug(data):
 
 
 def set_virtual_card( user, password, guid ):
-	shost, sl, sp = "partner.vdom-box-international.com", "card", "card"
-	f = open('/etc/opt/virtcard', 'w')
-	f.write( """%s %s %s %s %s %s""" % (shost, sl, sp, user, password, guid) )
-	f.close()
-	
 	#a = send_to_card_and_wait("""vcard host """ +  json.dumps([ shost, sl, sp ]), "vcard_error")
 	return send_to_card_and_wait("""vcard setup """ +  json.dumps([ user, password, guid ]), "vcard_error", 30, 0.5)
 
@@ -63,9 +58,10 @@ def login_virtual_card( user, password):
 		del system_options["vcard_systemlist"]
 	a = send_to_card_and_wait("vcard login " + json.dumps([ user, password ]), "vcard_error", 30, 0.5)
 	systems = system_options.get("vcard_systemlist", None)
-	if not systems:
+	if systems is None:
 		raise Exception(system_options.get("vcard_error", "Connection to partners timeout"))
-	return [ (key, value) for key, value in systems.iteritems() ]
+	not_sorted = [ (key, value) for key, value in systems.iteritems() ]
+	return sorted( not_sorted, cmp=lambda x,y: cmp(x[1], y[1]) )
 
 
 	
