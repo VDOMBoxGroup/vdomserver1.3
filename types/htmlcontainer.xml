@@ -6823,12 +6823,12 @@ class VDOM_htmlcontainer(VDOM_object):
 			jqui = '<link rel="stylesheet" media="screen" type="text/css" href="/eeb5cd9d-2a21-5c85-cd11-f6aed7921730.css" /><script type="text/javascript" src="/b67cfe82-a508-63ba-37ca-6c27d82c5112.res?v=1810"></script>'
 
 			if self.testClasses == "":
-				testClasses = "<script type='text/javascript' src='/1b055baa-6376-4582-b527-1ee364c19e88.res?v20111222'></script>"
+				testClasses = "<script type='text/javascript' src='/1b055baa-6376-4582-b527-1ee364c19e88.res?v20120118'></script>"
 			else:
 				testClasses = self.testClasses
 
 			if self.testFunc == "":
-				testFunc = "<script type='text/javascript' src='/3ef16f3c-9863-9597-f341-8f9913c99c11.res?v20111222'></script>"
+				testFunc = "<script type='text/javascript' src='/3ef16f3c-9863-9597-f341-8f9913c99c11.res?v20120118'></script>"
 			else:
 				testFunc = self.testFunc
 
@@ -6860,7 +6860,7 @@ class VDOM_htmlcontainer(VDOM_object):
 	var APPLICATION_ID="%(application)s", SESSION_ID="%(session)s", SERVER_URL="/e2vdom.py", E2VDEBUG=%(e2vdebug)s, E2VSTATE="%(e2vstate)s";
 	var E2VSV=%(e2vsv)s;
 	</script>
-	<script type="text/javascript" src="/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v=20111222"></script>
+	<script type="text/javascript" src="/113513d0-ebae-42c4-9bdf-44ebf7828910.res?v20120118"></script>
 	%(jqui)s
 	%(testFunc)s
 	<script type="text/javascript" src="/3e932470-0e08-446c-a866-30c00e6d812a.res"></script>
