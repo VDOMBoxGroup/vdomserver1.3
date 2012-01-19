@@ -222,7 +222,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			
 
 		except:
-			raise Exception("Can't get data from Smartcard %s %s"%(self.__cloud_login, self.__cloud_pass))
+			raise Exception("Can't get data from Smartcard %s "%(self.__cloud_login))
 
 		try:
 		# Get share status
@@ -270,9 +270,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				self.__cloud_configs = 1
 				debug("Password inserted %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
-				raise Exception("Can't get configs for Cloud. Check something. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				raise Exception("Can't get configs for Cloud. Check something. Login: %s "%(self.__cloud_login))
 		else:
-			raise Exception("Space is not active! Stop! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+			raise Exception("Space is not active! Stop! Login: %s "%(self.__cloud_login))
 
 
 
@@ -286,7 +286,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			if rc == 0:
 			# Mounted ok, nothing to do. Umount
 				self.__path = str(out.stdout.read()).strip('\n')
-				debug("Mounted %s with %s : %s"%(self.__path, self.__cloud_login, self.__cloud_pass))
+				debug("Mounted %s with %s "%(self.__path, self.__cloud_login))
 
 				cmd = """sh /opt/boot/mount_sshfs.sh -U -m %s """%(self.__path)
 				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
@@ -332,7 +332,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			elif rc == 2: 
 			# state: extended
 				self.__cloud_share_status = 2
-				debug("Extended! Need in extention. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				debug("Extended! Need in extention. Login: %s "%(self.__cloud_login))
 
 			elif rc == 3:
 			# state: reduced
@@ -347,7 +347,7 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 		if self.__cloud_share_status != 1:
 		# Write password to Cloud
-			debug("Try to write password to Cloud! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+			debug("Try to write password to Cloud! Login: %s "%(self.__cloud_login))
 			cmd = """sh /opt/boot/mount_sshfs.sh -Gc -l %s -p %s """%(self.__cloud_login, self.__cloud_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
@@ -358,9 +358,9 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 				self.__cloud_configs = 1
 				debug("Password inserted %s ! Login: %s Pass: %s"%(self.__cloud_configs, self.__cloud_login, self.__cloud_pass))
 			else:
-				raise Exception("Can't get configs for Cloud. Check something. Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+				raise Exception("Can't get configs for Cloud. Check something. Login: %s "%(self.__cloud_login))
 		else:
-			raise Exception("Space is not active! Stop! Login: %s Pass: %s"%(self.__cloud_login, self.__cloud_pass))
+			raise Exception("Space is not active! Stop! Login: %s "%(self.__cloud_login))
 
 
 
