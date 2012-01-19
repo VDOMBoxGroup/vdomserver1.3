@@ -15,7 +15,7 @@ def run(request):
 		elif system_options["firmware"].startswith("virtcard"):
 			ssh = True
 			vcard = True
-			inithdd = False
+			inithdd = True
 			updatescreen = False
 		else:#box with smartcard
 			ssh = True
@@ -130,7 +130,8 @@ function MM_swapImage() { //v3.0
 		if inithdd:
 			request.write("""<td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('inithdd','','images/initialize_hard_disk_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="inithdd.py">Initialize hard disk</a></div></td>
     <td>&nbsp;</td>
-    </tr>
+    """)
+		request.write("""</tr>
 </table>
 </center>
 </body>
