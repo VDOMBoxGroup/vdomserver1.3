@@ -15,7 +15,7 @@
     <Category>Database</Category>
     <Dynamic>1</Dynamic>
     <Version>1.9.6720</Version>
-    <InterfaceType>3</InterfaceType>
+    <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
@@ -191,22 +191,22 @@
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="701">Incorrect value</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="702">Incorrect value</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="703">Incorrect value</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="704">Incorrect value</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
       <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
       <Sentence ID="603">Visibility</Sentence>
-      <Sentence ID="703">Incorrect value</Sentence>
-      <Sentence ID="803">New position in visual hierarchy</Sentence>
-      <Sentence ID="504">Move the object to a new position</Sentence>
-      <Sentence ID="604">Visibility</Sentence>
-      <Sentence ID="704">Incorrect value</Sentence>
-      <Sentence ID="804">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="705">Incorrect value</Sentence>
-      <Sentence ID="805">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">New position in visual hierarchy</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="604">Visibility</Sentence>
       <Sentence ID="706">Incorrect value</Sentence>
-      <Sentence ID="806">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
@@ -253,18 +253,18 @@
       <Sentence ID="903">Left</Sentence>
       <Sentence ID="904">Top</Sentence>
       <Sentence ID="905">Left</Sentence>
-      <Sentence ID="906">Top</Sentence>
-      <Sentence ID="907">Left</Sentence>
-      <Sentence ID="908">Top</Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912">Left</Sentence>
-      <Sentence ID="913">Top</Sentence>
-      <Sentence ID="914">Left</Sentence>
-      <Sentence ID="915">Top</Sentence>
-      <Sentence ID="916">Left</Sentence>
-      <Sentence ID="917">Top</Sentence>
-      <Sentence ID="918">Left</Sentence>
+      <Sentence ID="906">Left</Sentence>
+      <Sentence ID="907">Top</Sentence>
+      <Sentence ID="908">Left</Sentence>
+      <Sentence ID="909">Top</Sentence>
+      <Sentence ID="911">Left</Sentence>
+      <Sentence ID="912">Top</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915">Left</Sentence>
+      <Sentence ID="916">Top</Sentence>
+      <Sentence ID="917">Left</Sentence>
+      <Sentence ID="918">Top</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">БД HTML представление</Sentence>
@@ -274,22 +274,22 @@
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="701">Неправильное значение</Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Показать объект</Sentence>
+      <Sentence ID="502">Переместить объект в новую позицию</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="702">Неправильное значение</Sentence>
-      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="703">Неправильное значение</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="704">Неправильное значение</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
       <Sentence ID="503">Установить новую позицию в визуальной иерархии объектов</Sentence>
       <Sentence ID="603">Отображение</Sentence>
-      <Sentence ID="703">Неправильное значение</Sentence>
-      <Sentence ID="803">Новая позиция в визуальной иерархии объектов</Sentence>
-      <Sentence ID="504">Переместить объект в новую позицию</Sentence>
-      <Sentence ID="604">Отображение</Sentence>
-      <Sentence ID="704">Неправильное значение</Sentence>
-      <Sentence ID="804">Координата новой точки по оси X</Sentence>
       <Sentence ID="705">Неправильное значение</Sentence>
-      <Sentence ID="805">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Новая позиция в визуальной иерархии объектов</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="604">Отображение</Sentence>
       <Sentence ID="706">Неправильное значение</Sentence>
-      <Sentence ID="806">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -336,18 +336,18 @@
       <Sentence ID="903">Слева</Sentence>
       <Sentence ID="904">Сверху</Sentence>
       <Sentence ID="905">Слева</Sentence>
-      <Sentence ID="906">Сверху</Sentence>
-      <Sentence ID="907">Слева</Sentence>
-      <Sentence ID="908">Сверху</Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912">Слева</Sentence>
-      <Sentence ID="913">Сверху</Sentence>
-      <Sentence ID="914">Слева</Sentence>
-      <Sentence ID="915">Сверху</Sentence>
-      <Sentence ID="916">Слева</Sentence>
-      <Sentence ID="917">Сверху</Sentence>
-      <Sentence ID="918">Слева</Sentence>
+      <Sentence ID="906">Слева</Sentence>
+      <Sentence ID="907">Сверху</Sentence>
+      <Sentence ID="908">Слева</Sentence>
+      <Sentence ID="909">Сверху</Sentence>
+      <Sentence ID="911">Слева</Sentence>
+      <Sentence ID="912">Сверху</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915">Слева</Sentence>
+      <Sentence ID="916">Сверху</Sentence>
+      <Sentence ID="917">Слева</Sentence>
+      <Sentence ID="918">Сверху</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">BDD HTML</Sentence>
@@ -357,22 +357,22 @@
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="701">Valeur Incorrecte</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="702">Valeur Incorrecte</Sentence>
-      <Sentence ID="802">Valeur Incorrecte</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="703">Valeur Incorrecte</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="704">Valeur Incorrecte</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
       <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
-      <Sentence ID="703">Valeur Incorrecte</Sentence>
-      <Sentence ID="803">New position in visual hierarchy</Sentence>
-      <Sentence ID="504">Move the object to a new position</Sentence>
-      <Sentence ID="604">Visibilité</Sentence>
-      <Sentence ID="704">Valeur Incorrecte</Sentence>
-      <Sentence ID="804">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="705">Valeur Incorrecte</Sentence>
-      <Sentence ID="805">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">New position in visual hierarchy</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="604">Visibilité</Sentence>
       <Sentence ID="706">Valeur Incorrecte</Sentence>
-      <Sentence ID="806">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">Valeur Incorrecte</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
@@ -419,18 +419,18 @@
       <Sentence ID="903">Gauche</Sentence>
       <Sentence ID="904">Haut</Sentence>
       <Sentence ID="905">Gauche</Sentence>
-      <Sentence ID="906">Haut</Sentence>
-      <Sentence ID="907">Gauche</Sentence>
-      <Sentence ID="908">Haut</Sentence>
-      <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912">Gauche</Sentence>
-      <Sentence ID="913">Haut</Sentence>
-      <Sentence ID="914">Gauche</Sentence>
-      <Sentence ID="915">Haut</Sentence>
-      <Sentence ID="916">Gauche</Sentence>
-      <Sentence ID="917">Haut</Sentence>
-      <Sentence ID="918">Gauche</Sentence>
+      <Sentence ID="906">Gauche</Sentence>
+      <Sentence ID="907">Haut</Sentence>
+      <Sentence ID="908">Gauche</Sentence>
+      <Sentence ID="909">Haut</Sentence>
+      <Sentence ID="911">Gauche</Sentence>
+      <Sentence ID="912">Haut</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915">Gauche</Sentence>
+      <Sentence ID="916">Haut</Sentence>
+      <Sentence ID="917">Gauche</Sentence>
+      <Sentence ID="918">Haut</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -720,55 +720,55 @@ class VDOM_dbhtmlview(VDOM_object):
       <Userinterfaceevents>
         <Event Name="click">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="custom">
-          <Parameters>
-            <Parameter Name="Parameters" Order="" VbType="" Help="#Lang(918)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
+        <Event Name="custom">
+          <Parameters>
+            <Parameter Name="Parameters" Order="" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dblclick">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(909)"/>
+          </Parameters>
+        </Event>
         <Event Name="mousemove">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -783,11 +783,11 @@ class VDOM_dbhtmlview(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveTo">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="Effect" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Effect" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
@@ -795,15 +795,15 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newZindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
