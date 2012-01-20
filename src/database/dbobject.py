@@ -392,7 +392,7 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 			for row in dom.getElementsByTagName("row"):
 				cid = row.getAttribute("id")
 				if cid:
-					query = VDOM_sql_query(self.owner_id,self.database_id, "DELETE FROM %s WHERE id = \'%s\'"%(self.name,cid))
+					query = VDOM_sql_query(self.owner_id,self.database_id, "DELETE FROM \'%s\' WHERE id = \'%s\'"%(self.name,cid))
 					query.commit()
 					
 	def update_row_from_xml(self, xmldata):
