@@ -451,7 +451,7 @@ class VDOM_editableresource(VDOM_object):
 			if resource:
 				res_id = resource.id
 			else:
-				res_type = "js" if self.datatype == 1 else "css" if self.datatype == 2 else "txt"
+				res_type = "js" if self.datatype == '1' else "css" if self.datatype == '2' else "txt"
 				res_id = application.resources.create_temporary(self.id, "userdata", self.userdata, res_type, "userdata")
 
 			udata = ""
