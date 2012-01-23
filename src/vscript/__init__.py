@@ -1,7 +1,7 @@
 
 from .subtypes.array import array
 from .subtypes.binary import binary
-from .subtypes.boolean import boolean, v_true_value, v_false_value
+from .subtypes.boolean import boolean, v_true_value, v_false_value, true_value, false_value
 from .subtypes.date import date
 from .subtypes.double import double, nan, infinity
 from .subtypes.empty import empty, v_empty
@@ -16,6 +16,8 @@ from .variables.constant import constant
 from .variables.shadow import shadow
 from .essentials import check, byref, byval, redim, erase, randomize, echo, concat, \
 	exitloop, exitdo, exitfor
+from .conversions import as_is, as_value, as_specific, as_array, as_binary, \
+	as_boolean, as_date, as_double, as_generic, as_integer, as_string, pack, unpack
 
 
 empty.add_table={
