@@ -6,6 +6,9 @@ from .. import errors, types
 v_true_value=-1
 v_false_value=0
 
+true_value=v_true_value
+false_value=v_false_value
+
 
 class boolean(object):
 	

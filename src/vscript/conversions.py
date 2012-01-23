@@ -30,7 +30,7 @@ def as_specific(value, specific):
 	if isinstance(value, (variant, constant, shadow)):
 		value=value.value
 	if not isinstance(value, specific):
-		raise vscipt.errors.object_required
+		raise errors.object_required
 	return value
 
 
@@ -40,14 +40,14 @@ def as_array(value):
 	if isinstance(value, generic):
 		value=value()
 	if not isinstance(value, array):
-		raise vscipt.errors.type_mismatch
+		raise errors.type_mismatch
 	return value
 
 def as_binary(value):
 	if isinstance(value, (variant, constant, shadow)):
 		value=value.value
 	if not isinstance(value, binary):
-		raise vscipt.errors.object_required
+		raise errors.object_required
 	return value.value
 
 def as_boolean(value):
@@ -61,7 +61,7 @@ def as_date(value):
 	if isinstance(value, (variant, constant, shadow)):
 		value=value.value
 	if not isinstance(value, date):
-		raise vscipt.errors.object_required
+		raise errors.object_required
 	return value.value
 
 def as_double(value):
@@ -75,7 +75,7 @@ def as_generic(value):
 	if isinstance(value, (variant, constant, shadow)):
 		value=value.value
 	if not isinstance(value, generic):
-		raise vscipt.errors.object_required
+		raise errors.object_required
 	return value
 
 def as_integer(value):
