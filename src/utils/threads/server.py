@@ -49,7 +49,7 @@ class VDOM_server(VDOM_singleton):
 	def stop(self):
 		self.__running=False
 
-	def terminate(self):
+	def terminate(self,signum=None, frame=None):
 		self.stop()
 
 	def notify(self, condition):
