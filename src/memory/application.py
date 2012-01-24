@@ -607,6 +607,7 @@ class VDOM_application(VDOM_parser):
 				raise VDOM_exception_param(_("Object '%s' can't be top-level container" % type_obj.name))
 		else:
 			if parent.type.name not in type_obj.containers:
+				debug("!!!!!!!!!!!!!!!!Parent = %s" % parent.id)
 				raise VDOM_exception_param(_("Object '%s' can't be created inside '%s'" % (type_obj.name, parent.type.name)))
 
 		x = xml_object(name="Object")
