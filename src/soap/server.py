@@ -938,8 +938,8 @@ class VDOM_web_services_server(object):
 				server_actions_element.delete()
 		client_actions_element.delete()
 		appl.sync()
-		for ob in obj.objects:
-			self.__copy_object(app, obj_id, ob, obj_map, action_map, newapp)
+		for ob in obj.get_objects_list():
+			self.__copy_object(app, obj_id, ob.id, obj_map, action_map, newapp)
 		return obj_id
 
 	def __copy_events_structure(self, app, obj, new_obj, obj_map, action_map, tgt_app):
