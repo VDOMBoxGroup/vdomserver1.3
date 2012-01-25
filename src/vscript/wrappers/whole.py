@@ -116,6 +116,8 @@ class v_wholeapplication(generic):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("application")
 		else:
+			if not self.service:
+				raise whole_no_connection_error
 			return string(self.application)
 
 	def v_container(self, let=None, set=None):
