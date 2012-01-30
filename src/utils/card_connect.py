@@ -21,8 +21,15 @@ def send_to_card_and_wait( message, key, timeout = 1, delta = 0.1 ):
 		time.sleep(delta)
 	return system_options[key]
 
+
+
+def get_system_attribute(part_type_attribute_id):
+	return send_to_card_and_wait("getlicense 0 %s" % str(part_type_attribute_id),"0/%s" %str(part_type_attribute_id) )
+
 def system_options_reinit():
 	__builtin__.system_options = {"server_license_type": "0",	# online server, 1=development
 	                              "firmware" : "N/A",
 	                              "card_state" : "2",	# 0 - red, 1 - green, 2 - red blinkin, 3 - green blinking
-	                              "object_amount" : "0"}
+	                              "object_amount" : "1500"}
+	
+	

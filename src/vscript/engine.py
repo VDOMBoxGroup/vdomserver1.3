@@ -48,7 +48,7 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 	error.type=error_type
 	debug(error, console=True)
 	del exclass, exexception, extraceback, history
-	managers.log_manager.error_bug(error, "vscript")
+	#managers.log_manager.error_bug(error, "vscript")
 
 def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
 	debug("[VScript] Wait for mutex...")

@@ -132,7 +132,7 @@ def execute(data):
 
 
 
-
+#Depricated
 def check_application_license(application_id, license_type):
 	return send_to_card_and_wait( 
 	    "getlicense %s %s" % (str(application_id), str(license_type)),
