@@ -4,7 +4,7 @@ import shutil, os, os.path, sys, traceback, base64, zipfile, time, copy # , thre
 from metaimporter import VDOM_metaimporter
 from utils.threads import VDOM_daemon
 from daemon import VDOM_xml_synchronizer
-from utils.card_connect import send_to_card
+from utils.card_connect import send_to_card, get_system_attribute
 from names import APPLICATION_SECTION, ON_UNINSTALL
 from database.dbobject import VDOM_sql_query
 
@@ -311,8 +311,7 @@ class VDOM_xml_manager(object):
 			if p.id in self.__applications:
 				return ("", "")
 			if p.key.strip():
-				from local_server.local_server import check_application_license
-				if not p.key.strip().isdigit() or check_application_license(p.id, p.key.strip()) in ("None","0"):
+				if not p.key.strip().isdigit() or get_system_attribute(p.key.strip()) in (None, "None","0"):
 					raise Exception("You have no permission to install this application. Please contact your dealer for support.")
 			(result, app_object) = self.load_application(p.work_xml_file)
 			if not result:			# previous version of application not removed?
