@@ -4,7 +4,7 @@ from datetime import time
 from random import randint
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
-from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver
+from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver #, VDOM_smb_storage_driver
 
 def run(request):
         sess = request.session()
@@ -19,7 +19,7 @@ def run(request):
         applst = managers.xml_manager.get_applications()
         dev_list = VDOM_sd_external_drive.get_device_list()
 	dev_option_tag = apps_tag = ""
-	drv_icon = ""
+	drv_icon = "images/exthdd.png"
 	driver = None
 	default_drv_name = ""
 	hidden_tag = ""
@@ -71,8 +71,12 @@ def run(request):
 					if args["type"][0] == "external":
 						driver = VDOM_sd_external_drive(args["devselect"][0], crypt)
 					elif args["type"][0] == "cloud":
-						
-							driver = VDOM_cloud_storage_driver(crypt)
+						driver = VDOM_cloud_storage_driver(crypt)
+					elif args["type"][0] == "smb":
+						server = args["server_adr"][0]
+						user = args["username"][0]
+						passwd = args["passwd"][0]
+						driver = VDOM_smb_storage_driver(server, user, passwd, crypt)
 				except Exception as e:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 					ok = False
@@ -459,6 +463,11 @@ function ChangeBackup(obj){
    <div id="x_hourly"%(display)s><label for="hourly_int">Backup every </label><input type="text" name="hourly_int" value="%(value)s"><label for="hourly_int"> hour(s)</label></div>""" % {"display": hourly_display, "value": h_backup_time})
 	request.write("""
    <div id="rotation"><label for="rotation">Rotation </label><input type="text" name="rotation" value="%(value)s"></div>""" % {"value": rotation_value})
+	if "type" in args and args["type"][0] == "smb":
+		request.write("""
+   <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr"></div>
+   <div id="username"><label for="username">Username: </label><input type="text" name="username"></div>
+   <div id="passwd"><label for="passwd">Password: </label><input type="password" name="passwd"></div>""")
 	request.write("""
    <div class="clear"> </div>
   </div>""")
