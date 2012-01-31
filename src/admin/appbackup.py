@@ -16,11 +16,8 @@ def run(request):
         sm = managers.server_manager
         drivers = managers.backup_manager.get_storages()
         if "device" in args and "abs" in args:
-                if args["device"][0] == "ed":
-                        request.redirect("/sdconfig.py?type=external")
-			return
-		elif args["device"][0] == "cloud":
-			request.redirect("/sdconfig.py?type=cloud")
+		request.redirect("/sdconfig.py?type=%s" % args["device"][0])
+		return
         if "devid" in args:
                 drv = managers.backup_manager.get_storage(args["devid"][0])
                 if drv.type == "external_drive":
@@ -202,8 +199,9 @@ function LoadImgWait(){
   <div class="block" style="padding-bottom:15px;">
    <h2>Add new backup storage</h2>
    <select name="device">
-    <option value="ed">External device</option>
+    <option value="external">External device</option>
     <option value="cloud">Cloud storage</option>
+    <option value="smb">SMB storage</option>
    </select>
    <input type="submit" name="abs" value="Add storage"/>
   </div>
