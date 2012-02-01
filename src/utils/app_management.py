@@ -61,6 +61,7 @@ def uninstall_application(appid):
 
 def update_application(path, vh):
 	appid = ""
+	tmpldapdir = ""
 	tmpdbdir = ""					# directory for saving databases
 	tmpresdir = ""				# directory for saving resources
 	tmpappdir = ""				# directory for saving application
@@ -128,7 +129,18 @@ def update_application(path, vh):
 			except: pass
 	except: pass
 	debug("%s resources saved" % str(res_numb))
-	
+	#save ldap in temp dir
+	debug("Save current ldap...")
+	from subprocess import Popen, PIPE
+	import shlex
+	try:
+		tmpldapdir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
+		cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (appid, os.path.abspath(tmpldapdir))
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+	except:
+		pass
 	# uninstall application but keep databases
 	debug("Uninstall current version...")
 	try:
@@ -209,7 +221,14 @@ def update_application(path, vh):
 			try:
 				shutil.copy2(os.path.join(tmpresdir,item), os.path.join(rpath1,item))
 			except:pass
-	
+		#restore ldap
+		try:
+			cmd = """sh /opt/boot/ldap_backup.sh -g %s -r -i %s""" % (appid, tmpldapdir)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+		except:
+			pass
 		debug("Restore virtual hosts...")
 		for n in names:
 			vh.set_site(n, appid)
