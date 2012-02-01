@@ -103,7 +103,7 @@ pack_table={
 	unicode: lambda value: string(value),
 	bool: lambda value: boolean(value),
 	float: lambda value: double(value),
-	None: lambda value: v_null}
+	types.none: lambda value: v_null}
 
 def pack(value):
 	return pack_table.get(type(value), type_mismatch_handler)(value)
@@ -114,7 +114,7 @@ unpack_table={
 	binary: lambda value: value.value,
 	boolean: lambda value: value.value,
 	double: lambda value: value.value,
-	v_null: lambda value: None}
+	null: lambda value: None}
 
 def unpack(value):
 	return unpack_table.get(type(value), type_mismatch_handler)(value)
