@@ -99,6 +99,7 @@ def type_mismatch_handler(value):
 
 pack_table={
 	int: lambda value: integer(value),
+	long: lambda value: integer(value),
 	str: lambda value: string(unicode(value)),
 	unicode: lambda value: string(value),
 	bool: lambda value: boolean(value),
