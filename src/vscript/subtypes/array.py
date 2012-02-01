@@ -214,8 +214,6 @@ class array(object):
 	def __ge__(self, another):
 		raise errors.type_mismatch
 
-	def __hash__(self):
-		raise NotImplementedError
 
 	def __and__(self, another):
 		raise errors.type_mismatch

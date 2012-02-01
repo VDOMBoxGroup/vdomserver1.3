@@ -11,10 +11,10 @@ absent="absent"
 
 
 def localpack(value):
-	return value if isinstance(value, (empty, null, nothing, generic)) else pack(value)
+	return value if isinstance(value, (empty, array, generic)) else pack(value)
 
 def localunpack(value):
-	return value if isinstance(value, (empty, null, nothing, generic)) else unpack(value)
+	return value if isinstance(value, (empty, array, generic)) else unpack(value)
 
 
 
@@ -57,14 +57,14 @@ class v_dictionary(generic):
 			return keywords["let"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
-		self.value[localunpack(as_is(arguments[0]))]=as_value(keywords["let"])
+		self.value[localunpack(as_value(arguments[0]))]=as_value(keywords["let"])
 
 	def set(self, *arguments, **keywords):
 		if not arguments:
 			return keywords["set"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
-		self.value[localunpack(as_is(arguments[0]))]=as_generic(keywords["set"])
+		self.value[localunpack(as_value(arguments[0]))]=as_generic(keywords["set"])
 
 
 	
