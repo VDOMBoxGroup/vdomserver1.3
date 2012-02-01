@@ -54,7 +54,7 @@ class v_dictionary(generic):
 
 	def let(self, *arguments, **keywords):
 		if not arguments:
-			return keywords["set"]
+			return keywords["let"]
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
 		self.value[localunpack(as_is(arguments[0]))]=as_value(keywords["let"])
