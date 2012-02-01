@@ -50,7 +50,8 @@ class v_dictionary(generic):
 	def get(self, key, *arguments, **keywords):
 		if arguments:
 			raise errors.wrong_number_of_arguments
-		return self.value[localunpack(as_is(key))]
+		try: return self.value[localunpack(as_is(key))]
+		except KeyError: return v_empty
 
 	def let(self, *arguments, **keywords):
 		if not arguments:
@@ -65,7 +66,7 @@ class v_dictionary(generic):
 		if len(arguments)>1:
 			raise errors.wrong_number_of_arguments
 		self.value[localunpack(as_value(arguments[0]))]=as_generic(keywords["set"])
-
+		
 
 	
 	def erase(self):
