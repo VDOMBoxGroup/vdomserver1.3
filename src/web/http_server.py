@@ -15,7 +15,7 @@ from soap.wsdl import methods as wsdl_methods
 class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	"""VDOM threading http server class"""
 
-	def __init__(self, server_address, request_handler_class):
+	def __init__(self, server_address, request_handler_class, use_ssl = False):
 		"""constructor"""
 		self.__server_address = server_address
 		self.__current_connections = 0
@@ -67,21 +67,28 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		self.allow_reuse_address= 1
 
 		#call base class constructor
-		SocketServer.TCPServer.__init__(self, server_address, request_handler_class)
+		if use_ssl:
+			import ssl
+			SocketServer.BaseServer.__init__(self, ("",443), request_handler_class)
+			self.socket = ssl.wrap_socket(socket.socket(self.address_family,self.socket_type),
+				                      server_side=True,do_handshake_on_connect=True,
+				        certfile="fb.cert",
+				        keyfile="fb.key",
+				        ssl_version=ssl.PROTOCOL_SSLv3)
+			self.server_bind()
+			self.server_activate()
+		else:
+			SocketServer.TCPServer.__init__(self, server_address, request_handler_class)
+			
+			# register soap methods
+			for method in wsdl_methods.keys():
+				exec("""self.registerFunction(SOAPpy.MethodSig(%s, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")""" % method)
+	
+			# generate wsdl file
+			gen_wsdl()
 
 		#create semaphore
 		self.__sem = VDOM_semaphore()
-
-		# register soap methods
-		for method in wsdl_methods.keys():
-			exec("""self.registerFunction(SOAPpy.MethodSig(%s, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")""" % method)
-#		self.registerFunction(SOAPpy.MethodSig(login, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")
-#		self.registerFunction(SOAPpy.MethodSig(create_application, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")
-#		self.registerFunction(SOAPpy.MethodSig(set_application_info, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")
-
-		# generate wsdl file
-		gen_wsdl()
-		#send_to_card("online")
 
 		self.active=True
 

@@ -426,9 +426,9 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 	
 	def get_data_xml(self,limit = None,offset = None):
 		range = ""
-		if limit:
+		if limit and limit.isdigit():
 			range = "LIMIT "+str(int(limit))
-			if offset:
+			if offset and offset.isdigit():
 				range += " OFFSET "+str(int(offset))
 		query = VDOM_sql_query(self.owner_id,self.database_id, "select * from `%s` %s"%(self.name,range))
 		data = query.fetchall_xml()
