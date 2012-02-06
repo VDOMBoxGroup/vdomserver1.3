@@ -814,9 +814,9 @@ class VDOM_formtext(VDOM_object):
 							mode = mode, placeholder = placeholder, title = title)
 		else:
 			result = u"""<textarea {debug_info} id="{id}" name="{name}" tabindex="{tabind}" 
-							style="{style}" class="{classn}" {mode}>{value}</textarea>
+							style="{style}" class="{classn}" {mode} {title} {placeholder}>{value}</textarea>
 					""".format(id = id, name = self.name, tabind = self.tabindex, debug_info = debug_info,
-							style = style, classn = self.classname, mode = mode, value = self.value)
+							style = style, classn = self.classname, mode = mode, value = self.value, placeholder = placeholder, title = title)
 
 		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
 
