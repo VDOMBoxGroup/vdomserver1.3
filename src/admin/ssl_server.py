@@ -2,15 +2,15 @@ import os, traceback
 import managers
 
 def run(request):
-        sess = request.session()
-        if not sess.value("appmngmtok"):
-                request.write("Authentication failed")
-                raise VDOM_exception("Authentication failed")
-        
+	sess = request.session()
+	if not sess.value("appmngmtok"):
+		request.write("Authentication failed")
+		raise VDOM_exception("Authentication failed")
+
 	args = request.arguments().arguments()
-        ssl_on = True
+	ssl_on = True
 	if "del_keys" in args: ssl_on = False
-        request.write("""<html>
+	request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Install</title>
@@ -77,7 +77,7 @@ function MM_swapImage() { //v3.0
         </tr>
     </table>
 </td>""")
-        request.write("""<td>
+	request.write("""<td>
 <p class="Texte"><a href="ssl_server.py?del_keys">delete keys</a></p>""")
 	if ssl_on:
 		request.write("""
