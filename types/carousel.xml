@@ -227,7 +227,7 @@
       <Sentence ID="212">Duration</Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="113">Custom Init</Sentence>
-      <Sentence ID="213">Custom init parameters, first comma required, no last comma. See docs on http://caroufredsel.frebsite.nl</Sentence>
+      <Sentence ID="213">Custom init parameters, no last comma. See docs on http://caroufredsel.frebsite.nl</Sentence>
       <Sentence ID="313"></Sentence>
       <Sentence ID="114">Class CSS</Sentence>
       <Sentence ID="214">newAttribute11</Sentence>
@@ -1291,10 +1291,10 @@ class VDOM_carousel(VDOM_object):
 
 		classname = u"""class="%s" """ % self.classname if self.classname else u""
 
-		result = u"""<div %(debug_info)s id="%(id)s" style="%(style)s" %(classname)s>%(data)s</div>
-<script type="text/javascript">
-jQuery(function($){
-	$("#%(idin)s").carouFredSel({
+		if self.custominit != "":
+			custom_init = self.custominit
+		else:
+			custom_init = u"""
 		items: %(items)s,
 		direction: "%(dir)s",
 		scroll: {
@@ -1302,11 +1302,17 @@ jQuery(function($){
 			duration: %(duration)s,
 			pauseOnHover: true
 		}
+			""" % { "dir": dir, "items": int(self.itemscount), "duration": int(self.duration) }
+
+		result = u"""<div %(debug_info)s id="%(id)s" style="%(style)s" %(classname)s>%(data)s</div>
+<script type="text/javascript">
+jQuery(function($){
+	$("#%(idin)s").carouFredSel({
 		%(custom_init)s
 	});
 });
-</script>""" % { "debug_info": debug_info, "id": id, "idin": idin, "style": style, "dir": dir, "classname": classname,
-			"items": int(self.itemscount), "duration": int(self.duration), "data": data, "custom_init": self.custominit }
+</script>""" % { "debug_info": debug_info, "id": id, "idin": idin, "style": style, "classname": classname,
+			"data": data, "custom_init": custom_init }
 
 		return VDOM_object.render(self, parent, contents=result)
 
