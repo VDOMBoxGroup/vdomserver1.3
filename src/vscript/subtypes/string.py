@@ -80,7 +80,7 @@ string.add_table={
 	integer: lambda self, another: double(float(self._value)+int(another)),
 	double: lambda self, another: double(float(self._value)+float(another)),
 	date: lambda self, another: date(float(self._value)+float(another)).check,
-	string: lambda self, another: string(self._value+unicode(value)),
+	string: lambda self, another: string(self._value+unicode(another)),
 	boolean: lambda self, another: double(float(self._value)+int(another))}
 
 string.sub_table={
