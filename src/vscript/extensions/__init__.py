@@ -1,7 +1,6 @@
 
 from .wscript import v_wscript
 from .regexp import v_regexp
-from .dictionary import v_dictionary
 from .list import v_list
 from .connection import v_connectionerror, v_proxy, v_connection
 from .jsons import v_asjson, v_tojson

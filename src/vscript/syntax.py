@@ -327,11 +327,11 @@ def p_value_string(p):
 
 def p_value_true(p):
 	"""value : TRUE"""
-	p[0]=vexpression(u"boolean(v_true_value)", line=p[1][0])
+	p[0]=vexpression(u"boolean(true)", line=p[1][0])
 
 def p_value_false(p):
 	"""value : FALSE"""
-	p[0]=vexpression(u"boolean(v_false_value)", line=p[1][0])
+	p[0]=vexpression(u"boolean(false)", line=p[1][0])
 
 def p_value_empty(p):
 	"""value : EMPTY"""
@@ -381,7 +381,8 @@ def p_value_constants(p):
              | VTAB
              | VVERTICALTAB
              | VBINARYCOMPARE
-             | VTEXTCOMPARE"""
+             | VTEXTCOMPARE
+			 | VDATABASECOMPARE"""
 	p[0]=vexpression(p[1][1], line=p[1][0])
 
 
@@ -499,6 +500,10 @@ def p_statement_redim(p):
 def p_statement_erase(p):
 	"""statement : ERASE NAME"""
 	p[0]=verase(vname(p[2][1], line=p[2][0]), line=p[1][0])
+
+def p_statement_erase_with_expressions(p):
+	"""statement : ERASE NAME '(' expressions ')'"""
+	p[0]=verase(vname(p[2][1], line=p[2][0]), expressions=p[4], line=p[1][0])
 
 def p_statement_assigment_name(p):
 	"""statement : name '=' expression"""
@@ -1090,11 +1095,11 @@ def p_cstatements_continues_with_newline_statement(p):
 
 def p_redim_starts_array(p):
 	"""redim : REDIM NAME '(' expressions ')'"""
-	p[0]=vredim(line=p[1][0]).join(vname(p[2][1], line=p[1][0]), p[4])
+	p[0]=vredim(0, line=p[1][0]).join(vname(p[2][1], line=p[1][0]), p[4])
 
 def p_redim_starts_array_with_preserve(p):
 	"""redim : REDIM PRESERVE NAME '(' expressions ')'"""
-	p[0]=vredim(preserve=True, line=p[1][0]).join(vname(p[3][1], line=p[1][0]), p[5])
+	p[0]=vredim(1, line=p[1][0]).join(vname(p[3][1], line=p[1][0]), p[5])
 
 def p_redim_continues_with_array(p):
 	"""redim : redim ',' NAME '(' expressions ')'"""
@@ -1112,7 +1117,7 @@ def p_declarations_starts_empty_array(p):
 
 def p_declarations_starts_array(p):
 	"""declarations : DIM NAME '(' subscripts ')'"""
-	p[0]=vdeclarations(line=p[1][0]).join(p[2][1], u"variant(array(subscripts=%s))"%p[4])
+	p[0]=vdeclarations(line=p[1][0]).join(p[2][1], u"permanent(array(subscripts=%s, static=1))"%p[4])
 
 def p_declarations_continues_with_variable(p):
 	"""declarations : declarations ',' NAME"""

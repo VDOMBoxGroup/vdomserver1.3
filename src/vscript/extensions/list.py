@@ -1,71 +1,60 @@
 
-from .. import errors, types
-from ..subtypes import *
-from ..variables import *
-from ..conversions import *
+from .. import errors
+from ..subtypes import generic, integer, v_mismatch
+from ..variables import variant
 
-
-
-class v_list_iterator(generic):
-
-	def __init__(self, iterator):
-		self.__iterator=iterator
-
-	def next(self):
-		return self.__iterator.next()
 
 class v_list(generic):
 
 	def __init__(self):
 		generic.__init__(self)
-		self.value=[]
-
-
+		self._items=[]
+		
 	
-	def erase(self):
-		self.value.clear()
-
-	
-	
-	def v_length(self, let=None, set=None):
-		if let is not None or set is not None:
-			raise errors.object_has_no_property("length")
+	def erase(self, *arguments):
+		if arguments:
+			if len(arguments)>1: raise errors.wrong_number_of_arguments
+			try: del self._items[argument[0].as_integer]
+			except KeyError: raise errors.subscript_out_of_range
 		else:
-			return integer(len(self.value))
+			self._value.clear()
+	
+
+	def v_count(self, let=None, set=None):
+		if let is not None or set is not None:
+			raise errors.errors.object_has_no_property
+		else:
+			return integer(len(self._items))
+	
 
 	def v_append(self, value):
-		self.value.append(as_value(value))
+		self._items.append(value.subtype)
+		return v_mismatch
 
 	def v_insert(self, index, value):
-		self.insert(as_integer(index), as_value(value))
+		self._items.insert(as_integer(index), value.subtype)
+		return v_mismatch
 
 	def v_remove(self, value):
-		self.value.remove(as_value(value))
+		try: self._items.remove(value.subtype)
+		except ValueError: raise errors.element_not_found
+		return v_mismatch
 
 	def v_index(self, value):
-		return self.value.index(as_value(value))
-
-	def v_count(self, value):
-		return self.value.count(as_value(value))
+		try: return self._items.index(value.subtype)
+		except ValueError: raise errors.element_not_found
 
 	def v_push(self, value):
-		self.value.append(as_value(value))
+		self._items.append(value.subtype)
+		return v_mismatch
 
-	def v_pop(self):
-		return self.value.pop()
-		
+	def v_pop(self, index=None):
+		try: return self._items.pop(-1 if index is None else index.as_integer)
+		except KeyError: raise errors.subscript_out_of_range
 	
 	
 	def __iter__(self):
-		return v_list_iterator(iter(self.value))
-
-
+		for item in self._items: yield variant(item)
 	
 	def __len__(self):
-		return len(self.value)
-
-	def __nonzero__(self):
-		return len(self.value)
-
-	def __invert__(self):
-		return len(self.value)==0
+		return integer(len(self._items))

@@ -16,7 +16,7 @@ reserved=(u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE
 	u"EMPTY", u"NOTHING", u"NULL", u"NAN", u"INFINITY")
 tokens=reserved+(u"PYTHON",
 	u"VCR", u"VCRLF", u"VFORMFEED", u"VLF", u"VNEWLINE", u"VNULLCHAR", u"VNULLSTRING",
-	u"VTAB", u"VVERTICALTAB", u"VBINARYCOMPARE", u"VTEXTCOMPARE",
+	u"VTAB", u"VVERTICALTAB", u"VBINARYCOMPARE", u"VTEXTCOMPARE", u"VDATABASECOMPARE",
 	u"REM", u"NE", u"LE", u"GE", u"NUMBER", u"DOUBLE", u"DATE", u"STRING", u"NAME", u"NEWLINE")
 literals=[u'&', u'(', u')', u'*', u'+', u',', u'-', u'.', u'/', u':', u'<', u'=', u'>', u'\\', u'^']
 
@@ -92,6 +92,12 @@ def t_vtextcompare(t):
 	r'[Vv][Bb]?[Tt][Ee][Xx][Tt][Cc][Oo][Mm][Pp][Aa][Rr][Ee]'
 	t.type=u"VTEXTCOMPARE"
 	t.value=(t.lexer.lineno, "integer(1)")
+	return t
+
+def t_vtextcompare(t):
+	r'[Vv][Bb]?[Dd][Aa][Tt][Aa][Bb][Aa][Ss][Ee][Cc][Oo][Mm][Pp][Aa][Rr][Ee]'
+	t.type=u"VDATABASECOMPARE"
+	t.value=(t.lexer.lineno, "integer(2)")
 	return t
 
 def t_ne(t):

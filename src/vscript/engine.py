@@ -3,12 +3,11 @@ import sys, traceback, os.path, re
 from copy import copy, deepcopy
 import managers
 from utils.mutex import VDOM_named_mutex_auto as auto_mutex
-from . import errors, types, lexemes, syntax
+from . import errors, lexemes, syntax
 from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
-from .wrappers import vdomtypewrapper, vdomobjectwrapper, server, request, response, session, \
-	v_vdomdbconnection, v_vdomdbrecordset, v_vdomimaging, v_vdombox, v_remoteserver
+from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session
 
 
 vscript_source_string=u"<vscript>"
@@ -16,11 +15,13 @@ vscript_wrappers_name="wrappers"
 
 vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
-vscript_default_environment={u"v_this": None, u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
+vscript_default_environment={u"v_this": None,
+	u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
 	"v_vdomdbconnection": vscript_wrappers_name, "v_vdomdbrecordset": vscript_wrappers_name,
-	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name, "v_remoteserver": vscript_wrappers_name,
+	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name,
 	"v_wholeconnection": vscript_wrappers_name, "v_wholeapplication": vscript_wrappers_name,
-	"v_wholeerror": vscript_wrappers_name, "v_wholeconnectionerror": vscript_wrappers_name, "v_wholenoconnectionerror": vscript_wrappers_name,
+	"v_wholeerror": vscript_wrappers_name, "v_wholeconnectionerror": vscript_wrappers_name,
+	"v_wholenoconnectionerror": vscript_wrappers_name,
 	"v_wholeremotecallerror": vscript_wrappers_name, "v_wholeincorrectresponse": vscript_wrappers_name,
 	"v_wholenoapierror": vscript_wrappers_name, "v_wholenoapplication": vscript_wrappers_name}
 
@@ -45,7 +46,7 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 		print (u"%s, line %s%s - %s"%(path, line, ": %s"%st if st else "", function)).encode("utf-8")
 	print "- - - - - - - - - - - - - - - - - - - -"
 	error.line=vbline
-	error.type=error_type
+	error.source=error_type
 	debug(error, console=True)
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
@@ -82,7 +83,7 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 		show_exception_details(None, error, error_type=errors.generic.compilation)
 		return vscript_default_code, vscript_default_source
 	except errors.python, error:
-		show_exception_details(source, errors.system_error(message=unicode(error)),
+		show_exception_details(source, errors.system_error(unicode(error)),
 			error_type=errors.generic.compilation)
 		raise
 	finally:
@@ -93,11 +94,11 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 		try:
 			if namespace is None: namespace={}
 			if environment is None:
-				namespace[u"v_this"]=variant(vdomobjectwrapper(object) if object else v_nothing)
-				namespace[u"v_server"]=server
-				namespace[u"v_request"]=request
-				namespace[u"v_response"]=response
-				namespace[u"v_session"]=session
+				namespace[u"v_this"]=v_vdomobject(object) if object else v_nothing
+				namespace[u"v_server"]=v_server
+				namespace[u"v_request"]=v_request
+				namespace[u"v_response"]=v_response
+				namespace[u"v_session"]=v_session
 			else:
 				namespace.update(environment)
 			exec code in namespace
@@ -152,5 +153,5 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 		show_exception_details(source, error)
 		raise
 	except errors.python, error:
-		show_exception_details(source, errors.system_error(message=unicode(error)))
+		show_exception_details(source, errors.system_error(unicode(error)))
 		raise

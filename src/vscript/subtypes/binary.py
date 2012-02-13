@@ -1,102 +1,28 @@
 
-from .. import errors, types
+from .. import errors
+from ..primitives import subtype
 
 
-class binary(object):
+class binary(subtype):
 
 	def __init__(self, value):
-		self.value=value
-
-	def __call__(self, *arguments, **keywords):
-		raise errors.type_mismatch
+		self._value=value
 
 
-	def get_type_code(self):
-		return 19
-
-	def get_type_name(self):
-		return "Binary"
+	value=property(lambda self: self._value)
 
 
-	def __add__(self, another):
-		raise errors.type_mismatch
-
-	def __sub__(self, another):
-		raise errors.type_mismatch
-
-	def __mul__(self, another):
-		raise errors.type_mismatch
-
-	def __div__(self, another):
-		raise errors.type_mismatch
-
-	def __floordiv__(self, another):
-		raise errors.type_mismatch
-
-	def __mod__(self, another):
-		raise errors.type_mismatch
-
-	def __pow__(self, another):
-		raise errors.type_mismatch
+	code=property(lambda self: 19)
+	name=property(lambda self: "Binary")
 
 
-	def __eq__(self, another):
-		raise errors.type_mismatch
+	as_simple=property(lambda self: self)
+	as_binary=property(lambda self: self)
 
-	def __ne__(self, another):
-		raise errors.type_mismatch
-
-	def __lt__(self, another):
-		raise errors.type_mismatch
-
-	def __gt__(self, another):
-		raise errors.type_mismatch
-
-	def __le__(self, another):
-		raise errors.type_mismatch
-
-	def __ge__(self, another):
-		raise errors.type_mismatch
 
 	def __hash__(self):
-		raise NotImplementedError
-
-
-	def __and__(self, another):
-		raise errors.type_mismatch
-
-	def __or__(self, another):
-		raise errors.type_mismatch
-
-	def __xor__(self, another):
-		raise errors.type_mismatch
-
-
-	def __invert__(self):
-		raise errors.type_mismatch
-		
-	def __neg__(self):
-		raise errors.type_mismatch
-
-	def __pos__(self):
-		raise errors.type_mismatch
-
-	def __abs__(self):
-		raise errors.type_mismatch
-
-
-	def __int__(self):
-		raise errors.type_mismatch
-		
-	def __str__(self):
-		raise errors.type_mismatch
-		
-	def __unicode__(self):
-		raise errors.type_mismatch
-
-	def __nonzero__(self):
-		raise errors.type_mismatch
-
+		return hash(self._value)
 
 	def __repr__(self):
-		return "BINARY@%s"%object.__repr__(self)[-9:-1]
+		return "BINARY@%08X"%id(self)
+

@@ -1,29 +1,45 @@
 
 python=Exception
+python_using_abstract=NotImplementedError
+python_avoid_using=RuntimeError
 
 
 class generic(python):
 
 	compilation=u"compilation"
 	runtime=u"runtime"
+
+
+	number=1
+
 	
-	def __init__(self, message=u"Unknown error", line=None):
-		self.type=generic.compilation
+	def __init__(self, message=u"Unknown error", details=None, line=None):
+		self.source=generic.compilation
 		self.message=message
 		self.line=line
 
+
 	def __str__(self):
-		return u"VScript %s error%s: %s"%(self.type,
-			u"" if self.line is None else u" (line %s)"%self.line, self.message)
+		return unicode(self).encode("ascii", errors="replace")
+
+	def __unicode__(self):
+		return u"VScript %s error%s: %s"%(self.source,
+			u"" if self.line is None else u" (line %s)"%self.line,self.message)
+
 
 class internal_error(generic):
+
+	number=51
 
 	def __init__(self, message, line=None):
 		generic.__init__(self,
 			message=u"Internal error: %s"%message,
 			line=line)
 
+
 class system_error(generic):
+
+	number=507
 
 	def __init__(self, message, line=None):
 		generic.__init__(self,
@@ -32,12 +48,16 @@ class system_error(generic):
 
 class invalid_character(generic):
 
+	number=1032
+
 	def __init__(self, character, line=None):
 		generic.__init__(self,
 			message=u"Invalid character: '%s'"%character,
 			line=line)
 
 class syntax_error(generic):
+
+	number=1002
 
 	def __init__(self, token, line=None):
 		generic.__init__(self,
@@ -46,12 +66,16 @@ class syntax_error(generic):
 
 class expected_statement(generic):
 
+	number=1024
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Expected statement",
 			line=line)
 
 class class_have_multiple_default(generic):
+
+	number=1052
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -60,12 +84,16 @@ class class_have_multiple_default(generic):
 
 class property_have_no_arguments(generic):
 
+	number=1054
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Property set or let must have at least one argument",
 			line=line)
 
 class use_parentheses_when_calling_sub(generic):
+
+	number=1044
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -74,12 +102,16 @@ class use_parentheses_when_calling_sub(generic):
 		
 class constructor_or_destructor_have_arguments(generic):
 
+	number=1053
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Class initialize or terminate do not have arguments",
 			line=line)
 
 class default_not_a_property_get(generic):
+
+	number=1057
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -88,19 +120,34 @@ class default_not_a_property_get(generic):
 
 class default_not_a_public(generic):
 
+	number=1058
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"'Default' specification must also specify 'Public'",
 			line=line)
 
-class expected_something(generic):
+class expected_function(generic):
 
-	def __init__(self, name, line=None):
+	number=1015
+
+	def __init__(self, line=None):
 		generic.__init__(self,
-			message=u"Expected '%s'"%name,
+			message=u"Expected 'Function'"%name,
+			line=line)
+
+class expected_sub(generic):
+
+	number=1016
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Expected 'Sub'"%name,
 			line=line)
 
 class inconsistent_arguments_number(generic):
+
+	number=1051
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -109,35 +156,43 @@ class inconsistent_arguments_number(generic):
 
 class invalid_exit_statement(generic):
 
+	number=1039
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message="Invalid 'Exit' statement",
 			line=line)
 
-class not_implemented(generic):
+class not_implemented(internal_error):
 
 	def __init__(self, line=None):
-		generic.__init__(self,
-			message="Not implemented",
+		internal_error.__init__(self,
+			"This feature is not implemented",
 			line=line)
 
 class variable_is_undefined(generic):
 
+	number=500
+
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u""
 		generic.__init__(self,
 			message=u"Variable is undefined%s"%details,
 			line=line)
 
 class name_redefined(generic):
 
+	number=1041
+
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u""
 		generic.__init__(self,
 			message=u"Name redefined%s"%details,
 			line=line)
 
 class division_by_zero(generic):
+
+	number=11
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -146,20 +201,26 @@ class division_by_zero(generic):
 
 class overflow(generic):
 
+	number=6
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Overflow",
 			line=line)
 
 class object_has_no_property(generic):
+
+	number=438
 	
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u""
 		generic.__init__(self,
 			message=u"Object doesn't support this property or method%s"%details,
 			line=line)
 
 class subscript_out_of_range(generic):
+
+	number=9
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -168,6 +229,8 @@ class subscript_out_of_range(generic):
 
 class type_mismatch(generic):
 
+	number=13
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Type mismatch",
@@ -175,13 +238,17 @@ class type_mismatch(generic):
 
 class object_required(generic):
 
+	number=424
+
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name and name!="__call__" else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name and name!="__call__" else u""
 		generic.__init__(self,
 			message=u"Object required%s"%details,
 			line=line)
 
 class static_array(generic):
+
+	number=10
 
 	def __init__(self, line=None):
 		generic.__init__(self,
@@ -190,37 +257,47 @@ class static_array(generic):
 
 class illegal_assigment(generic):
 
+	number=501
+
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"Illegal assignment",
 			line=line)
 
-class illegal_attribute_name(generic):
-
-	def __init__(self, line=None):
-		generic.__init__(self,
-			message=u"Illegal attribute name",
-			line=line)
-
 class wrong_number_of_arguments(generic):
 
+	number=450
+
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name and name!="__call__" else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name and name!="__call__" else u""
 		generic.__init__(self,
 			message=u"Wrong number of arguments or invalid property assignment%s"%details,
 			line=line)
 
 class invalid_procedure_call(generic):
 
+	number=5
+
 	def __init__(self, name=None, line=None):
-		details=(u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u"")
+		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name else u""
 		generic.__init__(self,
 			message=u"Invalid procedure call or argument%s"%details,
 			line=line)
 
-class multiple_inherits(generic):
+class multiple_inherits(syntax_error):
+
+	number=40001
 
 	def __init__(self, line=None):
 		generic.__init__(self,
 			message=u"'Inherits' can appear only once within a 'Class' statement and can only specify one class",
+			line=line)
+
+class element_not_found(generic):
+
+	number=32811
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Element not found",
 			line=line)

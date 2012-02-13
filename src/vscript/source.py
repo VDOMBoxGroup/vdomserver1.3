@@ -276,9 +276,14 @@ class varguments(list):
 		self.append(argument)
 		return self
 
+	"""	
 	initialization=property(lambda self: u"=".join(filter(None,
 		[u", ".join([name for name, type in self if type]),
 		u", ".join([u"%s(%s)"%(type, name) for name, type in self if type])])))
+	"""	
+	initialization=property(lambda self: u"=".join(filter(None,
+		[u", ".join([name for name, type in self if type]),
+		u", ".join([u"%s.%s"%(name, type) for name, type in self if type])])))
 
 	def __unicode__(self):
 		return u", ".join([argument[0] for argument in self])
@@ -346,7 +351,7 @@ class vdeclarations(dict, vstatement):
 
 class vredim(list, vstatement):
 	
-	def __init__(self, preserve=False, line=None):
+	def __init__(self, preserve, line=None):
 		vstatement.__init__(self, line)
 		self.preserve=preserve
 
@@ -361,22 +366,33 @@ class vredim(list, vstatement):
 			value.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
+		"""
 		preserve=", preserve=True" if self.preserve else ""
 		return [(self.line, ident, u"redim(%s, [%s]%s)"%\
 			(name, value, preserve)) for name, value in self]
+		"""
+		return [(self.line, ident, u"%s.redim(%s%s)"% \
+			(name, self.preserve, u", %s"%value if value else u"")) \
+			for name, value in self]
 
 class verase(vstatement):
 	
-	def __init__(self, name, line=None):
+	def __init__(self, name, expressions=None, line=None):
 		vstatement.__init__(self, line)
 		self.name=name
+		self.expressions=expressions
 
 	def scope_names(self, mysource, myclass, myprocedure):
 		vstatement.scope_names(self, mysource, myclass, myprocedure)
 		self.name.scope_names(mysource, myclass, myprocedure)
+		if self.expressions:
+			self.expressions.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
+		"""
 		return ((self.line, ident, u"erase(%s)"%self.name),)
+		"""
+		return ((self.line, ident, u"%s.erase(%s)"%(self.name, self.expressions or u"")),)
 
 class vlet(vstatement):
 
@@ -470,7 +486,7 @@ class vconstant(vstatement):
 		self.value.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
-		return ((self.line, ident, u"%s=constant(value=%s)"%(self.name, self.value)),)
+		return ((self.line, ident, u"%s=constant(%s)"%(self.name, self.value)),)
 
 class vcall(vstatement):
 
@@ -909,7 +925,7 @@ class vexitfunction(vstatement):
 
 	def scope_names(self, mysource, myclass, myprocedure):
 		if not isinstance(myprocedure, vfunction):
-			raise errors.expected_something(u"Function", line=self.line)
+			raise errors.expected_function(line=self.line)
 		self.myprocedure=myprocedure
 
 	def compose(self, ident):
@@ -922,7 +938,7 @@ class vexitsub(vstatement):
 
 	def scope_names(self, mysource, myclass, myprocedure):
 		if not isinstance(myprocedure, vsub):
-			raise errors.expected_something(u"Sub")
+			raise errors.expected_sub(line=self.line)
 
 	def compose(self, ident):
 		return ((self.line, ident, u"return"),)
@@ -1235,7 +1251,7 @@ class vclass(vstatement):
 				self.default.arguments), line=self.line), line=self.line)), line=self.line))
 		if self.destructor:
 			if not isinstance(self.destructor, vsub):
-				raise errors.expected_something(u"sub")
+				raise errors.expected_sub()
 			if self.destructor.arguments:
 				raise errors.constructor_or_destructor_have_arguments
 			self.statements.insert(0, vsub(python_destructor, deepcopy(self.destructor.arguments),
@@ -1248,7 +1264,7 @@ class vclass(vstatement):
 				statements.join(vinitializations(self, line=self.line))
 			if self.constructor:
 				if not isinstance(self.constructor, vsub):
-					raise errors.expected_something(u"Sub")
+					raise errors.expected_sub(u"Sub")
 				if self.constructor.arguments:
 					raise errors.constructor_or_destructor_have_arguments
 				arguments=deepcopy(self.constructor.arguments)

@@ -1,8 +1,5 @@
 
-from .. import errors, types
-from ..subtypes import *
-from ..variables import *
-from ..conversions import *
+from ..subtypes import generic, string
 
 
 class v_wscript(generic):
@@ -11,7 +8,7 @@ class v_wscript(generic):
 		return string(u"VDOM VScript (Beta)")
 
 	def v_echo(self, *arguments):
-		debug(" ".join([unicode(as_value(argument)) for argument in arguments]), console=True)
+		debug(" ".join([unicode(argument.as_simple) for argument in arguments]), console=True)
 
 
 v_wscript=v_wscript()

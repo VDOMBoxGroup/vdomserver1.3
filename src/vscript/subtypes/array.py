@@ -1,8 +1,18 @@
 
-import sys
-from copy import copy, deepcopy
-from .. import errors, types
+from copy import deepcopy
+from .. import errors
+from ..primitives import subtype
+from .empty import v_empty
+from .integer import integer
+from ..variables import variant
 
+
+def measure(items):
+	subscripts=[]
+	while isinstance(items, list):
+		subscripts.insert(0, len(items)-1)
+		items=items[0]
+	return subscripts
 
 def dim(subscripts):
 	array=[v_empty]*(subscripts[0]+1)
@@ -13,51 +23,162 @@ def dim(subscripts):
 			array.append(deepcopy(item))
 	return array
 
-def redim(subarray, subscripts, index):
+def copylist(items):
+	return [copylist(item) for item in items] \
+		if items and isinstance(items[0], list) \
+		else [item.copy for item in items]
+
+def redim(items, subscripts, index):
 	subscript=subscripts[index]
 	if index>0:
-		if subscript!=len(subarray)-1:
+		if subscript!=len(items)-1:
 			raise errors.subscript_out_of_range
-		for element in subarray:
-			redim(element, subscripts, index=index-1)
+		for item in items:
+			redim(item, subscripts, index-1)
 	else:
-		if subscript<len(subarray):
-			del subarray[subscript+1:]
-		elif subscript>len(subarray):
-			subarray.extend([v_empty]*(subscript+1-len(subarray)))
+		if subscript<len(items):
+			del items[subscript+1:]
+		elif subscript>len(items):
+			items.extend([v_empty]*(subscript+1-len(items)))
 
-def erase(subarray, level):
-	if level:
-		for element in subarray:
-			erase(element, level-1)
+def erase(items):
+	if items and isinstance(items[0], list):
+		for item in items: erase(item)
 	else:
-		subarray[:]=[v_empty]*len(subarray)
+		items[:]=[v_empty]*len(items)
 
-def count(subarray, subscripts=None):
-	if subscripts is None:
-		subscripts=[]
-		count(subarray, subscripts)
-		return subscripts
-	else:
-		subscripts.insert(0, len(subarray)-1)
-		if subarray and isinstance(subarray[0], list):
-			count(subarray[0], subscripts)
+def count(items):
+	return sum(len(item) for item in items) \
+		if items and isinstance(items[0], list) else len(items)
 
 
-class array_iterator(object):
+class array(subtype):
 
-	def __init__(self, subscripts, values):
-		self.subscripts=subscripts
-		self.value=values
+	def __init__(self, items=None, subscripts=None, static=None):
+		if items is not None:
+			self._items=items
+			self._subscripts=measure(items)
+			self._static=static
+		elif subscripts is not None:
+			self._items=dim(subscripts)
+			self._subscripts=subscripts
+			self._static=static
+		else:
+			self._items=[]
+			self._subscripts=[]
+			self._static=static
+
+	def __call__(self, *arguments, **keywords):
+		if "let" in keywords:
+			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			simple, items=keywords["let"].as_simple, self._items
+			try:
+				for index in arguments[-1:0:-1]: items=items[index.as_integer]
+				items[arguments[0].as_integer]=simple
+			except IndexError:
+				raise errors.subscript_out_of_range
+		elif "set" in keywords:
+			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			complex, items=keywords["set"].as_complex, self._items
+			try:
+				for index in arguments[-1:0:-1]: items=items[index.as_integer]
+				items[arguments[0].as_integer]=complex
+			except IndexError:
+				raise errors.subscript_out_of_range
+		else:
+			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			result=self._items
+			try:
+				for index in reversed(arguments): result=result[index.as_integer]
+				return result
+			except IndexError:
+				raise errors.subscript_out_of_range
+
+
+	copy=property(lambda self: array(copylist(self._items),
+		subscripts=deepcopy(self._subscripts), static=self._static))
+
+
+	code=property(lambda self: 8204)
+	name=property(lambda self: "Array")
+
+
+	def redim(self, preserve, *subscripts):
+		if self._static:
+			raise errors.static_array
+		if subscripts:
+			self._subscripts=[subscript.as_integer for subscript in subscripts]
+			if preserve: redim(self._items, self._subscripts, len(self._subscripts)-1)
+			else: self._items=dim(self._subscripts)
+		else:
+			self._items=[]
+			self._subscripts=[]
+
+	def erase(self, *arguments):
+		if self._static:
+			if arguments:
+				if len(arguments)>len(self._subscripts):
+					raise errors.wrong_number_of_arguments
+				elif len(arguments)<len(self._subscripts):
+					items=self._items
+					try:
+						for index in reversed(arguments): items=items[index.as_integer]
+					except IndexError:
+						raise errors.subscript_out_of_range
+					erase(items)
+				else:
+					items=self._items
+					try:
+						for index in arguments[-1:0:-1]: items=items[index.as_integer]
+						items[arguments[0].as_integer]=v_empty
+					except IndexError:
+						raise errors.subscript_out_of_range
+			else:
+				erase(self._items)
+		else:
+			if arguments:
+				if len(arguments)>1: raise errors.wrong_number_of_arguments
+				try: del self._items[arguments[0].as_integer]
+				except KeyError: raise errors.subscript_out_of_range
+				self._subscripts[0]-=1
+			else:
+				del self._items[:]
+				self._subscripts=[]
+
+
+	as_simple=property(lambda self: self)
+	as_array=property(lambda self: self)
+
+
+	dimension=property(lambda self: len(self._subscripts))
+	items=property(lambda self: self._items)
+
+
+	def subarray(self, *indices):
+		if len(indices)>=len(self._subscripts): raise errors.wrong_number_of_arguments
+		items=self._items
+		try:
+			for index in reversed(indices): items=items[index]
+		except IndexError:
+			raise errors.subscript_out_of_range
+		return copylist(items)
+
+	def lbound(self, dimension):
+		if dimension<1 or dimension>len(self._subscripts):
+			raise errors.wrong_number_of_arguments
+		return 0
+
+	def ubound(self, dimension):
+		if dimension<1 or dimension>len(self._subscripts):
+			raise errors.wrong_number_of_arguments
+		return self._subscripts[dimension-1]
 	
-	def __iter__(self):
-		return self.next()
 
-	def next(self):
-		edge=len(self.subscripts)-1
+	def __iter__(self):
+		edge=len(self._subscripts)-1
 		if edge<0: return
-		iterators=[None]*len(self.subscripts)
-		iterators[edge]=iter(self.value)
+		iterators=[None]*len(self._subscripts)
+		iterators[edge]=iter(self._items)
 		level=edge
 		while level<=edge:
 			if level:
@@ -70,190 +191,15 @@ class array_iterator(object):
 					iterators[level]=iter(array)
 			else:
 				for item in iterators[level]:
-					yield item
+					yield variant(item)
 				level+=1
 
-class array(object):
-
-	def __init__(self, value=None, subscripts=None):
-		if value is not None:
-			self.subscripts=count(value)
-			self.value=value
-			self.static=None
-		elif subscripts is not None:
-			self.subscripts=subscripts
-			self.value=dim(subscripts)
-			self.static=None
-		else:
-			self.subscripts=[]
-			self.value=[]
-			self.static=None
-
-	def __call__(self, *arguments, **keywords):
-		if "let" in keywords:
-			self.let(*arguments, **keywords)
-		elif "set" in keywords:
-			self.set(*arguments, **keywords)
-		else:
-			return self.get(*arguments, **keywords)
-
-
-	def get(self, *indexes, **keywords):
-		if len(indexes)!=len(self.subscripts):
-			raise errors.subscript_out_of_range
-		try:
-			result=self.value
-			for index in reversed(indexes):
-				result=result[as_integer(index)]
-			return result
-		except IndexError:
-			exclass, exexception, extraceback=sys.exc_info()
-			raise errors.subscript_out_of_range, None, extraceback
-
-	def let(self, *indexes, **keywords):
-		if not indexes:
-			return keywords["let"]
-		if len(indexes)!=len(self.subscripts):
-			raise errors.subscript_out_of_range
-		try:
-			elements=self.value
-			for index in indexes[-1:0:-1]:
-				elements=elements[as_integer(index)]
-			elements[as_integer(indexes[0])]=as_value(keywords["let"])
-		except IndexError:
-			exclass, exexception, extraceback=sys.exc_info()
-			raise errors.subscript_out_of_range, None, extraceback
-
-	def set(self, *indexes, **keywords):
-		if not indexes:
-			return keywords["set"]
-		if len(indexes)!=len(self.subscripts):
-			raise errors.subscript_out_of_range
-		try:
-			elements=self.value
-			for index in indexes[-1:0:-1]:
-				elements=elements[as_integer(index)]
-			elements[as_integer(indexes[0])]=as_generic(keywords["set"])
-		except IndexError:
-			exclass, exexception, extraceback=sys.exc_info()
-			raise errors.subscript_out_of_range, None, extraceback
-
-
-	def get_type_code(self):
-		return 8204
-
-	def get_type_name(self):
-		return "Array"
-
-
-	dimension=property(lambda self: len(self.subscripts))
-
-
-	def redim(self, subscripts, preserve=False):
-		if self.static:
-			raise errors.static_array
-		if subscripts:
-			subscripts=[as_integer(subscript) for subscript in subscripts]
-			if preserve:
-				redim(self.value, subscripts, len(subscripts)-1)
-			else:
-				self.value=dim(subscripts)
-		else:
-			self.value=[]
-		self.subscripts=deepcopy(subscripts)
-
-	def erase(self):
-		if self.static:
-			erase(self.value, len(self.subscripts)-1)
-		else:
-			del self.value[:]
-			self.subscripts=[]
-
-
-	def __iter__(self):
-		return array_iterator(self.subscripts, self.value).next()
-
-
-	def __add__(self, another):
-		raise errors.type_mismatch
-
-	def __sub__(self, another):
-		raise errors.type_mismatch
-
-	def __mul__(self, another):
-		raise errors.type_mismatch
-
-	def __div__(self, another):
-		raise errors.type_mismatch
-
-	def __floordiv__(self, another):
-		raise errors.type_mismatch
-
-	def __mod__(self, another):
-		raise errors.type_mismatch
-
-	def __pow__(self, another):
-		raise errors.type_mismatch
-
-
-	def __eq__(self, another):
-		raise errors.type_mismatch
-
-	def __ne__(self, another):
-		raise errors.type_mismatch
-
-	def __lt__(self, another):
-		raise errors.type_mismatch
-
-	def __gt__(self, another):
-		raise errors.type_mismatch
-
-	def __le__(self, another):
-		raise errors.type_mismatch
-
-	def __ge__(self, another):
-		raise errors.type_mismatch
-
-
-	def __and__(self, another):
-		raise errors.type_mismatch
-
-	def __or__(self, another):
-		raise errors.type_mismatch
-
-	def __xor__(self, another):
-		raise errors.type_mismatch
-
-
-	def __invert__(self):
-		raise errors.type_mismatch
-		
-	def __neg__(self):
-		raise errors.type_mismatch
-
-	def __pos__(self):
-		raise errors.type_mismatch
-
-	def __abs__(self):
-		raise errors.type_mismatch
-
-
-	def __int__(self):
-		raise errors.type_mismatch
-
-	def __str__(self):
-		raise errors.type_mismatch
-
-	def __unicode__(self):
-		raise errors.type_mismatch
-
-	def __nonzero__(self):
-		raise errors.type_mismatch
+	def __len__(self):
+		return integer(count(self._items))
 
 
 	def __repr__(self):
-		return "ARRAY@%s:%s"%(object.__repr__(self)[-9:-1], list.__repr__(self.value))
+		return "ARRAY@%08X:%r"%(id(self), self._items)
 
 
-from .empty import empty, v_empty
-from ..conversions import as_value, as_generic, as_integer
+	
