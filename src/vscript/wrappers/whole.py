@@ -2,17 +2,14 @@
 import hashlib, xml.dom.minidom
 import managers
 from utils.remote_api import VDOM_service
-from .. import errors, types
-from ..subtypes import *
-from ..variables import *
-from ..conversions import *
-from ..exceptions import v_scripterror
+from .. import errors
+from ..subtypes import boolean, generic, string, true, false, v_empty
 
 
-class whole_error(v_scripterror):
+class whole_error(errors.generic):
 
 	def __init__(self, message, line=None):
-		v_scripterror.__init__(self,
+		errors.generic.__init__(self,
 			message=u"WHOLE error: %s"%message,
 			line=line)
 
@@ -101,103 +98,105 @@ def search_for_action_names(string):
 class v_wholeapplication(generic):
 
 	def __init__(self, url, service, application):
-		self.url=url
-		self.service=service
-		self.application=application
+		self._url=url
+		self._service=service
+		self._application=application
 		try:
-			result=self.service.remote("get_top_objects", None, False)
+			result=self._service.remote("get_top_objects", None, False)
 		except Exception as error:
-			raise whole_remote_call_error(self.url, error)
-		self.container=search_for_api_container(result)
-		if not self.container:
+			raise whole_remote_call_error(self._url, error)
+		self._container=search_for_api_container(result)
+		if not self._container:
 			raise whole_no_api_error
+
 
 	def v_application(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("application")
 		else:
-			if not self.service:
+			if not self._service:
 				raise whole_no_connection_error
-			return string(self.application)
+			return string(self._application)
 
 	def v_container(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("container")
 		else:
-			return string(self.container) if self.container else v_empty
+			return string(self._container) if self._container else v_empty
 
 	def v_actions(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("actions")
 		else:
-			if not self.service:
+			if not self._service:
 				raise whole_no_connection_error
 			try:
-				result=self.service.remote("get_server_actions_list", [self.container], False)
+				result=self._service.remote("get_server_actions_list", [self._container], False)
 			except Exception as error:
-				raise whole_remote_call_error(self.url, error)
+				raise whole_remote_call_error(self._url, error)
 			names=search_for_action_names(result)
 			return array([string(name) for name in names if name.lower()!="onload"])
 
+
 	def v_invoke(self, name, *arguments):
-		if not self.service:
+		if not self._service:
 			raise whole_no_connection_error
 		try:
 			if arguments:
 				if len(arguments)==1:
-					parameter=as_string(arguments[0])
+					parameter=arguments[0].as_string
 				else:
-					parameter=[as_string(argument) for argument in arguments]
+					parameter=[argument.as_string for argument in arguments]
 			else:
 				parameter=None
-			result=self.service.call(self.container, as_string(name), parameter)
+			result=self.service.call(self._container, name.as_string, parameter)
 		except Exception as error:
-			raise whole_remote_call_error(self.url, error)
+			raise whole_remote_call_error(self._url, error)
 		return string(result)
+
 
 class v_wholeconnection(generic):
 	
 	def __init__(self):
-		self.service=None
+		self._service=None
 
-	def v_open(self, url, login, password):
-		self.url=as_string(url)
-		self.login=as_string(login)
-		self.password=hashlib.md5(as_string(password)).hexdigest()
-		try:
-			self.service=VDOM_service.connect(self.url, self.login, self.password, None)
-		except Exception as error:
-			raise whole_connection_error(self.url, self.login, error)
-
-	def v_close(self):
-		self.service=None
-
-	def v_applications(self, name, container=None, let=None, set=None):
-		if let is not None or set is not None:
-			raise errors.object_has_no_property("applications")
-		else:
-			if not self.service:
-				raise whole_no_connection_error
-			try:
-				result=self.service.remote("list_applications", None, True)
-			except Exception as error:
-				raise whole_remote_call_error(self.url, error)
-			application=search_for_application_id(as_string(name), result)
-			if not application: raise whole_no_application
-			try:
-				service=VDOM_service.connect(self.url, self.login, self.password, application)
-			except Exception as error:
-				raise whole_connection_error(self.url, self.login, error)
-			return v_wholeapplication(self.url, service, application)
 
 	def v_isconnected(self, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property("isconnected")
 		else:
-			if not self.service:
-				return v_false_value
+			if not self._service: return boolean(false)
+			try: self._service.remote("keep_alive", None, True)
+			except: return boolean(false)
+			return boolean(true)
+
+
+	def v_open(self, url, login, password):
+		self._url=url.as_string
+		self._login=login.as_string
+		self._password=hashlib.md5(password.as_string).hexdigest()
+		try:
+			self._service=VDOM_service.connect(self._url, self._login, self._password, None)
+		except Exception as error:
+			raise whole_connection_error(self._url, self._login, error)
+
+	def v_close(self):
+		self._service=None
+
+	def v_applications(self, name, container=None, let=None, set=None):
+		if let is not None or set is not None:
+			raise errors.object_has_no_property("applications")
+		else:
+			if not self._service:
+				raise whole_no_connection_error
 			try:
-				self.service.remote("keep_alive", None, True)
-			except:
-				return v_false_value
-			return v_true_value
+				result=self._service.remote("list_applications", None, True)
+			except Exception as error:
+				raise whole_remote_call_error(self._url, error)
+			application=search_for_application_id(name.as_string, result)
+			if not application: raise whole_no_application
+			try:
+				service=VDOM_service.connect(self._url, self._login, self._password, application)
+			except Exception as error:
+				raise whole_connection_error(self._url, self._login, error)
+			return v_wholeapplication(self._url, service, application)

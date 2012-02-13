@@ -1,99 +1,114 @@
 
-from .. import errors, types
+from .. import errors
+from ..primitives import subtype
 
 
-class generic(object):
-
-	def __init__(self):
-		pass
+class generic(subtype):
 
 	def __call__(self, *arguments, **keywords):
 		raise errors.object_has_no_property
 
 
-	def get_type_code(self):
-		return 9
+	value=property(lambda self: self().value)
+	
 
-	def get_type_name(self):
-		return "Object"
+	code=property(lambda self: 9)
+	name=property(lambda self: "Object")
+
+
+	as_simple=property(lambda self: self().as_simple)
+	as_complex=property(lambda self: self)
+	as_array=property(lambda self: self().as_array)
+	as_binary=property(lambda self: self().as_binary)
+	as_boolean=property(lambda self: self().as_boolean)
+	as_date=property(lambda self: self().as_date)
+	as_double=property(lambda self: self().as_double)
+	as_generic=property(lambda self: self)
+	as_integer=property(lambda self: self.as_integer)
+	as_string=property(lambda self: self.as_string)
+
+	def as_specific(self, specific):
+		if not isinstance(self, specific):
+			raise errors.object_required
+		return self
 
 
 	def __add__(self, another):
-		raise errors.type_mismatch
+		return self()+another
 
 	def __sub__(self, another):
-		raise errors.type_mismatch
+		return self()-another
 
 	def __mul__(self, another):
-		raise errors.type_mismatch
+		return self()*another
 
 	def __div__(self, another):
-		raise errors.type_mismatch
+		return self()/another
 
 	def __floordiv__(self, another):
-		raise errors.type_mismatch
+		return self()//another
 
 	def __mod__(self, another):
-		raise errors.type_mismatch
+		return self()%another
 
 	def __pow__(self, another):
-		raise errors.type_mismatch
+		return self()**another
 
 
 	def __eq__(self, another):
-		raise errors.type_mismatch
+		return self()==another
 
 	def __ne__(self, another):
-		raise errors.type_mismatch
+		return self()!=another
 
 	def __lt__(self, another):
-		raise errors.type_mismatch
+		return self()<another
 
 	def __gt__(self, another):
-		raise errors.type_mismatch
+		return self()>another
 
 	def __le__(self, another):
-		raise errors.type_mismatch
+		return self()<=another
 
 	def __ge__(self, another):
-		raise errors.type_mismatch
+		return self()>=another
 
 
 	def __and__(self, another):
-		raise errors.type_mismatch
+		return self()&another
 
 	def __or__(self, another):
-		raise errors.type_mismatch
+		return self()|another
 
 	def __xor__(self, another):
-		raise errors.type_mismatch
+		return self()^another
 
 
 	def __invert__(self):
-		raise errors.type_mismatch
+		return ~self()
 		
 	def __neg__(self):
-		raise errors.type_mismatch
+		return neg(self())
 
 	def __pos__(self):
-		raise errors.type_mismatch
+		return pos(self())
 
 	def __abs__(self):
-		raise errors.type_mismatch
+		return abs(self())
 
 
 	def __int__(self):
-		raise errors.type_mismatch
-		
-	def __str__(self):
-		raise errors.type_mismatch
-		
+		return int(self())
+			
+	def __float__(self):
+		return float(self())
+	
 	def __unicode__(self):
-		raise errors.type_mismatch
-
+		return unicode(self())
+	
 	def __nonzero__(self):
-		raise errors.type_mismatch
+		return bool(self())
 
 
 	def __repr__(self):
-		return "GENERIC@%s"%object.__repr__(self)[-9:-1]
+		return "GENERIC@%08X"%id(self)

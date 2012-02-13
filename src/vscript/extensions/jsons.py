@@ -1,72 +1,73 @@
 
+import types
 from json import JSONDecoder, JSONEncoder
+from json.decoder import JSONObject, JSONArray
 from json.scanner import py_make_scanner
-from .. import errors, types
-from ..subtypes import *
-from ..variables import *
-from ..conversions import *
-from .dictionary import v_dictionary
+from .. import errors
+from ..subtypes import array, binary, boolean, date, dictionary, double, \
+	empty, error, generic, integer, mismatch, nothing, null, string, \
+	v_empty, v_null
 
 
+def wrap(value):
+	def unknown(value):
+		raise errors.system_error, u"Unexpected %s object"%value.__class__.__name__
+	return {
+		array: lambda value: value,
+		dictionary: lambda value: value,
+		types.NoneType: lambda value: v_null,
+		bool: lambda value: boolean(value),
+		float: lambda value: double(value),
+		int: lambda value: integer(value),
+		long: lambda value: integer(value),
+		str: lambda value: string(unicode(value)),
+		unicode: lambda value: string(value)} \
+			.get(type(value), unknown)(value)
 
-default_decoder=JSONDecoder()
-
-default_parse_float=default_decoder.parse_float
-default_parse_int=default_decoder.parse_int
-default_parse_constant=default_decoder.parse_constant
-default_parse_object=default_decoder.parse_object
-default_parse_array=default_decoder.parse_array
-default_parse_string=default_decoder.parse_string
-
-
-
-def vscript_parse_float(*arguments):
-	return double(default_parse_float(*arguments))
-
-def vscript_parse_int(*arguments):
-	return integer(default_parse_int(*arguments))
-
-def vscript_parse_constant(*arguments):
-	return double(default_parse_constant(*arguments))
 
 def vscript_parse_object(*arguments):
-	obj, end=default_parse_object(*arguments)
-	return v_dictionary(obj), end
+	value, position=JSONObject(*arguments)
+	return dictionary({string(key): wrap(value) for key, value in value.iteritems()}), position
 
 def vscript_parse_array(*arguments):
-	obj, end=default_parse_array(*arguments)
-	return array(obj), end
-
-def vscript_parse_string(*arguments):
-	obj, end=default_parse_string(*arguments)
-	return string(obj), end
+	value, position=JSONArray(*arguments)
+	return array([wrap(item) for item in value]), position
 
 
-
-class VScriptDecoder(JSONDecoder):
+class VScriptJSONDecoder(JSONDecoder):
 
 	def __init__(self, *arguments, **keywords):
 		JSONDecoder.__init__(self, *arguments, **keywords)
-		self.parse_float=vscript_parse_float
-		self.parse_int=vscript_parse_int
-		self.parse_constant=vscript_parse_constant
 		self.parse_object=vscript_parse_object
 		self.parse_array=vscript_parse_array
-		self.parse_string=vscript_parse_string
 		self.scan_once=py_make_scanner(self)
 
-class VScriptEncoder(JSONEncoder):
+class VScriptJSONEncoder(JSONEncoder):
 
-	def default(self, object):
-		if isinstance(object, (double, integer, string, array, v_dictionary)):
-			return object.value
-		else:
-			return JSONEncoder.default(self, object)
-
+	def default(self, value):
+		def unknown(value):
+			raise errors.system_error, u"Unexpected %s object"%value.__class__.__name__
+		return {
+			array: lambda value: value.items,
+			boolean: lambda value: value.value,
+			date: lambda value: unicode(value),
+			dictionary: lambda value: {key.as_string: value \
+				for key, value in value.items.iteritems()},
+			double: lambda value: value.value,
+			empty: lambda value: value.name,
+			error: lambda value: value.name,
+			generic: lambda value: value.name,
+			integer: lambda value: value.value,
+			mismatch: lambda value: unicode(value),
+			nothing: lambda value: value.name,
+			null: lambda value: v_null,
+			string: lambda value: value.value} \
+				.get(type(value), unknown)(value)
 
 
 def v_asjson(value):
-	return VScriptDecoder().decode(as_string(value))
+	value=VScriptJSONDecoder().decode(value.as_string)
+	return value if isinstance(value, (array, dictionary)) else wrap(value)
 
 def v_tojson(value):
-	return VScriptEncoder().encode(as_value(value))
+	return string(VScriptJSONEncoder().encode(value.subtype))

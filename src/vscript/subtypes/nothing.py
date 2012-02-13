@@ -1,12 +1,11 @@
 
-from .. import errors, types
+from .. import errors
 from .generic import generic
 
 
 class nothing(generic):
 
-	def get_type_name(self):
-		return "Nothing"
+	name=property(lambda self: "Nothing")
 
 
 	def __copy__(self):
@@ -17,7 +16,7 @@ class nothing(generic):
 
 
 	def __repr__(self):
-		return "NOTHING@%s"%object.__repr__(self)[-9:-1]
+		return "NOTHING@%08X"%id(self)
 
 
 v_nothing=nothing()

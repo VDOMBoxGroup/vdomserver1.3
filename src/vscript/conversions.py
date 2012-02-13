@@ -1,126 +1,69 @@
 
-from . import errors, types
-from .subtypes.array import array
-from .subtypes.binary import binary
-from .subtypes.boolean import boolean, v_true_value, v_false_value
-from .subtypes.date import date
-from .subtypes.double import double, nan, infinity
-from .subtypes.empty import empty, v_empty
-from .subtypes.error import error
-from .subtypes.generic import generic
-from .subtypes.integer import integer
-from .subtypes.nothing import nothing, v_nothing
-from .subtypes.null import null, v_null
-from .subtypes.string import string
+import types
+from . import errors
+from .subtypes import boolean, double, integer, null, string, v_null
+
+
+all=["as_is", "as_value", "as_generic", "as_specific",
+	"as_boolean", "as_double", "as_integer", "as_string",
+	"as_array", "as_date", "as_binary",
+	"pack", "unpack"]
 
 
 def as_is(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	return value
+	return value.subtype
 
 def as_value(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	return value
+	return value.as_simple
+
+def as_generic(value):
+	return value.as_generic
 
 def as_specific(value, specific):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if not isinstance(value, specific):
-		raise errors.object_required
-	return value
+	return value.as_specific(specific)
+
+
+def as_boolean(value):
+	return value.as_boolean
+
+def as_double(value):
+	return value.as_double
+
+def as_integer(value):
+	return value.as_integer
+
+def as_string(value):
+	return value.as_string
 
 
 def as_array(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	if not isinstance(value, array):
-		raise errors.type_mismatch
-	return value
-
-def as_binary(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if not isinstance(value, binary):
-		raise errors.object_required
-	return value.value
-
-def as_boolean(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	return bool(value)
+	return value.as_array
 
 def as_date(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if not isinstance(value, date):
-		raise errors.object_required
-	return value.value
+	return value.as_date
 
-def as_double(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	return float(value)
-
-def as_generic(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if not isinstance(value, generic):
-		raise errors.object_required
-	return value
-
-def as_integer(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	return int(value)
-
-def as_string(value):
-	if isinstance(value, (variant, constant, shadow)):
-		value=value.value
-	if isinstance(value, generic):
-		value=value()
-	return unicode(value)
+def as_binary(value):
+	return value.as_binary
 
 
-def type_mismatch_handler(value):
-	raise errors.type_mismatch
+def pack(self, default=None):
+	def unknown(value): raise errors.type_mismatch
+	return {
+		int: lambda value: integer(value),
+		long: lambda value: integer(value),
+		str: lambda value: string(unicode(value)),
+		unicode: lambda value: string(value),
+		bool: lambda value: boolean(value),
+		float: lambda value: double(value),
+		types.NoneType: lambda value: v_null} \
+			.get(type(self), default or unknown)(value)
 
-
-pack_table={
-	int: lambda value: integer(value),
-	long: lambda value: integer(value),
-	str: lambda value: string(unicode(value)),
-	unicode: lambda value: string(value),
-	bool: lambda value: boolean(value),
-	float: lambda value: double(value),
-	types.none: lambda value: v_null}
-
-def pack(value):
-	return pack_table.get(type(value), type_mismatch_handler)(value)
-
-unpack_table={
-	integer: lambda value: value.value,
-	string: lambda value: value.value,
-	binary: lambda value: value.value,
-	boolean: lambda value: value.value,
-	double: lambda value: value.value,
-	null: lambda value: None}
-
-def unpack(value):
-	return unpack_table.get(type(value), type_mismatch_handler)(value)
-
-
-from .variables.variant import variant
-from .variables.constant import constant
-from .variables.shadow import shadow
+def unpack(self, default=None):
+	def unknown(value): raise errors.type_mismatch
+	return {
+		integer: lambda value: value.value,
+		string: lambda value: value.value,
+		boolean: lambda value: value.value,
+		double: lambda value: value.value,
+		null: lambda value: None} \
+			.get(type(self), default or unknown)(value)
