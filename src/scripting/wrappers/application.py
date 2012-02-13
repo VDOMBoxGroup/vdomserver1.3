@@ -6,6 +6,9 @@ from file_access import storage as app_storage
 DBSCHEMA_ID = '753ea72c-475d-4a29-96be-71c522ca2097'
 DBTABLE_ID = '92269b6e-4b6b-4882-852f-f7ef0e89c079'
 
+db_local = threading.local()
+app_local = threading.local()
+
 class VDOM_objects(object):
 	
 	guid_regex=re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
@@ -200,9 +203,6 @@ class VDOM_database(object):
 		return self.database.get_tables_list()
 
 class VDOM_databases(object):
-		
-	__db = threading.local()
-
 	def __getattribute__(self, name):
 			try:
 				return object.__getattribute__(self, name)
