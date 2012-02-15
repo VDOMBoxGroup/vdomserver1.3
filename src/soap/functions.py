@@ -180,10 +180,6 @@ def get_object_script_presentation(sid, skey, appid, objid, _SOAPContext):
 def submit_object_script_presentation(sid, skey, appid, objid, pres, _SOAPContext):
 	return proxy([managers.soap_server.submit_object_script_presentation, sid, skey, appid, objid, pres])
 
-# get code interface data
-def get_code_interface_data(sid, skey, appid, _SOAPContext):
-	return proxy([managers.soap_server.get_code_interface_data, sid, skey, appid])
-
 # modify resource
 def modify_resource(sid, skey, appid, objid, resid, attrname, operation, attr, _SOAPContext):
 	return proxy([managers.soap_server.modify_resource, sid, skey, appid, objid, resid, attrname, operation, attr])
