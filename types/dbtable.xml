@@ -573,6 +573,8 @@ def get_data(app_id, object_id, xml_param):
 		table = get_table(app_id,object_id)
 		limit_num = None
 		offset_num = None
+		filter_query = None
+		order = (None,None)
 		if xml_param:
 			from xml.dom.minidom import parseString
 			dom_param = parseString(xml_param.encode("UTF-8"))
@@ -582,8 +584,16 @@ def get_data(app_id, object_id, xml_param):
 				offset =  dom_param.getElementsByTagName("offset")
 				if offset:
 					offset_num = offset[0].firstChild.nodeValue
-				
-		data = table.get_data_xml(limit_num,offset_num)
+			filter = dom_param.getElementsByTagName("where")
+			if filter:
+				filter_query = filter[0].firstChild.nodeValue
+			orderby = dom_param.getElementsByTagName("orderby")
+			if orderby:
+				order_direct = getAttribute("sort") 
+				order_query = orderby[0].firstChild.nodeValue
+				order = (order_query,order_direct)
+					
+		data = table.get_data_xml(limit_num,offset_num,filter_query,order)
 		return "<Result>%s</Result>"%data
 	except Exception, e:
 		return "<Error>Getting data failed: %s</Error>"%str(e)
