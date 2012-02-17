@@ -424,13 +424,19 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 					query.commit()
 
 	
-	def get_data_xml(self,limit = None,offset = None):
+	def get_data_xml(self,limit = None,offset = None, filter_query = None, order_by = (None, None)):
 		range = ""
+		filter_sql = ""
+		oreder_sql = ""
 		if limit and limit.isdigit():
-			range = "LIMIT "+str(int(limit))
+			range = " LIMIT "+str(int(limit))
 			if offset and offset.isdigit():
 				range += " OFFSET "+str(int(offset))
-		query = VDOM_sql_query(self.owner_id,self.database_id, "select * from `%s` %s"%(self.name,range))
+		if filter_query:
+			filter_sql = " where %s"%filter_query
+		if order_by and order_by[0]:
+			oreder_sql = " order by %s %s"%order_by
+		query = VDOM_sql_query(self.owner_id,self.database_id, "select * from `%s` %s%s%s"%(self.name, filter_sql, range, oreder_sql))
 		data = query.fetchall_xml()
 		del(query)
 		return data
