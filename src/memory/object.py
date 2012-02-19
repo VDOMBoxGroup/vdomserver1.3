@@ -246,6 +246,8 @@ class VDOM_object(object):
 			return
 		if not managers.acl_manager.session_user_has_access2(self.application.id, self.id, security.modify_object):
 			raise VDOM_exception_sec(_("Modifying object is not allowed"))
+		if str(actionname) in self.actions["name"]:
+			raise SOAPpy.faultType(name_error, _("Server action '%s' already exists") % str(actionname), "")
 		if not is_valid_identifier(actionname):
 			raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
 		self.__sem.lock()
