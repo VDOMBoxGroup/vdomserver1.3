@@ -871,9 +871,14 @@ class VDOM_web_services_server(object):
 			server_actions_element = None
 		else:
 			xml_actions = '<ServerActions>\n'
-			for _name in obj.actions["name"]:				
+			for _name in obj.actions["name"]:
 				x = obj.actions["name"][_name]
-				actionid = copy_object.create_action(x.name, x.code)
+				if _name in copy_object.actions["name"]:
+					y = copy_object.actions["name"][_name]
+					copy_object.set_action(y.id, x.code)
+					actionid = y.id
+				else:
+					actionid = copy_object.create_action(x.name, x.code)
 				xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" Language="" State="%s" />\n""" % (actionid, x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
 				action_map[x.id] = actionid
 			xml_actions += '</ServerActions>\n'
