@@ -217,9 +217,9 @@ class VDOM_file_manager(object):
 		
 		return fh
 	
-	def open_tmp_file(self, mode="w+b", prefix="", filename=None):
+	def open_tmp_file(self, mode="w+b", prefix=""):
 		from tempfile import TemporaryFile
-		return TemporaryFile(mode, prefix, os.path.join(VDOM_CONFIG["TEMP-DIRECTORY"], filename))
+		return TemporaryFile(mode=mode, prefix=prefix, dir=os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]))
 		
 	def compute_crc(self, restype, application_id, object_id, file_name):
 		"""Returns CRC of file"""
