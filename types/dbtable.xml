@@ -589,7 +589,7 @@ def get_data(app_id, object_id, xml_param):
 				filter_query = filter[0].firstChild.nodeValue
 			orderby = dom_param.getElementsByTagName("orderby")
 			if orderby:
-				order_direct = getAttribute("sort") 
+				order_direct = orderby[0].getAttribute("sort") 
 				order_query = orderby[0].firstChild.nodeValue
 				order = (order_query,order_direct)
 					

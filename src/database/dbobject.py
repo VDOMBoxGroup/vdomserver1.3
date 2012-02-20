@@ -436,7 +436,7 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 			filter_sql = " where %s"%filter_query
 		if order_by and order_by[0]:
 			oreder_sql = " order by %s %s"%order_by
-		query = VDOM_sql_query(self.owner_id,self.database_id, "select * from `%s` %s%s%s"%(self.name, filter_sql, range, oreder_sql))
+		query = VDOM_sql_query(self.owner_id,self.database_id, "select * from `%s` %s%s%s"%(self.name, filter_sql, oreder_sql,range))
 		data = query.fetchall_xml()
 		del(query)
 		return data
