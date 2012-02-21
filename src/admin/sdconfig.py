@@ -43,8 +43,9 @@ def run(request):
 	crypt_box = ""
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
-		managers.backup_manager.del_storage(driver)
-		driver = None
+		driver.erase_storage()
+		#managers.backup_manager.del_storage(driver)
+		#driver = None
 	if "devid" in args:
 		driver = managers.backup_manager.get_storage(args["devid"][0])
 		
@@ -62,10 +63,7 @@ def run(request):
 	if "save" in args:
 		ok = True
 		if not driver:
-			if "crypt-dev" in args:
-				crypt = True
-			else:
-				crypt = False
+			crypt = False
 			if "type" in args:
 				try:
 					if args["type"][0] == "external":
@@ -156,7 +154,7 @@ def run(request):
 				h_backup_time = '1'
 		
 	if driver:
-		crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
+		#crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
 		try:
 			path = driver.mount()
 			if path:
@@ -370,6 +368,7 @@ font-size:14px;
 .progress {
 width:120px;
 height:14px;
+display:none;
 border:1px solid #989898;
  border-radius: 10px;
     -moz-border-radius: 10px;
@@ -395,6 +394,7 @@ width:%s;
 .free-mem {
 font-size:12px;
 margin-top:15px;
+display:none;
 }
 
 .hdd-state .erase {
@@ -408,7 +408,8 @@ color:#fe0000;
 
 .hdd-state .crypt {
 margin-top:15px;
-font-size:12px
+font-size:12px;
+display:none;
 }
 
 .fl-left {
@@ -421,10 +422,11 @@ float:right;
 </style>
 
 <script language="javascript">
-function LoadImgWait(){
+function LoadImgWait(message){
+        var msg = message || "";
         document.configBackup.style.display='none';
 	document.getElementById('Imgload').style.display='';
-	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Backing up...";
+	parent.server.document.getElementById("MsgSvrInfo").innerHTML=msg;
 }
 function ChangeBackup(obj){
 	if (obj.value == "hourly"){
@@ -437,6 +439,7 @@ function ChangeBackup(obj){
 	  document.getElementById('x_hourly').style.display='none';
 	}
 }
+
 </script>
 </head>
 
@@ -504,7 +507,7 @@ function ChangeBackup(obj){
 
 	<div class="crypt"><label><input type="checkbox" name="crypt-dev"%(crypt)s>Crypt disk</label></div>
 	
-	<div class="erase"><a href="sdconfig.py?erase=%(dev)s">Erase this storage</a></div>
+	<div class="erase"><a href="sdconfig.py?erase=%(dev)s" onclick="if (confirm('Do you really want erase all data from storage?')){LoadImgWait(); return true;}else{return false;};">Erase this storage</a></div>
 
   </div>
   <div class="clear"> </div>
@@ -516,7 +519,7 @@ function ChangeBackup(obj){
         </div>
  </div>""" % apps_tag)
 	request.write("""
-<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes" /> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now" onclick="LoadImgWait();"/></center>
+<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving...');"/> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now" onclick="LoadImgWait('Backing up...');"/></center>
 </div>
 </form>
 </body>

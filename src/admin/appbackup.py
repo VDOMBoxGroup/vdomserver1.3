@@ -15,6 +15,12 @@ def run(request):
         applst = managers.xml_manager.get_applications()
         sm = managers.server_manager
         drivers = managers.backup_manager.get_storages()
+	from utils.card_connect import send_to_card_and_wait
+	login = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
+	add_cloud = True if login else False
+	if "forget" in args and "devid" in args:
+		driver = drivers[args["devid"][0]]
+		managers.backup_manager.del_storage(driver)
         if "device" in args and "abs" in args:
 		request.redirect("/sdconfig.py?type=%s" % args["device"][0])
 		return
@@ -164,9 +170,10 @@ font-size:10px;
 </style>
 
 <script language="javascript">
-function LoadImgWait(){
+function LoadImgWait(message){
+        var msg = message || "";
 	document.getElementById('Imgload').style.display='';
-	parent.server.document.getElementById("MsgSvrInfo").innerHTML="Saving backup configuration...";
+	parent.server.document.getElementById("MsgSvrInfo").innerHTML=msg;
 }
 </script>
 </head>
@@ -184,6 +191,8 @@ function LoadImgWait(){
    <table class="devices">""")
 	tasks_in_cron = managers.scheduler_manager.get_crontab()
         for driver in drivers:
+		if drivers[driver].type == "cloud_drive":
+			add_cloud = False
 		try:
 			task_id, schedule = managers.backup_manager.get_schedule(driver)
 		except:
@@ -191,16 +200,19 @@ function LoadImgWait(){
 		driver_icon = "ext-drive" if drivers[driver].type == "external_drive" else "cloud-drive"
 		checked = 'checked = "checked"' if task_id in dict(tasks_in_cron) else ''
                 request.write("""
-     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Restore from backup</a><a href="/appbackup.py?devid=%(drv)s">Config</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
+     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/appbackup.py?forget&devid=%(drv)s" onclick="LoadImgWait();">Forget</a><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Restore from backup</a><a href="/appbackup.py?devid=%(drv)s">Config</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
 	request.write("""
    </table>
-   <div class="submit-gray"><input type="submit" name="save" value="Save changes"/ onclick="LoadImgWait();"></div>
+   <div class="submit-gray"><input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving backup configuration...');"/></div>
   </div>
   <div class="block" style="padding-bottom:15px;">
    <h2>Add new backup storage</h2>
    <select name="device">
-    <option value="external">External device</option>
-    <option value="cloud">Cloud storage</option>
+    <option value="external">External device</option>""")
+	if add_cloud:
+		request.write("""
+    <option value="cloud">Cloud storage</option>""")
+	request.write("""
     <option value="smb">SMB storage</option>
    </select>
    <input type="submit" name="abs" value="Add storage"/>
