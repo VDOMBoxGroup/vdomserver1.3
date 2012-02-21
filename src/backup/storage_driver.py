@@ -146,6 +146,14 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 		else:
 			return False
 
+	def erase_storage(self):
+		try:
+			self.mount()
+			debug("let us remove everything from %s"%self.__path)
+		except Exception,e :
+			debug("Erase wrong: %s", e)
+
+			
 	def mount(self):
 		debug("MOUNT")
 		# SEARCH for not mounted drives
@@ -309,6 +317,13 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 		# No such configs. Nothing to do.
 			debug("There is no presented password. Nothing to do. Exit.")
 			raise Exception("There is no presented password. Nothing to do. Exit.")
+
+	def erase_storage(self):
+		try:
+			self.mount()
+			debug("let us remove everything from %s"%self.__path)
+		except Exception,e :
+			debug("Erase wrong: %s", e)
 
 	def mount(self):
 
