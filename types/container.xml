@@ -923,8 +923,7 @@ this.domCont.style.zindex = parseInt(newZindex,10);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="height" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width = parseInt(width,10);
-this.domCont.style.height = parseInt(height,10);
+$j(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
 		<Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
