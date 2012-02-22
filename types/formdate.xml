@@ -1450,8 +1450,10 @@ class VDOM_formdate(VDOM_object):
 			js = u"""<script type='text/javascript'>$j(function(){
 $j.datepicker.setDefaults($j.datepicker.regional['%(regional)s']); 
 $j.datepicker.setDefaults({ dateFormat: 'yy-mm-dd', showButtonPanel: %(showb)s });
-$j('#%(id)s').datepicker('destroy').datepicker();
-});</script>""" % { "id": id, "regional": self.regional, "showb": "true" if self.showbuttonpanel == "1" else "false"  }
+$j('#%(id)s').datepicker('destroy').datepicker({
+	onSelect: function(d,i) { execEventBinded('%(clean_id)s', "valuechange", {"itemValue": d}); }
+});
+});</script>""" % { "id": id, "clean_id": clean_id, "regional": self.regional, "showb": "true" if self.showbuttonpanel == "1" else "false"  }
 			modestyle = u"background:url('/0f94d563-04ee-0283-2138-62c68af01145.res') right 50% no-repeat;"
 		else:
 			js = u""
