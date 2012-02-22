@@ -467,8 +467,8 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			else:
 				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
 				return False
-		except Exception,e :
-			debug("SMB connection failed: %s", e)
+		except Exception as e :
+			debug("SMB connection failed: %s" % str(e))
 
 
 	def erase_storage(self):
@@ -503,8 +503,8 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			else:
 				debug("SMB mount to %s under %s %s FAILED!"%(self.__smb_host, self.__smb_login, self.__smb_pass))
 				return False
-		except Exception,e :
-			debug("SMB mount failed: %s", e)		
+		except Exception as e :
+			debug("SMB mount failed: %s" % str(e))		
 
 	def umount(self):
 		try:
@@ -522,7 +522,12 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 				debug("SMB umount %s FAILED!"%(self.__path))
 				return False
 		except Exception,e :
-			debug("SMB umount failed: %s", e)	
+			debug("SMB umount failed: %s", e)
+			
+	login=property(lambda self: self.__smb_login)
+	password=property(lambda self: self.__smb_pass)
+	host=property(lambda self: self.__smb_host)
+	location=property(lambda self: self.__smb_location)
 
 class VDOM_backup_storage_manager(object):
 
