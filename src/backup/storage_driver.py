@@ -490,7 +490,7 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 
 	def mount(self):
 		try:
-			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s -L %s"""%(self.__smb_host, self.__smb_login, self.__smb_pass, self.__smb_location)
+			cmd = """sh /opt/boot/mount_samba.sh -m -h %s -l %s -p %s -L %s"""%(self.__smb_host, self.__smb_login, self.__smb_pass, self.__smb_location)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
