@@ -3,6 +3,7 @@ import os, traceback
 import managers
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
+from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver #, VDOM_smb_storage_driver
 
 def run(request):
         sess = request.session()
@@ -200,7 +201,7 @@ function LoadImgWait(message){
 		driver_icon = "ext-drive" if drivers[driver].type == "external_drive" else "cloud-drive"
 		checked = 'checked = "checked"' if task_id in dict(tasks_in_cron) else ''
                 request.write("""
-     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/appbackup.py?forget&devid=%(drv)s" onclick="LoadImgWait();">Forget</a><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Restore from backup</a><a href="/appbackup.py?devid=%(drv)s">Config</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
+     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/appbackup.py?devid=%(drv)s">Config</a><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Browse backups</a><a href="/appbackup.py?forget&devid=%(drv)s" onclick="LoadImgWait();">Forget</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
 	request.write("""
    </table>
    <div class="submit-gray"><input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving backup configuration...');"/></div>
