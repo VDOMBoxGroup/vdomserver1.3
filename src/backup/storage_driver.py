@@ -448,10 +448,11 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 		self.__smb_login = None
 		self.__smb_pass = None
 		self.__smb_host = None
+		self.__smb_location = None
 
-	def authentificate(self, login, password, host):
+	def authentificate(self, login, password, host, location):
 		try:
-			cmd = """sh /opt/boot/mount_samba.sh -c -l %s -p %s -h %s"""%(login, password, host)
+			cmd = """sh /opt/boot/mount_samba.sh -c -l %s -p %s -h %s -L %s"""%(login, password, host, location)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
@@ -460,6 +461,8 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 				self.__smb_host = host
 				self.__smb_login = login
 				self.__smb_pass = password
+				self.__smb_location = location
+				
 				return True
 			else:
 				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
@@ -487,7 +490,7 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 
 	def mount(self):
 		try:
-			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s"""%(self.__smb_host, self.__smb_login, self.__smb_pass)
+			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s -L %s"""%(self.__smb_host, self.__smb_login, self.__smb_pass, self.__smb_location)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
