@@ -148,10 +148,20 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 
 	def erase_storage(self):
 		try:
-			self.mount()
 			debug("let us remove everything from %s"%self.__path)
+			self.mount()
+			cmd = """sh /opt/boot/erase_storage.sh -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("Erasing of %s successfully completed."%(self.__path))
+				return True
+			else:
+				debug("Erasing of %s totally failed!"%(self.__path))
+				return False
 		except Exception,e :
-			debug("Erase wrong: %s", e)
+			debug("Erasing failed: %s", e)
 
 			
 	def mount(self):
@@ -320,10 +330,20 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 
 	def erase_storage(self):
 		try:
-			self.mount()
 			debug("let us remove everything from %s"%self.__path)
+			self.mount()
+			cmd = """sh /opt/boot/erase_storage.sh -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("Erasing of %s successfully completed."%(self.__path))
+				return True
+			else:
+				debug("Erasing of %s totally failed!"%(self.__path))
+				return False
 		except Exception,e :
-			debug("Erase wrong: %s", e)
+			debug("Erasing failed: %s", e)
 
 	def mount(self):
 
