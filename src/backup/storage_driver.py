@@ -487,21 +487,21 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 
 	def mount(self):
 		try:
-			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s"""%(login, password, host)
+			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s"""%(self.__smb_host, self.__smb_login, self.__smb_pass)
 			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 			out.wait()
 			rc = out.returncode
 			if rc == 0:
-				debug("SMB test connection to %s OK."%(host))
+				debug("SMB mount to %s OK."%(host))
 				self.__smb_host = host
 				self.__smb_login = login
 				self.__smb_pass = password
 				return True
 			else:
-				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
+				debug("SMB mount to %s under %s %s FAILED!"%(self.__smb_host, self.__smb_login, self.__smb_pass))
 				return False
 		except Exception,e :
-			debug("SMB connection failed: %s", e)		
+			debug("SMB mount failed: %s", e)		
 
 	def umount(self):
 		try:
@@ -510,16 +510,16 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			out.wait()
 			rc = out.returncode
 			if rc == 0:
-				debug("SMB test connection to %s OK."%(host))
+				debug("SMB umount in %s OK."%(self.__path))
 				self.__smb_host = host
 				self.__smb_login = login
 				self.__smb_pass = password
 				return True
 			else:
-				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
+				debug("SMB umount %s FAILED!"%(self.__path))
 				return False
 		except Exception,e :
-			debug("SMB connection failed: %s", e)	
+			debug("SMB umount failed: %s", e)	
 
 class VDOM_backup_storage_manager(object):
 
