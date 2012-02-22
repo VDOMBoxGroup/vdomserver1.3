@@ -4,7 +4,7 @@ from datetime import time
 from random import randint
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
-from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver #, VDOM_smb_storage_driver
+from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver, VDOM_smb_storage_driver
 
 def run(request):
         sess = request.session()
@@ -41,6 +41,7 @@ def run(request):
 	d_backup_time = t.strftime("%H:%M")
 	h_backup_time = '1'
 	crypt_box = ""
+	server = user = passwd = location = ""
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
 		driver.erase_storage()
@@ -71,16 +72,26 @@ def run(request):
 					elif args["type"][0] == "cloud":
 						driver = VDOM_cloud_storage_driver(crypt)
 					elif args["type"][0] == "smb":
-						server = args["server_adr"][0]
-						user = args["username"][0]
-						passwd = args["passwd"][0]
-						driver = VDOM_smb_storage_driver(server, user, passwd, crypt)
+						
+						driver = VDOM_smb_storage_driver()
+						
 				except Exception as e:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 					ok = False
 				if ok:
 					hidden_tag += """
 <input type="hidden" name="devid" value="%s">""" % driver.id
+		if hasattr(driver, "authentificate"):
+			try:
+				server = args["server_adr"][0]
+				user = args["username"][0]
+				passwd = args["passwd"][0]
+				location = args["location"][0]
+				if not driver.authentificate(user, passwd, server, location):
+					raise Exception("Incorrect login or password for host %s" % server)
+			except Exception as e:
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
+				ok = False
 		if "backup_app[]" in args:
 			backup_apps = args["backup_app[]"]
 		else:
@@ -154,6 +165,12 @@ def run(request):
 				h_backup_time = '1'
 		
 	if driver:
+		if driver.type == "smb_drive":
+			server = driver.host or ""
+			user = driver.login or ""
+			passwd = driver.password or ""
+			location = driver.location or ""
+		
 		#crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
 		try:
 			path = driver.mount()
@@ -169,11 +186,21 @@ def run(request):
 		(size, used, free, percent) = ("0", "0", "0", "0%")
 	if "backupNow" in args:
 		if "devid" in args:
-			if "backup_app[]" in args:
-				for appid in args["backup_app[]"]:
-					managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
-			else:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
+			try:
+				if hasattr(driver, "authentificate"):
+					try:
+						if not driver.authentificate(args["username"][0], args["passwd"][0], args["server_adr"][0], args["location"][0]):
+							raise Exception("Incorrect login or password")
+					except:
+						raise Exception("Incorrect login or password")
+				if "backup_app[]" in args:
+					for appid in args["backup_app[]"]:
+						managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
+				else:
+					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
+			except Exception as e:
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
+
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Storage driver not found";</script>')
         request.write("""<html>
@@ -467,10 +494,12 @@ function ChangeBackup(obj){
 	request.write("""
    <div id="rotation"><label for="rotation">Rotation </label><input type="text" name="rotation" value="%(value)s"></div>""" % {"value": rotation_value})
 	if "type" in args and args["type"][0] == "smb":
+		
 		request.write("""
-   <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr"></div>
-   <div id="username"><label for="username">Username: </label><input type="text" name="username"></div>
-   <div id="passwd"><label for="passwd">Password: </label><input type="password" name="passwd"></div>""")
+   <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr" value="%(serv_adr)s"></div>
+   <div id="location"><label for="location">Location: </label><input type="text" name="location" value="%(location)s"></div>
+   <div id="username"><label for="username">Username: </label><input type="text" name="username" value="%(usrname)s"></div>
+   <div id="passwd"><label for="passwd">Password: </label><input type="password" name="passwd" value="%(passwd)s"></div>""" % {"serv_adr": server, "location": location, "usrname": user, "passwd": passwd})
 	request.write("""
    <div class="clear"> </div>
   </div>""")
