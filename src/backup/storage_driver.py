@@ -436,6 +436,91 @@ class VDOM_cloud_storage_driver(VDOM_storage_driver):
 			debug("Umount %s failed! Login: %s "%(self.__path, self.__cloud_login))
 			return False
 
+class VDOM_smb_storage_driver(VDOM_storage_driver):
+	def __init__(self, crypt=False):
+		self.id = str(utils.uuid.uuid4())
+		self.name = "Windows Share"
+		self.type = "smb_drive"
+		self.crypt = crypt
+		self.__path = None
+		self.__dev = None
+		self.__uuid = None
+		self.__smb_login = None
+		self.__smb_pass = None
+		self.__smb_host = None
+
+	def authentificate(self, login, password, host):
+		try:
+			cmd = """sh /opt/boot/mount_samba.sh -c -l %s -p %s -h %s"""%(login, password, host)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("SMB test connection to %s OK."%(host))
+				self.__smb_host = host
+				self.__smb_login = login
+				self.__smb_pass = password
+				return True
+			else:
+				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
+				return False
+		except Exception,e :
+			debug("SMB connection failed: %s", e)
+
+
+	def erase_storage(self):
+		try:
+			debug("let us remove everything from %s"%self.__path)
+			self.mount()
+			cmd = """sh /opt/boot/erase_storage.sh -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("Erasing of %s successfully completed."%(self.__path))
+				return True
+			else:
+				debug("Erasing of %s totally failed!"%(self.__path))
+				return False
+		except Exception,e :
+			debug("Erasing failed: %s", e)
+
+	def mount(self):
+		try:
+			cmd = """sh /opt/boot/mount_samba.sh -m -l %s -p %s -h %s"""%(login, password, host)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("SMB test connection to %s OK."%(host))
+				self.__smb_host = host
+				self.__smb_login = login
+				self.__smb_pass = password
+				return True
+			else:
+				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
+				return False
+		except Exception,e :
+			debug("SMB connection failed: %s", e)		
+
+	def umount(self):
+		try:
+			cmd = """sh /opt/boot/mount_samba.sh -u -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("SMB test connection to %s OK."%(host))
+				self.__smb_host = host
+				self.__smb_login = login
+				self.__smb_pass = password
+				return True
+			else:
+				debug("SMB test connection to %s under %s %s FAILED!"%(host, login, password))
+				return False
+		except Exception,e :
+			debug("SMB connection failed: %s", e)	
+
 class VDOM_backup_storage_manager(object):
 
 	def __init__(self):
