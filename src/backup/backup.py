@@ -49,8 +49,10 @@ class VDOM_backup(object):
 		result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
 		crypto_arg=""
 		if not result:
+		    # default password
 		    crypto_arg="--passphrase vdom"
 		else:
+		    # password from PC/SC
 		    crypto_arg="--passphrase %s" % result
 		debug("Crypto argument :: %s" % crypto_arg)
 		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s --rotate %s %s --current  %s -n %s  -p %s %s"""%(app_id, path, rotation, prev, current_rev, dirname, src_path[dirname], crypto_arg)
