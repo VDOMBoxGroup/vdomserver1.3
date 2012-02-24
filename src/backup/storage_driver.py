@@ -485,8 +485,8 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			else:
 				debug("Erasing of %s totally failed!"%(self.__path))
 				return False
-		except Exception,e :
-			debug("Erasing failed: %s", e)
+		except Exception as e :
+			debug("Erasing failed: %s", str(e))
 
 	def mount(self):
 		try:
@@ -512,15 +512,12 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			rc = out.returncode
 			if rc == 0:
 				debug("SMB umount in %s OK."%(self.__path))
-				self.__smb_host = host
-				self.__smb_login = login
-				self.__smb_pass = password
 				return True
 			else:
 				debug("SMB umount %s FAILED!"%(self.__path))
 				return False
-		except Exception,e :
-			debug("SMB umount failed: %s", e)
+		except Exception as e :
+			debug("SMB umount failed: %s", str(e))
 			
 	login=property(lambda self: self.__smb_login)
 	password=property(lambda self: self.__smb_pass)
