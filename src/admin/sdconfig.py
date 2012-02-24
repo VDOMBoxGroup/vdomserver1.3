@@ -550,7 +550,7 @@ function ChangeBackup(obj){
         </div>
  </div>""" % apps_tag)
 	request.write("""
-<center><input type="submit" name="cancel" value="Cancel"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving...');"/> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now" onclick="LoadImgWait('Backing up...');"/></center>
+<center><input type="submit" name="cancel" value="Back"/> &nbsp &nbsp <input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving...');"/> &nbsp &nbsp <input type="submit" name="backupNow" value="Backup Now" onclick="LoadImgWait('Backing up...');"/></center>
 </div>
 </form>
 </body>
