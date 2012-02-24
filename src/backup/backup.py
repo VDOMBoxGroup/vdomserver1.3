@@ -51,8 +51,8 @@ class VDOM_backup(object):
 		if not result:
 		    crypto_arg="--passphrase vdom"
 		else:
-		    crypto_arg="--passphrase %s"%result
-		debug("Crypto argument :: %s"crypto_arg)
+		    crypto_arg="--passphrase %s" % result
+		debug("Crypto argument :: %s" % crypto_arg)
 		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s --rotate %s %s --current  %s -n %s  -p %s %s"""%(app_id, path, rotation, prev, current_rev, dirname, src_path[dirname], crypto_arg)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
