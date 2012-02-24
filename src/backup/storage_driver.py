@@ -495,11 +495,9 @@ class VDOM_smb_storage_driver(VDOM_storage_driver):
 			out.wait()
 			rc = out.returncode
 			if rc == 0:
-				debug("SMB mount to %s OK."%(host))
-				self.__smb_host = host
-				self.__smb_login = login
-				self.__smb_pass = password
-				return True
+				self.__path = str(out.stdout.read()).strip('\n')
+				debug("Mounted %s"%(self.__path))
+				return self.__path
 			else:
 				debug("SMB mount to %s under %s %s FAILED!"%(self.__smb_host, self.__smb_login, self.__smb_pass))
 				return False
