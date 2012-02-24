@@ -25,14 +25,6 @@ def run(request):
         if "device" in args and "abs" in args:
 		request.redirect("/sdconfig.py?type=%s" % args["device"][0])
 		return
-        if "devid" in args:
-                drv = managers.backup_manager.get_storage(args["devid"][0])
-                if drv.type == "external_drive":
-                        request.redirect("/sdconfig.py?devid=%s&type=%s" % (drv.id, "external"))
-			return
-		elif drv.type == "cloud_drive":
-			request.redirect("/sdconfig.py?devid=%s&type=%s" % (drv.id, "cloud"))
-			return
 	if "save" in args:
 		if "drv[]" in args:
 			crontab = []
@@ -201,7 +193,7 @@ function LoadImgWait(message){
 		driver_icon = "ext-drive" if drivers[driver].type == "external_drive" else "cloud-drive"
 		checked = 'checked = "checked"' if task_id in dict(tasks_in_cron) else ''
                 request.write("""
-     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/appbackup.py?devid=%(drv)s">Config</a><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Browse backups</a><a href="/appbackup.py?forget&devid=%(drv)s" onclick="LoadImgWait();">Forget</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name})
+     <tr><td class="check"><input type="checkbox" name="drv[]" value="%(drv)s" %(checked)s></td><td class="name %(icon)s">%(name)s</td><td class="options"><a href="/sdconfig.py?devid=%(drv)s&type=%(type)s">Config</a><a href="/getbackup.py?devid=%(drv)s&devname=%(name)s">Browse backups</a><a href="/appbackup.py?forget&devid=%(drv)s" onclick="LoadImgWait();">Forget</a></td></tr>""" % {"icon": driver_icon, "drv": driver, "checked": checked, "name": drivers[driver].name, "type": drivers[driver].type})
 	request.write("""
    </table>
    <div class="submit-gray"><input type="submit" name="save" value="Save changes" onclick="LoadImgWait('Saving backup configuration...');"/></div>
@@ -209,12 +201,12 @@ function LoadImgWait(message){
   <div class="block" style="padding-bottom:15px;">
    <h2>Add new backup storage</h2>
    <select name="device">
-    <option value="external">External device</option>""")
+    <option value="external_drive">External device</option>""")
 	if add_cloud:
 		request.write("""
-    <option value="cloud">Cloud storage</option>""")
+    <option value="cloud_drive">Cloud storage</option>""")
 	request.write("""
-    <option value="smb">SMB storage</option>
+    <option value="smb_drive">SMB storage</option>
    </select>
    <input type="submit" name="abs" value="Add storage"/>
   </div>
