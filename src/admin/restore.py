@@ -160,7 +160,7 @@ function LoadImgWait(){
 
 
 <div id="Imgload" style="position:absolute; z-index:100; top:0px; left:0px; width:100%; height:100%; background-color:#FFFFFF; display:none" align="center"><br><br><img src="/images/loading.gif" border="0"></div>""")
-        request.write('<p class="Texte"><a href="menuappli.py">Application Management</a> &gt; <a href="appbackup.py">Backup</a> &gt; <a href="getbackup.py?devid=%s&devname=%s">Get backup</a> &gt; %s</p>' % (args["devid"][0], driver_name, app_name))
+        request.write('<p class="Texte"><a href="menuappli.py">Application Management</a> &gt; <a href="appbackup.py">Backup</a> &gt; <a href="getbackup.py?devid=%s&devname=%s">Browse backup</a> &gt; %s</p>' % (args["devid"][0], driver_name, app_name))
         request.write("""
 <form name="restore" method=post action="/restore.py" enctype="multipart/form-data">
 <input type="hidden" name="devid" value="%(devid)s">
@@ -178,7 +178,7 @@ function LoadImgWait(){
    <p><label><input type="radio" name="rev" value="%(rev)s">Revision %(rev)s <span>%(time)s</span></label></p>""" % {"rev": rev["revision"], "time": time})
         request.write("""
   </div>
-  <div class="submit-gray"><input type="submit" onclick="LoadImgWait();" value="Restore application"/></div>
+  <div class="submit-gray"><input type="button" value="Back" onclick="history.back();"/><input type="submit" onclick="LoadImgWait();" value="Restore application"/></div>
 
  </div>
 
