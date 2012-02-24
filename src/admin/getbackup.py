@@ -145,15 +145,15 @@ font-size:10px;
         request.write("""
    <h2>Restore from <img src="images/exthdd.png" align="absmiddle"/>%(name)s</h2>
    <input type="hidden" name="devid" value="%(value)s">""" % {"name": str(args["devname"][0]), "value": str(args["devid"][0])})
+        request.write("""
+   <div class="radiob">""")   
         if appls:
-                request.write("""
-   <div class="radiob">""")        
                 for app_id, app_name in appls.items():
                         request.write("""
     <p><label><input type="radio" name="appid" value="%(appid)s|%(name)s">%(name)s <span>GUID %(appid)s</span></label></p>""" % {"name": app_name, "appid": app_id, "drv": args["devid"][0]})
-                request.write("""
+        request.write("""
    </div>
-   <div class="submit-gray"><input type="button" value="Back" onclick="history.back();"/><input type="submit" value="Select application"/></div>
+   <div class="submit-gray"><input type="button" value="Back" onclick="history.back();"/> &nbsp &nbsp <input type="submit" value="Select application"/></div>
   </div>
 </div>
 </form>

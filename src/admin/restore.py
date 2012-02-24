@@ -178,7 +178,7 @@ function LoadImgWait(){
    <p><label><input type="radio" name="rev" value="%(rev)s">Revision %(rev)s <span>%(time)s</span></label></p>""" % {"rev": rev["revision"], "time": time})
         request.write("""
   </div>
-  <div class="submit-gray"><input type="button" value="Back" onclick="history.back();"/><input type="submit" onclick="LoadImgWait();" value="Restore application"/></div>
+  <div class="submit-gray"><input type="button" value="Back" onclick="history.back();"/> &nbsp &nbsp <input type="submit" onclick="LoadImgWait();" value="Restore application"/></div>
 
  </div>
 
