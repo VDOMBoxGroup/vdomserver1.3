@@ -55,23 +55,25 @@ def run(request):
 	if "type" in args:
 		hidden_tag += """
 <input type="hidden" name="type" value="%s">""" % args["type"][0]
-		if args["type"][0] == "external":
+		if args["type"][0] == "external_drive":
 			default_drv_name = "External Drive"
 			drv_icon = "images/exthdd.png"
-		elif args["type"][0] == "cloud":
+		elif args["type"][0] == "cloud_drive":
 			default_drv_name = "Cloud Storage"
 			drv_icon = "images/cloud.png"
+		elif args["type"][0] == "smb_drive":
+			default_drv_name = "Windows Share"
 	if "save" in args:
 		ok = True
 		if not driver:
 			crypt = False
 			if "type" in args:
 				try:
-					if args["type"][0] == "external":
+					if args["type"][0] == "external_drive":
 						driver = VDOM_sd_external_drive(args["devselect"][0], crypt)
-					elif args["type"][0] == "cloud":
+					elif args["type"][0] == "cloud_drive":
 						driver = VDOM_cloud_storage_driver(crypt)
-					elif args["type"][0] == "smb":
+					elif args["type"][0] == "smb_drive":
 						
 						driver = VDOM_smb_storage_driver()
 						
@@ -482,7 +484,7 @@ function ChangeBackup(obj){
  <div class="block">
   <h2><img src="%s" align="absmiddle"/> Config %s</h2>
   <div class="fields fl-left">""" % (hidden_tag, drv_icon, driver.name if driver else default_drv_name))
-	if "type" in args and args["type"][0] == "external":
+	if "type" in args and args["type"][0] == "external_drive":
 		request.write("""
    <div><label for="devselect">Device :</label><select name="devselect">%s</select></div>""" % dev_option_tag)
 	request.write("""
@@ -493,7 +495,7 @@ function ChangeBackup(obj){
    <div id="x_hourly"%(display)s><label for="hourly_int">Backup every </label><input type="text" name="hourly_int" value="%(value)s"><label for="hourly_int"> hour(s)</label></div>""" % {"display": hourly_display, "value": h_backup_time})
 	request.write("""
    <div id="rotation"><label for="rotation">Rotation </label><input type="text" name="rotation" value="%(value)s"></div>""" % {"value": rotation_value})
-	if "type" in args and args["type"][0] == "smb":
+	if "type" in args and args["type"][0] == "smb_drive":
 		
 		request.write("""
    <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr" value="%(serv_adr)s"></div>

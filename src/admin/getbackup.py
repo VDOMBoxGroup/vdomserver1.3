@@ -137,7 +137,7 @@ font-size:10px;
 
 <div id="Imgload" style="position:absolute; z-index:100; top:0px; left:0px; width:100%; height:100%; background-color:#FFFFFF; display:none" align="center"><br><br><img src="/images/loading.gif" border="0"></div>
 
-<p class="Texte"><a href="menuappli.py">Application Management</a> &gt; <a href="appbackup.py">Backup</a> &gt; Get backup</p>
+<p class="Texte"><a href="menuappli.py">Application Management</a> &gt; <a href="appbackup.py">Backup</a> &gt; Browse backup</p>
 <form name="getBackup" method=post action="/restore.py" enctype="multipart/form-data">
 <div class="wrapper"> 
 
