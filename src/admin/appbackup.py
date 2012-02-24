@@ -206,7 +206,7 @@ function LoadImgWait(message){
 		request.write("""
     <option value="cloud_drive">Cloud storage</option>""")
 	request.write("""
-    <option value="smb_drive">SMB storage</option>
+    <option value="smb_drive">Windows share</option>
    </select>
    <input type="submit" name="abs" value="Add storage"/>
   </div>
