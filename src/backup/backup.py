@@ -44,7 +44,16 @@ class VDOM_backup(object):
 	    prev = "--prev %s " % prev_rev if prev_rev else ""
 	    ok = True
 	    for dirname in src_path:
-		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s --rotate %s %s --current  %s -n %s  -p %s """%(app_id, path, rotation, prev, current_rev, dirname, src_path[dirname])
+		# get password from PC/SC
+		from utils.card_connect import send_to_card_and_wait
+		result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
+		crypto_arg=""
+		if not result:
+		    crypto_arg="--passphrase vdom"
+		else:
+		    crypto_arg="--passphrase %s"%result
+		debug("Crypto argument :: %s"crypto_arg)
+		cmd = """sh /opt/boot/do_backup.sh --guid %s --mountpoint %s --rotate %s %s --current  %s -n %s  -p %s %s"""%(app_id, path, rotation, prev, current_rev, dirname, src_path[dirname], crypto_arg)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
 		rc = out.returncode
