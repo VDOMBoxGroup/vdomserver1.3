@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.1.6720</Version>
+    <Version>1.21.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell,vdomclass</Containers>
@@ -133,118 +133,143 @@
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>flashvars</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Flash animation</Sentence>
-      <Sentence ID="002">Used to add flash movies to the page</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="108">SWF movie</Sentence>
-      <Sentence ID="208">SWF movie's resource identifier</Sentence>
       <Sentence ID="308">Incorrect value, must be resource identifier</Sentence>
-      <Sentence ID="109">Quality</Sentence>
-      <Sentence ID="209">Quality of the SWF movie playback</Sentence>
-      <Sentence ID="309">Incorrect value, must be either 0, 1 or 2</Sentence>
+      <Sentence ID="208">SWF movie's resource identifier</Sentence>
+      <Sentence ID="111">FlashVars</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="211">Sends variables into the top level of a SWF file when it loads in a web browser.
+used like: self.flanim.flashvars 
+value like: var1=val1&amp;var2=val2</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
       <Sentence ID="403">High</Sentence>
       <Sentence ID="404">Medium</Sentence>
       <Sentence ID="405">Low</Sentence>
+      <Sentence ID="109">Quality</Sentence>
+      <Sentence ID="309">Incorrect value, must be either 0, 1 or 2</Sentence>
+      <Sentence ID="209">Quality of the SWF movie playback</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="001">Flash animation</Sentence>
+      <Sentence ID="002">Used to add flash movies to the page</Sentence>
     </Language>
     <Language Code="ru_RU">
-      <Sentence ID="001">Флеш анимация</Sentence>
-      <Sentence ID="002">Добавление флеш анимации на страницу</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Режим отображения объекта</Sentence>
-      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="401">Не отображать</Sentence>
-      <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="108">SWF видео</Sentence>
-      <Sentence ID="208">Файл SWF видео</Sentence>
       <Sentence ID="308">Неправильное значение, дожен быть указан идентификатор ресурса</Sentence>
-      <Sentence ID="109">Качество</Sentence>
-      <Sentence ID="209">Качество воспроизведения видео</Sentence>
-      <Sentence ID="309">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
+      <Sentence ID="208">Файл SWF видео</Sentence>
+      <Sentence ID="111">FlashVars</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="211">Sends variables into the top level of a SWF file when it loads in a web browser.
+Example: var1=val1&amp;var2=val2</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="403">Высокое</Sentence>
       <Sentence ID="404">Среднее</Sentence>
       <Sentence ID="405">Низкое</Sentence>
+      <Sentence ID="109">Качество</Sentence>
+      <Sentence ID="309">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
+      <Sentence ID="209">Качество воспроизведения видео</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="001">Флеш анимация</Sentence>
+      <Sentence ID="002">Добавление флеш анимации на страницу</Sentence>
     </Language>
     <Language Code="fr_FR">
-      <Sentence ID="001">Animation Flash</Sentence>
-      <Sentence ID="002">Mettre une animation flash sur la page</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="102">Visibilité</Sentence>
-      <Sentence ID="202">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="108">Animation en SWF</Sentence>
-      <Sentence ID="208">Fichier au format SWF contenant l'animation</Sentence>
       <Sentence ID="308">Incorrect value, must be resource identifier</Sentence>
-      <Sentence ID="109">Qualité</Sentence>
-      <Sentence ID="209">Qualité de la lecture des animations flash</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être 0, 1 ou 2</Sentence>
+      <Sentence ID="208">Fichier au format SWF contenant l'animation</Sentence>
+      <Sentence ID="111">FlashVars</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="211">Sends variables into the top level of a SWF file when it loads in a web browser.
+Example: var1=val1&amp;var2=val2</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
       <Sentence ID="403">Haute</Sentence>
       <Sentence ID="404">Moyenne</Sentence>
       <Sentence ID="405">Basse</Sentence>
+      <Sentence ID="109">Qualité</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, doit être 0, 1 ou 2</Sentence>
+      <Sentence ID="209">Qualité de la lecture des animations flash</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="202">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="001">Animation Flash</Sentence>
+      <Sentence ID="002">Mettre une animation flash sur la page</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -368,51 +393,7 @@ KD1X+q6KAriWgZ+frsDh8GRpoXlRXKzBiQp8aWaiYMpqFSo7DZto+PXh5Ate5xFLAm6ALWkOKgqp
 Y+wzb1tBJEDJQKE1P/G70cATGxW0hmEmBGgsNIxmwRBK6joxfTUgYB3+PH4EGAAiKgkbV4xVXAAA
 AABJRU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
-
-class VDOM_flashanimation(VDOM_object):
-
-	def render(self, parent, contents=""):
-		if self.visible == "1":
-			style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx"%(self.zindex, self.position, self.top, self.left, self.width, self.height)
-			qua = "high"
-			if "1" == self.quality:
-				qua = "medium"
-			elif "2" == self.quality:
-				qua = "low"
-			data = """<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" width="%s" height="%s">
-				<param name="movie" value="/%s.res">
-				<param name="quality" value="%s">
-				<param name="wmode" value="transparent">
-				<embed src="/%s.res" quality="%s" wmode="transparent" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="%s" height="%s">
-				</embed>
-				</object>""" % (self.width, self.height, self.file, qua, self.file, qua, self.width, self.height)
-			id = 'o_' + (self.id).replace('-', '_')
-			result="<div id=\"%s\" style=\"%s\">%s%s</div>"%(id, style, data, contents)
-		else:
-			result=""
-		return VDOM_object.render(self, parent, contents=result)
-
-	def wysiwyg(self, parent, contents=""):
-		if "" == self.file:
-			image_id = "74a93184-b726-4325-8f46-6eceb2309878"
-			outer_width = outer_height = image_width = image_height = 58
-			
-			result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-						"<svg>"\
-							"<image x=\"%s\" y=\"%s\" href=\"#Res(%s)\" width=\"%s\" height=\"%s\"/>"\
-						"</svg>%s"\
-					"</container>"%(
-						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, outer_width, outer_height,
-						0, 0, image_id, image_width, image_height, 
-						contents)
-						
-			return VDOM_object.wysiwyg(self, parent, contents=result)
-			
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\"><rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#C0C0C0\"/>%s</container>"%(self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, 0, 0, self.width, self.height, contents)
-		return VDOM_object.wysiwyg(self, parent, contents=result)
-
-		]]></SourceCode>
+  <SourceCode><![CDATA[class VDOM_flashanimation(VDOM_object):	def render(self, parent, contents=""):		if self.visible == "1":			style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx"%(self.zindex, self.position, self.top, self.left, self.width, self.height)			qua = "high"			if "1" == self.quality:				qua = "medium"			elif "2" == self.quality:				qua = "low"			data = """<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"			 codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" width="%s" height="%s">				<param name="movie" value="/%s.res">				<param name="quality" value="%s">				<param name="FlashVars" value="%s" />				<param name="wmode" value="transparent">				<embed src="/%s.res" quality="%s" wmode="transparent" 				pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" width="%s" height="%s"				FlashVars="%s">				</embed>				</object>""" % (self.width, self.height, self.file, qua, self.flashvars, self.file, qua, self.width, self.height, self.flashvars)			id = 'o_' + (self.id).replace('-', '_')			result="<div id=\"%s\" style=\"%s\">%s%s</div>"%(id, style, data, contents)		else:			result=""		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		if "" == self.file:			image_id = "74a93184-b726-4325-8f46-6eceb2309878"			outer_width = outer_height = image_width = image_height = 58						result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\						"<svg>"\							"<image x=\"%s\" y=\"%s\" href=\"#Res(%s)\" width=\"%s\" height=\"%s\"/>"\						"</svg>%s"\					"</container>"%(						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, outer_width, outer_height,						0, 0, image_id, image_width, image_height, 						contents)									return VDOM_object.wysiwyg(self, parent, contents=result)					result="""<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\"><rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#C0C0C0\"/>%s</container>		"""%(self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, 0, 0, self.width, self.height, contents)		return VDOM_object.wysiwyg(self, parent, contents=result)		]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
