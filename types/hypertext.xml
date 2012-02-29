@@ -198,7 +198,7 @@
       <Sentence ID="208">Multiline attribute with HTML code</Sentence>
       <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="109">No style</Sentence>
-      <Sentence ID="209">Define the using of styles of the object elements</Sentence>
+      <Sentence ID="209">Define the using of styles of the object elements (if used, clients actions will not work for this object)</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
@@ -670,6 +670,14 @@ class VDOM_hypertext(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addHTML">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="value" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$j(this.domCont).append(value);
+					]]></SourceCode>
+        </Action>
         <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
