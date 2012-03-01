@@ -765,8 +765,7 @@ this.domCont.style.zindex = parseInt(newZindex,10);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="height" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(newZindex,10);
-this.domCont.style.height = parseInt(newZindex,10);
+$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setTransparency">
@@ -775,7 +774,7 @@ this.domCont.style.height = parseInt(newZindex,10);
           </Parameters>
           <SourceCode><![CDATA[
 var nn = parseInt(value,10) / 100;
-jQuery(this.domCont).css('opacity', nn);
+$q(this.domCont).css('opacity', nn);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
