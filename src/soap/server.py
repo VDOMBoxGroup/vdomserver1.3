@@ -289,7 +289,7 @@ class VDOM_web_services_server(object):
 		try:
 			ro = managers.resource_manager.get_resource(owner_id, resource_id)
 			data = ro.get_data()
-			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (utils.encode.encode_resource(data), resource_id, ro.res_format, len(ro.dependences))
+			return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceName>%s</ResourceName>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (utils.encode.encode_resource(data), resource_id, ro.name, ro.res_format, len(ro.dependences))
 		except Exception, e:
 			#traceback.print_exc(file=debugfile)
 			#debug("Get type resource error: " + str(e))
