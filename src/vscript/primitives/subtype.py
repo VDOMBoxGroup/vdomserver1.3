@@ -112,94 +112,94 @@ class subtype(primitive):
 
 
 	def __add__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.add_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 
 	def __sub__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.sub_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 
 	def __mul__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.mul_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 
 	def __div__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.div_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
 
 	def __floordiv__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.floordiv_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
 
 	def __mod__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.mod_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
 
 	def __pow__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.pow_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 
 
 	def __eq__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.eq_table.get(type(simple), unknown)(self, simple)
 
 	def __ne__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		value=another.as_simple
 		return self.ne_table.get(type(value), unknown)(self, value)
 
 	def __lt__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.lt_table.get(type(simple), unknown)(self, simple)
 
 	def __gt__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.gt_table.get(type(simple), unknown)(self, simple)
 
 	def __le__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.le_table.get(type(simple), unknown)(self, simple)
 
 	def __ge__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.ge_table.get(type(simple), unknown)(self, simple)
 
 
 	def __and__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.and_table.get(type(simple), unknown)(self, simple)
 
 	def __or__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.or_table.get(type(simple), unknown)(self, simple)
 
 	def __xor__(self, another):
-		def unknown(simple): raise errors.type_mismatch
+		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		return self.xor_table.get(type(simple), unknown)(self, simple)
 
@@ -224,7 +224,7 @@ class subtype(primitive):
 		raise errors.type_mismatch
 
 	def __str__(self):
-		raise python_avoid_using
+		raise errors.python_avoid_using
 	
 	def __unicode__(self):
 		raise errors.type_mismatch
