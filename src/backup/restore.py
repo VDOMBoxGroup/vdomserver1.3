@@ -27,11 +27,19 @@ class VDOM_restore(object):
              and so on
           ---------------------------------------------------------------
 	  """
-	
-	
+	    from utils.card_connect import send_to_card_and_wait
+	    result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
+	    crypto_arg=""
+	    if not result:
+		# default password
+		crypto_arg="--passphrase vdom"
+	    else:
+		# password from PC/SC
+		crypto_arg="--passphrase %s" % result	
+	    debug("Crypto argument :: %s" % crypto_arg)
 	    debug("Restore after DIRS and DIRNAME or smth")
-	    cmd = """sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s """%(driver_path, app_id, revision_number, dirname, dirs[dirname])
-	    debug("""sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s """%(driver_path, app_id, revision_number, dirname, dirs[dirname]))
+	    cmd = """sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg)
+	    debug("""sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg))
 	    out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 	    out.wait()
 	    rc = out.returncode
