@@ -28,7 +28,7 @@ class VDOM_restore(object):
           ---------------------------------------------------------------
 	  """
 	    from utils.card_connect import send_to_card_and_wait
-	    result = send_to_card_and_wait("getlicense %s %s" % ("0", "106"),"%s/%s" % ("0", "106"))
+	    result = send_to_card_and_wait("getlicense %s %s" % ("0", "114"),"%s/%s" % ("0", "114"))
 	    crypto_arg=""
 	    if not result:
 		# default password
