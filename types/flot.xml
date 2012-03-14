@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.1.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>300</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>200</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -527,12 +527,12 @@ class VDOM_flot(VDOM_object):
 			jsondata = self.jsondata
 
 		result += """<script type='text/javascript'>
-jQuery(function($){
-  var opt_""" + id + """={
-    lines: { show: """+lines+""" },
-    points: { show: """+points+""" }
-  };
-  $.plot($('#""" + id + """'), """+jsondata+""", opt_""" + id + """);
+var opt_""" + id + """={
+	lines: { show: """+lines+""" },
+	points: { show: """+points+""" }
+};
+$j(function(){
+	$j.plot($j('#""" + id + """'), """+jsondata+""", opt_""" + id + """);
 });
 </script>"""
 
@@ -613,7 +613,7 @@ jQuery(function($){
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery(this.domCont).hide(fade);
+$q(this.domCont).hide(fade);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadData">
@@ -621,7 +621,8 @@ jQuery(this.domCont).hide(fade);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="jsondata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery.plot(jQuery(this.domCont),jsondata,eval("opt_"+this.domCont.id));
+console.info('loadData action: ', jsondata);
+eval('$q.plot($q(this.domCont),jsondata,opt_'+this.domCont.id+');');
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
@@ -630,8 +631,7 @@ jQuery.plot(jQuery(this.domCont),jsondata,eval("opt_"+this.domCont.id));
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(newZindex,10);
-this.domCont.style.height = parseInt(newZindex,10);
+$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
