@@ -595,7 +595,7 @@ class VDOM_hypertext(VDOM_object):
 		html_wys = re.sub("(href\s*=\s*['\"]{1}(.*?)['\"]{1})", r"""style="text-decoration: underline; color:#394fa2;" """,html_with_server)
 		html_wys = re.sub("<script\s*\>", "<pre>Script:<br/>" ,self.htmlcode)
 		html_wys = re.sub("</script>", "</pre>" ,self.htmlcode)
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
+		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
 				"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">%s</htmltext>"\
 				"%s"\
 				"<svg>"\
@@ -603,7 +603,7 @@ class VDOM_hypertext(VDOM_object):
 				"</svg>"\
 				"<text top=\"2\" left=\"5\" width=\"70\" color=\"#FF0000\">Hypertext</text>"\
 				"</container>"%(
-					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, 
+					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
 					0, 0, self.width, self.height, "<![CD"+"ATA["+ html_wys +"]"+"]>", 
 					contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
