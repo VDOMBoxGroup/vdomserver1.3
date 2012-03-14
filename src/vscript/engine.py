@@ -51,15 +51,16 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
 
-def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
-	debug("[VScript] Wait for mutex...")
+def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, quiet=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
+	# debug("[VScript] Wait for mutex...")
 	mutex=auto_mutex("vscript_engine_compile_mutex")
-	debug("[VScript] Done")
+	# debug("[VScript] Done")
 	source=None
 	try:
-		print "- - - - - - - - - - - - - - - - - - - -"
-		for line, statement in enumerate(script.split("\n")):
-			print (u"  %s      %s"%(unicode(line+1).ljust(4), statement.expandtabs(4))).encode("utf-8")
+		if not quiet:
+			print "- - - - - - - - - - - - - - - - - - - -"
+			for line, statement in enumerate(script.split("\n")):
+				print (u"  %s      %s"%(unicode(line+1).ljust(4), statement.expandtabs(4))).encode("utf-8")
 		lexer.lineno=1
 		try:
 			parser.package=package
@@ -69,12 +70,13 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 			parser.package=None
 			parser.environment=None
 		if lines: source[0:0]=((None, 0, line) for line in lines)
-		print "- - - - - - - - - - - - - - - - - - - -"
-		for line, data in enumerate(source):
-			print (u"  %s %s %s%s"%(unicode(line+1).ljust(4),
-				unicode("" if data[0] is None else data[0]).ljust(4),
-				"    "*data[1], data[2].expandtabs(4))).encode("utf-8")
-		print "- - - - - - - - - - - - - - - - - - - -"
+		if not quiet:
+			print "- - - - - - - - - - - - - - - - - - - -"
+			for line, data in enumerate(source):
+				print (u"  %s %s %s%s"%(unicode(line+1).ljust(4),
+					unicode("" if data[0] is None else data[0]).ljust(4),
+					"    "*data[1], data[2].expandtabs(4))).encode("utf-8")
+			print "- - - - - - - - - - - - - - - - - - - -"
 		code=u"\n".join([u"%s%s"%(u"\t"*ident, string) for line, ident, string in source])
 		if bytecode:
 			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
@@ -89,7 +91,7 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 	finally:
 		del mutex
 
-def vexecute(code, source, object=None, namespace=None, environment=None):
+def vexecute(code, source, object=None, namespace=None, environment=None, quiet=None):
 	try:
 		try:
 			if namespace is None: namespace={}
@@ -110,8 +112,9 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 			exclass, exexception, extraceback=sys.exc_info()
 			path, line, function, text=traceback.extract_tb(extraceback)[-1]
 			if path==vscript_source_string:
-				print "- - - - - - - - - - - - - - - - - - - -"
-				print (u"Python (AttributeError): %s"%error.message).encode("utf-8")
+				if not quiet:
+					print "- - - - - - - - - - - - - - - - - - - -"
+					print (u"Python (AttributeError): %s"%error.message).encode("utf-8")
 				result=re.search(".+ has no attribute \'(.+)\'", unicode(error))
 				if result:
 					del exclass, exexception
@@ -126,8 +129,9 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 			exclass, exexception, extraceback=sys.exc_info()
 			path, line, function, text=traceback.extract_tb(extraceback)[-1]
 			if path==vscript_source_string:
-				print "- - - - - - - - - - - - - - - - - - - -"
-				print (u"Python (ValueError): %s"%error).encode("utf-8")
+				if not quiet:
+					print "- - - - - - - - - - - - - - - - - - - -"
+					print (u"Python (ValueError): %s"%error).encode("utf-8")
 				del exclass, exexception
 				raise errors.type_mismatch, None, extraceback
 			else:
@@ -137,8 +141,9 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 			exclass, exexception, extraceback=sys.exc_info()
 			path, line, function, text=traceback.extract_tb(extraceback)[-1]
 			if path==vscript_source_string:
-				print "- - - - - - - - - - - - - - - - - - - -"
-				print (u"Python (TypeError): %s"%error).encode("utf-8")
+				if not quiet:
+					print "- - - - - - - - - - - - - - - - - - - -"
+					print (u"Python (TypeError): %s"%error).encode("utf-8")
 				result=re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", unicode(error))
 				if result:
 					del exclass, exexception
@@ -150,8 +155,10 @@ def vexecute(code, source, object=None, namespace=None, environment=None):
 				del exclass, exexception, extraceback
 				raise
 	except errors.generic, error:
-		show_exception_details(source, error)
+		if not quiet:
+			show_exception_details(source, error)
 		raise
 	except errors.python, error:
-		show_exception_details(source, errors.system_error(unicode(error)))
+		if not quiet:
+			show_exception_details(source, errors.system_error(unicode(error)))
 		raise

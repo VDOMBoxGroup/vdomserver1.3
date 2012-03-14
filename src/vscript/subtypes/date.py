@@ -1,6 +1,6 @@
 
 import sys, re, datetime
-from math import floor, ceil, fabs
+from math import modf, fabs
 from .. import errors
 from ..primitives import subtype
 
@@ -14,14 +14,9 @@ def encode_time(hour, minute, second):
 	return float(hour*60*60+minute*60+second)/86400
 
 def decode_date(value):
-	if value<0:
-		time_value=fabs(value-ceil(value))
-		date_value=int(value+time_value)
-	else:
-		time_value=value-floor(value)
-		date_value=int(value-time_value)
-	time_value=int(time_value * 86400)
-	date_value=datetime.date.fromordinal(date_value+693594)
+	time_value, date_value=modf(value)
+	time_value, date_value=int(round(fabs(time_value)*86400)), int(round(date_value+693594))
+	date_value=datetime.date.fromordinal(date_value)
 	seconds, time_value=time_value%60, time_value//60
 	minutes, time_value=time_value%60, time_value//60
 	return date_value.year, date_value.month, date_value.day, time_value, minutes, seconds
@@ -34,7 +29,7 @@ class date(subtype):
 
 	def __init__(self, value):
 		if isinstance(value, (int, float)):
-			self._value=value
+			self._value=float(value)
 		elif isinstance(value, basestring):
 			match=self.pattern.match(value)
 			if match:
@@ -60,6 +55,9 @@ class date(subtype):
 				raise errors.invalid_date_format
 		else:
 			raise errors.type_mismatch
+		if self._value<-657434 or self._value>=2958466:
+			print "->", self._value
+			self.__class__=double
 
 
 	value=property(lambda self: self._value)
@@ -77,7 +75,12 @@ class date(subtype):
 	as_string=property(lambda self: unicode(self))
 
 
-	check=lambda self: double(self._value) if self._value<-657434 or self._value>=2958466 else self
+	def is_date(self, *arguments):
+		return decode_date(self._value)==arguments if len(arguments)>1 \
+			else decode_date(self._value)==decode_date(arguments[0])
+
+
+	separate=property(lambda self: decode_date(self._value))
 
 		
 	def __invert__(self):
@@ -129,20 +132,20 @@ from .string import string
 date.add_table={
 	empty: lambda self, another: date(self._value+0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: date(self._value+int(another)).check,
-	double: lambda self, another: date(self._value+float(another)).check,
-	date: lambda self, another: date(self._value+float(another)).check,
-	string: lambda self, another: date(self._value+float(another)).check,
-	boolean: lambda self, another: data(self._value+int(another)).check}
+	integer: lambda self, another: date(self._value+int(another)),
+	double: lambda self, another: date(self._value+float(another)),
+	date: lambda self, another: date(self._value+float(another)),
+	string: lambda self, another: date(self._value+float(another)),
+	boolean: lambda self, another: date(self._value+int(another))}
 
 date.sub_table={
 	empty: lambda self, another: date(self._value-0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: date(self._value-int(another)).check,
-	double: lambda self, another: date(self._value-float(another)).check,
-	date: lambda self, another: date(self._value-float(another)).check,
-	string: lambda self, another: date(self._value+float(another)).check,
-	boolean: lambda self, another: data(self._value-int(another)).check}
+	integer: lambda self, another: date(self._value-int(another)),
+	double: lambda self, another: date(self._value-float(another)),
+	date: lambda self, another: double(self._value-float(another)),
+	string: lambda self, another: date(self._value-float(another)),
+	boolean: lambda self, another: date(self._value-int(another))}
 
 date.mul_table={
 	empty: lambda self, another: double(self._value*0),
@@ -247,7 +250,7 @@ date.ge_table={
 
 date.and_table={
 	empty: lambda self, another: integer(int(round(self._value))&0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: v_null if int(round(self._value)) else integer(int(round(self._value))),
 	integer: lambda self, another: integer(int(round(self._value))&int(another)),
 	double: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
 	date: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
@@ -256,7 +259,7 @@ date.and_table={
 
 date.or_table={
 	empty: lambda self, another: integer(int(round(self._value))|0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: integer(int(round(self._value))) if int(round(self._value)) else v_null,
 	integer: lambda self, another: integer(int(round(self._value))|int(another)),
 	double: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),
 	date: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),

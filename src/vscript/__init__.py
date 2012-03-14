@@ -8,7 +8,8 @@ from .essentials import check, randomize, echo, concat, exitloop, exitdo, exitfo
 from .conversions import as_is, as_value, as_specific, as_array, as_binary, \
 	as_boolean, as_date, as_double, as_generic, as_integer, as_string, pack, unpack
 from .decorators import auto, native, vclass, vfunction, vsub, vproperty, vcollection
-from .exceptions import *
+from .exceptions import v_genericerror, v_servererror, v_scripterror, \
+	v_subscriptoutofrange, v_divisionbyzero, v_overflow
 from .library import *
 
 
@@ -199,3 +200,28 @@ from .library import *
 #		Option Explicit
 #
 #		Link: http://msdn.microsoft.com/en-us/library/bw9t3484%28v=vs.85%29.aspx
+
+#	Date #0:0:0#
+#
+#		Date #0:0:0# should be recognized as date(0)
+#
+#		Print #0:0:0#*1 ' 0
+
+#	Rounding errors
+#
+#		VBScript rounds 0.5 to 0 (correct 1), 1.5 to 2, 2.5 to 2 (correct 3) and so on.
+#
+#		Print Round(0.5) ' 0
+#		Print Round(1.5) ' 2
+
+#	Comparison issues
+#
+#		When compare variable with constant strings are parsed to be a number nor when
+#		compare variable with variable.
+#
+#		X=123
+#		Y="123"
+#		Print 123="123" ' True
+#		Print X="123" ' True
+#		Print Y=123 ' True
+#		Print X=Y ' False

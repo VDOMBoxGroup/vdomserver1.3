@@ -941,20 +941,21 @@ class vexitsub(vstatement):
 			raise errors.expected_sub(line=self.line)
 
 	def compose(self, ident):
-		return ((self.line, ident, u"return"),)
+		return ((self.line, ident, u"return v_mismatch"),)
 
 class vexitproperty(vstatement):
 
 	def __init__(self, line=None):
 		vstatement.__init__(self, line)
 
-	#def scope_names(self, mysource, myclass, myprocedure):
-		# TODO: check for call in property
-		#self.string=u"return %s.value"%myprocedure.name if isinstance(myprocedure, vpropertyget) else u"return"
+	def scope_names(self, mysource, myclass, myprocedure):
+		if not isinstance(myprocedure, vproperty):
+			raise errors.expected_property(line=self.line)
+		self.string=u"return %s.value"%python_result if isinstance(myprocedure, vpropertyget) \
+			else u"return v_mismatch"
 
 	def compose(self, ident):
-		#return ((self.line, ident, self.string),)
-		return ((self.line, ident, u"return %s.value"%python_result),)
+		return ((self.line, ident, self.string),)
 
 class vexitdo(vstatement):
 

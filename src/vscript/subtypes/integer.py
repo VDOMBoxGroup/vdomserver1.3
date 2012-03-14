@@ -25,6 +25,10 @@ class integer(subtype):
 	as_string=property(lambda self: unicode(self))
 
 
+	def is_integer(self, value):
+		return self._value==value
+
+
 	def __invert__(self):
 		return integer(~self._value)
 		
@@ -72,7 +76,7 @@ integer.add_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(self._value+int(another)),
 	double: lambda self, another: double(self._value+float(another)),
-	date: lambda self, another: date(self._value+float(another)).check,
+	date: lambda self, another: date(self._value+float(another)),
 	string: lambda self, another: double(self._value+float(another)),
 	boolean: lambda self, another: integer(self._value+int(another))}
 
@@ -81,7 +85,7 @@ integer.sub_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(self._value-int(another)),
 	double: lambda self, another: double(self._value-float(another)),
-	date: lambda self, another: date(self._value-float(another)).check,
+	date: lambda self, another: date(self._value-float(another)),
 	string: lambda self, another: double(self._value-float(another)),
 	boolean: lambda self, another: integer(self._value-int(another))}
 
@@ -188,7 +192,7 @@ integer.ge_table={
 
 integer.and_table={
 	empty: lambda self, another: integer(self._value&0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: v_null if int(self._value) else integer(self._value),
 	integer: lambda self, another: integer(self._value&int(another)),
 	double: lambda self, another: integer(self._value&int(round(float(another)))),
 	date: lambda self, another: integer(self._value&int(round(float(another)))),
@@ -197,7 +201,7 @@ integer.and_table={
 
 integer.or_table={
 	empty: lambda self, another: integer(self._value|0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: integer(self._value) if int(self._value) else v_null,
 	integer: lambda self, another: integer(self._value|int(another)),
 	double: lambda self, another: integer(self._value|int(round(float(another)))),
 	date: lambda self, another: integer(self._value|int(round(float(another)))),

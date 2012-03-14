@@ -25,11 +25,15 @@ class string(subtype):
 	as_string=property(lambda self: unicode(self))
 
 
+	def is_string(self, value):
+		return self._value==value
+
+
 	def __iter__(self):
 		for character in self._value: return variant(string(character))
 
 	def __len__(self):
-		return integer(len(self._value))
+		return len(self._value)
 
 
 	def __invert__(self):
@@ -46,16 +50,19 @@ class string(subtype):
 
 
 	def __int__(self):
-		return int(self._value)
+		try: return int(self._value)
+		except ValueError: raise errors.type_mismatch
 
 	def __float__(self):
-		return float(self._value)
+		try: return float(self._value)
+		except ValueError: raise errors.type_mismatch
 
 	def __unicode__(self):
 		return unicode(self._value)
 
 	def __nonzero__(self):
-		return bool(self._value)
+		try: return bool(self._value)
+		except ValueError: raise errors.type_mismatch
 
 
 	def __hash__(self):
@@ -79,7 +86,7 @@ string.add_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: double(float(self._value)+int(another)),
 	double: lambda self, another: double(float(self._value)+float(another)),
-	date: lambda self, another: date(float(self._value)+float(another)).check,
+	date: lambda self, another: date(float(self._value)+float(another)),
 	string: lambda self, another: string(self._value+unicode(another)),
 	boolean: lambda self, another: double(float(self._value)+int(another))}
 
@@ -88,7 +95,7 @@ string.sub_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: double(float(self._value)-int(another)),
 	double: lambda self, another: double(float(self._value)-float(another)),
-	date: lambda self, another: date(float(self._value)-float(another)).check,
+	date: lambda self, another: date(float(self._value)-float(another)),
 	string: lambda self, another: double(float(self._value)-float(another)),
 	boolean: lambda self, another: double(float(self._value)-int(another))}
 

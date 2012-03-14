@@ -183,7 +183,7 @@ def p_integer_division_starts(p):
 
 def p_modulus_continues(p):
 	"""modulus : modulus MOD integer_division"""
-	p[0]=p[1].join(u"%s%%%s", p[3])
+	p[0]=p[1].join(u"%s%%%%%s", p[3])
 
 def p_modulus_starts(p):
 	"""modulus : integer_division"""

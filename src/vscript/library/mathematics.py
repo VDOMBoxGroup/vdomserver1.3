@@ -19,8 +19,9 @@ def v_sgn(number):
 	number=number.as_integer
 	return integer(-1 if number<0 else 1 if number>0 else 0)
 
-def v_round(number):
-	return double(round(number.as_double))
+def v_round(number, digits=None):
+	return double(round(number.as_double)) if digits is None \
+		else double(round(number.as_double, digits.as_integer))
 
 
 def v_exp(number):

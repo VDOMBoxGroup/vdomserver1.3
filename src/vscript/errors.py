@@ -37,6 +37,15 @@ class internal_error(generic):
 			line=line)
 
 
+class object_variable_not_set(generic):
+
+	number=91
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Object variable not set",
+			line=line)
+
 class system_error(generic):
 
 	number=507
@@ -133,7 +142,7 @@ class expected_function(generic):
 
 	def __init__(self, line=None):
 		generic.__init__(self,
-			message=u"Expected 'Function'"%name,
+			message=u"Expected 'Function'",
 			line=line)
 
 class expected_sub(generic):
@@ -142,7 +151,16 @@ class expected_sub(generic):
 
 	def __init__(self, line=None):
 		generic.__init__(self,
-			message=u"Expected 'Sub'"%name,
+			message=u"Expected 'Sub'",
+			line=line)
+
+class expected_property(generic):
+
+	number=1050
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Expected 'Property'",
 			line=line)
 
 class inconsistent_arguments_number(generic):

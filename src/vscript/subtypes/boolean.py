@@ -32,6 +32,10 @@ class boolean(subtype):
 	as_string=property(lambda self: unicode(self))
 	
 
+	def is_boolean(self, value):
+		return self._value==value
+
+
 	def __invert__(self):
 		return boolean(~self._value)
 		
@@ -80,7 +84,7 @@ boolean.add_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(self._value+int(another)),
 	double: lambda self, another: double(self._value+float(another)),
-	date: lambda self, another: date(self._value+float(another)).check,
+	date: lambda self, another: date(self._value+float(another)),
 	string: lambda self, another: double(self._value+float(another)),
 	boolean: lambda self, another: integer(self._value+int(another))}
 
@@ -89,7 +93,7 @@ boolean.sub_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(self._value-int(another)),
 	double: lambda self, another: double(self._value+float(another)),
-	date: lambda self, another: date(self._value-float(another)).check,
+	date: lambda self, another: date(self._value-float(another)),
 	string: lambda self, another: double(self._value-float(another)),
 	boolean: lambda self, another: integer(self._value-int(another))}
 
