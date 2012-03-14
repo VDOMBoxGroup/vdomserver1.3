@@ -178,7 +178,7 @@ def t_name(t):
 	return t
 
 def t_newline(t):
-	r'\n+'
+	r'(\n|\r\n)+'
 	t.lexer.lineno+=t.value.count(u"\n")
 	t.type=u"NEWLINE"
 	t.value=(t.lexer.lineno, unicode(t.value))
