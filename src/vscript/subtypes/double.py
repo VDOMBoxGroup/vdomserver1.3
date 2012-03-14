@@ -29,6 +29,12 @@ class double(subtype):
 	as_string=property(lambda self: unicode(self))
 
 
+	def is_double(self, value):
+		return self._value is nan if value is nan \
+			else self._value is infinity if value is infinity \
+			else abs(self._value-value)<1E-7
+
+
 	def __invert__(self):
 		return integer(~int(round(self._value)))
 		
@@ -85,7 +91,7 @@ double.add_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: double(self._value+int(another)),
 	double: lambda self, another: double(self._value+float(another)),
-	date: lambda self, another: date(self._value+float(another)).check,
+	date: lambda self, another: date(self._value+float(another)),
 	string: lambda self, another: double(self._value+float(another)),
 	boolean: lambda self, another: double(self._value+int(another))}
 
@@ -94,7 +100,7 @@ double.sub_table={
 	null: lambda self, another: v_null,
 	integer: lambda self, another: double(self._value-int(another)),
 	double: lambda self, another: double(self._value-float(another)),
-	date: lambda self, another: date(self._value-float(another)).check,
+	date: lambda self, another: date(self._value-float(another)),
 	string: lambda self, another: double(self._value-float(another)),
 	boolean: lambda self, another: double(self._value-int(another))}
 
@@ -201,7 +207,7 @@ double.ge_table={
 
 double.and_table={
 	empty: lambda self, another: integer(int(round(self._value))&0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: v_null if int(round(self._value)) else integer(int(round(self._value))),
 	integer: lambda self, another: integer(int(round(self._value))&int(another)),
 	double: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
 	date: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
@@ -210,7 +216,7 @@ double.and_table={
 
 double.or_table={
 	empty: lambda self, another: integer(int(round(self._value))|0),
-	null: lambda self, another: v_null,
+	null: lambda self, another: integer(int(round(self._value))) if int(round(self._value)) else v_null,
 	integer: lambda self, another: integer(int(round(self._value))|int(another)),
 	double: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),
 	date: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),

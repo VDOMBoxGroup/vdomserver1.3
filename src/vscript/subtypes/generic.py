@@ -33,6 +33,9 @@ class generic(subtype):
 		return self
 
 
+	is_generic=property(lambda self: True)
+
+
 	def __add__(self, another):
 		return self()+another
 

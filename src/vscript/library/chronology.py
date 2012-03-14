@@ -256,7 +256,7 @@ def v_dateadd(interval, number, value):
 		year, month, day, hour, minute, second=inc_second(year, month, day, hour, minute, second, number)
 	else:
 		raise errors.invalid_procedure_call(name=u"dateadd")
-	return date(encode_date(year, month, day, hour, minute, second)).check
+	return date(encode_date(year, month, day, hour, minute, second))
 
 def v_datediff(interval, value1, value2, firstdayofweek=None, firstweekofyear=None):
 	# TODO: Author didnt understand the use of "firstweekofyear" parameter

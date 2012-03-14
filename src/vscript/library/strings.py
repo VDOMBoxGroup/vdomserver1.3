@@ -9,7 +9,7 @@ def ireplace(s1, s2, s3, count=0):
 
 
 def v_len(value):
-	return len(value.as_simple)
+	return integer(len(value.as_simple))
 
 def v_strcomp(string1, string2, compare=None):
 	string1, string2=string1.as_string, string2.as_string

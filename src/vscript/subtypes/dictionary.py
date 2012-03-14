@@ -52,7 +52,7 @@ class dictionary(subtype):
 			yield variant(item)
 
 	def __len__(self):
-		return integer(cout(self._items))
+		return len(self._items)
 
 
 	def __repr__(self):

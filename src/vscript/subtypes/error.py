@@ -9,6 +9,9 @@ class error(subtype):
 		self._value=value
 
 
+	value=property(lambda self: self._value)
+
+
 	code=property(lambda self: 10)
 	name=property(lambda self: "Error")
 

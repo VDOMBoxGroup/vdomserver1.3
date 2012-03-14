@@ -195,7 +195,7 @@ class array(subtype):
 				level+=1
 
 	def __len__(self):
-		return integer(count(self._items))
+		return count(self._items)
 
 
 	def __repr__(self):

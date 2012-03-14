@@ -53,7 +53,6 @@ class subtype(primitive):
 		raise errors.type_mismatch
 
 
-
 	def _get_as_simple(self):
 		raise errors.type_mismatch
 
@@ -103,6 +102,27 @@ class subtype(primitive):
 	def as_specific(self, specific):
 		raise errors.type_mismatch
 
+
+	is_empty=property(lambda self: False)
+	is_null=property(lambda self: False)
+	is_generic=property(lambda self: False)
+	is_nothing=property(lambda self: False)
+
+	def is_integer(self, value):
+		return False
+
+	def is_double(self, value):
+		return False
+
+	def is_date(self, *arguments):
+		return False
+
+	def is_string(self, value):
+		return False
+
+	def is_boolean(self, value):
+		return False
+	
 
 	def __iter__(self):
 		raise errors.type_mismatch
@@ -155,6 +175,7 @@ class subtype(primitive):
 		simple=another.as_simple
 		try: return self.pow_table.get(type(simple), unknown)(self, simple)
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
+		except ZeroDivisionError: raise errors.invalid_procedure_call, None, sys.exc_info()[2]
 
 
 	def __eq__(self, another):

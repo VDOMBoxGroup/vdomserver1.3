@@ -5,7 +5,14 @@ from .generic import generic
 
 class nothing(generic):
 
+	def __call__(self, *arguments, **keywords):
+		raise errors.object_variable_not_set
+
+
 	name=property(lambda self: "Nothing")
+
+
+	is_nothing=property(lambda self: self is v_nothing)
 
 
 	def __copy__(self):
