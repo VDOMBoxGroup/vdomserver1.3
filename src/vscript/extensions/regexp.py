@@ -81,7 +81,7 @@ class v_regexp(generic):
 			re.IGNORECASE if self._ignorecase else 0)
 		return self._regexp_cache
 
-	_regex=property(_get_regex)
+	_regexp=property(_get_regex)
 
 
 	def v_global(self, let=None, set=None):
