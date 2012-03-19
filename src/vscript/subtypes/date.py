@@ -2,6 +2,7 @@
 import sys, re, datetime
 from math import modf, fabs
 from .. import errors
+from ..operations import div, mod
 from ..primitives import subtype
 
 
@@ -84,16 +85,16 @@ class date(subtype):
 
 		
 	def __invert__(self):
-		raise integer(~int(round(self._value)))
+		return integer(~int(round(self._value)))
 		
 	def __neg__(self):
-		return double(-self._value)
+		return date(-self._value)
 
 	def __pos__(self):
-		return double(+self._value)
+		return date(+self._value)
 
 	def __abs__(self):
-		return double(fabs(self._value))
+		return date(fabs(self._value))
 
 
 	def __int__(self):
@@ -130,147 +131,147 @@ from .string import string
 
 
 date.add_table={
-	empty: lambda self, another: date(self._value+0),
+	empty: lambda self, another: date(float(self)+0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: date(self._value+int(another)),
-	double: lambda self, another: date(self._value+float(another)),
-	date: lambda self, another: date(self._value+float(another)),
-	string: lambda self, another: date(self._value+float(another)),
-	boolean: lambda self, another: date(self._value+int(another))}
+	integer: lambda self, another: date(float(self)+int(another)),
+	double: lambda self, another: date(float(self)+float(another)),
+	date: lambda self, another: date(float(self)+float(another)),
+	string: lambda self, another: date(float(self)+float(another)),
+	boolean: lambda self, another: date(float(self)+int(another))}
 
 date.sub_table={
-	empty: lambda self, another: date(self._value-0),
+	empty: lambda self, another: date(float(self)-0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: date(self._value-int(another)),
-	double: lambda self, another: date(self._value-float(another)),
-	date: lambda self, another: double(self._value-float(another)),
-	string: lambda self, another: date(self._value-float(another)),
-	boolean: lambda self, another: date(self._value-int(another))}
+	integer: lambda self, another: date(float(self)-int(another)),
+	double: lambda self, another: date(float(self)-float(another)),
+	date: lambda self, another: double(float(self)-float(another)),
+	string: lambda self, another: date(float(self)-float(another)),
+	boolean: lambda self, another: date(float(self)-int(another))}
 
 date.mul_table={
-	empty: lambda self, another: double(self._value*0),
+	empty: lambda self, another: double(float(self)*0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: double(self._value*int(another)),
-	double: lambda self, another: double(self._value*float(another)),
-	date: lambda self, another: double(self._value*float(another)),
-	string: lambda self, another: double(self._value*float(another)),
-	boolean: lambda self, another: double(self._value*int(another))}
+	integer: lambda self, another: double(float(self)*int(another)),
+	double: lambda self, another: double(float(self)*float(another)),
+	date: lambda self, another: double(float(self)*float(another)),
+	string: lambda self, another: double(float(self)*float(another)),
+	boolean: lambda self, another: double(float(self)*int(another))}
 
 date.div_table={
-	empty: lambda self, another: double(self._value/0),
+	empty: lambda self, another: double(float(self)/0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: double(self._value/int(another)),
-	double: lambda self, another: double(self._value/float(another)),
-	date: lambda self, another: double(self._value/float(another)),
-	string: lambda self, another: double(self._value/float(another)),
-	boolean: lambda self, another: double(self._value/int(another))}
+	integer: lambda self, another: double(float(self)/int(another)),
+	double: lambda self, another: double(float(self)/float(another)),
+	date: lambda self, another: double(float(self)/float(another)),
+	string: lambda self, another: double(float(self)/float(another)),
+	boolean: lambda self, another: double(float(self)/int(another))}
 
 date.floordiv_table={
-	empty: lambda self, another: integer(int(round(self._value))//0),
+	empty: lambda self, another: integer(div(int(self), 0)),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(int(round(self._value))//int(another)),
-	double: lambda self, another: integer(int(round(self._value))//int(round(float(another)))),
-	date: lambda self, another: integer(int(round(self._value))//int(round(float(another)))),
-	string: lambda self, another: integer(int(round(self._value))//int(round(float(another)))),
-	boolean: lambda self, another: integer(int(round(self._value))//int(another))}
+	integer: lambda self, another: integer(div(int(self), int(another))),
+	double: lambda self, another: integer(div(int(self), int(another))),
+	date: lambda self, another: integer(div(int(self), int(another))),
+	string: lambda self, another: integer(div(int(self), int(another))),
+	boolean: lambda self, another: integer(div(int(self), int(another)))}
 
 date.mod_table={
-	empty: lambda self, another: integer(int(round(self._value))%0),
+	empty: lambda self, another: integer(mod(int(self), 0)),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(int(round(self._value))%int(another)),
-	double: lambda self, another: integer(int(round(self._value))%int(round(float(another)))),
-	date: lambda self, another: integer(int(round(self._value))%int(round(float(another)))),
-	string: lambda self, another: integer(int(round(self._value))%int(round(float(another)))),
-	boolean: lambda self, another: integer(int(round(self._value))%int(another))}
+	integer: lambda self, another: integer(mod(int(self), int(another))),
+	double: lambda self, another: integer(mod(int(self), int(another))),
+	date: lambda self, another: integer(mod(int(self), int(another))),
+	string: lambda self, another: integer(mod(int(self), int(another))),
+	boolean: lambda self, another: integer(mod(int(self), int(another)))}
 
 date.pow_table={
-	empty: lambda self, another: double(self._value**0),
+	empty: lambda self, another: double(float(self)**0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: double(self._value**int(another)),
-	double: lambda self, another: double(self._value**float(another)),
-	date: lambda self, another: double(self._value**float(another)),
-	string: lambda self, another: double(self._value**float(another)),
-	boolean: lambda self, another: double(self._value**int(another))}
+	integer: lambda self, another: double(float(self)**int(another)),
+	double: lambda self, another: double(float(self)**float(another)),
+	date: lambda self, another: double(float(self)**float(another)),
+	string: lambda self, another: double(float(self)**float(another)),
+	boolean: lambda self, another: double(float(self)**int(another))}
 
 
 date.eq_table={
-	empty: lambda self, another: boolean(true) if self._value==0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)==0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value==int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value==float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value==float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value==float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value==int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)==int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)==int(another) else boolean(false)}
 
 date.ne_table={
-	empty: lambda self, another: boolean(true) if self._value!=0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)!=0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value!=int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value!=float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value!=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value!=float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value!=int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)!=int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)!=int(another) else boolean(false)}
 
 date.lt_table={
-	empty: lambda self, another: boolean(true) if self._value<0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)<0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value<int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value<float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value<float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value<float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value<int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)<int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)<int(another) else boolean(false)}
 
 date.gt_table={
-	empty: lambda self, another: boolean(true) if self._value>0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)>0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value>int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value>float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value>float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value>float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value>int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)>int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)>int(another) else boolean(false)}
 
 date.le_table={
-	empty: lambda self, another: boolean(true) if self._value<=0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)<=0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value<=int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value<=float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value<=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value<=float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value<=int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)<=int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)<=int(another) else boolean(false)}
 
 date.ge_table={
-	empty: lambda self, another: boolean(true) if self._value>=0 else boolean(false),
+	empty: lambda self, another: boolean(true) if float(self)>=0 else boolean(false),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: boolean(true) if self._value>=int(another) else boolean(false),
-	double: lambda self, another: boolean(true) if self._value>=float(another) else boolean(false),
-	date: lambda self, another: boolean(true) if self._value>=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if self._value>=float(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if self._value>=int(another) else boolean(false)}
+	integer: lambda self, another: boolean(true) if float(self)>=int(another) else boolean(false),
+	double: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
+	date: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
+	string: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if float(self)>=int(another) else boolean(false)}
 
 
 date.and_table={
-	empty: lambda self, another: integer(int(round(self._value))&0),
-	null: lambda self, another: v_null if int(round(self._value)) else integer(int(round(self._value))),
-	integer: lambda self, another: integer(int(round(self._value))&int(another)),
-	double: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
-	date: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
-	string: lambda self, another: integer(int(round(self._value))&int(round(float(another)))),
-	boolean: lambda self, another: integer(int(round(self._value))&int(another))}
+	empty: lambda self, another: integer(int(self)&0),
+	null: lambda self, another: v_null if int(self) else integer(int(self)),
+	integer: lambda self, another: integer(int(self)&int(another)),
+	double: lambda self, another: integer(int(self)&int(round(float(another)))),
+	date: lambda self, another: integer(int(self)&int(round(float(another)))),
+	string: lambda self, another: integer(int(self)&int(round(float(another)))),
+	boolean: lambda self, another: integer(int(self)&int(another))}
 
 date.or_table={
-	empty: lambda self, another: integer(int(round(self._value))|0),
-	null: lambda self, another: integer(int(round(self._value))) if int(round(self._value)) else v_null,
-	integer: lambda self, another: integer(int(round(self._value))|int(another)),
-	double: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),
-	date: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),
-	string: lambda self, another: integer(int(round(self._value))|int(round(float(another)))),
-	boolean: lambda self, another: integer(int(round(self._value))|int(another))}
+	empty: lambda self, another: integer(int(self)|0),
+	null: lambda self, another: integer(int(self)) if int(self) else v_null,
+	integer: lambda self, another: integer(int(self)|int(another)),
+	double: lambda self, another: integer(int(self)|int(round(float(another)))),
+	date: lambda self, another: integer(int(self)|int(round(float(another)))),
+	string: lambda self, another: integer(int(self)|int(round(float(another)))),
+	boolean: lambda self, another: integer(int(self)|int(another))}
 
 date.xor_table={
-	empty: lambda self, another: integer(int(round(self._value))^0),
+	empty: lambda self, another: integer(int(self)^0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(int(round(self._value))^int(another)),
-	double: lambda self, another: integer(int(round(self._value))^int(round(float(another)))),
-	date: lambda self, another: integer(int(round(self._value))^int(round(float(another)))),
-	string: lambda self, another: integer(int(round(self._value))^int(round(float(another)))),
-	boolean: lambda self, another: integer(int(round(self._value))^int(another))}
+	integer: lambda self, another: integer(int(self)^int(another)),
+	double: lambda self, another: integer(int(self)^int(round(float(another)))),
+	date: lambda self, another: integer(int(self)^int(round(float(another)))),
+	string: lambda self, another: integer(int(self)^int(round(float(another)))),
+	boolean: lambda self, another: integer(int(self)^int(another))}

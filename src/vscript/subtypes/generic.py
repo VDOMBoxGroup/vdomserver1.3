@@ -91,10 +91,10 @@ class generic(subtype):
 		return ~self()
 		
 	def __neg__(self):
-		return neg(self())
+		return -self()
 
 	def __pos__(self):
-		return pos(self())
+		return +self()
 
 	def __abs__(self):
 		return abs(self())

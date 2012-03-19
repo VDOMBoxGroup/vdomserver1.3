@@ -8,12 +8,13 @@ last_random=random()
 
 
 def v_abs(number):
-	number=number.as_simple
-	if isinstance(number, (integer, boolean, empty)):
-		return integer(abs(number.as_integer))
-	elif isinstance(number, (double, string, date)):
-		return double(abs(number.as_double))
-	else: raise errors.type_mismatch
+	return abs(number)
+	#number=number.as_simple
+	#if isinstance(number, (integer, boolean, empty)):
+	#	return integer(abs(number.as_integer))
+	#elif isinstance(number, (double, string, date)):
+	#	return double(abs(number.as_double))
+	#else: raise errors.type_mismatch
 
 def v_sgn(number):
 	number=number.as_integer

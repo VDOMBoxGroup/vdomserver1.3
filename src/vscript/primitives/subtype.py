@@ -174,6 +174,7 @@ class subtype(primitive):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.pow_table.get(type(simple), unknown)(self, simple)
+		except ValueError: raise errors.invalid_procedure_call, None, sys.exc_info()[2]
 		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
 		except ZeroDivisionError: raise errors.invalid_procedure_call, None, sys.exc_info()[2]
 
