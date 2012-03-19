@@ -99,10 +99,10 @@ class variable(primitive):
 		return ~(self.subtype)
 		
 	def __neg__(self):
-		return neg(self.subtype)
+		return -(self.subtype)
 
 	def __pos__(self):
-		return pos(self.subtype)
+		return +(self.subtype)
 
 	def __abs__(self):
 		return abs(self.subtype)

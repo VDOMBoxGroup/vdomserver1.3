@@ -1,6 +1,7 @@
 
 import sys
 from .. import errors
+from ..operations import div, mod
 from ..primitives import subtype
 
 
@@ -27,13 +28,13 @@ class empty(subtype):
 
 
 	def __invert__(self):
-		return boolean(true)
+		return integer(-1)
 		
 	def __neg__(self):
 		return integer(0)
 
 	def __pos__(self):
-		return integer(0)
+		return v_empty
 
 	def __abs__(self):
 		return integer(0)
@@ -105,29 +106,29 @@ empty.mul_table={
 empty.div_table={
 	empty: lambda self, another: integer(0/0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(0/int(another)),
+	integer: lambda self, another: double(0/int(another)),
 	double: lambda self, another: double(0/float(another)),
 	date: lambda self, another: double(0/float(another)),
 	string: lambda self, another: double(0/float(another)),
-	boolean: lambda self, another: integer(0/int(another))}
+	boolean: lambda self, another: double(0/int(another))}
 
 empty.floordiv_table={
-	empty: lambda self, another: integer(0//0),
+	empty: lambda self, another: integer(div(0, 0)),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(0//int(another)),
-	double: lambda self, another: integer(0//int(round(float(another)))),
-	date: lambda self, another: integer(0//int(round(float(another)))),
-	string: lambda self, another: integer(0//int(round(float(another)))),
-	boolean: lambda self, another: integer(0//int(another))}
+	integer: lambda self, another: integer(div(0, int(another))),
+	double: lambda self, another: integer(div(0, int(another))),
+	date: lambda self, another: integer(div(0, int(another))),
+	string: lambda self, another: integer(div(0, int(another))),
+	boolean: lambda self, another: integer(div(0, int(another)))}
 
 empty.mod_table={
-	empty: lambda self, another: integer(0%0),
+	empty: lambda self, another: integer(mod(0, 0)),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: integer(0%int(another)),
-	double: lambda self, another: integer(0%int(round(float(another)))),
-	date: lambda self, another: integer(0%int(round(float(another)))),
-	string: lambda self, another: integer(0%int(round(float(another)))),
-	boolean: lambda self, another: integer(0%int(another))}
+	integer: lambda self, another: integer(mod(0, int(another))),
+	double: lambda self, another: integer(mod(0, int(another))),
+	date: lambda self, another: integer(mod(0, int(another))),
+	string: lambda self, another: integer(mod(0, int(another))),
+	boolean: lambda self, another: integer(mod(0, int(another)))}
 
 empty.pow_table={
 	empty: lambda self, another: double(0.0**0),
@@ -198,25 +199,25 @@ empty.and_table={
 	empty: lambda self, another: integer(0&0),
 	null: lambda self, another: integer(0),
 	integer: lambda self, another: integer(0&int(another)),
-	double: lambda self, another: integer(0&int(round(float(another)))),
-	date: lambda self, another: integer(0&int(round(float(another)))),
-	string: lambda self, another: integer(0&int(round(float(another)))),
+	double: lambda self, another: integer(0&int(another)),
+	date: lambda self, another: integer(0&int(another)),
+	string: lambda self, another: integer(0&int(another)),
 	boolean: lambda self, another: integer(0&int(another))}
 
 empty.or_table={
 	empty: lambda self, another: integer(0|0),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(0|int(another)),
-	double: lambda self, another: integer(0|int(round(float(another)))),
-	date: lambda self, another: integer(0|int(round(float(another)))),
-	string: lambda self, another: integer(0|int(round(float(another)))),
+	double: lambda self, another: integer(0|int(another)),
+	date: lambda self, another: integer(0|int(another)),
+	string: lambda self, another: integer(0|int(another)),
 	boolean: lambda self, another: integer(0|int(another))}
 
 empty.xor_table={
 	empty: lambda self, another: integer(0^0),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: integer(0^int(another)),
-	double: lambda self, another: integer(0^int(round(float(another)))),
-	date: lambda self, another: integer(0^int(round(float(another)))),
-	string: lambda self, another: integer(0^int(round(float(another)))),
+	double: lambda self, another: integer(0^int(another)),
+	date: lambda self, another: integer(0^int(another)),
+	string: lambda self, another: integer(0^int(another)),
 	boolean: lambda self, another: integer(0^int(another))}
