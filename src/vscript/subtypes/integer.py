@@ -24,6 +24,7 @@ class integer(subtype):
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
 	as_string=property(lambda self: unicode(self))
+	as_number=property(lambda self: int(self))
 
 
 	def is_integer(self, value):

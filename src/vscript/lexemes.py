@@ -28,28 +28,28 @@ for word in words:
 del words
 
 
-def t_vcr(t):
-	r'[Vv][Bb]?[Cc][Rr]'
-	t.type=u"VCR"
-	t.value=(t.lexer.lineno, "string(u\"\\r\")")
-	return t
-
 def t_vcrlf(t):
 	r'[Vv][Bb]?[Cc][Rr][Ll][Ff]'
 	t.type=u"VCRLF"
 	t.value=(t.lexer.lineno, "string(u\"\\r\\n\")")
 	return t
 
-def t_vformfeed(t):
-	r'[Vv][Bb]?[Ff][Oo][Rr][Mm][Ff][Ee][Ee][Dd]'
-	t.type=u"VFORMFEED"
-	t.value=(t.lexer.lineno, "string(u\"\\f\")")
+def t_vcr(t):
+	r'[Vv][Bb]?[Cc][Rr]'
+	t.type=u"VCR"
+	t.value=(t.lexer.lineno, "string(u\"\\r\")")
 	return t
 
 def t_vlf(t):
 	r'[Vv][Bb]?[Ll][Ff]'
 	t.type=u"VLF"
 	t.value=(t.lexer.lineno, "string(u\"\\n\")")
+	return t
+
+def t_vformfeed(t):
+	r'[Vv][Bb]?[Ff][Oo][Rr][Mm][Ff][Ee][Ee][Dd]'
+	t.type=u"VFORMFEED"
+	t.value=(t.lexer.lineno, "string(u\"\\f\")")
 	return t
 
 def t_vnewline(t):
@@ -71,7 +71,8 @@ def t_vnullstring(t):
 	return t
 
 def t_vtab(t):
-	r'(?:^|[^A-Za-z])[Vv][Bb]?[Tt][Aa][Bb](?:[^0-9A-Za-z]|$)'
+	r'[Vv][Bb]?[Tt][Aa][Bb]'
+	#r'(?:^|[^A-Za-z])[Vv][Bb]?[Tt][Aa][Bb](?:[^0-9A-Za-z]|$)'
 	t.type=u"VTAB"
 	t.value=(t.lexer.lineno, "string(u\"\\t\")")
 	return t
@@ -94,7 +95,7 @@ def t_vtextcompare(t):
 	t.value=(t.lexer.lineno, "integer(1)")
 	return t
 
-def t_vtextcompare(t):
+def t_vdatabasecompare(t):
 	r'[Vv][Bb]?[Dd][Aa][Tt][Aa][Bb][Aa][Ss][Ee][Cc][Oo][Mm][Pp][Aa][Rr][Ee]'
 	t.type=u"VDATABASECOMPARE"
 	t.value=(t.lexer.lineno, "integer(2)")

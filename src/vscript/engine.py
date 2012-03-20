@@ -51,7 +51,7 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
 
-def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, quiet=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
+def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, anyway=1, quiet=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
 	# debug("[VScript] Wait for mutex...")
 	mutex=auto_mutex("vscript_engine_compile_mutex")
 	# debug("[VScript] Done")
@@ -82,10 +82,11 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
 		return code, source
 	except errors.generic, error:
-		show_exception_details(None, error, error_type=errors.generic.compilation)
-		return vscript_default_code, vscript_default_source
+		if not quiet: show_exception_details(None, error, error_type=errors.generic.compilation)
+		if anyway: return vscript_default_code, vscript_default_source
+		else: raise
 	except errors.python, error:
-		show_exception_details(source, errors.system_error(unicode(error)),
+		if not quiet: show_exception_details(source, errors.system_error(unicode(error)),
 			error_type=errors.generic.compilation)
 		raise
 	finally:

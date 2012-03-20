@@ -31,6 +31,7 @@ class variable(primitive):
 	as_generic=property(lambda self: self.subtype.as_generic)
 	as_integer=property(lambda self: self.subtype.as_integer)
 	as_string=property(lambda self: self.subtype.as_string)
+	as_number=property(lambda self: self.subtype.as_number)
 
 	def as_specific(self, specific):
 		return self.subtype.as_specific(specific)

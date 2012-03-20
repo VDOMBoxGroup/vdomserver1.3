@@ -1,30 +1,30 @@
 
 from .. import errors
 from ..subtypes import array, boolean, date, double, empty, \
-	generic, integer, nothing, null, string
+	generic, integer, nothing, null, string, true, false
 
 
 def v_isarray(value):
-	return v_true_value if isinstance(value.subtype, array) else v_false_value
+	return true if isinstance(value.subtype, array) else false
 	
 def v_isdate(value):
-	return v_true_value if isinstance(value.subtype, date) else v_false_value
+	return true if isinstance(value.subtype, date) else false
 
 def v_isempty(value):
-	return v_true_value if isinstance(value.subtype, empty) else v_false_value
+	return true if isinstance(value.subtype, empty) else false
 	
 def v_isnothing(value):
-	return v_true_value if isinstance(value.subtype, nothing) else v_false_value
+	return true if isinstance(value.subtype, nothing) else false
 	
 def v_isnull(value):
-	return v_true_value if isinstance(value.subtype, null) else v_false_value
+	return true if isinstance(value.subtype, null) else false
 
 	
 def v_isnumeric(value):
-	return v_true_value if isinstance(value.subtype, (integer, double)) else v_false_value
+	return true if isinstance(value.subtype, (integer, double)) else false
 	
 def v_isobject(value):
-	return v_true_value if isinstance(value.subtype, generic) else v_false_value
+	return true if isinstance(value.subtype, generic) else false
 
 
 def v_cbool(expression):

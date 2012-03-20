@@ -73,6 +73,9 @@ class primitive(object):
 	def _get_as_string(self):
 		raise errors.python_using_abstract
 
+	def _get_as_number(self):
+		raise errors.python_using_abstract
+
 	as_simple=property(_get_as_simple)
 	as_complex=property(_get_as_complex)
 	as_is=property(_get_as_is)
@@ -85,6 +88,7 @@ class primitive(object):
 	as_generic=property(_get_as_generic)
 	as_integer=property(_get_as_integer)
 	as_string=property(_get_as_string)
+	as_number=property(_get_as_number)
 
 	def as_specific(self, specific):
 		raise errors.python_using_abstract

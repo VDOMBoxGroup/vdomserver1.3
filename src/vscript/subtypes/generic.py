@@ -24,8 +24,9 @@ class generic(subtype):
 	as_date=property(lambda self: self().as_date)
 	as_double=property(lambda self: self().as_double)
 	as_generic=property(lambda self: self)
-	as_integer=property(lambda self: self.as_integer)
-	as_string=property(lambda self: self.as_string)
+	as_integer=property(lambda self: self().as_integer)
+	as_string=property(lambda self: self().as_string)
+	as_number=property(lambda self: self().as_double)
 
 	def as_specific(self, specific):
 		if not isinstance(self, specific):
