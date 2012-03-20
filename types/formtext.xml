@@ -967,8 +967,8 @@ t.attr('style', t.attr('style') + ';' + cssStyleValue);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="value" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-/*vdom_evt_setvalue(this, value);*/
-vdom_evt_setvalue(this, $q('<div/>').html(value).html());
+vdom_evt_setvalue(this, value);
+/*vdom_evt_setvalue(this, $q('<div/>').html(value).html());*/
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
