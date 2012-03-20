@@ -30,6 +30,7 @@ python_default=u"__call__"
 python_constructor=u"__init__"
 python_destructor=u"__del__"
 python_result="result"
+python_value="subtype"
 
 
 class vself(object):
@@ -797,7 +798,7 @@ class vforstep(vfor):
 		self.step.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
-		return vfor.compose(ident, step=self.step)
+		return vfor.compose(self, ident, step=self.step)
 
 class vtrycatch(vstatement):
 
@@ -929,7 +930,7 @@ class vexitfunction(vstatement):
 		self.myprocedure=myprocedure
 
 	def compose(self, ident):
-		return ((self.line, ident, u"return %s.value"%python_result),)
+		return ((self.line, ident, u"return %s.%s"%(python_result, python_value)),)
 
 class vexitsub(vstatement):
 
@@ -949,10 +950,10 @@ class vexitproperty(vstatement):
 		vstatement.__init__(self, line)
 
 	def scope_names(self, mysource, myclass, myprocedure):
-		if not isinstance(myprocedure, vproperty):
+		if not isinstance(myprocedure, (vpropertyget, vpropertyletset)):
 			raise errors.expected_property(line=self.line)
-		self.string=u"return %s.value"%python_result if isinstance(myprocedure, vpropertyget) \
-			else u"return v_mismatch"
+		self.string=u"return %s.%s"%(python_result, python_value) \
+			if isinstance(myprocedure, vpropertyget) else u"return v_mismatch"
 
 	def compose(self, ident):
 		return ((self.line, ident, self.string),)
@@ -1176,7 +1177,7 @@ class vpropertylet(vpropertyletset):
 	def compose(self, ident):
 		return vprocedure.compose(self, ident,
 			precede=[(self.line, ident+1, u"%s=variant()"%python_result),
-				(self.line, ident+1, u"%s=%s(let)"%(self.value[0], self.value[1]))])
+				(self.line, ident+1, u"%s=let.%s"%(self.value[0], self.value[1]))])
 
 class vpropertyset(vpropertyletset):
 
@@ -1198,7 +1199,7 @@ class vpropertyset(vpropertyletset):
 	def compose(self, ident):
 		return vprocedure.compose(self, ident,
 			precede=[(self.line, ident+1, u"%s=variant()"%python_result),
-				(self.line, ident+1, u"%s=%s(set)"%(self.value[0], self.value[1]))])
+				(self.line, ident+1, u"%s=set.%s"%(self.value[0], self.value[1]))])
 
 class vinitializations(vstatement):
 
@@ -1310,6 +1311,9 @@ class vsourcenames(object):
 
 	def __iter__(self):
 		return iter(self.names)
+
+	def __getitem__(self, name):
+		return self.names[name]
 
 	def __setitem__(self, name, value):
 		self.names[name]=value

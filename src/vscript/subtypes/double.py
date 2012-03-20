@@ -28,6 +28,7 @@ class double(subtype):
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
 	as_string=property(lambda self: unicode(self))
+	as_number=property(lambda self: float(self))
 
 
 	def is_double(self, value):

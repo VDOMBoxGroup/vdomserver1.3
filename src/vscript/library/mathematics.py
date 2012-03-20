@@ -1,4 +1,5 @@
 
+import math
 from random import random, seed
 from .. import errors
 from ..subtypes import integer, double
@@ -9,33 +10,30 @@ last_random=random()
 
 def v_abs(number):
 	return abs(number)
-	#number=number.as_simple
-	#if isinstance(number, (integer, boolean, empty)):
-	#	return integer(abs(number.as_integer))
-	#elif isinstance(number, (double, string, date)):
-	#	return double(abs(number.as_double))
-	#else: raise errors.type_mismatch
 
 def v_sgn(number):
-	number=number.as_integer
+	number=number.as_number
 	return integer(-1 if number<0 else 1 if number>0 else 0)
 
 def v_round(number, digits=None):
-	return double(round(number.as_double)) if digits is None \
-		else double(round(number.as_double, digits.as_integer))
+	number=number.as_number
+	return integer(number) if isinstance(number, int) \
+		else double(round(number) if digits is None else round(number, digits.as_integer))
 
 
 def v_exp(number):
 	number=number.as_double
-	# 709.782712893 - highest value from MSDN
-	if number>709.782712893: raise errors.invalid_procedure_call(name=u"exp")
+	if number>709.782712893: # Highest acceptable value from MSDN
+		raise errors.invalid_procedure_call(name=u"exp")
 	return double(math.exp(number))
 
 def v_int(number):
-	return integer(math.floor(number.as_double))
+	number=number.as_number
+	return integer(number) if isinstance(number, int) else double(math.floor(number))
 	
 def v_fix(number):
-	return integer(math.ceil(number.as_double))
+	number=number.as_number
+	return integer(number) if isinstance(number, int) else double(math.modf(number)[1])
 
 def v_log(number):
 	number=number.as_double

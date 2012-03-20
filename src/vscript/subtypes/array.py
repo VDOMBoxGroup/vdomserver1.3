@@ -150,6 +150,10 @@ class array(subtype):
 	as_array=property(lambda self: self)
 
 
+	def is_array(self, function):
+		return all((function(index, item) for index, item in enumerate(self._items)))
+
+
 	dimension=property(lambda self: len(self._subscripts))
 	items=property(lambda self: self._items)
 

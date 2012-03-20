@@ -371,10 +371,10 @@ def p_value_parenthesis(p):
 	p[0]=p[2].apply(u"(%s)")
 
 def p_value_constants(p):
-	"""value : VCR
-             | VCRLF
-             | VFORMFEED
+	"""value : VCRLF
+             | VCR
              | VLF
+             | VFORMFEED
              | VNEWLINE
              | VNULLCHAR
              | VNULLSTRING

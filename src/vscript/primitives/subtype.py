@@ -86,6 +86,9 @@ class subtype(primitive):
 	def _get_as_string(self):
 		raise errors.type_mismatch
 
+	def _get_as_number(self):
+		raise errors.type_mismatch
+
 	as_simple=property(_get_as_simple)
 	as_complex=property(_get_as_complex)
 	as_is=property(lambda self: self)
@@ -98,6 +101,7 @@ class subtype(primitive):
 	as_generic=property(_get_as_generic)
 	as_integer=property(_get_as_integer)
 	as_string=property(_get_as_string)
+	as_number=property(_get_as_number)
 
 	def as_specific(self, specific):
 		raise errors.type_mismatch
@@ -121,6 +125,12 @@ class subtype(primitive):
 		return False
 
 	def is_boolean(self, value):
+		return False
+
+	def is_array(self, function):
+		return False
+
+	def is_dictionary(self, function):
 		return False
 	
 
