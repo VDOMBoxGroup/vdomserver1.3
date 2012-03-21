@@ -7,7 +7,6 @@ from .primitive import primitive
 class subtype(primitive):
 
 	def __call__(self, *arguments, **keywords):
-		print ">>> %r"%self
 		raise errors.type_mismatch
 
 

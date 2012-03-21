@@ -12,16 +12,16 @@ class shadow(variable):
 	def __call__(self, *arguments, **keywords):
 		if "let" in keywords:
 			if arguments:
-				raise errors.type_mismatch
+				getattr(self._owner, self._name)(*arguments, **keywords)
 			else:
 				setattr(self._owner, self._name, keywords["let"].as_simple)
 		elif "set" in keywords:
 			if arguments:
-				raise errors.type_mismatch
+				getattr(self._owner, self._name)(*arguments, **keywords)
 			else:
 				setattr(self._owner, self._name, keywords["let"].as_complex)
 		else:
-			raise errors.type_mismatch
+			getattr(self._owner, self._name)(*arguments, **keywords)
 
 
 	subtype=property(lambda self: getattr(self._owner, self._name).subtype)
@@ -29,4 +29,4 @@ class shadow(variable):
 
 
 	def __repr__(self):
-		return "SHADOW@%08X:%s"%(id(self), repr(getattr(self._owner, self._name)))
+		return "SHADOW@%08X:%r"%(id(self), getattr(self._owner, self._name))
