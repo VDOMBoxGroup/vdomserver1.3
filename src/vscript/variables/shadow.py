@@ -11,11 +11,17 @@ class shadow(variable):
 
 	def __call__(self, *arguments, **keywords):
 		if "let" in keywords:
-			setattr(self._owner, self._name, keywords["let"].as_simple)
+			if arguments:
+				raise errors.type_mismatch
+			else:
+				setattr(self._owner, self._name, keywords["let"].as_simple)
 		elif "set" in keywords:
-			raise errors.type_mismatch
+			if arguments:
+				raise errors.type_mismatch
+			else:
+				setattr(self._owner, self._name, keywords["let"].as_complex)
 		else:
-			return getattr(self._owner, self._name)
+			raise errors.type_mismatch
 
 
 	subtype=property(lambda self: getattr(self._owner, self._name).subtype)

@@ -1,6 +1,7 @@
 
 from .. import errors
 from ..subtypes import generic, string
+from ..variables import shadow
 
 
 class v_vdomtype(generic):
@@ -38,11 +39,15 @@ class v_vdomobject(generic):
 		if name.startswith("v_"):
 			name=name[2:]
 			if name in self._object.attributes:
-				return string(unicode(getattr(self._object, name)))
+				#return string(unicode(getattr(self._object, name)))
+				return shadow(self, "wrapper_%s"%name)
 			elif name in self._object.objects:
 				return v_vdomobject(self._object.objects[name])
 			else:
 				raise errors.object_has_no_property(name)
+		elif name.startswith("wrapper_"):
+			name=name[8:]
+			return string(unicode(getattr(self._object, name)))
 		else:
 			raise errors.object_has_no_property(name)
 
@@ -55,6 +60,9 @@ class v_vdomobject(generic):
 				raise errors.type_mismatch
 			else:
 				raise errors.object_has_no_property(name)
+		elif name.startswith("wrapper_"):
+			name=name[8:]
+			setattr(self._object, name, value.as_string)
 		else:
 			generic.__setattr__(self, name, value)
 
