@@ -35,7 +35,7 @@ class parseapp:
 		f = open(os.path.join(tmp, "appid"), "rt")
 		appid = f.read()
 		f.close()
-		self.id = appid.strip()
+		self.id = appid.strip()[:36]#Note: hack because parseapp for some reason duplicate guid
 		if not self.id:
 			shutil.rmtree(tmp, ignore_errors=True)
 			raise VDOM_exception("Incorrect application format")
