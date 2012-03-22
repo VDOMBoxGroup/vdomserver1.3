@@ -53,9 +53,9 @@ class VDOM_file_storage(object):
 	def __init__(self):
 		pass
 		
-	def open(self, filename):
+	def open(self, filename, mode="rb"):
 		from scripting.wrappers import application
-		return managers.file_manager.get_fd(app_storage, application.id, None, self.__norm_filename(filename))
+		return managers.file_manager.get_fd(app_storage, application.id, None, self.__norm_filename(filename), mode)
 
 	def opentmp(self, mode="w+b", prefix="app_data"):
 		return managers.file_manager.open_tmp_file(mode, prefix)

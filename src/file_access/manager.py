@@ -208,12 +208,12 @@ class VDOM_file_manager(object):
 		fh.close()
 		return content
 	
-	def get_fd(self, restype, application_id, object_id, file_name):
+	def get_fd(self, restype, application_id, object_id, file_name, mode="rb"):
 		"""Returns file descriptor"""
 		if object_id:
-			fh = open( self.__get_path( restype, object_id, file_name ), "rb" )
+			fh = open( self.__get_path( restype, object_id, file_name ), mode )
 		else:
-			fh = open( self.__get_path( restype, application_id, file_name ), "rb" )
+			fh = open( self.__get_path( restype, application_id, file_name ), mode )
 		
 		return fh
 	
