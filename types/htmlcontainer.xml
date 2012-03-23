@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.4.6720</Version>
+    <Version>2.6.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -452,8 +452,8 @@
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="225">Style sheet of the page</Sentence>
       <Sentence ID="325">Incorrect value</Sentence>
-      <Sentence ID="126">Class</Sentence>
-      <Sentence ID="226">CSS class for body</Sentence>
+      <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="226">CSS classes for body</Sentence>
       <Sentence ID="326">Incorrect value</Sentence>
       <Sentence ID="901">Description</Sentence>
       <Sentence ID="902">Title</Sentence>
@@ -620,8 +620,8 @@
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="225">Таблицы стилей для страницы</Sentence>
       <Sentence ID="325">Неправильное значение</Sentence>
-      <Sentence ID="126">Class</Sentence>
-      <Sentence ID="226">CSS class for body</Sentence>
+      <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="226">CSS classes for body</Sentence>
       <Sentence ID="326">Неправильное значение</Sentence>
       <Sentence ID="901">Описание</Sentence>
       <Sentence ID="902">Заголовок</Sentence>
@@ -788,8 +788,8 @@
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="225">Style sheet of the page</Sentence>
       <Sentence ID="325">Incorrect value</Sentence>
-      <Sentence ID="126">Class</Sentence>
-      <Sentence ID="226">CSS class for body</Sentence>
+      <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="226">CSS classes for body</Sentence>
       <Sentence ID="326">Valeur Incorrecte</Sentence>
       <Sentence ID="901">Description</Sentence>
       <Sentence ID="902">Titre</Sentence>
@@ -6894,7 +6894,7 @@ class VDOM_htmlcontainer(VDOM_object):
 	<!--[if lt IE 7]><script type="text/javascript" src="/0b3e0dc0-6429-eb14-26d6-2d30c535b707.res"></script>
 	<script type="text/javascript">jQuery(document).ready(function($){$('img,input').ifixpng();});</script><![endif]-->
 	<script type="text/javascript">hchInit(%(centr)s,'#%(bgcolor)s','%(clean_obj_id)s');</script>
-	<!-- type 2012-03-21, VDOM server %(server_ver)s -->
+	<!-- type 2012-03-23, VDOM server %(server_ver)s -->
 </body>
 </html>""" % {
 				"e2vstate":     "0",
@@ -7064,16 +7064,6 @@ vdom_ui_hide(this.domCont, fade);
           </Parameters>
           <SourceCode><![CDATA[
 jQuery(this.domCont).html(value);
-					]]></SourceCode>
-        </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveTo">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newX" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="newY" Help="#Lang(808)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="Effect" Help="#Lang(809)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="moveZindexTo">
