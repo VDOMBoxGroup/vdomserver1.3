@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.1.6720</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -621,7 +621,6 @@ $q(this.domCont).hide(fade);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="jsondata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-console.info('loadData action: ', jsondata);
 eval('$q.plot($q(this.domCont),jsondata,opt_'+this.domCont.id+');');
                     ]]></SourceCode>
         </Action>
