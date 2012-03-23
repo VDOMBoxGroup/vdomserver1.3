@@ -14,10 +14,10 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.21.6720</Version>
+    <Version>1.22.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers/>
     <RemoteMethods/>
@@ -713,7 +713,7 @@ $j('#%(id)s li').droppable({
 
 		res_buffer.write(u"</ul></div>")
 		js_script = u"""<script type="text/javascript">
-jQuery(document).ready(function($){
+$q(function(){
 	var %(id)s_doo = false, m = $j('#%(id)s').hasClass('multiselect');
 	$j('#%(id)s ul li').bind('click dblclick', function(e){
 		var t = $j(this);
