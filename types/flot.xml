@@ -639,7 +639,7 @@ $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery(this.domCont).show(fade);
+$q(this.domCont).show(fade);
 					]]></SourceCode>
         </Action>
       </Container>
