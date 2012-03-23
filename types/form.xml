@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.10.6200</Version>
+    <Version>1.11.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -841,7 +841,7 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="HTMLdata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).html(HTMLdata);
+$q(this.domCont).html(HTMLdata);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
@@ -850,8 +850,7 @@ jQuery(this.domCont).html(HTMLdata);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width=parseInt(width,10);
-this.domCont.style.height=parseInt(height,10);
+$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setUrlTarget">
@@ -859,7 +858,7 @@ this.domCont.style.height=parseInt(height,10);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="containerUrl" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).attr('action', containerUrl);
+$q(this.domCont).attr('action', containerUrl);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
@@ -873,7 +872,7 @@ vdom_ui_show(this.domCont,fade);
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="submit">
           <Parameters/>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).submit();
+$q(this.domCont).submit();
 ]]></SourceCode>
         </Action>
       </Container>
