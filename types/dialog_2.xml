@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1427,7 +1427,13 @@ eval("dialog_win_" + this.domCont.id + ".hide();");
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="height" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-eval("dialog_win_" + this.domCont.id + ".resize("+parseInt(width,10)+","+parseInt(height,10)+");");
+/*eval("dialog_win_" + this.domCont.id + ".resize("+parseInt(width,10)+","+parseInt(height,10)+");");*/
+eval("var d=dialog_win_" + this.domCont.id + ";");
+d.resize(parseInt(width,10),parseInt(height,10));
+y = (windowHeight() - d.boxy.height() > 0) ? (windowHeight() - d.boxy.height()) / 2 : 0;
+var ny = parseInt(y) - 15;
+if (ny < 0) ny = 0;
+if (typeof y == 'number') d.boxy.css({marginTop: ny});
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
