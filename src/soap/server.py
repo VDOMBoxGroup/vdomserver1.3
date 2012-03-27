@@ -1652,7 +1652,7 @@ class VDOM_web_services_server(object):
 	
 	def backup_application(self, sid, skey, driverid, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		revision = None
+		revision = managers.backup_manager.backup(appid, driverid, 30)
 		if not revision:
 			raise SOAPpy.faultType(application_backup_error, _("Backup error"), _("Application was not backuped"))
 
@@ -1661,7 +1661,11 @@ class VDOM_web_services_server(object):
 	
 	def restore_application(self,sid, skey, driverid, appid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		return "<Result>OK</Result> "	
+		result = managers.backup_manager.restore(driverid, appid, revision)
+		if result:
+			return "<Result>OK</Result> "	
+		else:
+			return "<Result>FAILED</Result> "	
 
 
 	def list_backup_drivers(self,  sid, skey):
