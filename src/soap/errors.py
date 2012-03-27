@@ -30,3 +30,6 @@ res_mod_error = "402"
 res_add_error = "403"
 
 event_format_error = "601"
+
+application_backup_error = "701"
+application_restore_error = "702"

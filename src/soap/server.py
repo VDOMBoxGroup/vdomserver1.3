@@ -1648,6 +1648,31 @@ class VDOM_web_services_server(object):
 		except:
 			result = "false"
 		return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
+	
+	
+	def backup_application(self, sid, skey, driverid, appid):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		revision = None
+		if not revision:
+			raise SOAPpy.faultType(application_backup_error, _("Backup error"), _("Application was not backuped"))
+
+		return """<Result> <Revision>%s</Revision></Result>"""%revision
+			
+	
+	def restore_application(self,sid, skey, driverid, appid, revision):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		return "<Result>OK</Result> "	
+
+
+	def list_backup_drivers(self,  sid, skey):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		backup_drivers = []
+		ret = ""
+		for driver in  backup_drivers:
+			ret +="""\n\t<Driver>\n\t\t<ID>...</ID>\n\t\t<Name>...</Name>\n\t\t<Description>...</Description>\n\t</Driver>\n"""
+		
+		return "<Result>%s</Result>"%ret
+
 ### ==================================================================================================================
 
 	def create_guid(self, sid, skey):

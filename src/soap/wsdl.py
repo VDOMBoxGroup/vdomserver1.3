@@ -74,6 +74,10 @@ methods = {
 	"export_application" : ["sid", "skey", "appid"],
 	"update_application" : ["sid", "skey", "appxml"],
 	"check_application_exists" : ["sid", "skey", "appid"],
+        "backup_application" : ["sid", "skey", "driverid", "appid"],
+        "restore_application" : ["sid", "skey", "driverid", "appid", "revision"],
+        "list_backup_drivers" : ["sid", "skey"],        
+        
 	"create_guid" : ["sid", "skey"],
 	"get_thumbnail" : ["sid", "skey", "appid", "resid", "width", "height"],
 	"search" : ["sid", "skey", "appid", "pattern"],
