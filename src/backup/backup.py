@@ -70,7 +70,7 @@ class VDOM_backup(object):
 		exit_error = "Some parts of application (id = %s) has not backuped" % app_id
 		return exit_error
 	    else:
-		return True
+		return current_rev
 	else:
 	    exit_error = "Unexpected Error"
 	    debug(exit_error)
