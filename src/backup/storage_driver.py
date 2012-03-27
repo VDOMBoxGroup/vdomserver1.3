@@ -3,6 +3,7 @@ import shlex
 import managers
 import utils.uuid
 from utils.system import get_external_drives, device_exists, mount_device, umount_device
+from os import path, mkdir
 
 class VDOM_storage_driver(object):
 
@@ -556,7 +557,61 @@ class VDOM_backup_storage_manager(object):
 		else:
 			return None
 
+
+class VDOM_local_folder_drive(VDOM_storage_driver):
+
+	def __init__(self, crypt=False):
+		self.id = str(utils.uuid.uuid4())
+		self.name = "Local Folder driver"
+		self.type = "local_folder"
+		self.__path = None
+		self.__uuid = None
+		self.crypt = crypt
+		
+		# Check folder to be exist
+		debug("LOCAL BACKUP: check %s for existing"%self.__path)
+		self.__path = "/var/vdom/local_backup/"
+		if not path.isdir(self.__path):
+			mkdir(self.__path)
+		
+
+	def erase_storage(self):
+		try:
+			debug("let us remove everything from %s"%self.__path)
+			self.mount()
+			cmd = """sh /opt/boot/erase_storage.sh -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("Erasing of %s successfully completed."%(self.__path))
+				return True
+			else:
+				debug("Erasing of %s totally failed!"%(self.__path))
+				return False
+		except Exception,e :
+			debug("Erasing failed: %s", e)
+
+			
+	def mount(self):
+		debug("LOCAL BACKUP: mount..")
+		# SEARCH for not mounted drives
+		if not path.isdir(self.__path):
+			mkdir(self.__path)
+			debug("LOCAL BACKUP: mount %s OK"%self.__path)
+			return self.__path
+		else:
+			debug("LOCAL BACKUP: mount %s OK"%self.__path)
+			return self.__path
+		
+	def umount(self):
+		debug("LOCAL BACKUP: umount %s OK"self.__path)	
+		return True
+
+
+
 backup_storage_manager = VDOM_backup_storage_manager()
+
 
 
 ##
