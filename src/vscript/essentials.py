@@ -2,6 +2,7 @@
 import types, random, re
 from . import errors
 from .primitives import subtype, variable
+from .subtypes import string
 from .variables import variant
 
 
