@@ -1,11 +1,8 @@
 
 import re
 from .. import errors
-from ..subtypes import boolean, generic, string, true, false, v_empty
+from ..subtypes import boolean, generic, integer, string, true, false, v_empty
 from ..variables import variant
-
-
-# TODO: Support RegEx Global property
 
 
 class v_match(generic):
@@ -27,7 +24,7 @@ class v_match(generic):
 		else:
 			return integer(self._match.end()-self._match.start())
 
-	def v_value(self, let=None, set=None):
+	def v_value(self, group=None, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property(u"value")
 		else:
@@ -38,8 +35,7 @@ class v_match(generic):
 			raise errors.object_has_no_property(u"value")
 		else:
 			group=group.as_simple
-			if isinstance(group, integer): group=group.as_integer
-			elif isinstance(group, string): group=group.as_string
+			if isinstance(group, (integer, string)): group=group.value
 			else: raise errors.type_mismatch
 			try: value=self._match.group(group)
 			except IndexError: return v_empty
@@ -48,18 +44,49 @@ class v_match(generic):
 
 class v_matches(generic):
 
-	def __init__(self, regexp, value, everything):
+	def __init__(self, regexp, value):
 		generic.__init__(self)
 		self._regexp=regexp
 		self._value=value
-		self._collection=None
-		self._everything=everything
+		self._cache=None
 
-	def __call__(self, index, *arguments, **keywords):
-		index=index.as_integer
-		if not self._collection:
-			self._collection=[match for match in self._regexp.finditer(self._value)]
-		return v_match(self._collection[index])
+
+	def _get_collection(self):
+		if self._cache is None:
+			match=self._regexp.search(self._value)
+			self._cache=[match] if match else []
+		return self._cache
+
+	_collection=property(_get_collection)
+
+
+	def v_count(self, let=None, set=None):
+		if let is not None or set is not None:
+			raise errors.object_has_no_property("count")
+		else:
+			return integer(len(self._collection))
+
+	def v_item(self, index, let=None, set=None):
+		if let is not None or set is not None:
+			raise errors.object_has_no_property("count")
+		else:
+			return v_match(self._collection[index.as_integer])
+
+
+	def __iter__(self):
+		match=self._regexp.search(self._value)
+		if match is not None: yield variant(v_match(match))
+
+
+class v_global_matches(v_matches):
+
+	def _get_collection(self):
+		if self._cache is None:
+			self._cache=[match for match in self._regexp.finditer(self._value)]
+		return self._cache
+
+	_collection=property(_get_collection)
+
 
 	def __iter__(self):
 		for match in self._regexp.finditer(self._value):
@@ -73,13 +100,13 @@ class v_regexp(generic):
 		self._global=False
 		self._ignorecase=False
 		self._pattern=""
-		self._regexp_cache=None
+		self._cache=None
 
 
 	def _get_regex(self):
-		if not self._regexp_cache: self._regexp_cache=re.compile(self._pattern, \
-			re.IGNORECASE if self._ignorecase else 0)
-		return self._regexp_cache
+		if not self._cache:
+			self._cache=re.compile(self._pattern, re.IGNORECASE if self._ignorecase else 0)
+		return self._cache
 
 	_regexp=property(_get_regex)
 
@@ -94,8 +121,7 @@ class v_regexp(generic):
 
 	def v_ignorecase(self, let=None, set=None):
 		if let is not None:
-			self._ignorecase=let.as_boolean
-			self._regexp_cache=None
+			self._ignorecase, self._cache=let.as_boolean, None
 		elif set is not None:
 			raise errors.object_has_no_property("ignorecase")
 		else:
@@ -103,8 +129,7 @@ class v_regexp(generic):
 
 	def v_pattern(self, let=None, set=None):
 		if let is not None:
-			self._pattern=let.as_string
-			self._regexp_cache=None
+			self._pattern, self._cache=let.as_string, None
 		elif set is not None:
 			raise errors.object_has_no_property("pattern")
 		else:
@@ -112,10 +137,10 @@ class v_regexp(generic):
 
 
 	def v_execute(self, value):
-		return v_matches(self._regexp, value.as_string, self._global)
+		return v_global_matches(self._regexp, value.as_string) if self._global else v_matches(self._regexp, value.as_string)
 
 	def v_replace(self, value, replace_string):
-		return string(unicode(replace_string.as_string.join(self._regexp.split(value.as_string))))
+		return string(unicode(self._regexp.sub(replace_string.as_string, value.as_string, 0 if self._global else 1)))
 
 	def v_test(self, value):
 		return boolean(false if self._regexp.search(value.as_string) is None else true)
