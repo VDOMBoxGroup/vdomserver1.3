@@ -31,7 +31,12 @@ def wait_for_options():
 		ret = select.select([s], [], [], 10.0)
 		if len(ret[0]) > 0:
 			(st, addr) = s.recvfrom(1024)
-			execute(st)
+			try:
+				execute(st)
+			except:
+				debug("Have got invalid options")
+				traceback.print_exc(file=debugfile)			
+			
 		else:
 			debug("Haven't got options within 10 seconds")
 			break
