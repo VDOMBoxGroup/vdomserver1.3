@@ -149,7 +149,7 @@ class v_wholeapplication(generic):
 					parameter=[argument.as_string for argument in arguments]
 			else:
 				parameter=None
-			result=self.service.call(self._container, name.as_string, parameter)
+			result=self._service.call(self._container, name.as_string, parameter)
 		except Exception as error:
 			raise whole_remote_call_error(self._url, error)
 		return string(result)
