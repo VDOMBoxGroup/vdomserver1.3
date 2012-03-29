@@ -12,34 +12,44 @@ class v_match(generic):
 		self._match=match
 
 
-	def v_firstindex(self, let=None, set=None):
+	def v_firstindex(self, group=None, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property(u"firstindex")
 		else:
-			return integer(self._match.start())
+			if group is None:
+				start=self._match.start()
+			else:
+				group=group.as_simple
+				if not isinstance(group, (integer, string)): raise errors.type_mismatch
+				try: start=self._match.start(group.value)
+				except IndexError: return v_empty
+			return v_empty if start<0 else integer(start)
 
-	def v_length(self, let=None, set=None):
+	def v_length(self, group=None, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property(u"length")
 		else:
-			return integer(self._match.end()-self._match.start())
+			if group is None:
+				start, end=self._match.span()
+			else:
+				group=group.as_simple
+				if not isinstance(group, (integer, string)): raise errors.type_mismatch
+				try: start, end=self._match.span(group.value)
+				except IndexError: return v_empty
+			return v_empty if start<0 else integer(end-start)
 
 	def v_value(self, group=None, let=None, set=None):
 		if let is not None or set is not None:
 			raise errors.object_has_no_property(u"value")
 		else:
-			return string(unicode(self._match.group()))
-
-	def v_group(self, group, let=None, set=None):
-		if let is not None or set is not None:
-			raise errors.object_has_no_property(u"value")
-		else:
-			group=group.as_simple
-			if isinstance(group, (integer, string)): group=group.value
-			else: raise errors.type_mismatch
-			try: value=self._match.group(group)
-			except IndexError: return v_empty
-			return string(unicode(value))
+			if group is None:
+				value=self._match.group()
+			else:
+				group=group.as_simple
+				if not isinstance(group, (integer, string)): raise errors.type_mismatch
+				try: value=self._match.group(group.value)
+				except IndexError: return v_empty
+			return v_empty if value is None else string(unicode(value))
 			
 
 class v_matches(generic):
@@ -99,7 +109,7 @@ class v_regexp(generic):
 		generic.__init__(self)
 		self._global=False
 		self._ignorecase=False
-		self._pattern=""
+		self._pattern=u""
 		self._cache=None
 
 
