@@ -6795,7 +6795,9 @@ class VDOM_htmlcontainer(VDOM_object):
 					result = "<html></html>"
 					return VDOM_object.render(self, parent, contents=result)
 				elif redir:
-					ref_obj = application.search_object(self.deniedlink)
+					#ref_obj = application.search_object(self.deniedlink)
+					import managers
+					ref_obj = managers.xml_manager.search_object(application.id, self.deniedlink)
 					ref_page = '/%s.vdom' % ref_obj.name if ref_obj else ''
 					response.redirect(ref_page)
 
