@@ -605,7 +605,7 @@ class VDOM_local_folder_drive(VDOM_storage_driver):
 			return self.__path
 		
 	def umount(self):
-		debug("LOCAL BACKUP: umount %s OK"self.__path)	
+		debug("LOCAL BACKUP: umount %s OK"%self.__path)	
 		return True
 
 
