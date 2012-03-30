@@ -14,8 +14,8 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.13.0</Version>
-    <InterfaceType>3</InterfaceType>
+    <Version>1.17.0</Version>
+    <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
@@ -3952,13 +3952,15 @@ class VDOM_codeeditor(VDOM_object):
 						<svg>
 							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
 						</svg>
-						<htmltext top="2" left="2" width="{txt_wid}" height="{txt_hei}">{value}</htmltext>
+						<htmltext top="2" left="2" width="{txt_wid}" height="{txt_hei}">
+							<div style="font:12px 'Courier New',monospace">{value}</div>
+						</htmltext>
 					</container>
 				""".format(id = self.id, vis = self.visible, zind = self.zindex,
 							hierarchy = self.hierarchy, order = self.order,
 							top = self.top, left = self.left, width = self.width, height = self.height,
 							rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
-							txt_wid = int(self.width) - 4, txt_hei = int(self.height) - 4,
+							txt_wid = int(self.width) - 8, txt_hei = int(self.height) - 4,
 							value = "<br />".join((xml.sax.saxutils.escape(self.value)).split("\n"))  )
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
