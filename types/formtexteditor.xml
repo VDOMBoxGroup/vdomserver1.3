@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.6.6200</Version>
+    <Version>1.7.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -408,7 +408,7 @@ class VDOM_formtexteditor(VDOM_object):
 
 		result = u"""
 <script type="text/javascript">$q(document).ready(function($) {
-	if (typeof %(id)s_editor !== 'undefined') { delete %(id)s_editor; }
+	if (typeof %(id)s_editor !== 'undefined') { delete(%(id)s_editor); }
 	%(id)s_editor = $('#%(id)s>textarea').cleditor({
 		width: %(width)s,
 		height: %(height)s,
