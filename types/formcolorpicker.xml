@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.12.6200</Version>
+    <Version>1.14.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -794,7 +794,11 @@ $j(this).attr('style', cssStyleValue);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="value" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-vdom_evt_setvalue(this, value);
+/*vdom_evt_setvalue(this, value);*/
+var id=this.domCont.id;
+$q('#inp_'+id).val(value);
+$q('.colorButton',this.domCont).css('background-color',value);
+execEventBinded(id.substring(2, id.length), "changecolor", {itemValue:value});
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
