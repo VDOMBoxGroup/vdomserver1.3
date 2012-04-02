@@ -17,7 +17,7 @@
     <Version>1.5.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>set_attr</Handlers>
     <RemoteMethods/>
@@ -1088,8 +1088,7 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-this.domCont.style.width = parseInt(width,10);
-this.domCont.style.height = parseInt(height,10);
+$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
