@@ -175,7 +175,7 @@ class FileResource(DAVNonCollection):
 		raise DAVError(HTTP_FORBIDDEN)
 
 
-    
+
 #===============================================================================
 # FolderResource
 #===============================================================================
@@ -244,14 +244,13 @@ class FolderResource(DAVCollection):
 		return FileResource(path, self.environ, self._app_id, self._obj_id)
 
 
-    def supportRecursiveMove(self, destPath):
-        """Return True, if moveRecursive() is available (see comments there)."""
-        return True
-	# --- Read / write ---------------------------------------------------------
+	def supportRecursiveMove(self, destPath):
+		"""Return True, if moveRecursive() is available (see comments there)."""
+		return True
 
 	def createEmptyResource(self, name):
 		"""Create an empty (length-0) resource.
-
+	
 		See DAVResource.createEmptyResource()
 		"""
 		func_name = "createResource"
@@ -265,7 +264,7 @@ class FolderResource(DAVCollection):
 
 	def createCollection(self, name):
 		"""Create a new collection as member of self.
-
+	
 		See DAVResource.createCollection()
 		"""
 		func_name = "createCollection"
@@ -315,18 +314,18 @@ class FolderResource(DAVCollection):
 			self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
 			                                         withChildren=True)
 
-    def moveRecursive(self, destPath):
-        if self.provider.readonly:
-            raise DAVError(HTTP_FORBIDDEN)
-        assert not util.isEqualOrChildUri(self.path, destPath)
-        func_name = "move"
-        xml_data = {"srcPath": self._path, "destPath": destPath}
-        managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-        if self.provider.propManager:
-            destRes = self.provider.getResourceInst(destPath, self.environ)
-            self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
-                                                     withChildren=True)
-    
+	def moveRecursive(self, destPath):
+		if self.provider.readonly:
+			raise DAVError(HTTP_FORBIDDEN)
+		assert not util.isEqualOrChildUri(self.path, destPath)
+		func_name = "move"
+		xml_data = {"srcPath": self._path, "destPath": destPath}
+		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		if self.provider.propManager:
+			destRes = self.provider.getResourceInst(destPath, self.environ)
+			self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
+			                                         withChildren=True)
+
 #===============================================================================
 # FilesystemProvider
 #===============================================================================
