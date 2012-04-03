@@ -302,7 +302,10 @@ class VDOM_web_services_server(object):
 		result = "<Resources>\n"
 		res = managers.resource_manager.list_resources(owner_id)
 		for resid in res:
-			ro = managers.resource_manager.get_resource(owner_id, resid)
+			try:
+				ro = managers.resource_manager.get_resource(owner_id, resid)
+			except:
+				continue
 			if not getattr(ro,"label",None): #TODO: in new version label will always non exist. So no meanin in this line
 				result += """<Resource id="%s" name="%s" type="%s" usecount="%s"/>\n""" % (ro.id, ro.name, ro.res_format,len(ro.dependences))
 		result += "</Resources>\n"
