@@ -13,6 +13,7 @@ infinity=float("inf")
 class double(subtype):
 
 	def __init__(self, value):
+		# assert isinstance(value, float), "Got %s instead float"%type(value)
 		self._value=float(value)
 
 

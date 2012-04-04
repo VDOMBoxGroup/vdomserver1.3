@@ -105,13 +105,13 @@ empty.mul_table={
 	boolean: lambda self, another: integer(0*int(another))}
 
 empty.div_table={
-	empty: lambda self, another: integer(0/0),
+	empty: lambda self, another: integer(0.0/0),
 	null: lambda self, another: v_null,
-	integer: lambda self, another: double(0/int(another)),
-	double: lambda self, another: double(0/float(another)),
-	date: lambda self, another: double(0/float(another)),
-	string: lambda self, another: double(0/float(another)),
-	boolean: lambda self, another: double(0/int(another))}
+	integer: lambda self, another: double(0.0/int(another)),
+	double: lambda self, another: double(0.0/float(another)),
+	date: lambda self, another: double(0.0/float(another)),
+	string: lambda self, another: double(0.0/float(another)),
+	boolean: lambda self, another: double(0.0/int(another))}
 
 empty.floordiv_table={
 	empty: lambda self, another: integer(div(0, 0)),
