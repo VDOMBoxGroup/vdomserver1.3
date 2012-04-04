@@ -778,11 +778,11 @@ class vfor(vstatement):
 		self.statements.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident, step=None):
-		contents=[(self.line, ident, u"%s(let=%s)"%(self.variable, self.range[0])),
-			(self.line, ident, u"while bool(%s<=%s):"%(self.variable, self.range[1])),
+		contents=[(self.line, ident, u"%s(let=integer(int(%s)))"%(self.variable, self.range[0])),
+			(self.line, ident, u"while bool(%s<=integer(int(%s))):"%(self.variable, self.range[1])),
 			(self.line, ident+1, u"try:")]
 		contents.extend(self.statements.compose(ident+2,
-			follow=[(self.line, ident+2, u"%s(let=%s+integer(%s))"%(self.variable, self.variable, step or u"1"))]))
+			follow=[(self.line, ident+2, u"%s(let=%s+integer(int(%s)))"%(self.variable, self.variable, step or u"1"))]))
 		contents.append((self.line, ident+1, u"except exitfor:"))
 		contents.append((self.line, ident+2, u"break"))
 		return contents

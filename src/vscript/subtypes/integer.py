@@ -8,6 +8,7 @@ from ..primitives import subtype
 class integer(subtype):
 
 	def __init__(self, value):
+		#assert isinstance(value, int), "Got %s instead int"%type(value)
 		self._value=int(value)
 
 

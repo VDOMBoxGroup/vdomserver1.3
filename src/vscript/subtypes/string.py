@@ -8,7 +8,8 @@ from ..primitives import subtype
 class string(subtype):
 
 	def __init__(self, value):
-		self._value=value
+		#assert isinstance(value, unicode), "Got %s instead unicode string"%type(value)
+		self._value=unicode(value)
 
 
 	value=property(lambda self: self._value)
