@@ -10,9 +10,15 @@ sys.path.append("../src")
 from utils import codecs
 from utils.card_connect import send_to_card
 import utils.obsolete
+import logging
 #Seting 10% to progressbar
 send_to_card("booting 10")
-
+log_dir = VDOM_CONFIG["LOG-DIRECTORY"]
+logging.basicConfig(level=logging.NOTSET,
+                            format='%(asctime)s %(name)-12s %(message)s',
+                            datefmt='%d %b %Y %H:%M:%S',
+                            filename=log_dir + "/server",
+                            filemode='w')
 import managers
 
 from server import VDOM_server
