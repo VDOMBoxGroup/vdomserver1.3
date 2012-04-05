@@ -71,7 +71,13 @@ try:
 	managers.register("server_manager", VDOM_server_manager)	
 	managers.register("backup_manager", VDOM_backup_manager)
 
-	managers.server.start()
+	if sys.argv and "--unittest" in sys.argv:
+		from unittest import TestLoader, TextTestRunner
+		loader=TestLoader()
+		suite=loader.discover(start_dir="..\\src\\vscript", pattern="test*.py", top_level_dir="..\\src")
+		TextTestRunner(verbosity=2).run(suite)
+	else:
+		managers.server.start()
 except:
 	from traceback import print_exc
 	sys.stderr.write("\n")
