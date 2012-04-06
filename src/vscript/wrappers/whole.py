@@ -1,5 +1,5 @@
 
-import hashlib, xml.dom.minidom
+import sys, hashlib, xml.dom.minidom
 import managers
 from utils.remote_api import VDOM_service
 from .. import errors
@@ -17,7 +17,7 @@ class whole_connection_error(whole_error):
 
 	def __init__(self, url, login, message, line=None):
 		whole_error.__init__(self,
-			message=u"Unable to connect to %s as %s (message)"%(url, login, message),
+			message=u"Unable to connect to %s as %s (%s)"%(url, login, message),
 			line=line)
 
 class whole_no_connection_error(whole_error):
@@ -151,7 +151,7 @@ class v_wholeapplication(generic):
 				parameter=None
 			result=self._service.call(self._container, name.as_string, parameter)
 		except Exception as error:
-			raise whole_remote_call_error(self._url, error)
+			raise whole_remote_call_error, (self._url, str(error) or str(type(error))), sys.exc_info()[2]
 		return string(result)
 
 
