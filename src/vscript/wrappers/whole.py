@@ -3,7 +3,7 @@ import hashlib, xml.dom.minidom
 import managers
 from utils.remote_api import VDOM_service
 from .. import errors
-from ..subtypes import boolean, generic, string, true, false, v_empty
+from ..subtypes import array, boolean, generic, string, true, false, v_empty
 
 
 class whole_error(errors.generic):
