@@ -1,7 +1,7 @@
 import SOAPpy, md5, re, sys
 from SOAPpy import WSDL
 from soap.soaputils import VDOM_session_protector
-
+from utils.exception import VDOMServiceCallError
 
 
 session_id_re = re.compile("\<SessionId\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionId\>")
