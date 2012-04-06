@@ -43,6 +43,8 @@ class variable(primitive):
 	def __len__(self):
 		return len(self.subtype)
 
+	def __contains__(self, value):
+		return value in self.subtype
 
 
 	def __add__(self, another):
