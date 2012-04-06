@@ -59,7 +59,7 @@ class v_vdomobject(generic):
 			else:
 				raise errors.object_has_no_property(name)
 		elif name.startswith("wrapper_"):
-			setattr(self._object, name, value.as_string[8:])
+			setattr(self._object, name[8:], value.as_string)
 		else:
 			generic.__setattr__(self, name, value)
 
