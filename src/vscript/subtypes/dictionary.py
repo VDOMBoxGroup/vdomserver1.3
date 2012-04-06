@@ -3,6 +3,7 @@ from copy import deepcopy
 from .. import errors
 from ..primitives import subtype
 from .empty import v_empty
+from .boolean import boolean, true, false
 from ..variables import variant
 
 
@@ -20,7 +21,7 @@ class dictionary(subtype):
 			self._items[arguments[0].subtype]=keywords["set"].as_complex
 		else:
 			if len(arguments)!=1: raise errors.wrong_number_of_arguments
-			return self._items[arguments[0].subtype]
+			return self._items.get(arguments[0].subtype, v_empty)
 
 
 	copy=property(lambda self: dictionary({key.copy: value.copy \
@@ -57,6 +58,10 @@ class dictionary(subtype):
 
 	def __len__(self):
 		return len(self._items)
+
+	def __contains__(self, value):
+		return value.subtype in self._items
+
 
 
 	def __repr__(self):

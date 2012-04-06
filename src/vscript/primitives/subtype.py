@@ -140,6 +140,9 @@ class subtype(primitive):
 	def __len__(self):
 		raise errors.type_mismatch
 
+	def __contains__(self, value):
+		raise errors.type_mismatch
+
 
 	def __add__(self, another):
 		def unknown(one, another): raise errors.type_mismatch

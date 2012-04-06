@@ -303,8 +303,17 @@ def p_exclusion_starts(p):
 	p[0]=p[1]
 
 
+def p_inclusion_continues(p):
+	"""inclusion : inclusion IN exclusion"""
+	p[0]=p[1].join(u"boolean((%s) in (%s))", p[3])
+
+def p_inclusion_starts(p):
+	"""inclusion : exclusion"""
+	p[0]=p[1]
+
+
 def p_expression(p):
-	"""expression : exclusion"""
+	"""expression : inclusion"""
 	p[0]=p[1]
 
 
