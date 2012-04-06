@@ -552,6 +552,9 @@ class VDOM_backup_storage_manager(object):
 		return self.__index
 
 	def get_driver(self, id):
+		if id == 0:
+			localbackup = VDOM_local_folder_drive()
+			return localbackup
 		if id in self.__index:
 			return self.__index[id]
 		else:
