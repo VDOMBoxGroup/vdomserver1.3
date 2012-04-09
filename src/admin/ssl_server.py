@@ -1,5 +1,7 @@
 import os, traceback
 import managers
+from storage.storage import VDOM_config
+from utils.exception import VDOM_exception
 
 def run(request):
 	sess = request.session()
@@ -8,8 +10,48 @@ def run(request):
 		raise VDOM_exception("Authentication failed")
 
 	args = request.arguments().arguments()
-	ssl_on = True
-	if "del_keys" in args: ssl_on = False
+	cf = VDOM_config()
+	msg = ""
+	if "modify" in args:
+		if args["modify"][0] == "1":
+			if not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.cert") or \
+			   not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.pem"):
+				msg = "You have not defined needed certificate files"
+				cf.set_opt_sync("ENABLE-SSL", "0")
+				VDOM_CONFIG_1["ENABLE-SSL"] = "0"				
+			else:
+				cf.set_opt_sync("ENABLE-SSL", "1")
+				VDOM_CONFIG_1["ENABLE-SSL"] = "1"
+				managers.server.start_secure_server()
+				msg = "SSL Server is turned on."# Please reboot to apply changes."
+		
+		elif args["modify"][0] == "0":
+			cf.set_opt_sync("ENABLE-SSL", "0")
+			VDOM_CONFIG_1["ENABLE-SSL"] = "0"
+			managers.server.stop_secure_server()
+			msg = "SSL Server is turned off."# Please reboot to apply changes."
+	elif "btn_upload_certs" in args:
+		if "key" in args:
+			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "server.pem",request.files["key"][0])
+		if "cert" in args:
+			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "server.cert",request.files["cert"][0])
+		if "ca" in args:
+			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "ca.cert",request.files["ca"][0])
+			
+	ssl_on = True if cf.get_opt("ENABLE-SSL") == "1" else False
+	if "del_keys" in args: 
+		ssl_on = False
+		cf.set_opt_sync("ENABLE-SSL", "0")
+		VDOM_CONFIG_1["ENABLE-SSL"] = "0"		
+		if managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.cert"):
+			managers.file_manager.delete(managers.file_manager.CERTIFICATES,None, None, "server.cert")
+		if managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.pem"):
+			managers.file_manager.delete(managers.file_manager.CERTIFICATES,None, None, "server.pem")		
+		if managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "ca.cert"):
+			managers.file_manager.delete(managers.file_manager.CERTIFICATES,None, None, "ca.cert")	
+		msg = "You removed your certificates files. SSL Server is turned off. Please reboot to apply changes."
+
+	error = '<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>'%msg if msg else ""
 	request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,7 +92,7 @@ function MM_swapImage() { //v3.0
 </script>
 </head>""")
 	if ssl_on:
-		request.write("""<body>
+		request.write("""<body>{error}
 <p class="Texte"><a href="config.py">Configuration</a> &gt; SSL Server </p>
 <table width="100%" height="85%" border="0">
    <tr>
@@ -58,13 +100,13 @@ function MM_swapImage() { //v3.0
        <table border="0">
         <tr>
           <td width="50" height="82" >&nbsp;</td>
-          <td width="86" height="82" class="Texte"><a href="/ssl_server.py?modify"><img src="images/bt-on.jpg" width="86" height="82" border="0"></a></td>
+          <td width="86" height="82" class="Texte"><a href="/ssl_server.py?modify=0"><img src="images/bt-on.jpg" width="86" height="82" border="0"></a></td>
           <td width="200" height="82" class="Texte">SSL : activated</td>
         </tr>
     </table>
-</td>""")
+</td>""".format(error=error))
 	else:
-		request.write("""<body>
+		request.write("""<body>{error}
 <p class="Texte"><a href="config.py">Configuration</a> &gt; SSL Server </p>
 <table width="100%" height="85%" border="0">
    <tr>
@@ -72,40 +114,36 @@ function MM_swapImage() { //v3.0
        <table border="0">
         <tr>
           <td width="50" height="82" >&nbsp;</td>
-          <td width="86" height="82" class="Texte"><a href="/ssl_server.py?modify"><img src="images/bt-off.jpg" width="86" height="82" border="0"></a></td>
+          <td width="86" height="82" class="Texte"><a href="/ssl_server.py?modify=1"><img src="images/bt-off.jpg" width="86" height="82" border="0"></a></td>
           <td width="200" height="82" class="Texte">SSL : deactivated</td>
         </tr>
     </table>
-</td>""")
-	request.write("""<td>
-<p class="Texte"><a href="ssl_server.py?del_keys">delete keys</a></p>""")
-	if ssl_on:
-		request.write("""
-<form method=post action="/track.py" enctype="multipart/form-data">
+</td>""".format(error=error))
+	if not ssl_on:	
+		request.write("""<td>
+<p class="Texte"><a href="ssl_server.py?del_keys">delete keys</a></p>
+<form method=post action="/ssl_server.py" enctype="multipart/form-data">
       <table border="0">
         <tr>
 	  <td class="Texte"><div align="right">key :
 	  </div></td>
 	  <td><input name="key" type="file" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"/>
           </td>
-        </tr>""")
-		request.write("""
+        </tr>
         <tr>
 	  <td class="Texte"><div align="right">cert :
 	  </div></td>
 	  <td><input name="cert" type="file" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"/>
           </td>
-        </tr>""")
-		request.write("""
+        </tr>
         <tr>
 	  <td class="Texte"><div align="right">ca :
 	  </div></td>
 	  <td><input name="ca" type="file" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"/>
           </td>
-        </tr>""")
-		request.write("""
+        </tr>
 	<tr>
-	  <td><input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+	  <td><input name="btn_upload_certs" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
 	</tr>  
       </table>
 </form>""")
