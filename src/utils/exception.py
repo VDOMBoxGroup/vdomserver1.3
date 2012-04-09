@@ -78,3 +78,6 @@ class VDOM_exception_file_access(VDOM_exception):
 		
 class VDOMServiceCallError(Exception):
 	pass
+
+class VDOMSecureServerError(VDOM_exception):
+	pass

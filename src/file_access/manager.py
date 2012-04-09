@@ -21,6 +21,7 @@ py_files_cache = "cache"
 resources_path = "resources"
 application_file_name = "app.xml"
 databases_path = "databases"
+certificates = "cert"
 
 class VDOM_file_manager(object):
 	"""interface to os file system (singleton)"""
@@ -30,7 +31,16 @@ class VDOM_file_manager(object):
 		self.__sem = VDOM_semaphore()
 		self.__daemon=VDOM_file_manager_writer(self)
 		self.__daemon.start()
-
+		
+		self.APPLICATION_XML	= file_access.application_xml
+		self.GLOBAL_TYPE	= file_access.global_type
+		self.CACHE		= file_access.cache
+		self.RESOURCE		= file_access.resource
+		self.TYPE_SOURCE	= file_access.type_source
+		self.DATABASE		= file_access.database
+		self.STORAGE		= file_access.storage
+		self.CERTIFICATES	= file_access.certificate
+		
 
 	def work(self):
 		if len(self.__queue) > 0:
@@ -40,12 +50,12 @@ class VDOM_file_manager(object):
 				fname = item[0]
 				data = item[1]
 #				self.write(fname, data)
-				file = open(fname, "wb")
-				if  type(content) == types.FileType or hasattr(content, "read"):
-					shutil.copyfileobj(content, fh)
+				target_file = open(fname, "wb")
+				if  type(data) == types.FileType or hasattr(data, "read"):
+					shutil.copyfileobj(data, target_file)
 				else:
-					file.write(data)
-				file.close()
+					target_file.write(data)
+				target_file.close()
 			self.__sem.unlock()
 
 
@@ -328,26 +338,29 @@ class VDOM_file_manager(object):
 ### Private ###
 	def __get_path(self, restype, owner_id, object_name ):
 		"""private method: returns path to object according to type of request"""
-		if( restype == file_access.application_xml ):
+		if( restype == self.APPLICATION_XML):
 			return self.__get_application_file_path( owner_id )
 		
-		elif( restype == file_access.global_type ):
+		elif( restype == self.GLOBAL_TYPE ):
 			return self.__get_global_type_file_path( object_name )
 		
-		elif( restype == file_access.cache ):
+		elif( restype == self.CACHE ):
 			return self.__get_py_chache_file_path( owner_id, object_name )
 		
-		elif( restype == file_access.resource ):
+		elif( restype == self.RESOURCE ):
 			return self.__get_resource_file_path( owner_id, object_name )
 
-		elif( restype == file_access.type_source ):
+		elif( restype == self.TYPE_SOURCE ):
 			return self.__get_native_type_source_file_path(owner_id, object_name )
 		
-		elif( restype == file_access.database ):
+		elif( restype == self.DATABASE ):
 			return self.__get_database_file_path(owner_id, object_name )
 		
-		elif( restype == file_access.storage ):
+		elif( restype == self.STORAGE):
 			return self.__get_app_storage_file_path(owner_id, object_name )
+		
+		elif(restype == self.CERTIFICATES):
+			return self.__get_certificate_file_path(object_name )		
 		
 	def __get_application_file_path( self, application_id ):
 		"""return path to appl.xml. Input: application_id: string"""
@@ -410,3 +423,8 @@ class VDOM_file_manager(object):
 			return os.path.join(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"],application_id,file_name)
 		else:
 			return os.path.join(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"],application_id)
+		
+	def __get_certificate_file_path(self, file_name):
+		"""return path to server ssl certificates"""
+		return os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"],certificates,file_name)
+		

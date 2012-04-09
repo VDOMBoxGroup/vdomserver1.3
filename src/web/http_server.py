@@ -65,30 +65,49 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		self.encoding           = encoding
 		self.log                = log
 		self.allow_reuse_address= 1
+		
+		#create semaphore
+		self.__sem = VDOM_semaphore()
 
 		#call base class constructor
 		if use_ssl:
 			import ssl
-			SocketServer.BaseServer.__init__(self, ("",443), request_handler_class)
+			if not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.cert") or \
+				not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.pem"):
+				raise VDOMSecureServerError("No SSL certificates to run Secure server")
+				
+			certfile=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "server.cert")
+			keyfile=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "server.pem")
+			if managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "ca.cert"):
+				ca_certs=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "ca.cert")
+			else:
+				ca_certs = None
+			#certfile=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "server.cert")
+			#keyfile=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "server.pem")
+			#ca_certs=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "ca.cert")
+			#certfile = "../app/cert/fb.cert"
+			#keyfile = "../app/cert/fb.key"
+			#ca_certs = None#"../app/cert"
+			SocketServer.BaseServer.__init__(self, server_address, request_handler_class)
 			self.socket = ssl.wrap_socket(socket.socket(self.address_family,self.socket_type),
 				                      server_side=True,do_handshake_on_connect=True,
-				        certfile="fb.cert",
-				        keyfile="fb.key",
-				        ssl_version=ssl.PROTOCOL_SSLv3)
+				        certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_SSLv3, 
+			                ca_certs=ca_certs)
+			
 			self.server_bind()
 			self.server_activate()
 		else:
 			SocketServer.TCPServer.__init__(self, server_address, request_handler_class)
 			
 			# register soap methods
+		if not self.objmap:
 			for method in wsdl_methods.keys():
 				exec("""self.registerFunction(SOAPpy.MethodSig(%s, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")""" % method)
-	
+				
 			# generate wsdl file
 			gen_wsdl()
 
-		#create semaphore
-		self.__sem = VDOM_semaphore()
+		
 
 		self.active=True
 

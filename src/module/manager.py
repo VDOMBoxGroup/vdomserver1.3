@@ -1,6 +1,6 @@
 """Module Manager module"""
 
-import sys, traceback, shutil, os
+import sys, traceback, shutil, os,types
 
 import managers
 from utils.exception import VDOM_exception
@@ -177,7 +177,8 @@ class VDOM_module_manager(object):
 				for key in request_object.files:
 					if not request_object.files[key][0].closed:
 						request_object.files[key][0].close()
-					os.remove(request_object.files[key][0].name)
+					if request_object.files[key][0] is types.FileType:
+						os.remove(request_object.files[key][0].name)
 
 		elif request_type:# pass to resource module
 			module = VDOM_module_resource()
