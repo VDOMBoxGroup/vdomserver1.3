@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.5.6720</Version>
+    <Version>1.6.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password</Containers>
@@ -489,16 +489,17 @@ class VDOM_editableresource(VDOM_object):
 			return ""
 
 	def wysiwyg(self, parent, contents=""):
+		t = "js" if self.datatype == '1' else "css" if self.datatype == '2' else "txt"
 		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
 				"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">%s</htmltext>"\
 				"%s"\
 				"<svg>"\
 					"<rect opacity=\"0.5\" x=\"0\" y=\"0\" width=\"150\" height=\"20\" fill=\"#FFFFCC\" stroke=\"#FFFF33\"/>"\
 				"</svg>"\
-				"<text top=\"2\" left=\"5\" width=\"150\" color=\"#FF0000\">Editable Resource</text>"\
-				"</container>"%(
+				"<text top=\"2\" left=\"5\" width=\"150\" color=\"#FF0000\">Editable Resource (%s)</text>"\
+				"</container>" % (
 					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, 
-					0, 0, self.width, self.height, "", contents)
+					0, 0, self.width, self.height, "", contents, t)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 			]]></SourceCode>
