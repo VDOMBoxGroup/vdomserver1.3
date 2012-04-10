@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.14.6720</Version>
+    <Version>1.15.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -925,6 +925,7 @@ gLmWN8/z0T/o9Xr353l+3rCL9uVtDzGn/Wb5PLX2iJ+H4w5gK+ZLnU7nw+NtD2vfB217eOKJJ+53
 import sys
 import json
 import collections
+import e2vdom
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -940,6 +941,8 @@ class VDOM_smartfolderdata(VDOM_object):
 		id = u"o_" + woid
 
 		display = u"display:none;" if self.visible == "0" else u""
+
+		e2vdom.process(self, parent)
 
 		classname = u"""class="%s" """ % self.classname if self.classname else u""
 		classname_item = 'sf-item'
