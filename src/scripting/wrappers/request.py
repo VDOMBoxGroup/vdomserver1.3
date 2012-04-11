@@ -137,6 +137,8 @@ class VDOM_request(object):
 			def __init__(self):
 				self.id = managers.request_manager.current.container_id
 		return container_stub()
+	def _get_render_type(self):
+		return managers.request_manager.current.render_type
 	
 	arguments=property(lambda self: self._arguments)
 	container=property(_get_container)
@@ -147,3 +149,4 @@ class VDOM_request(object):
 	server=property(lambda self: self._server)
 	protocol=property(lambda self: self._protocol)
 	shared_variables = property(lambda self: self._shared_vars)
+	render_type=property(_get_render_type)

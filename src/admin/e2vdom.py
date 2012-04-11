@@ -5,6 +5,7 @@ import json
 
 def run(request):
 	args = request.arguments().arguments()
+	request.render_type = "e2vdom"
 	datafield = args.get("datafield")
 	sid = args.get("sid")
 	if datafield:
