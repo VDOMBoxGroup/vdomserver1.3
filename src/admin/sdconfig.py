@@ -7,17 +7,17 @@ from utils.exception import VDOM_exception
 from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver, VDOM_smb_storage_driver
 
 def run(request):
-        sess = request.session()
-        if not sess.value("appmngmtok"):
-                request.write("Authentication failed")
-                raise VDOM_exception("Authentication failed")
- 
-        args = request.arguments().arguments()
+	sess = request.session()
+	if not sess.value("appmngmtok"):
+		request.write("Authentication failed")
+		raise VDOM_exception("Authentication failed")
+
+	args = request.arguments().arguments()
 	if "cancel" in args:
 		request.redirect("/appbackup.py")
 		return
-        applst = managers.xml_manager.get_applications()
-        dev_list = VDOM_sd_external_drive.get_device_list()
+	applst = managers.xml_manager.get_applications()
+	dev_list = VDOM_sd_external_drive.get_device_list()
 	dev_option_tag = apps_tag = ""
 	drv_icon = "images/exthdd.png"
 	driver = None
@@ -28,8 +28,8 @@ def run(request):
 		appname = managers.xml_manager.get_application(app).name
 		apps_tag += """
           <p><input type="checkbox" name="backup_app[]" value="%(appid)s" checked>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
-	                 {"appid": app, "appname": appname}
-	
+		                                                                                                                         {"appid": app, "appname": appname}
+
 	hourly_selected = ""
 	week_display = ''
 	rotation_value = "10"
@@ -49,7 +49,7 @@ def run(request):
 		#driver = None
 	if "devid" in args:
 		driver = managers.backup_manager.get_storage(args["devid"][0])
-		
+
 		hidden_tag = """
 <input type="hidden" name="devid" value="%s">""" % driver.id
 	if "type" in args:
@@ -74,9 +74,9 @@ def run(request):
 					elif args["type"][0] == "cloud_drive":
 						driver = VDOM_cloud_storage_driver(crypt)
 					elif args["type"][0] == "smb_drive":
-						
+
 						driver = VDOM_smb_storage_driver()
-						
+
 				except Exception as e:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 					ok = False
@@ -128,11 +128,11 @@ def run(request):
 				task_id, schedule = managers.backup_manager.get_schedule(drv)
 				if schedule[0].in_cron:
 					crontab.append((task_id, schedule[1]))
-				
+
 			managers.scheduler_manager.build_crontab(crontab)
 			request.redirect("/appbackup.py")
 			return
-		
+
 	for dev in dev_list:
 		dev_option_tag += "<option value='%(dev)s'%(selected)s>%(devname)s</option>" % {"dev": dev[0], "devname": dev[1], "selected": " selected" if driver and hasattr(driver, 'dev') and dev[0] == driver.dev else ""}		
 	if "devid" in args or "save" in args:
@@ -145,7 +145,7 @@ def run(request):
 				appname = managers.xml_manager.get_application(app).name
 				apps_tag += """
           <p><input type="checkbox" name="backup_app[]" value="%(appid)s"%(checked)s>%(appname)s <span>GUID %(appid)s</span></input></p>""" % \
-					 {"appid": app, "appname": appname, "checked": " checked" if app in backup_apps else ""}
+				                                                                                                            {"appid": app, "appname": appname, "checked": " checked" if app in backup_apps else ""}
 			schedule1 = schedule[1][1]
 			if "*" in schedule1[1]:
 				hourly_selected = " selected"
@@ -165,14 +165,14 @@ def run(request):
 				hourly_display = ' style="display:none;"'
 				d_backup_time = schedule1[1] + ":" + schedule1[0]
 				h_backup_time = '1'
-		
+
 	if driver:
 		if driver.type == "smb_drive":
 			server = driver.host or ""
 			user = driver.login or ""
 			passwd = driver.password or ""
 			location = driver.location or ""
-		
+
 		#crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
 		try:
 			path = driver.mount()
@@ -205,7 +205,7 @@ def run(request):
 
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Storage driver not found";</script>')
-        request.write("""<html>
+	request.write("""<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Uninstall</title>
@@ -496,7 +496,7 @@ function ChangeBackup(obj){
 	request.write("""
    <div id="rotation"><label for="rotation">Rotation </label><input type="text" name="rotation" value="%(value)s"></div>""" % {"value": rotation_value})
 	if "type" in args and args["type"][0] == "smb_drive":
-		
+
 		request.write("""
    <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr" value="%(serv_adr)s"></div>
    <div id="location"><label for="location">Location: </label><input type="text" name="location" value="%(location)s"></div>
@@ -537,7 +537,7 @@ function ChangeBackup(obj){
 	<div class="free-mem">%(free)s of %(size)s is free</div>
 
 	<div class="crypt"><label><input type="checkbox" name="crypt-dev"%(crypt)s>Crypt disk</label></div>
-	
+
 	<div class="erase"><a href="sdconfig.py?erase=%(dev)s" onclick="if (confirm('Do you really want erase all data from storage?')){LoadImgWait(); return true;}else{return false;};">Erase this storage</a></div>
 
   </div>
@@ -555,18 +555,18 @@ function ChangeBackup(obj){
 </form>
 </body>
 </html>""")
-	
+
 def humanize_bytes(bytes, precision=1):
 	abbrevs = (
-		    (1<<40L, 'PB'),
-		    (1<<30L, 'TB'),
-		    (1<<20L, 'GB'),
-		    (1<<10L, 'MB'),
-		    (1, 'kB')
-		)
+	        (1<<40L, 'PB'),
+	        (1<<30L, 'TB'),
+	        (1<<20L, 'GB'),
+	        (1<<10L, 'MB'),
+	        (1, 'kB')
+	)
 	if bytes == 1:
-	    return '1 kB'
+		return '1 kB'
 	for factor, suffix in abbrevs:
-	    if bytes >= factor:
-		break
+		if bytes >= factor:
+			break
 	return '%.*f %s' % (precision, bytes / factor, suffix)
