@@ -59,6 +59,7 @@ class VDOM_restore(object):
 	    exit_error = "Some parts of application (id = %s) has not restored" % app_id
 	    debug(exit_error)
 	driver.umount()
+	return ok
 	    
             
     def list_apps(self, driver_path):
