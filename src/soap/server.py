@@ -1673,10 +1673,11 @@ class VDOM_web_services_server(object):
 
 	def list_backup_drivers(self,  sid, skey):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		backup_drivers = []
+		backup_drivers = managers.backup_manager.get_storages()
 		ret = ""
-		for driver in  backup_drivers:
-			ret +="""\n\t<Driver>\n\t\t<ID>...</ID>\n\t\t<Name>...</Name>\n\t\t<Description>...</Description>\n\t</Driver>\n"""
+		for driver in backup_drivers:
+			driver_obj = backup_drivers[driver]
+			ret +="""\n\t<Driver>\n\t\t<ID>%(id)s</ID>\n\t\t<Name>%(name)s</Name>\n\t\t<Description>%(type)s</Description>\n\t</Driver>\n"""%{"id":driver_obj.id, "name":driver_obj.name, "type":driver_obj.type}
 		
 		return "<Result>%s</Result>"%ret
 
