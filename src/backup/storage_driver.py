@@ -143,7 +143,7 @@ class VDOM_sd_external_drive(VDOM_storage_driver):
 			
 			except:
 				return False
-				return True
+			return True
 		else:
 			return False
 
