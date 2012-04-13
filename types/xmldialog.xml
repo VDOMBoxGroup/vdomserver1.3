@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.21.6720</Version>
+    <Version>1.25.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -257,8 +257,10 @@ class VDOM_xmldialog(VDOM_object):
 	def the_prop(self, arr, x):
 		return arr[x] if x in arr else ''
 
-	def the_item(self, css_class, lbl, html):
-		return u"<div class='row'><label class='title'>%s</label><div class='item %s'>%s</div><br /></div>" % (lbl, css_class, html)
+	def the_item(self, css_class, lbl, html, e):
+		attr_required = e.getAttribute("required")
+		visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
+		return u"<div class='row' %s><label class='title'>%s</label><div class='item %s'>%s</div><br /></div>" % (visible, lbl, css_class, html)
 
 	def render(self, parent, contents=""):
 
@@ -268,6 +270,7 @@ class VDOM_xmldialog(VDOM_object):
 		show = "false" if self.show == "0" else "true"
 		modal = "false" if self.modal == "0" else "true"
 		data = u""
+		data_out = u""
 
 		xd = (self.xmldata).replace('<!--[CDATA[', '<![CDATA[')
 		xd = xd.replace(']]-->', ']'+']>')
@@ -282,8 +285,6 @@ class VDOM_xmldialog(VDOM_object):
 					#print "tagName  : %s" % e.localName
 
 					attr_id = e.getAttribute("id").replace('"', '&quot;')
-					attr_required = e.getAttribute("required")
-					attr_visible = e.getAttribute("visible")
 
 					if e.localName == 'Heading':
 						res = self.get_prop(e)
@@ -292,34 +293,34 @@ class VDOM_xmldialog(VDOM_object):
 					elif e.localName == 'TextBox':
 						res = self.get_prop(e)
 						htm = u"<input type='text' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
-						data += self.the_item('textbox', self.the_prop(res, 'label'), htm)
+						data += self.the_item('textbox', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'DropDown':
 						res = self.get_prop(e)
 						htm = u"<select name=\"%s\"></select>" % ( attr_id );
-						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm)
+						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
 					
 					elif e.localName == 'RadioButton':
 						res = self.get_prop(e)
 						htm = u"<input type='radio' name=\"%s\" />" % ( attr_id );
-						data += self.the_item('radio', self.the_prop(res, 'label'), htm)
+						data += self.the_item('radio', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'CheckBox':
 						res = self.get_prop(e)
 						htm = u"<input type='checkbox' name=\"%s\" />" % ( attr_id );
-						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm)
+						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
 					
 					elif e.localName == 'Upload':
 						res = self.get_prop(e)
 						htm = u"<input type='file' name=\"%s\" />" % ( attr_id );
-						data += self.the_item('upload', self.the_prop(res, 'label'), htm)
+						data += self.the_item('upload', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Textarea':
 						res = self.get_prop(e)
 						htm = u"<textarea name=\"%s\">%s</textarea>" % ( attr_id, self.the_prop(res, 'defaultValue') );
-						data += self.the_item('textarea', self.the_prop(res, 'label'), htm)
+						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
 
-			data = "<form action='' class='xml-dialog-form' method='post' enctype='multipart/form-data'>%s<div class='submit'><input type='submit' /></div></form>" % data;
+			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
 
 		except Exception as e:
 			debug("Error: XML data is not valid")
@@ -385,7 +386,7 @@ margin-top: 10px;
 		return false;
 	});
 });</script>""" % {
-			"data": data, "id": id, "idn": idn, "width": self.width, "height": self.height,
+			"data": data_out, "id": id, "idn": idn, "width": self.width, "height": self.height,
 			"title": self.title, "show": show, "modal": modal }
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -426,8 +427,10 @@ def set_attr(app_id, object_id, param):
 function vdom_xd_load(id,xd){
 	xd = $q.trim(xd).replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>');
 	var p = $q.parseXML(xd), x = $q(p), w = $q(id), data = [],
-		dodiv = function(cn,h){
-			return "<div class='item "+cn+"'>"+h+"</div>";
+		dodiv = function(cn,h,a){
+			var vis = parseInt(a.attr('visible') || '0', 10);
+			if (vis !== 1) vis = 'style="display:none"';
+			return "<div class='item "+cn+"' "+vis+">"+h+"</div>";
 		}
 	w.html('');
 	x.find("VDOMFormContainer>Components>*").each(function(){
@@ -437,7 +440,7 @@ function vdom_xd_load(id,xd){
 			data.push("<h3>"+t.find('Property[name=text]').text()+"</h3>");
 		}
 		else if (t0.tagName == 'TextBox') {
-			data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />"));
+			data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
 		}
 		else if (t0.tagName == 'DropDown') {
 			opts = [];
@@ -445,7 +448,7 @@ function vdom_xd_load(id,xd){
 				s = $(this).text().trim();
 				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'">'+s+'</option>');
 			});
-			data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>"));
+			data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
 			opts = [], sel = t.attr('selected');
@@ -453,17 +456,17 @@ function vdom_xd_load(id,xd){
 				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
 				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" /> "+$(this).text().trim()+"</label>");
 			});
-			data.push(dodiv('radio',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> "+opts.join(' ')));
+			data.push(dodiv('radio',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> "+opts.join(' '), t));
 		}
 		else if (t0.tagName == 'CheckBox') {
 			s = !!t.attr('selected') ? 'checked="checked"' : '';
-			data.push(dodiv('checkbox',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='checkbox' name=\""+t.attr('id')+"\" />"));
+			data.push(dodiv('checkbox',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='checkbox' name=\""+t.attr('id')+"\" />", t));
 		}
 		else if (t0.tagName == 'Upload') {
-			data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />"));
+			data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
 		}
 		else if (t0.tagName == 'Textarea') {
-			data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>"));
+			data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
 		}
 	});
 	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"<div class='submit'><input type='submit' /></div></form>").dialog('close').dialog('open');
