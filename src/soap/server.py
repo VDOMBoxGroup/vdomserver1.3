@@ -1653,7 +1653,7 @@ class VDOM_web_services_server(object):
 		return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
 	
 	
-	def backup_application(self, sid, skey, driverid, appid):
+	def backup_application(self, sid, skey, appid, driverid ):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		revision = managers.backup_manager.backup(appid, driverid, 30)
 		if not revision:
@@ -1662,7 +1662,7 @@ class VDOM_web_services_server(object):
 		return """<Result> <Revision>%s</Revision></Result>"""%revision
 			
 	
-	def restore_application(self,sid, skey, driverid, appid, revision):
+	def restore_application(self,sid, skey, appid, driverid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		result = managers.backup_manager.restore(driverid, appid, revision)
 		if result:
@@ -1671,7 +1671,7 @@ class VDOM_web_services_server(object):
 			return "<Result>FAILED</Result> "	
 
 
-	def list_backup_drivers(self,  sid, skey):
+	def list_backup_drivers(self, sid, skey):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		backup_drivers = managers.backup_manager.get_storages()
 		ret = ""

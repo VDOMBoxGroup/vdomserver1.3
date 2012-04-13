@@ -215,10 +215,10 @@ def update_application(sid, skey, appxml, _SOAPContext):
 def check_application_exists(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.check_application_exists, sid, skey, appid])
 
-def backup_application(sid, skey, driverid, appid, _SOAPContext):
+def backup_application(sid, skey, appid, driverid, _SOAPContext):
 	return proxy([managers.soap_server.backup_application, sid, skey, driverid, appid])
 
-def restore_application(sid, skey, driverid, appid, revision, _SOAPContext):
+def restore_application(sid, skey, appid, driverid, revision, _SOAPContext):
 	return proxy([managers.soap_server.restore_application, sid, skey, driverid, appid, revision])
 
 def list_backup_drivers(sid, skey, _SOAPContext):
