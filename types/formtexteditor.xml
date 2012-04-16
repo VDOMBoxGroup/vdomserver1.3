@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.8.6200</Version>
+    <Version>1.9.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -407,13 +407,18 @@ class VDOM_formtexteditor(VDOM_object):
 		style_area = u"""font: 14px tahoma;"""
 
 		result = u"""
-<script type="text/javascript">$q(document).ready(function($) {
+<script type="text/javascript">$q(function(){
 	if (typeof %(id)s_editor !== 'undefined') { delete(%(id)s_editor); }
-	%(id)s_editor = $('#%(id)s>textarea').cleditor({
+	var %(id)s_a=$q('#%(id)s>textarea');
+	%(id)s_editor = %(id)s_a.cleditor({
 		width: %(width)s,
 		height: %(height)s,
 		bodyStyle: "%(style_area)s"
 	})[0];
+	$q('#%(id)s').parents('form:first').bind("reset",function(){
+		%(id)s_a.val('');
+		%(id)s_editor.updateFrame();
+	});
 });</script>
 <div id="%(id)s" style="%(style)s">
 	<textarea name="%(name)s" tabindex="%(tabind)s" style="%(style_area)s">%(value)s</textarea>
