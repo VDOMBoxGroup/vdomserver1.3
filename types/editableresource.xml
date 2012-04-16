@@ -128,7 +128,7 @@
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(404)|1)|(#Lang(405)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|1)|(#Lang(404)|2))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -140,7 +140,7 @@
       <Visible>0</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(406)|0)|(#Lang(407)|1)|(#Lang(408)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1)|(#Lang(407)|2))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
@@ -152,7 +152,7 @@
       <Visible>0</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1)|(#Lang(412)|2)|(#Lang(413)|3))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1)|(#Lang(411)|2)|(#Lang(412)|3))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
@@ -161,107 +161,57 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Editable Resource</Sentence>
-      <Sentence ID="002">Editable Resource</Sentence>
+      <Sentence ID="002">Serves as a dynamic resource, which can be modified in order to optimise  the performance of rendering the web page.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Visibility</Sentence>
-      <Sentence ID="701">Incorrect value</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">Visibility</Sentence>
-      <Sentence ID="702">Incorrect value</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">Incorrect value</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Incorrect value</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="603">Visibility</Sentence>
-      <Sentence ID="705">Incorrect value</Sentence>
-      <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="302">Incorrect value</Sentence>
+      <Sentence ID="202">Visibility of the object.</Sentence>
+      <Sentence ID="302">Incorrect value.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels, no more than 2880</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="207">Height of the object in pixels, no more than 2880.</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="108">Data</Sentence>
-      <Sentence ID="208">Data to display in HTML, JavaScript or CSS format</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="208">The data in text (CSS or JavaScript) format.</Sentence>
+      <Sentence ID="308">Incorrect value.</Sentence>
       <Sentence ID="109">Data type</Sentence>
-      <Sentence ID="209">Type of the data</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="403">Insert into page</Sentence>
-      <Sentence ID="404">JavaScript</Sentence>
-      <Sentence ID="405">CSS</Sentence>
+      <Sentence ID="209">The type of the data written in the Data attribute (CSS or JavaScript).</Sentence>
+      <Sentence ID="309">Incorrect value.</Sentence>
+      <Sentence ID="403">JavaScript</Sentence>
+      <Sentence ID="404">CSS</Sentence>
       <Sentence ID="111">No style</Sentence>
-      <Sentence ID="211">Define the using of styles of the object elements</Sentence>
+      <Sentence ID="211">Define the using of styles of the object elements.</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">No wrapper</Sentence>
+      <Sentence ID="405">No</Sentence>
+      <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="407">No wrapper</Sentence>
       <Sentence ID="112">Overflow</Sentence>
-      <Sentence ID="212">Overflow control mode</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
-      <Sentence ID="409">Auto</Sentence>
-      <Sentence ID="411">Hidden</Sentence>
-      <Sentence ID="412">Scroll</Sentence>
-      <Sentence ID="413">Visible</Sentence>
-      <Sentence ID="901">Left</Sentence>
-      <Sentence ID="902">Top</Sentence>
-      <Sentence ID="903">Left</Sentence>
-      <Sentence ID="904">Top</Sentence>
-      <Sentence ID="905">Left</Sentence>
-      <Sentence ID="906">Left</Sentence>
-      <Sentence ID="907">Top</Sentence>
-      <Sentence ID="908">Left</Sentence>
-      <Sentence ID="909">Top</Sentence>
-      <Sentence ID="911">Left</Sentence>
-      <Sentence ID="912">Top</Sentence>
-      <Sentence ID="913">Current X-value</Sentence>
-      <Sentence ID="914">Current Y-value</Sentence>
-      <Sentence ID="915">Left</Sentence>
-      <Sentence ID="916">Top</Sentence>
-      <Sentence ID="917">Left</Sentence>
-      <Sentence ID="918">Top</Sentence>
+      <Sentence ID="212">Overflow control mode.</Sentence>
+      <Sentence ID="312">Incorrect value.</Sentence>
+      <Sentence ID="408">Auto</Sentence>
+      <Sentence ID="409">Hidden</Sentence>
+      <Sentence ID="411">Scroll</Sentence>
+      <Sentence ID="412">Visible</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Гипертекст</Sentence>
       <Sentence ID="002">Гипертекст</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Отображение</Sentence>
-      <Sentence ID="601">Отображение</Sentence>
-      <Sentence ID="701">Неправильное значение</Sentence>
-      <Sentence ID="801">Неправильное значение</Sentence>
-      <Sentence ID="502">Отображение</Sentence>
-      <Sentence ID="602">Отображение</Sentence>
-      <Sentence ID="702">Неправильное значение</Sentence>
-      <Sentence ID="802">Неправильное значение</Sentence>
-      <Sentence ID="703">Неправильное значение</Sentence>
-      <Sentence ID="803">Неправильное значение</Sentence>
-      <Sentence ID="704">Неправильное значение</Sentence>
-      <Sentence ID="804">Неправильное значение</Sentence>
-      <Sentence ID="503">Отображение</Sentence>
-      <Sentence ID="603">Отображение</Sentence>
-      <Sentence ID="705">Неправильное значение</Sentence>
-      <Sentence ID="805">Неправильное значение</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -291,60 +241,26 @@
       <Sentence ID="109">Тип данных</Sentence>
       <Sentence ID="209">Тип данных</Sentence>
       <Sentence ID="309">Неправильное значение</Sentence>
-      <Sentence ID="403">Вставить на страницу</Sentence>
-      <Sentence ID="404">JavaScript</Sentence>
-      <Sentence ID="405">CSS</Sentence>
+      <Sentence ID="403">JavaScript</Sentence>
+      <Sentence ID="404">CSS</Sentence>
       <Sentence ID="111">Нет стиля</Sentence>
       <Sentence ID="211">Применение стилей</Sentence>
       <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="406">Нет</Sentence>
-      <Sentence ID="407">Да</Sentence>
-      <Sentence ID="408">Без обертки</Sentence>
+      <Sentence ID="405">Нет</Sentence>
+      <Sentence ID="406">Да</Sentence>
+      <Sentence ID="407">Без обертки</Sentence>
       <Sentence ID="112">Переполнение</Sentence>
       <Sentence ID="212">Режим переполненности</Sentence>
       <Sentence ID="312">Неправильное значение</Sentence>
-      <Sentence ID="409">Авто</Sentence>
-      <Sentence ID="411">Скрытый</Sentence>
-      <Sentence ID="412">Прокрутка</Sentence>
-      <Sentence ID="413">Отображать</Sentence>
-      <Sentence ID="901">Слева</Sentence>
-      <Sentence ID="902">Сверху</Sentence>
-      <Sentence ID="903">Слева</Sentence>
-      <Sentence ID="904">Сверху</Sentence>
-      <Sentence ID="905">Слева</Sentence>
-      <Sentence ID="906">Слева</Sentence>
-      <Sentence ID="907">Сверху</Sentence>
-      <Sentence ID="908">Слева</Sentence>
-      <Sentence ID="909">Сверху</Sentence>
-      <Sentence ID="911">Слева</Sentence>
-      <Sentence ID="912">Сверху</Sentence>
-      <Sentence ID="913">Текущее значение X</Sentence>
-      <Sentence ID="914">Текущее значение Y</Sentence>
-      <Sentence ID="915">Слева</Sentence>
-      <Sentence ID="916">Сверху</Sentence>
-      <Sentence ID="917">Слева</Sentence>
-      <Sentence ID="918">Сверху</Sentence>
+      <Sentence ID="408">Авто</Sentence>
+      <Sentence ID="409">Скрытый</Sentence>
+      <Sentence ID="411">Прокрутка</Sentence>
+      <Sentence ID="412">Отображать</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">HTML</Sentence>
       <Sentence ID="002">HTML</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibilité</Sentence>
-      <Sentence ID="601">Visibilité</Sentence>
-      <Sentence ID="701">Valeur Incorrecte</Sentence>
-      <Sentence ID="801">Valeur Incorrecte</Sentence>
-      <Sentence ID="502">Visibilité</Sentence>
-      <Sentence ID="602">Visibilité</Sentence>
-      <Sentence ID="702">Valeur Incorrecte</Sentence>
-      <Sentence ID="802">Valeur Incorrecte</Sentence>
-      <Sentence ID="703">Valeur Incorrecte</Sentence>
-      <Sentence ID="803">Valeur Incorrecte</Sentence>
-      <Sentence ID="704">Valeur Incorrecte</Sentence>
-      <Sentence ID="804">Valeur Incorrecte</Sentence>
-      <Sentence ID="503">Visibilité</Sentence>
-      <Sentence ID="603">Visibilité</Sentence>
-      <Sentence ID="705">Valeur Incorrecte</Sentence>
-      <Sentence ID="805">Valeur Incorrecte</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
@@ -374,39 +290,21 @@
       <Sentence ID="109">Data type</Sentence>
       <Sentence ID="209">Data type</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="403">Insert into page</Sentence>
-      <Sentence ID="404">JavaScript</Sentence>
-      <Sentence ID="405">CSS</Sentence>
+      <Sentence ID="403">JavaScript</Sentence>
+      <Sentence ID="404">CSS</Sentence>
       <Sentence ID="111">No style</Sentence>
       <Sentence ID="211">Do not apply styles to element</Sentence>
       <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">No wrapper</Sentence>
+      <Sentence ID="405">No</Sentence>
+      <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="407">No wrapper</Sentence>
       <Sentence ID="112">Overflow</Sentence>
       <Sentence ID="212">Overflow mode</Sentence>
       <Sentence ID="312">Valeur Incorrecte</Sentence>
-      <Sentence ID="409">Auto</Sentence>
-      <Sentence ID="411">Hidden</Sentence>
-      <Sentence ID="412">Scroll</Sentence>
-      <Sentence ID="413">Visible</Sentence>
-      <Sentence ID="901">Gauche</Sentence>
-      <Sentence ID="902">Haut</Sentence>
-      <Sentence ID="903">Gauche</Sentence>
-      <Sentence ID="904">Haut</Sentence>
-      <Sentence ID="905">Gauche</Sentence>
-      <Sentence ID="906">Gauche</Sentence>
-      <Sentence ID="907">Haut</Sentence>
-      <Sentence ID="908">Gauche</Sentence>
-      <Sentence ID="909">Haut</Sentence>
-      <Sentence ID="911">Gauche</Sentence>
-      <Sentence ID="912">Haut</Sentence>
-      <Sentence ID="913">Current X-value</Sentence>
-      <Sentence ID="914">Current Y-value</Sentence>
-      <Sentence ID="915">Gauche</Sentence>
-      <Sentence ID="916">Haut</Sentence>
-      <Sentence ID="917">Gauche</Sentence>
-      <Sentence ID="918">Haut</Sentence>
+      <Sentence ID="408">Auto</Sentence>
+      <Sentence ID="409">Hidden</Sentence>
+      <Sentence ID="411">Scroll</Sentence>
+      <Sentence ID="412">Visible</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -506,8 +404,8 @@ class VDOM_editableresource(VDOM_object):
   <Libraries/>
   <E2vdom>
     <Events>
+      <Userinterfaceevents/>
     </Events>
-    <Actions>
-    </Actions>
+    <Actions/>
   </E2vdom>
 </Type>
