@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.8.6720</Version>
+    <Version>1.10.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password</Containers>
@@ -124,7 +124,7 @@
     <Attribute>
       <Name>datatype</Name>
       <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
@@ -452,7 +452,7 @@ class VDOM_editableresource(VDOM_object):
 				res_id = resource.id
 			else:
 				res_type = "js" if self.datatype == '1' else "css" if self.datatype == '2' else "txt"
-				res_id = application.resources.create_temporary(self.id, "userdata", self.userdata, res_type, "userdata")
+				res_id = ''#application.resources.create_temporary(self.id, "userdata", self.userdata, res_type, "userdata")
 
 			udata = ""
 			if self.datatype == "1":
