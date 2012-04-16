@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.7.6200</Version>
+    <Version>1.8.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -413,7 +413,7 @@ class VDOM_formtexteditor(VDOM_object):
 		width: %(width)s,
 		height: %(height)s,
 		bodyStyle: "%(style_area)s"
-	});
+	})[0];
 });</script>
 <div id="%(id)s" style="%(style)s">
 	<textarea name="%(name)s" tabindex="%(tabind)s" style="%(style_area)s">%(value)s</textarea>
@@ -538,10 +538,8 @@ $q('textarea',this.domCont).focus();
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-/*
 $q('textarea',this.domCont).val(value);
 eval(this.domCont.id+"_editor.updateFrame();");
-*/
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
