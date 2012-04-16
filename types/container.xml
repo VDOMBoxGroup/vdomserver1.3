@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.119.6200</Version>
+    <Version>1.124.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared,smartfolderdata</Containers>
@@ -753,7 +753,7 @@ class VDOM_container(VDOM_object):
 			cont_tag = u"""<div class="content">%s</div>""" % contents
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='container' objname='%s' ver='2011-12-02'" % self.name
+			debug_info = u"objtype='container' objname='%s'" % ( self.name )
 		else:
 			debug_info = u""
 
@@ -764,14 +764,15 @@ class VDOM_container(VDOM_object):
 
 
 	def wysiwyg(self, parent, contents=""):
+		color = self.backgroundcolor if self.backgroundcolor != "" else u"#%s" % self.designcolor
 		result =u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
 							top="{top}" left="{left}" width="{width}" height="{height}">
 						<svg>
-							<rect x="0" y="0" width="{width}" height="{height}" fill="#{designcolor}"/>
+							<rect x="0" y="0" width="{width}" height="{height}" fill="{color}"/>
 						</svg>{contents}
 					</container>
 				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
-						hierarchy = self.hierarchy, order = self.order, designcolor = self.designcolor,
+						hierarchy = self.hierarchy, order = self.order, color = color,
 						top = self.top, left = self.left, width = self.width, height = self.height, 
 						contents = contents)
 
