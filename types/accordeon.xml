@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.4.8082</Version>
+    <Version>1.5.8082</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared</Containers>
@@ -749,12 +749,12 @@ jQuery.fn.accordeon = function() {
 		$q("div:not(.active)", dl).css("cursor", "pointer");
 		$q("div.active", dl).css("cursor", "");
 		$q("div:not(.active) div.content", dl).slideUp();
-		$q("div.active div.content", dl).slideDown(300,function(){
+		$q("div.active div.content", dl).slideDown(300/*,function(){
 			var x = $q(this).parent().attr('id') || '';
 			if (x !== '') {
 				execEventBinded(x.substring(2, x.length), "itemshow", {name:$q('>div.title',this).text(), index:$q('>div.title',this).index()});
 			}
-		});
+		}*/);
 	}
 	return this.each(function() {
 		var dl = $q(this), active = $q("div.active", dl);
