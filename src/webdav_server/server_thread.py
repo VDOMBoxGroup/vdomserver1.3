@@ -11,7 +11,7 @@ except ImportError, e:
 	raise RuntimeError("Could not import wsgidav package:\n%s\nSee http://wsgidav.googlecode.com/." % e)
 from vdom_dav_provider import VDOM_Provider
 from domain_controller import VDOM_domain_controller
-
+import managers
 
 class VDOM_webdav_server_thread(VDOM_thread):
 
@@ -39,7 +39,10 @@ class VDOM_webdav_server_thread(VDOM_thread):
 
 		self.__server=make_server(config["host"], config["port"], app)	
 
-
+		msg = "%s listening on port %s"%("WebDAV server", VDOM_CONFIG["SERVER-DAV-PORT"])
+		print (msg)
+		managers.log_manager.info_server(msg, "WebDAV server thread")
+		
 		self.__server.daemon_threads=True
 		self.__server.serve_forever()
 

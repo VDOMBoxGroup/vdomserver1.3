@@ -47,55 +47,41 @@ class FileResource(DAVNonCollection):
 		self._obj_id = obj_id
 		self._app_id = app_id
 		self._path = path
+		self._live_props = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "",{"path": self._path})
 
 	# Getter methods for standard live properties     
 	def getContentLength(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getcontentlenght" in ret:
-			return ret["getcontentlenght"]
+		if self._live_props and "getcontentlenght" in self._live_props:
+			return self._live_props["getcontentlenght"]
 		return 0
+	
 	def getContentType(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getcontenttype" in ret:
-			return ret["getcontenttype"]
+		if self._live_props and "getcontenttype" in self._live_props:
+			return self._live_props["getcontenttype"]
 		return "application/octet-stream"
+	
 	def getCreationDate(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "creationdate" in ret:
-			return ret["creationdate"]
+		if self._live_props and "creationdate" in self._live_props:
+			return self._live_props["creationdate"]
 		return None
+	
 	def getDisplayName(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "displayname" in ret:
-			return ret["displayname"]
+		if self._live_props and "displayname" in self._live_props:
+			return self._live_props["displayname"]
 		return self.name
+	
 	def getEtag(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getetag" in ret:
-			return ret["getetag"]
+		if self._live_props and "getetag" in self._live_props:
+			return self._live_props["getetag"]
 		return None
+	
 	def getLastModified(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getlastmodified" in ret:
-			return ret["getlastmodified"]
+		if self._live_props and "getlastmodified" in self._live_props:
+			return self._live_props["getlastmodified"]
 		return None
+	
 	def supportEtag(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getetag" in ret:
+		if self._live_props and "getetag" in self._live_props:
 			return True
 		return False
 
@@ -191,31 +177,25 @@ class FolderResource(DAVCollection):
 		self._path = path
 		self._app = managers.xml_manager.get_application(app_id)
 		self._object = self._app if not self._obj_id else self._app.search_object(self._obj_id)
-
+		self._live_props = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "",{"path": self._path})
 
 	# Getter methods for standard live properties     
 	def getDisplayName(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "displayname" in ret:
-			return ret["displayname"]
+		if self._live_props and "displayname" in self._live_props:
+			return self._live_props["displayname"]
 		return self.name
+	
 	def getDirectoryInfo(self):
 		return None
+	
 	def getEtag(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getetag" in ret:
-			return ret["getetag"]
+		if self._live_props and "getetag" in self._live_props:
+			return self._live_props["getetag"]
 		return None
+	
 	def getLastModified(self):
-		func_name = "getResourseProperties"
-		xml_data = {"path": self._path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret and "getlastmodified" in ret:
-			return ret["getlastmodified"]
+		if self._live_props and "getlastmodified" in self._live_props:
+			return self._live_props["getlastmodified"]
 		return None
 
 	def getMemberNames(self):
@@ -230,18 +210,6 @@ class FolderResource(DAVCollection):
 			return ret
 		return []
 
-	def getMember(self, name):
-		"""Return direct collection member (DAVResource or derived).
-
-		See DAVCollection.getMember()
-		"""
-		path = util.joinUri(self.path, name)
-		func_name = "isCollection"
-		xml_data = {"path": path}
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret:
-			return FolderResource(path, self.environ, self._app_id, self._obj_id)
-		return FileResource(path, self.environ, self._app_id, self._obj_id)
 
 
 	def supportRecursiveMove(self, destPath):

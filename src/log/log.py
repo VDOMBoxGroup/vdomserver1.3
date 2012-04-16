@@ -46,6 +46,8 @@ class VDOM_log_manager:
 		h2.setFormatter(formatter)
 		h3.setFormatter(formatter)
 
+		if logging.root.handlers:
+			logging.root.removeHandler(logging.root.handlers[0])
 		self.__queue = []
 		thread.start_new_thread(self.__write_thread, ())
 		self.__write_start()
