@@ -36,7 +36,7 @@ def wait_for_options():
 			except:
 				debug("Have got invalid options")
 				traceback.print_exc(file=debugfile)			
-			
+				break
 		else:
 			debug("Haven't got options within 10 seconds")
 			break
