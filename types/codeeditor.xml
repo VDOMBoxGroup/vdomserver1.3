@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.17.0</Version>
+    <Version>1.19.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared</Containers>
@@ -3919,8 +3919,8 @@ class VDOM_codeeditor(VDOM_object):
 <style type="text/css">
 #%(id)s .CodeMirror-scroll { height: %(height)spx; }
 </style>
-<div id="%(id)s" style="%(style)s" {debug_info}>
-	<textarea name="%(name)s" style='{style_area}'>%(value)s</textarea>
+<div id="%(id)s" style="%(style)s" %(debug_info)s>
+	<textarea name="%(name)s" style='%(style_area)s'>%(value)s</textarea>
 </div>
 <script type="text/javascript">$q(function(){
 	if (typeof %(id)s_codeeditor !== 'undefined') {
@@ -3937,7 +3937,7 @@ class VDOM_codeeditor(VDOM_object):
 				"name":       self.name,
 				"style":      style,
 				"style_area": style_area,
-				"value":      self.value,
+				"value":      (self.value).replace('<','&lt;'),
 				"width":      self.width,
 				"height":     self.height,
 				"debug_info": debug_info
@@ -3969,15 +3969,14 @@ class VDOM_codeeditor(VDOM_object):
   <Libraries>
     <Library Target="Html"><![CDATA[
 
-<!--script type="text/javascript" src="/966f39fb-3da2-95f2-c33a-398880aff765.res?v2.22"></script-->
-<script type="text/javascript" src="/3b92e99a-bae2-fecd-a5fc-39bcf6e535bf.res?dev"></script>
+<script type="text/javascript" src="/966f39fb-3da2-95f2-c33a-398880aff765.res?v2.22"></script>
+<!--script type="text/javascript" src="/3b92e99a-bae2-fecd-a5fc-39bcf6e535bf.res?dev"></script-->
 
 <script type="text/javascript" src="/5cd10fee-6e10-5253-24ea-3edb0a87f9ec.res?match"></script>
 
 <!-- vbscript -->
 <script type="text/javascript" src="/61f0f91b-794f-e70b-ea53-39b66018c0c5.res?v1"></script>
 
-<!--link type="text/css" rel="stylesheet" href="codemirror.css?v1" /-->
 <style type="text/css">
 .CodeMirror { line-height: 1em; font-family: monospace; border: 1px solid silver; }
 
