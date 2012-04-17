@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.25.6720</Version>
+    <Version>1.26.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -260,7 +260,7 @@ class VDOM_xmldialog(VDOM_object):
 	def the_item(self, css_class, lbl, html, e):
 		attr_required = e.getAttribute("required")
 		visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
-		return u"<div class='row' %s><label class='title'>%s</label><div class='item %s'>%s</div><br /></div>" % (visible, lbl, css_class, html)
+		return u"<div class='row' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (visible, lbl, css_class, html)
 
 	def render(self, parent, contents=""):
 
@@ -315,7 +315,7 @@ class VDOM_xmldialog(VDOM_object):
 						htm = u"<input type='file' name=\"%s\" />" % ( attr_id );
 						data += self.the_item('upload', self.the_prop(res, 'label'), htm, e)
 
-					elif e.localName == 'Textarea':
+					elif e.localName == 'TextArea':
 						res = self.get_prop(e)
 						htm = u"<textarea name=\"%s\">%s</textarea>" % ( attr_id, self.the_prop(res, 'defaultValue') );
 						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
@@ -430,7 +430,7 @@ function vdom_xd_load(id,xd){
 		dodiv = function(cn,h,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
 			if (vis !== 1) vis = 'style="display:none"';
-			return "<div class='item "+cn+"' "+vis+">"+h+"</div>";
+			return "<div class='item "+cn+"' "+vis+">"+h+"<br style='clear:both' /></div>";
 		}
 	w.html('');
 	x.find("VDOMFormContainer>Components>*").each(function(){
@@ -465,7 +465,7 @@ function vdom_xd_load(id,xd){
 		else if (t0.tagName == 'Upload') {
 			data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
 		}
-		else if (t0.tagName == 'Textarea') {
+		else if (t0.tagName == 'TextArea') {
 			data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
 		}
 	});
