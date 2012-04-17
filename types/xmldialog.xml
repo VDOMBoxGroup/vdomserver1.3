@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.26.6720</Version>
+    <Version>1.29.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -364,6 +364,7 @@ margin-top: 10px;
 </style>
 <div style='display:none'><div id='%(id)s'>%(data)s</div></div>
 <script type='text/javascript'>$q(function(){
+	$q("#%(id)s").data('ev','1');
 	$q("#%(id)s:ui-dialog").dialog("destroy");
 	$q("#%(id)s").dialog({
 		title: "%(title)s",
@@ -374,9 +375,11 @@ margin-top: 10px;
 		resizable: false,
 		autoOpen: %(show)s,
 		open: function(e,u) { 
-			execEventBinded('%(idn)s', "show", {}); 
+			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "show", {});
 		},
-		close: function(e,u) { execEventBinded('%(idn)s', "hide", {}); }
+		close: function(e,u) {
+			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "hide", {});
+		}
 	});
 	$q("#%(id)s form.xml-dialog-form").live('submit',function(e){
 		e.preventDefault;
@@ -423,14 +426,21 @@ def set_attr(app_id, object_id, param):
 		]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<script type='text/javascript'>
-
+String.prototype.fmt=function(){
+	var a = arguments;
+	return this.replace(/{(\d+)}/g, function(m, n) { 
+		return typeof a[n] != 'undefined' ? a[n] : m;
+	});
+};
 function vdom_xd_load(id,xd){
-	xd = $q.trim(xd).replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>');
+	//xd = $q.trim(xd).replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>');
+	xd = $q.trim(xd).split('<!--[CDATA[').join('<![CDATA[').split(']]-->').join(']'+']>');
 	var p = $q.parseXML(xd), x = $q(p), w = $q(id), data = [],
-		dodiv = function(cn,h,a){
+		dodiv = function(cn,lbl,htm,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
-			if (vis !== 1) vis = 'style="display:none"';
-			return "<div class='item "+cn+"' "+vis+">"+h+"<br style='clear:both' /></div>";
+			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
+			//return "<div class='item "+cn+"' "+vis+">"+h+"</div><br style='clear:both' />";
+			return "<div class='row {1}' {0}><label class='title'>{2}</label><div class='item'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm)
 		}
 	w.html('');
 	x.find("VDOMFormContainer>Components>*").each(function(){
@@ -440,7 +450,8 @@ function vdom_xd_load(id,xd){
 			data.push("<h3>"+t.find('Property[name=text]').text()+"</h3>");
 		}
 		else if (t0.tagName == 'TextBox') {
-			data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
+			//data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
+			data.push(dodiv('textbox', t.find('Property[name=label]').text(), "<input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
 		}
 		else if (t0.tagName == 'DropDown') {
 			opts = [];
@@ -448,7 +459,8 @@ function vdom_xd_load(id,xd){
 				s = $(this).text().trim();
 				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'">'+s+'</option>');
 			});
-			data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
+			//data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
+			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
 			opts = [], sel = t.attr('selected');
@@ -456,20 +468,26 @@ function vdom_xd_load(id,xd){
 				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
 				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" /> "+$(this).text().trim()+"</label>");
 			});
-			data.push(dodiv('radio',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> "+opts.join(' '), t));
+			//data.push(dodiv('radio',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> "+opts.join(' '), t));
+			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
 		}
 		else if (t0.tagName == 'CheckBox') {
 			s = !!t.attr('selected') ? 'checked="checked"' : '';
-			data.push(dodiv('checkbox',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='checkbox' name=\""+t.attr('id')+"\" />", t));
+			//data.push(dodiv('checkbox',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='checkbox' name=\""+t.attr('id')+"\" />", t));
+			data.push(dodiv('checkbox', t.find('Property[name=label]').text(), "<input type='checkbox' name=\""+t.attr('id')+"\" />", t));
 		}
 		else if (t0.tagName == 'Upload') {
-			data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
+			//data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
+			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id')+"\" />", t));
 		}
 		else if (t0.tagName == 'TextArea') {
-			data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+			//data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
 		}
 	});
+	w.data('ev','');
 	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"<div class='submit'><input type='submit' /></div></form>").dialog('close').dialog('open');
+	w.data('ev','1');
 }
 
 </script>]]></Library>
