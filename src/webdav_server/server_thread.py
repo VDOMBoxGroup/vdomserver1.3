@@ -11,6 +11,7 @@ except ImportError, e:
 	raise RuntimeError("Could not import wsgidav package:\n%s\nSee http://wsgidav.googlecode.com/." % e)
 from vdom_dav_provider import VDOM_Provider
 from domain_controller import VDOM_domain_controller
+from property_manager import VDOM_property_manager
 import managers
 
 class VDOM_webdav_server_thread(VDOM_thread):
@@ -25,7 +26,7 @@ class VDOM_webdav_server_thread(VDOM_thread):
 		config = DEFAULT_CONFIG.copy()
 		config.update({"host": VDOM_CONFIG["SERVER-ADDRESS"],
 		               "port": VDOM_CONFIG["SERVER-DAV-PORT"],
-		               "propsmanager": True,
+		               "propsmanager": VDOM_property_manager(),
 		               "provider_mapping": {"/": VDOM_Provider()},
 		               "domaincontroller": VDOM_domain_controller(), # None: domain_controller.WsgiDAVDomainController(user_mapping)
 		               "acceptbasic": True,      # Allow basic authentication, True or False

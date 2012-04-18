@@ -17,6 +17,7 @@ See `Developers info`_ for more information about the WsgiDAV architecture.
 """
 from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN
 from wsgidav.dav_provider import DAVProvider, DAVCollection, DAVNonCollection
+from wsgidav.property_manager import PropertyManager
 from StringIO import StringIO
 
 import wsgidav.util as util
@@ -26,7 +27,6 @@ import shutil
 import stat
 import managers
 from webdav_request import VDOM_webdav_request
-
 __docformat__ = "reStructuredText"
 
 _logger = util.getModuleLogger(__name__)
@@ -47,43 +47,25 @@ class FileResource(DAVNonCollection):
 		self._obj_id = obj_id
 		self._app_id = app_id
 		self._path = path
-		self._live_props = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "",{"path": self._path})
 
 	# Getter methods for standard live properties     
 	def getContentLength(self):
-		if self._live_props and "getcontentlenght" in self._live_props:
-			return self._live_props["getcontentlenght"]
-		return 0
+		return self.provider.propManager1.getProperty(self._path, "getcontentlenght")	
 	
 	def getContentType(self):
-		if self._live_props and "getcontenttype" in self._live_props:
-			return self._live_props["getcontenttype"]
-		return "application/octet-stream"
+		return self.provider.propManager1.getProperty(self._path, "getcontenttype") or "application/octet-stream"
 	
 	def getCreationDate(self):
-		if self._live_props and "creationdate" in self._live_props:
-			return self._live_props["creationdate"]
-		return None
+		return self.provider.propManager1.getProperty(self._path, "creationdate")
 	
 	def getDisplayName(self):
-		if self._live_props and "displayname" in self._live_props:
-			return self._live_props["displayname"]
-		return self.name
+		return self.provider.propManager1.getProperty(self._path, "displayname") or self.name
 	
 	def getEtag(self):
-		if self._live_props and "getetag" in self._live_props:
-			return self._live_props["getetag"]
-		return None
+		return self.provider.propManager1.getProperty(self._path, "getetag")
 	
 	def getLastModified(self):
-		if self._live_props and "getlastmodified" in self._live_props:
-			return self._live_props["getlastmodified"]
-		return None
-	
-	def supportEtag(self):
-		if self._live_props and "getetag" in self._live_props:
-			return True
-		return False
+		return self.provider.propManager1.getProperty(self._path, "getlastmodified")
 
 	def supportRanges(self):
 		return False
@@ -122,6 +104,7 @@ class FileResource(DAVNonCollection):
 		func_name = "close"
 		xml_data = {"path": self._path}
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		self.provider.propManager1.update(self._path)
 
 	def delete(self):
 		"""Remove this resource or collection (recursive).
@@ -133,6 +116,7 @@ class FileResource(DAVNonCollection):
 		func_name = "delete"
 		xml_data = {"path": self._path}
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		self.provider.propManager1.removeProperties(self._path)
 
 
 	def supportRecursiveMove(self, destPath):
@@ -146,9 +130,11 @@ class FileResource(DAVNonCollection):
 		func_name = "move"
 		xml_data = {"srcPath": self._path, "destPath": destPath}
 		res = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if self.provider.propManager:
+		if self.provider.propManager1 and self.provider.propManager:
+			self.provider.propManager1.moveProperties(self._path, destPath, 
+			                                         withChildren=False)
 			destRes = self.provider.getResourceInst(destPath, self.environ)
-			self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
+			self.provider.propManager.moveProperties(self._path, destRes.path, 
 			                                         withChildren=True)
 
 	def copyMoveSingle(self, destPath, isMove):
@@ -177,26 +163,19 @@ class FolderResource(DAVCollection):
 		self._path = path
 		self._app = managers.xml_manager.get_application(app_id)
 		self._object = self._app if not self._obj_id else self._app.search_object(self._obj_id)
-		self._live_props = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "",{"path": self._path})
 
 	# Getter methods for standard live properties     
 	def getDisplayName(self):
-		if self._live_props and "displayname" in self._live_props:
-			return self._live_props["displayname"]
-		return self.name
+		return self.provider.propManager1.getProperty(self._path, "displayname") or self.name
 	
 	def getDirectoryInfo(self):
 		return None
 	
 	def getEtag(self):
-		if self._live_props and "getetag" in self._live_props:
-			return self._live_props["getetag"]
-		return None
+		return self.provider.propManager1.getProperty(self._path, "getetag")
 	
 	def getLastModified(self):
-		if self._live_props and "getlastmodified" in self._live_props:
-			return self._live_props["getlastmodified"]
-		return None
+		return self.provider.propManager1.getProperty(self._path, "getlastmodified")
 
 	def getMemberNames(self):
 		"""Return list of direct collection member names (utf-8 encoded).
@@ -212,6 +191,13 @@ class FolderResource(DAVCollection):
 
 
 
+	def getMember(self, name):
+		assert self.isCollection
+		if util.joinUri(self.path, name) not in self.provider.propManager1.getAllProperties():
+			self.provider.propManager1.sync()
+		return self.provider.getResourceInst(util.joinUri(self.path, name), 
+			                             self.environ)
+	
 	def supportRecursiveMove(self, destPath):
 		"""Return True, if moveRecursive() is available (see comments there)."""
 		return True
@@ -225,6 +211,7 @@ class FolderResource(DAVCollection):
 		xml_data = {"path": self._path, "name": name}
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
+			self.provider.propManager1.update(ret)
 			return self.provider.getResourceInst(ret, self.environ)
 		raise DAVError(HTTP_FORBIDDEN)
 
@@ -239,6 +226,7 @@ class FolderResource(DAVCollection):
 		xml_data = {"path": self._path, "name": name}
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
+			self.provider.propManager1.update(ret)
 			return self.provider.getResourceInst(ret, self.environ)
 		raise DAVError(HTTP_FORBIDDEN)
 
@@ -253,7 +241,7 @@ class FolderResource(DAVCollection):
 		func_name = "delete"
 		xml_data = {"path": self._path}
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		self.removeAllProperties(True)
+		self.provider.propManager1.removeProperties(self._path)
 		self.removeAllLocks(True)
 
 	def copyMoveSingle(self, destPath, isMove):
@@ -277,22 +265,13 @@ class FolderResource(DAVCollection):
 		func_name = "move"
 		xml_data = {"srcPath": self._path, "destPath": destPath}
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if self.provider.propManager:
+		if self.provider.propManager1 and self.provider.propManager:
+			self.provider.propManager1.moveProperties(self._path, destPath, 
+			                                         withChildren=False)
 			destRes = self.provider.getResourceInst(destPath, self.environ)
-			self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
+			self.provider.propManager.moveProperties(self._path, destRes.getRefUrl(), 
 			                                         withChildren=True)
 
-	def moveRecursive(self, destPath):
-		if self.provider.readonly:
-			raise DAVError(HTTP_FORBIDDEN)
-		assert not util.isEqualOrChildUri(self.path, destPath)
-		func_name = "move"
-		xml_data = {"srcPath": self._path, "destPath": destPath}
-		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if self.provider.propManager:
-			destRes = self.provider.getResourceInst(destPath, self.environ)
-			self.provider.propManager.moveProperties(self.getRefUrl(), destRes.getRefUrl(), 
-			                                         withChildren=True)
 
 #===============================================================================
 # FilesystemProvider
@@ -346,16 +325,16 @@ class VDOM_Provider(DAVProvider):
 		obj_id = self._getObjectId(path)
 		request = VDOM_webdav_request(environ)
 		managers.request_manager.current = request
+		path = path.rstrip("/")
 		try:
 			if self.__app and obj_id:
-				func_name = "isExists"
-				xml_data = {"path":path}
-				ret = managers.dispatcher.dispatch_action(self.__app.id, obj_id, func_name, "",xml_data)
-				if ret:
-					func_name = "isCollection"
-					xml_data = {"path":path}
-					ret = managers.dispatcher.dispatch_action(self.__app.id, obj_id, func_name, "",xml_data)
-					if ret:
+				if not self.propManager1.app_id and not self.propManager1.obj_id:
+					self.propManager1.app_id = self.__app.id
+					self.propManager1.obj_id = obj_id
+				all_props = self.propManager1.getAllProperties()
+				res = self.propManager1.getAllProperties().get(path, None)
+				if res:
+					if res["resourcetype"] == "Directory":
 						return FolderResource(path, environ, self.__app.id, obj_id)
 					else:
 						return FileResource(path, environ, self.__app.id, obj_id)
@@ -364,3 +343,8 @@ class VDOM_Provider(DAVProvider):
 		except:
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
+	
+	def setPropManager(self, propManager):
+		assert not propManager or hasattr(propManager, "copyProperties"), "Must be compatible with wsgidav.property_manager.PropertyManager"
+		self.propManager1 = propManager
+		self.propManager = PropertyManager()
