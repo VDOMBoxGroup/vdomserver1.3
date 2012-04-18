@@ -14,8 +14,8 @@ class v_vdomdbrow(generic):
 		generic.__init__(self)
 		self._items=items
 
-	def __call__(self, index, let=None, set=None):
-		if let is not None or set is not None:
+	def __call__(self, index, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			index=index.as_simple
@@ -26,8 +26,8 @@ class v_vdomdbrow(generic):
 				raise errors.invalid_procedure_call
 
 
-	def v_length(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_length(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("length")
 		else:
 			return integer(len(self._items))
@@ -47,16 +47,17 @@ class v_vdomdbrecordset(generic):
 		generic.__init__(self)
 		self._items=value
 
-	def __call__(self, index): # , *arguments, **keywords
-		if let is not None or set is not None:
+	def __call__(self, *arguments, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
-			try: return v_vdomdbrow(self._items[index.as_integer])
+			if len(arguments)!=1: raise errors.wrong_number_of_arguments
+			try: return v_vdomdbrow(self._items[arguments[0].as_integer])
 			except KeyError: return v_nothing
 
 
-	def v_length(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_length(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("length")
 		else:
 			return integer(len(self._items))

@@ -20,8 +20,8 @@ class v_list(generic):
 			self._value.clear()
 	
 
-	def v_count(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_count(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.errors.object_has_no_property
 		else:
 			return integer(len(self._items))

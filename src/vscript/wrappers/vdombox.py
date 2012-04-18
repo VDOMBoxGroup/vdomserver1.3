@@ -18,8 +18,8 @@ class v_vdombox(generic):
 		self._server=None
 
 	
-	def v_isconnected(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_isconnected(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("isconnected")
 		else:
 			return boolean(false if self._server is None else true)

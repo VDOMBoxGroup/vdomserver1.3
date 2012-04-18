@@ -32,14 +32,14 @@ class v_vdomimaging(generic):
 		self._imaging=VDOM_imaging()
 
 
-	def v_width(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_width(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("width")
 		else:
 			return integer(self._imaging.size[0])
 
-	def v_height(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_height(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("height")
 		else:
 			return integer(self._imaging.size[1])

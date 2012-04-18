@@ -8,22 +8,22 @@ from .request import v_cookiescollection
 
 class v_response(generic):
 
-	def v_cookies(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_cookies(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("cookies")
 		else:
 			return v_cookiescollection()
 	
-	def v_isclientconnected(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_isclientconnected(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("isclientconnected")
 		else:
 			return boolean(true)
 
-	def v_result(self, let=None, set=None):
-		if let is not None:
-			managers.request_manager.get_request().session().value("response", value=let.as_string)
-		elif set is not None:
+	def v_result(self, **keywords):
+		if "let" in keywords:
+			managers.request_manager.get_request().session().value("response", value=keywords["let"].as_string)
+		elif "set" in keywords:
 			raise errors.object_has_no_property("result")
 		else:
 			return string(managers.request_manager.get_request().session().value("response"))

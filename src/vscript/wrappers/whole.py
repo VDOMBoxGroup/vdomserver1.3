@@ -110,22 +110,22 @@ class v_wholeapplication(generic):
 			raise whole_no_api_error
 
 
-	def v_application(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_application(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("application")
 		else:
 			if not self._service:
 				raise whole_no_connection_error
 			return string(self._application)
 
-	def v_container(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_container(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("container")
 		else:
 			return string(self._container) if self._container else v_empty
 
-	def v_actions(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_actions(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("actions")
 		else:
 			if not self._service:
@@ -161,8 +161,8 @@ class v_wholeconnection(generic):
 		self._service=None
 
 
-	def v_isconnected(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_isconnected(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("isconnected")
 		else:
 			if not self._service: return boolean(false)
@@ -183,8 +183,8 @@ class v_wholeconnection(generic):
 	def v_close(self):
 		self._service=None
 
-	def v_applications(self, name, container=None, let=None, set=None):
-		if let is not None or set is not None:
+	def v_applications(self, name, container=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("applications")
 		else:
 			if not self._service:

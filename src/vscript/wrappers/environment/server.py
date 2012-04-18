@@ -11,8 +11,8 @@ class v_server(generic):
 	check_regex=re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
 
 
-	def v_application(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_application(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("application")
 		else:
 			return v_vdomapplication(managers.request_manager.get_request().application())

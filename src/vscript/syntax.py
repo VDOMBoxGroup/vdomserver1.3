@@ -74,28 +74,35 @@ def p_names_continues(p):
 	p[0]=p[1].join(p[3][1])
 
 
+def p_call_continues_with_expressions(p):
+	"""call : call '(' expressions ')'"""
+	p[0]=p[1].join(p[3])
 
-def p_name_continues_with_name(p):
+def p_call_continues_with_empty_expressions(p):
+	"""call : call '(' ')'"""
+	p[0]=p[1].join(p[3])
+
+def p_name_continues_with_dot_name(p):
 	"""name : name '.' NAME"""
 	p[0]=p[1].join(p[3][1])
 
-def p_name_continues_with_call(p):
+def p_name_continues_with_dot_call(p):
 	"""name : call '.' NAME"""
 	p[0]=p[1].join(p[3][1])
 
-def p_call_continues_with_name_expressions(p):
+def p_call_continues_with_dot_name_expressions(p):
 	"""call : name '.' NAME '(' expressions ')'"""
 	p[0]=p[1].join(p[3][1]).join(p[5])
 
-def p_call_continues_with_name_empty(p):
+def p_call_continues_with_dot_name_empty_expressions(p):
 	"""call : name '.' NAME '(' ')'"""
 	p[0]=p[1].join(p[3][1])
 
-def p_call_continues_with_call_expressions(p):
+def p_call_continues_with_dot_call_expressions(p):
 	"""call : call '.' NAME '(' expressions ')'"""
 	p[0]=p[1].join(p[3][1]).join(p[5])
 
-def p_call_continues_with_call_empty(p):
+def p_call_continues_with_dot_call_empty_expressions(p):
 	"""call : call '.' NAME '(' ')'"""
 	p[0]=p[1].join(p[3][1])
 
@@ -119,7 +126,7 @@ def p_call_starts_with_name_expressions(p):
 	"""call : NAME '(' expressions ')'"""
 	p[0]=vname(p[1][1], line=p[1][0]).join(p[3])
 
-def p_call_starts_with_name_empty(p):
+def p_call_starts_with_name_empty_expressions(p):
 	"""call : NAME '(' ')'"""
 	p[0]=vname(p[1][1], line=p[1][0])
 
