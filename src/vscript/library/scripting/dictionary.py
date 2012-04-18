@@ -14,44 +14,39 @@ class scripting_dictionary(generic):
 		self._items={}
 
 
-	def v_comparemode(self, let=None, set=None):
-		if let is not None:
-			value=let.as_integer
+	def v_comparemode(self, **keywords):
+		if "let" in keywords:
+			value=keywords["let"].as_integer
 			if value<0 or value>2: raise errors.invalid_procedure_call
 			if value in (1, 2): raise errors.not_implemented
 			self._compare_mode=value
-			return v_mismatch
-		elif set is not None:
+		elif "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			return integer(self._compare_mode)
 
-	def v_count(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_count(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			return integer(len(self._items))
 
-	def v_item(self, key, let=None, set=None):
-		if let is not None:
-			self._items[key.subtype]=let.as_simple
-			return v_mismatch
-		elif set is not None:
-			self._items[key.subtype]=let.as_complex
-			return v_mismatch
+	def v_item(self, key, **keywords):
+		if "let" in keywords:
+			self._items[key.subtype]=keywords["let"].as_simple
+		elif "set" in keywords:
+			self._items[key.subtype]=keywords["set"].as_complex
 		else:
 			try: return self._items[key.subtype]
 			except KeyError: return v_empty
 
-	def v_key(self, key, let=None, set=None):
-		if let is not None:
-			try: self._items[let.subtype]=self._items[key.as_simple]
+	def v_key(self, key, **keywords):
+		if "let" in keywords:
+			try: self._items[keywords["let"].subtype]=self._items[key.as_simple]
 			except KeyError: raise errors.element_not_found
-			return v_mismatch
-		elif set is not None:
-			try: self._items[let.subtype]=self._items[key.as_complex]
+		elif "set" in keywords:
+			try: self._items[keywords["set"].subtype]=self._items[key.as_complex]
 			except KeyError: raise errors.element_not_found
-			return v_mismatch
 		else:
 			raise errors.object_has_no_property
 

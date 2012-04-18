@@ -7,11 +7,11 @@ from ...variables import variant
 
 class v_cookiescollection(generic):
 
-	def __call__(self, name, let=None, set=None):
-		if let is not None:
+	def __call__(self, name, **keywords):
+		if "let" in keywords:
 			managers.request_manager.get_request().cookies() \
-				.cookies()[name.as_string]=value.as_string
-		elif set is not None:
+				.cookies()[name.as_string]=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			try: return string(unicode(managers.request_manager.get_request().cookies() \
@@ -26,8 +26,8 @@ class v_cookiescollection(generic):
 
 class v_argumentscollection(generic):
 
-	def __call__(self, name, let=None, set=None):
-		if let is not None or set is not None:
+	def __call__(self, name, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			try: value=managers.request_manager.get_request().arguments() \
@@ -44,9 +44,9 @@ class v_argumentscollection(generic):
 
 class v_servervariablescollection(generic):
 
-	def __call__(self, name, let=None, set=None):
+	def __call__(self, name, **keywords):
 		name=name.as_string.upper()
-		if let is not None or set is not None:
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		elif name.startswith(u"HEADER_"):
 			return string(unicode(managers.request_manager.get_request().headers() \
@@ -74,6 +74,7 @@ class v_servervariablescollection(generic):
 			.get_request().environment().environment()["GATEWAY_INTERFACE"])),
 		u"QUERY_STRING": lambda self: string(unicode(managers.request_manager \
 			.get_request().environment().environment()["QUERY_STRING"])),
+		u"LOCAL_ADDR": lambda self: v_empty,
 		u"REMOTE_ADDR": lambda self: string(unicode(managers.request_manager \
 			.get_request().environment().environment()["REMOTE_ADDR"])),
 		u"REMOTE_HOST": lambda self: v_empty,
@@ -110,8 +111,8 @@ class v_servervariablescollection(generic):
 
 class v_parameterscollection(generic):
 
-	def __call__(self, index, let=None, set=None):
-		if let is not None or set is not None:
+	def __call__(self, index, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			try:
@@ -135,38 +136,38 @@ class v_parameterscollection(generic):
 
 class v_request(generic):
 
-	def v_cookies(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_cookies(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("cookies")
 		else:
 			return v_cookiescollection()
 
-	def v_arguments(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_arguments(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("arguments")
 		else:
 			return v_argumentscollection()
 
-	def v_form(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_form(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("form")
 		else:
 			return v_argumentscollection()
 
-	def v_querystring(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_querystring(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("querystring")
 		else:
 			return v_argumentscollection()
 
-	def v_servervariables(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_servervariables(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("servervariables")
 		else:
 			return v_servervariablescollection()
 
-	def v_parameters(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_parameters(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("parameters")
 		else:
 			return v_parameterscollection()

@@ -49,18 +49,18 @@ class v_httppasswordmanager(generic):
 			return None
 
 
-	def v_username(self, let=None, set=None):
-		if let is not None:
-			self._username=let.as_string
-		elif set is not None:
+	def v_username(self, **keywords):
+		if "let" in keywords:
+			self._username=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property("username")
 		else:
 			return string(self._username) if self._username else v_empty
 
-	def v_password(self, let=None, set=None):
-		if let is not None:
-			self._password=let.as_string
-		elif set is not None:
+	def v_password(self, **keywords):
+		if "let" in keywords:
+			self._password=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property("password")
 		else:
 			return string(self._password) if self._password else v_empty
@@ -88,26 +88,26 @@ class v_connection(generic):
 			self._value=None
 
 
-	def v_encoding(self, let=None, set=None):
-		if let is not None:
-			encoding=let.as_string
+	def v_encoding(self, **keywords):
+		if "let" in keywords:
+			encoding=keywords["let"].as_string
 			try: self._encoding, self._codec=encoding, codecs.lookup(encoding)
 			except LookupError: pass
-		elif set is not None:
+		elif "set" in keywords:
 			raise errors.object_has_no_property("encoding")
 		else:
 			return string(self._encoding) if self._encoding else v_empty
 
-	def v_proxy(self, let=None, set=None):
-		if let is not None:
+	def v_proxy(self, **keywords):
+		if "let" in keywords:
 			raise errors.object_has_no_property("proxy")
-		elif set is not None:
-			self._proxy=set.as_specific(proxy_alias)
+		elif "set" in keywords:
+			self._proxy=keywords["set"].as_specific(proxy_alias)
 		else:
 			return self._proxy or v_nothing
 
-	def v_isconnected(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_isconnected(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("isconnected")
 		else:
 			return boolean(false if self._value is None else true)

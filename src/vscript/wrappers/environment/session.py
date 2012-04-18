@@ -7,21 +7,21 @@ from ...subtypes import generic, string, v_empty
 
 class v_session(generic):
 
-	def v_sessionid(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_sessionid(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("sessionid")
 		else:
 			return string(unicode(managers.request_manager.get_request().sid))
 
-	def v_timeout(self, let=None, set=None):
+	def v_timeout(self, **keywords):
 		raise errors.not_implemented
 		
-	def v_variables(self, name, let=None, set=None):
+	def v_variables(self, name, **keywords):
 		name=name.as_string
-		if let is not None:
-			managers.request_manager.get_request().session().value(name, value=let.as_is)
-		elif set is not None:
-			managers.request_manager.get_request().session().value(name, value=let.as_is)
+		if "let" in keywords:
+			managers.request_manager.get_request().session().value(name, value=keywords["let"].as_is)
+		elif "set" in keywords:
+			managers.request_manager.get_request().session().value(name, value=keywords["set"].as_is)
 		else:
 			value=managers.request_manager.get_request().session().value(name)
 			if isinstance(value, subtype):

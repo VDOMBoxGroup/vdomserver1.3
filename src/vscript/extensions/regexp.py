@@ -12,8 +12,8 @@ class v_match(generic):
 		self._match=match
 
 
-	def v_firstindex(self, group=None, let=None, set=None):
-		if let is not None or set is not None:
+	def v_firstindex(self, group=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property(u"firstindex")
 		else:
 			if group is None:
@@ -25,8 +25,8 @@ class v_match(generic):
 				except IndexError: return v_empty
 			return v_empty if start<0 else integer(start)
 
-	def v_length(self, group=None, let=None, set=None):
-		if let is not None or set is not None:
+	def v_length(self, group=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property(u"length")
 		else:
 			if group is None:
@@ -38,8 +38,8 @@ class v_match(generic):
 				except IndexError: return v_empty
 			return v_empty if start<0 else integer(end-start)
 
-	def v_value(self, group=None, let=None, set=None):
-		if let is not None or set is not None:
+	def v_value(self, group=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property(u"value")
 		else:
 			if group is None:
@@ -70,14 +70,14 @@ class v_matches(generic):
 	_collection=property(_get_collection)
 
 
-	def v_count(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_count(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("count")
 		else:
 			return integer(len(self._collection))
 
-	def v_item(self, index, let=None, set=None):
-		if let is not None or set is not None:
+	def v_item(self, index, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("count")
 		else:
 			return v_match(self._collection[index.as_integer])
@@ -121,26 +121,26 @@ class v_regexp(generic):
 	_regexp=property(_get_regex)
 
 
-	def v_global(self, let=None, set=None):
-		if let is not None:
-			self._global=let.as_boolean
-		elif set is not None:
+	def v_global(self, **keywords):
+		if "let" in keywords:
+			self._global=keywords["let"].as_boolean
+		elif "set" in keywords:
 			raise errors.object_has_no_property("global")
 		else:
 			return boolean(self._global)
 
-	def v_ignorecase(self, let=None, set=None):
-		if let is not None:
-			self._ignorecase, self._cache=let.as_boolean, None
-		elif set is not None:
+	def v_ignorecase(self, **keywords):
+		if "let" in keywords:
+			self._ignorecase, self._cache=keywords["let"].as_boolean, None
+		elif "set" in keywords:
 			raise errors.object_has_no_property("ignorecase")
 		else:
 			return boolean(self._ignorecase)
 
-	def v_pattern(self, let=None, set=None):
-		if let is not None:
-			self._pattern, self._cache=let.as_string, None
-		elif set is not None:
+	def v_pattern(self, **keywords):
+		if "let" in keywords:
+			self._pattern, self._cache=keywords["let"].as_string, None
+		elif "set" in keywords:
 			raise errors.object_has_no_property("pattern")
 		else:
 			return string(self._pattern)

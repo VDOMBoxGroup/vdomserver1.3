@@ -1,7 +1,7 @@
 
 import xml.dom.minidom
 from .. import errors
-from ..subtypes import boolean, generic, string, true, false, \
+from ..subtypes import boolean, integer, generic, string, true, false, \
 	v_empty, v_mismatch, v_nothing
 from ..variables import variant
 
@@ -55,8 +55,8 @@ class v_xmlnodelist(generic):
 			return wrap(self._nodes.item(arguments[0].as_integer))
 
 		
-	def v_length(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_length(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("length")
 		else:
 			return integer(self._nodes.length)
@@ -66,7 +66,7 @@ class v_xmlnodelist(generic):
 
 
 	def __iter__(self):
-		for item in self._nodes: yield variant(wrap(node))
+		for node in self._nodes: yield variant(wrap(node))
 
 	def __len__(self):
 		return self._nodes.length
@@ -78,83 +78,85 @@ class v_xmlnode(generic):
 		self._node=node
 
 
-	def v_parent(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_parent(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("parent")
 		else:
 			return wrap(self._node.parentNode)
 
-	def v_prev(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_prev(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("prev")
 		else:
 			return wrap(self._node.previousSibling)
 
-	def v_next(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_next(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("next")
 		else:
 			return wrap(self._node.nextSibling)
 
-	def v_attributes(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_attributes(self, index=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("attributes")
 		else:
 			attributes=self._node.attributes
-			return v_nothing if attributes is None else v_xmlattributemap(attributes) 
+			collection=v_nothing if attributes is None else v_xmlattributemap(attributes)
+			return collection if index is None else collection(index)
 
-	def v_nodes(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_nodes(self, index=None, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("nodes")
 		else:
 			nodes=self._node.childNodes
-			return v_nothing if nodes is None else v_xmlnodelist(nodes)
+			collection=v_nothing if nodes is None else v_xmlnodelist(nodes)
+			return collection if index is None else collection(index)
 
-	def v_first(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_first(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("first")
 		else:
 			return wrap(self._node.firstChild)
 
-	def v_last(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_last(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("last")
 		else:
 			return wrap(self._node.lastChild)
 
-	def v_name(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			name=self._node.nodeName
 			return string(name) if isinstance(name, basestring) else v_empty
 
-	def v_localname(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_localname(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("localname")
 		else:
 			name=self._node.localName
 			return string(name) if isinstance(name, basestring) else v_empty
 
-	def v_prefix(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_prefix(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("prefix")
 		else:
 			name=self._node.prefix
 			return string(name) if isinstance(name, basestring) else v_empty
 
-	def v_namespaceuri(self, let=None, set=None):
+	def v_namespaceuri(self, **keywords):
 		raise errors.not_implemented
-		if let is not None or set is not None:
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("namespaceuri")
 		else:
 			uri=self._node.namespaceURI
 			return string(uri) if isinstance(uri, basestring) else v_empty
 
-	def v_value(self, let=None, set=None):
-		if let is not None:
-			self._node.nodeValue=None if let is v_null else as_string(let)
-		elif set is not None:
+	def v_value(self, **keywords):
+		if "let" in keywords:
+			self._node.nodeValue=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property("value")
 		else:
 			value=self._node.nodeValue
@@ -272,8 +274,8 @@ class v_xmlattributemap(generic):
 		self._attributes=attributes
 
 
-	def v_length(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_length(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("length")
 		else:
 			return integer(self._attributes.length)
@@ -284,7 +286,7 @@ class v_xmlattributemap(generic):
 
 
 	def __iter__(self):
-		for attribute in self.attributes.values():
+		for attribute in self._attributes.values():
 			yield variant(v_xmlattribute(attribute))
 
 	def __len__(self):
@@ -292,10 +294,10 @@ class v_xmlattributemap(generic):
 
 class v_xmlattribute(v_xmlnode):
 
-	def v_name(self, let=None, set=None):
-		if let is not None:
-			self._node.name=let.as_string
-		elif set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords:
+			self._node.name=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			return string(self._node.name)
@@ -304,21 +306,21 @@ class v_xmlattribute(v_xmlnode):
 class v_xmlelementlist(v_xmlnodelist):
 
 	def __iter__(self):
-		for item in self._nodes:
+		for node in self._nodes:
 			if node.nodeType==node.ELEMENT_NODE: yield wrap(node)
 
 class v_xmlelement(v_xmlnode):
 
-	def v_name(self, let=None, set=None):
-		if let is not None:
-			self._node.tagName=let.as_string
-		elif set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords:
+			self._node.tagName=keywords["let"].as_string
+		elif "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			return string(self._node.tagName)
 
-	def v_elements(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_elements(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("elements")
 		else:
 			nodes=self._node.childNodes
@@ -410,7 +412,7 @@ class v_xmldocument(v_xmlelement):
 		value=value.as_string
 		self._document=xml.dom.minidom.parseString(value.encode("utf-8") \
 			if isinstance(value, unicode) else value)
-		self._node=self.document.documentElement
+		self._node=self._document.documentElement
 		return v_mismatch
 
 	def v_doctype(self):

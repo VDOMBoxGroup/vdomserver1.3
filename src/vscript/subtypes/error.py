@@ -19,8 +19,8 @@ class error(subtype):
 	as_simple=property(lambda self: self)
 
 
-	def v_message(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_message(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			return string(unicode(str(self._value)))

@@ -11,14 +11,14 @@ class v_vdomtype(generic):
 		self._type=type
 
 	
-	def v_id(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_id(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("id")
 		else:
 			return string(unicode(self._type.id))
 
-	def v_name(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			return string(unicode(self._type.name))
@@ -64,20 +64,20 @@ class v_vdomobject(generic):
 			generic.__setattr__(self, name, value)
 
 	
-	def v_id(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_id(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("id")
 		else:
 			return string(self._object.id)
 
-	def v_name(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			return string(self._object.name)
 
-	def v_type(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_type(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("type")
 		else:
 			return v_vdomtype(self._object.type)
@@ -122,14 +122,14 @@ class v_vdomapplication(generic):
 			generic.__setattr__(self, name, value)
 
 	
-	def v_id(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_id(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("id")
 		else:
 			return string(self._application.id)
 
-	def v_name(self, let=None, set=None):
-		if let is not None or set is not None:
+	def v_name(self, **keywords):
+		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
 			return string(self._application.name)
