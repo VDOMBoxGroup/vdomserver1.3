@@ -12,9 +12,9 @@
     <Moveable>1</Moveable>
     <Resizable>3</Resizable>
     <Container>1</Container>
-    <Category>Additional</Category>
+    <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.19.0</Version>
+    <Version>1.22.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared</Containers>
@@ -3930,6 +3930,9 @@ class VDOM_codeeditor(VDOM_object):
 	var %(id)s_codeeditor = CodeMirror.fromTextArea($q('#%(id)s>textarea').get(0), {
 		lineNumbers: true,
 		onCursorActivity: function() { %(id)s_codeeditor.matchHighlight("CodeMirror-matchhighlight"); }
+	});
+	$q('#%(id)s').parents('form:first').submit(function(){
+		%(id)s_codeeditor.save();
 	});
 });</script>
 			""" % {
