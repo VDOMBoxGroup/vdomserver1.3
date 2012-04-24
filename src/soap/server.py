@@ -1664,11 +1664,14 @@ class VDOM_web_services_server(object):
 	
 	def restore_application(self,sid, skey, appid, driverid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		result = managers.backup_manager.restore(driverid, appid, revision)
-		if result:
-			return "<Result>OK</Result> "	
-		else:
-			return "<Result>FAILED</Result> "	
+		try:
+			result = managers.backup_manager.restore(driverid, appid, revision)
+			if result:
+				return "<Result>OK</Result> "	
+			else:
+				return "<Result>FAILED</Result> "
+		except Exception as e:
+			return self.__format_error(_("Update error: %s" % str(e)))		
 
 
 	def list_backup_drivers(self, sid, skey):
