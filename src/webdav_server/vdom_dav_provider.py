@@ -131,7 +131,7 @@ class FileResource(DAVNonCollection):
 		xml_data = {"srcPath": self._path, "destPath": destPath}
 		res = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if self.provider.propManager1 and self.provider.propManager:
-			self.provider.propManager1.moveProperties(self._path, destPath, 
+			self.provider.propManager1.moveProperties(self._path, destPath.rstrip("/"), 
 			                                         withChildren=False)
 			destRes = self.provider.getResourceInst(destPath, self.environ)
 			self.provider.propManager.moveProperties(self._path, destRes.path, 
@@ -266,8 +266,8 @@ class FolderResource(DAVCollection):
 		xml_data = {"srcPath": self._path, "destPath": destPath}
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if self.provider.propManager1 and self.provider.propManager:
-			self.provider.propManager1.moveProperties(self._path, destPath, 
-			                                         withChildren=False)
+			self.provider.propManager1.moveProperties(self._path, destPath.rstrip("/"), 
+			                                         withChildren=True)
 			destRes = self.provider.getResourceInst(destPath, self.environ)
 			self.provider.propManager.moveProperties(self._path, destRes.getRefUrl(), 
 			                                         withChildren=True)
