@@ -160,6 +160,8 @@ try: os.makedirs(VDOM_CONFIG["LIB-DIRECTORY"])
 except: pass
 try: os.makedirs(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"])
 except: pass
+try: os.makedirs(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"] + "/cert")
+except: pass
 
 # change directory access rights
 
