@@ -216,7 +216,7 @@ def check_application_exists(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.check_application_exists, sid, skey, appid])
 
 def backup_application(sid, skey, appid, driverid, _SOAPContext):
-	return proxy([managers.soap_server.backup_application, sid, skey, driverid, appid])
+	return proxy([managers.soap_server.backup_application, sid, skey, appid, driverid])
 
 def restore_application(sid, skey, appid, driverid, revision, _SOAPContext):
 	return proxy([managers.soap_server.restore_application, sid, skey, driverid, appid, revision])
