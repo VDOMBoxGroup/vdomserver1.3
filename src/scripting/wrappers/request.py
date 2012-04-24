@@ -125,7 +125,8 @@ class VDOM_request(object):
 		self._server=VDOM_server_information()
 		self._protocol=VDOM_protocol_information()
 		self._shared_vars = VDOM_shared_variables()
-
+		
+		
 	def _get_environment(self):
 		return managers.request_manager.current.environment().environment()
 
@@ -140,6 +141,9 @@ class VDOM_request(object):
 	def _get_render_type(self):
 		return managers.request_manager.current.render_type
 	
+	def _get_dyn_libraries(self):
+		return managers.request_manager.current.dyn_libraries	
+	
 	arguments=property(lambda self: self._arguments)
 	container=property(_get_container)
 	environment=property(_get_environment)
@@ -150,3 +154,5 @@ class VDOM_request(object):
 	protocol=property(lambda self: self._protocol)
 	shared_variables = property(lambda self: self._shared_vars)
 	render_type=property(_get_render_type)
+	dyn_libraries=property(_get_dyn_libraries)
+	

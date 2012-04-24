@@ -8,6 +8,8 @@ def compile_declarations_n_libraries(container):
 	#collect_information(container.object, objects, types, containers, libraries)
 
 	libraries="".join(["".join(library) for library in libraries.itervalues()])
+	libraries+="".join(["".join(library) for library in managers.request_manager.current.dyn_libraries.itervalues()])
+	
 
 #	lines.append("jQuery(document).ready(function($){")
 

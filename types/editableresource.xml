@@ -356,12 +356,16 @@ class VDOM_editableresource(VDOM_object):
 			if self.datatype == "1":
 				if res_id:
 					udata = u'<script type="text/javascript" src="/%s.res"></script>' % res_id 
+					request.dyn_libraries[self.name] = udata
+					return ""
 				else:
 					udata = '<!-- no res for script -->'
 			elif self.datatype == "2":
 				# first line of the css must be: @charset "UTF-8";
 				if res_id:
 					udata = u'<style rel="stylesheet" type="text/css">@import url("/%s.css");</style>' % res_id
+					request.dyn_libraries[self.name] = udata
+					return ""
 				else:
 					udata = '<!-- no res for style -->'
 			else:

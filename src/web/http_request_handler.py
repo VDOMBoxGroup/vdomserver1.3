@@ -81,14 +81,10 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			sys.setcheckinterval(100)
 			#self.copyfile(f, self.wfile)
 			f.close()
-		try:
-			if self.__request.nokeepalive: # TODO: Check if this is really needed somewhere
+		if not self.wfile.closed:
+			if self.__request.nokeepalive:
 				self.close_connection = 1
-		except:
-			#debug("EXCEPTION WHEN DO GET %s"%self)
-			#print dir(self)
-			raise
-
+		
 	def do_HEAD(self):
 		"""serve a HEAD request"""
 		# create request object

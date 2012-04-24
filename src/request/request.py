@@ -123,6 +123,7 @@ class VDOM_request:
 		self.fh = None
 		self.shared_variables = {}
 		self.render_type = "html"
+		self.dyn_libraries = {}
 	
 	
 	def collect_files(self):
