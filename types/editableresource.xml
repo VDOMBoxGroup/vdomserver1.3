@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.10.6720</Version>
+    <Version>1.15.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password</Containers>
@@ -110,7 +110,7 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>userdata</Name>
+      <Name>data</Name>
       <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -350,7 +350,7 @@ class VDOM_editableresource(VDOM_object):
 				res_id = resource.id
 			else:
 				res_type = "js" if self.datatype == '1' else "css" if self.datatype == '2' else "txt"
-				res_id = ''#application.resources.create_temporary(self.id, "userdata", self.userdata, res_type, "userdata")
+				res_id = application.resources.create_temporary(self.id, "data", self.data, res_type, "data")
 
 			udata = ""
 			if self.datatype == "1":
@@ -365,7 +365,7 @@ class VDOM_editableresource(VDOM_object):
 				else:
 					udata = '<!-- no res for style -->'
 			else:
-				udata = self.userdata
+				udata = self.data
 
 			id = 'o_' + (self.id).replace('-', '_')
 			if self.nostyle == "2":
