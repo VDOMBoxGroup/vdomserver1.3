@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.11.6200</Version>
+    <Version>1.12.6200</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, dialog_2, container</Containers>
@@ -162,11 +162,11 @@
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(313)</Help>
+      <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(213)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -174,73 +174,84 @@
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(314)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(406)|0)|(#Lang(407)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^d{1,4}%</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Form Button</Sentence>
-      <Sentence ID="002">Used to add a button element that provides a way to trigger an event</Sentence>
+      <Sentence ID="002">Used to add a button to the form that provides a way to trigger an event.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Set label of the object</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="502">Set new label of the object.</Sentence>
       <Sentence ID="602">setLabel</Sentence>
       <Sentence ID="702">Label</Sentence>
-      <Sentence ID="802">New label value</Sentence>
-      <Sentence ID="503">Set new CSS style of the object</Sentence>
+      <Sentence ID="802">New label.</Sentence>
+      <Sentence ID="503">Set new CSS style of the object.</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="703">cssStyleValue</Sentence>
-      <Sentence ID="803">CSS style value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="803">CSS style value.</Sentence>
+      <Sentence ID="504">Show the object.</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds.</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="202">Visibility of the object.</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="108">Type</Sentence>
-      <Sentence ID="208">Type of the button</Sentence>
-      <Sentence ID="308">Incorrect value, must be either 0, 1 or 2</Sentence>
+      <Sentence ID="208">The type of the button:
+Common - does not do anything, it can take a special action on the event;
+Reset - reset all the filled fields;
+Submit - send the from data using the request method selected in the Method attribute of the Form object.</Sentence>
+      <Sentence ID="308">Incorrect value, must be either 0, 1 or 2.</Sentence>
       <Sentence ID="403">Submit</Sentence>
       <Sentence ID="404">Reset</Sentence>
       <Sentence ID="405">Common</Sentence>
       <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Index number of switching the elements on pressing the tab key</Sentence>
-      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="209">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="111">Label</Sentence>
-      <Sentence ID="211">Label to the right of the object</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="211">The label of the object.</Sentence>
+      <Sentence ID="311">Incorrect value.</Sentence>
       <Sentence ID="112">Class CSS</Sentence>
-      <Sentence ID="212">Names of CSS classes</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="212">The names of CSS classes divided by spaces.</Sentence>
+      <Sentence ID="312">Incorrect value.</Sentence>
+      <Sentence ID="113">Style</Sentence>
+      <Sentence ID="213">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="313">Incorrect value.</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
+      <Sentence ID="406">Default</Sentence>
+      <Sentence ID="407">ProSuite</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -257,14 +268,6 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="113">Style</Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313">CSS style</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314">Skin</Sentence>
-      <Sentence ID="406">Default</Sentence>
-      <Sentence ID="407">ProSuite</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка формы</Sentence>
@@ -324,6 +327,14 @@
       <Sentence ID="112">Класс CSS</Sentence>
       <Sentence ID="212">Имена классов CSS</Sentence>
       <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -340,14 +351,6 @@
       <Sentence ID="915">Текущее значение Y</Sentence>
       <Sentence ID="916">Текущее значение X</Sentence>
       <Sentence ID="917">Текущее значение Y</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton de Formulaire</Sentence>
@@ -407,6 +410,14 @@
       <Sentence ID="112">Class</Sentence>
       <Sentence ID="212">CSS class name</Sentence>
       <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -423,14 +434,6 @@
       <Sentence ID="915">Current Y-value</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current Y-value</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
     </Language>
   </Languages>
   <Resources>
