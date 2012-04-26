@@ -26,13 +26,13 @@ vscript_default_environment={u"v_this": None,
 	"v_wholenoapierror": vscript_wrappers_name, "v_wholenoapplication": vscript_wrappers_name}
 
 
-def show_exception_details(source, error, error_type=errors.generic.runtime):
+def check_exception(source, error, error_type=errors.generic.runtime, quiet=None):
 	exclass, exexception, extraceback=sys.exc_info()
 	history=traceback.extract_tb(extraceback)
 	path_python=sys.prefix
 	path_binary=os.path.split(os.path.dirname(sys.argv[0]))[0]
 	vbline=error.line
-	print "- - - - - - - - - - - - - - - - - - - -"
+	if not quiet: print "- - - - - - - - - - - - - - - - - - - -"
 	for path, line, function, st in history:
 		if path.startswith(".."):
 			path=os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), path))
@@ -43,11 +43,12 @@ def show_exception_details(source, error, error_type=errors.generic.runtime):
 		elif path==vscript_source_string:
 			st=source[line-1][2]
 			vbline=source[line-1][0] or None
-		print (u"%s, line %s%s - %s"%(path, line, ": %s"%st if st else "", function)).encode("utf-8")
-	print "- - - - - - - - - - - - - - - - - - - -"
+		if not quiet:
+			print (u"%s, line %s%s - %s"%(path, line, ": %s"%st if st else "", function)).encode("utf-8")
+	if not quiet: print "- - - - - - - - - - - - - - - - - - - -"
 	error.line=vbline
 	error.source=error_type
-	debug(error, console=True)
+	if not quiet: debug(error, console=True)
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
 
@@ -82,12 +83,11 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
 		return code, source
 	except errors.generic, error:
-		if not quiet: show_exception_details(None, error, error_type=errors.generic.compilation)
+		check_exception(None, error, error_type=errors.generic.compilation, quiet=quiet)
 		if anyway: return vscript_default_code, vscript_default_source
 		else: raise
 	except errors.python, error:
-		if not quiet: show_exception_details(source, errors.system_error(unicode(error)),
-			error_type=errors.generic.compilation)
+		check_exception(source, errors.system_error(unicode(error)), error_type=errors.generic.compilation, quiet=quiet)
 		raise
 	finally:
 		del mutex
@@ -156,8 +156,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 				del exclass, exexception, extraceback
 				raise
 	except errors.generic, error:
-		if not quiet:
-			show_exception_details(source, error)
+		check_exception(source, error, quiet=quiet)
 		raise
 	except errors.python, error:
 		if not quiet:
