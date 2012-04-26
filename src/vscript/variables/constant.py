@@ -20,6 +20,8 @@ class constant(variable):
 
 
 	subtype=property(lambda self: self._value.subtype)
+	copy=property(lambda self: self._value.copy)
+	exception=property(lambda self: self._value.exception)
 	value=property(lambda self: self._value.value)
 
 

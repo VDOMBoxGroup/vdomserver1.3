@@ -6,9 +6,6 @@ from .subtypes import string
 from .variables import variant
 
 
-check_pattern=re.compile("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)")
-
-
 subtype.byref=property(lambda self: variant(self))
 subtype.byval=property(lambda self: variant(self.copy))
 variable.byref=property(lambda self: self)
@@ -19,8 +16,8 @@ def check(value):
 	if isinstance(value, (types.FunctionType, types.MethodType)):
 		try:
 			return value()
-		except TypeError, error:
-			match=check_pattern.search(error.message)
+		except TypeError as error:
+			match=re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", error.message)
 			if match: raise errors.wrong_number_of_arguments(name=match.group(1))
 			else: raise
 	else:

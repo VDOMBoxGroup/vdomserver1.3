@@ -1,15 +1,16 @@
 
 import utils.exception
 from . import errors
+from .subtypes.error import error
 
 
 __all__=["v_genericerror", "v_servererror", "v_scripterror",
 	"v_subscriptoutofrange", "v_divizionbyzero", "v_overflow"]
 
 
-v_genericerror=errors.python
-v_servererror=utils.exception.VDOM_exception
-v_scripterror=errors.generic
-v_subscriptoutofrange=errors.subscript_out_of_range
-v_divisionbyzero=errors.division_by_zero
-v_overflow=errors.overflow
+v_genericerror=error(errors.python)
+v_servererror=error(utils.exception.VDOM_exception)
+v_scripterror=error(errors.generic)
+v_subscriptoutofrange=error(errors.subscript_out_of_range)
+v_divisionbyzero=error(errors.division_by_zero)
+v_overflow=error(errors.overflow)
