@@ -12,7 +12,7 @@ __all__=[u"vname", u"vmybase", u"vmy", u"vmyclass", u"vnames",
 	u"vselectcase", u"vselectcases", u"vselect", u"vselectelse",
 	u"vdoloop", u"vdowhileloop", u"vdountilloop", u"vdoloopwhile", u"vdoloopuntil",
 	u"vforeach", u"vfor", u"vforstep",
-	u"vtrycatch", u"vtrycatches", u"vtry", u"vtryfinally",
+	u"vtrycatch", u"vtrycatches", u"vtry", u"vtryfinally", u"vthrow",
 	u"vwith", u"vexitfunction", u"vexitsub", u"vexitproperty", u"vexitdo", u"vexitfor",
 	u"vrandomize", u"vprint", u"vtouch", u"vglobals",
 	u"vfunction", u"vsub", u"vpropertyget", u"vpropertylet", u"vpropertyset",
@@ -824,8 +824,8 @@ class vtrycatch(vstatement):
 
 	def compose(self, ident):
 		contents=[(self.line, ident, u"except%s%s:"%\
-			(" (%s)"%unicode(self.exceptions) if self.exceptions else "",
-			", %s"%self.name if self.name else ""))]
+			(" (%s.exception)"%unicode(self.exceptions) if self.exceptions else "",
+			" as %s"%self.name if self.name else ""))]
 		contents.extend(self.statements.compose(ident+1,
 			precede=[(self.line, ident+1, u"%s=error(%s)"%(self.name, self.name))] if self.name else None))
 		return contents
@@ -900,6 +900,15 @@ class vtryfinally(vtry):
 		contents.append((self.finally_line, ident, u"finally:"))
 		contents.extend(self.finally_statements.compose(ident+1))
 		return contents
+
+class vthrow(vstatement):
+
+	def __init__(self, name=None, line=None):
+		vstatement.__init__(self, line)
+		self.name=name
+
+	def compose(self, ident):
+		return [(self.line, ident, u"raise %s.exception"%self.name if self.name else u"raise")]
 
 class vwith(vstatement):
 	

@@ -683,6 +683,14 @@ def p_statement_try_catches_catch_finally(p):
 	             | TRY statements catches CATCH statements FINALLY statements END TRY"""
 	p[0]=vtryfinally(p[2], p[3].join(vtrycatch(p[5], line=p[4][0])), p[7], line=p[1][0], finally_line=p[6][0])
 
+def p_statement_throw(p):
+	"""statement : THROW"""
+	p[0]=vthrow(line=p[1][0])
+
+def p_statement_throw_name(p):
+	"""statement : THROW NAME"""
+	p[0]=vthrow(p[2][1], line=p[1][0])
+
 def p_statement_with(p):
 	"""statement : WITH NAME statements END
 	             | WITH NAME statements END WITH"""

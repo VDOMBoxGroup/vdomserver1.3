@@ -25,6 +25,8 @@ class shadow(variable):
 
 
 	subtype=property(lambda self: getattr(self._owner, self._name).subtype)
+	copy=property(lambda self: getattr(self._owner, self._name).copy)
+	exception=property(lambda self: getattr(self._owner, self._name).exception)
 	value=property(lambda self: getattr(self._owner, self._name).value)
 
 

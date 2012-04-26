@@ -9,6 +9,7 @@ class generic(subtype):
 		raise errors.object_has_no_property
 
 
+	exception=property(lambda self: self().exception)
 	value=property(lambda self: self().value)
 	
 

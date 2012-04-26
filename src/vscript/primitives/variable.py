@@ -32,6 +32,7 @@ class variable(primitive):
 	as_integer=property(lambda self: self.subtype.as_integer)
 	as_string=property(lambda self: self.subtype.as_string)
 	as_number=property(lambda self: self.subtype.as_number)
+	as_error=property(lambda self: self.subtype.as_error)
 
 	def as_specific(self, specific):
 		return self.subtype.as_specific(specific)

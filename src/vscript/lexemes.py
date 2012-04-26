@@ -11,7 +11,7 @@ reserved=(u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE
 	#u"NOTINHERITABLE", u"MUSTINHERIT",
 	#u"OVERRIDABLE", u"OVERRIDES", u"NOTOVERRIDABLE", u"MUSTOVERRIDE",    
 	u"IF", u"THEN", u"ELSE", u"ELSEIF", u"SELECT", u"CASE", u"DO", u"LOOP", u"WHILE", u"UNTIL", u"WEND",
-	u"FOR", u"EACH", u"IN", u"TO", u"STEP", u"NEXT", u"TRY", u"CATCH", u"AS", u"FINALLY",
+	u"FOR", u"EACH", u"IN", u"TO", u"STEP", u"NEXT", u"TRY", u"CATCH", u"AS", u"FINALLY", u"THROW",
 	u"END", u"EXIT", u"CONST", u"REDIM", u"PRESERVE", u"ERASE", u"RANDOMIZE", u"PRINT", u"TOUCH",
 	u"EMPTY", u"NOTHING", u"NULL", u"NAN", u"INFINITY")
 tokens=reserved+(u"PYTHON",

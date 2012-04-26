@@ -5,19 +5,21 @@ from .. import errors
 class primitive(object):
 
 	def _get_subtype(self):
-		raise errors.type_mismatch
-
-	def _get_value(self):
-		raise errors.type_mismatch
-	
-	subtype=property(_get_subtype)
-	value=property(_get_value)
-
+		raise errors.python_using_abstract
 
 	def _get_copy(self):
 		raise errors.python_using_abstract
 
+	def _get_exception(self):
+		raise errors.python_using_abstract
+
+	def _get_value(self):
+		raise errors.python_using_abstract
+	
+	subtype=property(_get_subtype)
 	copy=property(_get_copy)
+	exception=property(_get_exception)
+	value=property(_get_value)
 
 
 	def _get_byref(self):

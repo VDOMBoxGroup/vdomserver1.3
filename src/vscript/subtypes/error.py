@@ -9,6 +9,7 @@ class error(subtype):
 		self._value=value
 
 
+	exception=property(lambda self: self._value)
 	value=property(lambda self: self._value)
 
 
@@ -17,6 +18,7 @@ class error(subtype):
 
 
 	as_simple=property(lambda self: self)
+	as_error=property(lambda self: self)
 
 
 	def v_message(self, **keywords):
