@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.211.6720</Version>
+    <Version>1.212.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -691,7 +691,7 @@ var tabview_children_%(id)s = %(arr)s;
         <Event Name="mousemove">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
