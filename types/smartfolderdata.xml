@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.15.6720</Version>
+    <Version>1.18.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1082,12 +1082,28 @@ border-bottom: 1px solid gray;
 	float: left;
 	padding-left: 5px;
 	border-right: 1px solid gray;
+	position: relative;
 	}
 		#%(id)s .metafields .meta span,
 		#%(id)s .metafields .meta input {
 		display: block;
 		float: right;
 		width: 39%%;
+		}
+		#%(id)s .metafields .meta span {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		}
+		#%(id)s .metafields .meta a.del {
+		display: block;
+		width: 12px;
+		height: 12px;
+		border: 1px solid red;
+		background: #f99;
+		float: left;
+		margin: 0 2px 0 0;
+
 		}
 	#%(id)s .info .btn-save,
 	#%(id)s .info .btn-cancel,
@@ -1167,8 +1183,8 @@ position: relative;
 		### out
 
 		result = u"""{css}<div {debug_info} id="{id}" style="{style}"><div class="title"></div><div class="info"><form class="metafields"></form>
-		<a class="btn-edit" href="#">E</a><a class="btn-add" href="#">+</a>
-		<a class="btn-save" style='display:none' href="#">&crarr;</a><a class="btn-cancel" style='display:none' href="#">&times;</a>
+		<a class="btn-edit" href="#"></a><a class="btn-add" href="#"></a>
+		<a class="btn-save" style='display:none' href="#"></a><a class="btn-cancel" style='display:none' href="#"></a>
 		</div><div class='items'>{contents}</div><div class='pages'></div><div class='sf-disabled' style='display:none'></div></div>{js}{testhtml}"""\
 			.format( debug_info = debug_info, id = id, style = style, js = js, css = css, testhtml = testhtml, toolbar = toolbar, contents = contents )
 
@@ -1250,6 +1266,8 @@ function vdom_sfd_selected_remove(sfid, guid){
 }
 
 function vdom_sfd_refresh(sf){
+	$j('.info .btn-add, .info .btn-edit',sf).show(0);
+	$j('.info .btn-save, .info .btn-cancel',sf).hide(0);
 	//execEventBinded('%(woid)s', "requestmeta", {});
 	var ddr = sf.data('sfd');
 	if (typeof ddr === 'array' || typeof ddr === 'object') {
@@ -1263,20 +1281,20 @@ function vdom_sfd_refresh(sf){
 				value:    e['value'] || 'no value',
 				editable: !!e['editable']
 			};
-			var at = a['type'], inp = '';
+			var at = a['type'], inp = '', aq = a['value'].replace("'",'&prime;');
 			if (at == 'date') {
-				inp = "<label>"+a['title']+"<span>"+a['value']+"</span></label>";
+				inp = "<label>"+a['title']+"<span title='"+aq+"'>"+a['value']+"</span></label>";
 			} else
 			if (at == 'link') {
-				inp = "<label>"+a['title']+"<span><a href='"+a['value']+"'>"+a['valuetitle']+"</a></span></label>";
-			/*} else
+				inp = "<label>"+a['title']+"<span title=''><a href='"+a['value']+"'>"+a['valuetitle']+"</a></span></label>";
+/*			} else
 			if (at == 'smartfolderlink') {
 				inp = "<label>"+a['title']+"<span>"+a['value']+"</span></label>";
 			} else
 			if (at == 'contactlink') {
 */
 			} else { // string
-				inp = "<label>"+a['title']+"<span>"+a['value']+"</span></label>";
+				inp = "<label>"+a['title']+"<span title='"+aq+"'>"+a['value']+"</span></label>";
 			}
 			var s = $j('<div class="meta type-'+a['type']+'">'+inp+'<div class="clear"></div></div>');
 			s.appendTo(dr);
@@ -1360,7 +1378,7 @@ function vdom_sfd_set_handlers(sf){
 				if (at == 'contactlink') {
 */
 				} else { // string
-					inp = "<label>"+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
+					inp = "<label><a href='#' class='del'></a> "+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
 				}
 				var s = $j('<div class="meta type-'+a['type']+'">'+inp+'<div class="clear"></div></div>');
 				s.appendTo(d);
@@ -1369,6 +1387,11 @@ function vdom_sfd_set_handlers(sf){
 		$j('.metafields',sf).html('').append($j('>div',d)).append('<div class="clear"></div>');
 		$j('.info .btn-add, .info .btn-edit',sf).hide(0);
 		$j('.info .btn-save, .info .btn-cancel',sf).show(0);
+	});
+	$j(".info .metafields .meta a.del",sf).live('click',function(){
+		$j(this).parent().remove();
+		// todo: remove from data[]
+		return false;
 	});
 	$j(".info .btn-add",sf).live('click',function(){
 		execEventBinded(sf.data('sfd_woid'), "addmeta", {});
@@ -1380,8 +1403,6 @@ function vdom_sfd_set_handlers(sf){
 		return false;
 	});
 	$j(".info .btn-cancel",sf).live('click',function(){
-		$j('.info .btn-add, .info .btn-edit',sf).show(0);
-		$j('.info .btn-save, .info .btn-cancel',sf).hide(0);
 		vdom_sfd_refresh(sf);
 		return false;
 	});
@@ -1436,7 +1457,7 @@ function vdom_sfd_init(woid,page,per,sel){
         </Event>
         <Event Name="newmetadata">
           <Parameters>
-            <Parameter Name="name" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="name" Order="" VbType="" Help="may be not need"/>
           </Parameters>
         </Event>
         <Event Name="rename">
