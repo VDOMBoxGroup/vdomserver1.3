@@ -39,9 +39,9 @@ class VDOM_domain_controller(object):
 		obj_id = self._get_object_id(path, app)
 		func_name = "authentication"
 
-		xml_data = {"path": path,
-		            "user": username,
-		            "password": password}
+		xml_data = """{"path": "%s",
+		            "user": "%s",
+		            "password": "%s"}""" % (path, username, password)
 		try:
 			ret = managers.dispatcher.dispatch_action(app.id, obj_id, func_name, "",xml_data)
 		except:

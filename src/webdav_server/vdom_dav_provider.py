@@ -76,7 +76,7 @@ class FileResource(DAVNonCollection):
 		See DAVResource.getContent()
 		"""
 		func_name = "getData"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -89,7 +89,7 @@ class FileResource(DAVNonCollection):
 		access.
 		"""
 		func_name = "open"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -102,7 +102,7 @@ class FileResource(DAVNonCollection):
 		This is only a notification. that MAY be handled.
 		"""
 		func_name = "close"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		self.provider.propManager1.update(self._path)
 
@@ -114,7 +114,7 @@ class FileResource(DAVNonCollection):
 		if self.provider.readonly:
 			raise DAVError(HTTP_FORBIDDEN) 
 		func_name = "delete"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		self.provider.propManager1.removeProperties(self._path)
 
@@ -128,7 +128,7 @@ class FileResource(DAVNonCollection):
 			raise DAVError(HTTP_FORBIDDEN)
 		assert not util.isEqualOrChildUri(self.path, destPath)
 		func_name = "move"
-		xml_data = {"srcPath": self._path, "destPath": destPath}
+		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self._path, destPath)
 		res = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if self.provider.propManager1 and self.provider.propManager:
 			self.provider.propManager1.moveProperties(self._path, destPath.rstrip("/"), 
@@ -140,7 +140,7 @@ class FileResource(DAVNonCollection):
 	def copyMoveSingle(self, destPath, isMove):
 		"""See DAVResource.copyMoveSingle() """
 		func_name = "move" if isMove else "copy"
-		xml_data = {"srcPath": self._path, "destPath": destPath}
+		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self._path, destPath)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -183,7 +183,7 @@ class FolderResource(DAVCollection):
 		See DAVCollection.getMemberNames()
 		"""
 		func_name = "getMembers"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -208,7 +208,7 @@ class FolderResource(DAVCollection):
 		See DAVResource.createEmptyResource()
 		"""
 		func_name = "createResource"
-		xml_data = {"path": self._path, "name": name}
+		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			self.provider.propManager1.update(ret)
@@ -223,7 +223,7 @@ class FolderResource(DAVCollection):
 		See DAVResource.createCollection()
 		"""
 		func_name = "createCollection"
-		xml_data = {"path": self._path, "name": name}
+		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			self.provider.propManager1.update(ret)
@@ -239,7 +239,7 @@ class FolderResource(DAVCollection):
 		if self.provider.readonly:
 			raise DAVError(HTTP_FORBIDDEN) 
 		func_name = "delete"
-		xml_data = {"path": self._path}
+		xml_data = """{"path": "%s"}""" % self._path
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		self.provider.propManager1.removeProperties(self._path)
 		self.removeAllLocks(True)
@@ -247,7 +247,7 @@ class FolderResource(DAVCollection):
 	def copyMoveSingle(self, destPath, isMove):
 		"""See DAVResource.copyMoveSingle() """
 		func_name = "move" if isMove else "copy"
-		xml_data = {"srcPath": self._path, "destPath": destPath}
+		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self._path, destPath)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -263,7 +263,7 @@ class FolderResource(DAVCollection):
 			raise DAVError(HTTP_FORBIDDEN)
 		assert not util.isEqualOrChildUri(self.path, destPath)
 		func_name = "move"
-		xml_data = {"srcPath": self._path, "destPath": destPath}
+		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self._path, destPath)
 		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if self.provider.propManager1 and self.provider.propManager:
 			self.provider.propManager1.moveProperties(self._path, destPath.rstrip("/"), 
