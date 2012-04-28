@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.1.11</Version>
+    <Version>2.2.11</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -3460,7 +3460,7 @@ from dateutil.relativedelta import *
 import random
 
 class VDOM_fullcalendar(VDOM_object):
-	
+
 	TF_DICT = {"1": "H:mm{ - H:mm}", "0":"h(:mm)tt{ - h(:mm)tt}"}
 	VIEW_DICT = {"0": "month", "1": "agendaWeek", "2": "agendaDay"}
 	DAY_LIST = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -3472,24 +3472,23 @@ class VDOM_fullcalendar(VDOM_object):
 	TRUE_FALSE = {"0":"false","1":"true"}
 	VERSION = "version 13.30"
 	DATE_MOD = "22.03.2012"
-	
+
 	RENDER_DIV = """<div id="%s" style="%s"></div>"""
-        	
-	RENDER_SCRIPT = """<script type="text/javascript"> 
+
+	RENDER_SCRIPT = """<script type="text/javascript">
 	/*Fullcalendar. VDOM Type Version %(version)s. Last modified - %(date_mod)s*/
-	$j(document).ready(function() {
-		
-		
+	$j(function(){
+
 		%(window_lazyloading_1)s
-		
+
 		$j("#%(id_out)s").fullCalendar({
-		
+
 			header: {
 				left: '',
 				center: '',
 				right: ''
 			},
-			
+
 			weekMode: "liquid",
 			axisFormat: "%(time_format)s",
 			timeFormat: "%(time_format)s",
@@ -3501,132 +3500,131 @@ class VDOM_fullcalendar(VDOM_object):
 			selectable: %(is_selectable)s,
 			firstDay: %(first_day)s,
 			firstHour: %(first_hour)s,
-			defaultView: "%(default_view)s",			
+			defaultView: "%(default_view)s",
 			allDaySlot: %(is_allday_visible)s,
 			allDayText: "%(allday_title)s",
-			slotMinutes: %(minutes_interval)s,         
+			slotMinutes: %(minutes_interval)s,
 			eventSources: %(event_sources)s,
 
 			viewChanged: function( viewName, title ) {
-				var id="%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "viewChanged", { title: title.replace("&#8212;"," - "),
-																			 view: viewName });
+				execEventBinded("%(id_woo)s", "viewChanged", {
+					title: title.replace("&#8212;"," - "),
+					view: viewName
+				});
 			},
 			dateChanged: function( viewName, title, start, end %(lazyloading_1)s ){
-				var id="%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "dateChanged", { start: Math.round(start.getTime() / 1000), 
-																			end: Math.round(end.getTime() / 1000), 
-																			title: title.replace("&#8212;"," - "),
-																			view: viewName,
-																			timezoneOffset: start.getTimezoneOffset()
-																			});
+				execEventBinded("%(id_woo)s", "dateChanged", {
+					start: Math.round(start.getTime() / 1000),
+					end: Math.round(end.getTime() / 1000),
+					title: title.replace("&#8212;"," - "),
+					view: viewName,
+					timezoneOffset: start.getTimezoneOffset()
+				});
 				%(lazy_condition)s
-				execEventBinded(id.substring(2, id.length), "getEvents", { 	start: Math.round(%(lazyloading_start)s.getTime() / 1000), 
-																			end: Math.round(%(lazyloading_end)s.getTime() / 1000), 
-																			view: viewName,
-																			timezoneOffset: %(lazyloading_start)s.getTimezoneOffset() });
+				execEventBinded("%(id_woo)s", "getEvents", {
+					start: Math.round(%(lazyloading_start)s.getTime() / 1000),
+					end: Math.round(%(lazyloading_end)s.getTime() / 1000),
+					view: viewName,
+					timezoneOffset: %(lazyloading_start)s.getTimezoneOffset()
+				});
 				%(lazy_condition_1)s
 			},
-			
-			select: function(startDate, endDate, allDay) 
+
+			select: function(startDate, endDate, allDay)
 			{
-				var id = "%(id_out)s";
 				end = 	endDate.getTime() / 1000;
-				start = startDate.getTime() / 1000;				
+				start = startDate.getTime() / 1000;
 				$j("#%(id_out)s").fullCalendar('unselect');
-				execEventBinded(id.substring(2, id.length), "daysSelected", 
-					{ 	start :start, 
-						end: end, 
-						allDay: allDay,
-						timezoneOffset: startDate.getTimezoneOffset()
-						} );
+				execEventBinded("%(id_woo)s", "daysSelected", {
+					start: start,
+					end: end,
+					allDay: allDay,
+					timezoneOffset: startDate.getTimezoneOffset()
+				});
 			},
-			
+
 			eventClick: function(event) {
-				var id="%(id_out)s";
-				execEventBinded(id.substring(2, id.length), "eventClick", { id:event.id, instance: event.instance });
+				execEventBinded("%(id_woo)s", "eventClick", { id:event.id, instance: event.instance });
 			},
-			
+
 			eventDrop: function(event, dayDelta, minuteDelta, allDay)
 			{
-				var id = "%(id_out)s";
 				start = event.start;
 				end = event.end === null ? start : event.end;
-				execEventBinded(id.substring(2, id.length), "eventDrag", 
-						{	id:		event.id, 
-							start: 	Math.round( start.getTime() / 1000), 
-							end:	Math.round( end.getTime() / 1000),
-							instance: event.instance, 
-							allDay: allDay,
-							dayDelta: dayDelta,
-							minuteDelta: minuteDelta,
-							timezoneOffset: event.start.getTimezoneOffset()
-						}
-				)
+				execEventBinded("%(id_woo)s", "eventDrag", {
+					id: event.id,
+					start: Math.round( start.getTime() / 1000),
+					end: Math.round( end.getTime() / 1000),
+					instance: event.instance,
+					allDay: allDay,
+					dayDelta: dayDelta,
+					minuteDelta: minuteDelta,
+					timezoneOffset: event.start.getTimezoneOffset()
+				})
 			},
-			
-			eventResize: function( event, dayDelta, minuteDelta ) 
+
+			eventResize: function( event, dayDelta, minuteDelta )
 			{
-				var id = "%(id_out)s";
 				start = event.start;
 				end = event.end === null ? start : event.end;
-				execEventBinded(id.substring(2, id.length), "eventResize", 
-						{	id:		event.id, 
-							start: 	Math.round( start.getTime() / 1000), 
-							end:	Math.round( end.getTime() / 1000),
-							instance: event.instance, 
-							dayDelta: dayDelta,
-							minuteDelta: minuteDelta,
-							timezoneOffset: event.start.getTimezoneOffset()
-						})
-			},		
+				execEventBinded("%(id_woo)s", "eventResize", {
+					id: event.id,
+					start: Math.round( start.getTime() / 1000),
+					end: Math.round( end.getTime() / 1000),
+					instance: event.instance,
+					dayDelta: dayDelta,
+					minuteDelta: minuteDelta,
+					timezoneOffset: event.start.getTimezoneOffset()
+				})
+			},
 		});
-		
-		$j("#%(id_out)s").fullCalendar( 'render' );	
+
+		$j("#%(id_out)s").fullCalendar( 'render' );
 		$j("#%(id_out)s").fullCalendar( 'gotoDate',  %(year)s, %(month)s, %(day)s);
 	});
 </script>"""
 
-	def render(self, parent, contents=""):		
-	
-		id_out = 'o_' + (self.id).replace('-', '_')
-		
+	def render(self, parent, contents=""):
+
+		id_woo = (self.id).replace('-', '_')
+		id_out = 'o_' + id_woo
+
 		#visibility
 		visibility = "hidden" if self.visible == "0" else "visible"
-		
-		#timeFormat		
+
+		#timeFormat
 		timeFormat = VDOM_fullcalendar.TF_DICT["1"] if self.time_format not in VDOM_fullcalendar.TF_DICT.keys() else VDOM_fullcalendar.TF_DICT[self.time_format]
-		
-		#view		
+
+		#view
 		view = VDOM_fullcalendar.VIEW_DICT["0"] if self.view not in VDOM_fullcalendar.VIEW_DICT not in VDOM_fullcalendar.VIEW_DICT.keys() else VDOM_fullcalendar.VIEW_DICT[self.view]
-		
+
 		#default date
 		default_date = self.display_date.split('-') if self.display_date else str(datetime.date.today()).split('-')
-		
+
 		#day names
-		
-		day_names = [] 
+
+		day_names = []
 		if isinstance(self.day_names, (tuple, list)):
 			day_names = self.day_names
 		elif isinstance(self.day_names, (unicode, str)):
 			day_names = self.day_names.split("|")
-			
+
 		if len(day_names) != 7:
 			day_names = VDOM_fullcalendar.DAY_LIST
-			
-			
+
+
 		#short day names
-		short_day_names = [] 
+		short_day_names = []
 		if isinstance(self.short_day_names, (tuple, list)):
 			short_day_names = self.short_day_names
 		elif isinstance(self.short_day_names, (unicode, str)):
 			short_day_names = self.short_day_names.split("|")
-	
+
 		if len(short_day_names) != 7:
 			short_day_names = VDOM_fullcalendar.SHORT_DAY_LIST
-			
+
 		#month names
-		month_names = [] 
+		month_names = []
 		if isinstance(self.month_names, (tuple, list)):
 			month_names = self.month_names
 		elif isinstance(self.month_names, (unicode, str)):
@@ -3634,30 +3632,30 @@ class VDOM_fullcalendar(VDOM_object):
 
 		if len(month_names) != 12:
 			month_names = VDOM_fullcalendar.MONTH_LIST
-			
+
 		#short month names
-		short_month_names = [] 
+		short_month_names = []
 		if isinstance(self.short_month_names, (tuple, list)):
 			short_month_names = self.short_month_names
 		elif isinstance(self.short_month_names, (unicode, str)):
 			short_month_names = self.short_month_names.split("|")
-	
+
 		if len(short_month_names) != 12:
-			short_month_names = VDOM_fullcalendar.SHORT_MONTH_LIST			
-		
+			short_month_names = VDOM_fullcalendar.SHORT_MONTH_LIST
+
 		#first_hour
 		first_hour = int( self.first_hour )
-			
-		
+
+
 		#first day in week
 		first_day = int(self.first_day) if self.first_day in VDOM_fullcalendar.FIRST_DAY_LIST else 1
-		
+
 		#is calendar editable or not
 		editable =  VDOM_fullcalendar.TRUE_FALSE[self.editable] if self.editable in VDOM_fullcalendar.TRUE_FALSE.keys() else  VDOM_fullcalendar.TRUE_FALSE["1"]
-		
+
 		#is calendar selecable or not
 		selectable = VDOM_fullcalendar.TRUE_FALSE[self.selectable] if self.selectable in VDOM_fullcalendar.TRUE_FALSE.keys() else VDOM_fullcalendar.TRUE_FALSE["1"]
-		
+
 		#is all-day slot visible or not
 		allday_visible = VDOM_fullcalendar.TRUE_FALSE[self.all_day_visible] if self.all_day_visible in VDOM_fullcalendar.TRUE_FALSE.keys() else VDOM_fullcalendar.TRUE_FALSE["1"]
 
@@ -3666,7 +3664,7 @@ class VDOM_fullcalendar(VDOM_object):
 
 		#slotminutes interval
 		slotminutes = VDOM_fullcalendar.SLOTMINUTES[self.slot_minutes] if self.slot_minutes in VDOM_fullcalendar.SLOTMINUTES.keys() else VDOM_fullcalendar.SLOTMINUTES["5"]
-		
+
 		if self.lazyloading == "1":
 			window_lazy, lazyloading_1, lazyloading_start, lazyloading_end = ( "window.visible_start = window.visible_end = new Date(1); ",
 																				"", "window.visible_start", "window.visible_end")
@@ -3676,54 +3674,55 @@ class VDOM_fullcalendar(VDOM_object):
 		else:
 			window_lazy, lazyloading_1, lazyloading_start, lazyloading_end, lazy_condition,lazy_condition_1 = ( "",
 																				",visStart, visEnd", "visStart", "visEnd","","" )
-		
-		style_params = {"zindex": self.zindex, 
-						"top": self.top, 
-						"left": self.left, 
-						"width": self.width, 
-						"height": self.height,
-						"visibility": visibility} 
 
-		mainstyle="""z-index:%(zindex)s; 
-					position:absolute; 
-					top: %(top)spx; 
-					left: %(left)spx; 
-					width: %(width)spx; 
+		style_params = {"zindex": self.zindex,
+						"top": self.top,
+						"left": self.left,
+						"width": self.width,
+						"height": self.height,
+						"visibility": visibility}
+
+		mainstyle="""z-index:%(zindex)s;
+					position:absolute;
+					top: %(top)spx;
+					left: %(left)spx;
+					width: %(width)spx;
 					height: %(height)spx;
 					visibility: %(visibility)s;"""%style_params
 		import json
 		render_params = {
-							"version" 			: VDOM_fullcalendar.VERSION,
-							"date_mod"			: VDOM_fullcalendar.DATE_MOD,
-							"id_out"			: id_out,
-							"time_format"		: timeFormat,
-							"short_day_names"	: json.dumps(short_day_names),
-							"day_names"			: json.dumps(day_names)	,
-							"short_month_names"	: json.dumps(short_month_names),
-							"month_names"		: json.dumps(month_names),
-							"is_editable"		: editable,
-							"is_selectable"		: selectable,
-							"first_day"			: first_day,
-							"default_view"		: view,
-							"is_allday_visible" : allday_visible,
-							"allday_title"		: allday_title,
-							"minutes_interval"	: slotminutes,
-							"event_sources"		: self.parse_events(),
-							"year"				: int(default_date[0]), 
-							"month"				: int(default_date[1])-1, 
-							"day"				: int(default_date[2]),
-							"window_lazyloading_1": window_lazy,
-							"lazyloading_1"		: lazyloading_1,
-							"lazyloading_start"	: lazyloading_start,
-							"lazyloading_end"	: lazyloading_end,
-							"lazy_condition"	: lazy_condition,
-							"lazy_condition_1"	: lazy_condition_1,
-							"first_hour"		: first_hour
-						}
+				"version"              : VDOM_fullcalendar.VERSION,
+				"date_mod"             : VDOM_fullcalendar.DATE_MOD,
+				"id_out"               : id_out,
+				"id_woo"               : id_woo,
+				"time_format"          : timeFormat,
+				"short_day_names"      : json.dumps(short_day_names),
+				"day_names"            : json.dumps(day_names)	,
+				"short_month_names"    : json.dumps(short_month_names),
+				"month_names"          : json.dumps(month_names),
+				"is_editable"          : editable,
+				"is_selectable"        : selectable,
+				"first_day"            : first_day,
+				"default_view"         : view,
+				"is_allday_visible"    : allday_visible,
+				"allday_title"         : allday_title,
+				"minutes_interval"     : slotminutes,
+				"event_sources"        : self.parse_events(),
+				"year"                 : int(default_date[0]),
+				"month"                : int(default_date[1])-1,
+				"day"                  : int(default_date[2]),
+				"window_lazyloading_1" : window_lazy,
+				"lazyloading_1"        : lazyloading_1,
+				"lazyloading_start"    : lazyloading_start,
+				"lazyloading_end"      : lazyloading_end,
+				"lazy_condition"       : lazy_condition,
+				"lazy_condition_1"     : lazy_condition_1,
+				"first_hour"           : first_hour
+			}
 
-		return VDOM_fullcalendar.RENDER_SCRIPT%render_params + VDOM_fullcalendar.RENDER_DIV%(id_out, mainstyle)	
-		
-	
+		return VDOM_fullcalendar.RENDER_SCRIPT % render_params + VDOM_fullcalendar.RENDER_DIV % (id_out, mainstyle)
+
+
 	def parse_events(self):
 		event_sources = []
 		if self.events:
@@ -3741,12 +3740,12 @@ class VDOM_fullcalendar(VDOM_object):
 				allDay = True if allDay.value == "true" else False
 				textColor = getattr(event, 'textcolor', vobject.base.ContentLine('textColor', '', 'green'))
 				borderColor = getattr(event, 'bordercolor', vobject.base.ContentLine('bordercolor', '', 'green'))
-				
+
 				if event.rruleset is None:
 					event_sources.append({ "events": [{ "id": id.value,
-										"title": (summary.value).replace( "&comma&", ","), 
+										"title": (summary.value).replace( "&comma&", ","),
 										"description":description.value,
-										"start": startDate.value.strftime("%Y-%m-%d %H:%M:%S"), 
+										"start": startDate.value.strftime("%Y-%m-%d %H:%M:%S"),
 										"end": endDate.value.strftime("%Y-%m-%d %H:%M:%S"),
 										"allDay": allDay,
 										"instance": "-1"}],
@@ -3757,10 +3756,10 @@ class VDOM_fullcalendar(VDOM_object):
 					instance = 1
 					for rev in event.rruleset:
 						event_sources.append({ "events": [{
-										"title": (summary.value).replace( "&comma&", ","), 
+										"title": (summary.value).replace( "&comma&", ","),
 										"description":description.value,
 										"id": id.value,
-										"start": rev.strftime("%Y-%m-%d %H:%M:%S"), 
+										"start": rev.strftime("%Y-%m-%d %H:%M:%S"),
 										"end": (rev + relativedelta(endDate.value, startDate.value)).strftime("%Y-%m-%d %H:%M:%S"),
 										"allDay": allDay,
 										"instance": instance }],
@@ -3769,8 +3768,8 @@ class VDOM_fullcalendar(VDOM_object):
 										"borderColor": borderColor.value})
 						instance += 1
 		return json.dumps(event_sources)
-	
-		
+
+
 	def wysiwyg(self, parent, contents=""):
 		minsize = min(int(self.width), int(self.height))
 		result=""\
@@ -3938,7 +3937,7 @@ if (!isNaN(_w) && !isNaN(_h))
 	//vdom_ui_resizeTo(this.domCont, _w, _h); ошибка внутри метода.
 	this.domCont.style.width = _w + "px";
 	this.domCont.style.height = _h + "px";
-	jQuery("div#"+this.domCont.id).fullCalendar('option', 'height', _h); 
+	$q("div#"+this.domCont.id).fullCalendar('option', 'height', _h);
 }
 ]]></SourceCode>
         </Action>
@@ -3954,9 +3953,9 @@ if (!isNaN(_w) && !isNaN(_h))
 				view = "agendaWeek";
 			else if (viewName == "day")
 				view = "agendaDay";
-				
+
 			if (view)
-				jQuery("div#"+this.domCont.id).fullCalendar('changeView',view);
+				$q("div#"+this.domCont.id).fullCalendar('changeView',view);
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveZindexTo">
@@ -3972,13 +3971,13 @@ if (!isNaN(_w) && !isNaN(_h))
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="next">
           <Parameters/>
           <SourceCode><![CDATA[
-jQuery("div#"+this.domCont.id).fullCalendar('next');
+$q("div#"+this.domCont.id).fullCalendar('next');
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="prev">
           <Parameters/>
           <SourceCode><![CDATA[
-jQuery("div#"+this.domCont.id).fullCalendar('prev');
+$q("div#"+this.domCont.id).fullCalendar('prev');
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
@@ -3994,11 +3993,11 @@ this.domCont.style.display = 'block';
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="day" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-		  var _y = parseInt(year);
-		  var _m = parseInt(month);
-		  var _d = parseInt(day);
-		  if (!isNaN(_y) && !isNaN(_m) && !isNaN(_d))
-			jQuery("div#"+this.domCont.id).fullCalendar('gotoDate', _y , _m-1, _d);
+var _y = parseInt(year);
+var _m = parseInt(month);
+var _d = parseInt(day);
+if (!isNaN(_y) && !isNaN(_m) && !isNaN(_d))
+	$q("div#"+this.domCont.id).fullCalendar('gotoDate', _y , _m-1, _d);
 		]]></SourceCode>
         </Action>
         <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setEventSource">
@@ -4006,13 +4005,13 @@ this.domCont.style.display = 'block';
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="eventSource" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-		jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', eval(eventSource) );
+$q("div#"+this.domCont.id).fullCalendar('addEventSource', eval(eventSource) );
 		]]></SourceCode>
         </Action>
         <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="clearEventSource">
           <Parameters/>
           <SourceCode><![CDATA[
-jQuery("div#"+this.domCont.id).fullCalendar('removeEvents');
+$q("div#"+this.domCont.id).fullCalendar('removeEvents');
 ]]></SourceCode>
         </Action>
       </Container>
