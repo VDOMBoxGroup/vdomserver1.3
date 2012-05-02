@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.18.6720</Version>
+    <Version>1.20.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1359,15 +1359,16 @@ function vdom_sfd_set_handlers(sf){
 			if (dd['data'] !== 'undefined')
 			$j.each(dd['data'], function(i,e){
 				var a = {
-					type:     e['type'] || 'string',
-					name:     e['name'] || '',
-					title:    e['title'] || 'no title',
-					value:    e['value'] || 'no value',
-					editable: !!e['editable']
+					type:      e['type'] || 'string',
+					name:      e['name'] || '',
+					title:     e['title'] || 'no title',
+					value:     e['value'] || 'no value',
+					editable:  !!e['editable'],
+					deletable: !!e['deletable']
 				};
-				var at = a['type'], inp = '';
-				if (at == 'date') {
-					inp = "<label>"+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
+				var at = a['type'], inp = '', hdel = '', hedit = '';
+				//if (at == 'date') {
+				//	inp = "<label>"+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
 				/*} else
 				if (at == 'list') {
 					inp = "<label>"+a['title']+"<input type='text' name='"+a['name']+"' /></label>";
@@ -1377,9 +1378,12 @@ function vdom_sfd_set_handlers(sf){
 				} else
 				if (at == 'contactlink') {
 */
-				} else { // string
-					inp = "<label><a href='#' class='del'></a> "+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
-				}
+				//} else { // string
+					//inp = "<label><a href='#' class='del'></a> "+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"' /></label>";
+					if (a['deletable']) hdel = "<a href='#' class='del'></a> ";
+					if (!a['editable']) hedit = " disabled readonly ";
+					inp = "<label>"+hdel+a['title']+"<input type='text' name='"+a['name']+"' value='"+a['value']+"'"+hedit+" /></label>";
+				//}
 				var s = $j('<div class="meta type-'+a['type']+'">'+inp+'<div class="clear"></div></div>');
 				s.appendTo(d);
 			});
