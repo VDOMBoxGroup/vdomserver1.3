@@ -342,7 +342,7 @@ class VDOM_xml_manager(object):
 		
 		return (str(app_object.id), "")
 
-	def uninstall_application(self, appid, remove_db = True, remove_zero_res = True):
+	def uninstall_application(self, appid, remove_db = True, remove_zero_res = True, remove_storage = True, remove_ldap = True):
 		"""uninstall application, delete application xml file"""
 		if not managers.acl_manager.session_user_has_access2(appid, appid, security.delete_application):
 			raise VDOM_exception_sec(_("Deleting application is not allowed"))
@@ -430,6 +430,27 @@ class VDOM_xml_manager(object):
 #		the_path = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], databases_path, appid)
 #		try: shutil.rmtree(the_path)
 #		except: pass
+		# remove storage
+		if remove_storage:
+			try:
+				managers.file_manager.delete_app_storage_user_directory(appid, "")
+			except Exception as e:
+				raise Exception("Cannot remove application storage: %s" % unicode(e))
+		
+		#remove ldap
+		if remove_ldap:
+			from subprocess import Popen, PIPE
+			import shlex
+			try:
+				cmd = """sh /opt/boot/ldap_backup.sh -g %s -e""" % appid
+				#cmd = "pwd"
+				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+				out.wait()
+				rc = out.returncode
+				if rc:
+					raise Exception("Return code %s" % unicode(rc))
+			except Exception as e:
+				raise Exception("Cannot remove ldap %s" % unicode(e))
 		
 		del appobj
 		return True
