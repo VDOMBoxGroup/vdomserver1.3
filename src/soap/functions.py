@@ -219,7 +219,7 @@ def backup_application(sid, skey, appid, driverid, _SOAPContext):
 	return proxy([managers.soap_server.backup_application, sid, skey, appid, driverid])
 
 def restore_application(sid, skey, appid, driverid, revision, _SOAPContext):
-	return proxy([managers.soap_server.restore_application, sid, skey, driverid, appid, revision])
+	return proxy([managers.soap_server.restore_application, sid, skey, appid, driverid, revision])
 
 def list_backup_drivers(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.list_backup_drivers, sid, skey])
