@@ -14,12 +14,16 @@ def run(request):
 	applst = managers.xml_manager.get_applications()
 	vh = request.server().virtual_hosting()
 	p = True
+	remove_db = True if "remove_db" in args else False
+	remove_ldap = True if "remove_ldap" in args else False
+	remove_storage = True if "remove_storage" in args else False
+	remove_res = True if "remove_res" in args else False
 	for a in args.keys():
 		if a:
 			aid = "-".join(a.split("_"))
 			if aid in applst:
 				# perform uninstallation
-				p = uninstall_application(aid)
+				p = uninstall_application(aid, remove_db, remove_res, remove_storage, remove_ldap)
 				# remove vhosts
 				for s in vh.get_sites():
 					if vh.get_site(s) == aid:
@@ -63,7 +67,9 @@ a:visited {
 		obj = managers.xml_manager.get_application(appid)
 		a = "_".join(appid.split("-"))
 		request.write('<tr><td width="123">&nbsp;</td><td><input type=checkbox name=%s value=%s>%s</input></td></tr>' % (a, "1", "%s (%s)" % (obj.name.encode("utf-8"), appid)))
-	request.write('<tr><td width="123">&nbsp;</td><td>');
+	request.write('<tr><td width="123">&nbsp;</td><td>')
+	request.write('<div id="remove_parts" style="font-size: 13px; text-align: center;"><input type=checkbox name=remove_db checked>Remove Databases</input><input type=checkbox name=remove_res checked>Remove Resourses</input><input type=checkbox name=remove_ldap checked>Remove LDAP</input> \
+	<input type=checkbox name=remove_storage checked>Remove Storage</input></div>')
 	request.write('<input type=submit value="Remove" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">')
 	request.write('</td></tr></table>')
 	request.write('</form>')

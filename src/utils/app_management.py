@@ -47,12 +47,12 @@ def import_application(path, ext = "xml"):
 		shutil.rmtree(direct, ignore_errors=True)
 	return ret
 
-def uninstall_application(appid):
+def uninstall_application(appid, remove_db = True, remove_zero_res = True, remove_storage = True, remove_ldap = True):
 	try:
 		#TODO: find better way to change current application
 		request = managers.request_manager.get_request()
 		request.set_application_id(appid)
-		managers.xml_manager.uninstall_application(appid)
+		managers.xml_manager.uninstall_application(appid, remove_db, remove_zero_res, remove_storage, remove_ldap)
 	except Exception, e:
 		import traceback
 		traceback.print_exc(file=debugfile)
@@ -144,7 +144,7 @@ def update_application(path, vh):
 	# uninstall application but keep databases
 	debug("Uninstall current version...")
 	try:
-		managers.xml_manager.uninstall_application(appid, remove_db=False, remove_zero_res=False)
+		managers.xml_manager.uninstall_application(appid, remove_db=False, remove_zero_res=False, remove_storage=False, remove_ldap=False)
 	except Exception, e:
 		# nothing deleted (no del rights) - temp folders to be removed
 		if tmpappdir:
