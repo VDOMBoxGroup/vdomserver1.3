@@ -82,11 +82,11 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 		if bytecode:
 			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
 		return code, source
-	except errors.generic, error:
+	except errors.generic as error:
 		check_exception(None, error, error_type=errors.generic.compilation, quiet=quiet)
 		if anyway: return vscript_default_code, vscript_default_source
 		else: raise
-	except errors.python, error:
+	except errors.python as error:
 		check_exception(source, errors.system_error(unicode(error)), error_type=errors.generic.compilation, quiet=quiet)
 		raise
 	finally:
@@ -126,7 +126,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 			else:
 				del exclass, exexception, extraceback
 				raise
-		except ValueError, error:
+		except ValueError as error:
 			exclass, exexception, extraceback=sys.exc_info()
 			path, line, function, text=traceback.extract_tb(extraceback)[-1]
 			if path==vscript_source_string:
@@ -138,7 +138,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 			else:
 				del exclass, exexception, extraceback
 				raise
-		except TypeError, error:
+		except TypeError as error:
 			exclass, exexception, extraceback=sys.exc_info()
 			path, line, function, text=traceback.extract_tb(extraceback)[-1]
 			if path==vscript_source_string:
@@ -155,10 +155,10 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 			else:
 				del exclass, exexception, extraceback
 				raise
-	except errors.generic, error:
+	except errors.generic as error:
 		check_exception(source, error, quiet=quiet)
 		raise
-	except errors.python, error:
+	except errors.python as error:
 		if not quiet:
 			show_exception_details(source, errors.system_error(unicode(error)))
 		raise

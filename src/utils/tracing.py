@@ -21,6 +21,18 @@ def normalize_source_statement(statement, length=50):
 	statement=statement.strip()
 	return statement[:length-3]+"..." if len(statement)>length else statement
 
+
+def get_threads_trace():
+	result=[]
+	threads={thread.ident: thread for thread in threading.enumerate()}
+	for ident, frame in sys._current_frames().items():
+		thread=threads.get(ident, None)
+		if not thread: continue
+		stack=tuple((normalize_source_path(path), line, function, statement) for path, line, function, statement in traceback.extract_stack(frame))
+		result.append((thread, isinstance(thread, (VDOM_thread, VDOM_daemon)), stack))
+	return result
+
+
 def show_trace(ident="", stack=None):
 	if stack is None: stack=traceback.extract_stack()
 	for path, line, function, statement in stack:

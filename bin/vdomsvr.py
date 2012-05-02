@@ -49,7 +49,7 @@ try:
 	managers.register("log_manager", VDOM_log_manager)
 	managers.register("storage", VDOM_storage)
 	managers.register("file_manager", VDOM_file_manager)
-	managers.register("file_share", VDOM_share)
+	managers.register("file_share",	VDOM_share)
 	managers.register("resource_manager", VDOM_resource_manager)
 	managers.register("resource_editor", VDOM_resource_editor)
 	managers.register("database_manager", VDOM_database_manager)
