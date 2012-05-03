@@ -11,7 +11,7 @@ class VDOM_watcher(VDOM_thread):
 	state_pattern=re.compile("""\s*<state(?:\s+thread="(?P<thread>\d+)")?(?:\s*/>|\s*>\s*</state>\s*)$""")
 
 	def __init__(self):
-		VDOM_thread.__init__(self, name="Observer")
+		VDOM_thread.__init__(self, name="Watcher")
 		self._address=VDOM_CONFIG["SERVER-ADDRESS"]
 		self._port=VDOM_CONFIG["WATCHER-PORT"]
 		self._socket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -73,7 +73,8 @@ class VDOM_watcher(VDOM_thread):
 					" smart=\"yes\"" if smart else "",
 					thread.name.encode("xml"), frames)
 		else:
-			threads="".join(("<thread id=\"%s\">%s</thread>"%(thread.ident, thread.name.encode("xml")) for thread, smart, stack in get_threads_trace()))
+			threads="".join((
+				"<thread id=\"%s\">%s</thread>"%(thread.ident, thread.name.encode("xml")) for thread, smart, stack in get_threads_trace()))
 			counter0, counter1, counter2=gc.get_count()
 			return \
 				"<state>" \
@@ -85,8 +86,8 @@ class VDOM_watcher(VDOM_thread):
 							"<counter generation=\"1\">%d</counter>" \
 							"<counter generation=\"2\">%d</counter>" \
 						"</counters>" \
-						"<garbage counter=\"%d\"/>" \
-						"<objects counter=\"%d\"/>" \
+						"<garbage number=\"%d\"/>" \
+						"<objects number=\"%d\"/>" \
 					"</garbagecollector>" \
 				"</state>"%(os.getpid(), threads,
 					"" if gc.isenabled() else " state=\"disabled\"",
