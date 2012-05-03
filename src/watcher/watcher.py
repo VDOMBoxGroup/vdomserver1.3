@@ -1,9 +1,14 @@
 
-import sys, socket, select, gc
+import sys, traceback, os, socket, select, gc, re
 from utils.threads import VDOM_thread
-from utils.tracing import get_threads_trace
+from utils.tracing import get_thread_trace, get_threads_trace
+
 
 class VDOM_watcher(VDOM_thread):
+
+	main_pattern=re.compile("""\s*<(?P<name>[A-Za-z][0-9A-Za-z]*)""")
+	ping_pattern=re.compile("""\s*<ping(?:\s*/>|\s*>\s*</ping>\s*)$""")
+	state_pattern=re.compile("""\s*<state(?:\s+thread="(?P<thread>\d+)")?(?:\s*/>|\s*>\s*</state>\s*)$""")
 
 	def __init__(self):
 		VDOM_thread.__init__(self, name="Observer")
@@ -11,7 +16,9 @@ class VDOM_watcher(VDOM_thread):
 		self._port=VDOM_CONFIG["WATCHER-PORT"]
 		self._socket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self._socket.bind((self._address, self._port))
-		self._allowable={"ping": self.ping, "state": self.state}
+		self._allowable={
+			"ping": (self.ping, self.ping_pattern),
+			"state": (self.state, self.state_pattern)}
 
 	def main(self):
 		while self.running:
@@ -19,48 +26,68 @@ class VDOM_watcher(VDOM_thread):
 			if reading:
 				try:
 					message, address=self._socket.recvfrom(512)
-					option=message[1:message.index(">", 1)]
-					self._socket.sendto(self._allowable[option.rstrip("/ \t")](address, message), address)
-				except (ValueError, KeyError):
-					self._socket.sendto("<error>incorrect request</error>", address)
+					match=self.main_pattern.match(message)
+					try:
+						routine, pattern=self._allowable[match.group("name")]
+						match=pattern.match(message)
+						if not match: raise ValueError
+						try:
+							response=routine(match)
+						except:
+							response="<error>internal error</error>"
+							traceback.print_exc()
+					except:
+						response="<error>incorrect request</error>"
+						traceback.print_exc()
 				except socket.error:
-					pass
+					response=None
+				if response:
+					try:
+						self._socket.sendto(response, address)
+					except socket.error:
+						pass
 
-	def ping(self, address, message):
+	def ping(self, match):
 		return "<ping/>"
 
-	def state(self, address, message):
-		threads="".join(
-			("\t\t<thread>\n" \
-			"\t\t\t<name>%s</name>\n" \
-			"\t\t\t<id>%d</id>\n" \
-			"\t\t\t<daemon>%s</daemon>\n" \
-			"\t\t\t<smart>%s</smart>\n" \
-			"\t\t\t<stack>\n" \
-			"%s" \
-			"\t\t\t</stack>\n" \
-			"\t\t</thread>\n"%(thread.name.encode("xml"), thread.ident, "yes" if thread.daemon else "no", "yes" if smart else "no", "".join(
-				("\t\t\t\t<line>\n" \
-				"\t\t\t\t\t<path>%s</path>\n" \
-				"\t\t\t\t\t<line>%s</line>\n" \
-				"\t\t\t\t\t<function>%s</function>\n" \
-				"\t\t\t\t\t<statement>%s</statement>\n" \
-				"\t\t\t\t</line>\n"%(path.encode("xml"), line, function.encode("xml"), statement.encode("xml")) \
-				for path, line, function, statement in stack))) \
-			for thread, smart, stack in get_threads_trace()))
-		state="enabled" if gc.isenabled() else "disabled"
-		counter0, counter1, counter2=gc.get_count()
-		return \
-			"<state>\n" \
-			"\t<threads>\n" \
-			"%(threads)s" \
-			"\t</threads>\n" \
-			"\t<garbagecollector>\n" \
-			"\t\t<state>%(state)s</state>\n" \
-			"\t\t<counters>\n" \
-			"\t\t\t<generation0>%(counter0)d</generation0>\n" \
-			"\t\t\t<generation1>%(counter1)d</generation1>\n" \
-			"\t\t\t<generation2>%(counter2)d</generation2>\n" \
-			"\t\t</counters>\n" \
-			"\t</garbagecollector>\n" \
-			"</state>\n"%locals()
+	def state(self, match):
+		if match.group("thread"):
+			data=get_thread_trace(int(match.group("thread")))
+			if not data:
+				return "<error>no thread</error>"
+			thread, smart, stack=data
+			frames="".join((
+				"<frame>" \
+					"<path>%s</path>" \
+					"<line>%s</line>" \
+					"<function>%s</function>" \
+				"</frame>"%(path.encode("xml"), line, function.encode("xml")) for path, line, function, statement in stack))
+			return \
+				"<state>" \
+					"<thread id=\"%s\"%s%s>" \
+						"<name>%s</name>" \
+						"<stack>%s</stack>" \
+					"</thread>" \
+				"</state>"%(thread.ident,
+					" daemon=\"yes\"" if thread.daemon else "",
+					" smart=\"yes\"" if smart else "",
+					thread.name.encode("xml"), frames)
+		else:
+			threads="".join(("<thread id=\"%s\">%s</thread>"%(thread.ident, thread.name.encode("xml")) for thread, smart, stack in get_threads_trace()))
+			counter0, counter1, counter2=gc.get_count()
+			return \
+				"<state>" \
+					"<process id=\"%d\"/>" \
+					"<threads>%s</threads>" \
+					"<garbagecollector%s>" \
+						"<counters>" \
+							"<counter generation=\"0\">%d</counter>" \
+							"<counter generation=\"1\">%d</counter>" \
+							"<counter generation=\"2\">%d</counter>" \
+						"</counters>" \
+						"<garbage counter=\"%d\"/>" \
+						"<objects counter=\"%d\"/>" \
+					"</garbagecollector>" \
+				"</state>"%(os.getpid(), threads,
+					"" if gc.isenabled() else " state=\"disabled\"",
+					counter0, counter1, counter2, len(gc.garbage), len(gc.get_objects()))
