@@ -1,5 +1,5 @@
 
-import sys, traceback, os, socket, select, gc, re
+import sys, traceback, os, socket, select, gc, re, resource
 from utils.threads import VDOM_thread
 from utils.tracing import get_thread_trace, get_threads_trace
 
@@ -38,7 +38,6 @@ class VDOM_watcher(VDOM_thread):
 							traceback.print_exc()
 					except:
 						response="<error>incorrect request</error>"
-						traceback.print_exc()
 				except socket.error:
 					response=None
 				if response:
@@ -73,12 +72,26 @@ class VDOM_watcher(VDOM_thread):
 					" smart=\"yes\"" if smart else "",
 					thread.name.encode("xml"), frames)
 		else:
+			try:
+				usage=resource.getrusage(resource.RUSAGE_SELF)
+				process= \
+					"<process id=\"%d\">" \
+						"<usage>" \
+							"<utime>%.3f</utime>" \
+							"<stime>%.3f</stime>" \
+							"<maxrss>%d</maxrss>" \
+							"<ixrss>%d</ixrss>" \
+							"<idrss>%d</idrss>" \
+						"</usage>" \
+					"</process>"%(os.getpid(), usage.ru_utime, usage.ru_stime, usage.ru_maxrss, usage.ru_ixrss, usage.ru_idrss)
+			except:
+				process="<process id=\"%d\"/>"%os.getpid()
 			threads="".join((
 				"<thread id=\"%s\">%s</thread>"%(thread.ident, thread.name.encode("xml")) for thread, smart, stack in get_threads_trace()))
 			counter0, counter1, counter2=gc.get_count()
 			return \
 				"<state>" \
-					"<process id=\"%d\"/>" \
+					"%s" \
 					"<threads>%s</threads>" \
 					"<garbagecollector%s>" \
 						"<counters>" \
@@ -89,6 +102,6 @@ class VDOM_watcher(VDOM_thread):
 						"<garbage number=\"%d\"/>" \
 						"<objects number=\"%d\"/>" \
 					"</garbagecollector>" \
-				"</state>"%(os.getpid(), threads,
+				"</state>"%(process, threads,
 					"" if gc.isenabled() else " state=\"disabled\"",
 					counter0, counter1, counter2, len(gc.garbage), len(gc.get_objects()))
