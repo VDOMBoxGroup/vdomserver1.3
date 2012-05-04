@@ -284,3 +284,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			if namespace[0] == ":": namespace = namespace[1:]
 
 		del self.objmap[namespace]
+	
+	def set_wsgi_app(self, application):
+		self.wsgi_app = application

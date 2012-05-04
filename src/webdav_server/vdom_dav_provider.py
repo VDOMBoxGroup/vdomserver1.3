@@ -323,8 +323,8 @@ class VDOM_Provider(DAVProvider):
 		host = host.split(":")[0]
 		self._setApplication(host)
 		obj_id = self._getObjectId(path)
-		request = VDOM_webdav_request(environ)
-		managers.request_manager.current = request
+		#request = VDOM_webdav_request(environ)
+		#managers.request_manager.current = request
 		path = path.rstrip("/")
 		try:
 			if self.__app and obj_id:

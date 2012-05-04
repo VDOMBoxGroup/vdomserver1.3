@@ -8,6 +8,8 @@ if sys.platform.startswith("freebsd"):
 import SocketServer, BaseHTTPServer, SimpleHTTPServer
 from cStringIO import StringIO
 import xml.sax.saxutils
+from wsgidav.wsgidav_app import WsgiDAVApp
+from wsgiref.util import guess_scheme
 
 import managers
 from request.request import VDOM_request
@@ -59,7 +61,100 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
 		except:
 			raise
+	
+	def start_response(self, status, response_headers, exc_info=None):
+		if exc_info:
+			try:
+				raise exc_info[0], exc_info[1], exc_info[2]
+				# do stuff w/exc_info here
+			finally:
+				exc_info = None    # Avoid circular ref.
+		self.send_response(int(status.split(' ')[0]))
+		for header in response_headers:
+			self.send_header(header[0], header[1])
+		self.end_headers()
+		return self.wfile.write
+
+	def get_environ(self):
+		env = self.__request.environment().environment().copy()
+		#env = {}
+		env['wsgi.input']        = self.rfile
+		env['wsgi.errors']       = sys.stderr
+		env['wsgi.version']      = (1, 0)
+		env['wsgi.run_once']     = False
+		env['wsgi.url_scheme']   = guess_scheme(env)
+		env['wsgi.multithread']  = True
+		env['wsgi.multiprocess'] = True
+		env['SERVER_PROTOCOL'] = self.request_version
+		env['REQUEST_METHOD'] = self.command
+		if '?' in self.path:
+			path,query = self.path.split('?',1)
+		else:
+			path,query = self.path,''
 		
+		env['PATH_INFO'] = urllib.unquote(path)
+		env['QUERY_STRING'] = query
+		
+		host = self.address_string()
+		if host != self.client_address[0]:
+			env['REMOTE_HOST'] = host
+		env['REMOTE_ADDR'] = self.client_address[0]
+		
+		if self.headers.typeheader is None:
+			env['CONTENT_TYPE'] = self.headers.type
+		else:
+			env['CONTENT_TYPE'] = self.headers.typeheader
+		
+		length = self.headers.getheader('content-length')
+		if length:
+			env['CONTENT_LENGTH'] = length
+		script_name = env.get('SCRIPT_NAME')
+		if script_name:
+			env['SCRIPT_NAME'] = script_name.rstrip("/")
+		
+		for h in self.headers.headers:
+			k,v = h.split(':',1)
+			k=k.replace('-','_').upper(); v=v.strip()
+			if k in env:
+				continue                    # skip content length, type,etc.
+			if 'HTTP_'+k in env:
+				if 'HTTP_'+k not in self.__request.environment().environment():
+					env['HTTP_'+k] += ','+v     # comma-separate multiple headers
+			else:
+				env['HTTP_'+k] = v
+		return env
+
+	def handle_one_request(self):
+		"""Handle a single HTTP request.
+	
+		You normally don't need to override this method; see the class
+		__doc__ string for information on how to handle specific HTTP
+		commands such as GET and POST.
+	
+		"""
+		try:
+			self.raw_requestline = self.rfile.readline()
+			if not self.raw_requestline:
+				self.close_connection = 1
+				return
+			if not self.parse_request():
+				# An error code has been sent, just exit
+				return
+			mname = 'do_' + self.command
+			if self.command not in ("GET", "POST") or self.path.startswith("/dav"):
+				mname = 'do_WebDAV'
+			if not hasattr(self, mname):
+				self.send_error(501, "Unsupported method (%r)" % self.command)
+				return
+			method = getattr(self, mname)
+			method()
+			self.wfile.flush() #actually send the response if not already done.
+		except socket.timeout, e:
+			#a read or a write timed out.  Discard this connection
+			self.log_error("Request timed out: %r", e)
+			self.close_connection = 1
+			return	
+	
 	def handle(self):
 		"""Handle multiple requests if necessary."""
 		self.close_connection = 1
@@ -69,6 +164,15 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			if not ready[0]: continue
 			self.handle_one_request()
 
+	def do_WebDAV(self):
+		self.create_request(self.command.lower())
+		environ = self.get_environ()
+		application = self.server.wsgi_app
+		for v in application(environ, self.start_response):
+			shutil.copyfileobj(StringIO(v), self.wfile)
+			
+		
+		
 	def do_GET(self):
 		"""serve a GET request"""
 		# create request object
