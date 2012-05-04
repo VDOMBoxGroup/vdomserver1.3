@@ -1782,7 +1782,8 @@ class VDOM_web_services_server(object):
 		if parent:
 			return self.__get_objects(parent)
 		else:
-			return self.__success()
+			return self.__get_objects(app)
+			#return self.__success()
 
 	def __do_update_object(self, app, parent, xml_obj, objects_xml_obj):
 		_name = xml_obj.attributes["name"]
