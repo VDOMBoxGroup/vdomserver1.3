@@ -46,8 +46,10 @@ class VDOM_webdav_server_thread(VDOM_thread):
 		
 		self.__server.daemon_threads=True
 		self.__server.serve_forever()
+		
+	def __get_app(self):
+		return self.app
 
 	def stop(self):
 		sys.stderr.write("Stop %s\n"%self.name)
 		if self.__server: self.__server.shutdown()
-

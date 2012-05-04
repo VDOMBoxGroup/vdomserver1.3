@@ -31,8 +31,8 @@ class VDOM_server(VDOM_threads_server):
 		self.__secure_web_server_thread=VDOM_secure_web_server_thread()
 		self.__secure_web_server_thread.start()		
 		
-		self.__webdav_server_thread=VDOM_webdav_server_thread()
-		self.__webdav_server_thread.start()
+		#self.__webdav_server_thread=VDOM_webdav_server_thread()
+		#self.__webdav_server_thread.start()
 
 
 	def stop_secure_server(self):

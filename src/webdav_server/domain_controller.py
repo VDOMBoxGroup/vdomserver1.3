@@ -28,8 +28,8 @@ class VDOM_domain_controller(object):
 		return ""
 
 	def authDomainUser(self, realmname, username, password, environ):
-		request = VDOM_webdav_request(environ)
-		managers.request_manager.current = request
+		#request = VDOM_webdav_request(environ)
+		#managers.request_manager.current = request
 		host = environ["HTTP_HOST"]
 		host = host.split(":")[0]
 		path = environ["PATH_INFO"]
