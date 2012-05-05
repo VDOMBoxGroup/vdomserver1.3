@@ -141,7 +141,16 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				# An error code has been sent, just exit
 				return
 			mname = 'do_' + self.command
-			if self.command not in ("GET", "POST") or self.path.startswith("/dav"):
+			host = self.headers["host"]
+			vh = managers.virtual_hosts
+			app_id = vh.get_site(host.lower())
+			realm = ""
+			if app_id:
+				appl = managers.xml_manager.get_application(app_id)
+				for obj in appl.get_objects_list():
+					if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
+						realm = "/" + obj.name
+			if self.command not in ("GET", "POST") or (realm and self.path.startswith(realm)):
 				mname = 'do_WebDAV'
 			if not hasattr(self, mname):
 				self.send_error(501, "Unsupported method (%r)" % self.command)
