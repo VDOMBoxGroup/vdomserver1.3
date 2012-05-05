@@ -142,16 +142,27 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				return
 			mname = 'do_' + self.command
 			host = self.headers["host"]
-			vh = managers.virtual_hosts
-			app_id = vh.get_site(host.lower())
-			realm = ""
-			if app_id:
-				appl = managers.xml_manager.get_application(app_id)
-				for obj in appl.get_objects_list():
-					if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
-						realm = "/" + obj.name
-			if self.command not in ("GET", "POST") or (realm and self.path.startswith(realm)):
+   
+			if self.command not in ("GET", "POST"):
 				mname = 'do_WebDAV'
+			else:
+				vh = managers.virtual_hosts
+				app_id = vh.get_site(host.lower())
+				realm = ""    
+				if app_id:
+					appl = managers.xml_manager.get_application(app_id)
+					dav_map = getattr(appl,"dav_map",None)
+					if not dav_map:
+						appl.dav_map = set()
+						dav_map = appl.dav_map
+						for obj in appl.get_objects_list():
+							if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
+								dav_map.add("/" + obj.name)
+       
+					for realm in dav_map:    
+						if self.path.startswith(realm):
+							mname = 'do_WebDAV'
+     
 			if not hasattr(self, mname):
 				self.send_error(501, "Unsupported method (%r)" % self.command)
 				return
