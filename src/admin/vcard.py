@@ -19,7 +19,7 @@ def run(request):
 	pis_system_guid = ""
 	show_form = ""
 	if "init" in args:
-		os.system( "/usr/locat/etc/init.d/card_process restart" )
+		os.system( "/usr/local/etc/init.d/card_process restart" )
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Reinitializing Virtcard process...";</script>')
 	elif "pis_login" in args and "pis_password" in args:
 		try:
