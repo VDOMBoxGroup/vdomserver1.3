@@ -214,7 +214,8 @@ class VDOM_object(object):
 			self.__object.set_attribute_ex(name, value)
 
 	def compute(self):
-		debug("[Object] Compute %s"%self.__id)
+		#debug("[Object] Compute %s"%self.__id)
+		pass
 
 	def recompute(self):
 		self.compute_state=compute_recompute_in_progress
