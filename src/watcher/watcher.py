@@ -39,7 +39,11 @@ class VDOM_watcher(VDOM_thread):
 					response=None
 				if response:
 					try:
-						self._socket.sendto(response, address)
+						shift = -1
+						for shift in xrange(0, len(response) / 8000):
+							self._socket.sendto(response[shift*8000:(shift+1)*8000], address)
+						self._socket.sendto(response[shift*8000:], address)
+							
 					except socket.error:
 						pass
 

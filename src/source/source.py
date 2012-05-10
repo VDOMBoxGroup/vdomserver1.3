@@ -210,7 +210,7 @@ class VDOM_source(object):
 			self.__compile_common()
 		if not self.__compute_code:
 			self.__compile_compute()
-		debug("[Source] Compute %s"%(self.id))
+		#debug("[Source] Compute %s"%(self.id))
 		sandbox=VDOM_sandbox(self.__execute_compute)
 		return sandbox.execute(VDOM_CONFIG["COMPUTE-TIMEOUT"], arguments={"parent": parent, "override": override, "include": include})
 
