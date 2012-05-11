@@ -336,11 +336,13 @@ class VDOM_application(VDOM_parser):
 			out.wait()
 			rc = out.returncode
 			if rc == 0:
-			    return True
+				return True
 			else:
-			    pass
-		except:
-			pass
+				pass
+		except Exception as e:
+			debug(unicode(e))
+		finally:
+			shutil.rmtree(path, ignore_errors=True)
 		
 	def parse_security_group(self, xml_obj):
 		name = xml_obj.get_child_by_name("name")

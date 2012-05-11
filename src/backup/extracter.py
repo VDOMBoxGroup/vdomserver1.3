@@ -1,5 +1,5 @@
 import managers, tempfile, os, utils.uuid
-from utils.app_management import import_application
+from utils.app_management import import_application, uninstall_application
 from subprocess import *
 import shlex, shutil
 import collections
@@ -40,9 +40,9 @@ class VDOM_app_extracter(VDOM_extracter):
         if os.path.exists(path):
 	    try:
 		appl = managers.xml_manager.get_application(self.app_id)
-		managers.xml_manager.uninstall_application(self.app_id)
-	    except:
-		pass                
+		uninstall_application(appl.id, remove_db = True, remove_zero_res = True, remove_storage = True, remove_ldap = True)
+	    except Exception as e:
+		debug(unicode(e))                
             import_application(os.path.join(path, self.app_id+".xml"))
         else:
             pass
@@ -135,7 +135,7 @@ class VDOM_file_storage_extracter(VDOM_extracter):
 class VDOM_ldap_extracter(VDOM_extracter):
     
     def extract(self):
-        path = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+        path = tempfile.mkdtemp("", "", VDOM_CONFIG["BACKUP-DIRECTORY"])
         cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (self.app_id, os.path.abspath(path))
         out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
         out.wait()
@@ -183,7 +183,7 @@ class VDOM_xapian_extracter(VDOM_extracter):
         appl = managers.xml_manager.get_application(self.app_id)
         for obj in appl.get_objects_list():
 	    if obj.type.id == '3187104f-f42c-4f7d-a8df-956fbff94948':
-		path = os.path.abspath(os.path.join(VDOM_CONFIG["TEMP-DIRECTORY"], str(obj.id)))
+		path = os.path.abspath(os.path.join(VDOM_CONFIG["BACKUP-DIRECTORY"], str(obj.id)))
 	if os.path.exists(path):
 	    return path
 	else:
@@ -194,7 +194,7 @@ class VDOM_xapian_extracter(VDOM_extracter):
         appl = managers.xml_manager.get_application(self.app_id)
         for obj in appl.get_objects_list():
 	    if obj.type.id == '3187104f-f42c-4f7d-a8df-956fbff94948':
-		path = os.path.abspath(os.path.join(VDOM_CONFIG["TEMP-DIRECTORY"], str(obj.id)))
+		path = os.path.abspath(os.path.join(VDOM_CONFIG["BACKUP-DIRECTORY"], str(obj.id)))
 	if os.path.exists(path):
 	    shutil.rmtree(path)
 	if path:

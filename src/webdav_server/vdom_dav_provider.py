@@ -115,8 +115,11 @@ class FileResource(DAVNonCollection):
 			raise DAVError(HTTP_FORBIDDEN) 
 		func_name = "delete"
 		xml_data = """{"path": "%s"}""" % self._path
-		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		self.provider.propManager1.removeProperties(self._path)
+		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		if ret:
+			self.provider.propManager1.removeProperties(self._path)
+		else:
+			raise DAVError(HTTP_FORBIDDEN)
 
 
 	def supportRecursiveMove(self, destPath):
@@ -240,8 +243,11 @@ class FolderResource(DAVCollection):
 			raise DAVError(HTTP_FORBIDDEN) 
 		func_name = "delete"
 		xml_data = """{"path": "%s"}""" % self._path
-		managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		self.provider.propManager1.removeProperties(self._path)
+		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		if ret:
+			self.provider.propManager1.removeProperties(self._path)
+		else:
+			raise DAVError(HTTP_FORBIDDEN)
 		self.removeAllLocks(True)
 
 	def copyMoveSingle(self, destPath, isMove):

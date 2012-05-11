@@ -1,7 +1,7 @@
 import managers, collections, xml.dom.minidom
 from extracter import VDOM_extracter
 from subprocess import *
-import shlex
+import shlex, shutil, os
 
 class VDOM_restore(object):
     
@@ -55,6 +55,9 @@ class VDOM_restore(object):
 		debug(str(out.stderr.read()))
 		debug("Error: %s has not restored" % dirname)
 		ok = False
+	for dirname in dirs:
+	    if dirs.get(dirname) and not dirs[dirname].startswith(os.path.abspath(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"])) and not dirs[dirname].startswith(os.path.abspath(VDOM_CONFIG["SHARE-DIRECTORY"])):
+		shutil.rmtree(dirs[dirname], ignore_errors = True)
 	if not ok:
 	    exit_error = "Some parts of application (id = %s) has not restored" % app_id
 	    debug(exit_error)

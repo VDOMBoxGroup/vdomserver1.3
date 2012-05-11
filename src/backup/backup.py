@@ -1,6 +1,6 @@
 from extracter import VDOM_extracter
 from subprocess import *
-import shlex
+import shlex, shutil
 
 class VDOM_backup(object):
     
@@ -66,6 +66,10 @@ class VDOM_backup(object):
 			debug(str(out.stderr.read()))
 			debug("%s has not backuped" % dirname)
 			ok = False
+			
+	    for dirname in src_path:
+		if not src_path[dirname].startswith(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"]) and not src_path[dirname].startswith(VDOM_CONFIG["SHARE-DIRECTORY"]):
+		    shutil.rmtree(src_path[dirname], ignore_errors = True)
 	    if not ok:
 		exit_error = "Some parts of application (id = %s) has not backuped" % app_id
 		return exit_error

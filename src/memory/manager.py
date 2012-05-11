@@ -436,6 +436,8 @@ class VDOM_xml_manager(object):
 				managers.file_manager.delete_app_storage_user_directory(appid, "")
 			except Exception as e:
 				raise Exception("Cannot remove application storage: %s" % unicode(e))
+			finally:
+				pass
 		
 		#remove ldap
 		if remove_ldap:
@@ -451,7 +453,8 @@ class VDOM_xml_manager(object):
 					raise Exception("Return code %s" % unicode(rc))
 			except Exception as e:
 				raise Exception("Cannot remove ldap %s" % unicode(e))
-		
+			finally:
+				pass		
 		del appobj
 		return True
 
@@ -631,6 +634,7 @@ class VDOM_xml_manager(object):
 			pass
 		finally:
 			main_buf.write("</LDAP>\n")
+			shutil.rmtree(path, ignore_errors=True)
 			return main_buf.getvalue()
 	    
 	def modify_objects_count(self, num):
