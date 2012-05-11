@@ -1434,16 +1434,26 @@ class VDOM_web_services_server(object):
 	def get_server_action(self, sid, skey, appid, objid, actionid):
 		"""get server action"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		(app, obj, errmsg) = self.__find_object(appid, objid)
-		if not obj:
-			return errmsg
-		else:
+		(app, msg) = self.__find_application(appid)
+		if not app:
+			return msg
+		obj = app.search_object(objid)
+		if obj:
 			if actionid not in obj.actions["id"]:
 				raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
 			else:
 				action = obj.actions["id"][actionid]
-				return '<Action ID="%s" Name="%s" ObjectID="%s"><![CDATA[%s]]></Action>\n'% (actionid, action.name, objid,action.code)
-		
+				return """<Action ID="%s" Name="%s" ObjectID="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
+				        action.id, action.name, objid, action.top, action.left, action.state, action.code)
+		elif objid in app.global_actions:
+			if actionid not in app.global_actions[objid]:
+				raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+			else:
+				action = app.global_actions[objid][actionid]
+				return """<Action ID="%s" Name="%s" ObjectID="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
+				        action.id, action.name, objid, action.top, action.left, action.state, action.code)
+		else:
+			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
 	
 	def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
 		"""set server action"""
