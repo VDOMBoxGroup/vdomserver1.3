@@ -280,6 +280,9 @@ def set_library(sid, skey, appid, name, data, _SOAPContext):
 def remove_library(sid, skey, appid, name, _SOAPContext):
 	return proxy([managers.soap_server.del_lib, sid, skey, appid, name])
 
+def get_library(sid, skey, appid, name, _SOAPContext):
+	return proxy([managers.soap_server.get_lib, sid, skey, appid, name])
+
 def get_libraries(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.get_libs, sid, skey, appid])
 

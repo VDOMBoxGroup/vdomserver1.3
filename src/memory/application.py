@@ -904,6 +904,22 @@ class VDOM_application(VDOM_parser):
 		finally:
 			self.__sem.unlock()
 
+	def get_library(self, name):
+		if not is_valid_identifier(name):
+			raise SOAPpy.faultType(lib_name_error, _("Incorrect library name"), "")
+		self.__sem.lock()
+		try:
+			library = None
+			for child in self.libraries_element.children:
+				if name == child.attributes["name"]:
+					library = child
+					break
+			if not library:
+				raise SOAPpy.faultType(lib_name_error, _("No such library '%s'" % name), "")
+			return library.toxml(encode = False)
+		finally:
+			self.__sem.unlock()
+
 	def set_library(self, name, data):
 		if not is_valid_identifier(name):
 			raise SOAPpy.faultType(lib_name_error, _("Incorrect library name"), "")

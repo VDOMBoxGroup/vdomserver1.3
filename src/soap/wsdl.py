@@ -51,6 +51,7 @@ methods = {
 	"set_library" : ["sid", "skey", "appid", "name", "data"],
 	"remove_library" : ["sid", "skey", "appid", "name"],
 	"get_libraries" : ["sid", "skey", "appid"],
+	"get_library" : ["sid", "skey", "appid", "name"],
 	"delete_object" : ["sid", "skey", "appid", "objid"],
 	"list_resources" : ["sid", "skey", "ownerid"],
 	"modify_resource" : ["sid", "skey", "appid", "objid", "resid", "attrname", "operation", "attr"],
