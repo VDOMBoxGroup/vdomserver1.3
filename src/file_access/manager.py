@@ -145,7 +145,7 @@ class VDOM_file_manager(object):
 			if async:
 				ret = self.write_async(new_path, content)
 				self.__sem.lock()
-				move(new_path, path)
+				shutil.move(new_path, path)
 				self.__sem.unlock()
 			else:
 				fh = open(new_path, "wb")
@@ -154,7 +154,7 @@ class VDOM_file_manager(object):
 				else:
 					fh.write(content)
 				fh.close()
-				move(new_path, path)
+				shutil.move(new_path, path)
 		except:
 			raise
 			#raise VDOM_exception(_("Can't write file %s") % path)
