@@ -1878,6 +1878,14 @@ class VDOM_web_services_server(object):
 		app.sync()
 		return '<Library Name="%s"/>' % libname
 
+	def get_lib(self, sid, skey, appid, libname):
+		"""get library"""
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		(app, errmsg) = self.__find_application(appid)
+		if not app:
+			return errmsg
+		return app.get_library(libname)
+
 	def get_libs(self, sid, skey, appid):
 		"""get libraries"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
