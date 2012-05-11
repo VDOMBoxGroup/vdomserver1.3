@@ -153,6 +153,8 @@ def update_application(path, vh):
 			shutil.rmtree(tmpdbdir, ignore_errors=True)
 		if tmpresdir:
 			shutil.rmtree(tmpresdir, ignore_errors=True)
+		if tmpldapdir:
+			shutil.rmtree(tmpldapdir, ignore_errors=True)
 		raise
 		
 	# install new version
@@ -172,6 +174,8 @@ def update_application(path, vh):
 			shutil.rmtree(tmpdbdir, ignore_errors=True)
 		if tmpresdir:
 			shutil.rmtree(tmpresdir, ignore_errors=True)
+		if tmpldapdir:
+			shutil.rmtree(tmpldapdir, ignore_errors=True)
 		return ret
 
 	app_exist = True
@@ -240,5 +244,7 @@ def update_application(path, vh):
 	#	shutil.rmtree(tmpdbdir, ignore_errors=True)
 	if tmpresdir and not keep_backup:
 		shutil.rmtree(tmpresdir, ignore_errors=True)
+	if tmpldapdir and not keep_backup:
+		shutil.rmtree(tmpldapdir, ignore_errors=True)
 	return ret
 
