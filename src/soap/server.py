@@ -1337,23 +1337,6 @@ class VDOM_web_services_server(object):
 		root.delete()
 		app.sync()
 		return self.__success()
-
-	def __do_get_server_actions(self, obj ):
-		if not len(obj.actions["name"]): return ""
-		if 1 == obj.type.container: return ""
-		result = '<Container ID="%s">\n' % obj.id
-		for _name in obj.actions["name"]:
-			x = obj.actions["name"][_name]
-			result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (x.id, x.name, x.top, x.left, x.state)
-			result += """<![CDATA[%s]]>\n""" % x.code
-			result += "</Action>\n"
-		result += '</Container>\n'
-		
-		for x in obj.objects_list:
-			result += self.__do_get_server_actions(x)
-		return result
-	
-	
 	
 	def get_server_actions(self, sid, skey, appid, objid, check=True):
 		if check:
