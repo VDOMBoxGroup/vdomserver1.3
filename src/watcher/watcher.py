@@ -53,7 +53,7 @@ class VDOM_watcher(VDOM_thread):
 
 	def state(self, match):
 		"""<action\s+name=(?P<quote1>['"])state(?P=quote1)\s*""" \
-		"""(?:/>|>\s*(?:<option\s+name=(?P<quote2>['"])thread(?P=quote2)\s*>\s*(?P<thread>\d+)\s*</option>\s*)?</action>)"""
+		"""(?:/>|>\s*(?:<option\s+name=(?P<quote2>['"])thread(?P=quote2)\s*>\s*(?P<thread>-?\d+)\s*</option>\s*)?</action>)"""
 		if match.group("thread"):
 			try:
 				thread, smart, stack=get_thread_trace(int(match.group("thread")))
