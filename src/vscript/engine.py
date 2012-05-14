@@ -160,5 +160,6 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 		raise
 	except errors.python as error:
 		if not quiet:
-			show_exception_details(source, errors.system_error(unicode(error)))
+			check_exception(source, error, quiet=quiet)
+			#show_exception_details(source, errors.system_error(unicode(error)))
 		raise
