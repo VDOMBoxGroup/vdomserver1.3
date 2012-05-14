@@ -31,7 +31,7 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 	history=traceback.extract_tb(extraceback)
 	path_python=sys.prefix
 	path_binary=os.path.split(os.path.dirname(sys.argv[0]))[0]
-	vbline=error.line
+	vbline=error.line if isinstance(error, errors.generic) else None
 	if not quiet:
 		print "- - - - - - - - - - - - - - - - - - - -"
 	for path, line, function, st in history:
@@ -51,7 +51,8 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 	if isinstance(error, errors.generic):
 		error.line=vbline
 		error.source=error_type
-	if not quiet: debug(error, console=True)
+	if not quiet:
+		debug(error, console=True)
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
 	
