@@ -52,6 +52,32 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
 
+def check_python_exception(source, error, error_type=errors.generic.runtime, quiet=None):
+	exclass, exexception, extraceback=sys.exc_info()
+	history=traceback.extract_tb(extraceback)
+	path_python=sys.prefix
+	path_binary=os.path.split(os.path.dirname(sys.argv[0]))[0]
+	vbline=None
+	if not quiet: print "- - - - - - - - - - - - - - - - - - - -"
+	for path, line, function, st in history:
+		if path.startswith(".."):
+			path=os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), path))
+		if path.startswith(path_binary):
+			path="<server>%s"%path[len(path_binary):]
+		elif path.startswith(path_python):
+			path="<python>%s"%path[len(path_python):]
+		elif path==vscript_source_string:
+			st=source[line-1][2]
+			vbline=source[line-1][0] or None
+		if not quiet:
+			print (u"%s, line %s%s - %s"%(path, line, ": %s"%st if st else "", function)).encode("utf-8")
+	if not quiet: print "- - - - - - - - - - - - - - - - - - - -"
+	#error.line=vbline
+	#error.source=error_type
+	if not quiet: debug(error, console=True)
+	del exclass, exexception, extraceback, history
+	
+	
 def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, anyway=1, quiet=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
 	# debug("[VScript] Wait for mutex...")
 	mutex=auto_mutex("vscript_engine_compile_mutex")
@@ -160,6 +186,6 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 		raise
 	except errors.python as error:
 		if not quiet:
-			check_exception(source, error, quiet=quiet)
+			check_python_exception(source, error, quiet=quiet)
 			#show_exception_details(source, errors.system_error(unicode(error)))
 		raise
