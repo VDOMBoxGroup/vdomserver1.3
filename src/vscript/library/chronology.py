@@ -199,13 +199,13 @@ def v_timevalue(value):
 
 
 def v_year(value):
-	return decode_date(value.as_date)[0]
+	return integer(decode_date(value.as_date)[0])
 
 def v_month(value):
-	return decode_date(value.as_date)[1]
+	return integer(decode_date(value.as_date)[1])
 
 def v_day(value):
-	return decode_date(value.as_date)[2]
+	return integer(decode_date(value.as_date)[2])
 	
 def v_weekday(value, firstdayofweek=None):
 	value=value.as_date
@@ -220,13 +220,13 @@ def v_weekday(value, firstdayofweek=None):
 	return integer(result)
 
 def v_hour(value):
-	return decode_date(value.as_date)[3]
+	return integer(decode_date(value.as_date)[3])
 
 def v_minute(value):
-	return decode_date(value.as_date)[4]
+	return integer(decode_date(value.as_date)[4])
 
 def v_second(value):
-	return decode_date(value.as_date)[5]
+	return integer(decode_date(value.as_date)[5])
 
 
 def v_dateadd(interval, number, value):

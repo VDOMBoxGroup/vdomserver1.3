@@ -33,7 +33,8 @@ class string(subtype):
 
 
 	def __iter__(self):
-		for character in self._value: return variant(string(character))
+		from ..variables import variant
+		for character in self._value: yield variant(string(character))
 
 	def __len__(self):
 		return len(self._value)
