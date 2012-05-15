@@ -21,14 +21,17 @@ def run(request):
                 return
         if "devid" in args and "appid" in args and "rev" in args:
                 rev_info = managers.backup_manager.get_revision_info(args["devid"][0], appid, args["rev"][0])
-                managers.backup_manager.restore(args["devid"][0], appid, args["rev"][0])
+                ret = managers.backup_manager.restore(args["devid"][0], appid, args["rev"][0])
                 vh = request.server().virtual_hosting()
                 if rev_info["virtual_hosts"]:
                         sites = rev_info["virtual_hosts"].split(', ')
                         if sites:
                                 for site in sites:
                                         vh.set_site(site, appid)
-                request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been restored";</script>')
+                if ret[1] != "":
+                        request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been restored with warnings\n%s";</script>' % ret[1])
+                else:
+                        request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been restored";</script>')
                 
         request.write("""<html>
 <head>

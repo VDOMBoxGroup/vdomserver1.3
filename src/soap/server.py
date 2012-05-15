@@ -1659,7 +1659,7 @@ class VDOM_web_services_server(object):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		try:
 			result = managers.backup_manager.restore(driverid, appid, revision)
-			if result:
+			if result[0]:
 				return "<Result>OK</Result> "	
 			else:
 				return "<Result>FAILED</Result> "
