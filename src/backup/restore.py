@@ -1,4 +1,5 @@
 import managers, collections, xml.dom.minidom
+from cStringIO import StringIO
 from extracter import VDOM_extracter
 from subprocess import *
 import shlex, shutil, os
@@ -10,6 +11,8 @@ class VDOM_restore(object):
 	dirs= {}
 	driver_path = driver.mount()
 	ok = True
+	errors = StringIO()
+	exit_error = ""
         for key in extracters:
 	    dirname = key
             dirs[key] = extracters[key].get_restore_path()
@@ -48,21 +51,25 @@ class VDOM_restore(object):
 		if dirname in extracters:
 		    try: 
 			extracters[dirname].restore(dirs[dirname])
-		    except: 
-			debug("Error: %s has not restored" % dirname)
+		    except Exception as e: 
+			debug("Error: %s has not restored: %s" % (dirname, unicode(e)))
+			errors.write("Error: %s has not restored: %s\n" % (dirname, unicode(e)))
 			ok = False
 	    else:
-		debug(str(out.stderr.read()))
+		e = unicode(out.stderr.read())
+		debug(e)
 		debug("Error: %s has not restored" % dirname)
+		errors.write("Error: %s has not restored: %s\n" % (dirname, unicode(e)))
 		ok = False
 	for dirname in dirs:
 	    if dirs.get(dirname) and not dirs[dirname].startswith(os.path.abspath(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"])) and not dirs[dirname].startswith(os.path.abspath(VDOM_CONFIG["SHARE-DIRECTORY"])):
 		shutil.rmtree(dirs[dirname], ignore_errors = True)
 	if not ok:
-	    exit_error = "Some parts of application (id = %s) has not restored" % app_id
+	    exit_error = "Some parts of application (id = %s) has not restored:\n%s" % (app_id, errors.getvalue())
 	    debug(exit_error)
+	errors.close()
 	driver.umount()
-	return ok
+	return (ok, exit_error)
 	    
             
     def list_apps(self, driver_path):
