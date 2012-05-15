@@ -141,7 +141,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				# An error code has been sent, just exit
 				return
 			mname = 'do_' + self.command
-			host = self.headers["host"]
+			host = self.headers.get("host")
    
 			if self.command not in ("GET", "POST"):
 				mname = 'do_WebDAV'

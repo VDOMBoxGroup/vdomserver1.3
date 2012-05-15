@@ -52,12 +52,12 @@ def uninstall_application(appid, remove_db = True, remove_zero_res = True, remov
 		#TODO: find better way to change current application
 		request = managers.request_manager.get_request()
 		request.set_application_id(appid)
-		managers.xml_manager.uninstall_application(appid, remove_db, remove_zero_res, remove_storage, remove_ldap)
+		ret = managers.xml_manager.uninstall_application(appid, remove_db, remove_zero_res, remove_storage, remove_ldap)
 	except Exception, e:
 		import traceback
 		traceback.print_exc(file=debugfile)
-		return "Error: " + str(e)
-	return None
+		return (False, "Error: " + str(e))
+	return ret
 
 def update_application(path, vh):
 	appid = ""

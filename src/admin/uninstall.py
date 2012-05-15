@@ -13,7 +13,7 @@ def run(request):
 	args = request.arguments().arguments()
 	applst = managers.xml_manager.get_applications()
 	vh = request.server().virtual_hosting()
-	p = True
+	p = (None, None)
 	remove_db = True if "remove_db" in args else False
 	remove_ldap = True if "remove_ldap" in args else False
 	remove_storage = True if "remove_storage" in args else False
@@ -28,10 +28,13 @@ def run(request):
 				for s in vh.get_sites():
 					if vh.get_site(s) == aid:
 						vh.set_site(s, None)
-	if not p:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been uninstalled";</script>')
-	elif True != p:
-		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % p)
+	if p[0]:
+		if p[1] != "":
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been uninstalled with warnings:\n%s";</script>'%p[1])
+		else:
+			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Application has been uninstalled";</script>')
+	elif False == p[0]:
+		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % p[1])
 
 	applst = managers.xml_manager.get_applications()
 
