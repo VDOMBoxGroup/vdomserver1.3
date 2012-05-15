@@ -431,16 +431,18 @@ class VDOM_xml_manager(object):
 #		try: shutil.rmtree(the_path)
 #		except: pass
 		# remove storage
+		from cStringIO import StringIO
+		outp = StringIO()
 		if remove_storage:
 			try:
 				managers.file_manager.delete_app_storage_user_directory(appid, "")
 			except Exception as e:
-				raise Exception("Cannot remove application storage: %s" % unicode(e))
+				outp.write("Cannot remove application storage: %s\n" % unicode(e))
 			finally:
 				pass
 		
 		#remove ldap
-		if remove_ldap:
+		if remove_ldap and not sys.platform.startswith("win"):
 			from subprocess import Popen, PIPE
 			import shlex
 			try:
@@ -452,11 +454,13 @@ class VDOM_xml_manager(object):
 				if rc:
 					raise Exception("Return code %s" % unicode(rc))
 			except Exception as e:
-				raise Exception("Cannot remove ldap %s" % unicode(e))
+				outp.write("Cannot remove ldap %s\n" % unicode(e))
 			finally:
 				pass		
 		del appobj
-		return True
+		error_string = outp.getvalue()
+		outp.close()
+		return (True, error_string)
 
 	def export_application(self, appid, exptype, path, embed_types = False):
 		"""export application: save to path/<appid>.xml or path/<appid>.zip"""
