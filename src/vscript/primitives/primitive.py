@@ -30,7 +30,7 @@ class primitive(object):
 
 	byref=property(_get_byref)
 	byval=property(_get_byval)
-
+	
 
 	def redim(self, preserve, *subscripts):
 		raise errors.python_using_abstract
