@@ -23,11 +23,22 @@ if len(sys.argv)>1:
             server=sys.argv[2]
 
 res_buf = StringIO()
+mbuffer = StringIO()
 res_buf.write("<ThreadWatcher>")
 sock=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.settimeout(timeout)
 sock.sendto(request, (server, port))
-message, address=sock.recvfrom(frame)
+while 1:
+    try:
+        if mbuffer.getvalue().endswith("</reply>"):
+            break
+        data, address = sock.recvfrom(frame)
+        if not data: break
+        mbuffer.write(data)
+    except socket.timeout:
+        break
+message = mbuffer.getvalue()
+mbuffer.close()
 document = parseString(message)
 nodeList = document.getElementsByTagName("thread")
 threadList = []

@@ -1,9 +1,8 @@
-# coding=utf-8
 import sys, socket, time, msvcrt, os
 from xml.dom.minidom import parseString
 from cStringIO import StringIO
 
-server="10.45.0.188" 
+server="127.0.0.1" 
 port=10101
 frame=64*1024
 timeout=31*86400
@@ -23,8 +22,19 @@ while True:
 		if key == 13:               # если Enter:
 			sys.exit()
 	res_buf = StringIO()
+	mbuffer = StringIO()
 	sock.sendto(request, (server, port))
-	message, address=sock.recvfrom(frame)
+	while 1:
+		try:
+			if mbuffer.getvalue().endswith("</reply>"):
+				break
+			data, address = sock.recvfrom(frame)
+			if not data: break
+			mbuffer.write(data)
+		except socket.timeout:
+			break
+	message = mbuffer.getvalue()
+	mbuffer.close()
 	document = parseString(message)
 	nodeList = document.getElementsByTagName("thread")
 	for node in nodeList:
