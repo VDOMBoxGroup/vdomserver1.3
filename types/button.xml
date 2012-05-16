@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.29.6200</Version>
+    <Version>1.30.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -272,7 +272,7 @@
       <Visible>1</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|andale)|(#Lang(411)|arial)|(#Lang(412)|arial)|(#Lang(413)|book)|(#Lang(414)|comic)|(#Lang(415)|courier)|(#Lang(416)|georgia)|(#Lang(417)|helvetica)|(#Lang(418)|impact)|(#Lang(419)|symbol)|(#Lang(421)|tahoma)|(#Lang(422)|terminal)|(#Lang(423)|times)|(#Lang(424)|times)|(#Lang(425)|verdana)|(#Lang(426)|webdings)|(#Lang(427)|wingdings))</CodeInterface>
+      <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^[\w ]{3,30}$</RegularExpressionValidation>

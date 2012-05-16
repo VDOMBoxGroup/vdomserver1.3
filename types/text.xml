@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.13.6720</Version>
+    <Version>3.14.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -152,7 +152,7 @@
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|andale)|(#Lang(406)|arial)|(#Lang(407)|arial)|(#Lang(408)|book)|(#Lang(409)|comic)|(#Lang(411)|courier)|(#Lang(412)|georgia)|(#Lang(413)|helvetica)|(#Lang(414)|impact)|(#Lang(415)|symbol)|(#Lang(416)|tahoma)|(#Lang(417)|terminal)|(#Lang(418)|times)|(#Lang(419)|times)|(#Lang(421)|verdana)|(#Lang(422)|webdings)|(#Lang(423)|wingdings))</CodeInterface>
+      <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^(andale mono|arial|arial black|book antiqua|comic sans ms|courier new|georgia|helvetica|impact|symbol|tahoma|terminal|times new roman|times|verdana|webdings|wingdings)$</RegularExpressionValidation>
