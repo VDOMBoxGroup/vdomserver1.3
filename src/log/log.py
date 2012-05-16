@@ -52,8 +52,8 @@ class VDOM_log_manager:
 		thread.start_new_thread(self.__write_thread, ())
 		self.__write_start()
 
-	def __del__(self):
-		self.__write_close()
+	#def __del__(self):
+	#	self.__write_close()
 
 	def __write_thread(self):
 		"""thread that implements async writing"""
