@@ -64,8 +64,26 @@ def login_virtual_card( user, password):
 	return sorted( not_sorted, cmp=lambda x,y: cmp(x[1], y[1]) )
 
 
-	
+def set_system_name(name):
+	system_options["system_name"] = name
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "system_name"), system_options["system_name"])
 
+def set_server_state(state):
+	system_options["server_state"] = state
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "server_state"), system_options["server_state"])
+
+def set_card_state(state):
+	system_options["card_state"] = state
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "card_state"), system_options["card_state"])
+
+def set_loaded_application(app_list):
+	from cStringIO import StringIO
+	buff = StringIO()
+	system_options["applications"] = app_list
+	for app in app_list:
+		buff.write("%s (%s)\n" % (app.name, app.id))
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "loaded_applications"), buff.getvalue())
+	buff.close()
 
 import managers
 from utils.exception import VDOM_exception
