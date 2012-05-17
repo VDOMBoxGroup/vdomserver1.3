@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.3.6720</Version>
+    <Version>2.4.6720</Version>
     <InterfaceType>2</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -167,7 +167,7 @@
       <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>color</Name>
@@ -738,7 +738,7 @@ class VDOM_richtext(VDOM_object):
 		if "" != self.color:
 			styles["color"] = "#%s" % self.color
 		if "" != self.font:
-			styles["font"] = "%s" % self.font
+			styles["font"] = "%s" % self.font.replace('"', "'")
 		if "1" == self.underlined:
 			styles["text-decoration"] += "underline"
 		if "1" == self.strikethrough:

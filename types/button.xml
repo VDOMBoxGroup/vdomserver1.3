@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.30.6200</Version>
+    <Version>1.32.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -275,7 +275,7 @@
       <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[\w ]{3,30}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
@@ -1184,7 +1184,7 @@ class VDOM_button(VDOM_object):
 			else:
 				spstyle.write(u"12px ")
 			if self.fontfamily:
-				spstyle.write(u"%s" % self.fontfamily)
+				spstyle.write(u"%s" % self.fontfamily.replace('"', "'"))
 			spstyle.write(u";")
 			if self.align:
 				spstyle.write(u"text-align: %s;" % self.align)
@@ -1308,7 +1308,7 @@ class VDOM_button(VDOM_object):
 						bord = border_string,
 						txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
 						align = self.align, color = self.color, fstyle = self.fontstyle, 
-						txt_decor = self.textdecoration, fweight = self.fontweight, ffamily = self.fontfamily,
+						txt_decor = self.textdecoration, fweight = self.fontweight, ffamily = self.fontfamily.replace('"', "'"),
 						fsize = fontsize, label = label, contents = contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 

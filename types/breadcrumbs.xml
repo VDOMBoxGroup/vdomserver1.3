@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.6.1</Version>
+    <Version>2.8.1</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, dialog_2, vdomclass</Containers>
@@ -152,10 +152,10 @@
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|andale)|(#Lang(404)|arial)|(#Lang(405)|arial)|(#Lang(406)|book)|(#Lang(407)|comic)|(#Lang(408)|courier)|(#Lang(409)|georgia)|(#Lang(411)|helvetica)|(#Lang(412)|impact)|(#Lang(413)|symbol)|(#Lang(414)|tahoma)|(#Lang(415)|terminal)|(#Lang(416)|times)|(#Lang(417)|times)|(#Lang(418)|verdana)|(#Lang(419)|webdings)|(#Lang(421)|wingdings))</CodeInterface>
+      <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(andale mono|arial|arial black|book antiqua|comic sans ms|courier new|georgia|helvetica|impact|symbol|tahoma|terminal|times new roman|times|verdana|webdings|wingdings)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
@@ -407,7 +407,7 @@ class VDOM_breadcrumbs(VDOM_object):
 		display = u"display:none;" if self.visible == "0" else u""
 		font = ""
 		mainstyle="z-index: %s;position: %s;top: %spx;left: %spx; width: %spx; overflow: visible;%s"%(self.zindex, self.position, self.top, self.left, self.width, display)
-		mainstyle += " font: %spx %s;" % (self.fontsize, self.fontfamily)
+		mainstyle += " font: %spx %s;" % (self.fontsize, self.fontfamily.replace('"', "'"))
 		if self.textcolor:
 			mainstyle += " color: #%s;" % self.textcolor
 		top = application.objects.search(self.id)
@@ -482,7 +482,7 @@ class VDOM_breadcrumbs(VDOM_object):
 				"<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
 				"%s</container>"%(
 					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-					0, 0, self.width, self.height, self.fontfamily, self.fontsize, res, 
+					0, 0, self.width, self.height, self.fontfamily.replace('"', "'"), self.fontsize, res, 
 					contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
