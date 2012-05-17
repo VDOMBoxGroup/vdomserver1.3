@@ -4,7 +4,7 @@ import __builtin__
 class File_argument(object):
 	def __init__(self,fileobj, name):
 		self.fileobj = fileobj
-		self.name = name
+		self.name = self.__try_decode(name)
 	def __getitem__(self, key):
 		if not isinstance(key, int):
 			raise TypeError
@@ -17,6 +17,12 @@ class File_argument(object):
 			return self.name
 		else:
 			raise AttributeError
+		
+	def __try_decode(self, item):
+		if isinstance(item, str):
+			return unicode(item.decode("utf-8", "ignore"))
+		else:
+			return item
 		
 class Attachment(object):
 	def __init__(self, file_argument):
