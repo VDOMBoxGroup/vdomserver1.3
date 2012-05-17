@@ -482,7 +482,7 @@ class VDOM_breadcrumbs(VDOM_object):
 				"<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
 				"%s</container>"%(
 					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-					0, 0, self.width, self.height, self.fontfamily.replace('"', "'"), self.fontsize, res, 
+					0, 0, self.width, self.height, self.fontfamily.replace('"', '').replace("'", ''), self.fontsize, res, 
 					contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
