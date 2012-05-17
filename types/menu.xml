@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.50.6720</Version>
+    <Version>1.51.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -996,7 +996,7 @@ class VDOM_menu(VDOM_object):
 				imagefile = resource.id
 			else:
 				im1 = VDOM_imaging()
-				im1.create_font(name = self.fontfamily, size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
+				im1.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
 				im1.load(application.id,image)
 				color1 = "000000"
 				if self.color:
@@ -1009,7 +1009,7 @@ class VDOM_menu(VDOM_object):
 				rolloverfile = resource.id
 			else:
 				im2 = VDOM_imaging()
-				im2.create_font(name = self.fontfamily, size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
+				im2.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
 				im2.load(application.id,rollover)
 				color1 = "000000"
 				if self.color:
@@ -1236,7 +1236,7 @@ class VDOM_menu(VDOM_object):
 				else:
 					fontstyles["font"] += "12px "
 				if "" != self.fontfamily:
-					fontstyles["font"] += self.fontfamily
+					fontstyles["font"] += self.fontfamily.replace('"', "'")
 				fontstyles["font"] += ";"
 				
 				for key in fontstyles:
@@ -1307,7 +1307,7 @@ class VDOM_menu(VDOM_object):
 		else:
 			if representation:
 				result +="<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" color=\"#%s\" textalign=\"left\" fontfamily=\"%s\" fontsize=\"%s\" fontstyle=\"%s\" fontweight=\"%s\">%s</text>"%(
-							0, 0, self.width, self.height, self.color, self.fontfamily, self.fontsize, self.fontstyle, self.fontweight, "<![CD"+"ATA[" + representation + "]"+"]>")
+							0, 0, self.width, self.height, self.color, self.fontfamily.replace('"', "'"), self.fontsize, self.fontstyle, self.fontweight, "<![CD"+"ATA[" + representation + "]"+"]>")
 				
 		result += "</container>"
 		
