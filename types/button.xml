@@ -1308,7 +1308,7 @@ class VDOM_button(VDOM_object):
 						bord = border_string,
 						txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
 						align = self.align, color = self.color, fstyle = self.fontstyle, 
-						txt_decor = self.textdecoration, fweight = self.fontweight, ffamily = self.fontfamily.replace('"', "'"),
+						txt_decor = self.textdecoration, fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
 						fsize = fontsize, label = label, contents = contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 

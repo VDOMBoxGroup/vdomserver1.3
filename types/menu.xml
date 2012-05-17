@@ -1307,7 +1307,7 @@ class VDOM_menu(VDOM_object):
 		else:
 			if representation:
 				result +="<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" color=\"#%s\" textalign=\"left\" fontfamily=\"%s\" fontsize=\"%s\" fontstyle=\"%s\" fontweight=\"%s\">%s</text>"%(
-							0, 0, self.width, self.height, self.color, self.fontfamily.replace('"', "'"), self.fontsize, self.fontstyle, self.fontweight, "<![CD"+"ATA[" + representation + "]"+"]>")
+							0, 0, self.width, self.height, self.color, self.fontfamily.replace('"', '').replace("'", ''), self.fontsize, self.fontstyle, self.fontweight, "<![CD"+"ATA[" + representation + "]"+"]>")
 				
 		result += "</container>"
 		
