@@ -21,6 +21,7 @@ VDOM_CONFIG = {
 	"WATCHER-PORT"				: 10101,
 	"SERVER-PIDFILE"			: "../app/server.pid",
 	"LOGGER-PIDFILE"			: "../app/logger.pid",
+        "SERVER-INFORMATION-DIRECTORY"          : "../app/spool",
 	"SERVER-SOURCE-MANAGER-MEMORY-QUOTE"	: "10240",
 	"AUTO-REMOVE-INCORRECT-APPLICATIONS"	: 0,
 
