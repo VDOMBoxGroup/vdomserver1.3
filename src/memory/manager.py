@@ -130,6 +130,10 @@ class VDOM_xml_manager(object):
 	def load_application(self, filename, boot = False):
 		"""load application object from external xml file, Return: (if app exists, app object)"""
 		doc = xml_object(filename)
+		for node in doc.node.childNodes:
+			if node.nodeName == "EmbeddedTypes" or node.nodeName == "Backupfiles":
+				doc.node.removeChild(node)
+		doc.sync(filename)
 		e = None
 		obj = VDOM_application(self)
 		try:
