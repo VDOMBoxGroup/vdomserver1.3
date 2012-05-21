@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.2.11</Version>
+    <Version>2.4.11</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -3954,7 +3954,7 @@ b250aW51ZTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBpZiAo
 IWZvdW5kKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgIH0KICAg
 ICAgICB9CiAgICB9CgogICAgLy8gY2hlY2sgcnJ1bGVfYnlzZXRwb3MgcHJvY2Vzc2VkIGluIHBl
 cmlvZF9sb29wCiAgICByZXR1cm4gdHJ1ZTsKfQoK]]></Resource>
-    <Resource ID="9bfc1f90-0c7f-7d6f-913c-6ec2ab6d657a" Name="parseRrule.js" Type="js"><![CDATA[ZnVuY3Rpb24gcGFyc2VScnVsZVNvdXJjZXMoIHNvdXJjZXMgKQ0KCQl7DQoJCQl2YXIgc3RhcnRE
+    <Resource ID="7df64b35-c17d-db3b-5252-6f4f5ba1d4ef" Name="parseRrule.js" Type="js"><![CDATA[ZnVuY3Rpb24gcGFyc2VScnVsZVNvdXJjZXMoIHNvdXJjZXMgKQ0KCQl7DQoJCQl2YXIgc3RhcnRE
 YXRlIAk9IG5ldyBEYXRlKCBzb3VyY2VzLnN0YXJ0ICk7DQoJCQl2YXIgZW5kRGF0ZQkJPSBuZXcg
 RGF0ZSggc291cmNlcy5lbmQgKTsNCgkJCXZhciBldmVudFNvdXJjZXM9IFtdOw0KCQkJdmFyIHNv
 dXJjZQkJPSBzb3VyY2VzLnNvdXJjZTsNCg0KCQkJZm9yICggdmFyIGkgPSAwOyBpIDwgc291cmNl
@@ -3979,12 +3979,13 @@ CgkJCQkJCX0NCgkJCQkJCQ0KCQkJCQkJdmFyIG9jY3VycmVuY2VzID0gc2NoLm9jY3VycmVuY2Vz
 X2JldHdlZW4oIHN0YXJ0RGF0ZSwgZW5kRGF0ZSApOw0KDQoJCQkJCQlmb3IgKCB2YXIgayA9IDA7
 IGsgPCBvY2N1cnJlbmNlcy5sZW5ndGg7IGsrKyApDQoJCQkJCQl7DQoJCQkJCQkJdmFyIGNvcHkg
 PSB7fTsNCgkJCQkJCQlqUXVlcnkuZXh0ZW5kKCBjb3B5LCBldmVudCApOw0KCQkJCQkJCWNvcHku
-c3RhcnQgPSBvY2N1cnJlbmNlc1sgayBdOw0KCQkJCQkJCWNvcHkuZW5kID0gbmV3IERhdGUoIGNv
-cHkuc3RhcnQuZ2V0VGltZSgpICsgZGVsdGEgKTsNCgkJCQkJCQlldmVudFNvdXJjZXMucHVzaCgg
-Y29weSApOw0KCQkJCQkJfQ0KCQkJCQl9DQoJCQkJCWVsc2UNCgkJCQkJewkNCgkJCQkJCWV2ZW50
-LnN0YXJ0ID0gbmV3IERhdGUoIGV2ZW50LnN0YXJ0ICk7DQoJCQkJCQlldmVudC5lbmQgPSBuZXcg
-RGF0ZSggZXZlbnQuZW5kICk7DQoJCQkJCQlldmVudFNvdXJjZXMucHVzaCggZXZlbnQgKTsNCgkJ
-CQkJfQ0KCQkJCX0NCgkJCX0NCgkJCXJldHVybiBldmVudFNvdXJjZXM7DQoJCX0=]]></Resource>
+c3RhcnQgPSBvY2N1cnJlbmNlc1sgayBdOw0KCQkJCQkJCWNvcHkuaW5zdGFuY2UgPSBrKzE7DQoJ
+CQkJCQkJY29weS5lbmQgPSBuZXcgRGF0ZSggY29weS5zdGFydC5nZXRUaW1lKCkgKyBkZWx0YSAp
+Ow0KCQkJCQkJCWV2ZW50U291cmNlcy5wdXNoKCBjb3B5ICk7DQoJCQkJCQl9DQoJCQkJCX0NCgkJ
+CQkJZWxzZQ0KCQkJCQl7CQ0KCQkJCQkJZXZlbnQuc3RhcnQgPSBuZXcgRGF0ZSggZXZlbnQuc3Rh
+cnQgKTsNCgkJCQkJCWV2ZW50LmVuZCA9IG5ldyBEYXRlKCBldmVudC5lbmQgKTsNCgkJCQkJCWV2
+ZW50U291cmNlcy5wdXNoKCBldmVudCApOw0KCQkJCQl9DQoJCQkJfQ0KCQkJfQ0KCQkJcmV0dXJu
+IGV2ZW50U291cmNlczsNCgkJfQ==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 import json
@@ -4331,7 +4332,7 @@ class VDOM_fullcalendar(VDOM_object):
     <Library Target="Html"><![CDATA[<link rel="stylesheet" type="text/css" href="/02dfd9db-16fe-3690-73e1-baf58cd3e6f4.res" />]]></Library>
     <Library Target="Html"><![CDATA[<script type='text/javascript' src='/10b18a20-59c9-2b2b-e4b3-7281bcc66d4f.res'></script>]]></Library>
     <Library Target="Html"><![CDATA[<script type='text/javascript' src='/d1e1abad-b15d-450e-b769-4fe10ccb02af.res'></script>]]></Library>
-	<Library Target="Html"><![CDATA[<script type='text/javascript' src='/9bfc1f90-0c7f-7d6f-913c-6ec2ab6d657a.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/7df64b35-c17d-db3b-5252-6f4f5ba1d4ef.res'></script>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
