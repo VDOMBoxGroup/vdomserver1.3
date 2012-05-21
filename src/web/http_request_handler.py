@@ -294,6 +294,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			     <allow-access-from domain="*" secure="true"/>
 				 <!--site-control permitted-cross-domain-policies="all"/-->
 				<allow-http-request-headers-from domain="*.vdombox.ru" headers="*"/>
+				<allow-http-request-headers-from domain="*" headers="*"/>
 				<allow-http-request-headers-from domain="*.vdom-box-international.com" headers="*"/>
 				<allow-http-request-headers-from domain="*.cybertronique.com" headers="*"/>
 				
