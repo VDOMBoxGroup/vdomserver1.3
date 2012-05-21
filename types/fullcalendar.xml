@@ -12,9 +12,9 @@
     <Moveable>1</Moveable>
     <Resizable>3</Resizable>
     <Container>1</Container>
-    <Category>Additional</Category>
+    <Category>Usual</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.3.11</Version>
+    <Version>2.2.11</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -231,74 +231,74 @@
     </Attribute>
     <Attribute>
       <Name>first_hour</Name>
-      <DisplayName>#Lang(938)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>8</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(300)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>all_day_visible</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(418)|0)|(#Lang(419)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-1]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>all_day_title</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(300)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>selectable</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-1]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>slot_minutes</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>5</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1)|(#Lang(425)|2)|(#Lang(426)|3)|(#Lang(427)|4)|(#Lang(428)|5))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-5]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>lazyloading</Name>
-      <DisplayName>#Lang(124)</DisplayName>
+      <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(224)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(429)|1)|(#Lang(431)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>[0-1]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -351,8 +351,12 @@
       <Sentence ID="611">Visibility</Sentence>
       <Sentence ID="713">Incorrect value</Sentence>
       <Sentence ID="813">Date format - YYYY-MM-DD</Sentence>
-      <Sentence ID="512">Next</Sentence>
-      <Sentence ID="612">Next</Sentence>
+      <Sentence ID="512">Visibility</Sentence>
+      <Sentence ID="612">Visibility</Sentence>
+      <Sentence ID="714">Incorrect value</Sentence>
+      <Sentence ID="814">Date format - YYYY-MM-DD</Sentence>
+      <Sentence ID="513">Next</Sentence>
+      <Sentence ID="613">Next</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="201">Hierarchy of object</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
@@ -420,31 +424,34 @@
       <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="416">No</Sentence>
       <Sentence ID="417">Yes</Sentence>
-      <Sentence ID="119">All-day slot visibility</Sentence>
-      <Sentence ID="219">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="119">First hour</Sentence>
+      <Sentence ID="219">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="319">Incorrect value</Sentence>
+      <Sentence ID="121">All-day slot visibility</Sentence>
+      <Sentence ID="221">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
       <Sentence ID="418">No</Sentence>
       <Sentence ID="419">Yes</Sentence>
-      <Sentence ID="121">All-day title</Sentence>
-      <Sentence ID="221">The text titling the "all-day" slot at the top of the calendar.</Sentence>
-      <Sentence ID="321">Incorrect value</Sentence>
-      <Sentence ID="122">Selectable</Sentence>
-      <Sentence ID="222">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="122">All-day title</Sentence>
+      <Sentence ID="222">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="322">Incorrect value</Sentence>
+      <Sentence ID="123">Selectable</Sentence>
+      <Sentence ID="223">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
       <Sentence ID="421">No</Sentence>
       <Sentence ID="422">Yes</Sentence>
-      <Sentence ID="123">Slot minutes interval</Sentence>
-      <Sentence ID="223">The frequency for displaying time slots, in minutes.</Sentence>
-      <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="124">Slot minutes interval</Sentence>
+      <Sentence ID="224">The frequency for displaying time slots, in minutes.</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
       <Sentence ID="423">5</Sentence>
       <Sentence ID="424">10</Sentence>
       <Sentence ID="425">15</Sentence>
       <Sentence ID="426">20</Sentence>
       <Sentence ID="427">25</Sentence>
       <Sentence ID="428">30</Sentence>
-      <Sentence ID="124">lazyLoading</Sentence>
-      <Sentence ID="224">Lazy loading paramets</Sentence>
-      <Sentence ID="324"></Sentence>
+      <Sentence ID="125">lazyLoading</Sentence>
+      <Sentence ID="225">Lazy loading paramets</Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="429">Yes</Sentence>
       <Sentence ID="431">No</Sentence>
       <Sentence ID="901">Left</Sentence>
@@ -455,33 +462,44 @@
       <Sentence ID="906">Start</Sentence>
       <Sentence ID="907">End</Sentence>
       <Sentence ID="908">current view name</Sentence>
-      <Sentence ID="909">start</Sentence>
-      <Sentence ID="911">start</Sentence>
-      <Sentence ID="912">end</Sentence>
-      <Sentence ID="913">Left</Sentence>
-      <Sentence ID="914">Top</Sentence>
-      <Sentence ID="915">id</Sentence>
-      <Sentence ID="916"></Sentence>
-      <Sentence ID="917">id</Sentence>
-      <Sentence ID="918">start</Sentence>
-      <Sentence ID="919">end</Sentence>
-      <Sentence ID="921"></Sentence>
-      <Sentence ID="922"></Sentence>
-      <Sentence ID="923">id</Sentence>
-      <Sentence ID="924">start</Sentence>
-      <Sentence ID="925">end</Sentence>
-      <Sentence ID="926"></Sentence>
-      <Sentence ID="927">Left</Sentence>
-      <Sentence ID="928">Top</Sentence>
+      <Sentence ID="909">current view name</Sentence>
+      <Sentence ID="911">Start</Sentence>
+      <Sentence ID="912">End</Sentence>
+      <Sentence ID="913">current view name</Sentence>
+      <Sentence ID="914">current view name</Sentence>
+      <Sentence ID="915">start</Sentence>
+      <Sentence ID="916">end</Sentence>
+      <Sentence ID="917">end</Sentence>
+      <Sentence ID="918">current view name</Sentence>
+      <Sentence ID="919">Left</Sentence>
+      <Sentence ID="921">Top</Sentence>
+      <Sentence ID="922">id</Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924">id</Sentence>
+      <Sentence ID="925">start</Sentence>
+      <Sentence ID="926">end</Sentence>
+      <Sentence ID="927"></Sentence>
+      <Sentence ID="928"></Sentence>
       <Sentence ID="929"></Sentence>
       <Sentence ID="931"></Sentence>
-      <Sentence ID="932">Left</Sentence>
-      <Sentence ID="933">Top</Sentence>
-      <Sentence ID="934">Left</Sentence>
-      <Sentence ID="935">Top</Sentence>
-      <Sentence ID="936">Left</Sentence>
-      <Sentence ID="937">Top</Sentence>
-	  <Sentence ID="938">First hour</Sentence>
+      <Sentence ID="932">current view name</Sentence>
+      <Sentence ID="933">id</Sentence>
+      <Sentence ID="934">start</Sentence>
+      <Sentence ID="935">end</Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939">current view name</Sentence>
+      <Sentence ID="941">Left</Sentence>
+      <Sentence ID="942">Top</Sentence>
+      <Sentence ID="943"></Sentence>
+      <Sentence ID="944"></Sentence>
+      <Sentence ID="945">Left</Sentence>
+      <Sentence ID="946">Top</Sentence>
+      <Sentence ID="947">Left</Sentence>
+      <Sentence ID="948">Top</Sentence>
+      <Sentence ID="949">Left</Sentence>
+      <Sentence ID="951">Top</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Кнопка</Sentence>
@@ -531,8 +549,12 @@
       <Sentence ID="611">Отображение</Sentence>
       <Sentence ID="713">Неправильное значение</Sentence>
       <Sentence ID="813">Date format - ГГГГ-ММ-ДД</Sentence>
-      <Sentence ID="512">Вперед</Sentence>
-      <Sentence ID="612">Вперед</Sentence>
+      <Sentence ID="512">Отображение</Sentence>
+      <Sentence ID="612">Отображение</Sentence>
+      <Sentence ID="714">Неправильное значение</Sentence>
+      <Sentence ID="814">Date format - ГГГГ-ММ-ДД</Sentence>
+      <Sentence ID="513">Вперед</Sentence>
+      <Sentence ID="613">Вперед</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
@@ -600,31 +622,34 @@
       <Sentence ID="318">Неправильное значение</Sentence>
       <Sentence ID="416">No</Sentence>
       <Sentence ID="417">Yes</Sentence>
-      <Sentence ID="119">All-day slot visibility</Sentence>
-      <Sentence ID="219">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="119">First hour</Sentence>
+      <Sentence ID="219">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="319">Неправильное значение</Sentence>
+      <Sentence ID="121">All-day slot visibility</Sentence>
+      <Sentence ID="221">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="321">Неправильное значение</Sentence>
       <Sentence ID="418">No</Sentence>
       <Sentence ID="419">Yes</Sentence>
-      <Sentence ID="121">All-day title</Sentence>
-      <Sentence ID="221">The text titling the "all-day" slot at the top of the calendar.</Sentence>
-      <Sentence ID="321">Неправильное значение</Sentence>
-      <Sentence ID="122">Selectable</Sentence>
-      <Sentence ID="222">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="122">All-day title</Sentence>
+      <Sentence ID="222">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="322">Неправильное значение</Sentence>
+      <Sentence ID="123">Selectable</Sentence>
+      <Sentence ID="223">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="323">Неправильное значение</Sentence>
       <Sentence ID="421">No</Sentence>
       <Sentence ID="422">Yes</Sentence>
-      <Sentence ID="123">Slot minutes interval</Sentence>
-      <Sentence ID="223">The frequency for displaying time slots, in minutes.</Sentence>
-      <Sentence ID="323">Неправильное значение</Sentence>
+      <Sentence ID="124">Slot minutes interval</Sentence>
+      <Sentence ID="224">The frequency for displaying time slots, in minutes.</Sentence>
+      <Sentence ID="324">Неправильное значение</Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
       <Sentence ID="426"></Sentence>
       <Sentence ID="427"></Sentence>
       <Sentence ID="428"></Sentence>
-      <Sentence ID="124"></Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="324"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="429">Yes</Sentence>
       <Sentence ID="431">No</Sentence>
       <Sentence ID="901">Лево</Sentence>
@@ -636,32 +661,43 @@
       <Sentence ID="907">Конец</Sentence>
       <Sentence ID="908"></Sentence>
       <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Лево</Sentence>
-      <Sentence ID="914">Верх</Sentence>
+      <Sentence ID="911">Начало</Sentence>
+      <Sentence ID="912">Конец</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
-      <Sentence ID="921"></Sentence>
+      <Sentence ID="919">Лево</Sentence>
+      <Sentence ID="921">Верх</Sentence>
       <Sentence ID="922"></Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
       <Sentence ID="925"></Sentence>
       <Sentence ID="926"></Sentence>
-      <Sentence ID="927">Лево</Sentence>
-      <Sentence ID="928">Верх</Sentence>
+      <Sentence ID="927"></Sentence>
+      <Sentence ID="928"></Sentence>
       <Sentence ID="929"></Sentence>
       <Sentence ID="931"></Sentence>
-      <Sentence ID="932">Лево</Sentence>
-      <Sentence ID="933">Верх</Sentence>
-      <Sentence ID="934">Лево</Sentence>
-      <Sentence ID="935">Верх</Sentence>
-      <Sentence ID="936">Лево</Sentence>
-      <Sentence ID="937">Верх</Sentence>
-	  <Sentence ID="938">First hour</Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934"></Sentence>
+      <Sentence ID="935"></Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939"></Sentence>
+      <Sentence ID="941">Лево</Sentence>
+      <Sentence ID="942">Верх</Sentence>
+      <Sentence ID="943"></Sentence>
+      <Sentence ID="944"></Sentence>
+      <Sentence ID="945">Лево</Sentence>
+      <Sentence ID="946">Верх</Sentence>
+      <Sentence ID="947">Лево</Sentence>
+      <Sentence ID="948">Верх</Sentence>
+      <Sentence ID="949">Лево</Sentence>
+      <Sentence ID="951">Верх</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Bouton</Sentence>
@@ -711,8 +747,12 @@
       <Sentence ID="611">Visibilite</Sentence>
       <Sentence ID="713">Valeur Incorrecte</Sentence>
       <Sentence ID="813">Date format - YYYY-MM-DD</Sentence>
-      <Sentence ID="512">Prochaine</Sentence>
-      <Sentence ID="612">Prochaine</Sentence>
+      <Sentence ID="512">Visibilite</Sentence>
+      <Sentence ID="612">Visibilite</Sentence>
+      <Sentence ID="714">Valeur Incorrecte</Sentence>
+      <Sentence ID="814">Date format - YYYY-MM-DD</Sentence>
+      <Sentence ID="513">Prochaine</Sentence>
+      <Sentence ID="613">Prochaine</Sentence>
       <Sentence ID="101">Hierarchie</Sentence>
       <Sentence ID="201">Hierarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit etre positive</Sentence>
@@ -780,31 +820,34 @@
       <Sentence ID="318">Valeur Incorrecte</Sentence>
       <Sentence ID="416">No</Sentence>
       <Sentence ID="417">Yes</Sentence>
-      <Sentence ID="119">All-day slot visibility</Sentence>
-      <Sentence ID="219">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="119">First hour</Sentence>
+      <Sentence ID="219">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="319">Valeur Incorrecte</Sentence>
+      <Sentence ID="121">All-day slot visibility</Sentence>
+      <Sentence ID="221">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
+      <Sentence ID="321">Valeur Incorrecte</Sentence>
       <Sentence ID="418">No</Sentence>
       <Sentence ID="419">Yes</Sentence>
-      <Sentence ID="121">All-day title</Sentence>
-      <Sentence ID="221">The text titling the "all-day" slot at the top of the calendar.</Sentence>
-      <Sentence ID="321">Valeur Incorrecte</Sentence>
-      <Sentence ID="122">Selectable</Sentence>
-      <Sentence ID="222">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="122">All-day title</Sentence>
+      <Sentence ID="222">The text titling the "all-day" slot at the top of the calendar.</Sentence>
       <Sentence ID="322">Valeur Incorrecte</Sentence>
+      <Sentence ID="123">Selectable</Sentence>
+      <Sentence ID="223">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="323">Valeur Incorrecte</Sentence>
       <Sentence ID="421">No</Sentence>
       <Sentence ID="422">Yes</Sentence>
-      <Sentence ID="123">Slot minutes interval</Sentence>
-      <Sentence ID="223">The frequency for displaying time slots, in minutes.</Sentence>
-      <Sentence ID="323">Valeur Incorrecte</Sentence>
+      <Sentence ID="124">Slot minutes interval</Sentence>
+      <Sentence ID="224">The frequency for displaying time slots, in minutes.</Sentence>
+      <Sentence ID="324">Valeur Incorrecte</Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
       <Sentence ID="426"></Sentence>
       <Sentence ID="427"></Sentence>
       <Sentence ID="428"></Sentence>
-      <Sentence ID="124"></Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="324"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="429">Yes</Sentence>
       <Sentence ID="431">No</Sentence>
       <Sentence ID="901">Gauche</Sentence>
@@ -816,32 +859,43 @@
       <Sentence ID="907">End</Sentence>
       <Sentence ID="908"></Sentence>
       <Sentence ID="909"></Sentence>
-      <Sentence ID="911"></Sentence>
-      <Sentence ID="912"></Sentence>
-      <Sentence ID="913">Gauche</Sentence>
-      <Sentence ID="914">Haut</Sentence>
+      <Sentence ID="911">Start</Sentence>
+      <Sentence ID="912">End</Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
       <Sentence ID="915"></Sentence>
       <Sentence ID="916"></Sentence>
       <Sentence ID="917"></Sentence>
       <Sentence ID="918"></Sentence>
-      <Sentence ID="919"></Sentence>
-      <Sentence ID="921"></Sentence>
+      <Sentence ID="919">Gauche</Sentence>
+      <Sentence ID="921">Haut</Sentence>
       <Sentence ID="922"></Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
       <Sentence ID="925"></Sentence>
       <Sentence ID="926"></Sentence>
-      <Sentence ID="927">Gauche</Sentence>
-      <Sentence ID="928">Haut</Sentence>
+      <Sentence ID="927"></Sentence>
+      <Sentence ID="928"></Sentence>
       <Sentence ID="929"></Sentence>
       <Sentence ID="931"></Sentence>
-      <Sentence ID="932">Gauche</Sentence>
-      <Sentence ID="933">Haut</Sentence>
-      <Sentence ID="934">Gauche</Sentence>
-      <Sentence ID="935">Haut</Sentence>
-      <Sentence ID="936">Gauche</Sentence>
-      <Sentence ID="937">Haut</Sentence>
-	  <Sentence ID="938">First hour</Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934"></Sentence>
+      <Sentence ID="935"></Sentence>
+      <Sentence ID="936"></Sentence>
+      <Sentence ID="937"></Sentence>
+      <Sentence ID="938"></Sentence>
+      <Sentence ID="939"></Sentence>
+      <Sentence ID="941">Gauche</Sentence>
+      <Sentence ID="942">Haut</Sentence>
+      <Sentence ID="943"></Sentence>
+      <Sentence ID="944"></Sentence>
+      <Sentence ID="945">Gauche</Sentence>
+      <Sentence ID="946">Haut</Sentence>
+      <Sentence ID="947">Gauche</Sentence>
+      <Sentence ID="948">Haut</Sentence>
+      <Sentence ID="949">Gauche</Sentence>
+      <Sentence ID="951">Haut</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -3451,6 +3505,486 @@ aV0gPSByaWdodHNbaV0gPT09IHVuZGVmaW5lZCA/IHQubGVmdChpKSArIGUoaSkud2lkdGgoKSA6
 IHJpZ2h0c1tpXTsNCgl9Ow0KCQ0KCXQuY2xlYXIgPSBmdW5jdGlvbigpIHsNCgkJZWxlbWVudHMg
 PSB7fTsNCgkJbGVmdHMgPSB7fTsNCgkJcmlnaHRzID0ge307DQoJfTsNCgkNCn0NCg0KfSkoalF1
 ZXJ5KTs=]]></Resource>
+    <Resource ID="d1e1abad-b15d-450e-b769-4fe10ccb02af" Name="rrecur-parser.js" Type="js"><![CDATA[Ly8gdXNlZCBmb3IgSUUgPCA5Ci8vIGFkYXB0ZWQgZnJvbSBodHRwczovL2RldmVsb3Blci5tb3pp
+bGxhLm9yZy9lbi9KYXZhU2NyaXB0L1JlZmVyZW5jZS9HbG9iYWxfT2JqZWN0cy9BcnJheS9pbmRl
+eE9mCmlmICghQXJyYXkucHJvdG90eXBlLmluZGV4T2YpCnsKCUFycmF5LnByb3RvdHlwZS5pbmRl
+eE9mID0gZnVuY3Rpb24oZWx0IC8qLCBmcm9tKi8pCgl7CgkJdmFyIGxlbiA9IHRoaXMubGVuZ3Ro
+ID4+PiAwOwoKCQl2YXIgZnJvbSA9IE51bWJlcihhcmd1bWVudHNbMV0pIHx8IDA7CgkJZnJvbSA9
+IChmcm9tIDwgMCkKCQkJPyBNYXRoLmNlaWwoZnJvbSkKCQkJOiBNYXRoLmZsb29yKGZyb20pOwoJ
+CWlmIChmcm9tIDwgMCkKCQkJZnJvbSArPSBsZW47CgoJCWZvciAoOyBmcm9tIDwgbGVuOyBmcm9t
+KyspCgkJewoJCQlpZiAoZnJvbSBpbiB0aGlzICYmCgkJCQl0aGlzW2Zyb21dID09PSBlbHQpCgkJ
+CQlyZXR1cm4gZnJvbTsKCQl9CgkJcmV0dXJuIC0xOwoJfTsKfQoKQXJyYXkucHJvdG90eXBlLmlu
+X2FycmF5ID0gZnVuY3Rpb24odGVzdF92YXIpIHsgLy8gdXNlZnVsIG1ldGhvZCBmb3IgImNsYXNz
+IiBBcnJheQogICAgcmV0dXJuIHRoaXMuaW5kZXhPZih0ZXN0X3ZhciwgMCkgIT0gLTE7Cn0KCkRh
+dGUuY291bnRNb250aERheXMgPSBmdW5jdGlvbih5LCBtKSB7IC8vIG0gOiAwLT4xMQogICAgcmV0
+dXJuIChuZXcgRGF0ZSh5LCBtICsgMSwgMCkpLmdldERhdGUoKTsKfQoKRGF0ZS5maW5kTnRoV2Vl
+a0RheXMgPSBmdW5jdGlvbih5LCBtLCBudGgsIHdlZWtfZGF5KSB7IC8vIG0gOiBmYWxzZSBvciAw
+LT4xMSwgd2Vla19kYXkgOiAwLT5TVSwgMS0+TU8sIC4uLiwgbnRoIDogTiAoTnRoIGZyb20gc3Rh
+cnQgb2YgbW9udGgpLCAtTiAoTnRoIGZyb20gZW5kIG9mIG1vbnRoKSwgMCAoYWxsKQogICAgdmFy
+IGRhdGVzID0gW107CiAgICBpZiAobnRoID49IDApIHsgCiAgICAgICAgaWYgKG0gPT09IGZhbHNl
+KSB7IC8vIGZyb20gc3RhcnQgb2YgeWVhcgogICAgICAgICAgICB2YXIgZGF0ZSA9IG5ldyBEYXRl
+KHksIDAsIDEpOwogICAgICAgICAgICB2YXIgZW5kX3llYXJfdHMgPSBuZXcgRGF0ZSh5ICsgMSwg
+MCwgMSkuZ2V0VGltZSgpOwogICAgICAgICAgICB2YXIgY291bnQgPSAwOwogICAgICAgICAgICB3
+aGlsZSAoZGF0ZS5nZXRUaW1lKCkgPCBlbmRfeWVhcl90cykgewogICAgICAgICAgICAgICAgaWYg
+KGRhdGUuZ2V0RGF5KCkgPT0gd2Vla19kYXkpIHsKICAgICAgICAgICAgICAgICAgICBjb3VudCsr
+OwogICAgICAgICAgICAgICAgICAgIGlmIChudGggPT0gMCB8fCBjb3VudCA9PSBudGgpIHsKICAg
+ICAgICAgICAgICAgICAgICAgICAgZGF0ZXMucHVzaChkYXRlKTsKICAgICAgICAgICAgICAgICAg
+ICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBkYXRlID0gbmV3IERhdGUoZGF0
+ZS5nZXRGdWxsWWVhcigpLCBkYXRlLmdldE1vbnRoKCksIGRhdGUuZ2V0RGF0ZSgpKzEpOwogICAg
+ICAgICAgICB9CiAgICAgICAgfSBlbHNlIHsgLy8gZnJvbSBzdGFydCBvZiBtb250aAogICAgICAg
+ICAgICBkYXRlID0gbmV3IERhdGUoeSwgbSwgMSk7CiAgICAgICAgICAgIHZhciBlbmRfbW9udGhf
+dHMgPSBuZXcgRGF0ZSh5LCBtICsgMSwgMSkuZ2V0VGltZSgpOwogICAgICAgICAgICBjb3VudCA9
+IDA7CiAgICAgICAgICAgIHdoaWxlIChkYXRlLmdldFRpbWUoKSA8IGVuZF9tb250aF90cykgewog
+ICAgICAgICAgICAgICAgaWYgKGRhdGUuZ2V0RGF5KCkgPT0gd2Vla19kYXkpIHsKICAgICAgICAg
+ICAgICAgICAgICBjb3VudCsrOwogICAgICAgICAgICAgICAgICAgIGlmIChudGggPT0gMCB8fCBj
+b3VudCA9PSBudGgpIHsKICAgICAgICAgICAgICAgICAgICAgICAgZGF0ZXMucHVzaChkYXRlKTsK
+ICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBk
+YXRlID0gbmV3IERhdGUoZGF0ZS5nZXRGdWxsWWVhcigpLCBkYXRlLmdldE1vbnRoKCksIGRhdGUu
+Z2V0RGF0ZSgpKzEpOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIAogICAgfSBlbHNl
+IGlmIChudGggPCAwKSB7CiAgICAgICAgaWYgKG0gPT09IGZhbHNlKSB7IC8vIGZyb20gZW5kIG9m
+IHllYXIKICAgICAgICAgICAgbnRoID0gTWF0aC5hYnMobnRoKTsKICAgICAgICAgICAgZGF0ZSA9
+IG5ldyBEYXRlKHkgKyAxLCAwLCAwKTsKICAgICAgICAgICAgdmFyIGJlZ2luX3llYXJfdHMgPSBu
+ZXcgRGF0ZSh5LCAwLCAxKS5nZXRUaW1lKCk7CiAgICAgICAgICAgIGNvdW50ID0gMDsKICAgICAg
+ICAgICAgd2hpbGUgKGRhdGUuZ2V0VGltZSgpID49IGJlZ2luX3llYXJfdHMpIHsKICAgICAgICAg
+ICAgICAgIGlmIChkYXRlLmdldERheSgpID09IHdlZWtfZGF5KSB7CiAgICAgICAgICAgICAgICAg
+ICAgY291bnQrKzsKICAgICAgICAgICAgICAgICAgICBpZiAobnRoID09IDAgfHwgY291bnQgPT0g
+bnRoKSB7CiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGVzLnB1c2goZGF0ZSk7CiAgICAgICAg
+ICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgZGF0ZSA9IG5l
+dyBEYXRlKGRhdGUuZ2V0RnVsbFllYXIoKSwgZGF0ZS5nZXRNb250aCgpLCBkYXRlLmdldERhdGUo
+KS0xKTsKICAgICAgICAgICAgfQogICAgICAgIH0gZWxzZSB7IC8vIGZyb20gZW5kIG9mIG1vbnRo
+CiAgICAgICAgICAgIG50aCA9IE1hdGguYWJzKG50aCk7CiAgICAgICAgICAgIGRhdGUgPSBuZXcg
+RGF0ZSh5LCBtICsgMSwgMCk7CiAgICAgICAgICAgIHZhciBiZWdpbl9tb250aF90cyA9IG5ldyBE
+YXRlKHksIG0sIDEpLmdldFRpbWUoKTsKICAgICAgICAgICAgY291bnQgPSAwOwogICAgICAgICAg
+ICB3aGlsZSAoZGF0ZS5nZXRUaW1lKCkgPj0gYmVnaW5fbW9udGhfdHMpIHsKICAgICAgICAgICAg
+ICAgIGlmIChkYXRlLmdldERheSgpID09IHdlZWtfZGF5KSB7CiAgICAgICAgICAgICAgICAgICAg
+Y291bnQrKzsKICAgICAgICAgICAgICAgICAgICBpZiAobnRoID09IDAgfHwgY291bnQgPT0gbnRo
+KSB7CiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGVzLnB1c2goZGF0ZSk7CiAgICAgICAgICAg
+ICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgZGF0ZSA9IG5ldyBE
+YXRlKGRhdGUuZ2V0RnVsbFllYXIoKSwgZGF0ZS5nZXRNb250aCgpLCBkYXRlLmdldERhdGUoKS0x
+KTsKICAgICAgICAgICAgfQogICAgICAgIH0KICAgICAgICAKICAgIH0KICAgIHJldHVybiBkYXRl
+czsKfQoKRGF0ZS5wcm90b3R5cGUuaXNTYW1lRGF0ZSA9IGZ1bmN0aW9uKG90aGVyX2RhdGUpIHsK
+ICAgIHJldHVybiBvdGhlcl9kYXRlIGluc3RhbmNlb2YgRGF0ZSAmJgogICAgICAgIHRoaXMuZ2V0
+RnVsbFllYXIoKSA9PSBvdGhlcl9kYXRlLmdldEZ1bGxZZWFyKCkgJiYKICAgICAgICB0aGlzLmdl
+dE1vbnRoKCkgPT0gb3RoZXJfZGF0ZS5nZXRNb250aCgpICYmCiAgICAgICAgdGhpcy5nZXREYXRl
+KCkgPT0gb3RoZXJfZGF0ZS5nZXREYXRlKCk7CiAgICAKfQoKRGF0ZS5mcm9tV2VlayA9IGZ1bmN0
+aW9uKG50aCwgeSwgd2tkYXkpeyAvLyBudGggOiBudGggd2VlayAoMSA6IGZpcnN0IHdlZWspIG9m
+IHRoZSB5ZWFyIHksIHdrZGF5IDogZGF5IG9mIHRoZSB3ZWVrIHRvIHJldHJpZXZlICgwLT5TVSwg
+MS0+TU8sIC4uLikKICAgIG50aCA9IG50aCAtIDE7CiAgICB5ID0geSB8fCBuZXcgRGF0ZSgpLmdl
+dEZ1bGxZZWFyKCk7CiAgICB2YXIgZDE9IG5ldyBEYXRlKHksIDAsIDQpOwogICAgaWYgKHdrZGF5
+ID09IHVuZGVmaW5lZCkgd2tkYXkgPSAxOwogICAgcmV0dXJuIGQxLm5leHRXZWVrKHdrZGF5LCBu
+dGgpOwp9CgpEYXRlLnByb3RvdHlwZS5uZXh0V2VlayA9IGZ1bmN0aW9uKHdkLCBudGgpeyAvLyB3
+ZCA6IDAtPlNVLCAxLT5NTywgLi4uIChkZWZhdWx0IDogc2FtZSBkYXkpLCBudGggOiBob3cgbWFu
+eSB3ZWVrIHRvIGFkZCAoZGVmYXVsdCAxKQogICAgaWYobnRoPT0gdW5kZWZpbmVkKSBudGg9IDE7
+CiAgICB2YXIgaW5jcj0gbnRoIDwgMD8gMTogLTEsCiAgICBEPSBuZXcgRGF0ZSh0aGlzKSwgZGQ9
+IEQuZ2V0RGF5KCk7CiAgICBpZih3ZD09IHVuZGVmaW5lZCkgd2Q9IGRkOwogICAgd2hpbGUoRC5n
+ZXREYXkoKSE9IHdkKSBELnNldERhdGUoRC5nZXREYXRlKCkrIGluY3IpOwogICAgRC5zZXREYXRl
+KEQuZ2V0RGF0ZSgpKyA3Km50aCk7CiAgICByZXR1cm4gRDsKfQoKLyoqCiogUmV0dXJucyB0aGUg
+d2VlayBudW1iZXIgZm9yIHRoaXMgZGF0ZS4gZG93T2Zmc2V0IGlzIHRoZSBkYXkgb2Ygd2VlayB0
+aGUgd2VlawoqICJzdGFydHMiIG9uIGZvciB5b3VyIGxvY2FsZSAtIGl0IGNhbiBiZSBmcm9tIDAg
+dG8gNi4gSWYgZG93T2Zmc2V0IGlzIDEgKE1vbmRheSksCiogdGhlIHdlZWsgcmV0dXJuZWQgaXMg
+dGhlIElTTyA4NjAxIHdlZWsgbnVtYmVyLgoqIEBwYXJhbSBkb3dPZmZzZXQKKiBAcmV0dXJuIGlu
+dAoqLwpEYXRlLnByb3RvdHlwZS5nZXRXZWVrTm8gPSBmdW5jdGlvbiAoZG93T2Zmc2V0KSB7IC8v
+IDAgLT4gd2tzdCBTVSwgMSAtPiB3a3N0IE1PCiAgICAvKmdldFdlZWsoKSB3YXMgZGV2ZWxvcGVk
+IGJ5IE5pY2sgQmFpY29pYW51IGF0IE1lYW5GcmVlUGF0aDogaHR0cDovL3d3dy5tZWFuZnJlZXBh
+dGguY29tICovCgogICAgZG93T2Zmc2V0ID0gZG93T2Zmc2V0ICE9PSB1bmRlZmluZWQgPyBkb3dP
+ZmZzZXQgOiAwOyAvL2RlZmF1bHQgZG93T2Zmc2V0IHRvIHplcm8KICAgIHZhciBuZXdZZWFyID0g
+bmV3IERhdGUodGhpcy5nZXRGdWxsWWVhcigpLDAsMSk7CiAgICB2YXIgZGF5ID0gbmV3WWVhci5n
+ZXREYXkoKSAtIGRvd09mZnNldDsgLy90aGUgZGF5IG9mIHdlZWsgdGhlIHllYXIgYmVnaW5zIG9u
+CiAgICBkYXkgPSAoZGF5ID49IDAgPyBkYXkgOiBkYXkgKyA3KTsKICAgIHZhciBkYXludW0gPSBN
+YXRoLmZsb29yKCh0aGlzLmdldFRpbWUoKSAtIG5ld1llYXIuZ2V0VGltZSgpIC0KICAgICAgICAo
+dGhpcy5nZXRUaW1lem9uZU9mZnNldCgpLW5ld1llYXIuZ2V0VGltZXpvbmVPZmZzZXQoKSkqNjAw
+MDApLzg2NDAwMDAwKSArIDE7CiAgICB2YXIgd2Vla251bTsKICAgIC8vaWYgdGhlIHllYXIgc3Rh
+cnRzIGJlZm9yZSB0aGUgbWlkZGxlIG9mIGEgd2VlawogICAgaWYoZGF5IDwgNCkgewogICAgICAg
+IHdlZWtudW0gPSBNYXRoLmZsb29yKChkYXludW0rZGF5LTEpLzcpICsgMTsKICAgICAgICBpZih3
+ZWVrbnVtID4gNTIpIHsKICAgICAgICAgICAgdmFyIG5ZZWFyID0gbmV3IERhdGUodGhpcy5nZXRG
+dWxsWWVhcigpICsgMSwwLDEpOwogICAgICAgICAgICB2YXIgbmRheSA9IG5ZZWFyLmdldERheSgp
+IC0gZG93T2Zmc2V0OwogICAgICAgICAgICBuZGF5ID0gbmRheSA+PSAwID8gbmRheSA6IG5kYXkg
+KyA3OwogICAgICAgICAgICAvKmlmIHRoZSBuZXh0IHllYXIgc3RhcnRzIGJlZm9yZSB0aGUgbWlk
+ZGxlIG9mCiAgICAgICAgICAgIHRoZSB3ZWVrLCBpdCBpcyB3ZWVrICMxIG9mIHRoYXQgeWVhciov
+CiAgICAgICAgICAgIHdlZWtudW0gPSBuZGF5IDwgNCA/IDEgOiA1MzsKICAgICAgICB9CiAgICB9
+IGVsc2UgewogICAgICAgIHdlZWtudW0gPSBNYXRoLmZsb29yKChkYXludW0rZGF5LTEpLzcpOwog
+ICAgfQogICAgcmV0dXJuIHdlZWtudW07Cn07CgpTY2hlZHVsZXIgPSBmdW5jdGlvbihzdGFydF9k
+YXRlLCByZmNfcnJ1bGUsIHRlc3RfbW9kZSkgeyAvLyBTY2hlZHVsZXIgImNsYXNzIiAoZ2xvYmFs
+IHZpc2liaWxpdHkpCiAgICB0aGlzLmluaXRfcmVjdXJyZW5jZV9ydWxlcyA9IGZ1bmN0aW9uKCkg
+ewogICAgICAgIC8vIG1hbmRhdG9yeQogICAgICAgIHRoaXMucnJ1bGVfZnJlcSA9IGZhbHNlOwoK
+ICAgICAgICAvLyBib3RoIGNvdW50ICYgdW50aWwgYXJlIGZvcmJpZGRlbgogICAgICAgIHRoaXMu
+cnJ1bGVfY291bnQgPSBmYWxzZTsKICAgICAgICB0aGlzLnJydWxlX3VudGlsID0gZmFsc2U7Cgog
+ICAgICAgIC8vIGZhY3VsdGF0aXZlCiAgICAgICAgdGhpcy5ycnVsZV9pbnRlcnZhbCA9IDE7CiAg
+ICAgICAgdGhpcy5ycnVsZV9ieXNlY29uZCA9IGZhbHNlOwogICAgICAgIHRoaXMucnJ1bGVfYnlt
+aW51dGUgPSBmYWxzZTsKICAgICAgICB0aGlzLnJydWxlX2J5aG91ciA9IGZhbHNlOwogICAgICAg
+IHRoaXMucnJ1bGVfYnlkYXkgPSBmYWxzZTsgLy8gKzEsIC0yLCBldGMuIG9ubHkgZm9yIG1vbnRo
+bHkgb3IgeWVhcmx5CiAgICAgICAgdGhpcy5ycnVsZV9ieW1vbnRoZGF5ID0gZmFsc2U7CiAgICAg
+ICAgdGhpcy5ycnVsZV9ieXllYXJkYXkgPSBmYWxzZTsKICAgICAgICB0aGlzLnJydWxlX2J5d2Vl
+a25vID0gZmFsc2U7IC8vIG9ubHkgZm9yIHllYXJseQogICAgICAgIHRoaXMucnJ1bGVfYnltb250
+aCA9IGZhbHNlOwogICAgICAgIHRoaXMucnJ1bGVfYnlzZXRwb3MgPSBmYWxzZTsgLy8gb25seSBp
+biBjb25qb25jdGlvbiB3aXRoIG90aGVycyBCWXh4eCBydWxlcwogICAgICAgIHRoaXMucnJ1bGVf
+d2tzdCA9ICJNTyI7IC8vIHNpZ25pZmljYW50IHdoZXJlIHdlZWtseSBpbnRlcnZhbCA+IDEgJiB3
+aGVyZSB5ZWFybHkgYnl3ZWVrbm8gaXMgc3BlY2lmaWVkCiAgICB9CgogICAgdGhpcy50ZXN0X21v
+ZGUgPSB0ZXN0X21vZGUgPT09IHRydWUgPyB0cnVlIDogZmFsc2U7CiAgICB0aGlzLnN0YXJ0X2Rh
+dGUgPSBzdGFydF9kYXRlOwogICAgdGhpcy5zdGFydF90cyA9IHN0YXJ0X2RhdGUuZ2V0VGltZSgp
+OwogICAgCiAgICB0aGlzLmluaXRfcmVjdXJyZW5jZV9ydWxlcygpOwogICAgdGhpcy5leGNlcHRp
+b25fZGF0ZXMgPSBbXTsKCiAgICB0aGlzLmRheUZyb21EYXlObyA9IFsgIlNVIiwgIk1PIiwgIlRV
+IiwgIldFIiwgIlRIIiwgIkZSIiwgIlNBIiBdOwogICAgdGhpcy5kYXlOb0Zyb21EYXkgPSB7CiAg
+ICAgICAgU1U6IDAsIE1POiAxLCBUVTogMiwgV0U6IDMsIFRIOiA0LCBGUjogNSwgU0E6IDYKICAg
+IH07CgogICAgaWYgKHJmY19ycnVsZSkgewogICAgICAgIHRoaXMuYWRkX3JlY3VycmVuY2VfcnVs
+ZXMocmZjX3JydWxlKTsKICAgIH0KCn07IAoKLy8gYWRkcyBhdCBsZWFzdCBvbmUgUlJVTEUKU2No
+ZWR1bGVyLnByb3RvdHlwZS5hZGRfcmVjdXJyZW5jZV9ydWxlcyA9IGZ1bmN0aW9uKHJmY19ycnVs
+ZSkgewogICAgaWYgKHJmY19ycnVsZS5pbmRleE9mKCJSUlVMRToiKSA9PSAwKSB7IC8vIHJlbW92
+ZXMgIlJSVUxFOiIgaWYgbmVlZGVkCiAgICAgICAgcmZjX3JydWxlID0gcmZjX3JydWxlLnNsaWNl
+KDYpOwogICAgfQoKICAgIHZhciBydWxlcyA9IHJmY19ycnVsZS5zcGxpdCgiOyIpOwogICAgdmFy
+IG5iX3J1bGVzID0gcnVsZXMubGVuZ3RoOwoKICAgIGZvciAodmFyIGkgPSAwOyBpIDwgbmJfcnVs
+ZXM7IGkrKykgewogICAgICAgIHZhciBydWxlID0gcnVsZXNbaV0uc3BsaXQoIj0iKTsKICAgICAg
+ICB2YXIgcnVsZV92YWx1ZSA9IHJ1bGVbMV07CiAgICAgICAgc3dpdGNoIChydWxlWzBdKSB7IC8v
+IHJ1bGUgbmFtZQogICAgICAgICAgICBjYXNlICJGUkVRIjoKICAgICAgICAgICAgICAgIHRoaXMu
+cnJ1bGVfZnJlcSA9IHJ1bGVfdmFsdWU7CiAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAg
+ICAgY2FzZSAiVU5USUwiOgogICAgICAgICAgICAgICAgdmFyIHVudGlsID0gcnVsZV92YWx1ZTsK
+ICAgICAgICAgICAgICAgIHZhciB5ID0gdW50aWwuc3Vic3RyKDAsIDQpOwogICAgICAgICAgICAg
+ICAgdmFyIG0gPSB1bnRpbC5zdWJzdHIoNCwgMikgLSAxOyAvLyBqcyBEYXRlIG1vbnRoIC0+IDAg
+dG8gMTEKICAgICAgICAgICAgICAgIHZhciBkID0gdW50aWwuc3Vic3RyKDYsIDIpOwogICAgICAg
+ICAgICAgICAgaWYgKHVudGlsLmxlbmd0aCA+IDgpIHsKICAgICAgICAgICAgICAgICAgICB2YXIg
+aCA9IHVudGlsLnN1YnN0cig5LCAyKTsKICAgICAgICAgICAgICAgICAgICB2YXIgbWluID0gdW50
+aWwuc3Vic3RyKDExLCAyKTsKICAgICAgICAgICAgICAgICAgICB2YXIgcyA9IHVudGlsLnN1YnN0
+cigxMywgMik7CiAgICAgICAgICAgICAgICAgICAgdGhpcy5ycnVsZV91bnRpbCA9IG5ldyBEYXRl
+KHksIG0sIGQsIGgsIG1pbiwgcykuZ2V0VGltZSgpOwogICAgICAgICAgICAgICAgfSBlbHNlIHsK
+ICAgICAgICAgICAgICAgICAgICB0aGlzLnJydWxlX3VudGlsID0gbmV3IERhdGUoeSwgbSwgZCku
+Z2V0VGltZSgpOwogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGJyZWFrOwogICAg
+ICAgICAgICBjYXNlICJDT1VOVCI6CiAgICAgICAgICAgICAgICB0aGlzLnJydWxlX2NvdW50ID0g
+cnVsZV92YWx1ZTsKICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICBjYXNlICJJTlRF
+UlZBTCI6CiAgICAgICAgICAgICAgICB0aGlzLnJydWxlX2ludGVydmFsID0gcnVsZV92YWx1ZTsK
+ICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICBjYXNlICJCWVNFQ09ORCI6CiAgICAg
+ICAgICAgICAgICB0aGlzLnJydWxlX2J5c2Vjb25kID0gcnVsZV92YWx1ZS5zcGxpdCgiLCIpOwog
+ICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGNhc2UgIkJZTUlOVVRFIjoKICAgICAg
+ICAgICAgICAgIHRoaXMucnJ1bGVfYnltaW51dGUgPSBydWxlX3ZhbHVlLnNwbGl0KCIsIik7CiAg
+ICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAgY2FzZSAiQllIT1VSIjoKICAgICAgICAg
+ICAgICAgIHRoaXMucnJ1bGVfYnlob3VyID0gcnVsZV92YWx1ZS5zcGxpdCgiLCIpOwogICAgICAg
+ICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGNhc2UgIkJZREFZIjoKICAgICAgICAgICAgICAg
+IHRoaXMucnJ1bGVfYnlkYXkgPSBydWxlX3ZhbHVlLnNwbGl0KCIsIik7CiAgICAgICAgICAgICAg
+ICBicmVhazsKICAgICAgICAgICAgY2FzZSAiQllNT05USERBWSI6CiAgICAgICAgICAgICAgICBp
+ZiAodGhpcy5ycnVsZV9mcmVxICE9ICJXRUVLTFkiKSB7CiAgICAgICAgICAgICAgICAgICAgdGhp
+cy5ycnVsZV9ieW1vbnRoZGF5ID0gcnVsZV92YWx1ZS5zcGxpdCgiLCIpOwogICAgICAgICAgICAg
+ICAgfQogICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGNhc2UgIkJZWUVBUkRBWSI6
+CiAgICAgICAgICAgICAgICBpZiAodGhpcy5ycnVsZV9mcmVxID09ICJZRUFSTFkiKSB7CiAgICAg
+ICAgICAgICAgICAgICAgdGhpcy5ycnVsZV9ieXllYXJkYXkgPSBydWxlX3ZhbHVlLnNwbGl0KCIs
+Iik7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAg
+Y2FzZSAiQllXRUVLTk8iOgogICAgICAgICAgICAgICAgaWYgKHRoaXMucnJ1bGVfZnJlcSA9PSAi
+WUVBUkxZIikgewogICAgICAgICAgICAgICAgICAgIHRoaXMucnJ1bGVfYnl3ZWVrbm8gPSBydWxl
+X3ZhbHVlLnNwbGl0KCIsIik7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBicmVh
+azsKICAgICAgICAgICAgY2FzZSAiQllNT05USCI6CiAgICAgICAgICAgICAgICB0aGlzLnJydWxl
+X2J5bW9udGggPSBydWxlX3ZhbHVlLnNwbGl0KCIsIik7CiAgICAgICAgICAgICAgICBicmVhazsK
+ICAgICAgICAgICAgY2FzZSAiQllTRVRQT1MiOgogICAgICAgICAgICAgICAgdGhpcy5ycnVsZV9i
+eXNldHBvcyA9IHJ1bGVfdmFsdWUuc3BsaXQoIiwiKTsKICAgICAgICAgICAgICAgIHRoaXMucnJ1
+bGVfYnlzZXRwb3Muc29ydChmdW5jdGlvbihhLGIpIHsKICAgICAgICAgICAgICAgICAgICByZXR1
+cm4gcGFyc2VJbnQoYSwgMTApIC0gcGFyc2VJbnQoYiwgMTApOwogICAgICAgICAgICAgICAgfSk7
+CiAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAgY2FzZSAiV0tTVCI6CiAgICAgICAg
+ICAgICAgICB0aGlzLnJydWxlX3drc3QgPSBydWxlX3ZhbHVlOwogICAgICAgICAgICAgICAgYnJl
+YWs7CiAgICAgICAgfQogICAgfQoKICAgIC8vaWYgQllTRUNPTkQsIEJZTUlOVVRFLCBCWUhPVVIs
+IEJZREFZLCBCWU1PTlRIREFZIG9yIEJZTU9OVEggdW5zcGVjaWZpZWQsIGZldGNoIHZhbHVlcyBm
+cm9tIHN0YXJ0IGRhdGUKICAgIGlmICghdGhpcy5ycnVsZV9ieXNlY29uZCkgewogICAgICAgIHRo
+aXMucnJ1bGVfYnlzZWNvbmQgPSBbIHRoaXMuc3RhcnRfZGF0ZS5nZXRTZWNvbmRzKCkudG9TdHJp
+bmcoKSBdOwogICAgfQogICAgaWYgKCF0aGlzLnJydWxlX2J5bWludXRlKSB7CiAgICAgICAgdGhp
+cy5ycnVsZV9ieW1pbnV0ZSA9IFsgdGhpcy5zdGFydF9kYXRlLmdldE1pbnV0ZXMoKS50b1N0cmlu
+ZygpIF07CiAgICB9CiAgICBpZiAoIXRoaXMucnJ1bGVfYnlob3VyKSB7CiAgICAgICAgdGhpcy5y
+cnVsZV9ieWhvdXIgPSBbIHRoaXMuc3RhcnRfZGF0ZS5nZXRIb3VycygpLnRvU3RyaW5nKCkgXTsK
+ICAgIH0KICAgIGlmICghdGhpcy5ycnVsZV9ieWRheSAmJiB0aGlzLnJydWxlX2ZyZXEgPT0gIldF
+RUtMWSIpIHsvLyBhdXRvIHZhbHVlIG9ubHkgd2hlbiBmcmVxPXdlZWtseSBpIGd1ZXNzLi4uCiAg
+ICAgICAgdGhpcy5ycnVsZV9ieWRheSA9IFsgdGhpcy5kYXlGcm9tRGF5Tm9bdGhpcy5zdGFydF9k
+YXRlLmdldERheSgpXSBdOwogICAgfQogICAgaWYgKCF0aGlzLnJydWxlX2J5ZGF5ICYmICF0aGlz
+LnJydWxlX2J5bW9udGhkYXkgJiYgIXRoaXMucnJ1bGVfYnl5ZWFyZGF5ICYmICh0aGlzLnJydWxl
+X2ZyZXEgPT0gIk1PTlRITFkiIHx8IHRoaXMucnJ1bGVfZnJlcSA9PSAiWUVBUkxZIikpIHsKICAg
+ICAgICB0aGlzLnJydWxlX2J5bW9udGhkYXkgPSBbIHRoaXMuc3RhcnRfZGF0ZS5nZXREYXRlKCku
+dG9TdHJpbmcoKSBdOwogICAgfQogICAgaWYgKCF0aGlzLnJydWxlX2J5ZGF5ICYmICF0aGlzLnJy
+dWxlX2J5eWVhcmRheSAmJiAhdGhpcy5ycnVsZV9ieW1vbnRoICYmIHRoaXMucnJ1bGVfZnJlcSA9
+PSAiWUVBUkxZIikgewogICAgICAgIHRoaXMucnJ1bGVfYnltb250aCA9IFsgKHRoaXMuc3RhcnRf
+ZGF0ZS5nZXRNb250aCgpICsgMSkudG9TdHJpbmcoKSBdOwogICAgfQp9CgovLyByZW1vdmVzIGFs
+bCBSUlVMRXMKU2NoZWR1bGVyLnByb3RvdHlwZS5yZW1vdmVfcmVjdXJyZW5jZV9ydWxlcyA9IGZ1
+bmN0aW9uKCkgewogICAgdGhpcy5pbml0X3JlY3VycmVuY2VfcnVsZXMoKTsKfQoKLy8gYWRkcyBh
+dCBsZWFzdCBvbmUgRVhEQVRFIChvcHRpb25hbCkKU2NoZWR1bGVyLnByb3RvdHlwZS5hZGRfZXhj
+ZXB0aW9uX2RhdGVzID0gZnVuY3Rpb24oZGF0ZXMpIHsKICAgIHZhciBuYl9kYXRlID0gZGF0ZXMu
+bGVuZ3RoOwogICAgZm9yICh2YXIgaSA9IDA7IGkgPCBuYl9kYXRlOyBpKyspIHsKICAgICAgICB0
+aGlzLmV4Y2VwdGlvbl9kYXRlcy5wdXNoKGRhdGVzW2ldLmdldFRpbWUoKSk7CiAgICB9CiAgICB0
+aGlzLmV4Y2VwdGlvbl9kYXRlcy5zb3J0KCk7Cn0KCi8vIHJlbW92ZXMgYWxsIEVYREFURXMKU2No
+ZWR1bGVyLnByb3RvdHlwZS5yZW1vdmVfZXhjZXB0aW9uX2RhdGVzID0gZnVuY3Rpb24oKSB7CiAg
+ICB0aGlzLmV4Y2VwdGlvbl9kYXRlcyA9IFtdOwp9CgovLyByZXRvdXJucyBhbGwgb2NjdXJyZW5j
+ZXMgYXMgRGF0ZSBhcnJheSAodGVzdCBtb2RlID0+IHRpbWVzdGFtcCBhcnJheSkKU2NoZWR1bGVy
+LnByb3RvdHlwZS5hbGxfb2NjdXJyZW5jZXMgPSBmdW5jdGlvbihmaWx0ZXJfYmVnaW5fdHMsIGZp
+bHRlcl9lbmRfdHMpIHsKICAgIHZhciBvY2N1cnJlbmNlcyA9IFtdOwogICAgaWYgKChmaWx0ZXJf
+YmVnaW5fdHMgPT09IHVuZGVmaW5lZCB8fCBmaWx0ZXJfZW5kX3RzID09PSB1bmRlZmluZWQpICYm
+CiAgICAgICAgdGhpcy5ycnVsZV9jb3VudCA9PT0gZmFsc2UgJiYgdGhpcy5ycnVsZV91bnRpbCA9
+PT0gZmFsc2UpIHsgCiAgICAgICAgcmV0dXJuIG51bGw7IC8vIGluZmluaXR5IG9mIHJlc3VsdHMg
+PT4gbXVzdCBiZSBwcm9jZXNzZWQgd2l0aCBmaWx0ZXJfYmVnaW5fdHMgJiBmaWx0ZXJfZW5kX3Rz
+CiAgICB9CgogICAgdmFyIGN1cnJlbnRfZGF0ZSA9IHRoaXMuc3RhcnRfZGF0ZTsKICAgIHZhciBj
+b3VudCA9IDA7IC8vIHVzZWQgdG8gZmlsdGVyIGJ5IHJydWxlX2NvdW50CiAgICB2YXIgY291bnRf
+cGVyaW9kID0gMDsgLy8gdXNlZCB0byBwcm9jZXNzIGludGVydmFscwogICAgCnBlcmlvZF9sb29w
+OgogICAgd2hpbGUgKCh0aGlzLnJydWxlX2NvdW50ID09PSBmYWxzZSB8fCBjb3VudCA8IHRoaXMu
+cnJ1bGVfY291bnQpCiAgICAmJiAodGhpcy5ycnVsZV91bnRpbCA9PT0gZmFsc2UgfHwgY3VycmVu
+dF9kYXRlLmdldFRpbWUoKSA8PSB0aGlzLnJydWxlX3VudGlsKQogICAgJiYgKGZpbHRlcl9lbmRf
+dHMgPT09IHVuZGVmaW5lZCB8fCBjdXJyZW50X2RhdGUuZ2V0VGltZSgpIDw9IGZpbHRlcl9lbmRf
+dHMpKSB7CgogICAgICAgIHZhciBkYXkgPSB0aGlzLmRheUZyb21EYXlOb1tjdXJyZW50X2RhdGUu
+Z2V0RGF5KCldOwogICAgICAgIHZhciBkID0gY3VycmVudF9kYXRlLmdldERhdGUoKTsKICAgICAg
+ICB2YXIgbSA9IGN1cnJlbnRfZGF0ZS5nZXRNb250aCgpICsgMTsKICAgICAgICB2YXIgeSA9IGN1
+cnJlbnRfZGF0ZS5nZXRGdWxsWWVhcigpOwogICAgICAgIHZhciB3ZWVrX25vID0gY3VycmVudF9k
+YXRlLmdldFdlZWtObyh0aGlzLnJydWxlX3drc3QgPT0gIk1PIiA/IDEgOiAwKTsgLy8gMSB0byA1
+MwogICAgICAgIHZhciBoID0gY3VycmVudF9kYXRlLmdldEhvdXJzKCk7CiAgICAgICAgdmFyIG1p
+biA9IGN1cnJlbnRfZGF0ZS5nZXRNaW51dGVzKCk7CiAgICAgICAgdmFyIHMgPSBjdXJyZW50X2Rh
+dGUuZ2V0U2Vjb25kcygpOwoKICAgICAgICB0aGlzLmN1cnJlbnRfcG9zID0gMTsgLy8gdXNlZCBp
+biBycnVsZV9ieXNldHBvcwogICAgICAgIHRoaXMub2xkX3BvcyA9IFtdOyAvLyB1c2VkIHdoZW4g
+YnlzZXRwb3MgaXMgYSBuZWdhdGl2ZSBudW1iZXIKCiAgICAgICAgaWYgKGNvdW50X3BlcmlvZCAl
+IHRoaXMucnJ1bGVfaW50ZXJ2YWwgPT0gMCAmJiB0aGlzLmNoZWNrX3J1bGVzKGRheSwgZCwgbSwg
+d2Vla19ubywgaCwgbWluLCBzKSkgeyAvLyBjdXJyZW50IGRhdGUgbWF0Y2hlcyBpbnRlcnZhbCBB
+TkQgcnVsZXMgYnlkYXksIGJ5bW9udGhkYXksIGJ5bW9udGgKICAgICAgICAgICAgaWYgKHRoaXMu
+cnJ1bGVfZnJlcSA9PSAiREFJTFkiKSB7CiAgICAgICAgICAgICAgICBmb3IgKHZhciBoX2l0ID0g
+MDsgaF9pdCA8IHRoaXMucnJ1bGVfYnlob3VyLmxlbmd0aDsgaF9pdCsrKSB7CiAgICAgICAgICAg
+ICAgICAgICAgZm9yICh2YXIgbWluX2l0ID0gMDsgbWluX2l0IDwgdGhpcy5ycnVsZV9ieW1pbnV0
+ZS5sZW5ndGg7IG1pbl9pdCsrKSB7CiAgICAgICAgICAgICAgICAgICAgICAgIGZvciAodmFyIHNf
+aXQgPSAwOyBzX2l0IDwgdGhpcy5ycnVsZV9ieXNlY29uZC5sZW5ndGg7IHNfaXQrKykgewogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgdmFyIGRhdGVfdG9fcHVzaCA9IG5ldyBEYXRlKHksICht
+LTEpLCBkLCB0aGlzLnJydWxlX2J5aG91cltoX2l0XSwgdGhpcy5ycnVsZV9ieW1pbnV0ZVttaW5f
+aXRdLCB0aGlzLnJydWxlX2J5c2Vjb25kW3NfaXRdKTsKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIHZhciB0c190b19wdXNoID0gZGF0ZV90b19wdXNoLmdldFRpbWUoKTsKICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIGlmICh0aGlzLnJydWxlX2J5c2V0cG9zICE9PSBmYWxzZSAmJiAhdGhp
+cy5ycnVsZV9ieXNldHBvcy5pbl9hcnJheSh0aGlzLmN1cnJlbnRfcG9zLnRvU3RyaW5nKCkpKSB7
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5jdXJyZW50X3BvcysrOwogICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMub2xkX3Bvcy5wdXNoKGRhdGVfdG9fcHVz
+aCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29udGludWU7CiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoKHRoaXMu
+cnJ1bGVfdW50aWwgIT09IGZhbHNlICYmIHRzX3RvX3B1c2ggPiB0aGlzLnJydWxlX3VudGlsKSB8
+fAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChmaWx0ZXJfZW5kX3RzICE9PSB1bmRl
+ZmluZWQgJiYgdHNfdG9fcHVzaCA+IGZpbHRlcl9lbmRfdHMpKSB7CiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgYnJlYWsgcGVyaW9kX2xvb3A7CiAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAodHNfdG9fcHVzaCA+PSB0aGlz
+LnN0YXJ0X3RzKSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKGZpbHRlcl9i
+ZWdpbl90cyA9PT0gdW5kZWZpbmVkIHx8IHRzX3RvX3B1c2ggPj0gZmlsdGVyX2JlZ2luX3RzKSB7
+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9jY3VycmVuY2VzLnB1c2goZGF0
+ZV90b19wdXNoKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgY291bnQrKzsKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgdGhpcy5jdXJyZW50X3BvcysrOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5v
+bGRfcG9zLnB1c2goZGF0ZV90b19wdXNoKTsKCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBp
+ZiAodGhpcy5ycnVsZV9jb3VudCAhPT0gZmFsc2UgJiYgY291bnQgPj0gdGhpcy5ycnVsZV9jb3Vu
+dCkgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrIHBlcmlvZF9sb29wOwog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICB9CiAg
+ICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9IGVsc2Ug
+aWYgKFsiV0VFS0xZIiwgIk1PTlRITFkiLCAiWUVBUkxZIl0uaW5fYXJyYXkodGhpcy5ycnVsZV9m
+cmVxKSkgewogICAgICAgICAgICAgICAgc3dpdGNoICh0aGlzLnJydWxlX2ZyZXEpIHsKICAgICAg
+ICAgICAgICAgICAgICBjYXNlICJXRUVLTFkiOgogICAgICAgICAgICAgICAgICAgICAgICB2YXIg
+cGVyaW9kX2JlZ2luID0gRGF0ZS5mcm9tV2Vlayh3ZWVrX25vLCB5LCB0aGlzLnJydWxlX3drc3Qg
+PT0gIk1PIiA/IDEgOiAwKTsKICAgICAgICAgICAgICAgICAgICAgICAgdmFyIHVudGlsID0gRGF0
+ZS5mcm9tV2Vlayh3ZWVrX25vICsgMSwgeSwgdGhpcy5ycnVsZV93a3N0ID09ICJNTyIgPyAxIDog
+MCk7CiAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICAgICAgICAgIGNh
+c2UgIk1PTlRITFkiOgogICAgICAgICAgICAgICAgICAgICAgICBwZXJpb2RfYmVnaW4gPSBuZXcg
+RGF0ZSh5LCBtIC0gMSwgMSkKICAgICAgICAgICAgICAgICAgICAgICAgdW50aWwgPSBuZXcgRGF0
+ZSh5LCBtLCAxKTsKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgICAg
+ICAgICAgY2FzZSAiWUVBUkxZIjoKICAgICAgICAgICAgICAgICAgICAgICAgcGVyaW9kX2JlZ2lu
+ID0gbmV3IERhdGUoeSwgMCwgMSk7CiAgICAgICAgICAgICAgICAgICAgICAgIHVudGlsID0gbmV3
+IERhdGUoeSArIDEsIDAsIDEpOwogICAgICAgICAgICAgICAgICAgICAgICBicmVhazsKICAgICAg
+ICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICB2YXIgaXRfZGF0ZSA9IHBlcmlvZF9iZWdpbjsK
+CiAgICAgICAgICAgICAgICB3aGlsZSAoaXRfZGF0ZS5nZXRUaW1lKCkgPCB1bnRpbC5nZXRUaW1l
+KCkpIHsKICAgICAgICAgICAgICAgICAgICB2YXIgaXRfZGF0ZV90cyA9IGl0X2RhdGUuZ2V0VGlt
+ZSgpOwogICAgICAgICAgICAgICAgICAgIGlmICgodGhpcy5ycnVsZV91bnRpbCAhPT0gZmFsc2Ug
+JiYgaXRfZGF0ZV90cyA+IHRoaXMucnJ1bGVfdW50aWwpIHx8CiAgICAgICAgICAgICAgICAgICAg
+ICAgIChmaWx0ZXJfZW5kX3RzICE9PSB1bmRlZmluZWQgJiYgaXRfZGF0ZV90cyA+IGZpbHRlcl9l
+bmRfdHMpKSB7CiAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrIHBlcmlvZF9sb29wOwogICAg
+ICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICAgICAgaWYgKHRoaXMuY2hlY2tfZGF5
+KGl0X2RhdGUpKSB7CgogICAgICAgICAgICAgICAgICAgICAgICBmb3IgKGhfaXQgPSAwOyBoX2l0
+IDwgdGhpcy5ycnVsZV9ieWhvdXIubGVuZ3RoOyBoX2l0KyspIHsKICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIGZvciAobWluX2l0ID0gMDsgbWluX2l0IDwgdGhpcy5ycnVsZV9ieW1pbnV0ZS5s
+ZW5ndGg7IG1pbl9pdCsrKSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9yIChz
+X2l0ID0gMDsgc19pdCA8IHRoaXMucnJ1bGVfYnlzZWNvbmQubGVuZ3RoOyBzX2l0KyspIHsKICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGF0ZV90b19wdXNoID0gbmV3IERhdGUo
+aXRfZGF0ZS5nZXRGdWxsWWVhcigpLCBpdF9kYXRlLmdldE1vbnRoKCksIGl0X2RhdGUuZ2V0RGF0
+ZSgpLCB0aGlzLnJydWxlX2J5aG91cltoX2l0XSwgdGhpcy5ycnVsZV9ieW1pbnV0ZVttaW5faXRd
+LCB0aGlzLnJydWxlX2J5c2Vjb25kW3NfaXRdKTsKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgdHNfdG9fcHVzaCA9IGRhdGVfdG9fcHVzaC5nZXRUaW1lKCk7CiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIGlmICh0aGlzLnJydWxlX2J5c2V0cG9zICE9PSBmYWxz
+ZSAmJiAhdGhpcy5ycnVsZV9ieXNldHBvcy5pbl9hcnJheSh0aGlzLmN1cnJlbnRfcG9zLnRvU3Ry
+aW5nKCkpKSB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLmN1
+cnJlbnRfcG9zKys7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlz
+Lm9sZF9wb3MucHVzaChkYXRlX3RvX3B1c2gpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgY29udGludWU7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaWYgKCh0aGlzLnJydWxlX3Vu
+dGlsICE9PSBmYWxzZSAmJiB0c190b19wdXNoID4gdGhpcy5ycnVsZV91bnRpbCkgfHwKICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChmaWx0ZXJfZW5kX3RzICE9PSB1bmRl
+ZmluZWQgJiYgdHNfdG9fcHVzaCA+IGZpbHRlcl9lbmRfdHMpKSB7CiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICBicmVhayBwZXJpb2RfbG9vcDsKICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBpZiAodHNfdG9fcHVzaCA+PSB0aGlzLnN0YXJ0X3RzKSB7CiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBpZiAoZmlsdGVyX2JlZ2luX3RzID09PSB1bmRlZmluZWQgfHwg
+dHNfdG9fcHVzaCA+PSBmaWx0ZXJfYmVnaW5fdHMpIHsKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBvY2N1cnJlbmNlcy5wdXNoKGRhdGVfdG9fcHVzaCk7CiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBjb3VudCsrOwogICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICB9CgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLmN1cnJl
+bnRfcG9zKys7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMub2xkX3Bv
+cy5wdXNoKGRhdGVfdG9fcHVzaCk7CgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICBpZiAodGhpcy5ycnVsZV9jb3VudCAhPT0gZmFsc2UgJiYgY291bnQgPj0gdGhpcy5ycnVsZV9j
+b3VudCkgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWsgcGVy
+aW9kX2xvb3A7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAg
+ICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAg
+ICAgICAgICAgaXRfZGF0ZSA9IG5ldyBEYXRlKGl0X2RhdGUpOwogICAgICAgICAgICAgICAgICAg
+IGl0X2RhdGUuc2V0RGF0ZShpdF9kYXRlLmdldERhdGUoKSArIDEpOwogICAgICAgICAgICAgICAg
+fQogICAgICAgICAgICAgICAgLy8gcHJvY2VzcyBuZWdhdGl2ZSB2YWx1ZXMgb2YgcnJ1bGVfYnlz
+ZXRwb3MKICAgICAgICAgICAgICAgIGlmICh0aGlzLnJydWxlX2J5c2V0cG9zIGluc3RhbmNlb2Yg
+QXJyYXkpIHsKICAgICAgICAgICAgICAgICAgICBmb3IgKHZhciBpdF9wb3MgPSAwOyBpdF9wb3Mg
+PCB0aGlzLnJydWxlX2J5c2V0cG9zLmxlbmd0aDsgaXRfcG9zKyspIHsKICAgICAgICAgICAgICAg
+ICAgICAgICAgdmFyIHBvcyA9IHBhcnNlSW50KHRoaXMucnJ1bGVfYnlzZXRwb3NbaXRfcG9zXSwg
+MTApOwogICAgICAgICAgICAgICAgICAgICAgICBpZiAocG9zIDwgMCkgewogICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgcG9zID0gTWF0aC5hYnMocG9zKTsKICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHZhciBsYXN0X21hdGNoaW5nX2RhdGVzID0gdGhpcy5vbGRfcG9zLnJldmVyc2UoKTsK
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhciBtYXRjaGluZ19kYXRlID0gbGFzdF9tYXRj
+aGluZ19kYXRlc1twb3MgLSAxXTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChtYXRj
+aGluZ19kYXRlICYmIG1hdGNoaW5nX2RhdGUgPj0gdGhpcy5zdGFydF90cykgewogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIG9jY3VycmVuY2VzLnB1c2gobWF0Y2hpbmdfZGF0ZSk7CiAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY291bnQrKzsKICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmICh0aGlzLnJydWxlX2Nv
+dW50ICE9PSBmYWxzZSAmJiBjb3VudCA+PSB0aGlzLnJydWxlX2NvdW50KSB7CiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgYnJlYWsgcGVyaW9kX2xvb3A7CiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAg
+ICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGNv
+dW50X3BlcmlvZCsrOwogICAgICAgIGN1cnJlbnRfZGF0ZSA9IHRoaXMubmV4dF9wZXJpb2QoY3Vy
+cmVudF9kYXRlKTsKICAgIH0KCiAgICAvLyByZW1vdmVzIGV4ZGF0ZXMKICAgIHZhciBuYl9vY2N1
+cnJlbmNlcyA9IG9jY3VycmVuY2VzLmxlbmd0aDsKICAgIHZhciBvY2N1cnJlbmNlc193aXRob3V0
+X2V4ZGF0ZXMgPSBbXTsKICAgIGZvciAodmFyIGkgPSAwOyBpIDwgbmJfb2NjdXJyZW5jZXM7IGkr
+KykgewogICAgICAgIHZhciBvY2N1cnJlbmNlID0gb2NjdXJyZW5jZXNbaV07CiAgICAgICAgdmFy
+IHRzID0gb2NjdXJyZW5jZS5nZXRUaW1lKCk7CiAgICAgICAgaWYgKCEodGhpcy5leGNlcHRpb25f
+ZGF0ZXMuaW5fYXJyYXkodHMpKSkgewogICAgICAgICAgICBvY2N1cnJlbmNlc193aXRob3V0X2V4
+ZGF0ZXMucHVzaCh0aGlzLnRlc3RfbW9kZSA/IHRzIDogb2NjdXJyZW5jZSk7CiAgICAgICAgfQog
+ICAgfQogICAgcmV0dXJuIG9jY3VycmVuY2VzX3dpdGhvdXRfZXhkYXRlczsKfQoKU2NoZWR1bGVy
+LnByb3RvdHlwZS5uZXh0X3BlcmlvZCA9IGZ1bmN0aW9uKGRhdGUpIHsKICAgIHN3aXRjaCAodGhp
+cy5ycnVsZV9mcmVxKSB7CiAgICAgICAgY2FzZSAiREFJTFkiOgogICAgICAgICAgICB2YXIgbmV3
+X2RhdGUgPSBuZXcgRGF0ZShkYXRlKTsKICAgICAgICAgICAgbmV3X2RhdGUuc2V0RGF0ZShkYXRl
+LmdldERhdGUoKSArIDEpOwogICAgICAgICAgICByZXR1cm4gbmV3X2RhdGU7CiAgICAgICAgY2Fz
+ZSAiV0VFS0xZIjoKICAgICAgICAgICAgcmV0dXJuIGRhdGUubmV4dFdlZWsoKTsKICAgICAgICBj
+YXNlICJNT05USExZIjoKICAgICAgICAgICAgbmV3X2RhdGUgPSBuZXcgRGF0ZShkYXRlKTsKICAg
+ICAgICAgICAgbmV3X2RhdGUuc2V0TW9udGgoZGF0ZS5nZXRNb250aCgpICsgMSwgMSk7CiAgICAg
+ICAgICAgIHJldHVybiBuZXdfZGF0ZTsKICAgICAgICBjYXNlICJZRUFSTFkiOgogICAgICAgICAg
+ICBuZXdfZGF0ZSA9IG5ldyBEYXRlKGRhdGUpOwogICAgICAgICAgICBuZXdfZGF0ZS5zZXRGdWxs
+WWVhcihkYXRlLmdldEZ1bGxZZWFyKCkgKyAxKTsKICAgICAgICAgICAgcmV0dXJuIG5ld19kYXRl
+OwogICAgfQoKfQoKLy8gY2hlY2sgdmFsaWRpdHkgb2Ygc2VsZWN0ZWQgcnVsZXMKU2NoZWR1bGVy
+LnByb3RvdHlwZS5jaGVja19ydWxlcyA9IGZ1bmN0aW9uKGRheSwgZCwgbSwgd2Vla19ubywgaCwg
+bWluLCBzKSB7CiAgICBzd2l0Y2ggKHRoaXMucnJ1bGVfZnJlcSkgewogICAgICAgIGNhc2UgIkRB
+SUxZIjoKICAgICAgICAgICAgcmV0dXJuICgobSA9PT0gdW5kZWZpbmVkIHx8IHRoaXMucnJ1bGVf
+Ynltb250aCA9PT0gZmFsc2UgfHwgdGhpcy5ycnVsZV9ieW1vbnRoLmluX2FycmF5KG0udG9TdHJp
+bmcoKSkpICYmCiAgICAgICAgICAgICAgICAoZCA9PT0gdW5kZWZpbmVkIHx8IHRoaXMucnJ1bGVf
+Ynltb250aGRheSA9PT0gZmFsc2UgfHwgdGhpcy5ycnVsZV9ieW1vbnRoZGF5LmluX2FycmF5KGQu
+dG9TdHJpbmcoKSkpICYmCiAgICAgICAgICAgICAgICAoZGF5ID09PSB1bmRlZmluZWQgfHwgdGhp
+cy5ycnVsZV9ieWRheSA9PT0gZmFsc2UgfHwgdGhpcy5ycnVsZV9ieWRheS5pbl9hcnJheShkYXku
+dG9TdHJpbmcoKSkpKTsKICAgICAgICBjYXNlICJXRUVLTFkiOgogICAgICAgICAgICByZXR1cm4g
+KChtID09PSB1bmRlZmluZWQgfHwgdGhpcy5ycnVsZV9ieW1vbnRoID09PSBmYWxzZSB8fCB0aGlz
+LnJydWxlX2J5bW9udGguaW5fYXJyYXkobS50b1N0cmluZygpKSkgJiYKICAgICAgICAgICAgICAg
+IChkID09PSB1bmRlZmluZWQgfHwgdGhpcy5ycnVsZV9ieW1vbnRoZGF5ID09PSBmYWxzZSB8fCB0
+aGlzLnJydWxlX2J5bW9udGhkYXkuaW5fYXJyYXkoZC50b1N0cmluZygpKSkpOwogICAgICAgIGNh
+c2UgIk1PTlRITFkiOgogICAgICAgICAgICByZXR1cm4gKG0gPT09IHVuZGVmaW5lZCB8fCB0aGlz
+LnJydWxlX2J5bW9udGggPT09IGZhbHNlIHx8IHRoaXMucnJ1bGVfYnltb250aC5pbl9hcnJheSht
+LnRvU3RyaW5nKCkpKTsKICAgICAgICBjYXNlICJZRUFSTFkiOgogICAgICAgICAgICByZXR1cm4g
+dHJ1ZTsKICAgIH0KfQoKLy8gcmV0b3VybnMgb2NjdXJyZW5jZXMgaW4gdGhlIHJhbmdlIFsgYmVn
+aW5fZGF0ZSwgZW5kX2RhdGUgXSBhcyBEYXRlIGFycmF5ICh0ZXN0IG1vZGUgPT4gdGltZXN0YW1w
+IGFycmF5KQpTY2hlZHVsZXIucHJvdG90eXBlLm9jY3VycmVuY2VzX2JldHdlZW4gPSBmdW5jdGlv
+bihiZWdpbl9kYXRlLCBlbmRfZGF0ZSkgewogICAgdmFyIGJlZ2luX3RzID0gYmVnaW5fZGF0ZS5n
+ZXRUaW1lKCk7CiAgICB2YXIgZW5kX3RzID0gZW5kX2RhdGUuZ2V0VGltZSgpOwoKICAgIHJldHVy
+biB0aGlzLmFsbF9vY2N1cnJlbmNlcyhiZWdpbl90cywgZW5kX3RzKTsKfQoKU2NoZWR1bGVyLnBy
+b3RvdHlwZS5jaGVja19kYXkgPSBmdW5jdGlvbihkYXRlKSB7CiAgICB2YXIgaXNfeWVhcmx5ID0g
+KHRoaXMucnJ1bGVfZnJlcSA9PSAiWUVBUkxZIik7CiAgICB2YXIgaXNfd2Vla2x5ID0gKHRoaXMu
+cnJ1bGVfZnJlcSA9PSAiV0VFS0xZIik7CgogICAgdmFyIGRheSA9IHRoaXMuZGF5RnJvbURheU5v
+W2RhdGUuZ2V0RGF5KCldOwogICAgdmFyIGQgPSBkYXRlLmdldERhdGUoKTsKICAgIHZhciBtID0g
+ZGF0ZS5nZXRNb250aCgpICsgMTsKICAgIHZhciB5ID0gZGF0ZS5nZXRGdWxsWWVhcigpOwogICAg
+aWYgKGlzX3llYXJseSkgewogICAgICAgIHZhciB3ZWVrX25vID0gZGF0ZS5nZXRXZWVrTm8odGhp
+cy5ycnVsZV93a3N0ID09ICJNTyIgPyAxIDogMCk7IC8vIDEgdG8gNTMKICAgIH0KCiAgICAvLyBj
+aGVjayBycnVsZV9ieW1vbnRoCiAgICBpZiAodGhpcy5ycnVsZV9ieW1vbnRoICE9PSBmYWxzZSkg
+ewogICAgICAgIGlmICghdGhpcy5ycnVsZV9ieW1vbnRoLmluX2FycmF5KG0udG9TdHJpbmcoKSkp
+IHsKICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwogICAgICAgIH0KICAgIH0KCiAgICAvLyBjaGVj
+ayBycnVsZV9ieWRheQogICAgaWYgKHRoaXMucnJ1bGVfYnlkYXkgIT09IGZhbHNlKSB7CiAgICAg
+ICAgaWYgKGlzX3dlZWtseSkgewogICAgICAgICAgICBpZiAoIXRoaXMucnJ1bGVfYnlkYXkuaW5f
+YXJyYXkoZGF5KSkgewogICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwogICAgICAgICAgICB9
+CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZm91bmQgPSBmYWxzZTsKICAgICAgICAgICAg
+Zm9yICh2YXIgaXRfd2QgPSAwOyBpdF93ZCA8IHRoaXMucnJ1bGVfYnlkYXkubGVuZ3RoOyBpdF93
+ZCsrKSB7CiAgICAgICAgICAgICAgICB2YXIgcnVsZV9ieWRheSA9IC8oWyswLTktXSopKFtBLVpd
+KykvLmV4ZWModGhpcy5ycnVsZV9ieWRheVtpdF93ZF0pOwogICAgICAgICAgICAgICAgdmFyIG1h
+dGNoaW5nX2RhdGVzID0gRGF0ZS5maW5kTnRoV2Vla0RheXMoeSwgaXNfeWVhcmx5ID8gZmFsc2Ug
+OiBtIC0gMSwgcnVsZV9ieWRheVsxXSA/IHJ1bGVfYnlkYXlbMV0gOiAwLCB0aGlzLmRheU5vRnJv
+bURheVtydWxlX2J5ZGF5WzJdXSk7CgogICAgICAgICAgICAgICAgZm9yICh2YXIgaXQgPSAwOyBp
+dCA8IG1hdGNoaW5nX2RhdGVzLmxlbmd0aDsgaXQrKykgewogICAgICAgICAgICAgICAgICAgIGlm
+IChkYXRlLmlzU2FtZURhdGUobWF0Y2hpbmdfZGF0ZXNbaXRdKSkgewogICAgICAgICAgICAgICAg
+ICAgICAgICBmb3VuZCA9IHRydWU7CiAgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOwogICAg
+ICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAg
+ICAgICBpZiAoIWZvdW5kKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAg
+ICAgIH0KICAgICAgICB9CiAgICB9CgogICAgaWYgKCFpc193ZWVrbHkpIHsKICAgICAgICAvLyBj
+aGVjayBycnVsZV9ieW1vbnRoZGF5CiAgICAgICAgaWYgKHRoaXMucnJ1bGVfYnltb250aGRheSAh
+PT0gZmFsc2UpIHsKICAgICAgICAgICAgdmFyIG1vbnRoX2RheXNfY291bnQgPSBEYXRlLmNvdW50
+TW9udGhEYXlzKHksIG0gLSAxKTsKICAgICAgICAgICAgdmFyIGRfbmVnID0gZCAtIDEgLSBtb250
+aF9kYXlzX2NvdW50OwogICAgICAgICAgICB2YXIgZm91bmQgPSBmYWxzZTsKICAgICAgICAgICAg
+Zm9yICh2YXIgaXRfbWQgPSAwOyBpdF9tZCA8IHRoaXMucnJ1bGVfYnltb250aGRheS5sZW5ndGg7
+IGl0X21kKyspIHsKICAgICAgICAgICAgICAgIHZhciBtZCA9IHBhcnNlSW50KHRoaXMucnJ1bGVf
+Ynltb250aGRheVtpdF9tZF0sIDEwKTsKICAgICAgICAgICAgICAgIGlmIChkID09IG1kIHx8IGRf
+bmVnID09IG1kKSB7CiAgICAgICAgICAgICAgICAgICAgZm91bmQgPSB0cnVlOwogICAgICAgICAg
+ICAgICAgICAgIGJyZWFrOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CiAgICAgICAg
+ICAgIGlmICghZm91bmQpIHsKICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICAg
+ICAgfQogICAgICAgIH0KICAgIH0KCiAgICBpZiAoaXNfeWVhcmx5KSB7CgogICAgICAgIC8vIGNo
+ZWNrIHJydWxlX2J5eWVhcmRheQogICAgICAgIGlmICh0aGlzLnJydWxlX2J5eWVhcmRheSAhPT0g
+ZmFsc2UpIHsKICAgICAgICAgICAgZm91bmQgPSBmYWxzZTsKICAgICAgICAgICAgZm9yICh2YXIg
+aXRfeWQgPSAwOyBpdF95ZCA8IHRoaXMucnJ1bGVfYnl5ZWFyZGF5Lmxlbmd0aDsgaXRfeWQrKykg
+ewogICAgICAgICAgICAgICAgdmFyIHllYXJfZGF5ID0gdGhpcy5ycnVsZV9ieXllYXJkYXlbaXRf
+eWRdOwogICAgICAgICAgICAgICAgaWYgKHllYXJfZGF5ID4gMCkgewogICAgICAgICAgICAgICAg
+ICAgIHZhciB5ZWFyX2RhdGUgPSBuZXcgRGF0ZSh5LCAwLCBwYXJzZUludCh5ZWFyX2RheSwgMTAp
+KTsKICAgICAgICAgICAgICAgICAgICBpZiAoZGF0ZS5pc1NhbWVEYXRlKHllYXJfZGF0ZSkpIHsK
+ICAgICAgICAgICAgICAgICAgICAgICAgZm91bmQgPSB0cnVlOwogICAgICAgICAgICAgICAgICAg
+ICAgICBicmVhazsKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9IGVsc2Ug
+aWYgKHllYXJfZGF5IDwgMCkgewogICAgICAgICAgICAgICAgICAgIHllYXJfZGF0ZSA9IG5ldyBE
+YXRlKHkgKyAxLCAwLCAxICsgcGFyc2VJbnQoeWVhcl9kYXksIDEwKSk7CiAgICAgICAgICAgICAg
+ICAgICAgaWYgKGRhdGUuaXNTYW1lRGF0ZSh5ZWFyX2RhdGUpKSB7CiAgICAgICAgICAgICAgICAg
+ICAgICAgIGZvdW5kID0gdHJ1ZTsKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICAg
+ICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgICAg
+ICAgICBjb250aW51ZTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAg
+ICBpZiAoIWZvdW5kKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAg
+IH0KICAgICAgICB9CgogICAgICAgIC8vIGNoZWNrIHJydWxlX2J5d2Vla25vCiAgICAgICAgaWYg
+KHRoaXMucnJ1bGVfYnl3ZWVrbm8gIT09IGZhbHNlKSB7CiAgICAgICAgICAgIGZvdW5kID0gZmFs
+c2U7CiAgICAgICAgICAgIGZvciAodmFyIGl0X3drbm8gPSAwOyBpdF93a25vIDwgdGhpcy5ycnVs
+ZV9ieXdlZWtuby5sZW5ndGg7IGl0X3drbm8rKykgewogICAgICAgICAgICAgICAgdmFyIGFfd2Vl
+a19ubyA9IHRoaXMucnJ1bGVfYnl3ZWVrbm9baXRfd2tub107CiAgICAgICAgICAgICAgICBpZiAo
+YV93ZWVrX25vKQogICAgICAgICAgICAgICAgaWYgKGFfd2Vla19ubyA+IDApIHsKICAgICAgICAg
+ICAgICAgICAgICBpZiAoYV93ZWVrX25vID09IHdlZWtfbm8pIHsKICAgICAgICAgICAgICAgICAg
+ICAgICAgZm91bmQgPSB0cnVlOwogICAgICAgICAgICAgICAgICAgICAgICBicmVhazsKICAgICAg
+ICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9IGVsc2UgaWYgKGFfd2Vla19ubyA8IDAp
+IHsKICAgICAgICAgICAgICAgICAgICB2YXIgeWVhcl93ZWVrX2NvdW50ID0gbmV3IERhdGUoeSwg
+MTEsIDMxKS5nZXRXZWVrTm8oKTsKICAgICAgICAgICAgICAgICAgICBpZiAod2Vla19ubyA9PSB5
+ZWFyX3dlZWtfY291bnQgKyAxICsgYV93ZWVrX25vKSB7CiAgICAgICAgICAgICAgICAgICAgICAg
+IGZvdW5kID0gdHJ1ZTsKICAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAg
+ICAgICAgICAgfQogICAgICAgICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgICAgICAgICBj
+b250aW51ZTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBpZiAo
+IWZvdW5kKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgIH0KICAg
+ICAgICB9CiAgICB9CgogICAgLy8gY2hlY2sgcnJ1bGVfYnlzZXRwb3MgcHJvY2Vzc2VkIGluIHBl
+cmlvZF9sb29wCiAgICByZXR1cm4gdHJ1ZTsKfQoK]]></Resource>
+    <Resource ID="9bfc1f90-0c7f-7d6f-913c-6ec2ab6d657a" Name="parseRrule.js" Type="js"><![CDATA[ZnVuY3Rpb24gcGFyc2VScnVsZVNvdXJjZXMoIHNvdXJjZXMgKQ0KCQl7DQoJCQl2YXIgc3RhcnRE
+YXRlIAk9IG5ldyBEYXRlKCBzb3VyY2VzLnN0YXJ0ICk7DQoJCQl2YXIgZW5kRGF0ZQkJPSBuZXcg
+RGF0ZSggc291cmNlcy5lbmQgKTsNCgkJCXZhciBldmVudFNvdXJjZXM9IFtdOw0KCQkJdmFyIHNv
+dXJjZQkJPSBzb3VyY2VzLnNvdXJjZTsNCg0KCQkJZm9yICggdmFyIGkgPSAwOyBpIDwgc291cmNl
+Lmxlbmd0aDsgaSsrICkNCgkJCXsNCgkJCQl2YXIgY2FsID0gc291cmNlWyBpIF0gOw0KCQkJCXZh
+ciBjb2xvciA9IGNhbC5jb2xvcjsNCgkJCQl2YXIgdGV4dENvbG9yID0gY2FsLnRleHRDb2xvcjsN
+CgkJCQl2YXIgYm9yZGVyQ29sb3IgPSBjYWwuYm9yZGVyQ29sb3I7DQoNCgkJCQlmb3IgKCB2YXIg
+aiA9IDA7IGogPCBjYWwuZXZlbnRzLmxlbmd0aDsgaisrICkNCgkJCQl7CQ0KCQkJCQlldmVudCAJ
+CQkJPSBjYWwuZXZlbnRzWyBqIF07DQoJCQkJCWV2ZW50LnRleHRDb2xvciAJPSB0ZXh0Q29sb3I7
+DQoJCQkJCWV2ZW50LmJvcmRlckNvbG9yIAk9IGJvcmRlckNvbG9yOw0KCQkJCQlldmVudC5jb2xv
+ciAJCT0gY29sb3I7DQoJCQkJDQoJCQkJCWlmICggZXZlbnQuaGFzT3duUHJvcGVydHkoICJycnVs
+ZSIgKSAmJiBldmVudC5ycnVsZSAhPSBudWxsICkNCgkJCQkJewkNCgkJCQkJCXZhciBldmVudF9z
+dGFydCA9IG5ldyBEYXRlKCBldmVudC5zdGFydCApOw0KCQkJCQkJdmFyIGV2ZW50X2VuZAk9IG5l
+dyBEYXRlKCBldmVudC5lbmQgKTsNCgkJCQkJCXZhciBkZWx0YSA9IGV2ZW50X2VuZC5nZXRUaW1l
+KCkgLSBldmVudF9zdGFydC5nZXRUaW1lKCk7DQoJCQkJCQkNCgkJCQkJCXZhciBzY2ggPSBuZXcg
+U2NoZWR1bGVyKCBldmVudF9zdGFydCwgZXZlbnQucnJ1bGUudG9VcHBlckNhc2UoKSApOwkJCQkJ
+CQ0KCQkJCQkNCgkJCQkJCWlmICggZXZlbnQuaGFzT3duUHJvcGVydHkoICJleGRhdGVzIiApICYm
+IGV2ZW50LmV4ZGF0ZXMgIT0gbnVsbCApDQoJCQkJCQl7CQ0KCQkJCQkJCXZhciBleGRhdGVzID0g
+W107DQoJCQkJCQkJZm9yICggdmFyIGsgPSAwIDsgayA8IGV2ZW50LmV4ZGF0ZXMubGVuZ3RoOyBr
+KysgKQ0KCQkJCQkJCQlleGRhdGVzLnB1c2goIG5ldyBEYXRlKCBldmVudC5leGRhdGVzWyBrIF0g
+KSApOw0KCQkJCQkJDQoJCQkJCQkJc2NoLmFkZF9leGNlcHRpb25fZGF0ZXMoIGV4ZGF0ZXMgKTsN
+CgkJCQkJCX0NCgkJCQkJCQ0KCQkJCQkJdmFyIG9jY3VycmVuY2VzID0gc2NoLm9jY3VycmVuY2Vz
+X2JldHdlZW4oIHN0YXJ0RGF0ZSwgZW5kRGF0ZSApOw0KDQoJCQkJCQlmb3IgKCB2YXIgayA9IDA7
+IGsgPCBvY2N1cnJlbmNlcy5sZW5ndGg7IGsrKyApDQoJCQkJCQl7DQoJCQkJCQkJdmFyIGNvcHkg
+PSB7fTsNCgkJCQkJCQlqUXVlcnkuZXh0ZW5kKCBjb3B5LCBldmVudCApOw0KCQkJCQkJCWNvcHku
+c3RhcnQgPSBvY2N1cnJlbmNlc1sgayBdOw0KCQkJCQkJCWNvcHkuZW5kID0gbmV3IERhdGUoIGNv
+cHkuc3RhcnQuZ2V0VGltZSgpICsgZGVsdGEgKTsNCgkJCQkJCQlldmVudFNvdXJjZXMucHVzaCgg
+Y29weSApOw0KCQkJCQkJfQ0KCQkJCQl9DQoJCQkJCWVsc2UNCgkJCQkJewkNCgkJCQkJCWV2ZW50
+LnN0YXJ0ID0gbmV3IERhdGUoIGV2ZW50LnN0YXJ0ICk7DQoJCQkJCQlldmVudC5lbmQgPSBuZXcg
+RGF0ZSggZXZlbnQuZW5kICk7DQoJCQkJCQlldmVudFNvdXJjZXMucHVzaCggZXZlbnQgKTsNCgkJ
+CQkJfQ0KCQkJCX0NCgkJCX0NCgkJCXJldHVybiBldmVudFNvdXJjZXM7DQoJCX0=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 import json
@@ -3796,6 +4330,8 @@ class VDOM_fullcalendar(VDOM_object):
   <Libraries>
     <Library Target="Html"><![CDATA[<link rel="stylesheet" type="text/css" href="/02dfd9db-16fe-3690-73e1-baf58cd3e6f4.res" />]]></Library>
     <Library Target="Html"><![CDATA[<script type='text/javascript' src='/10b18a20-59c9-2b2b-e4b3-7281bcc66d4f.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/d1e1abad-b15d-450e-b769-4fe10ccb02af.res'></script>]]></Library>
+	<Library Target="Html"><![CDATA[<script type='text/javascript' src='/9bfc1f90-0c7f-7d6f-913c-6ec2ab6d657a.res'></script>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
@@ -3818,88 +4354,88 @@ class VDOM_fullcalendar(VDOM_object):
             <Parameter Name="start" Order="" VbType="" Help="#Lang(906)"/>
             <Parameter Name="end" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="view" Order="" VbType="" Help="#Lang(908)"/>
-			<Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-		<Event Name="getEvents">
+        <Event Name="getEvents">
           <Parameters>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="view" Order="" VbType="" Help="#Lang(908)"/>
-			<Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="view" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
         <Event Name="daysSelected">
           <Parameters>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="allDay" Order="" VbType="" Help="#Lang(912)"/>
-			<Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="allDay" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
         <Event Name="eventClick">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(915)"/>
-			<Parameter Name="instance" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="instance" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
         <Event Name="eventDrag">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="instance" Order="" VbType="" Help="#Lang(921)"/>
-            <Parameter Name="allDay" Order="" VbType="" Help="#Lang(922)"/>
-			<Parameter Name="dayDelta" Order="" VbType="" Help="#Lang(922)"/>
-			<Parameter Name="minuteDelta" Order="" VbType="" Help="#Lang(922)"/>
-			<Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(925)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(926)"/>
+            <Parameter Name="instance" Order="" VbType="" Help="#Lang(927)"/>
+            <Parameter Name="allDay" Order="" VbType="" Help="#Lang(928)"/>
+            <Parameter Name="dayDelta" Order="" VbType="" Help="#Lang(929)"/>
+            <Parameter Name="minuteDelta" Order="" VbType="" Help="#Lang(931)"/>
+            <Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(932)"/>
           </Parameters>
         </Event>
         <Event Name="eventResize">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(923)"/>
-            <Parameter Name="start" Order="" VbType="" Help="#Lang(924)"/>
-            <Parameter Name="end" Order="" VbType="" Help="#Lang(925)"/>
-            <Parameter Name="instance" Order="" VbType="" Help="#Lang(926)"/>
-			<Parameter Name="dayDelta" Order="" VbType="" Help="#Lang(922)"/>
-			<Parameter Name="minuteDelta" Order="" VbType="" Help="#Lang(922)"/>
-			<Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(933)"/>
+            <Parameter Name="start" Order="" VbType="" Help="#Lang(934)"/>
+            <Parameter Name="end" Order="" VbType="" Help="#Lang(935)"/>
+            <Parameter Name="instance" Order="" VbType="" Help="#Lang(936)"/>
+            <Parameter Name="dayDelta" Order="" VbType="" Help="#Lang(937)"/>
+            <Parameter Name="minuteDelta" Order="" VbType="" Help="#Lang(938)"/>
+            <Parameter Name="timezoneOffset" Order="" VbType="" Help="#Lang(939)"/>
           </Parameters>
         </Event>
         <Event Name="mousemove">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(941)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(942)"/>
           </Parameters>
         </Event>
         <Event Name="mouseout">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(929)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(931)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(943)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(944)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(932)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(933)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(945)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(946)"/>
           </Parameters>
         </Event>
         <Event Name="mouseup">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(947)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(948)"/>
           </Parameters>
         </Event>
         <Event Name="viewChanged">
           <Parameters>
-            <Parameter Name="title" Order="" VbType="" Help="#Lang(936)"/>
-            <Parameter Name="view" Order="" VbType="" Help="#Lang(937)"/>
+            <Parameter Name="title" Order="" VbType="" Help="#Lang(949)"/>
+            <Parameter Name="view" Order="" VbType="" Help="#Lang(951)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -3937,7 +4473,7 @@ if (!isNaN(_w) && !isNaN(_h))
 	//vdom_ui_resizeTo(this.domCont, _w, _h); ошибка внутри метода.
 	this.domCont.style.width = _w + "px";
 	this.domCont.style.height = _h + "px";
-	$q("div#"+this.domCont.id).fullCalendar('option', 'height', _h);
+	jQuery("div#"+this.domCont.id).fullCalendar('option', 'height', _h);
 }
 ]]></SourceCode>
         </Action>
@@ -3955,8 +4491,8 @@ if (!isNaN(_w) && !isNaN(_h))
 				view = "agendaDay";
 
 			if (view)
-				$q("div#"+this.domCont.id).fullCalendar('changeView',view);
-					]]></SourceCode>
+				jQuery("div#"+this.domCont.id).fullCalendar('changeView',view);
+			]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveZindexTo">
           <Parameters>
@@ -3971,13 +4507,13 @@ if (!isNaN(_w) && !isNaN(_h))
         <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="next">
           <Parameters/>
           <SourceCode><![CDATA[
-$q("div#"+this.domCont.id).fullCalendar('next');
+jQuery("div#"+this.domCont.id).fullCalendar('next');
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="prev">
           <Parameters/>
           <SourceCode><![CDATA[
-$q("div#"+this.domCont.id).fullCalendar('prev');
+jQuery("div#"+this.domCont.id).fullCalendar('prev');
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
@@ -3997,7 +4533,7 @@ var _y = parseInt(year);
 var _m = parseInt(month);
 var _d = parseInt(day);
 if (!isNaN(_y) && !isNaN(_m) && !isNaN(_d))
-	$q("div#"+this.domCont.id).fullCalendar('gotoDate', _y , _m-1, _d);
+	jQuery("div#"+this.domCont.id).fullCalendar('gotoDate', _y , _m-1, _d);
 		]]></SourceCode>
         </Action>
         <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setEventSource">
@@ -4005,13 +4541,22 @@ if (!isNaN(_y) && !isNaN(_m) && !isNaN(_d))
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="eventSource" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$q("div#"+this.domCont.id).fullCalendar('addEventSource', eval(eventSource) );
+jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', eval(eventSource) );
 		]]></SourceCode>
         </Action>
-        <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="clearEventSource">
+        <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setEventsWithRrule">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="eventData" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+		eval( 'var data = ' + eventData );
+		jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', parseRruleSources( data ) );
+		  ]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(513)" InterfaceName="#Lang(613)" MethodName="clearEventSource">
           <Parameters/>
           <SourceCode><![CDATA[
-$q("div#"+this.domCont.id).fullCalendar('removeEvents');
+jQuery("div#"+this.domCont.id).fullCalendar('removeEvents');
 ]]></SourceCode>
         </Action>
       </Container>
