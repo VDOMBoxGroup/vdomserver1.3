@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.13.6720</Version>
+    <Version>2.14.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -6796,14 +6796,18 @@ class VDOM_htmlcontainer(VDOM_object):
 			e2vdom.process(self, parent)
 			libraries, declarations, registrations=e2vdom.generate(self)
 			#javascript="%s\n%s\n"%(declarations, registrations)
-			javascript = """<script type="text/javascript">%s
+			
+			javascript = u"""%s
 			function initE2VDOM(){
 			%s
-			};initE2VDOM();</script>
+			};initE2VDOM();
 			"""%(declarations, registrations)
-
-			#res_id = application.resources.create_temporary(self.id, "jsdata", javascript, "js", "jsdata")
-			#javascript = "<script type='text/javascript' src='/%s.res'></script>"%res_id
+			resource = application.resources.get_by_label(self.id, "jsdata-%s"%len(javascript))
+			if resource:
+				res_id = resource.id
+			else:
+				res_id = application.resources.create_temporary(self.id, "jsdata-htmlcontainer", javascript.encode('utf-8'), "js", "jsdata-%s"%len(javascript))
+			javascript = "<script type='text/javascript' src='/%s.res'></script>"%res_id
 
 			clean_id = (application.id).replace('-', '_')
 
