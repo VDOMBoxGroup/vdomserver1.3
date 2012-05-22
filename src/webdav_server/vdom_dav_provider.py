@@ -185,10 +185,16 @@ class FolderResource(DAVCollection):
 
 		See DAVCollection.getMemberNames()
 		"""
+		membersInPropManager = []
 		func_name = "getMembers"
 		xml_data = """{"path": "%s"}""" % self._path
+		for key, value in self.provider.propManager1.getAllProperties().items():
+			if util.isChildUri(self._path, key):
+				membersInPropManager.append(key)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
+			if len(membersInPropManager) != len(ret):
+				self.provider.propManager1.sync()
 			return ret
 		return []
 
