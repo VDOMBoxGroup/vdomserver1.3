@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.18.6720</Version>
+    <Version>3.19.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -911,7 +911,7 @@ class VDOM_text(VDOM_object):
 			self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, 
 			0, 0, self.width, self.color, self.fontstyle, self.fontweight, self.fontfamily.replace('"', '').replace("'", ''), fontsize, self.align, self.textdecoration, editable, value,
 			contents)
-		print result
+		#print result
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 ]]></SourceCode>
