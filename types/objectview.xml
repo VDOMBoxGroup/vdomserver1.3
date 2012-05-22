@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.9.6720</Version>
+    <Version>1.11.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -204,6 +204,30 @@
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>itemstorender</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(9999999)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>noreplace</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -650,6 +674,151 @@ ZGmeqEAMRTEQwskYbV0Yx7kYSIzQhtgoBxCKBDQCIOcoLBimRiFhSABYU5gIgW01pLUBYkRItAYA
 qrlhYiwKjiWAcDMWY8QjsCf4DewiBzQ2N1AmKlgvgCiMjSQhACH5BAkKAAAALAAAAAAQABAAAAVf
 ICCOZGmeqEgUxUAIpkA0AMKyxkEiSZEIsJqhYAg+boUFSTAkiBiNHks3sg1ILAfBiS10gyqCg0Ua
 FBCkwy3RYKiIYMAC+RAxiQgYsJdAjw5DN2gILzEEZgVcKYuMJiEAOwAAAAAAAAAAAA==]]></Resource>
+    <Resource ID="feb69c13-3f9b-f49f-6527-72f5a7193a34" Name="16.gif" Type="gif"><![CDATA[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
+6Orp4eXl5+zr6OLu5vLx7fUG8PITIQA7]]></Resource>
+    <Resource ID="e0cc0355-d598-33f6-92e9-731bed2c78eb" Name="scrollstart-scrollstop-resize-div.js" Type="js"><![CDATA[Lyogc2Nyb2xsc3RhcnQgJiBzY3JvbGxzdG9wIGV2ZW50cyAqLw0KKGZ1bmN0aW9uKCl7dmFyIHNw
+ZWNpYWw9alF1ZXJ5LmV2ZW50LnNwZWNpYWwsdWlkMT0iRCIrICtuZXcgRGF0ZSx1aWQyPSJEIiso
+K25ldyBEYXRlKzEpO3NwZWNpYWwuc2Nyb2xsc3RhcnQ9e3NldHVwOmZ1bmN0aW9uKCl7dmFyIHRp
+bWVyLGhhbmRsZXI9ZnVuY3Rpb24oZXZ0KXt2YXIgX3NlbGY9dGhpcyxfYXJncz1hcmd1bWVudHM7
+aWYodGltZXIpY2xlYXJUaW1lb3V0KHRpbWVyKTtlbHNle2V2dC50eXBlPSJzY3JvbGxzdGFydCI7
+alF1ZXJ5LmV2ZW50LmhhbmRsZS5hcHBseShfc2VsZixfYXJncyl9dGltZXI9c2V0VGltZW91dChm
+dW5jdGlvbigpe3RpbWVyPW51bGx9LHNwZWNpYWwuc2Nyb2xsc3RvcC5sYXRlbmN5KX07alF1ZXJ5
+KHRoaXMpLmJpbmQoInNjcm9sbCIsaGFuZGxlcikuZGF0YSh1aWQxLGhhbmRsZXIpfSx0ZWFyZG93
+bjpmdW5jdGlvbigpe2pRdWVyeSh0aGlzKS51bmJpbmQoInNjcm9sbCIsalF1ZXJ5KHRoaXMpLmRh
+dGEodWlkMSkpfX07c3BlY2lhbC5zY3JvbGxzdG9wPSB7bGF0ZW5jeToyMDAsc2V0dXA6ZnVuY3Rp
+b24oKXt2YXIgdGltZXIsaGFuZGxlcj1mdW5jdGlvbihldnQpe3ZhciBfc2VsZj10aGlzLF9hcmdz
+PWFyZ3VtZW50cztpZih0aW1lciljbGVhclRpbWVvdXQodGltZXIpO3RpbWVyPXNldFRpbWVvdXQo
+ZnVuY3Rpb24oKXt0aW1lcj1udWxsO2V2dC50eXBlPSJzY3JvbGxzdG9wIjtqUXVlcnkuZXZlbnQu
+aGFuZGxlLmFwcGx5KF9zZWxmLF9hcmdzKX0sc3BlY2lhbC5zY3JvbGxzdG9wLmxhdGVuY3kpfTtq
+UXVlcnkodGhpcykuYmluZCgic2Nyb2xsIixoYW5kbGVyKS5kYXRhKHVpZDIsaGFuZGxlcil9LHRl
+YXJkb3duOmZ1bmN0aW9uKCl7alF1ZXJ5KHRoaXMpLnVuYmluZCgic2Nyb2xsIixqUXVlcnkodGhp
+cykuZGF0YSh1aWQyKSl9fX0pKCk7DQoNCi8qIGpRdWVyeSByZXNpemUgZXZlbnQgLSB2MS4xIC0g
+My8xNC8yMDEwDQogKiBodHRwOi8vYmVuYWxtYW4uY29tL3Byb2plY3RzL2pxdWVyeS1yZXNpemUt
+cGx1Z2luLw0KICogQ29weXJpZ2h0IChjKSAyMDEwICJDb3dib3kiIEJlbiBBbG1hbg0KICogRHVh
+bCBsaWNlbnNlZCB1bmRlciB0aGUgTUlUIGFuZCBHUEwgbGljZW5zZXMuDQogKiBodHRwOi8vYmVu
+YWxtYW4uY29tL2Fib3V0L2xpY2Vuc2UvDQogKi8NCihmdW5jdGlvbigkLGgsYyl7dmFyIGE9JChb
+XSksZT0kLnJlc2l6ZT0kLmV4dGVuZCgkLnJlc2l6ZSx7fSksaSxrPSJzZXRUaW1lb3V0IixqPSJy
+ZXNpemUiLGQ9aisiLXNwZWNpYWwtZXZlbnQiLGI9ImRlbGF5IixmPSJ0aHJvdHRsZVdpbmRvdyI7
+ZVtiXT0yNTA7ZVtmXT10cnVlOyQuZXZlbnQuc3BlY2lhbFtqXT17c2V0dXA6ZnVuY3Rpb24oKXtp
+ZighZVtmXSYmdGhpc1trXSl7cmV0dXJuIGZhbHNlfXZhciBsPSQodGhpcyk7YT1hLmFkZChsKTsk
+LmRhdGEodGhpcyxkLHt3Omwud2lkdGgoKSxoOmwuaGVpZ2h0KCl9KTtpZihhLmxlbmd0aD09PTEp
+e2coKX19LHRlYXJkb3duOmZ1bmN0aW9uKCl7aWYoIWVbZl0mJnRoaXNba10pe3JldHVybiBmYWxz
+ZX12YXIgbD0kKHRoaXMpO2E9YS5ub3QobCk7bC5yZW1vdmVEYXRhKGQpO2lmKCFhLmxlbmd0aCl7
+Y2xlYXJUaW1lb3V0KGkpfX0sYWRkOmZ1bmN0aW9uKGwpe2lmKCFlW2ZdJiZ0aGlzW2tdKXtyZXR1
+cm4gZmFsc2V9dmFyIG47ZnVuY3Rpb24gbShzLG8scCl7dmFyIHE9JCh0aGlzKSxyPSQuZGF0YSh0
+aGlzLGQpO3Iudz1vIT09Yz9vOnEud2lkdGgoKTtyLmg9cCE9PWM/cDpxLmhlaWdodCgpO24uYXBw
+bHkodGhpcyxhcmd1bWVudHMpfWlmKCQuaXNGdW5jdGlvbihsKSl7bj1sO3JldHVybiBtfWVsc2V7
+bj1sLmhhbmRsZXI7bC5oYW5kbGVyPW19fX07ZnVuY3Rpb24gZygpe2k9aFtrXShmdW5jdGlvbigp
+e2EuZWFjaChmdW5jdGlvbigpe3ZhciBuPSQodGhpcyksbT1uLndpZHRoKCksbD1uLmhlaWdodCgp
+LG89JC5kYXRhKHRoaXMsZCk7aWYobSE9PW8ud3x8bCE9PW8uaCl7bi50cmlnZ2VyKGosW28udz1t
+LG8uaD1sXSl9fSk7ZygpfSxlW2JdKX19KShqUXVlcnksdGhpcyk7DQo=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -659,6 +828,8 @@ import thread
 import copy
 import json
 import collections
+import utils.uuid
+import re
 
 class DummyAttribute(object):
 
@@ -710,7 +881,6 @@ class DummyObject(object):
 		self.attributes[name].value = value
 		return { "value": value, "old_value": old_value }
 
-
 	def get_objects_list(self):
 		return self.__original.get_objects_list()
 
@@ -719,7 +889,117 @@ class VDOM_objectview(VDOM_object):
 
 	tmp_list = []
 
-	
+	JS_DRAG = u"""
+$j("#%(id)s>.%(class)s-item").draggable({
+	connectToDynatree: true,
+	appendTo: 'body',
+	containment: 'document',
+	zIndex: 99999,
+	opacity: 0.6,
+	helper: 'clone',
+	option: 'accept',
+	cursor: 'default',
+	cursorAt: { left: -2, top: 4 },
+	//cursorAt: { left: 20, bottom: -2 },
+	//cursorAt: { left: -5, top: -5 },
+	start: function(e,u){
+		execEventBinded('%(woid)s', "dragstart", {itemid: $j(this).attr('dataid')}, true);
+	}
+	,helper: function(e) {
+		//return $j("<div class='ui-widget-header'>drop item to...</div>");
+		return $j("<div style='width:50px;height:20px;background:#555'></div>");
+	}
+});
+"""
+
+	JS_LOADING = u"""
+%(id)s_ld = function(t){
+	var z = $j('>.loading',t);
+	if (z.size() > 0) {
+		if (z.is(':visible')) return;
+		z.fadeIn(100);
+	} else {
+		var x = $j('<div class="loading" style="width:100%%;height:100%%"></div>').css({position:'absolute',opacity:0.9}).hide().fadeIn(100);
+		t.append(x);
+	}
+	e2vdomAfterResponse('$j("#%(id)s>div[dataid='+t.attr('dataid')+']>.loading").fadeOut(100);');
+}
+"""
+
+	JS = u"""<style type='text/css'>
+#%(id)s .loading { background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; }
+#%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
+</style>
+<script type="text/javascript">
+%(id)s_doo = false;
+%(js_loading)s
+$j(function(){
+	//$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
+	//$j("#%(id)s>.%(class)s-item").live('click', function(e){
+	$j("#%(id)s>.%(class)s-item").bind('click dblclick', function(e){
+		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
+		var t = $j(this);
+		if (e.type == 'dblclick') {
+			%(id)s_doo = false;
+			%(js_loading_call)s
+			execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
+		} else {
+			setTimeout(function() {
+				if (%(id)s_doo == true) {
+					%(js_loading_call)s
+					execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
+				}
+			}, 220);
+			%(id)s_doo = true;
+		}
+		return false;
+	});
+	$j("#%(id)s>.%(class)s-item").hover(function(e){
+		execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
+		return false;
+	},function(e){
+		execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
+		return false;
+	});
+	%(js_drag)s
+
+
+	// dyn load
+
+	$j("#%(id)s>div.ov-item").addClass('not-loaded');
+
+	$j("#%(id)s").bind('scrollstop', function() {
+		vdom_ov_markShow("%(woid)s");
+	});
+
+	$j("#sel1").click(function(){
+		$j("#%(id)s>div.ov-item").each(function(){
+			var t = $j(this);
+			if (t.hasClass('ov-item-1') || t.hasClass('ov-item-2') || t.hasClass('ov-item-3')) {
+				t.show();
+			} else {
+				t.hide();
+			}
+		});
+		vdom_ov_markShow("%(woid)s");
+		return false;
+	});
+
+	$j("#sel2").click(function(){
+		return false;
+	});
+
+	$j("#%(id)s").bind('resize',function(){
+		vdom_ov_markShow("%(woid)s");
+	});
+
+	$j(function(){
+		vdom_ov_markShow("%(woid)s");
+	});
+
+});
+</script>"""
+
 	def create_dupes_recurse(self, application, res, object, children):
 		result = res
 		for index, xobject in enumerate(children):
@@ -768,8 +1048,9 @@ class VDOM_objectview(VDOM_object):
 		return result
 
 
-	def do_compile(self, object):
+	def do_compile(self, object, idlist):
 		result = ""
+		onlydiv = True if len(idlist) <= 0 else False
 
 		if self.vdomclassid:
 			self.tmp_list = []
@@ -802,6 +1083,12 @@ class VDOM_objectview(VDOM_object):
 			nn_first = 1
 			#for key in obj_data:
 			for index, key in enumerate(obj_data):
+
+				if not onlydiv:
+					if key not in idlist:
+						continue
+					else:
+						pass
 
 				# create new object for item container
 
@@ -853,10 +1140,20 @@ class VDOM_objectview(VDOM_object):
 					,"classodd":   classodd
 				}, False)
 				obj.set_attribute_ex("classname", "%(userdef)s" % {
-					 "name":        obj.name
+					 "name":       obj.name
 					,"userdef":    source_object_attr["classname"].value
 				}, False)
-				result += managers.engine.render(application, obj, object, "vdom")
+
+				# first render - output all items, but as empty DIVs
+				if onlydiv:
+					try:
+						tmp_res = managers.engine.render(application, obj, object, "vdom")
+						result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
+					except:
+						raise
+				# render for requested items
+				else:
+					result += managers.engine.render(application, obj, object, "vdom")
 
 				nn += 1
 
@@ -869,168 +1166,144 @@ class VDOM_objectview(VDOM_object):
 	def __init__(self, id):
 		VDOM_object.__init__(self, id)
 
+
 	def render(self, parent, contents = ""):
-
-		# render items
-
-		inner_render = self.do_compile(application.objects.search(self.id))
-
-		# remove on_compile's objects
-
-		#managers.source_cache.invalidate(application.id, self.id)
-		#for object_id in self.tmp_list:
-		#	application.objects.delete(object_id)
-
-		# render object
-
-		display = u" display:none; " if self.visible == "0" else u""
-
-		e2vdom.process(self, parent)
-
-		if self.overflow == "1":
-			overflow = u"hidden"
-		elif self.overflow == "2":
-			overflow = u"scroll"
-		elif self.overflow == "3":
-			overflow = u"visible"
-		else:
-			overflow = u"auto"
-
-		height = u"height: %spx;" % self.height
-
-		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
-					width: {width}px; overflow: {overflow}; {height}"""\
-				.format(display = display, zind = self.zindex, pos = self.position,
-						top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
 
 		woid = (self.id).replace('-', '_')
 		id = u"o_" + woid
 
-		classname = u"""class="%s" """ % self.classname if self.classname else u""
+		######## render separate items
 
-		classname_item = (self.classname).replace(' ', '')
-		if self.classname == '':
-			classname_item = 'ov'
+		if request.render_type == "e2vdom" and self.itemstorender != "":  # html || e2vdom
+			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
 
-		# layout css for inner items
-		if self.layout == "0":
-			layout = u"float: left;"
-		elif self.layout == "1":
-			layout = u"clear: both;"
+			try:
+				itemstorender = json.loads(self.itemstorender)
+			except:
+				itemstorender = []
+				#raise
+
+			if itemstorender == []:
+				itemstorender.append("dummy-item-554f180b-1c2a-6705-3608-87f71366710b")
+
+			inner_render = self.do_compile(application.objects.search(self.id), itemstorender)
+
+			tmp_id = u"ov" + str(utils.uuid.uuid4())
+
+			result = u"""<noreplace/>
+
+<div id="%(tmp_id)s" style="display:none">%(inner_render)s</div>
+
+<script>
+	var x = $j('#%(id)s');
+	$j('#%(tmp_id)s>div[dataid]').each(function(){
+		var i = $j("div[dataid="+$j(this).attr('dataid')+"]", x);
+		i.after($j(this));
+		i.remove();
+	});
+</script>
+""" % {
+				"id": id, "inner_render": inner_render, "tmp_id": tmp_id
+			}
+
+			return VDOM_object.render(self, parent, contents=result)
+
+
+		######## render whole object but only wraps for items
+
 		else:
-			layout = u"width: 100% !important; clear: both;"
+			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "html"'
 
-		style_items = u"""
-		<style type="text/css">
-		#%(id)s .%(class)s-item {
-		%(layout)s
-		}
-		</style>""" % {
-			"id":      id
-			,"class":  classname_item
-			,"layout": layout
-		}
+			# render items
 
-		if self.draggable == '1':
-			js_drag = u"""
-$j("#%(id)s>.%(class)s-item").draggable({
-	connectToDynatree: true,
-	appendTo: 'body',
-	containment: 'document',
-	zIndex: 99999,
-	opacity: 0.6,
-	helper: 'clone',
-	option: 'accept',
-	cursor: 'default',
-	cursorAt: { left: -2, top: 4 },
-	//cursorAt: { left: 20, bottom: -2 },
-	//cursorAt: { left: -5, top: -5 },
-	start: function(e,u){
-		execEventBinded('%(woid)s', "dragstart", {itemid: $j(this).attr('dataid')}, true);
-	}
-	,helper: function(e) {
-		//return $j("<div class='ui-widget-header'>drop item to...</div>");
-		return $j("<div style='width:50px;height:20px;background:#555'></div>");
-	}
-});
-""" % { "id": id, "woid": woid, "class": classname_item }
-		else:
-			js_drag = ""
+			inner_render = self.do_compile(application.objects.search(self.id), [])
 
-		if self.loading == "0":
-			js_loading_call = u""
-			js_loading = u""
-		else:
-			js_loading_call = u"%s_ld(t);" % id
-			js_loading = u"""
-%(id)s_ld = function(t){
-	var z = $j('>.loading',t);
-	if (z.size() > 0) {
-		if (z.is(':visible')) return;
-		z.fadeIn(100);
-	} else {
-		var x = $j('<div class="loading" style="width:100%%;height:100%%"></div>').css({position:'absolute',opacity:0.9}).hide().fadeIn(100);
-		t.append(x);
-	}
-	e2vdomAfterResponse('$j("#%(id)s>div[dataid='+t.attr('dataid')+']>.loading").fadeOut(100);');
-}
-""" % { "id": id }
+			# remove on_compile's objects
 
-		js = u"""<style type='text/css'>
-#%(id)s .loading {
-background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat;
-}
-</style>
-<script type="text/javascript">
-		%(id)s_doo = false;
-		%(js_loading)s
-		$j(document).ready(function(){
-			//$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
-			//$j("#%(id)s>.%(class)s-item").live('click', function(e){
-			$j("#%(id)s>.%(class)s-item").bind('click dblclick', function(e){
-				if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
-				var t = $j(this);
-				if (e.type == 'dblclick') {
-					%(id)s_doo = false;
-					%(js_loading_call)s
-					execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
-				} else {
-					setTimeout(function() {
-						if (%(id)s_doo == true) {
-							%(js_loading_call)s
-							execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
-						}
-					}, 220);
-					%(id)s_doo = true;
-				}
-				return false;
-			});
-			$j("#%(id)s>.%(class)s-item").hover(function(e){
-				execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
-				return false;
-			},function(e){
-				execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
-				return false;
-			});
-			%(js_drag)s
-		});
-		</script>""" % {
-			"js_drag":     js_drag
-			,"id":         id
-			,"woid":       woid
-			,"class":      classname_item
-			,"js_loading": js_loading
-			,"js_loading_call": js_loading_call
-		}
+			#managers.source_cache.invalidate(application.id, self.id)
+			#for object_id in self.tmp_list:
+			#	application.objects.delete(object_id)
 
-		result = u"""<div objtype='objectview' ver='2011-04-02' objname='{name}' id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
-			id = id, name = self.name, js = js,
-			style = style.strip(), style_items = style_items.strip(), 
-			classname = classname.strip(), contents = inner_render
-		)
+			# render object
 
+			display = u" display:none; " if self.visible == "0" else u""
 
-		return VDOM_object.render(self, parent, contents=result)
+			e2vdom.process(self, parent)
+
+			if self.overflow == "1":
+				overflow = u"hidden"
+			elif self.overflow == "2":
+				overflow = u"scroll"
+			elif self.overflow == "3":
+				overflow = u"visible"
+			else:
+				overflow = u"auto"
+
+			height = u"height: %spx;" % self.height
+
+			style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
+						width: {width}px; overflow: {overflow}; {height}"""\
+					.format(display = display, zind = self.zindex, pos = self.position,
+							top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
+
+			classname = u"""class="%s" """ % self.classname if self.classname else u""
+
+			classname_item = (self.classname).replace(' ', '')
+			if self.classname == '':
+				classname_item = 'ov'
+
+			# layout css for inner items
+			if self.layout == "0":
+				layout = u"float: left;"
+			elif self.layout == "1":
+				layout = u"clear: both;"
+			else:
+				layout = u"width: 100% !important; clear: both;"
+
+			style_items = u"""
+			<style type="text/css">
+			#%(id)s .%(class)s-item {
+			%(layout)s
+			}
+			</style>""" % {
+				"id":      id
+				,"class":  classname_item
+				,"layout": layout
+			}
+
+			if self.draggable == '1':
+				js_drag = self.JS_DRAG % { "id": id, "woid": woid, "class": classname_item }
+			else:
+				js_drag = ""
+
+			if self.loading == "0":
+				js_loading_call = u""
+				js_loading = u""
+			else:
+				js_loading_call = u"%s_ld(t);" % id
+				js_loading = self.JS_LOADING % { "id": id }
+
+			js = self.JS % {
+				"js_drag":          js_drag
+				,"id":              id
+				,"woid":            woid
+				,"class":           classname_item
+				,"js_loading":      js_loading
+				,"js_loading_call": js_loading_call
+			}
+
+			if VDOM_CONFIG_1["DEBUG"] == "1":
+				debug_info = u"objtype='objectview' objname='%s' ver='2012-05-21'" % self.name
+			else:
+				debug_info = u""
+
+			result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
+				id = id, js = js, debug_info = debug_info,
+				style = style.strip(), style_items = style_items.strip(), 
+				classname = classname.strip(), contents = inner_render
+			)
+
+			return VDOM_object.render(self, parent, contents=result)
 
 
 	def wysiwyg(self, parent, contents=""):
@@ -1125,7 +1398,46 @@ background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center 
 
 
 ]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="HTML"><![CDATA[
+<script type="text/javascript" src="/e0cc0355-d598-33f6-92e9-731bed2c78eb.res"></script>
+<script type='text/javascript'>
+
+function vdom_ov_inDiv(w0, s){
+	var w = $j(w0), result = [], els = $j(s, w);
+	var o = w.position(), wTop = w.scrollTop();
+	var wHeight = w.height() + o.top;
+	var wBottom = wHeight + wTop + o.top;
+	els.each(function(){
+		var el = $j(this);
+		if (el.hasClass('not-loaded')) {
+			var offset = el.offset();
+			var elTop = offset.top;
+			var elBottom = offset.top + el.height();
+			//if( (elTop >= wTop && elTop <= wBottom) || (elBottom <= wBottom && elBottom >= wTop) ) {
+			if( (elTop >= 0 && elTop <= wHeight) || (elBottom <= wHeight && elBottom >= 0) ) {
+				el.removeClass('not-loaded');
+				result.push(this);
+			}
+			//if( wTop <= elTop && (el.height() + elTop) < (wTop + wHeight) ) result.push(this);
+		}
+	});
+	return $j(result);
+}
+
+function vdom_ov_markShow(eee, qq) {
+	var q = qq || ">div.ov-item";
+	var a = [], z = vdom_ov_inDiv('#o_'+eee, q);
+	if (z.size() > 0) {
+		z.each(function(){
+			a.push($j(this).attr('dataid'));
+		});
+		execEventBinded(eee, "itemsrequest", {idlist: a}, true);
+	}
+}
+
+</script>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
@@ -1152,6 +1464,11 @@ background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center 
         <Event Name="itemmouseover">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemsrequest">
+          <Parameters>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
