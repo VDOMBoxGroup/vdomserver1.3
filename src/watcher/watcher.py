@@ -1,149 +1,105 @@
 
-import sys, traceback, os, socket, select, gc, re, resource, collections
+import sys, types, traceback, socket, select
 from utils.threads import VDOM_thread
-from utils.tracing import get_thread_trace, get_threads_trace
+from utils.parsing import VDOM_parser
+from utils.parsing.errors import VDOM_parsing_exception, VDOM_missing_attribute_error
+import modules
 
 
-def ping(match):
-	"""<action\s+name=(?P<quote1>['"])ping(?P=quote1)\s*(?:/>|>\s*</action>)"""
-	return "<reply/>"
+modules={function.__name__: function for name, function in \
+	((name, getattr(modules, name)) for name in dir(modules)) \
+	if isinstance(function, types.FunctionType)}
 
-def state(match):
-	"""<action\s+name=(?P<quote1>['"])state(?P=quote1)\s*""" \
-	"""(?:/>|>\s*(?:<option\s+name=(?P<quote2>['"])thread(?P=quote2)\s*>\s*(?P<thread>-?\d+)\s*</option>\s*)?</action>)"""
-	if match.group("thread"):
-		try:
-			thread, smart, stack=get_thread_trace(int(match.group("thread")))
-		except:
-			return "<error>no thread</error>"
-		return \
-			"<reply>" \
-				"<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">" \
-					"<stack>%s</stack>" \
-				"</thread>" \
-			"</reply>"% \
-				(thread.name.encode("xml"), thread.ident,
-				"yes" if thread.daemon else "no", "yes" if smart else "no", "".join((
-				"<frame name=\"%s\" path=\"%s\" line=\"%d\"/>"% \
-					(name.encode("xml"), path.encode("xml"), line) for path, line, name, statement in stack)))
-	else:
-		try:
-			usage=resource.getrusage(resource.RUSAGE_SELF)
-			process= \
-				"<process id=\"%d\">" \
-					"<usage utime=\"%.3f\" stime=\"%.3f\" maxrss=\"%d\" idrss=\"%d\" ixrss=\"%d\"/>" \
-				"</process>"% \
-					(os.getpid(), usage.ru_utime, usage.ru_stime, usage.ru_maxrss, usage.ru_idrss, usage.ru_ixrss)
-		except:
-			process="<process id=\"%d\"/>"%os.getpid()
-		count0, count1, count2=gc.get_count()
-		return \
-			"<reply>" \
-				"%s" \
-				"<threads>%s</threads>" \
-				"<garbagecollector>" \
-					"<objects>%d</objects>" \
-					"<garbage>%d</garbage>" \
-					"<collection>"\
-						"<generation>%d</generation>" \
-						"<generation>%d</generation>" \
-						"<generation>%d</generation>" \
-					"</collection>"\
-				"</garbagecollector>" \
-			"</reply>"% \
-				(process, "".join(("<thread id=\"%s\" name=\"%s\"%s/>"% \
-						(thread.ident, thread.name.encode("xml"), "" if thread.is_alive() else " alive=\"no\"") \
-							for thread, smart, stack in get_threads_trace())),
-					len(gc.get_objects()), len(gc.garbage), count0, count1, count2)
 
-def analyse(match):
-	"""<action\s+name=(?P<quote1>['"])analyse(?P=quote1)\s*>\s*<option\s+name=(?P<quote2>['"])""" \
-	"""(?P<option>objects|garbage|(?P<is_tracking>tracking))(?P=quote2)\s*"""\
-	"""(?(is_tracking)(?:/>|>\s*</option>|>\s*(?P<tracking>enable|disable)\s*</option>)|""" \
-	"""(?:/>|>\s*</option>))\s*</action>"""
-	option=match.group("option")
-	if option=="objects":
-		reference=collections.defaultdict(int)
-		for item in gc.get_objects():
-			reference[type(item)]+=1
-		counters="".join((
-			"<counter object=\"%s\">%d</counter>"% \
-				(item.__name__ if item.__module__=="__builtin__" else "%s.%s"%(item.__module__, item.__name__), counter) \
-					for item, counter in reference.iteritems()))
-		return \
-			"<reply>" \
-				"<counters>" \
-					"%s" \
-				"</counters>" \
-			"</reply>"%(counters)
-	elif option=="garbage":
-		reference=collections.defaultdict(int)
-		for item in gc.garbage:
-			reference[type(item)]+=1
-		counters="".join((
-			"<counters object=\"%s\">%d</counters>"% \
-				(item.__name__ if item.__module__=="__builtin__" else "%s.%s"%(item.__module__, item.__name__), counter) \
-					for item, counter in reference.iteritems()))
-		return \
-			"<reply>" \
-				"<counters>" \
-					"%s" \
-				"</counters>" \
-			"</reply>"%(counters)
-	elif option=="tracking":
-		value=match.group("tracking")
-		if value=="enable":
-			pass
-		elif value=="disable":
-			pass
+def document_builder(parser):
+	def document_handler(name, attributes):
+		if name==u"session":
+			# <session>
+			def session_handler(name, attributes):
+				if name==u"action":
+					# <action>
+					try: action_name=attributes.pop("name")
+					except KeyError: raise VDOM_missing_attribute_error("Name")
+					options={}
+					def action_handler(name, attributes):
+						if name==u"option":
+							# <option>
+							try: option_name=attributes.pop("name")
+							except KeyError: raise VDOM_missing_attribute_error("Name")
+							def option_handler(value): options[option_name]=value
+							parser.handle_value_element(name, attributes, option_handler)
+							# </option>
+						else:
+							parser.handle_unknown_element(name, attributes)
+					def close_action_handler(name):
+						parser.result.append((action_name, options))
+					parser.handle_element(name, attributes, action_handler, close_action_handler)
+					# </action>
+				else:
+					parser.handle_unknown_element(name, attributes)
+			parser.handle_element(name, attributes, session_handler)
+			# </session>
 		else:
-			pass
+			parser.handle_unknown_element(name, attributes)
+	return document_handler
 
 
 class VDOM_watcher_session(VDOM_thread):
 
-	pattern=re.compile("""\s*<action\s+name=(?P<quote1>['"])(?P<name>[A-Za-z][0-9A-Za-z]*)(?P=quote1)""")
-	routines={routine.__name__: (routine, re.compile("\s*%s"%routine.__doc__)) for routine in (ping, state, analyse)}
-
 	def __init__(self, connection):
-		VDOM_thread.__init__(self, name="Watcher %s:%d"%connection.getpeername())
+		VDOM_thread.__init__(self, name="Watcher Session %s"%connection.getpeername()[0])
 		self._connection=connection
 
 	def main(self):
-		print "Watcher: Start session with %s:%d"%self._connection.getpeername()
-		message, pattern="", None
+		parser=VDOM_parser(builder=document_builder, result=[])
+		parser.cache=True
+		parser.parse(chunk="<session>")
+		print "Watcher: Start session with %s"%self._connection.getpeername()[0]
 		while self.running:
-			reading, writing, erratic=select.select((self._connection,), (), (), self.quantum)
-			if reading:
-				chunk=self._connection.recv(4096)
-				if not chunk:
-					break
-				message+=chunk
-				while True:
-					if not pattern:
-						match=self.pattern.match(message)
-						if match:
-							routine, pattern=self.routines[match.group("name")]
-						else:
-							break
-					match=pattern.match(message)
-					if match:
-						try:
-							response=routine(match)
-						except:
-							response="<error>internal error</error>"
-							traceback.print_exc()
-						self._connection.send(response)
-						message, pattern=message[match.end():], None
-					else:
+			try:
+				reading, writing, erratic=select.select((self._connection,), (), (), self.quantum)
+			except select.error:
+				print "Watcher: Unable to check session state"
+			else:
+				if reading:
+					try:
+						message=self._connection.recv(4096)
+					except socket.error:
+						print "Watcher: Unable to receive request"
 						break
-		print "Watcher: End session with %s:%d"%self._connection.getpeername()
+					if not message: break
+					try:
+						parser.parse(chunk=message)
+					except VDOM_parsing_exception as error:
+						print "Watcher: Unable to parse request"
+						try:
+							self._connection.send("<reply><error>Incorrect request</error></reply>")
+						except socket.error:
+							print "Watcher: Unable to send response"
+						break
+					for name, options in parser.result:
+						try:
+							handler=modules[name]
+						except KeyError:
+							print "Watcher: Unable to find action"
+							response="<reply><error>Incorrect request</error></reply>"
+						else:
+							try:
+								response=handler(options)
+							except:
+								print "Watcher: Unable to execute action"
+								traceback.print_exc()
+								response="<reply><error>Internal error</error></reply>"
+						try:
+							self._connection.send(response)
+						except socket.error:
+							print "Watcher: Unable to send response"
+							break
+					del parser.result[:]
+		print "Watcher: Close session"
 		self._connection.close()
 
 class VDOM_watcher(VDOM_thread):
-
-	pattern=re.compile("""\s*<action\s+name=(?P<quote1>['"])(?P<name>[A-Za-z][0-9A-Za-z]*)(?P=quote1)""")
-	routines={routine.__name__: (routine, re.compile("\s*%s\s*$"%routine.__doc__)) for routine in (ping, state, analyse)}
 
 	def __init__(self):
 		VDOM_thread.__init__(self, name="Watcher")
@@ -153,38 +109,56 @@ class VDOM_watcher(VDOM_thread):
 		self._socket.bind((self._address, self._port))
 		self._session_socket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self._session_socket.bind((self._address, self._port))
-		self._session_socket.listen(5)
+		self._session_socket.listen(3)
 
 	def main(self):
+		parser=VDOM_parser(builder=document_builder, result=[])
+		parser.cache=True
+		print "Watcher: Start on %s:%d"%(self._address or "*", self._port)
 		while self.running:
-			reading, writing, erratic=select.select((self._socket, self._session_socket), (), (), self.quantum)
-			if self._socket in reading:
-				try:
-					message, address=self._socket.recvfrom(512)
-					print "Watcher: Receive request from %s:%d"%address
-					match=self.pattern.match(message)
+			try:
+				reading, writing, erratic=select.select((self._socket, self._session_socket), (), (), self.quantum)
+			except select.error:
+				print "Watcher: Unable to check state"
+			else:
+				if self._socket in reading:
 					try:
-						routine, pattern=self.routines[match.group("name")]
-						match=pattern.match(message)
-						if not match: raise ValueError
-						try:
-							response=routine(match)
-						except:
-							response="<error>internal error</error>"
-							traceback.print_exc()
-					except:
-						response="<error>incorrect request</error>"
-				except socket.error:
-					response=None
-				if response:
-					print "Watcher: Receive response to %s:%d"%address
-					try:
-						shift = -1
-						for shift in xrange(0, len(response) / 8000):
-							self._socket.sendto(response[shift*8000:(shift+1)*8000], address)
-						self._socket.sendto(response[(shift+1)*8000:], address)
+						message, address=self._socket.recvfrom(512)
 					except socket.error:
-						print "Watcher: Unable to send response"
-			if self._session_socket in reading:
-				connection, address=self._session_socket.accept()
-				VDOM_watcher_session(connection).start()
+						print "Watcher: Unable to receive request"
+						continue
+					print "Watcher: Receive session from %s"%address[0]
+					try:
+						parser.parse(chunk="<session>")
+						parser.parse(chunk=message)
+						parser.parse("</session>")
+					except VDOM_parsing_exception as error:
+						try:
+							self._socket.sendto("<reply><error>Incorrect request</error></reply>", address)
+						except socket.error:
+							print "Watcher: Unable to send response"
+					else:
+						for name, options in parser.result:
+							try:
+								handler=modules[name]
+							except KeyError:
+								response="<reply><error>Incorrect request</error></reply>"
+							else:
+								try:
+									response=handler(options)
+								except:
+									print "Watcher: Unable to execute action"
+									traceback.print_exc()
+									response="<reply><error>Internal error</error></reply>"
+							try:
+								self._socket.sendto(response, address)
+							except socket.error:
+								print "Watcher: Unable to send response"
+					parser.reset(result=[])
+				if self._session_socket in reading:
+					try:
+						connection, address=self._session_socket.accept()
+					except socket.error:
+						print "Watcher: Unable to accept connection"
+					VDOM_watcher_session(connection).start()
+		print "Watcher: Shutdown"
