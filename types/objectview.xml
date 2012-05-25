@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.11.6720</Version>
+    <Version>1.12.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -229,278 +229,326 @@
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>dynamicloading</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(319)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Object View</Sentence>
       <Sentence ID="002">Used to output the data in the form of specified information blocks, called items. The information is taken from the VDOMClass object located in the VDOM Package top-level container.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Resize the object width and height</Sentence>
-      <Sentence ID="602">resizeTo</Sentence>
-      <Sentence ID="702">Width</Sentence>
-      <Sentence ID="802">New value of width</Sentence>
-      <Sentence ID="703">Height</Sentence>
-      <Sentence ID="803">New value of height</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="504">Load the items of the object on scrolling to them.</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
-      <Sentence ID="505">Show the items of the object</Sentence>
-      <Sentence ID="605">Show</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object.</Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="108">VDOMClass</Sentence>
-      <Sentence ID="208">The link to VDOMClass object, which is used as a template for items.</Sentence>
-      <Sentence ID="308">Incorrect value.</Sentence>
       <Sentence ID="109">Data</Sentence>
-      <Sentence ID="209">The description of objects list in JSON format inside the Object View object.</Sentence>
-      <Sentence ID="309">Incorrect, must be in JSON format.</Sentence>
       <Sentence ID="111">Layout</Sentence>
+      <Sentence ID="112">Drag-and-drop</Sentence>
+      <Sentence ID="113">Hierarchy</Sentence>
+      <Sentence ID="114">Overflow</Sentence>
+      <Sentence ID="115">CSS Class</Sentence>
+      <Sentence ID="116">Loading</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119">Dynamic Load</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Visibility of the object.</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
+      <Sentence ID="208">The link to VDOMClass object, which is used as a template for items.</Sentence>
+      <Sentence ID="209">The description of objects list in JSON format inside the Object View object.</Sentence>
       <Sentence ID="211">The way of items disposition inside the object:
 horizontal - the item width does not change, they are disposed across the whole width of the Object view;
 vertical - the items are disposed vertically without changing their width;
 vertical wide - the  items are disposed vertically, their width is stretched to the Object view object's boundaries.</Sentence>
-      <Sentence ID="311">Incorrect value, must be either 0, 1 or 2.</Sentence>
-      <Sentence ID="403">Horizontal</Sentence>
-      <Sentence ID="404">Vertical</Sentence>
-      <Sentence ID="405">Vertical wide</Sentence>
-      <Sentence ID="112">Drag-and-drop</Sentence>
       <Sentence ID="212">Using drag-and-drop.</Sentence>
-      <Sentence ID="312">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="113">Hierarchy</Sentence>
       <Sentence ID="213"></Sentence>
-      <Sentence ID="313">Hierarchy of the object</Sentence>
-      <Sentence ID="114">Overflow</Sentence>
       <Sentence ID="214">The overflow control mode:
 Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown;
 Hidden - if the content does not fit in the object' borders - it will be cropped within the borders;
 Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not;
 Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
+      <Sentence ID="215">The name of the CSS class.</Sentence>
+      <Sentence ID="216">Show progress control over the item after left-click or double-click on it.</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="308">Incorrect value.</Sentence>
+      <Sentence ID="309">Incorrect, must be in JSON format.</Sentence>
+      <Sentence ID="311">Incorrect value, must be either 0, 1 or 2.</Sentence>
+      <Sentence ID="312">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="313">Hierarchy of the object</Sentence>
       <Sentence ID="314">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
+      <Sentence ID="315">Incorrect value.</Sentence>
+      <Sentence ID="316">Incorrect value.</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319">Use dynamic loading of items. See WIKI for details.</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">Horizontal</Sentence>
+      <Sentence ID="404">Vertical</Sentence>
+      <Sentence ID="405">Vertical wide</Sentence>
+      <Sentence ID="406">No</Sentence>
+      <Sentence ID="407">Yes</Sentence>
       <Sentence ID="408">Auto</Sentence>
       <Sentence ID="409">Hidden</Sentence>
       <Sentence ID="411">Scroll</Sentence>
       <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="115">CSS Class</Sentence>
-      <Sentence ID="215">The name of the CSS class.</Sentence>
-      <Sentence ID="315">Incorrect value.</Sentence>
-      <Sentence ID="116">Loading</Sentence>
-      <Sentence ID="216">Show progress control over the item after left-click or double-click on it.</Sentence>
-      <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="413">Yes</Sentence>
       <Sentence ID="414">No</Sentence>
+      <Sentence ID="415">No</Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Show the items of the object</Sentence>
+      <Sentence ID="503">Resize the object width and height</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">Show</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">New value of width</Sentence>
+      <Sentence ID="803">New value of height</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="901">Start dragging the object.</Sentence>
       <Sentence ID="902">Left-click on the item of the object.</Sentence>
       <Sentence ID="903">Double left-click on the item of the object.</Sentence>
       <Sentence ID="904">Cursor leaves the object bounds.</Sentence>
       <Sentence ID="905">Cursor points at the object.</Sentence>
+      <Sentence ID="906"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Object View</Sentence>
       <Sentence ID="002">Multiplicated container for objects</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Resize the object width and height</Sentence>
-      <Sentence ID="602">resizeTo</Sentence>
-      <Sentence ID="702">Width</Sentence>
-      <Sentence ID="802">New value of width</Sentence>
-      <Sentence ID="703">Height</Sentence>
-      <Sentence ID="803">New value of height</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="504">Show the items of the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
-      <Sentence ID="505">Show the items of the object</Sentence>
-      <Sentence ID="605">Show</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="111">Layout</Sentence>
+      <Sentence ID="112">Drag-and-drop</Sentence>
+      <Sentence ID="113">Hierarchy</Sentence>
+      <Sentence ID="114">Overflow</Sentence>
+      <Sentence ID="115">CSS Class</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Incorrect value</Sentence>
+      <Sentence ID="209">Description of objects list</Sentence>
+      <Sentence ID="211">Items layout</Sentence>
+      <Sentence ID="212">Define if drag-and-drop is used or not</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214">Overflow control mode</Sentence>
+      <Sentence ID="215">Names of CSS classes</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308">List of containers with item pattern</Sentence>
+      <Sentence ID="309">Incorrect, must be JSON</Sentence>
+      <Sentence ID="311">Incorrect, must be 0, 1 or 2</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313">Hierarchy of the object</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="108">VDOMClass</Sentence>
-      <Sentence ID="208">Incorrect value</Sentence>
-      <Sentence ID="308">List of containers with item pattern</Sentence>
-      <Sentence ID="109">Data</Sentence>
-      <Sentence ID="209">Description of objects list</Sentence>
-      <Sentence ID="309">Incorrect, must be JSON</Sentence>
-      <Sentence ID="111">Layout</Sentence>
-      <Sentence ID="211">Items layout</Sentence>
-      <Sentence ID="311">Incorrect, must be 0, 1 or 2</Sentence>
       <Sentence ID="403">Horizontal</Sentence>
       <Sentence ID="404">Vertical</Sentence>
       <Sentence ID="405">Vertical wide</Sentence>
-      <Sentence ID="112">Drag-and-drop</Sentence>
-      <Sentence ID="212">Define if drag-and-drop is used or not</Sentence>
-      <Sentence ID="312"></Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="113">Hierarchy</Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313">Hierarchy of the object</Sentence>
-      <Sentence ID="114">Overflow</Sentence>
-      <Sentence ID="214">Overflow control mode</Sentence>
-      <Sentence ID="314">Incorrect value</Sentence>
       <Sentence ID="408">Auto</Sentence>
       <Sentence ID="409">Hidden</Sentence>
       <Sentence ID="411">Scroll</Sentence>
       <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="115">CSS Class</Sentence>
-      <Sentence ID="215">Names of CSS classes</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="413"></Sentence>
       <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Show the items of the object</Sentence>
+      <Sentence ID="503">Resize the object width and height</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505">Show the items of the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">Show</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">New value of width</Sentence>
+      <Sentence ID="803">New value of height</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
       <Sentence ID="904"></Sentence>
       <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Объектное представление</Sentence>
       <Sentence ID="002">Используется для объектного представления элементов</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Изменить ширину и высоту</Sentence>
-      <Sentence ID="602">resizeTo</Sentence>
-      <Sentence ID="702">Ширина</Sentence>
-      <Sentence ID="802">Новое значение ширины</Sentence>
-      <Sentence ID="703">Высота</Sentence>
-      <Sentence ID="803">Новое значение высоты</Sentence>
-      <Sentence ID="503">Показать объект</Sentence>
-      <Sentence ID="603">Показать</Sentence>
-      <Sentence ID="704">Исчезновение</Sentence>
-      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="504">Показать элементы объекта</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="705">Исчезновение</Sentence>
-      <Sentence ID="805">Время появления</Sentence>
-      <Sentence ID="505">Показать элементы объекта</Sentence>
-      <Sentence ID="605">Показать</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="109">Данные</Sentence>
+      <Sentence ID="111">Расположение</Sentence>
+      <Sentence ID="112">Перемещение</Sentence>
+      <Sentence ID="113">Иерархия</Sentence>
+      <Sentence ID="114">Переполнение</Sentence>
+      <Sentence ID="115">Класс CSS</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Неправильное значение</Sentence>
+      <Sentence ID="209">Описание списка объектов</Sentence>
+      <Sentence ID="211">Расположение элементов</Sentence>
+      <Sentence ID="212">Использовать перемещение или нет</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214">Режим переполнения</Sentence>
+      <Sentence ID="215">Имена классов CSS</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Список контейнеров с шаблонами элементов</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть в формате JSON</Sentence>
+      <Sentence ID="311">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">VDOMClass</Sentence>
-      <Sentence ID="208">Неправильное значение</Sentence>
-      <Sentence ID="308">Список контейнеров с шаблонами элементов</Sentence>
-      <Sentence ID="109">Данные</Sentence>
-      <Sentence ID="209">Описание списка объектов</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть в формате JSON</Sentence>
-      <Sentence ID="111">Расположение</Sentence>
-      <Sentence ID="211">Расположение элементов</Sentence>
-      <Sentence ID="311">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
       <Sentence ID="403">Горизонтальный</Sentence>
       <Sentence ID="404">Вертикальный</Sentence>
       <Sentence ID="405">Ширина по вертикали</Sentence>
-      <Sentence ID="112">Перемещение</Sentence>
-      <Sentence ID="212">Использовать перемещение или нет</Sentence>
-      <Sentence ID="312"></Sentence>
       <Sentence ID="406">Нет</Sentence>
       <Sentence ID="407">Да</Sentence>
-      <Sentence ID="113">Иерархия</Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="114">Переполнение</Sentence>
-      <Sentence ID="214">Режим переполнения</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="408">Авто</Sentence>
       <Sentence ID="409">Скрытый</Sentence>
       <Sentence ID="411">Прокрутка</Sentence>
       <Sentence ID="412">Отображать</Sentence>
-      <Sentence ID="115">Класс CSS</Sentence>
-      <Sentence ID="215">Имена классов CSS</Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="413"></Sentence>
       <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Показать элементы объекта</Sentence>
+      <Sentence ID="503">Изменить ширину и высоту</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="505">Показать элементы объекта</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Показать</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Ширина</Sentence>
+      <Sentence ID="703">Высота</Sentence>
+      <Sentence ID="704">Исчезновение</Sentence>
+      <Sentence ID="705">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Новое значение ширины</Sentence>
+      <Sentence ID="803">Новое значение высоты</Sentence>
+      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="805">Время появления</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
       <Sentence ID="904"></Sentence>
       <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -963,9 +1011,11 @@ $j(function(){
 	});
 	%(js_drag)s
 
+	%(dynamic)s
+});
+</script>"""
 
-	// dyn load
-
+	JS_DYNAMIC = u"""
 	$j("#%(id)s>div.ov-item").addClass('not-loaded');
 
 	$j("#%(id)s").bind('scrollstop', function() {
@@ -996,9 +1046,7 @@ $j(function(){
 	$j(function(){
 		vdom_ov_markShow("%(woid)s");
 	});
-
-});
-</script>"""
+"""
 
 	def create_dupes_recurse(self, application, res, object, children):
 		result = res
@@ -1050,7 +1098,7 @@ $j(function(){
 
 	def do_compile(self, object, idlist):
 		result = ""
-		onlydiv = True if len(idlist) <= 0 else False
+		onlydiv = True if len(idlist) <= 0 and self.dynamicloading == "1" else False
 
 		if self.vdomclassid:
 			self.tmp_list = []
@@ -1084,7 +1132,7 @@ $j(function(){
 			#for key in obj_data:
 			for index, key in enumerate(obj_data):
 
-				if not onlydiv:
+				if not onlydiv and self.dynamicloading == "1":
 					if key not in idlist:
 						continue
 					else:
@@ -1174,7 +1222,7 @@ $j(function(){
 
 		######## render separate items
 
-		if request.render_type == "e2vdom" and self.itemstorender != "":  # html || e2vdom
+		if self.dynamicloading == "1" and request.render_type == "e2vdom" and self.itemstorender != "":  # html || e2vdom
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
 
 			try:
@@ -1283,6 +1331,11 @@ $j(function(){
 				js_loading_call = u"%s_ld(t);" % id
 				js_loading = self.JS_LOADING % { "id": id }
 
+			if self.dynamicloading == "1":
+				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid }
+			else:
+				js_dynamic = ""
+
 			js = self.JS % {
 				"js_drag":          js_drag
 				,"id":              id
@@ -1290,10 +1343,11 @@ $j(function(){
 				,"class":           classname_item
 				,"js_loading":      js_loading
 				,"js_loading_call": js_loading_call
+				,"dynamic":         js_dynamic
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='2012-05-21'" % self.name
+				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-05-25'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
@@ -1483,13 +1537,13 @@ function vdom_ov_markShow(eee, qq) {
 vdom_ui_hide(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="hideLoading">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hideLoading">
           <Parameters/>
           <SourceCode><![CDATA[
 $j('>div>.loading',this.domCont).fadeOut(100);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="resizeTo">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -1498,7 +1552,7 @@ $j('>div>.loading',this.domCont).fadeOut(100);
 $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1506,7 +1560,7 @@ $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 vdom_ui_show(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="showItems">
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="showItems">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
