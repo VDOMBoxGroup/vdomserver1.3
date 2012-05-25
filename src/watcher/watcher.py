@@ -3,9 +3,9 @@ import sys, types, traceback, socket, select
 from utils.threads import VDOM_thread
 from utils.parsing import VDOM_parser
 from utils.parsing.errors import VDOM_parsing_exception, VDOM_missing_attribute_error
+
+
 import modules
-
-
 modules={function.__name__: function for name, function in \
 	((name, getattr(modules, name)) for name in dir(modules)) \
 	if isinstance(function, types.FunctionType)}
@@ -64,13 +64,13 @@ class VDOM_watcher_session(VDOM_thread):
 				if reading:
 					try:
 						message=self._connection.recv(4096)
-					except socket.error:
+					except socket.error as error:
 						print "Watcher: Unable to receive request"
 						break
 					if not message: break
 					try:
 						parser.parse(chunk=message)
-					except VDOM_parsing_exception as error:
+					except VDOM_parsing_exception:
 						print "Watcher: Unable to parse request"
 						try:
 							self._connection.send("<reply><error>Incorrect request</error></reply>")
