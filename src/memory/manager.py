@@ -133,6 +133,7 @@ class VDOM_xml_manager(object):
 		for node in doc.node.childNodes:
 			if node.nodeName == "EmbeddedTypes" or node.nodeName == "Backupfiles":
 				doc.node.removeChild(node)
+				node.unlink()
 		doc.sync(filename)
 		e = None
 		obj = VDOM_application(self)
