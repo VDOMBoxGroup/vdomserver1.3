@@ -116,7 +116,7 @@ function zzzz(e) {
 """)
 		request.write("""<div id="theimage"></div><div id="theform"><form method="post" action="/export.py" target="options" enctype="multipart/form-data"><span class="Style2">
 	<table width="511" border="0"><tr><td width="36">&nbsp;</td><td width="131"></td></tr>
-	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Application :</div></td>""")
+	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Application&nbsp;:</div></td>""")
 		cont = ""
 		for a in applist:
 			obj = managers.xml_manager.get_application(a)
@@ -126,13 +126,13 @@ function zzzz(e) {
 		devs += "".join( [ """<option  value="%(device)s">Usb disk %(label)s</option>""" % dev for dev in drives ] )
 
 		request.write("""<td class="Style2"><select name=appl>%s</select></td></tr>
-	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Format :</div></td>
+	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Format&nbsp;:</div></td>
 	<td class="Style2"><select name="format"><option value=xml>xml</option><option value=zip>zip</option></select></td></tr>
 
-	<tr><td>&nbsp;</td><td><div align="right" class="Style2">To device :</div></td>
+	<tr><td>&nbsp;</td><td><div align="right" class="Style2">To device&nbsp;:</div></td>
 	<td class="Style2"><select name="device">%s</select></td></tr>
 	
-	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Embed types in xml :</div></td>
+	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Embed types in xml&nbsp;:</div></td>
 	<td class="Style2"><input name="embedtypes" checked type="checkbox" value="1"></input></td></tr>
 	
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td><input type=submit value="Export" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td></tr>
