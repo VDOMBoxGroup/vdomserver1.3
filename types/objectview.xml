@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.12.6720</Version>
+    <Version>1.13.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -234,11 +234,23 @@
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(319)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>sortable</Name>
+      <DisplayName>#Lang(120)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(320)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -265,6 +277,7 @@
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119">Dynamic Load</Sentence>
+      <Sentence ID="120">Sortable</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -289,7 +302,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="216">Show progress control over the item after left-click or double-click on it.</Sentence>
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
-      <Sentence ID="219">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="219">Use dynamic loading of items. See WIKI for details.</Sentence>
+      <Sentence ID="220">Incorrect value</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -307,7 +321,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Use dynamic loading of items. See WIKI for details.</Sentence>
+      <Sentence ID="319">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="320">Sort items using drag-n-drop</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Horizontal</Sentence>
@@ -323,6 +338,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="414">No</Sentence>
       <Sentence ID="415">No</Sentence>
       <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">Yes</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -372,6 +389,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
+      <Sentence ID="120"></Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -390,6 +408,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
+      <Sentence ID="220"></Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -408,6 +427,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
+      <Sentence ID="320"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Horizontal</Sentence>
@@ -423,6 +443,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="414"></Sentence>
       <Sentence ID="415"></Sentence>
       <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -472,6 +494,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
+      <Sentence ID="120"></Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -490,6 +513,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
+      <Sentence ID="220"></Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -508,6 +532,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
+      <Sentence ID="320"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Горизонтальный</Sentence>
@@ -523,6 +548,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="414"></Sentence>
       <Sentence ID="415"></Sentence>
       <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
@@ -951,7 +978,7 @@ $j("#%(id)s>.%(class)s-item").draggable({
 	//cursorAt: { left: 20, bottom: -2 },
 	//cursorAt: { left: -5, top: -5 },
 	start: function(e,u){
-		execEventBinded('%(woid)s', "dragstart", {itemid: $j(this).attr('dataid')}, true);
+		execEventBinded('%(woid)s', "dragstart", {id: $j(this).attr('dataid')}, true);
 	}
 	,helper: function(e) {
 		//return $j("<div class='ui-widget-header'>drop item to...</div>");
@@ -1009,9 +1036,10 @@ $j(function(){
 		execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
 		return false;
 	});
-	%(js_drag)s
 
+	%(js_drag)s
 	%(dynamic)s
+	%(sortable)s
 });
 </script>"""
 
@@ -1047,6 +1075,13 @@ $j(function(){
 		vdom_ov_markShow("%(woid)s");
 	});
 """
+
+	JS_SORTABLE = u"""
+	$j('#%(id)s').sortable().disableSelection().bind("sortstop",function(e,u){
+		execEventBinded('%(woid)s', "itemsort", {id: u.item.index(), position: u.item.attr('dataid')}, true);
+	});
+"""
+
 
 	def create_dupes_recurse(self, application, res, object, children):
 		result = res
@@ -1331,6 +1366,11 @@ $j(function(){
 				js_loading_call = u"%s_ld(t);" % id
 				js_loading = self.JS_LOADING % { "id": id }
 
+			if self.sortable == "1":
+				js_sortable = self.JS_SORTABLE % { "id": id, "woid": woid }
+			else:
+				js_sortable = ""
+
 			if self.dynamicloading == "1":
 				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid }
 			else:
@@ -1344,6 +1384,7 @@ $j(function(){
 				,"js_loading":      js_loading
 				,"js_loading_call": js_loading_call
 				,"dynamic":         js_dynamic
+				,"sortable":        js_sortable
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
@@ -1497,7 +1538,7 @@ function vdom_ov_markShow(eee, qq) {
       <Userinterfaceevents>
         <Event Name="dragstart">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
         <Event Name="itemclick">
@@ -1523,6 +1564,12 @@ function vdom_ov_markShow(eee, qq) {
         <Event Name="itemsrequest">
           <Parameters>
             <Parameter Name="idlist" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemsort">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="position" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
