@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.32.6200</Version>
+    <Version>1.33.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -1071,39 +1071,45 @@ class VDOM_button(VDOM_object):
 		self.finalimage = self.image
 		self.finalrollover = self.rollover
 		self.finaldisabledimg = self.disabledimg
-		#if self.text:
-		#	if self.image or self.rollover or self.disabledimg:
-		#		from utils.imaging import VDOM_imaging
-		#		im = VDOM_imaging()
-		#		im.create_font(name = self.fontfamily, size = int(self.fontsize), 
-		#				fontstyle = self.fontstyle, fontweight = self.fontweight)
-		#		if self.image:
-		#			resource = application.resources.get_by_label(self.id, "image")
-		#			if resource:
-		#				self.finalimage = resource.id
-		#			else:
-		#				im.load(application.id, self.image)
-		#				im.write_text(self.text,
-		#					color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
-		#					align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
-		#				self.finalimage = im.save_temporary(application.id, self.id, "image")
-		#		if self.rollover:
-		#			resource = application.resources.get_by_label(self.id, "rollover")
-		#			if resource:
-		#				self.finalrollover = resource.id
-		#			else:
-		#				im.load(application.id, self.rollover)
-		#				im.write_text(self.text,
-		#					color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
-		#					align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
-		#				self.finalrollover = im.save_temporary(application.id, self.id, "rollover")
+		if self.text:
+			if self.image or self.rollover or self.disabledimg:
+				try:
+					from utils.imaging import VDOM_imaging
+					im = VDOM_imaging()
+					im.create_font(name = self.fontfamily, size = int(self.fontsize), 
+							fontstyle = self.fontstyle, fontweight = self.fontweight)
+					if self.image:
+						resource = application.resources.get_by_label(self.id, "image")
+						if resource:
+							self.finalimage = resource.id
+						else:
+							im.load(application.id, self.image)
+							im.write_text(self.text,
+								color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
+								align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
+							self.finalimage = im.save_temporary(application.id, self.id, "image")
+					if self.rollover:
+						resource = application.resources.get_by_label(self.id, "rollover")
+						if resource:
+							self.finalrollover = resource.id
+						else:
+							im.load(application.id, self.rollover)
+							im.write_text(self.text,
+								color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
+								align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
+							self.finalrollover = im.save_temporary(application.id, self.id, "rollover")
+				except Exception as e:
+					debug("Error while text rendering on button image: %s"%str(e))
 		if self.image or self.rollover or self.disabledimg:
 			self.finaltext = ''
 		else:
 			self.finaltext = self.text
 
 	def get_anchor(self, link):
-		bgimg = u"background:url('%s');" % utils.id.id2link1(self.finalimage) if self.image and self.rollover else u""
+		if self.ispressed == "0":
+			bgimg = u"background:url('%s');" % utils.id.id2link1(self.finalimage) if self.image and self.rollover else u""
+		else:
+			bgimg = u"background:url('%s');" % utils.id.id2link1(self.finalrollover) if self.image and self.rollover else u""
 		height = u"height:%spx;" % self.height if self.height else u""
 		#clname = u"""class="%s" """ % self.classname if self.classname else u""
 		if self.disabled == "1":
