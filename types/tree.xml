@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.11.6720</Version>
+    <Version>2.12.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -2249,7 +2249,11 @@ jQuery(document).ready(function($){
 		onDeactivate: function(node) {
 		},
 		onSelect: function(flag, node) {
-			execEventBinded("%(woid)s", "select", {key: node.data.key, checked: (flag) ? 1 : 0});
+			var a = [];
+			$q('#%(id)s').dynatree("getRoot").visit(function(node){
+				if (node.isSelected()) a.push(node.data.key);
+			});
+			execEventBinded("%(woid)s", "select", {key: node.data.key, checked: (flag) ? 1 : 0, selected: a});
 		},
 		onExpand: function(node) {
 			fixfooter()
@@ -2441,6 +2445,7 @@ jQuery(document).ready(function($){
           <Parameters>
             <Parameter Name="key" Order="" VbType="" Help="#Lang(923)"/>
             <Parameter Name="checked" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
