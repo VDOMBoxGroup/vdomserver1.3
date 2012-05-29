@@ -1,5 +1,8 @@
 
 import gc, collections
+#import utils.objgraph
+#import managers
+from ..auxiliary import make_graph
 
 
 def analyse(options):
@@ -31,3 +34,13 @@ def analyse(options):
 					"%s" \
 				"</counters>" \
 			"</reply>"%(counters)
+	elif "graph" in options:
+		name=options["graph"]
+		objects=(item for item in gc.get_objects() if type(item).__name__==name)
+		graph="".join(line for line in make_graph(objects))
+		return \
+			"<reply>" \
+				"<graph>" \
+					"%s" \
+				"</graph>" \
+			"</reply>"%(graph.encode("xml"))
