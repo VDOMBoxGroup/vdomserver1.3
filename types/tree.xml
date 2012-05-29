@@ -2245,6 +2245,11 @@ jQuery(document).ready(function($){
 				key: node.data.key,
 				isFolder: node.data.isFolder
 			});
+			execEventBinded("%(woid)s", "itemclick", {
+				title: node.data.title,
+				key: node.data.key,
+				isFolder: node.data.isFolder
+			});
 		},
 		onDeactivate: function(node) {
 		},
@@ -2253,7 +2258,7 @@ jQuery(document).ready(function($){
 			$q('#%(id)s').dynatree("getRoot").visit(function(node){
 				if (node.isSelected()) a.push(node.data.key);
 			});
-			execEventBinded("%(woid)s", "select", {key: node.data.key, checked: (flag) ? 1 : 0, selected: a});
+			execEventBinded("%(woid)s", "select", {keyList: a});
 		},
 		onExpand: function(node) {
 			fixfooter()
@@ -2373,6 +2378,13 @@ jQuery(document).ready(function($){
             <Parameter Name="title" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
+        <Event Name="itemclick">
+          <Parameters>
+            <Parameter Name="key" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="title" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
         <Event Name="blur">
           <Parameters>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
@@ -2443,9 +2455,7 @@ jQuery(document).ready(function($){
         </Event>
         <Event Name="select">
           <Parameters>
-            <Parameter Name="key" Order="" VbType="" Help="#Lang(923)"/>
-            <Parameter Name="checked" Order="" VbType="" Help="#Lang(923)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="keyList" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
