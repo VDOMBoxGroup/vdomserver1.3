@@ -36,22 +36,22 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 				if isinstance(source_dict, types.DictProxyType):
 					source_dict=gc.get_referents(gc.get_referents(source_dict))[0]
 				if target is source_dict:
-					if master:
+					if master is None:
+						master=source
+					else:
 						dicts[id(target)]=None
 						return None
-					else:
-						master=source
 				"""
 				else:
 					dicts[id(target)]=None
 					return None
 				"""
 				del source
-			if master:
-				dicts[id(target)]=master
-				return master
-			else:
+			if master is None:
 				return None
+			else:
+				dicts[id(target)]=master
+				return master				
 		finally:
 			ignore.remove(id(sources))
 			del sources
@@ -154,8 +154,10 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 			name=type(target).__name__
 			module=type(target).__module__
 			storage=object_nodes
-		if target in objects:
-			storage=primary_nodes
+		for primary in objects:
+			if target is primary:
+				storage=primary_nodes
+				break
 		storage.append((id(target), quote("\n".join((kind, name, module, "%08X"%id(target))))))
 
 	primary_nodes=[]
