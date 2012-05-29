@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.9.6720</Version>
+    <Version>2.11.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -2240,18 +2240,16 @@ jQuery(document).ready(function($){
 		fx: %(fx)s,
 		debugLevel: 0,
 		onActivate: function(node) {
-			var id='%(id)s'; 
-			execEventBinded(id.substring(2, id.length), "activate", {
-				title:node.data.title,
-				key:node.data.key,
-				isFolder:node.data.isFolder
+			execEventBinded("%(woid)s", "activate", {
+				title: node.data.title,
+				key: node.data.key,
+				isFolder: node.data.isFolder
 			});
 		},
 		onDeactivate: function(node) {
 		},
 		onSelect: function(flag, node) {
-			var id='%(id)s'; 
-			execEventBinded(id.substring(2, id.length), "select", {} );
+			execEventBinded("%(woid)s", "select", {key: node.data.key, checked: (flag) ? 1 : 0});
 		},
 		onExpand: function(node) {
 			fixfooter()
@@ -2319,7 +2317,7 @@ jQuery(document).ready(function($){
 					// Add after this, i.e. as child of current parent
 					node.parent.addChild(copynode, node.getNextSibling());
 				}
-				*/
+*/
 			},
 		}
 	});
@@ -2440,7 +2438,10 @@ jQuery(document).ready(function($){
           </Parameters>
         </Event>
         <Event Name="select">
-          <Parameters/>
+          <Parameters>
+            <Parameter Name="key" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="checked" Order="" VbType="" Help="#Lang(923)"/>
+          </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
@@ -2451,7 +2452,7 @@ jQuery(document).ready(function($){
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-$q(this.domCont).fadeOut(fade);
+$j(this.domCont).fadeOut(fade);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadHTMLData">
@@ -2459,7 +2460,7 @@ $q(this.domCont).fadeOut(fade);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="HTMLdata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-jQuery(this.domCont).html(HTMLdata);
+$j(this.domCont).html(HTMLdata);
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
@@ -2468,8 +2469,7 @@ jQuery(this.domCont).html(HTMLdata);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
-this.domCont.style.width = parseInt(newZindex,10);
-this.domCont.style.height = parseInt(newZindex,10);
+$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
         <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
