@@ -154,7 +154,8 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 			name=type(target).__name__
 			module=type(target).__module__
 			storage=object_nodes
-		if target in objects: storage=primary_nodes
+		if target in objects:
+			storage=primary_nodes
 		storage.append((id(target), quote("\n".join((kind, name, module, "%08X"%id(target))))))
 
 	primary_nodes=[]
@@ -173,7 +174,7 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 	inheritance_edges=[]
 	elementary_edges=[]
 
-	queue, levels, ignore, mapping, dicts=[], {}, set(), {}, {}
+	objects, queue, levels, ignore, mapping, dicts=tuple(objects), [], {}, set(), {}, {}
 
 	ignore.add(id(objects))
 	ignore.add(id(sys._getframe()))
