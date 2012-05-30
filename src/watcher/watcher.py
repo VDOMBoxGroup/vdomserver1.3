@@ -85,7 +85,7 @@ class VDOM_watcher_session(VDOM_thread):
 							response="<reply><error>Incorrect request</error></reply>"
 						else:
 							try:
-								response=handler(options)
+								response="".join(handler(options))
 							except:
 								print "Watcher: Unable to execute action"
 								traceback.print_exc()
@@ -145,7 +145,7 @@ class VDOM_watcher(VDOM_thread):
 								response="<reply><error>Incorrect request</error></reply>"
 							else:
 								try:
-									response=handler(options)
+									response="".join(handler(options))
 								except:
 									print "Watcher: Unable to execute action"
 									traceback.print_exc()
