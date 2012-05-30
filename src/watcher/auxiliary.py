@@ -1,18 +1,69 @@
 
-import sys, types, numbers, gc, inspect, re, traceback
+import sys, types, numbers, gc, inspect, re, traceback, threading
 from utils.tracing import normalize_source_path
 #from collections import defaultdict
 
 
-# LATEST IN GRAPH
+def quote(string):
+	return string.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\0", "\\\\0")
 
-def quote(s):
-	return (s.replace("\\", "\\\\")
-		.replace("\"", "\\\"")
-		.replace("\n", "\\n")
-		.replace("\0", "\\\\0"))
+def get_type_name(target):
+	target_type=type(target)
+	return target_type.__name__ if target_type.__module__=="__builtin__" \
+		else "%s.%s"%(target_type.__module__, target_type.__name__)
 
-def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True):
+
+def search_thread(string):
+	if not string:
+		return None
+	elif string[0] in "-0123456789":
+		number=int(string)
+		for thread in threading.enumerate():
+		   if thread.ident==number: return thread
+		return None
+	else:
+		for thread in threading.enumerate():
+		   if thread.name==string: return thread
+		return None
+	
+def select_threads(string):
+	if not string:
+		return threading.enumerate()
+	elif string[0] in "-0123456789":
+		number=int(string)
+		return tuple(thread for thread in threading.enumerate() if thread.ident==number)
+	else:
+		return tuple(thread for thread in threading.enumerate() if thread.name==string)
+	
+def search_object(string):
+	if not string:
+		raise None
+	elif string[0] in "0123456789":
+		number=int(string, 16)
+		for object in gc.get_objects():
+			if id(object)==number: return object
+		return None
+	else:
+		for object in gc.get_objects():
+			if get_type_name(object)==string: return object
+		raise None
+
+def select_objects(string):
+	if not string:
+		return gc.get_objects()
+	elif string[0] in "0123456789":
+		number=int(string, 16)
+		return tuple(object for object in gc.get_objects() if id(object)==number)
+	else:
+		return tuple(object for object in gc.get_objects() if get_type_name(object)==string)
+
+
+def get_thread_traceback(thread):
+	return traceback.extract_stack(sys._current_frames()[thread.ident])
+
+
+def generate_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True):
+	print "Generate graph for %s"%", ".join("%08X"%id(object) for object in objects)
 	# TODO: __del__
 	# TODO: Dereference members
 
@@ -22,7 +73,6 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 		if id(target) in dicts: return dicts[id(target)]
 
 		ignore.add(id(sys._getframe()))
-
 		sources=gc.get_referrers(target)
 		ignore.add(id(sources))
 		try:
@@ -54,6 +104,7 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 				return master				
 		finally:
 			ignore.remove(id(sources))
+			ignore.remove(id(sys._getframe()))
 			del sources
 
 	def show_edge(source, target):
@@ -215,7 +266,7 @@ def make_graph(objects, optimize=True, collapse_dicts=True, skip_functions=True)
 				queue.append(source)
 			show_edge(source, target)
 		ignore.remove(id(sources))
-		sources=None
+		del sources
 
 	# D69191 A06C6C		Light Red			Unknown References
 	# DEB887 A68A65		Light Brown			Objects, Membership

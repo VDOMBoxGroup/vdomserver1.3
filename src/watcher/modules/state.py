@@ -1,50 +1,67 @@
 
 import os, gc, resource
-from utils.tracing import get_thread_trace, get_threads_trace
+from utils.threads import VDOM_thread, VDOM_daemon
+from utils.tracing import normalize_source_path, get_threads_trace
+from ..auxiliary import search_thread, search_object, get_type_name, get_thread_traceback
 
 
 def state(options):
 	if "thread" in options:
 		try:
-			thread, smart, stack=get_thread_trace(int(options["thread"]))
+			thread=search_thread(options["thread"])
+			if thread is None: raise ValueError
 		except:
-			return "<reply><error>No thread</error></reply>"
-		return \
-			"<reply>" \
-				"<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">" \
-					"<stack>%s</stack>" \
-				"</thread>" \
-			"</reply>"% \
+			yield "<reply><error>Unable to find thread</error></reply>"
+		else:
+			traceback=get_thread_traceback(thread)
+			yield "<reply>"
+			yield "<threads>"
+			yield "<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">"% \
 				(thread.name.encode("xml"), thread.ident,
-				"yes" if thread.daemon else "no", "yes" if smart else "no", "".join((
-				"<frame name=\"%s\" path=\"%s\" line=\"%d\"/>"% \
-					(name.encode("xml"), path.encode("xml"), line) for path, line, name, statement in stack)))
+				"yes" if thread.daemon else "no",
+				"yes" if isinstance(thread, (VDOM_thread, VDOM_daemon)) else "no")
+			yield "<stack>"
+			for path, line, name, statement in traceback:
+				yield "<frame name=\"%s\" path=\"%s\" line=\"%d\"/>"% \
+					(name.encode("xml"), normalize_source_path(path).encode("xml"), line)
+			yield "</stack>"
+			yield "</thread>"
+			yield "</threads>"
+			yield "</reply>"
+	elif "object" in options:
+		try:
+			object=search_object(options["object"])
+			if object is None: raise ValueError
+		except:
+			yield "<reply><error>Unable to find object</error></reply>"
+		else:
+			yield "<reply>"
+			yield "<objects>"
+			yield "<object id=\"%08X\" type=\"%s\"/>"%(id(object), get_type_name(object))
+			yield "</objects>"
+			yield "</reply>"
 	else:
+		yield "<reply>"
 		try:
 			usage=resource.getrusage(resource.RUSAGE_SELF)
-			process= \
-				"<process id=\"%d\">" \
-					"<usage utime=\"%.3f\" stime=\"%.3f\" maxrss=\"%d\" idrss=\"%d\" ixrss=\"%d\"/>" \
-				"</process>"% \
-					(os.getpid(), usage.ru_utime, usage.ru_stime, usage.ru_maxrss, usage.ru_idrss, usage.ru_ixrss)
 		except:
-			process="<process id=\"%d\"/>"%os.getpid()
-		count0, count1, count2=gc.get_count()
-		return \
-			"<reply>" \
-				"%s" \
-				"<threads>%s</threads>" \
-				"<garbagecollector>" \
-					"<objects>%d</objects>" \
-					"<garbage>%d</garbage>" \
-					"<collection>"\
-						"<generation>%d</generation>" \
-						"<generation>%d</generation>" \
-						"<generation>%d</generation>" \
-					"</collection>"\
-				"</garbagecollector>" \
-			"</reply>"% \
-				(process, "".join(("<thread id=\"%s\" name=\"%s\"%s/>"% \
-						(thread.ident, thread.name.encode("xml"), "" if thread.is_alive() else " alive=\"no\"") \
-							for thread, smart, stack in get_threads_trace())),
-					len(gc.get_objects()), len(gc.garbage), count0, count1, count2)
+			yield "<process id=\"%d\"/>"%os.getpid()
+		else:
+			yield "<process id=\"%d\">"%os.getpid()
+			yield "<usage utime=\"%.3f\" stime=\"%.3f\" maxrss=\"%d\" idrss=\"%d\" ixrss=\"%d\"/>"% \
+				(usage.ru_utime, usage.ru_stime, usage.ru_maxrss, usage.ru_idrss, usage.ru_ixrss)
+			yield "</process>"
+		yield "<threads>"
+		for thread, smart, stack in get_threads_trace():
+			yield "<thread id=\"%d\" name=\"%s\"%s/>"% \
+				(thread.ident, thread.name.encode("xml"), "" if thread.is_alive() else " alive=\"no\"")
+		yield "</threads>"
+		yield "<garbagecollector>"
+		yield "<objects>%d</objects>"%len(gc.get_objects())
+		yield "<garbage>%d</garbage>"%len(gc.garbage)
+		yield "<collection>"
+		for count in gc.get_count():
+			yield "<generation>%d</generation>"%count
+		yield "</collection>"
+		yield "</garbagecollector>"
+		yield "</reply>"
