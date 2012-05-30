@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.33.6200</Version>
+    <Version>1.34.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -131,7 +131,7 @@
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[a-zA-Z0-9.!,-_]{0,50}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>image</Name>
@@ -1120,7 +1120,7 @@ class VDOM_button(VDOM_object):
 			donot = u""
 
 		return u"""<a style="display:block;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot}>
-				""".format(bgimage = bgimg, height = height, link = link, hint = self.hint, classname = clname, donot = donot)
+				""".format(bgimage = bgimg, height = height, link = link, hint = (self.hint).replace('"', '&quot;'), classname = clname, donot = donot)
 
 
 	def render(self, parent, contents=""):
@@ -1230,7 +1230,7 @@ class VDOM_button(VDOM_object):
 			scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='text' objname='%s' ver='2012-05-03'" % (self.name)
+			debug_info = u"objtype='text' objname='%s' ver='%s @ 2012-05-30'" % (self.type.version, self.name)
 		else:
 			debug_info = u""
 
