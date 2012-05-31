@@ -2,16 +2,16 @@
 import types, numbers, os, gc, resource, traceback
 from utils.threads import VDOM_thread, VDOM_daemon
 from utils.tracing import normalize_source_path, get_threads_trace
-from ..auxiliary import search_thread, search_object, get_type_name, get_thread_traceback
+from ..auxiliary import search_thread, search_object, get_type_name, get_thread_traceback, OptionError
 
 
 def state(options):
 	if "thread" in options:
 		try:
 			thread=search_thread(options["thread"])
-			if thread is None: raise ValueError
-		except:
-			yield "<reply><error>Unable to find thread</error></reply>"
+			if thread is None: raise OptionError("Unable to find thread")
+		except OptionError as error:
+			yield "<reply><error>%s</error></reply>"%error
 		else:
 			trace_back=get_thread_traceback(thread)
 			yield "<reply>"
@@ -31,9 +31,9 @@ def state(options):
 	elif "object" in options:
 		try:
 			object=search_object(options["object"])
-			if object is None: raise ValueError
-		except:
-			yield "<reply><error>Unable to find object</error></reply>"
+			if object is None: raise OptionError("Unable to find object")
+		except OptionError as error:
+			yield "<reply><error>%s</error></reply>"%error
 		else:
 			yield "<reply>"
 			yield "<objects>"

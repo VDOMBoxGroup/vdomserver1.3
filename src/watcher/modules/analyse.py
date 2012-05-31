@@ -5,8 +5,7 @@ import gc, collections
 def analyse(options):
 	if "objects" in options:
 		reference=collections.defaultdict(int)
-		for item in gc.get_objects():
-			reference[type(item)]+=1
+		for item in gc.get_objects(): reference[type(item)]+=1
 		yield "<reply>"
 		yield "<counters>"
 		for item, counter in reference.iteritems():
@@ -17,8 +16,7 @@ def analyse(options):
 		yield "</reply>"
 	elif "garbage" in options:
 		reference=collections.defaultdict(int)
-		for item in gc.garbage:
-			reference[type(item)]+=1
+		for item in gc.garbage: reference[type(item)]+=1
 		yield "<reply>"
 		yield "<counters>"
 		for item, counter in reference.iteritems():

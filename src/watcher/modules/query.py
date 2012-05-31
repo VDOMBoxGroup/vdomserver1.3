@@ -12,6 +12,14 @@ def query(options):
 			yield "<object id=\"%08X\"/>"%id(object)
 		yield "</objects>"
 		yield "</reply>"
+	elif "garbase" in options:
+		objects=gc.garbage
+		yield "<reply>"
+		yield "<objects>"
+		for object in objects:
+			yield "<object id=\"%08X\"/>"%id(object)
+		yield "</objects>"
+		yield "</reply>"
 	elif "referrers" in options:
 		objects=select_objects(options["referrers"])
 		ignore=set((id(sys._getframe()), id(objects)))
