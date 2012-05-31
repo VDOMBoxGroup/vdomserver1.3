@@ -45,10 +45,12 @@ if len(sys.argv)>1:
 	elif sys.argv[1]=="-q":
 		if len(sys.argv)>2:
 			request="<action name=\"query\"><option name=\"objects\">%s</option></action>"%sys.argv[2]
-	elif sys.argv[1]=="-qr":
+	elif sys.argv[1]=="-rr":
 		if len(sys.argv)>2:
-			request="<action name=\"query\"><option name=\"objects\">%s</option>" \
-				"<option name=\"referents\"/><option name=\"referrers\"/></action>"%sys.argv[2]
+			request="<action name=\"query\"><option name=\"referrers\">%s</option></action>"%sys.argv[2]
+	elif sys.argv[1]=="-rn":
+		if len(sys.argv)>2:
+			request="<action name=\"query\"><option name=\"referents\">%s</option></action>"%sys.argv[2]
 	elif sys.argv[1]=="-g":
 		if len(sys.argv)>2:
 			request="<action name=\"query\"><option name=\"graph\">%s</option></action>"%sys.argv[2]
