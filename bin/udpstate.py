@@ -25,16 +25,22 @@ if len(sys.argv)>1:
 	elif sys.argv[1]=="-q":
 		if len(sys.argv)>2:
 			request="<action name=\"query\"><option name=\"objects\">%s</option></action>"%sys.argv[2]
+	elif sys.argv[1]=="-g":
+		if len(sys.argv)>2:
+			request="<action name=\"query\"><option name=\"garbage\">%s</option></action>"%sys.argv[2]
 	elif sys.argv[1]=="-rr":
 		if len(sys.argv)>2:
 			request="<action name=\"query\"><option name=\"referrers\">%s</option></action>"%sys.argv[2]
 	elif sys.argv[1]=="-rn":
 		if len(sys.argv)>2:
 			request="<action name=\"query\"><option name=\"referents\">%s</option></action>"%sys.argv[2]
-	elif sys.argv[1]=="-g":
+	elif sys.argv[1]=="-r":
+		if len(sys.argv)>3:
+			request="<action name=\"intrude\"><option name=\"raise\">%s</option><option name=\"thread\">%s</option></action>"% \
+				(sys.argv[2], sys.argv[3])
+	elif sys.argv[1]=="-s":
 		if len(sys.argv)>2:
-			request="<action name=\"query\"><option name=\"graph\">%s</option></action>"%sys.argv[2]
-			handler=graph
+			request="<action name=\"intrude\"><option name=\"stop\"/><option name=\"thread\">%s</option></action>"%sys.argv[2]
 	elif sys.argv[1]=="-a":
 		if len(sys.argv)>2:
 			address=sys.argv[2]
