@@ -1,5 +1,5 @@
 
-import sys, types, numbers, gc, inspect, re, traceback, threading
+import sys, types, numbers, gc, inspect, re, traceback, threading, itertools
 from utils.tracing import normalize_source_path
 #from collections import defaultdict
 
@@ -197,7 +197,7 @@ def generate_graph(objects, optimize=True, collapse_dicts=True, skip_functions=T
 			module=target.__module__
 			storage=elementary_nodes
 		elif type(target).__module__=="__builtin__":
-			name=quote(repr(target))[:40] if isinstance(target, (basestring, numbers.Number, bool)) else " "
+			name=quote(repr(target))[:40] if isinstance(target, (basestring, numbers.Number, bool, types.NoneType)) else " "
 			module=" "
 			storage=elementary_nodes
 		else:
