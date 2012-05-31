@@ -4,6 +4,10 @@ from utils.tracing import normalize_source_path
 #from collections import defaultdict
 
 
+class OptionError(Exception):
+	pass
+
+
 def quote(string):
 	return string.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\0", "\\\\0")
 
