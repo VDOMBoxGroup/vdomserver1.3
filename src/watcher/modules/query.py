@@ -14,8 +14,8 @@ def query(options):
 		yield "</reply>"
 	elif "referrers" in options:
 		objects=select_objects(options["referrers"])
-		referrers=gc.get_referrers(object)
-		ignore=set((id(sys._getframe()), id(objects)), id(referrers))
+		ignore=set((id(sys._getframe()), id(objects)))
+		referrers=gc.get_referrers(*objects)
 		yield "<reply>"
 		yield "<referrers>"
 		for referrer in referrers:
@@ -25,8 +25,8 @@ def query(options):
 		yield "</reply>"
 	elif "referents" in options:
 		objects=select_objects(options["referents"])
-		referents=gc.get_referents(object)
-		ignore=set((id(sys._getframe()), id(objects)), id(referents))
+		ignore=set((id(sys._getframe()), id(objects)))
+		referents=gc.get_referents(*objects)
 		yield "<reply>"
 		yield "<referents>"
 		for referent in referents:
