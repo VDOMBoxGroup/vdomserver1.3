@@ -1,5 +1,5 @@
 
-import os, gc, resource
+import types, numbers, os, gc, resource, traceback
 from utils.threads import VDOM_thread, VDOM_daemon
 from utils.tracing import normalize_source_path, get_threads_trace
 from ..auxiliary import search_thread, search_object, get_type_name, get_thread_traceback
@@ -13,7 +13,7 @@ def state(options):
 		except:
 			yield "<reply><error>Unable to find thread</error></reply>"
 		else:
-			traceback=get_thread_traceback(thread)
+			trace_back=get_thread_traceback(thread)
 			yield "<reply>"
 			yield "<threads>"
 			yield "<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">"% \
@@ -21,7 +21,7 @@ def state(options):
 				"yes" if thread.daemon else "no",
 				"yes" if isinstance(thread, (VDOM_thread, VDOM_daemon)) else "no")
 			yield "<stack>"
-			for path, line, name, statement in traceback:
+			for path, line, name, statement in trace_back:
 				yield "<frame name=\"%s\" path=\"%s\" line=\"%d\"/>"% \
 					(name.encode("xml"), normalize_source_path(path).encode("xml"), line)
 			yield "</stack>"
@@ -37,7 +37,21 @@ def state(options):
 		else:
 			yield "<reply>"
 			yield "<objects>"
-			yield "<object id=\"%08X\" type=\"%s\"/>"%(id(object), get_type_name(object))
+			yield "<object id=\"%08X\" type=\"%s\">"%(id(object), get_type_name(object))
+			yield "<attributes>"
+			for name in dir(object):
+				try:
+					value=getattr(object, name)
+					yield "<attribute name=\"%s\">"%name
+					if isinstance(value, (basestring, numbers.Number, bool, types.NoneType)):
+						yield "<object id=\"%s\" type=\"%s\">%r</object>"%(id(value), get_type_name(value), value)
+					else:
+						yield "<object id=\"%08X\" type=\"%s\"/>"%(id(value), get_type_name(value))
+					yield "</attribute>"
+				except:
+					yield "<attribute name=\"%s\"/>"
+			yield "</attributes>"
+			yield "</object>"
 			yield "</objects>"
 			yield "</reply>"
 	else:
