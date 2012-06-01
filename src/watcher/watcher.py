@@ -86,7 +86,6 @@ class VDOM_watcher_session(VDOM_thread):
 						else:
 							try:
 								response="".join(handler(options))
-								print "SEND:", response
 							except:
 								print "Watcher: Unable to execute action"
 								traceback.print_exc()
