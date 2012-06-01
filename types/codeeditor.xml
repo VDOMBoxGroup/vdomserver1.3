@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.22.0</Version>
+    <Version>1.23.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared</Containers>
@@ -3940,7 +3940,7 @@ class VDOM_codeeditor(VDOM_object):
 				"name":       self.name,
 				"style":      style,
 				"style_area": style_area,
-				"value":      (self.value).replace('<','&lt;'),
+				"value":      unicode(self.value).replace('<','&lt;'),
 				"width":      self.width,
 				"height":     self.height,
 				"debug_info": debug_info
