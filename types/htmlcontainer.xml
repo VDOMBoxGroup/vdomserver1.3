@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.21.6720</Version>
+    <Version>2.23.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -223,7 +223,7 @@
       <Name>testClasses</Name>
       <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue/>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
@@ -7634,10 +7634,11 @@ class VDOM_htmlcontainer(VDOM_object):
 			var returnLocation = history.location || document.location;
 			execEventBinded("%(clean_obj_id)s", "labelchanged", {label:returnLocation.hash.substring(1,returnLocation.hash.length)});
 		});
+		if (window.location.hash.length > 0) execEventBinded("%(clean_obj_id)s", "labelchanged", {label:window.location.hash});
 	});</script>
 
 	<script type="text/javascript">hchInit(%(centr)s,'#%(bgcolor)s','%(clean_obj_id)s');</script>
-	<!-- type %(type_ver)s @ 2012-05-31, VDOM server %(server_ver)s -->
+	<!-- type %(type_ver)s @ 2012-06-01, VDOM server %(server_ver)s -->
 </body>
 </html>""" % {
 				"e2vstate":     "0",
