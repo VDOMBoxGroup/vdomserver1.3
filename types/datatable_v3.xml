@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.15.6720</Version>
+    <Version>3.16.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -183,87 +183,99 @@
     </Attribute>
     <Attribute>
       <Name>rowactive</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(322)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(222)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>selectedrows</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10000)</CodeInterface>
+      <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>selectionmode</Name>
+      <Name>selectedrows</Name>
       <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+      <CodeInterface>TextField(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>draggable</Name>
+      <Name>selectionmode</Name>
       <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>draggable</Name>
       <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1)|(#Lang(412)|2)|(#Lang(413)|3))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>nocellclick</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(323)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(223)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -271,87 +283,93 @@
       <Sentence ID="001">Datatable v3</Sentence>
       <Sentence ID="002">Representing the data in the datasheet view</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701">fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Select all the rows</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="115">Active row</Sentence>
+      <Sentence ID="116">Selected rows</Sentence>
+      <Sentence ID="117">Selection mode</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119">Style</Sentence>
+      <Sentence ID="121">Skin</Sentence>
+      <Sentence ID="122">CSS Class</Sentence>
+      <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Title of the object to display</Sentence>
+      <Sentence ID="209">Header of the table, described in the array</Sentence>
+      <Sentence ID="211">Define if the header is shown or not</Sentence>
+      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="213">Key field which identifies the entry</Sentence>
+      <Sentence ID="214">Fields which should be hidden</Sentence>
+      <Sentence ID="215">Row with class 'active'</Sentence>
+      <Sentence ID="216">Rows which should be checked</Sentence>
+      <Sentence ID="217">Mode of row selecting</Sentence>
+      <Sentence ID="218">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="219">CSS style of the object</Sentence>
+      <Sentence ID="221">Skin of the object</Sentence>
+      <Sentence ID="222">Names of CSS classes</Sentence>
+      <Sentence ID="223">Incorrect value</Sentence>
+      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">List (comma separated) of columns, which haven't cellclick.</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Title</Sentence>
-      <Sentence ID="208">Title of the object to display</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="109">Header</Sentence>
-      <Sentence ID="209">Header of the table, described in the array</Sentence>
-      <Sentence ID="309">Incorrect value, must be array</Sentence>
-      <Sentence ID="111">Show header</Sentence>
-      <Sentence ID="211">Define if the header is shown or not</Sentence>
-      <Sentence ID="311"></Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
-      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
-      <Sentence ID="113">Key</Sentence>
-      <Sentence ID="213">Key field which identifies the entry</Sentence>
-      <Sentence ID="313">Error, attribute must be in header</Sentence>
-      <Sentence ID="114">Hidden fields</Sentence>
-      <Sentence ID="214">Fields which should be hidden</Sentence>
-      <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selected rows</Sentence>
-      <Sentence ID="215">Rows which should be checked</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116">Selection mode</Sentence>
-      <Sentence ID="216">Mode of row selecting</Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="217">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="317"></Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="218">CSS style of the object</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="319"></Sentence>
       <Sentence ID="409">User defined</Sentence>
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Select all the rows</Sentence>
+      <Sentence ID="503">Deselect all the rows</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -372,95 +390,98 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
-      <Sentence ID="122">Active row</Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="322">Row with class 'active'</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
       <Sentence ID="002">Representing the data in the datasheet view</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701">fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Select all the rows</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="115">Active row</Sentence>
+      <Sentence ID="116">Selected rows</Sentence>
+      <Sentence ID="117">Selection mode</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119">Style</Sentence>
+      <Sentence ID="121">Skin</Sentence>
+      <Sentence ID="122">CSS Class</Sentence>
+      <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Title of the object to display</Sentence>
+      <Sentence ID="209">Header of the table, described in the array</Sentence>
+      <Sentence ID="211">Define if the header is shown or not</Sentence>
+      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="213">Key field which identifies the entry</Sentence>
+      <Sentence ID="214">Fields which should be hidden</Sentence>
+      <Sentence ID="215">Row with class 'active'</Sentence>
+      <Sentence ID="216">Rows which should be checked</Sentence>
+      <Sentence ID="217">Mode of row selecting</Sentence>
+      <Sentence ID="218">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="219">CSS style of the object</Sentence>
+      <Sentence ID="221">Skin of the object</Sentence>
+      <Sentence ID="222">Names of CSS classes</Sentence>
+      <Sentence ID="223">Incorrect value</Sentence>
+      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">List (comma separated) of columns, which haven't cellclick.</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Title</Sentence>
-      <Sentence ID="208">Title of the object to display</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="109">Header</Sentence>
-      <Sentence ID="209">Header of the table, described in the array</Sentence>
-      <Sentence ID="309">Incorrect value, must be array</Sentence>
-      <Sentence ID="111">Show header</Sentence>
-      <Sentence ID="211">Define if the header is shown or not</Sentence>
-      <Sentence ID="311"></Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
-      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
-      <Sentence ID="113">Key</Sentence>
-      <Sentence ID="213">Key field which identifies the entry</Sentence>
-      <Sentence ID="313">Error, attribute must be in header</Sentence>
-      <Sentence ID="114">Hidden fields</Sentence>
-      <Sentence ID="214">Fields which should be hidden</Sentence>
-      <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selected rows</Sentence>
-      <Sentence ID="215">Rows which should be checked</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116">Selection mode</Sentence>
-      <Sentence ID="216">Mode of row selecting</Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="217">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="317"></Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="218">CSS style of the object</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="319"></Sentence>
       <Sentence ID="409">User defined</Sentence>
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Select all the rows</Sentence>
+      <Sentence ID="503">Deselect all the rows</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -481,95 +502,98 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
-      <Sentence ID="122">Active row</Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="322">Row with class 'active'</Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
       <Sentence ID="002">Representing the data in the datasheet view</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701">fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Select all the rows</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="115">Active row</Sentence>
+      <Sentence ID="116">Selected rows</Sentence>
+      <Sentence ID="117">Selection mode</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119">Style</Sentence>
+      <Sentence ID="121">Skin</Sentence>
+      <Sentence ID="122">CSS Class</Sentence>
+      <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Title of the object to display</Sentence>
+      <Sentence ID="209">Header of the table, described in the array</Sentence>
+      <Sentence ID="211">Define if the header is shown or not</Sentence>
+      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="213">Key field which identifies the entry</Sentence>
+      <Sentence ID="214">Fields which should be hidden</Sentence>
+      <Sentence ID="215">Row with class 'active'</Sentence>
+      <Sentence ID="216">Rows which should be checked</Sentence>
+      <Sentence ID="217">Mode of row selecting</Sentence>
+      <Sentence ID="218">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="219">CSS style of the object</Sentence>
+      <Sentence ID="221">Skin of the object</Sentence>
+      <Sentence ID="222">Names of CSS classes</Sentence>
+      <Sentence ID="223">Incorrect value</Sentence>
+      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">List (comma separated) of columns, which haven't cellclick.</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Title</Sentence>
-      <Sentence ID="208">Title of the object to display</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="109">Header</Sentence>
-      <Sentence ID="209">Header of the table, described in the array</Sentence>
-      <Sentence ID="309">Incorrect value, must be array</Sentence>
-      <Sentence ID="111">Show header</Sentence>
-      <Sentence ID="211">Define if the header is shown or not</Sentence>
-      <Sentence ID="311"></Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
-      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
-      <Sentence ID="113">Key</Sentence>
-      <Sentence ID="213">Key field which identifies the entry</Sentence>
-      <Sentence ID="313">Error, attribute must be in header</Sentence>
-      <Sentence ID="114">Hidden fields</Sentence>
-      <Sentence ID="214">Fields which should be hidden</Sentence>
-      <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selected rows</Sentence>
-      <Sentence ID="215">Rows which should be checked</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116">Selection mode</Sentence>
-      <Sentence ID="216">Mode of row selecting</Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="217">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="317"></Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="218">CSS style of the object</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="319"></Sentence>
       <Sentence ID="409">User defined</Sentence>
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Select all the rows</Sentence>
+      <Sentence ID="503">Deselect all the rows</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -590,95 +614,98 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
-      <Sentence ID="122">Active row</Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="322">Row with class 'active'</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Таблица данных v3</Sentence>
       <Sentence ID="002">Представление данных в виде таблицы</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Выделить все строки</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503">Снять выделение всех строк</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Отобразить объект</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Заголовок</Sentence>
+      <Sentence ID="109">Заголовок</Sentence>
+      <Sentence ID="111">Отобразить заголовок</Sentence>
+      <Sentence ID="112">Данные</Sentence>
+      <Sentence ID="113">Ключ</Sentence>
+      <Sentence ID="114">Скрытые поля</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Выбранные ряды</Sentence>
+      <Sentence ID="117">Режим выбора</Sentence>
+      <Sentence ID="118">Перемещение</Sentence>
+      <Sentence ID="119">Стиль</Sentence>
+      <Sentence ID="121">Оформление</Sentence>
+      <Sentence ID="122">Класс CSS</Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Заголовок объекта</Sentence>
+      <Sentence ID="209">Заголовок таблицы, описанный в виде массива</Sentence>
+      <Sentence ID="211">Показывать заголовок или нет</Sentence>
+      <Sentence ID="212">Данные таблицы, описанные в виде словаря или массива</Sentence>
+      <Sentence ID="213">Ключевое поле, определяющее ввод данных</Sentence>
+      <Sentence ID="214">Поля, которые нужно скрыть</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Строки, которые необходимо проверить</Sentence>
+      <Sentence ID="217">Режим выбора строк</Sentence>
+      <Sentence ID="218">Использовать перетаскивание или нет</Sentence>
+      <Sentence ID="219">Стиль CSS</Sentence>
+      <Sentence ID="221">Оформление объекта</Sentence>
+      <Sentence ID="222">Имена классов CSS</Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="301">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Неправильное значение, должен быть массив</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Неправильное значение, должен быть массив или словарь</Sentence>
+      <Sentence ID="313">Ошибка, данный атрибут должен быть в заголовке</Sentence>
+      <Sentence ID="314">Ошибка, данные атрибуты должны быть в заголовке</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401">Нет</Sentence>
       <Sentence ID="402">Да</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Заголовок</Sentence>
-      <Sentence ID="208">Заголовок объекта</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="109">Заголовок</Sentence>
-      <Sentence ID="209">Заголовок таблицы, описанный в виде массива</Sentence>
-      <Sentence ID="309">Неправильное значение, должен быть массив</Sentence>
-      <Sentence ID="111">Отобразить заголовок</Sentence>
-      <Sentence ID="211">Показывать заголовок или нет</Sentence>
-      <Sentence ID="311"></Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
-      <Sentence ID="112">Данные</Sentence>
-      <Sentence ID="212">Данные таблицы, описанные в виде словаря или массива</Sentence>
-      <Sentence ID="312">Неправильное значение, должен быть массив или словарь</Sentence>
-      <Sentence ID="113">Ключ</Sentence>
-      <Sentence ID="213">Ключевое поле, определяющее ввод данных</Sentence>
-      <Sentence ID="313">Ошибка, данный атрибут должен быть в заголовке</Sentence>
-      <Sentence ID="114">Скрытые поля</Sentence>
-      <Sentence ID="214">Поля, которые нужно скрыть</Sentence>
-      <Sentence ID="314">Ошибка, данные атрибуты должны быть в заголовке</Sentence>
-      <Sentence ID="115">Выбранные ряды</Sentence>
-      <Sentence ID="215">Строки, которые необходимо проверить</Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="116">Режим выбора</Sentence>
-      <Sentence ID="216">Режим выбора строк</Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Одиночное</Sentence>
       <Sentence ID="406">Множественное</Sentence>
-      <Sentence ID="117">Перемещение</Sentence>
-      <Sentence ID="217">Использовать перетаскивание или нет</Sentence>
-      <Sentence ID="317"></Sentence>
       <Sentence ID="407">Нет</Sentence>
       <Sentence ID="408">Да</Sentence>
-      <Sentence ID="118">Стиль</Sentence>
-      <Sentence ID="218">Стиль CSS</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="119">Оформление</Sentence>
-      <Sentence ID="219">Оформление объекта</Sentence>
-      <Sentence ID="319"></Sentence>
       <Sentence ID="409">Определено пользователем</Sentence>
       <Sentence ID="411">По умолчанию</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
-      <Sentence ID="121">Класс CSS</Sentence>
-      <Sentence ID="221">Имена классов CSS</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Выделить все строки</Sentence>
+      <Sentence ID="503">Снять выделение всех строк</Sentence>
+      <Sentence ID="504">Отобразить объект</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -699,95 +726,98 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="322"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Datatable v3</Sentence>
       <Sentence ID="002">Represents the data in the datasheet view</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701">fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Select all the rows</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Title</Sentence>
+      <Sentence ID="109">Header</Sentence>
+      <Sentence ID="111">Show header</Sentence>
+      <Sentence ID="112">Data</Sentence>
+      <Sentence ID="113">Key</Sentence>
+      <Sentence ID="114">Hidden fields</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Selected rows</Sentence>
+      <Sentence ID="117">Selection mode</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119">Style</Sentence>
+      <Sentence ID="121">Skin</Sentence>
+      <Sentence ID="122">CSS Class</Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Title of the object to display</Sentence>
+      <Sentence ID="209">Header of the table, described in the array</Sentence>
+      <Sentence ID="211">Define if the header is shown or not</Sentence>
+      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="213">Key field which identifies the entry</Sentence>
+      <Sentence ID="214">Fields which should be hidden</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Rows which should be checked</Sentence>
+      <Sentence ID="217">Mode of row selecting</Sentence>
+      <Sentence ID="218">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="219">CSS style of the object</Sentence>
+      <Sentence ID="221">Skin of the object</Sentence>
+      <Sentence ID="222">Names of CSS classes</Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Incorrect value, must be array</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="313">Error, attribute must be in header</Sentence>
+      <Sentence ID="314">Error, attributes must be in header</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Title</Sentence>
-      <Sentence ID="208">Title of the object to display</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="109">Header</Sentence>
-      <Sentence ID="209">Header of the table, described in the array</Sentence>
-      <Sentence ID="309">Incorrect value, must be array</Sentence>
-      <Sentence ID="111">Show header</Sentence>
-      <Sentence ID="211">Define if the header is shown or not</Sentence>
-      <Sentence ID="311"></Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="212">Table data described in the array or dictionary</Sentence>
-      <Sentence ID="312">Incorrect value, must be array or dictionary</Sentence>
-      <Sentence ID="113">Key</Sentence>
-      <Sentence ID="213">Key field which identifies the entry</Sentence>
-      <Sentence ID="313">Error, attribute must be in header</Sentence>
-      <Sentence ID="114">Hidden fields</Sentence>
-      <Sentence ID="214">Fields which should be hidden</Sentence>
-      <Sentence ID="314">Error, attributes must be in header</Sentence>
-      <Sentence ID="115">Selected rows</Sentence>
-      <Sentence ID="215">Rows which should be checked</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116">Selection mode</Sentence>
-      <Sentence ID="216">Mode of row selecting</Sentence>
-      <Sentence ID="316"></Sentence>
       <Sentence ID="405">Single</Sentence>
       <Sentence ID="406">Multi</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="217">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="317"></Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="218">CSS style of the object</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="319"></Sentence>
       <Sentence ID="409">User defined</Sentence>
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Select all the rows</Sentence>
+      <Sentence ID="503">Deselect all the rows</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -808,9 +838,6 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="322"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1063,7 +1090,7 @@ class VDOM_datatable_v3(VDOM_object):
 			try:
 				selectedRows = json.loads(self.selectedrows)
 				if isinstance(selectedRows, list):
-					js_multiselect = """
+					js_multiselect = u"""
 window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
 for (var j in window.selectedRows_"""+id+"""){
 	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
@@ -1082,6 +1109,29 @@ for (var j in window.selectedRows_"""+id+"""){
 		$j("#"""+id+""" table tr").attr('index', function(index, attr){
 			if (attr == window.selectedRows_"""+id+"""[j]){
 				$j(this).children("td").children("input").attr('checked', 'checked');
+				$j(this).addClass('row_selected');
+			}
+		});
+	}
+}
+"""
+					js_singleselect = u"""
+window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
+for (var j in window.selectedRows_"""+id+"""){
+	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
+		for (var i=0; i < window.keys_"""+id+""".length; i++){
+			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){
+				$j("#"""+id+""" table tr").attr('index', function(index, attr){
+					if (attr == i+1){
+						$j(this).addClass('row_selected');
+					}
+				});
+			}
+		}
+	}
+	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){
+		$j("#"""+id+""" table tr").attr('index', function(index, attr){
+			if (attr == window.selectedRows_"""+id+"""[j]){
 				$j(this).addClass('row_selected');
 			}
 		});
@@ -1272,9 +1322,9 @@ $j('#%(id)s tr').draggable({
 		else:
 			js_drag = ""
 
-		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick
+		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick + js_singleselect
 		result = u"""<script type="text/javascript">
-jQuery(document).ready(function($){
+$q(function(){
 var id_"""+id+""" = '"""+id+"""';
 window.keys_"""+id+""" = """ + json.dumps(keys) + """;
 window.header_"""+id+""" = """ + json.dumps(vheader) + """
@@ -1287,7 +1337,7 @@ var params_"""+id+""" = [];
 <style type="text/css">
 %(css)s
 </style>
-<div objtype='datatable' objname="%(name)s" ver="2011-11-30" id="%(id)s" style="%(style)s" %(class)s>
+<div objtype='datatable' objname="%(name)s" ver="2012-06-01" id="%(id)s" style="%(style)s" %(class)s>
 <table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
 <caption>%(title)s</caption>
 %(theader)s
