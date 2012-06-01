@@ -4,6 +4,7 @@ from ..auxiliary import select_objects, generate_graph
 
 
 def query(options):
+	print "QUERY", options
 	if "objects" in options:
 		objects=select_objects(options["objects"])
 		yield "<reply>"
@@ -12,7 +13,7 @@ def query(options):
 			yield "<object id=\"%08X\"/>"%id(object)
 		yield "</objects>"
 		yield "</reply>"
-	elif "garbase" in options:
+	elif "garbage" in options:
 		objects=gc.garbage
 		yield "<reply>"
 		yield "<objects>"
@@ -43,9 +44,12 @@ def query(options):
 		yield "</referents>"
 		yield "</reply>"
 	elif "graph" in options:
+		print "!!!!!!!!!!!!!!!!!!!!!"
 		objects=select_objects(options["graph"])
+		print ">>>", objects
 		yield "<reply>"
 		yield "<graph>"
 		yield "".join(generate_graph(objects)).encode("xml")
 		yield "</graph>"
 		yield "</reply>"
+		print "DONE!!!!!!!!!!!"
