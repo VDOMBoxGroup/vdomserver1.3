@@ -246,6 +246,7 @@ def generate_graph(objects, optimize=True, collapse_dicts=True, skip_functions=T
 	gc.collect()
 	while queue:
 		target=queue.pop(0)
+		print "NEXT:", target
 		level=levels[id(target)]
 		
 		if collapse_dicts and id(target) in dicts:

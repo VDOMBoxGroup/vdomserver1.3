@@ -86,10 +86,13 @@ class VDOM_watcher_session(VDOM_thread):
 						else:
 							try:
 								response="".join(handler(options))
+								print "SEND:", response
 							except:
 								print "Watcher: Unable to execute action"
 								traceback.print_exc()
 								response="<reply><error>Internal error</error></reply>"
+						if not response:
+							response="<reply><error>No reply</error></reply>"
 						try:
 							self._connection.send(response)
 						except socket.error:
@@ -150,6 +153,8 @@ class VDOM_watcher(VDOM_thread):
 									print "Watcher: Unable to execute action"
 									traceback.print_exc()
 									response="<reply><error>Internal error</error></reply>"
+							if not response:
+								response="<reply><error>No reply</error></reply>"
 							try:
 								self._socket.sendto(response, address)
 							except socket.error:
