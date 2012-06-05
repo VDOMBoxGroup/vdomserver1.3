@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.3.6720</Version>
+    <Version>1.4.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1410,6 +1410,8 @@ if (typeof y == 'number') d.boxy.css({marginTop: ny});
           </Parameters>
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".setTitle(\""+title.replace('"','&quot;')+"\");");*/
+eval("var d=dialog_win_" + this.domCont.id);
+d.setTitle(title);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
