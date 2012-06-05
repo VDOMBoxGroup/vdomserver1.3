@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.13.6720</Version>
+    <Version>1.14.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1078,7 +1078,7 @@ $j(function(){
 
 	JS_SORTABLE = u"""
 	$j('#%(id)s').sortable().disableSelection().bind("sortstop",function(e,u){
-		execEventBinded('%(woid)s', "itemsort", {id: u.item.index(), position: u.item.attr('dataid')}, true);
+		execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')}, true);
 	});
 """
 
