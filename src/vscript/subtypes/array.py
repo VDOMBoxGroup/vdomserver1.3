@@ -9,9 +9,11 @@ from ..variables import variant
 
 def measure(items):
 	subscripts=[]
-	while isinstance(items, list):
+	while True:
 		subscripts.insert(0, len(items)-1)
+		if not items: break
 		items=items[0]
+		if not isinstance(items, list): break
 	return subscripts
 
 def dim(subscripts):
@@ -56,16 +58,18 @@ class array(subtype):
 
 	def __init__(self, items=None, subscripts=None, static=None):
 		if items is not None:
+			if not isinstance(items, list): items=list(items)
 			self._items=items
 			self._subscripts=measure(items)
 			self._static=static
 		elif subscripts is not None:
+			if not isinstance(subscripts, list): items=list(items)
 			self._items=dim(subscripts)
 			self._subscripts=subscripts
 			self._static=static
 		else:
 			self._items=[]
-			self._subscripts=[]
+			self._subscripts=[-1]
 			self._static=static
 
 	def __call__(self, *arguments, **keywords):
@@ -112,7 +116,7 @@ class array(subtype):
 			else: self._items=dim(self._subscripts)
 		else:
 			self._items=[]
-			self._subscripts=[]
+			self._subscripts=[-1]
 
 	def erase(self, *arguments):
 		if self._static:
