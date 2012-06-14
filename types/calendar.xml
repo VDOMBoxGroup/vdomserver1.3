@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.6.6720</Version>
+    <Version>1.105.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,form</Containers>
@@ -104,7 +104,7 @@
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(406)|/5e390dc2-367f-4eef-b12c-dfbb063bd518.res)|(#Lang(407)|/35d10781-dd3d-43a5-b507-82c9111adaa3.res)|(#Lang(408)|/ae4174eb-9a79-412e-815d-e7186d603935.res)|(#Lang(409)|/6c83b06c-fca0-4ae8-98d7-4504e4198601.res)|(#Lang(410)|/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res)|(#Lang(403)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|/5e390dc2-367f-4eef-b12c-dfbb063bd518.res)|(#Lang(404)|/35d10781-dd3d-43a5-b507-82c9111adaa3.res)|(#Lang(405)|/ae4174eb-9a79-412e-815d-e7186d603935.res)|(#Lang(406)|/6c83b06c-fca0-4ae8-98d7-4504e4198601.res)|(#Lang(407)|/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res)|(#Lang(408)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^(/5e390dc2-367f-4eef-b12c-dfbb063bd518.res|/35d10781-dd3d-43a5-b507-82c9111adaa3.res|/ae4174eb-9a79-412e-815d-e7186d603935.res|/6c83b06c-fca0-4ae8-98d7-4504e4198601.res|/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res|0)$</RegularExpressionValidation>
@@ -116,7 +116,7 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(404)|/4511e58d-8591-427f-a3ac-64a00b27db32.res)|(#Lang(405)|/1672170e-38b2-4f75-8ac0-c34bb5a547ea.res))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|/4511e58d-8591-427f-a3ac-64a00b27db32.res)|(#Lang(411)|/1672170e-38b2-4f75-8ac0-c34bb5a547ea.res))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>^(/4511e58d-8591-427f-a3ac-64a00b27db32.res|/1672170e-38b2-4f75-8ac0-c34bb5a547ea.res)$</RegularExpressionValidation>
@@ -403,387 +403,397 @@
       <Sentence ID="001">Calendar</Sentence>
       <Sentence ID="002">Used to add calendar to the page</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Move the object to a new position</Sentence>
-      <Sentence ID="603">moveTo</Sentence>
-      <Sentence ID="703">newX</Sentence>
-      <Sentence ID="803">X-coordinate of new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">newY</Sentence>
-      <Sentence ID="804">Y-coordinate of new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="705">Effect</Sentence>
-      <Sentence ID="805">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="604">moveZindexTo</Sentence>
-      <Sentence ID="706">New Z-index value</Sentence>
-      <Sentence ID="806">New position in visual hierarchy of objects</Sentence>
-      <Sentence ID="505">Set new date</Sentence>
-      <Sentence ID="605">SetDate</Sentence>
-      <Sentence ID="707">New date</Sentence>
-      <Sentence ID="807">New date</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even positive integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Skin</Sentence>
+      <Sentence ID="108">Language</Sentence>
+      <Sentence ID="109">Minimum year</Sentence>
+      <Sentence ID="111">Maximum year</Sentence>
+      <Sentence ID="112">Container link</Sentence>
+      <Sentence ID="113">Special dates</Sentence>
+      <Sentence ID="114">CSS</Sentence>
+      <Sentence ID="115">Font size</Sentence>
+      <Sentence ID="116">Border width</Sentence>
+      <Sentence ID="117">Background color</Sentence>
+      <Sentence ID="118">Border color</Sentence>
+      <Sentence ID="119">Title color</Sentence>
+      <Sentence ID="121">Title font color</Sentence>
+      <Sentence ID="122">Navigation panel color</Sentence>
+      <Sentence ID="123">Headrow color</Sentence>
+      <Sentence ID="124">Headrow font color</Sentence>
+      <Sentence ID="125">Day name color</Sentence>
+      <Sentence ID="126">Day color</Sentence>
+      <Sentence ID="127">Tip color</Sentence>
+      <Sentence ID="128">Tip font color</Sentence>
+      <Sentence ID="129">Weekend color</Sentence>
+      <Sentence ID="131">Today color</Sentence>
+      <Sentence ID="132">Today font color</Sentence>
+      <Sentence ID="133">Week color</Sentence>
+      <Sentence ID="134">Weekday color</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Skin of the object</Sentence>
+      <Sentence ID="208">Language of the object to display</Sentence>
+      <Sentence ID="209">Minimum year to display</Sentence>
+      <Sentence ID="211">Maximum year to display</Sentence>
+      <Sentence ID="212">Link to the internal HTML container</Sentence>
+      <Sentence ID="213">Special dates in format 3-2-2009, or 7-2-2009</Sentence>
+      <Sentence ID="214">CSS code</Sentence>
+      <Sentence ID="215">Font size of the object in points</Sentence>
+      <Sentence ID="216">Border width of the object in pixels</Sentence>
+      <Sentence ID="217">Color of the background of the object</Sentence>
+      <Sentence ID="218">Color of the border of the object</Sentence>
+      <Sentence ID="219">Color of the title's background of the object</Sentence>
+      <Sentence ID="221">Color of the title's text of the object</Sentence>
+      <Sentence ID="222">Color of the navigation panel of the object</Sentence>
+      <Sentence ID="223">Color of the head row's background of the object</Sentence>
+      <Sentence ID="224">Color of the head row's text of the object</Sentence>
+      <Sentence ID="225">Color of day names of the object</Sentence>
+      <Sentence ID="226">Color of days of the object</Sentence>
+      <Sentence ID="227">Color of the tip's background of the object</Sentence>
+      <Sentence ID="228">Color of the tip's text of the object</Sentence>
+      <Sentence ID="229">Color of weekends of the object</Sentence>
+      <Sentence ID="231">Color of today's background of the object</Sentence>
+      <Sentence ID="232">Color of today's text of the object</Sentence>
+      <Sentence ID="233">Color of the week number of the object</Sentence>
+      <Sentence ID="234">Color of weekdays of the object</Sentence>
+      <Sentence ID="301">Incorrect value, must be even positive integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="312">Incorrect value, must be valid internal container</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="315">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="316">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="319">Incorrect value</Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
+      <Sentence ID="322">Incorrect value</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
+      <Sentence ID="325">Incorrect value</Sentence>
+      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="327">Incorrect value</Sentence>
+      <Sentence ID="328">Incorrect value</Sentence>
+      <Sentence ID="329">Incorrect value</Sentence>
+      <Sentence ID="331">Incorrect value</Sentence>
+      <Sentence ID="332">Incorrect value</Sentence>
+      <Sentence ID="333">Incorrect value</Sentence>
+      <Sentence ID="334">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Skin</Sentence>
-      <Sentence ID="207">Skin of the object</Sentence>
-      <Sentence ID="307">Incorrect value</Sentence>
-      <Sentence ID="403">User defined</Sentence>
-      <Sentence ID="108">Language</Sentence>
-      <Sentence ID="208">Language of the object to display</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="404">English</Sentence>
-      <Sentence ID="405">Russian</Sentence>
-      <Sentence ID="109">Minimum year</Sentence>
-      <Sentence ID="209">Minimum year to display</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="111">Maximum year</Sentence>
-      <Sentence ID="211">Maximum year to display</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">Container link</Sentence>
-      <Sentence ID="212">Link to the internal HTML container</Sentence>
-      <Sentence ID="312">Incorrect value, must be valid internal container</Sentence>
-      <Sentence ID="113">Special dates</Sentence>
-      <Sentence ID="213">Special dates in format 3-2-2009, or 7-2-2009</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="114">CSS</Sentence>
-      <Sentence ID="214">CSS code</Sentence>
-      <Sentence ID="314">Incorrect value</Sentence>
-      <Sentence ID="115">Font size</Sentence>
-      <Sentence ID="215">Font size of the object in points</Sentence>
-      <Sentence ID="315">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="116">Border width</Sentence>
-      <Sentence ID="216">Border width of the object in pixels</Sentence>
-      <Sentence ID="316">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="117">Background color</Sentence>
-      <Sentence ID="217">Color of the background of the object</Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
-      <Sentence ID="118">Border color</Sentence>
-      <Sentence ID="218">Color of the border of the object</Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
-      <Sentence ID="119">Title color</Sentence>
-      <Sentence ID="219">Color of the title's background of the object</Sentence>
-      <Sentence ID="319">Incorrect value</Sentence>
-      <Sentence ID="121">Title font color</Sentence>
-      <Sentence ID="221">Color of the title's text of the object</Sentence>
-      <Sentence ID="321">Incorrect value</Sentence>
-      <Sentence ID="122">Navigation panel color</Sentence>
-      <Sentence ID="222">Color of the navigation panel of the object</Sentence>
-      <Sentence ID="322">Incorrect value</Sentence>
-      <Sentence ID="123">Headrow color</Sentence>
-      <Sentence ID="223">Color of the head row's background of the object</Sentence>
-      <Sentence ID="323">Incorrect value</Sentence>
-      <Sentence ID="124">Headrow font color</Sentence>
-      <Sentence ID="224">Color of the head row's text of the object</Sentence>
-      <Sentence ID="324">Incorrect value</Sentence>
-      <Sentence ID="125">Day name color</Sentence>
-      <Sentence ID="225">Color of day names of the object</Sentence>
-      <Sentence ID="325">Incorrect value</Sentence>
-      <Sentence ID="126">Day color</Sentence>
-      <Sentence ID="226">Color of days of the object</Sentence>
-      <Sentence ID="326">Incorrect value</Sentence>
-      <Sentence ID="127">Tip color</Sentence>
-      <Sentence ID="227">Color of the tip's background of the object</Sentence>
-      <Sentence ID="327">Incorrect value</Sentence>
-      <Sentence ID="128">Tip font color</Sentence>
-      <Sentence ID="228">Color of the tip's text of the object</Sentence>
-      <Sentence ID="328">Incorrect value</Sentence>
-      <Sentence ID="129">Weekend color</Sentence>
-      <Sentence ID="229">Color of weekends of the object</Sentence>
-      <Sentence ID="329">Incorrect value</Sentence>
-      <Sentence ID="131">Today color</Sentence>
-      <Sentence ID="231">Color of today's background of the object</Sentence>
-      <Sentence ID="331">Incorrect value</Sentence>
-      <Sentence ID="132">Today font color</Sentence>
-      <Sentence ID="232">Color of today's text of the object</Sentence>
-      <Sentence ID="332">Incorrect value</Sentence>
-      <Sentence ID="133">Week color</Sentence>
-      <Sentence ID="233">Color of the week number of the object</Sentence>
-      <Sentence ID="333">Incorrect value</Sentence>
-      <Sentence ID="134">Weekday color</Sentence>
-      <Sentence ID="234">Color of weekdays of the object</Sentence>
-      <Sentence ID="334">Incorrect value</Sentence>
-      <Sentence ID="406">Blue</Sentence>
-      <Sentence ID="407">Green</Sentence>
-      <Sentence ID="408">Brown</Sentence>
-      <Sentence ID="409">System</Sentence>
-      <Sentence ID="410">Win2k</Sentence>
+      <Sentence ID="403">Blue</Sentence>
+      <Sentence ID="404">Green</Sentence>
+      <Sentence ID="405">Brown</Sentence>
+      <Sentence ID="406">System</Sentence>
+      <Sentence ID="407">Win2k</Sentence>
+      <Sentence ID="408">User defined</Sentence>
+      <Sentence ID="409">English</Sentence>
+      <Sentence ID="411">Russian</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Set new date</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">moveZindexTo</Sentence>
+      <Sentence ID="604">SetDate</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">New Z-index value</Sentence>
+      <Sentence ID="706">New date</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New position in visual hierarchy of objects</Sentence>
+      <Sentence ID="806">New date</Sentence>
+      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Календарь</Sentence>
       <Sentence ID="002">Добавление календаря на веб-страницу</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="502">Показать объект</Sentence>
-      <Sentence ID="602">Показать</Sentence>
-      <Sentence ID="702">Исчезновение</Sentence>
-      <Sentence ID="802">Время исчезновения</Sentence>
-      <Sentence ID="503">Переместить объект</Sentence>
-      <Sentence ID="603">Сдвинуть</Sentence>
-      <Sentence ID="703">Координата точки по оси X</Sentence>
-      <Sentence ID="803">Координата новой точки по оси X</Sentence>
-      <Sentence ID="704">Координата точки по оси Y</Sentence>
-      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="705">Эффект</Sentence>
-      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="504">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="604">Изменить позицию</Sentence>
-      <Sentence ID="706">Новое значение позиции</Sentence>
-      <Sentence ID="806">Новое значение позиции</Sentence>
-      <Sentence ID="505">Установить дату</Sentence>
-      <Sentence ID="605">Установить дату</Sentence>
-      <Sentence ID="707">Новая дата</Sentence>
-      <Sentence ID="807">Новая дата</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Оформление</Sentence>
+      <Sentence ID="108">Язык</Sentence>
+      <Sentence ID="109">Минимальный год</Sentence>
+      <Sentence ID="111">Максимальный год</Sentence>
+      <Sentence ID="112">Ссылка на контейнер</Sentence>
+      <Sentence ID="113">Особые даты</Sentence>
+      <Sentence ID="114">CSS</Sentence>
+      <Sentence ID="115">Размер шрифта</Sentence>
+      <Sentence ID="116">Ширина рамки</Sentence>
+      <Sentence ID="117">Цвет фона</Sentence>
+      <Sentence ID="118">Цвет рамки</Sentence>
+      <Sentence ID="119">Цвет фона заголовка</Sentence>
+      <Sentence ID="121">Цвет шрифта заголовка</Sentence>
+      <Sentence ID="122">Цвет панели навигации</Sentence>
+      <Sentence ID="123">Цвет фона панели 'Сегодня'</Sentence>
+      <Sentence ID="124">Цвет шрифта панели 'Сегодня'</Sentence>
+      <Sentence ID="125">Цвет дней недели</Sentence>
+      <Sentence ID="126">Цвет чисел месяца</Sentence>
+      <Sentence ID="127">Цвет фона подсказки</Sentence>
+      <Sentence ID="128">Цвет шрифта подсказки</Sentence>
+      <Sentence ID="129">Цвет выходных дней</Sentence>
+      <Sentence ID="131">Цвет текущего дня</Sentence>
+      <Sentence ID="132">Цвет шрифта текущего дня</Sentence>
+      <Sentence ID="133">Цвет недель</Sentence>
+      <Sentence ID="134">Цвет дней недели</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Отображается объект или нет</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Цветовое оформление объекта</Sentence>
+      <Sentence ID="208">Язык объекта</Sentence>
+      <Sentence ID="209">Минимально возможный год</Sentence>
+      <Sentence ID="211">Максимально возможный год</Sentence>
+      <Sentence ID="212">Ссылка на внутренний контейнер</Sentence>
+      <Sentence ID="213">Особые даты в формате 3-2-2009, 7-2-2009</Sentence>
+      <Sentence ID="214">Код CSS</Sentence>
+      <Sentence ID="215">Размер шрифта объекта в пунктах</Sentence>
+      <Sentence ID="216">Ширина рамки объекта в пикселях</Sentence>
+      <Sentence ID="217">Цвет фона объекта</Sentence>
+      <Sentence ID="218">Цвет рамки вокруг календаря</Sentence>
+      <Sentence ID="219">Цвет фона заголовка объекта</Sentence>
+      <Sentence ID="221">Цвет шрифта заголовка объекта</Sentence>
+      <Sentence ID="222">Цвет панели навигации по объекту</Sentence>
+      <Sentence ID="223">Цвет фона панели 'Сегодня'</Sentence>
+      <Sentence ID="224">Цвет шрифта панели 'Сегодня'</Sentence>
+      <Sentence ID="225">Цвет дней недели</Sentence>
+      <Sentence ID="226">Цвет чисел месяца</Sentence>
+      <Sentence ID="227">Цвет фона подсказки</Sentence>
+      <Sentence ID="228">Цвет шрифта подсказки</Sentence>
+      <Sentence ID="229">Цвет выходных дней</Sentence>
+      <Sentence ID="231">Цвет текущего дня</Sentence>
+      <Sentence ID="232">Цвет шрифта текущего дня</Sentence>
+      <Sentence ID="233">Цвет недель</Sentence>
+      <Sentence ID="234">Цвет дней недели</Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение, должно быть существующий контейнер</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="315">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="317">Неправильное значение</Sentence>
+      <Sentence ID="318">Неправильное значение</Sentence>
+      <Sentence ID="319">Неправильное значение</Sentence>
+      <Sentence ID="321">Неправильное значение</Sentence>
+      <Sentence ID="322">Неправильное значение</Sentence>
+      <Sentence ID="323">Неправильное значение</Sentence>
+      <Sentence ID="324">Неправильное значение</Sentence>
+      <Sentence ID="325">Неправильное значение</Sentence>
+      <Sentence ID="326">Неправильное значение</Sentence>
+      <Sentence ID="327">Неправильное значение</Sentence>
+      <Sentence ID="328">Неправильное значение</Sentence>
+      <Sentence ID="329">Неправильное значение</Sentence>
+      <Sentence ID="331">Неправильное значение</Sentence>
+      <Sentence ID="332">Неправильное значение</Sentence>
+      <Sentence ID="333">Неправильное значение</Sentence>
+      <Sentence ID="334">Неправильное значение</Sentence>
       <Sentence ID="401">Невидимый</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Оформление</Sentence>
-      <Sentence ID="207">Цветовое оформление объекта</Sentence>
-      <Sentence ID="307">Неправильное значение</Sentence>
-      <Sentence ID="403">Определено пользователем</Sentence>
-      <Sentence ID="108">Язык</Sentence>
-      <Sentence ID="208">Язык объекта</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="404">Английский</Sentence>
-      <Sentence ID="405">Русский</Sentence>
-      <Sentence ID="109">Минимальный год</Sentence>
-      <Sentence ID="209">Минимально возможный год</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
-      <Sentence ID="111">Максимальный год</Sentence>
-      <Sentence ID="211">Максимально возможный год</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">Ссылка на контейнер</Sentence>
-      <Sentence ID="212">Ссылка на внутренний контейнер</Sentence>
-      <Sentence ID="312">Неправильное значение, должно быть существующий контейнер</Sentence>
-      <Sentence ID="113">Особые даты</Sentence>
-      <Sentence ID="213">Особые даты в формате 3-2-2009, 7-2-2009</Sentence>
-      <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="114">CSS</Sentence>
-      <Sentence ID="214">Код CSS</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
-      <Sentence ID="115">Размер шрифта</Sentence>
-      <Sentence ID="215">Размер шрифта объекта в пунктах</Sentence>
-      <Sentence ID="315">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="116">Ширина рамки</Sentence>
-      <Sentence ID="216">Ширина рамки объекта в пикселях</Sentence>
-      <Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="117">Цвет фона</Sentence>
-      <Sentence ID="217">Цвет фона объекта</Sentence>
-      <Sentence ID="317">Неправильное значение</Sentence>
-      <Sentence ID="118">Цвет рамки</Sentence>
-      <Sentence ID="218">Цвет рамки вокруг календаря</Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="119">Цвет фона заголовка</Sentence>
-      <Sentence ID="219">Цвет фона заголовка объекта</Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
-      <Sentence ID="121">Цвет шрифта заголовка</Sentence>
-      <Sentence ID="221">Цвет шрифта заголовка объекта</Sentence>
-      <Sentence ID="321">Неправильное значение</Sentence>
-      <Sentence ID="122">Цвет панели навигации</Sentence>
-      <Sentence ID="222">Цвет панели навигации по объекту</Sentence>
-      <Sentence ID="322">Неправильное значение</Sentence>
-      <Sentence ID="123">Цвет фона панели 'Сегодня'</Sentence>
-      <Sentence ID="223">Цвет фона панели 'Сегодня'</Sentence>
-      <Sentence ID="323">Неправильное значение</Sentence>
-      <Sentence ID="124">Цвет шрифта панели 'Сегодня'</Sentence>
-      <Sentence ID="224">Цвет шрифта панели 'Сегодня'</Sentence>
-      <Sentence ID="324">Неправильное значение</Sentence>
-      <Sentence ID="125">Цвет дней недели</Sentence>
-      <Sentence ID="225">Цвет дней недели</Sentence>
-      <Sentence ID="325">Неправильное значение</Sentence>
-      <Sentence ID="126">Цвет чисел месяца</Sentence>
-      <Sentence ID="226">Цвет чисел месяца</Sentence>
-      <Sentence ID="326">Неправильное значение</Sentence>
-      <Sentence ID="127">Цвет фона подсказки</Sentence>
-      <Sentence ID="227">Цвет фона подсказки</Sentence>
-      <Sentence ID="327">Неправильное значение</Sentence>
-      <Sentence ID="128">Цвет шрифта подсказки</Sentence>
-      <Sentence ID="228">Цвет шрифта подсказки</Sentence>
-      <Sentence ID="328">Неправильное значение</Sentence>
-      <Sentence ID="129">Цвет выходных дней</Sentence>
-      <Sentence ID="229">Цвет выходных дней</Sentence>
-      <Sentence ID="329">Неправильное значение</Sentence>
-      <Sentence ID="131">Цвет текущего дня</Sentence>
-      <Sentence ID="231">Цвет текущего дня</Sentence>
-      <Sentence ID="331">Неправильное значение</Sentence>
-      <Sentence ID="132">Цвет шрифта текущего дня</Sentence>
-      <Sentence ID="232">Цвет шрифта текущего дня</Sentence>
-      <Sentence ID="332">Неправильное значение</Sentence>
-      <Sentence ID="133">Цвет недель</Sentence>
-      <Sentence ID="233">Цвет недель</Sentence>
-      <Sentence ID="333">Неправильное значение</Sentence>
-      <Sentence ID="134">Цвет дней недели</Sentence>
-      <Sentence ID="234">Цвет дней недели</Sentence>
-      <Sentence ID="334">Неправильное значение</Sentence>
+      <Sentence ID="403">Blue</Sentence>
+      <Sentence ID="404">Green</Sentence>
+      <Sentence ID="405">Brown</Sentence>
+      <Sentence ID="406">System</Sentence>
+      <Sentence ID="407">Win2k</Sentence>
+      <Sentence ID="408">Определено пользователем</Sentence>
+      <Sentence ID="409">Английский</Sentence>
+      <Sentence ID="411">Русский</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Переместить объект</Sentence>
+      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="504">Установить дату</Sentence>
+      <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Сдвинуть</Sentence>
+      <Sentence ID="603">Изменить позицию</Sentence>
+      <Sentence ID="604">Установить дату</Sentence>
+      <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Координата точки по оси X</Sentence>
+      <Sentence ID="703">Координата точки по оси Y</Sentence>
+      <Sentence ID="704">Эффект</Sentence>
+      <Sentence ID="705">Новое значение позиции</Sentence>
+      <Sentence ID="706">Новая дата</Sentence>
+      <Sentence ID="707">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="805">Новое значение позиции</Sentence>
+      <Sentence ID="806">Новая дата</Sentence>
+      <Sentence ID="807">Время исчезновения</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Calendrier</Sentence>
       <Sentence ID="002">Calendrier</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="503">Move object to selected point</Sentence>
-      <Sentence ID="603">moveTo</Sentence>
-      <Sentence ID="703">newX</Sentence>
-      <Sentence ID="803">X-coordinate of new point</Sentence>
-      <Sentence ID="704">newY</Sentence>
-      <Sentence ID="804">Y-coordinate of new point</Sentence>
-      <Sentence ID="705">Effect</Sentence>
-      <Sentence ID="805">Visual effect by moving</Sentence>
-      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="604">moveZindexTo</Sentence>
-      <Sentence ID="706">New Z-index value</Sentence>
-      <Sentence ID="806">New Z-index value</Sentence>
-      <Sentence ID="505">Set date</Sentence>
-      <Sentence ID="605">SetDate</Sentence>
-      <Sentence ID="707">New date</Sentence>
-      <Sentence ID="807">New date</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Skin</Sentence>
+      <Sentence ID="108">Langue</Sentence>
+      <Sentence ID="109">Année Minimum</Sentence>
+      <Sentence ID="111">Année Maximum</Sentence>
+      <Sentence ID="112">Liens vers page</Sentence>
+      <Sentence ID="113">Dates Spéciales</Sentence>
+      <Sentence ID="114">CSS</Sentence>
+      <Sentence ID="115">Taille de police</Sentence>
+      <Sentence ID="116">Epaisseur de la bordure</Sentence>
+      <Sentence ID="117">Couleur de fond</Sentence>
+      <Sentence ID="118">Couleur de la bordure</Sentence>
+      <Sentence ID="119">Couleur du fond du Mois</Sentence>
+      <Sentence ID="121">Couleur du texte du Mois</Sentence>
+      <Sentence ID="122">Couleur des barre de Navigation</Sentence>
+      <Sentence ID="123">Couleur Bouton Aujourd'hui</Sentence>
+      <Sentence ID="124">Couleur police Bouton Aujourd'hui</Sentence>
+      <Sentence ID="125">Couleur fond jour de semaine</Sentence>
+      <Sentence ID="126">Couleur texte jour</Sentence>
+      <Sentence ID="127">Couleur zone selection date</Sentence>
+      <Sentence ID="128">Couleur du texte zone selection date</Sentence>
+      <Sentence ID="129">Couleur du texte Weekend</Sentence>
+      <Sentence ID="131">Couleur du jour</Sentence>
+      <Sentence ID="132">Couleur du texte du jour</Sentence>
+      <Sentence ID="133">Couleur du numéro de la semaine</Sentence>
+      <Sentence ID="134">Couleur texte jour de semaine</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur du calendrier</Sentence>
+      <Sentence ID="207">Skin</Sentence>
+      <Sentence ID="208">Language</Sentence>
+      <Sentence ID="209">Année Minimu</Sentence>
+      <Sentence ID="211">Année Maximum</Sentence>
+      <Sentence ID="212">Lien vers une rubrique du site</Sentence>
+      <Sentence ID="213">Dates Speciales</Sentence>
+      <Sentence ID="214">CSS</Sentence>
+      <Sentence ID="215">Taille du texte</Sentence>
+      <Sentence ID="216">Epaisseur de la bordure du calendrier</Sentence>
+      <Sentence ID="217">Couleur de la zone de date</Sentence>
+      <Sentence ID="218">Couleur de la bordure du calendrier</Sentence>
+      <Sentence ID="219">Couleur de la zone de date</Sentence>
+      <Sentence ID="221">Couleur du texte du titre</Sentence>
+      <Sentence ID="222">Couleur du paneau de navigation</Sentence>
+      <Sentence ID="223">Couleur du bouton Retour à la date du jour</Sentence>
+      <Sentence ID="224">Couleur de texte du bouton Retour à la date du jour</Sentence>
+      <Sentence ID="225">Couleur du nom du jour</Sentence>
+      <Sentence ID="226">Couleur du jour</Sentence>
+      <Sentence ID="227">Couleur de la zone d'affichage de la date</Sentence>
+      <Sentence ID="228">Couleur du texte de la zone d'affichage de la date</Sentence>
+      <Sentence ID="229">Couleur Weekend</Sentence>
+      <Sentence ID="231">Couleur du jour</Sentence>
+      <Sentence ID="232">Couleur du texte du jour</Sentence>
+      <Sentence ID="233">Couleur de semaine</Sentence>
+      <Sentence ID="234">Couleur du nom du jour de la semaine</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="311">Valeur Incorrectee</Sentence>
+      <Sentence ID="312">Valeur Incorrecte, doit être un lien vers un conteneur interne valide</Sentence>
+      <Sentence ID="313">Valeur Incorrecte</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="317">Valeur Incorrecte</Sentence>
+      <Sentence ID="318">Valeur Incorrecte</Sentence>
+      <Sentence ID="319">Valeur Incorrecte</Sentence>
+      <Sentence ID="321">Valeur Incorrecte</Sentence>
+      <Sentence ID="322">Valeur Incorrecte</Sentence>
+      <Sentence ID="323">Valeur Incorrecte</Sentence>
+      <Sentence ID="324">Valeur Incorrecte</Sentence>
+      <Sentence ID="325">Valeur Incorrecte</Sentence>
+      <Sentence ID="326">Valeur Incorrecte</Sentence>
+      <Sentence ID="327">Valeur Incorrecte</Sentence>
+      <Sentence ID="328">Valeur Incorrecte</Sentence>
+      <Sentence ID="329">Valeur Incorrectee</Sentence>
+      <Sentence ID="331">Valeur Incorrecte</Sentence>
+      <Sentence ID="332">Valeur Incorrecte</Sentence>
+      <Sentence ID="333">Valeur Incorrecte</Sentence>
+      <Sentence ID="334">Valeur Incorrecte</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur du calendrier</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Skin</Sentence>
-      <Sentence ID="207">Skin</Sentence>
-      <Sentence ID="307">Valeur Incorrecte</Sentence>
-      <Sentence ID="403">Utilisateur indéfini</Sentence>
-      <Sentence ID="108">Langue</Sentence>
-      <Sentence ID="208">Language</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="404">Anglais</Sentence>
-      <Sentence ID="405">Russe</Sentence>
-      <Sentence ID="109">Année Minimum</Sentence>
-      <Sentence ID="209">Année Minimu</Sentence>
-      <Sentence ID="309">Valeur Incorrecte</Sentence>
-      <Sentence ID="111">Année Maximum</Sentence>
-      <Sentence ID="211">Année Maximum</Sentence>
-      <Sentence ID="311">Valeur Incorrectee</Sentence>
-      <Sentence ID="112">Liens vers page</Sentence>
-      <Sentence ID="212">Lien vers une rubrique du site</Sentence>
-      <Sentence ID="312">Valeur Incorrecte, doit être un lien vers un conteneur interne valide</Sentence>
-      <Sentence ID="113">Dates Spéciales</Sentence>
-      <Sentence ID="213">Dates Speciales</Sentence>
-      <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="114">CSS</Sentence>
-      <Sentence ID="214">CSS</Sentence>
-      <Sentence ID="314">Valeur Incorrecte</Sentence>
-      <Sentence ID="115">Taille de police</Sentence>
-      <Sentence ID="215">Taille du texte</Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="116">Epaisseur de la bordure</Sentence>
-      <Sentence ID="216">Epaisseur de la bordure du calendrier</Sentence>
-      <Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="117">Couleur de fond</Sentence>
-      <Sentence ID="217">Couleur de la zone de date</Sentence>
-      <Sentence ID="317">Valeur Incorrecte</Sentence>
-      <Sentence ID="118">Couleur de la bordure</Sentence>
-      <Sentence ID="218">Couleur de la bordure du calendrier</Sentence>
-      <Sentence ID="318">Valeur Incorrecte</Sentence>
-      <Sentence ID="119">Couleur du fond du Mois</Sentence>
-      <Sentence ID="219">Couleur de la zone de date</Sentence>
-      <Sentence ID="319">Valeur Incorrecte</Sentence>
-      <Sentence ID="121">Couleur du texte du Mois</Sentence>
-      <Sentence ID="221">Couleur du texte du titre</Sentence>
-      <Sentence ID="321">Valeur Incorrecte</Sentence>
-      <Sentence ID="122">Couleur des barre de Navigation</Sentence>
-      <Sentence ID="222">Couleur du paneau de navigation</Sentence>
-      <Sentence ID="322">Valeur Incorrecte</Sentence>
-      <Sentence ID="123">Couleur Bouton Aujourd'hui</Sentence>
-      <Sentence ID="223">Couleur du bouton Retour à la date du jour</Sentence>
-      <Sentence ID="323">Valeur Incorrecte</Sentence>
-      <Sentence ID="124">Couleur police Bouton Aujourd'hui</Sentence>
-      <Sentence ID="224">Couleur de texte du bouton Retour à la date du jour</Sentence>
-      <Sentence ID="324">Valeur Incorrecte</Sentence>
-      <Sentence ID="125">Couleur fond jour de semaine</Sentence>
-      <Sentence ID="225">Couleur du nom du jour</Sentence>
-      <Sentence ID="325">Valeur Incorrecte</Sentence>
-      <Sentence ID="126">Couleur texte jour</Sentence>
-      <Sentence ID="226">Couleur du jour</Sentence>
-      <Sentence ID="326">Valeur Incorrecte</Sentence>
-      <Sentence ID="127">Couleur zone selection date</Sentence>
-      <Sentence ID="227">Couleur de la zone d'affichage de la date</Sentence>
-      <Sentence ID="327">Valeur Incorrecte</Sentence>
-      <Sentence ID="128">Couleur du texte zone selection date</Sentence>
-      <Sentence ID="228">Couleur du texte de la zone d'affichage de la date</Sentence>
-      <Sentence ID="328">Valeur Incorrecte</Sentence>
-      <Sentence ID="129">Couleur du texte Weekend</Sentence>
-      <Sentence ID="229">Couleur Weekend</Sentence>
-      <Sentence ID="329">Valeur Incorrectee</Sentence>
-      <Sentence ID="131">Couleur du jour</Sentence>
-      <Sentence ID="231">Couleur du jour</Sentence>
-      <Sentence ID="331">Valeur Incorrecte</Sentence>
-      <Sentence ID="132">Couleur du texte du jour</Sentence>
-      <Sentence ID="232">Couleur du texte du jour</Sentence>
-      <Sentence ID="332">Valeur Incorrecte</Sentence>
-      <Sentence ID="133">Couleur du numéro de la semaine</Sentence>
-      <Sentence ID="233">Couleur de semaine</Sentence>
-      <Sentence ID="333">Valeur Incorrecte</Sentence>
-      <Sentence ID="134">Couleur texte jour de semaine</Sentence>
-      <Sentence ID="234">Couleur du nom du jour de la semaine</Sentence>
-      <Sentence ID="334">Valeur Incorrecte</Sentence>
+      <Sentence ID="403">Blue</Sentence>
+      <Sentence ID="404">Green</Sentence>
+      <Sentence ID="405">Brown</Sentence>
+      <Sentence ID="406">System</Sentence>
+      <Sentence ID="407">Win2k</Sentence>
+      <Sentence ID="408">Utilisateur indéfini</Sentence>
+      <Sentence ID="409">Anglais</Sentence>
+      <Sentence ID="411">Russe</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move object to selected point</Sentence>
+      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Set date</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">moveZindexTo</Sentence>
+      <Sentence ID="604">SetDate</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">New Z-index value</Sentence>
+      <Sentence ID="706">New date</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="804">Visual effect by moving</Sentence>
+      <Sentence ID="805">New Z-index value</Sentence>
+      <Sentence ID="806">New date</Sentence>
+      <Sentence ID="807">Time of appearance</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -967,260 +977,214 @@ JjeqI5KnIx/oKAVdKmRKhfQ6dIgFGpHqvwIMAGrK10sYuXdaAAAAAElFTkSuQmCC]]></Resource>
   <SourceCode><![CDATA[
 
 class VDOM_calendar(VDOM_object):
+	def render(self, parent, contents=""):
+		if self.visible == "1":
+			new_styles = ""
+			styles_bodies = ""
 
-  def render(self, parent, contents=""):
-    if self.visible == "1":
-      new_styles = ""
-      styles_bodies = ""
+		if self.borderWidth or self.borderColor or self.dateAreaColor or self.width or self.fontSize:
+			new_styles += "table : 'new_table_%s'"%(self.id)
+			styles_bodies += """.new_table_%s{border: %spx solid #%s; font-size: %spx; color: #000; background: #%s; font-family: tahoma,verdana,sans-serif;width:%spx;}"""%(self.id, self.borderWidth, self.borderColor, self.fontSize, self.dateAreaColor, self.width)
+		if self.titleFontColor or self.titleColor:
+			new_styles += ", title : 'new_title_%s'"%(self.id)
+			styles_bodies += """ .new_title_%s{font-weight: bold; text-align: center; background: #%s; color: #%s; padding: 2px;}"""%(self.id, self.titleColor, self.titleFontColor)
+		if self.headColor or self.headFontColor:
+			new_styles += ", headrow : 'new_headrow_%s'"%(self.id)
+			styles_bodies += """ .new_headrow_%s{background: #%s; color: #%s;}"""%(self.id, self.headColor, self.headFontColor)
+		if self.dayNameColor:
+			new_styles += ", daynames : 'new_daynames_%s'"%(self.id)
+			styles_bodies += """ .new_daynames_%s{background: #%s;}"""%(self.id, self.dayNameColor)
+		if self.dayColor:
+			new_styles += ", day : 'new_day_%s'"%(self.id)
+			styles_bodies += """ .new_day_%s{width: 2em;color: #%s;text-align: right;padding: 2px 4px 2px 2px;}"""%(self.id, self.dayColor)
+		if self.tipColor or self.tipFontColor:
+			new_styles += ", ttip : 'new_ttip_%s'"%(self.id)
+			styles_bodies += """ .new_ttip_%s{background: #%s;color: #%s;border-top: 1px solid #556;padding: 1px;}"""%(self.id, self.tipColor, self.tipFontColor)
+		if self.navigationPanelColor:
+			new_styles += ", nav : 'new_nav_%s'"%(self.id)
+			styles_bodies += """ .new_nav_%s{background-color: #%s;}"""%(self.id, self.navigationPanelColor)
+		if self.weekendColor:
+			new_styles += ", weekend : 'new_weekend_%s'"%(self.id)
+			styles_bodies += """ .new_weekend_%s{color: #%s;}"""%(self.id, self.weekendColor)
+		if self.todayColor:
+			new_styles += ", selected : 'new_selected_%s'"%(self.id)
+			styles_bodies += """ .new_selected_%s{font-weight: bold;border: 1px solid #000;padding: 1px 3px 1px 1px;background: #%s;color: #000;}"""%(self.id, self.todayColor)
+		if self.todayFontColor:
+			new_styles += ", today : 'new_today_%s'"%(self.id)
+			styles_bodies += """ .new_today_%s{font-weight: bold; color: #%s;}"""%(self.id, self.todayFontColor)
+		if self.weekColor:
+			new_styles += ", wn : 'new_wn_%s'"%(self.id)
+			styles_bodies += """ .new_wn_%s{padding: 2px 3px 2px 2px; border-right: 1px solid #000; background: #%s;}"""%(self.id, self.weekColor)
+		if self.weekdayColor:
+			new_styles += ", name : 'new_name_%s'"%(self.id)
+			styles_bodies += """ .new_name_%s{border-bottom: 1px solid #000; padding: 2px; text-align: center; color: #%s;}"""%(self.id, self.weekdayColor)
 
-      if self.borderWidth or self.borderColor or self.dateAreaColor or self.width or self.fontSize:
-        new_styles += "table : 'new_table_%s'"%(self.id)
-        styles_bodies += """.new_table_%s{border: %spx solid #%s; font-size: %spx; color: #000; background: #%s; font-family: tahoma,verdana,sans-serif;
-                width:%spx;}"""%(self.id, self.borderWidth, self.borderColor, self.fontSize, self.dateAreaColor, self.width)
-      if self.titleFontColor or self.titleColor:
-        new_styles += ", title : 'new_title_%s'"%(self.id)
-        styles_bodies += """ .new_title_%s{font-weight: bold; text-align: center; background: #%s; color: #%s; padding: 2px;}"""%(self.id, self.titleColor, self.titleFontColor)
-      if self.headColor or self.headFontColor:
-        new_styles += ", headrow : 'new_headrow_%s'"%(self.id)
-        styles_bodies += """ .new_headrow_%s{background: #%s; color: #%s;}"""%(self.id, self.headColor, self.headFontColor)
-      if self.dayNameColor:
-        new_styles += ", daynames : 'new_daynames_%s'"%(self.id)
-        styles_bodies += """ .new_daynames_%s{background: #%s;}"""%(self.id, self.dayNameColor)
-      if self.dayColor:
-        new_styles += ", day : 'new_day_%s'"%(self.id)
-        styles_bodies += """ .new_day_%s{width: 2em;color: #%s;text-align: right;padding: 2px 4px 2px 2px;}"""%(self.id, self.dayColor)
-      if self.tipColor or self.tipFontColor:
-        new_styles += ", ttip : 'new_ttip_%s'"%(self.id)
-        styles_bodies += """ .new_ttip_%s{background: #%s;color: #%s;border-top: 1px solid #556;padding: 1px;}"""%(self.id, self.tipColor, self.tipFontColor)
-      if self.navigationPanelColor:
-        new_styles += ", nav : 'new_nav_%s'"%(self.id)
-        styles_bodies += """ .new_nav_%s{background-color: #%s;}"""%(self.id, self.navigationPanelColor)
-      if self.weekendColor:
-        new_styles += ", weekend : 'new_weekend_%s'"%(self.id)
-        styles_bodies += """ .new_weekend_%s{color: #%s;}"""%(self.id, self.weekendColor)
-      if self.todayColor:
-        new_styles += ", selected : 'new_selected_%s'"%(self.id)
-        styles_bodies += """ .new_selected_%s{font-weight: bold;border: 1px solid #000;padding: 1px 3px 1px 1px;background: #%s;color: #000;}"""%(self.id, self.todayColor)
-      if self.todayFontColor:
-        new_styles += ", today : 'new_today_%s'"%(self.id)
-        styles_bodies += """ .new_today_%s{font-weight: bold; color: #%s;}"""%(self.id, self.todayFontColor)
-      if self.weekColor:
-        new_styles += ", wn : 'new_wn_%s'"%(self.id)
-        styles_bodies += """ .new_wn_%s{padding: 2px 3px 2px 2px; border-right: 1px solid #000; background: #%s;}"""%(self.id, self.weekColor)
-      if self.weekdayColor:
-        new_styles += ", name : 'new_name_%s'"%(self.id)
-        styles_bodies += """ .new_name_%s{border-bottom: 1px solid #000; padding: 2px; text-align: center; color: #%s;}"""%(self.id, self.weekdayColor)
-        
-      styles_bodies += """ .special_%s{background-color: #000000; color: #FFFFFF;}"""%(self.id)
+		styles_bodies += """ .special_%s{background-color: #000000; color: #FFFFFF;}"""%(self.id)
 
-      zindex = '' if int(self.zindex) == '0' else 'z-index:' + self.zindex;
-      style = "overflow: visible; position: absolute; " + zindex + "; top: " + self.top + "px; left: " + self.left + "px; width: " + self.width + "px;"
+		zindex = '' if int(self.zindex) == '0' else 'z-index:' + self.zindex;
+		style = "overflow: visible; position: absolute; " + zindex + "; top: " + self.top + "px; left: " + self.left + "px; width: " + self.width + "px;"
 
-      if str(self.skin) == "0":
-        cur_skin = "/5e390dc2-367f-4eef-b12c-dfbb063bd518.res"
-      else:
-        cur_skin = self.skin
-      
-      id = 'o_' + (self.id).replace('-', '_')
-      
-      if self.containerlink:
-        ref_obj = application.objects.search(self.containerlink)
-      else:
-        ref_obj = application.objects.search(request.container.id)
-        
-        
-      page = "/%s.vdom" % ref_obj.name if ref_obj else ""
-      
-      obj = application.objects.search(self.id)
-      
-      if obj.parent.type.name == "form":
-        redirecting = ""
-      else:
-        redirecting = """if (calendar.dateClicked || calendar.weekClicked) window.location = "%s" + "?year=" + y + "&month=" + m + "&day=" + d + "&weekClicked=" + calendar.weekClicked;"""%(page)
-      
-      result = ""
-      if not self.css or self.css == "":
-        result += """<link href="%s" type="text/css" rel="stylesheet" />"""%(cur_skin)
-      else:    
-        styles_bodies = self.css
+		if str(self.skin) == "0":
+			cur_skin = "/5e390dc2-367f-4eef-b12c-dfbb063bd518.res"
+		else:
+			cur_skin = self.skin
 
-      result += """<div style='""" + style + """' id="calendar-container_%s"></div>
-                <input id="input_%s" name="%s" type="hidden">
-                <script language='javascript' type='text/javascript' src='%s'></script>  
-                <style>"""%(self.id, self.id, self.name, self.language) + styles_bodies + """</style>
-                <script type="text/javascript">
-              var SPECIAL_DAYS = '""" + self.specialdates + """'.split(',');
-              
-              function dateIsSpecial(year, month, day) {
-                for (var date in SPECIAL_DAYS)        
-                  if (SPECIAL_DAYS[date] == day + '-' + Number(month + 1) + '-' + year)
-                    return true;
-                return false;
-              };
-                  
-                function ourDateStatusFunc(date, y, m, d) {
-                    if (dateIsSpecial(y, m, d))
-                      return "special_%s" """%(self.id) + """;
-                    else
-                      return false;   // other dates are enabled
-                              // return true if you want to disable other dates
-                };
-              
-                function dateChanged(calendar) {
-                    var y = calendar.date.getFullYear(); 
-                    var m = calendar.date.getMonth() + 1; 
-                    var d = calendar.date.getDate(); """ + redirecting + """};
+		id = 'o_' + (self.id).replace('-', '_')
 
-				Calendar.setup({inputField: 'input_%s', ifFormat: '%%d.%%m.%%Y', firstDay: 1,
-                      flat: "calendar-container_%s", flatCallback: dateChanged, range: [%s, %s], 
-					  dateStatusFunc: ourDateStatusFunc,
-                      styles: {"""%(self.id, self.id, self.minYear, self.maxYear) + new_styles + """}});
-/*
-jQuery(function(){
-	jQuery("#datepicker").datepicker({
-		changeMonth: true,
-		changeYear: true,
-		option: $.extend({showMonthAfterYear: false},$.datepicker.regional['ru'])
-	});
-});
-*/		
-				</script>"""
-      
-      return result
-    else:
-      return ""
+		if self.containerlink:
+			ref_obj = application.objects.search(self.containerlink)
+		else:
+			ref_obj = application.objects.search(request.container.id)
 
 
-  def wysiwyg(self, parent, contents=""):
-    w = int(self.width)
-    
-    result = ""
-    result += "<container id=\"%s\" zindex=\"%s\" width=\"%s\" top=\"%s\" left=\"%s\" >"%(self.id, self.zindex, w, self.top, self.left)
+		page = "/%s.vdom" % ref_obj.name if ref_obj else ""
+		obj = application.objects.search(self.id)
 
-    result += "<table bordercolor=\"#%s\" borderwidth=\"%s\">"%(self.borderColor, self.borderWidth)
+		if obj.parent.type.name == "form":
+			redirecting = ""
+		else:
+			redirecting = """if (calendar.dateClicked || calendar.weekClicked) window.location = "%s" + "?year=" + y + "&month=" + m + "&day=" + d + "&weekClicked=" + calendar.weekClicked;"""%(page)
 
-    result += "<row><cell align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '?')
-    result += "<cell backgroundcolor=\"#%s\" colspan=\"7\" align=\"center\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\" fontweight=\"bold\">%s</text></cell></row>"%(self.titleColor, self.fontSize, self.titleFontColor, "July, 2008")
+		result = ""
+		if not self.css or self.css == "":
+			result += """<link href="%s" type="text/css" rel="stylesheet" />"""%(cur_skin)
+		else:
+			styles_bodies = self.css
 
-    result += "<row><cell align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#FFFFFF\" textalign=\"center\">%s</text></cell>"%(self.navigationPanelColor, self.fontSize, "<![CDATA[<<]"+"]>")
-    result += "<cell align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#FFFFFF\" textalign=\"center\">%s</text></cell>"%(self.navigationPanelColor, self.fontSize, "<![CDATA[<]"+"]>")
-    result += "<cell colspan=\"4\" align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#FFFFFF\" textalign=\"center\">%s</text></cell>"%(self.headColor, self.fontSize, "Today")
-    result += "<cell align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#FFFFFF\" textalign=\"center\">%s</text></cell>"%(self.navigationPanelColor, self.fontSize, "<![CDATA[>]"+"]>")
-    result += "<cell align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#FFFFFF\" textalign=\"center\">%s</text></cell></row>"%(self.navigationPanelColor, self.fontSize, "<![CDATA[>>]"+"]>")
+		result += """<div style='""" + style + """' id="calendar-container_%s"></div>
+		<input id="input_%s" name="%s" type="hidden">
+		<script language='javascript' type='text/javascript' src='%s'></script>
+		<style>"""%(self.id, self.id, self.name, self.language) + styles_bodies + """</style>
+		<script type="text/javascript">
+		var SPECIAL_DAYS = '""" + self.specialdates + """'.split(',');
 
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.weekColor, self.fontSize, self.weekdayColor, 'wk')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#AA6666\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, 'Sun')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, self.weekdayColor, "Mon")
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, self.weekdayColor, 'Tue')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, self.weekdayColor, 'Wed')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, self.weekdayColor, 'Thu')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dayNameColor, self.fontSize, self.weekdayColor, 'Fri')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#AA6666\" textalign=\"center\">%s</text></cell></row>"%(self.dayNameColor, self.fontSize, 'Sat')
+			function dateIsSpecial(year, month, day) {
+				for (var date in SPECIAL_DAYS)
+				if (SPECIAL_DAYS[date] == day + '-' + Number(month + 1) + '-' + year)
+					return true;
+				return false;
+			};
 
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.weekColor, self.fontSize, '26')
-    result += "<cell backgroundcolor=\"#%s\"></cell>"%(self.dateAreaColor)
-    result += "<cell backgroundcolor=\"#%s\"></cell>"%(self.dateAreaColor)
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '1')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '2')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '3')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '4')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell></row>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '5')
-    
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.weekColor, self.fontSize, '27')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '6')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '7')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '8')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '9')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '10')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '11')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell></row>"%(self.dateAreaColor,  self.fontSize, self.weekendColor, '12')
-    
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.weekColor,  self.fontSize, '28')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor,  self.fontSize, self.weekendColor, '13')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '14')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '15')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '16')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '17')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '18')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell></row>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '19')
-    
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.weekColor,  self.fontSize, '29')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '20')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor,self.fontSize,  '21')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor,self.fontSize,  '22')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor,self.fontSize,  '23')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '24')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '25')   
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell></row>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '26')
-    
-    result += "<row><cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.weekColor, self.fontSize, '30')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, self.weekendColor, '27')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '28')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '29')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '30')
-    result += "<cell backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#000000\" textalign=\"center\">%s</text></cell>"%(self.dateAreaColor, self.fontSize, '31')
-    result += "<cell backgroundcolor=\"#%s\"></cell>"%(self.dateAreaColor)
-    result += "<cell backgroundcolor=\"#%s\"></cell></row>"%(self.dateAreaColor)
+			function ourDateStatusFunc(date, y, m, d) {
+				if (dateIsSpecial(y, m, d))
+					return "special_%s" """%(self.id) + """;
+				else
+					return false; // other dates are enabled
+			// return true if you want to disable other dates
+			};
 
-    result += "<row><cell colspan=\"8\" align=\"center\" backgroundcolor=\"#%s\"><text fontsize=\"%s\" color=\"#%s\" textalign=\"center\">%s</text></cell></row>"%(self.tipColor, self.fontSize, self.tipFontColor, "Select date")
+			function dateChanged(calendar) {
+				var y = calendar.date.getFullYear(); 
+				var m = calendar.date.getMonth() + 1; 
+				var d = calendar.date.getDate(); """ + redirecting + """};
 
-    result += "</table>"
-    result += "</container>"
-  
-    return VDOM_object.wysiwyg(self, parent, contents=result)
+			Calendar.setup({inputField: 'input_%s', ifFormat: '%%d.%%m.%%Y', firstDay: 1,
+				flat: "calendar-container_%s", flatCallback: dateChanged, range: [%s, %s], 
+				dateStatusFunc: ourDateStatusFunc,
+					styles: {"""%(self.id, self.id, self.minYear, self.maxYear) + new_styles + """}});
+		</script>"""
 
-  
-def set_attr(app_id, object_id, param):
-  o = application.objects.search(object_id)
-  attrs = o.get_attributes()
+		return result
 
-  if "minYear" in param:
-    min_year = param["minYear"]["value"]
-  else:
-    min_year = attrs["minYear"].value
-  
-  if "maxYear" in param:
-    max_year = param["maxYear"]["value"]
-  else:
-    max_year = attrs["maxYear"].value
-  
-  if min_year != '' and min_year != '' and int(min_year) > int(max_year):
-    o.set_attributes({"minYear": min_year, "maxYear": min_year})
-    
-  if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) < 158:
-    o.set_attributes({"width": 158})
-  
-  if "skin" in param:
-    skin = param["skin"]["value"]
 
-    if str(skin) != "0":
-      o.set_attributes({"borderWidth": "1", "fontSize": "11", "width": "250"})
-      
-      if skin == "/5e390dc2-367f-4eef-b12c-dfbb063bd518.res":
-        o.set_attributes({"borderColor": "555566", "dateAreaColor": "FFFFFF", "titleFontColor": "000000", "titleColor": "FFFFFF", "headColor": "777788", "headFontColor": "FFFFFF"})
-        o.set_attributes({"dayNameColor": "bbddff", "dayColor": "445566", "tipColor": "FFFFFF", "tipFontColor": "444455", "navigationPanelColor": "558AC2"})
-        o.set_attributes({"weekendColor": "aa6666", "todayColor": "FFFFFF", "todayFontColor": "0000ff", "weekColor": "bbddff", "weekdayColor": "000000"})
-      elif skin == "/35d10781-dd3d-43a5-b507-82c9111adaa3.res":
-        o.set_attributes({"borderColor": "556655", "dateAreaColor": "eeffee", "titleFontColor": "eeffaa", "titleColor": "225500"})
-        o.set_attributes({"headColor": "777788", "headFontColor": "FFFFFF", "dayNameColor": "ddffbb", "dayColor": "556644"})
-        o.set_attributes({"tipColor": "225500", "tipFontColor": "eeffaa", "navigationPanelColor": "667766", "weekendColor": "aa6666"})
-        o.set_attributes({"todayColor": "f8fff8", "todayFontColor": "00aa00", "weekColor": "ddffbb", "weekdayColor": "000000"})
-      elif skin == "/ae4174eb-9a79-412e-815d-e7186d603935.res":
-        o.set_attributes({"borderColor": "665555", "dateAreaColor": "ffffdd", "titleFontColor": "ffeedd", "titleColor": "665544", "headColor": "eeddcc"})
-        o.set_attributes({"headFontColor": "000000", "dayNameColor": "ffeedd", "dayColor": "445566", "tipColor": "ddccbb", "tipFontColor": "884400"})
-        o.set_attributes({"navigationPanelColor": "eeddcc", "weekendColor": "ff0000", "todayColor": "ffeeaa", "todayFontColor": "0000ff", "weekColor": "ffeedd", "weekdayColor": "000000"})
-      elif skin == "/6c83b06c-fca0-4ae8-98d7-4504e4198601.res":
-        o.set_attributes({"borderColor": "000000", "dateAreaColor": "window", "titleFontColor": "captiontext", "titleColor": "activecaption", "headColor": "buttonface"})
-        o.set_attributes({"headFontColor": "000000", "dayNameColor": "buttonface", "dayColor": "445566", "tipColor": "buttonface", "tipFontColor": "buttontext"})
-        o.set_attributes({"navigationPanelColor": "buttonface", "weekendColor": "ff0000", "todayColor": "buttonface", "todayFontColor": "0000ff", "weekColor": "buttonface", "weekdayColor": "buttontext"})
-      elif skin == "/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res":
-        o.set_attributes({"borderColor": "FFFFFF", "dateAreaColor": "d4d0c8", "titleFontColor": "FFFFFF", "titleColor": "848078", "headColor": "d4d0c8"})
-        o.set_attributes({"headFontColor": "000000", "dayNameColor": "f4f0e8", "dayColor": "445566", "tipColor": "848078", "tipFontColor": "FFFFFF"})
-        o.set_attributes({"navigationPanelColor": "d4d0c8", "weekendColor": "ff0000", "todayColor": "e4e0d8", "todayFontColor": "0000ff", "weekColor": "f4f0e8", "weekdayColor": "000000"})   
-        
-  return ""
 
-  ]]></SourceCode>
+	def wysiwyg(self, parent, contents=""):
+		import calendar
+		import datetime
+		year = datetime.date.today().year
+		month = datetime.date.today().month
+		monthcalendar = calendar.monthcalendar( year, month )
+		if len( monthcalendar ) < 5:
+			monthcalendar.append( [ 0 for i in range( 0, 7 ) ] )
+			
+		cellwidth = int(self.width) / 8
+		
+		result = ""
+		result += "<container id='%s' zindex='%s' width='%s' top='%s' left='%s' height='150' >"%(self.id, self.zindex, self.width, self.top, self.left)
+	
+		result += "<htmltext width='%s' height='150'>" % ( self.width )
+		result += "<table cols='8' style='font-size:%(fontsize)spx;text-align:center;color:#000000'>" % { 'fontsize': self.fontSize }
+		result += "<tr><td width='%(width)s' bgcolor='%(bgcolor)s'>?</td>" % { 'bgcolor': self.dateAreaColor, 'width': cellwidth }
+		result += "<td width='%(width)s' bgcolor='%(bgcolor)s' colspan='7'>%(year)s, %(month)s</td></tr>" 	% { 'month': calendar.month_name[month], 'year': year, 'bgcolor': self.dateAreaColor, 'width': cellwidth }
+	
+		result += "<tr>"
+		result += "<td width='%(width)s' bgcolor='%(bgcolor)s'>&lt;&lt;></td>" % { 'bgcolor': self.navigationPanelColor, 'width': cellwidth }
+		result += "<td width='%(width)s' bgcolor='%(bgcolor)s'>&lt;</td>" % { 'bgcolor': self.navigationPanelColor, 'width': cellwidth }
+		result += """<td width='%(width)s' bgcolor='%(bgcolor)s' colspan="4" >Today</td>""" % { 'bgcolor': self.headColor, 'width': cellwidth }
+		result += "<td width='%(width)s' bgcolor='%(bgcolor)s'>&gt;</td>" % { 'bgcolor': self.navigationPanelColor, 'width': cellwidth }
+		result += "<td width='%(width)s' bgcolor='%(bgcolor)s' >&gt;&gt;</td>" % { 'bgcolor': self.navigationPanelColor, 'width': cellwidth }
+		result += "</tr>"
+		
+		result += "<tr><td width='%(width)s' bgcolor='%(bgcolor)s'>wk</td><td width='%(width)s' bgcolor='%(bgcolor)s'>sun</td><td width='%(width)s' bgcolor='%(bgcolor)s'>mon</td><td width='%(width)s' bgcolor='%(bgcolor)s'>tue</td><td width='%(width)s' bgcolor='%(bgcolor)s'>wed</td><td width='%(width)s' bgcolor='%(bgcolor)s'>thu</td><td width='%(width)s' bgcolor='%(bgcolor)s'>fri</td><td width='%(width)s' bgcolor='%(bgcolor)s'>sat</td></tr>" % { 'bgcolor': self.dayNameColor, 'width': cellwidth }
+		
+		for week in monthcalendar:
+			daynumber = week[0] or week[1] or week[2] or week[3] or week[4] or week[5] or week[6]
+			weeknumber = datetime.date( year, month, daynumber ).isocalendar()[1]
+			result += "<tr><td width='%(width)s' bgcolor='%(bgcolor)s'>%(number)s</td>" % { 'number': weeknumber, 'bgcolor': self.weekColor, 'width': cellwidth }
+			for day in week:
+				result += ''
+				
+				result += "<td width='%(width)s' bgcolor='%(bgcolor)s'>%(day)s</td>" % { 'day': day if day != 0 else '', 'bgcolor': self.dateAreaColor, 'width': cellwidth }
+			result += "</tr>"
+			
+		result += "<tr><td width='%(width)s' bgcolor='%(bgcolor)s' colspan='8'>Select date</td></tr>" % { 'bgcolor': self.dateAreaColor, 'width': cellwidth }
+				
+		result += "</table>"
+		result += "</htmltext></container>"
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+
+	def set_attr(app_id, object_id, param):
+		o = application.objects.search(object_id)
+		attrs = o.get_attributes()
+	
+		if "minYear" in param:
+			min_year = param["minYear"]["value"]
+		else:
+			min_year = attrs["minYear"].value
+	
+		if "maxYear" in param:
+			max_year = param["maxYear"]["value"]
+		else:
+			max_year = attrs["maxYear"].value
+	
+		if min_year != '' and min_year != '' and int(min_year) > int(max_year):
+			o.set_attributes({"minYear": min_year, "maxYear": min_year})
+	
+		if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) < 158:
+			o.set_attributes({"width": 158})
+	
+		if "skin" in param:
+			skin = param["skin"]["value"]
+	
+		if str(skin) != "0":
+			o.set_attributes({"borderWidth": "1", "fontSize": "11", "width": "250"})
+	
+		if skin == "/5e390dc2-367f-4eef-b12c-dfbb063bd518.res":
+			o.set_attributes({"borderColor": "555566", "dateAreaColor": "FFFFFF", "titleFontColor": "000000", "titleColor": "FFFFFF", "headColor": "777788", "headFontColor": "FFFFFF"})
+			o.set_attributes({"dayNameColor": "bbddff", "dayColor": "445566", "tipColor": "FFFFFF", "tipFontColor": "444455", "navigationPanelColor": "558AC2"})
+			o.set_attributes({"weekendColor": "aa6666", "todayColor": "FFFFFF", "todayFontColor": "0000ff", "weekColor": "bbddff", "weekdayColor": "000000"})
+		elif skin == "/35d10781-dd3d-43a5-b507-82c9111adaa3.res":
+			o.set_attributes({"borderColor": "556655", "dateAreaColor": "eeffee", "titleFontColor": "eeffaa", "titleColor": "225500"})
+			o.set_attributes({"headColor": "777788", "headFontColor": "FFFFFF", "dayNameColor": "ddffbb", "dayColor": "556644"})
+			o.set_attributes({"tipColor": "225500", "tipFontColor": "eeffaa", "navigationPanelColor": "667766", "weekendColor": "aa6666"})
+			o.set_attributes({"todayColor": "f8fff8", "todayFontColor": "00aa00", "weekColor": "ddffbb", "weekdayColor": "000000"})
+		elif skin == "/ae4174eb-9a79-412e-815d-e7186d603935.res":
+			o.set_attributes({"borderColor": "665555", "dateAreaColor": "ffffdd", "titleFontColor": "ffeedd", "titleColor": "665544", "headColor": "eeddcc"})
+			o.set_attributes({"headFontColor": "000000", "dayNameColor": "ffeedd", "dayColor": "445566", "tipColor": "ddccbb", "tipFontColor": "884400"})
+			o.set_attributes({"navigationPanelColor": "eeddcc", "weekendColor": "ff0000", "todayColor": "ffeeaa", "todayFontColor": "0000ff", "weekColor": "ffeedd", "weekdayColor": "000000"})
+		elif skin == "/6c83b06c-fca0-4ae8-98d7-4504e4198601.res":
+			o.set_attributes({"borderColor": "000000", "dateAreaColor": "window", "titleFontColor": "captiontext", "titleColor": "activecaption", "headColor": "buttonface"})
+			o.set_attributes({"headFontColor": "000000", "dayNameColor": "buttonface", "dayColor": "445566", "tipColor": "buttonface", "tipFontColor": "buttontext"})
+			o.set_attributes({"navigationPanelColor": "buttonface", "weekendColor": "ff0000", "todayColor": "buttonface", "todayFontColor": "0000ff", "weekColor": "buttonface", "weekdayColor": "buttontext"})
+		elif skin == "/18f4b89f-9830-4ca0-935b-3ca6da4afff2.res":
+			o.set_attributes({"borderColor": "FFFFFF", "dateAreaColor": "d4d0c8", "titleFontColor": "FFFFFF", "titleColor": "848078", "headColor": "d4d0c8"})
+			o.set_attributes({"headFontColor": "000000", "dayNameColor": "f4f0e8", "dayColor": "445566", "tipColor": "848078", "tipFontColor": "FFFFFF"})
+			o.set_attributes({"navigationPanelColor": "d4d0c8", "weekendColor": "ff0000", "todayColor": "e4e0d8", "todayFontColor": "0000ff", "weekColor": "f4f0e8", "weekdayColor": "000000"}) 
+	
+		return ""
+	
+]]></SourceCode>
   <Libraries>
     <Library Target="Html"><![CDATA[<script language='javascript' type='text/javascript' src='/e3dd01f6-5d9b-4c0f-994c-9bb476a16b41.res'></script>]]></Library>
     <Library Target="Html"><![CDATA[<script language='javascript' type='text/javascript' src='/4418c799-4a94-493a-869e-bd1102079649.res'></script>]]></Library>
@@ -1239,34 +1203,34 @@ def set_attr(app_id, object_id, param):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="Effect" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setDate">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setDate">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="TextField(10)" InterfaceName="#Lang(707)" ScriptName="newDate" Help="#Lang(807)" RegularExpressionValidation="^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$"/>
+            <Parameter DefaultValue="0" Interface="TextField(10)" InterfaceName="#Lang(706)" ScriptName="newDate" Help="#Lang(806)" RegularExpressionValidation="^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$"/>
           </Parameters>
           <SourceCode><![CDATA[ 
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
