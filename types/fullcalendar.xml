@@ -12,9 +12,9 @@
     <Moveable>1</Moveable>
     <Resizable>3</Resizable>
     <Container>1</Container>
-    <Category>Usual</Category>
+    <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.11.11</Version>
+    <Version>2.12.11</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -4472,13 +4472,11 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="height" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-var _w = parseInt(width);
-var _h = parseInt(height);
+var _w = parseInt(width,10);
+var _h = parseInt(height,10);
 if (!isNaN(_w) && !isNaN(_h))
 {
-	//vdom_ui_resizeTo(this.domCont, _w, _h); ошибка внутри метода.
-	this.domCont.style.width = _w + "px";
-	this.domCont.style.height = _h + "px";
+	$q(this.domCont).width(_w).height(_h);
 	jQuery("div#"+this.domCont.id).fullCalendar('option', 'height', _h);
 }
 ]]></SourceCode>
