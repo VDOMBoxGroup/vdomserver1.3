@@ -441,7 +441,7 @@ class VDOM_web_services_server(object):
 			try:
 				obj.set_name(name)
 			except VDOM_exception, e:
-				raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj_id, str(name)))
+				debug(unicode(e))
 
 		app.sync()
 		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
@@ -1739,7 +1739,7 @@ class VDOM_web_services_server(object):
 					try:
 						_new_obj.set_name(_name)
 					except VDOM_exception, e:
-						raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (_new_obj.id, _name))
+						debug(unicode(e))
 				# set attributes
 				for aname in _attr_map:
 					_new_obj.set_attribute(aname, _attr_map[aname], False)
