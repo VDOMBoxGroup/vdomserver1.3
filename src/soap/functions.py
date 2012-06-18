@@ -70,9 +70,6 @@ def get_application_info(sid, skey, appid, _SOAPContext):
 def list_applications(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.list_applications, sid, skey])
 
-def get_applications(sid, skey, _SOAPContext):
-	return proxy([managers.soap_server.get_applications, sid, skey])
-
 # get the list of all types
 def list_types(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.list_types, sid, skey])
@@ -80,6 +77,10 @@ def list_types(sid, skey, _SOAPContext):
 # get type description
 def get_type(sid, skey, typeid, _SOAPContext):
 	return proxy([managers.soap_server.get_type, sid, skey, typeid])
+
+# add/update type
+def set_type(sid, skey, typexml, _SOAPContext):
+	return proxy([managers.soap_server.set_type, sid, skey, typexml])
 
 # get all types description
 def get_all_types(sid, skey, _SOAPContext):
