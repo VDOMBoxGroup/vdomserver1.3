@@ -1,4 +1,4 @@
-import thread, os, time, tempfile, shutil
+import thread, os, time, tempfile, shutil, traceback
 
 import managers, log
 from utils.semaphore import VDOM_semaphore
@@ -6,6 +6,7 @@ from utils.exception import VDOM_exception
 from utils.system import *
 from utils.app_management import import_application
 from daemon import VDOM_backup
+from memory import xml_object
 
 
 class VDOM_server_manager():
@@ -152,6 +153,62 @@ class VDOM_server_manager():
 	def export_application_to_usb(self, dev, application):
 		pass
 		
+	def set_type(self, typeobj):
+		ok = False
+		message = ""
+		tmp_path = ""
+		try:
+			if isinstance(typeobj, file):
+				tmpfilename = file.name
+			elif isinstance(typeobj, basestring):
+				tmp_path = tempfile.mkdtemp("type", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+				o, file_path = tempfile.mkstemp("type", "", tmp_path)
+				f = open(file_path, "wb")
+				data = typeobj
+				if data: f.write(data.encode("utf-8"))
+				f.close()
+				obj = xml_object(file_path)
+				info = obj.get_child_by_name("Information")
+				tmpfilename = os.path.join(tmp_path, info.get_child_by_name("Name").value)
+				tmpfilename += ".xml"
+				shutil.move(file_path, tmpfilename)
+				obj.delete()
+			else:
+				raise Exception("Invalid parameter: type object must be file or basestring")
+					
+			# test
+			ret = managers.xml_manager.test_type(tmpfilename)
+			if None == ret:
+				# load type
+				ret = managers.xml_manager.load_type(tmpfilename)
+				# ret[1] is a type object
+				newfname = VDOM_CONFIG["TYPES-LOCATION"] + "/" + ret[1].name.lower() + ".xml"
+				shutil.copyfile(tmpfilename, newfname)
+				managers.xml_manager.unload_type(ret[1].id)
+				managers.xml_manager.load_type(newfname)
+				message = "OK, restart your VDOM Box to use the new type"
+				ok = True
+			elif ret:
+				type_id = ret
+				managers.xml_manager.unload_type(type_id)
+				ret = managers.xml_manager.load_type(tmpfilename)
+				modulename = "module_%s"%type_id.replace('-','_')
+				if modulename in sys.modules:
+					sys.modules.pop(modulename)
+				managers.source_cache.clear_cache()
+				#for app_id in managers.xml_manager.get_applications():
+				#	app = managers.xml_manager.get_application(app_id)
+				#	for obj in app.get_objects().itervalues():
+				#		obj.invalidate()
+				message = "OK, new type is applied immediately"
+				ok = True
+			return (ok, message)
+		except Exception, e:
+			debug(traceback.format_exc())
+			return (ok, unicode(e))
+		finally:
+			if tmp_path: shutil.rmtree(tmp_path)
+	
 	def restore_application(self, appid, file):
 		if os.path.split(file)[1].split("_")[0] != appid:
 			raise VDOM_exception(_("Application ID doesn't match to the file"))

@@ -278,11 +278,6 @@ class VDOM_web_services_server(object):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		return self.__do_list_applications(security.modify_application)
 
-	def get_applications(self, sid, skey):
-		"""same as above but checks list_application right"""
-		if not self.__check_session(sid, skey): return self.__session_key_error()
-		return self.__do_list_applications(security.list_application)
-
 	def get_resource(self, sid, skey, owner_id, resource_id):
 		"""get resource"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -568,6 +563,15 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(type_id_error, _("Get type error"), _("Type not registered"))
 #			return self.__format_error(_("Type \"%s\" not registered" % typeid))
 
+	def set_type(self, sid, skey, typexml):
+		"""add/update type"""
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		ret = managers.server_manager.set_type(typexml)
+		if ret[0]:
+			return self.__success()
+		else:
+			return self.__format_error(ret[1])
+	
 	def get_all_types(self, sid, skey):
 		"""get all types description"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
