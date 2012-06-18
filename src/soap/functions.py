@@ -9,15 +9,6 @@ def about(_SOAPContext):
 	"""about function - return server description"""
 	return managers.soap_server.about()
 
-def get_echo(sid, _SOAPContext):
-	try:
-		sess = managers.session_manager[sid]
-		data = sess["__tmp_ide_data"]
-		sess["__tmp_ide_data"] = ""	# clear data
-		return "<Result>%s</Result>" % utils.encode.encode_resource(data)
-	except:
-		return "<Error>Error</Error>"
-
 def format_error(msg):
 	"""prepare error xml message"""
 	return "<Error><![CDATA[%s]]></Error>" % str(msg)

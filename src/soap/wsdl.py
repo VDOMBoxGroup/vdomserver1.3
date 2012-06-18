@@ -15,7 +15,6 @@ header = """<?xml version="1.0"?>
 
 methods = {
 	"about" : [],
-	"get_echo"	: ["sid"],
 	"open_session"	: ["name", "pwd_md5"],
 	"close_session"	: ["sid"],
 	"create_application" : ["sid", "skey", "attr"],
