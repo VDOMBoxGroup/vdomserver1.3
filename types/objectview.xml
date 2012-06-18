@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.14.6720</Version>
+    <Version>1.16.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -965,26 +965,76 @@ class VDOM_objectview(VDOM_object):
 	tmp_list = []
 
 	JS_DRAG = u"""
-$j("#%(id)s>.%(class)s-item").draggable({
+(function($) {
+	$.fn.liveDraggable = function (opts) {
+		this.live("mouseover", function() {
+			if (!$(this).data("initdrag")) {
+				$(this).data("initdrag", true).draggable(opts);
+			}
+		});
+		return $();
+	};
+}(jQuery));
+
+$j("#%(id)s>.%(class)s-item").liveDraggable({
 	connectToDynatree: true,
 	appendTo: 'body',
 	containment: 'document',
 	zIndex: 99999,
 	opacity: 0.6,
-	helper: 'clone',
-	option: 'accept',
+	/*option: 'accept',*/
 	cursor: 'default',
 	cursorAt: { left: -2, top: 4 },
-	//cursorAt: { left: 20, bottom: -2 },
-	//cursorAt: { left: -5, top: -5 },
 	start: function(e,u){
 		execEventBinded('%(woid)s', "dragstart", {id: $j(this).attr('dataid')}, true);
-	}
-	,helper: function(e) {
-		//return $j("<div class='ui-widget-header'>drop item to...</div>");
+	},
+	connectToSortable: '#%(id)s',
+	revert: "invalid",
+	helper: 'clone'
+	/*helper: function(e) {
 		return $j("<div style='width:50px;height:20px;background:#555'></div>");
+	}*/
+});
+/*
+$('#%(id)s').droppable({
+	disabled: true,
+	accept: ".nobody",
+	drop: function(event, ui){
+		type = ui.draggable.find('.link_type').val();
+		ui.draggable.empty();
+		//return ui.draggable.html(create(type,0))
+		return ui.draggable;
 	}
 });
+*/
+"""
+
+	JS_SORTABLE = u"""
+(function($) {
+	$.fn.liveSortable = function (opts) {
+		this.live("mouseover", function() {
+			if (!$(this).data("initsort")) {
+				$(this).data("initsort", true).sortable(opts);
+			}
+		});
+		return $();
+	};
+}(jQuery));
+
+$j('#%(id)s').liveSortable({
+	receive: function (event, ui){
+		ui.item.remove();
+		//ui.sender.remove();
+	},
+	stop: function(e, u) {
+		execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
+	}
+}).disableSelection();
+/*}).disableSelection().bind("sortstop",function(e,u){
+	execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
+	//ui.draggable.empty();
+	//return ui.draggable;
+});*/
 """
 
 	JS_LOADING = u"""
@@ -1037,29 +1087,29 @@ $j(function(){
 		return false;
 	});
 
-	%(js_drag)s
 	%(dynamic)s
 	%(sortable)s
+	%(js_drag)s
 });
 </script>"""
 
 	JS_DYNAMIC = u"""
-	$j("#%(id)s>div.ov-item").addClass('not-loaded');
+	$j("#%(id)s>div.%(cssc)s-item").addClass('not-loaded');
 
 	$j("#%(id)s").bind('scrollstop', function() {
-		vdom_ov_markShow("%(woid)s");
+		vdom_ov_markShow("%(woid)s","%(cssc)s");
 	});
 
 	$j("#sel1").click(function(){
-		$j("#%(id)s>div.ov-item").each(function(){
+		$j("#%(id)s>div.%(cssc)s-item").each(function(){
 			var t = $j(this);
-			if (t.hasClass('ov-item-1') || t.hasClass('ov-item-2') || t.hasClass('ov-item-3')) {
+			if (t.hasClass('%(cssc)s-item-1') || t.hasClass('%(cssc)s-item-2') || t.hasClass('%(cssc)s-item-3')) {
 				t.show();
 			} else {
 				t.hide();
 			}
 		});
-		vdom_ov_markShow("%(woid)s");
+		vdom_ov_markShow("%(woid)s","%(cssc)s");
 		return false;
 	});
 
@@ -1068,20 +1118,13 @@ $j(function(){
 	});
 
 	$j("#%(id)s").bind('resize',function(){
-		vdom_ov_markShow("%(woid)s");
+		vdom_ov_markShow("%(woid)s","%(cssc)s");
 	});
 
-	$j(function(){
-		vdom_ov_markShow("%(woid)s");
-	});
+	//$j(function(){
+	vdom_ov_markShow("%(woid)s","%(cssc)s");
+	//});
 """
-
-	JS_SORTABLE = u"""
-	$j('#%(id)s').sortable().disableSelection().bind("sortstop",function(e,u){
-		execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')}, true);
-	});
-"""
-
 
 	def create_dupes_recurse(self, application, res, object, children):
 		result = res
@@ -1133,7 +1176,7 @@ $j(function(){
 
 	def do_compile(self, object, idlist):
 		result = ""
-		onlydiv = True if len(idlist) <= 0 and self.dynamicloading == "1" else False
+		onlydiv = True if (len(idlist) <= 0 and self.dynamicloading == "1") else False
 
 		if self.vdomclassid:
 			self.tmp_list = []
@@ -1229,6 +1272,7 @@ $j(function(){
 
 				# first render - output all items, but as empty DIVs
 				if onlydiv:
+					#print "'''''''''''''''''''''''''''''''''''''''''''''''' onlydiv: first render"
 					try:
 						tmp_res = managers.engine.render(application, obj, object, "vdom")
 						result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
@@ -1236,6 +1280,7 @@ $j(function(){
 						raise
 				# render for requested items
 				else:
+					#print "'''''''''''''''''''''''''''''''''''''''''''''''' onlydiv: render requested"
 					result += managers.engine.render(application, obj, object, "vdom")
 
 				nn += 1
@@ -1372,7 +1417,7 @@ $j(function(){
 				js_sortable = ""
 
 			if self.dynamicloading == "1":
-				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid }
+				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid, "cssc": classname_item }
 			else:
 				js_dynamic = ""
 
@@ -1388,7 +1433,7 @@ $j(function(){
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-05-25'" % (self.name, self.type.version)
+				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-06-18'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
@@ -1521,13 +1566,14 @@ function vdom_ov_inDiv(w0, s){
 }
 
 function vdom_ov_markShow(eee, qq) {
-	var q = qq || ">div.ov-item";
+	var q = qq || "ov";
+	q = ">div."+q+'-item';
 	var a = [], z = vdom_ov_inDiv('#o_'+eee, q);
 	if (z.size() > 0) {
 		z.each(function(){
 			a.push($j(this).attr('dataid'));
 		});
-		execEventBinded(eee, "itemsrequest", {idlist: a}, true);
+		execEventBinded(eee, "itemsrequest", {idlist: a});
 	}
 }
 
