@@ -183,7 +183,7 @@ class VDOM_database(object):
 			obj = application_memmory.search_objects_by_name(table_name)[0]
 			return self.database.get_table(obj.id, table_name, table_diffinition)
 		else:
-			obj_name,obj_id = application_memmory.create_object(DBTABLE_ID, parent[0])
+			obj_name,obj_id = application_memmory.create_object(DBTABLE_ID, parent[0],False)
 			obj = application_memmory.search_object(obj_id)
 			obj.set_name(table_name)
 			#obj.set_attributes({"top":500,"left":600,"width": 200,"height":300})
