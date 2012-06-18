@@ -41,6 +41,7 @@ class VDOM_user_manager:
 		for uid in self.users.keys():
 			self.users_by_name[self.users[uid].login] = self.users[uid]
 		self.__check_system()
+		self.__check_membership()
 
 	def __check_system(self):
 		sys_users = [("Admin", "VDMNK22YK")]
@@ -56,6 +57,13 @@ class VDOM_user_manager:
 				for m in members:
 					self.users_by_name[name].members.append(m)
 
+	def __check_membership(self):
+		for user in self.get_all_users():
+			for group_name in user.member_of:
+				group = self.get_group_by_name(group_name)
+				if group and user.login not in group.members:
+					group.members.append(user.login)
+		
 	def create_user(self, login, password, name1="", name2="", email="", slv="", system=False):
 		"""Creates new user and adds it to system"""
 		if(self.name_exists(login)):

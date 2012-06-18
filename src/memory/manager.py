@@ -517,6 +517,9 @@ class VDOM_xml_manager(object):
 						users[_name].append((_id, _access))
 		for _name in groups:
 			obj = managers.user_manager.get_group_by_name(_name)
+			for user_name in obj.members:
+				if user_name not in users:
+					users[user_name] = []
 			g += "\t\t\t<Group>\n\t\t\t<Name><![CDATA[%s]]></Name>\n\t\t\t\t<Description><![CDATA[%s]]></Description>\n\t\t\t<Rights>\n" % (_name, obj.description)
 			for item in groups[_name]:
 				g += '\t\t\t\t<Right Target="%s" Access="%s"/>\n' % item
