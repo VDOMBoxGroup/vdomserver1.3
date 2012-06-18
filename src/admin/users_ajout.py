@@ -31,6 +31,7 @@ def run(request):
 					gr = managers.user_manager.get_user_by_id(group)
 					if gr:
 						obj.member_of.append(gr.login)
+						gr.member.append(obj.login)
 			except Exception, e:
 				error = str(e)
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="The new user is created";</script>')
