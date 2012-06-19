@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.24.6720</Version>
+    <Version>2.25.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -7595,11 +7595,14 @@ class VDOM_htmlcontainer(VDOM_object):
 			else:
 				noscript=""
 
-			css='<style type="text/css">\n%s\n</style>'%self.css
-			doctype="""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
+			css = u'<style type="text/css">\n%s\n</style>' % self.css
+			doctype = u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
 
 			result = u"""%(doctype)s
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
 <head>
 	<title>%(title)s</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
