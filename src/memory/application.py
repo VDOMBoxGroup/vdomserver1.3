@@ -666,7 +666,10 @@ class VDOM_application(VDOM_parser):
 
 	def __do_delete_object(self, obj):
 		"""delete object from the application; also delete all associated resources and source code"""
-		managers.dispatcher.dispatch_handler(self.id, obj.id, "on_delete", None )
+		try:
+			managers.dispatcher.dispatch_handler(self.id, obj.id, "on_delete", None )
+		except Exception as e:
+			debug("Error while removing object: %s"%e)
 		# first delete all child objects
 		l = []
 		for o in obj.objects_list:
