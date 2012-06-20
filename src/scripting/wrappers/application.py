@@ -179,6 +179,8 @@ class VDOM_database(object):
 		from scripting.wrappers import application
 		application_memmory = managers.xml_manager.get_application(application.id)
 		parent = application_memmory.search_objects_by_name(self.__name)
+		if not parent:
+			raise Exception("Database %s is not exist. Cannot create table inside."%self.__name)
 		if table_name in parent[0].get_objects_by_name().keys():
 			obj = application_memmory.search_objects_by_name(table_name)[0]
 			return self.database.get_table(obj.id, table_name, table_diffinition)
@@ -218,14 +220,14 @@ class VDOM_databases(object):
 	def create(self, db_name, title="DBSchema", description=""):
 		from scripting.wrappers import application
 		application_memmory = managers.xml_manager.get_application(application.id)
-		database = managers.database_manager.get_database_by_name(application.id, db_name)
-		if not database:
-			obj_name, obj_id = application_memmory.create_object(DBSCHEMA_ID)
+		if not application_memmory.search_objects_by_name(db_name):
+			obj_name, obj_id = application_memmory.create_object(DBSCHEMA_ID,do_compute=False)
 			obj = application_memmory.search_object(obj_id)
 			obj.set_name(db_name)
-			obj.set_attributes({"title": title, "description": description})
-			database = managers.database_manager.get_database(application.id, obj_id)
-			database.name = db_name
+			obj.set_attributes({"title": title, "description": description}, do_compute=False)
+			
+		if not managers.database_manager.get_database_by_name(application.id, db_name):		
+			database = managers.database_manager.create_database(application.id, obj_id, db_name)
 			database.open()
 		return database
 		

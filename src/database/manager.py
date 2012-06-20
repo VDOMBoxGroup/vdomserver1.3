@@ -15,6 +15,7 @@ class VDOM_database_manager(object):
 	def __init__(self):
 		"""constructor"""
 		self.__index = {}
+		self.__database_by_name = {}
 	
 	def restore(self):	
 		"""Restoring databases from last session.(After reboot or power off)"""
@@ -24,7 +25,9 @@ class VDOM_database_manager(object):
 			is_dirty_index = False
 			for id in self.__index: #check for not existing or temporary resources
 				database = self.__index[id]
-				if not managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
+				if managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
+					self.__database_by_name[(database.owner_id,database.name)] = database
+				else:
 					remove_list.append(id)
 
 			for id in remove_list:
@@ -51,6 +54,7 @@ class VDOM_database_manager(object):
 				pass
 			
 			self.__index[database.id] = database
+			self.__database_by_name[(database.owner_id,database.name)] = database
 			if attributes["type"] == "sqlite":
 				managers.file_manager.write(file_access.database,database.owner_id,None, database.filename, data)
 			elif attributes["type"] == "xml":
@@ -75,13 +79,21 @@ class VDOM_database_manager(object):
 		"""Getting database object"""
 		database = None
 		if db_id in self.__index:
-			database = self.__index[db_id]
+			return self.__index[db_id]
+			
 			#if database.application_id == owner_id:
-		else:
-			database = self.create_database(owner_id, db_id)
-		return database
-		
+		#else:
+			#no more database is created after first access
+			#database = self.create_database(owner_id, db_id)
+		#return database
+	
 	def get_database_by_name(self, owner_id, db_name):
+		if (owner_id, db_name) in self.__database_by_name:
+			return self.__database_by_name[(owner_id, db_name)]
+		else:
+			managers.log_manager.info_server("Database lookup by name  failed. name: %s, owner: %s" % (db_name, owner_id), "db_manager")
+		
+	def get_database_by_name_old(self, owner_id, db_name):
 		"""Getting database object by name"""
 		database = None
 		db = []
@@ -95,10 +107,12 @@ class VDOM_database_manager(object):
 		else:
 			managers.log_manager.info_server("Database lookup by name  failed %s. name: %s, owner: %s" % (str(db), db_name, owner_id), "db_manager")
 	
-	def create_database(self, owner_id, id):
+	def create_database(self, owner_id, id, name):
 		"""Creation of new database"""
 		database = VDOM_database_object(owner_id,id)
+		database.name = name
 		self.__index[database.id] = database
+		self.__database_by_name[(database.owner_id,database.name)] = database
 		managers.file_manager.create_database_directory(owner_id)
 		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		return database
@@ -170,6 +184,7 @@ class VDOM_database_manager(object):
 		"""Clearing all databases"""
 		managers.file_manager.clear(file_access.database,None, None)
 		self.__index = {}
+		self.__database_by_name = {}
 		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 	
 	def list_databases(self, owner_id):
@@ -177,7 +192,7 @@ class VDOM_database_manager(object):
 		result = {}
 		for key in self.__index:
 			if self.__index[key].owner_id == owner_id:
-				result[key] = self.__index[key].id
+				result[key] = self.__index[key].name
 		return result
 	
 	def list_names(self, owner_id):
@@ -194,6 +209,7 @@ class VDOM_database_manager(object):
 		database = None
 		for key in self.__index:
 			database = self.__index[key]
+			self.__database_by_name.pop((database.owner_id, database.name),None)
 			if database.owner_id == owner_id and (db_id == None or db_id == database.id):
 				remove_list.append(key)
 		

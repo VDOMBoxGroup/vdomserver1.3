@@ -108,7 +108,7 @@ def update_application(path, vh):
 			try:
 				obj = managers.database_manager.get_database(appid, item)
 				shutil.copy2(dbpath + "/" + obj.filename, tmpdbdir)
-				dbs[tmpdbdir + "/" + obj.filename] = {"id" : obj.id, "name" : obj.name, "owner": obj.owner_id, "type": "sqlite"}
+				dbs[tmpdbdir + "/" + obj.filename] = {"id" : obj.id, "name" : obj.name, "owner_id": obj.owner_id, "type": "sqlite"}
 				debug("Database %s saved" % obj.name)
 			except: pass
 	except: pass
@@ -206,7 +206,10 @@ def update_application(path, vh):
 		# restore databases
 		debug("Restore databases...")
 		try:
-			managers.database_manager.delete_database(appid)
+			#removing databases that we already had before
+			for old_db in dbs.itervalues():
+				if managers.database_manager.check_database(appid,old_db["id"]):
+					managers.database_manager.delete_database(appid,old_db["id"])
 		except: pass
 		for path in dbs:
 			try:
