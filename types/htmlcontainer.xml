@@ -7634,7 +7634,7 @@ class VDOM_htmlcontainer(VDOM_object):
 	<script type="text/javascript">$j(function(){
 		window.e2vdompageurl = window.location.href.split('#')[0];
 		$(window).bind( "popstate", function(e){
-			var returnLocation = history.location || document.location;
+			var returnLocation = window.location || history.location || document.location;
 			execEventBinded("%(clean_obj_id)s", "labelchanged", {label:returnLocation.hash.substring(1,returnLocation.hash.length)});
 		});
 		if (window.location.hash.length > 0) execEventBinded("%(clean_obj_id)s", "labelchanged", {label:window.location.hash.substring(1,window.location.hash.length)});
