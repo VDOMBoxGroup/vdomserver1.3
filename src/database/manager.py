@@ -209,8 +209,8 @@ class VDOM_database_manager(object):
 		database = None
 		for key in self.__index:
 			database = self.__index[key]
-			self.__database_by_name.pop((database.owner_id, database.name),None)
 			if database.owner_id == owner_id and (db_id == None or db_id == database.id):
+				self.__database_by_name.pop((database.owner_id, database.name),None)
 				remove_list.append(key)
 		
 		is_dirty_index = False
