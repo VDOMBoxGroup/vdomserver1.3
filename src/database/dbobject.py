@@ -161,7 +161,7 @@ class VDOM_database_table:
 			declaration = table_def.group("declaration")
 			for column in map(unicode.strip,declaration.split(',')):
 				constraints = {}
-				match = re.search(r"\A`?(?P<col_name>[\w_]+|\'.*?\')`?(?:\s+(?P<type>(?:INTEGER|TEXT|NUMERIC|BLOB|REAL)\(?\d*(?:,\d+)?\)?))?(?:\s+(?:(?P<notnull>NOT NULL)|(?P<unique>UNIQUE)|(?P<primarykeyauto>PRIMARY KEY AUTOINCREMENT)|(?P<primarykey>PRIMARY KEY)|(?P<default>DEFAULT (?:(?:')[\S ]+(?:')|\w+))))*", column, re.DOTALL | re.IGNORECASE)
+				match = re.search(r"""\A[`'"]?(?P<col_name>[\w_]+|\'.*?\')[`'"]?(?:\s+(?P<type>(?:INTEGER|TEXT|NUMERIC|BLOB|REAL)\(?\d*(?:,\d+)?\)?))?(?:\s+(?:(?P<notnull>NOT NULL)|(?P<unique>UNIQUE)|(?P<primarykeyauto>PRIMARY KEY AUTOINCREMENT)|(?P<primarykey>PRIMARY KEY)|(?P<default>DEFAULT (?:(?:')[\S ]+(?:')|\w+))))*""", column, re.DOTALL | re.IGNORECASE)
 				if match:
 					col_name = un_quote(match.group("col_name"))
 					if col_name.upper() in ("PRIMARY","UNIQUE","CHECK","FOREIGN"):
