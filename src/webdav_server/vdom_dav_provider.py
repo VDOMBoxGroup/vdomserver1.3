@@ -75,8 +75,8 @@ class FileResource(DAVNonCollection):
 
 		See DAVResource.getContent()
 		"""
-		func_name = "getData"
-		xml_data = """{"path": "%s"}""" % self._path
+		func_name = "open"
+		xml_data = """{"path": "%s", "mode": "rb"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -89,7 +89,7 @@ class FileResource(DAVNonCollection):
 		access.
 		"""
 		func_name = "open"
-		xml_data = """{"path": "%s"}""" % self._path
+		xml_data = """{"path": "%s", "mode": "wb"}""" % self._path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			return ret
@@ -217,6 +217,7 @@ class FolderResource(DAVCollection):
 		See DAVResource.createEmptyResource()
 		"""
 		func_name = "createResource"
+	
 		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:

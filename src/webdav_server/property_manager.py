@@ -38,7 +38,9 @@ class VDOM_property_manager(PropertyManager):
 		try:
 			if not self._loaded:
 				self._lazyOpen()
-			self._dict[normurl] = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "", """{"path": "%s"}""" % normurl)
+			properties = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, "getResourseProperties", "", """{"path": "%s"}""" % normurl)
+			if properties:
+				self._dict[normurl] = properties
 		finally:
 			self._lock.release()
 			
