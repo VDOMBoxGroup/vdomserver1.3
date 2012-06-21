@@ -7599,10 +7599,10 @@ class VDOM_htmlcontainer(VDOM_object):
 			doctype = u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
 
 			result = u"""%(doctype)s
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html class="lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html class="lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7 gt-ie9"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8 gt-ie9"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9 gt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="gt-ie9"> <!--<![endif]-->
 <head>
 	<title>%(title)s</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
