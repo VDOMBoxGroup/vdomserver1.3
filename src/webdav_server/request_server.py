@@ -64,7 +64,7 @@ class VDOM_webdav_request_server(RequestServer):
 		destScheme, destNetloc, destPath, \
 			  _destParams, _destQuery, _destFrag = destHeaderTuple 
 	
-		http_host = ":".join([destHeaderTuple.hostname, str(destHeaderTuple.port)])
+		http_host = destHeaderTuple.hostname
 		if srcRes.isCollection:
 			destPath = destPath.rstrip("/") + "/"
 	

@@ -1,5 +1,6 @@
 
 import sys, os, thread
+import webdav_server
 
 from version import VDOM_server_version
 from utils.threads import VDOM_thread
