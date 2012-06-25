@@ -585,6 +585,8 @@ class VDOM_web_services_server(object):
 			if tp:
 				result += tp.get_xml_as_string()
 		result += "</Types>"
+		result = result.replace('<?xml version="1.0" encoding="utf-8"?>\n', '')
+		result = '<?xml version="1.0" encoding="utf-8"?>\n%s' % result
 		return result
 
 ### object methods ====================================================================================
@@ -765,10 +767,12 @@ class VDOM_web_services_server(object):
 
 	def __get_objects(self, parent):
 		"""build objects xml"""
-		result = "<Objects>\n"
+		result = ""
 		for o in parent.get_objects_list():
 			result += self.__get_object(o)
-		result += "</Objects>"
+		if result:
+			ret = "<Objects>\n%s</Objects>" % result
+			return ret
 		return result
 
 	def __get_all_objects(self, obj):
@@ -806,10 +810,6 @@ class VDOM_web_services_server(object):
 		result += "<Objects/>\n"
 		result += self.__get_code_interface(obj)
 		result += "</Object>"
-		if obj.parent:
-			result += "<ParentId>%s</ParentId>\n" % obj.parent.id
-		else:
-			result += "<ParentId/>\n"
 		return result
 
 	def __get_code_interface(self, obj):
