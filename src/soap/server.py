@@ -12,7 +12,7 @@ from utils.mutex import VDOM_named_mutex_auto
 from utils.exception import *
 import soaputils
 from utils.uuid import uuid4
-from memory import xml_object # memory.
+from memory.xml_object import xml_object # memory.
 from database.dbobject import VDOM_sql_query
 from utils.app_management import import_application, update_application
 from version import VDOM_server_version
@@ -873,10 +873,9 @@ class VDOM_web_services_server(object):
 		if attr:
 			copy_object.set_attributes(attr)
 		obj_map[objid] = copy_object.id
-		if 1 == obj.type.container:
-			xml_actions = ''
-			server_actions_element = None
-		else:
+		xml_actions = ''
+		server_actions_element = None
+		if 1 != obj.type.container:
 			xml_actions = '<ServerActions>\n'
 			for _name in obj.actions["name"]:
 				x = obj.actions["name"][_name]
