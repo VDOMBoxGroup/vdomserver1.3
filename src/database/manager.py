@@ -179,6 +179,14 @@ class VDOM_database_manager(object):
 		managers.file_manager.create_database_directory("%s/%s"%(database.owner_id,database.id))
 		managers.file_manager.get_path(file_access.database,database.owner_id,database.id)
 		
+	def rename_database(self, owner_id, db_id, new_name):
+		if db_id in self.__index:
+			database = self.__index[db_id]
+			if owner_id == database.owner_id and database.name != new_name:
+				del self.__database_by_name[(database.owner_id,database.name)]
+				database.name = new_name
+				self.__database_by_name[(database.owner_id,database.name)] = database
+				self.save_index()
 		
 	def remove_databases(self):
 		"""Clearing all databases"""
