@@ -818,7 +818,8 @@ class vtrycatch(vstatement):
 	def scope_names(self, mysource, myclass, myprocedure):
 		vstatement.scope_names(self, mysource, myclass, myprocedure)
 		mysource.trys.enter(self.name)
-		self.exceptions.scope_names(mysource, myclass, myprocedure)
+		if self.exceptions:
+			self.exceptions.scope_names(mysource, myclass, myprocedure)
 		self.statements.scope_names(mysource, myclass, myprocedure)
 		mysource.trys.leave()
 
