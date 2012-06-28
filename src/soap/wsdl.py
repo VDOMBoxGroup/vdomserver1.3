@@ -14,7 +14,6 @@ header = """<?xml version="1.0"?>
 """
 
 methods = {
-	"about" : [],
 	"open_session"	: ["name", "pwd_md5"],
 	"close_session"	: ["sid"],
 	"create_application" : ["sid", "skey", "attr"],
@@ -35,6 +34,8 @@ methods = {
 	"get_object_script_presentation" : ["sid", "skey", "appid", "objid"],
 	"submit_object_script_presentation" : ["sid", "skey", "appid", "objid", "pres"],
 	"get_top_objects" : ["sid", "skey", "appid"],
+        "get_top_object_list" : ["sid", "skey", "appid"],
+        "get_all_object_list" : ["sid", "skey", "appid"],
 	"get_child_objects" : ["sid", "skey", "appid", "objid"],
 	"get_child_objects_tree" : ["sid", "skey", "appid", "objid"],
 	"get_one_object" : ["sid", "skey", "appid", "objid"],

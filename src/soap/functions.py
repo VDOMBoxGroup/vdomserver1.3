@@ -5,9 +5,6 @@ import utils.encode
 from utils.exception import *
 import managers
 
-def about(_SOAPContext):
-	"""about function - return server description"""
-	return managers.soap_server.about()
 
 def format_error(msg):
 	"""prepare error xml message"""
@@ -111,6 +108,14 @@ def render_wysiwyg(sid, skey, appid, objid, parentid, dynamic, _SOAPContext):
 # get application top-level objects
 def get_top_objects(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.get_top_objects, sid, skey, appid])
+
+# lightweight get application top-level objects
+def get_top_object_list(sid, skey, appid, _SOAPContext):
+	return proxy([managers.soap_server.get_top_object_list, sid, skey, appid])
+
+# get all objects
+def get_all_object_list(sid, skey, appid, _SOAPContext):
+	return proxy([managers.soap_server.get_all_object_list, sid, skey, appid])
 
 # get object's child objects
 def get_child_objects(sid, skey, appid, objid, _SOAPContext):

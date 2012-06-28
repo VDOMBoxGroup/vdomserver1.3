@@ -117,11 +117,6 @@ class VDOM_web_services_server(object):
 		"""get xml representing successful result"""
 		return "<Result>OK</Result>"
 
-### ======== public =================================================================================
-
-	def about(self):
-		"""about function - return server description"""
-		return _("This is VDOM v.2 Web Services")
 
 ### session methods =================================================================================
 
@@ -770,9 +765,22 @@ class VDOM_web_services_server(object):
 		result = ""
 		for o in parent.get_objects_list():
 			result += self.__get_object(o)
-		if result:
-			ret = "<Objects>\n%s</Objects>" % result
-			return ret
+		return "<Objects>\n%s</Objects>" % result if result else ""
+	
+	def __get_object_list(self, parent):
+		result = ''
+		for o in parent.get_objects_list():
+			result += '<Object Name="%s" ID="%s" Type="%s"/>' % (o.name, o.id, o.type.id)
+		return '<Objects>%s</Objects>' % result if result else ""
+	
+	def __get_all_object_list(self, obj):
+		result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.name, obj.id, obj.type.id)
+		
+		result += "<Objects>\n"
+		for o in obj.get_objects_list():
+			result += self.__get_all_object_list(o)
+		result += "</Objects>\n"
+		result += "</Object>\n"
 		return result
 
 	def __get_all_objects(self, obj):
@@ -1003,6 +1011,24 @@ class VDOM_web_services_server(object):
 		if not app:
 			return errmsg
 		return self.__get_objects(app)
+	
+	def get_top_object_list(self, sid, skey, appid):
+		"""lightweight get application top-level objects"""
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		(app, errmsg) = self.__find_application(appid)
+		if not app:
+			return errmsg
+		return self.__get_object_list(app)
+	
+	def get_all_object_list(self, sid, skey, appid):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		(app, errmsg) = self.__find_application(appid)
+		if not app:
+			return errmsg
+		result = ''
+		for o in app.get_objects_list():
+			result += self.__get_all_object_list(o)
+		return '<Objects>%s</Objects>' % result
 
 	def get_child_objects(self, sid, skey, appid, objid):
 		"""get object's child objects"""
