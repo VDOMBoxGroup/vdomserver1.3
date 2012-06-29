@@ -777,11 +777,11 @@ class VDOM_web_services_server(object):
 	def __get_object_list(self, parent):
 		result = ''
 		for o in parent.get_objects_list():
-			result += '<Object Name="%s" ID="%s" Type="%s"/>' % (o.name, o.id, o.type.id)
+			result += '<Object Name="%s" ID="%s" Type="%s"/>' % (o.original_name, o.id, o.type.id)
 		return '<Objects>%s</Objects>' % result if result else ""
 
 	def __get_all_object_list(self, obj):
-		result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.name, obj.id, obj.type.id)
+		result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.original_name, obj.id, obj.type.id)
 
 		result += "<Objects>\n"
 		for o in obj.get_objects_list():
