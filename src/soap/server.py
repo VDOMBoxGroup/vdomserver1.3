@@ -822,7 +822,7 @@ class VDOM_web_services_server(object):
 		for a in obj.get_attributes().values():
 			result += "<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
 		result += "</Attributes>\n"
-		result += "<Objects/>\n"
+#		result += "<Objects/>\n"
 		result += self.__get_code_interface(obj)
 		result += "</Object>"
 		return result
@@ -832,7 +832,7 @@ class VDOM_web_services_server(object):
 		app = obj.application
 		if "pagelink" in obj.type.interfaces:
 			result += "<Pagelink>\n"
-			result += """<Object ID="" Name=""/>\n"""
+#			result += """<Object ID="" Name=""/>\n"""
 			for o in app.get_objects_list():
 				result += """<Object ID="%s" Name="%s"/>\n""" % (o.id, o.name)
 			result += "</Pagelink>\n"
