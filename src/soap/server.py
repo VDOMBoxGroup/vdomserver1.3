@@ -208,6 +208,13 @@ class VDOM_web_services_server(object):
 			cap = app.info_map[key][2]
 			result += "<%s>%s</%s>\n" % (cap, self.__attrvalue(getattr(app, app.info_map[key][0])), cap)
 		# add statistics
+		default_app = "True" if managers.virtual_hosts.get_def_site() == app.id else "False"
+		result += '<Hosts default="%s">\n' % default_app
+		sites = managers.virtual_hosts.get_sites()
+		for site in sites:
+			if app.id == managers.virtual_hosts.get_site(site):
+				result += "<Host>%s</Host>\n" % site
+		result += "</Hosts>\n"
 		result += "<Numberofpages>%d</Numberofpages>\n" % len(app.objects)
 		result += "<Numberofobjects>%d</Numberofobjects>\n" % app.objects_amount()
 		return "<Information>\n%s</Information>\n" % result
@@ -391,7 +398,7 @@ class VDOM_web_services_server(object):
 		managers.resource_manager.update_resource(appid, resid, resdata)
 		app.sync()
 		return "<Resource id=\"%s\"/>" % resid
-	
+
 	def delete_resource(self, sid, skey, appid, resid):
 		"""set application resource"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -440,7 +447,7 @@ class VDOM_web_services_server(object):
 
 		app.sync()
 		return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
-	
+
 	def copy_object(self, sid, skey, appid, parentid, objid, tgt_appid = None):
 		"""copy object in application"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -448,7 +455,7 @@ class VDOM_web_services_server(object):
 		if not ret[0]:
 			return ret[1]
 		app = ret[0]
-		
+
 		tgt_app = None
 		try:
 			obj = managers.xml_manager.search_object(appid, objid)
@@ -465,7 +472,7 @@ class VDOM_web_services_server(object):
 				managers.request_manager.current.set_application_id(tgt_appid)
 			if objid == parentid:
 				raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
-			
+
 			action_map = {}
 			obj_map = {}
 			new_obj_id = self.__copy_object(app, parentid, objid, obj_map, action_map, tgt_app)
@@ -473,7 +480,7 @@ class VDOM_web_services_server(object):
 				tgt_app = app
 			copy_obj = managers.xml_manager.search_object(appid, new_obj_id)
 			self.__copy_events_structure(app, obj, copy_obj, obj_map, action_map, tgt_app)
-				
+
 			tgt_app.sync()
 			return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 		except Exception, e:
@@ -510,7 +517,7 @@ class VDOM_web_services_server(object):
 			return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
 		except Exception, e:
 			return self.__format_error(str(e))		
-	
+
 	def delete_object(self, sid, skey, appid, objid):
 		"""delete object from application"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -566,7 +573,7 @@ class VDOM_web_services_server(object):
 			return self.__success()
 		else:
 			return self.__format_error(ret[1])
-	
+
 	def get_all_types(self, sid, skey):
 		"""get all types description"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -766,16 +773,16 @@ class VDOM_web_services_server(object):
 		for o in parent.get_objects_list():
 			result += self.__get_object(o)
 		return "<Objects>\n%s</Objects>" % result if result else ""
-	
+
 	def __get_object_list(self, parent):
 		result = ''
 		for o in parent.get_objects_list():
 			result += '<Object Name="%s" ID="%s" Type="%s"/>' % (o.name, o.id, o.type.id)
 		return '<Objects>%s</Objects>' % result if result else ""
-	
+
 	def __get_all_object_list(self, obj):
 		result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.name, obj.id, obj.type.id)
-		
+
 		result += "<Objects>\n"
 		for o in obj.get_objects_list():
 			result += self.__get_all_object_list(o)
@@ -829,7 +836,7 @@ class VDOM_web_services_server(object):
 			for o in app.get_objects_list():
 				result += """<Object ID="%s" Name="%s"/>\n""" % (o.id, o.name)
 			result += "</Pagelink>\n"
-		
+
 		if "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]) and "" == obj.type.interfaces["objectlist"][0]:
 			result += "<Objectlist>\n"
 			for oid in app.get_all_objects():
@@ -849,7 +856,7 @@ class VDOM_web_services_server(object):
 					result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
 			result += "</Objectlist>\n"
 		return result
-	
+
 	def __copy_object(self, app, parentid, objid, obj_map, action_map, newapp = None):
 		"""copy object in application"""
 		if newapp:
@@ -907,12 +914,12 @@ class VDOM_web_services_server(object):
 						_name = child.attributes["name"]
 						if not _id or not _name:
 							raise VDOM_exception_element("server action")
-						
+
 			except Exception, e:
 				if server_actions_element:
 					server_actions_element.delete()
 				raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-		
+
 		xml_client_action = "<ClientActions>\n"	
 		if obj:
 			for a_id in app.actions:
@@ -995,10 +1002,10 @@ class VDOM_web_services_server(object):
 			if events_element:
 				events_element.delete()
 			raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-		
+
 		tgt_app.set_e2vdom_events(new_obj, events_element)
 		events_element.delete()
-		
+
 	def __set_attributes(self, obj, attr):
 		"""set several attributes' value"""
 		attr_map = self.__parse_attr(attr, False)
@@ -1011,7 +1018,7 @@ class VDOM_web_services_server(object):
 		if not app:
 			return errmsg
 		return self.__get_objects(app)
-	
+
 	def get_top_object_list(self, sid, skey, appid):
 		"""lightweight get application top-level objects"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1019,7 +1026,7 @@ class VDOM_web_services_server(object):
 		if not app:
 			return errmsg
 		return self.__get_object_list(app)
-	
+
 	def get_all_object_list(self, sid, skey, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, errmsg) = self.__find_application(appid)
@@ -1109,7 +1116,7 @@ class VDOM_web_services_server(object):
 					result += "</Event>\n"
 		result += "</Events>\n"
 		return result
-		
+
 	def __do_get_client_actions(self, app, obj):
 		result = "<ClientActions>\n"	
 		if obj:
@@ -1123,7 +1130,7 @@ class VDOM_web_services_server(object):
 					result += "</Action>\n"
 		result += "</ClientActions>\n"
 		return result
-	
+
 	def get_application_events(self, sid, skey, appid, objid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
@@ -1132,19 +1139,19 @@ class VDOM_web_services_server(object):
 		obj = app.search_object(objid)
 		result =  self.__do_get_events(app, obj)
 		result +=  self.__do_get_client_actions(app, obj)
-		
+
 		result += self.get_server_actions(sid, skey, appid, objid, check=False)
 		return "<E2vdom>%s</E2vdom>" % result
-	
+
 	def get_events_structure(self, sid, skey, appid, objid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
-		
+
 		obj = app.search_object(objid)
 		result =  self.__do_get_events(app, obj)
-		
+
 		#result += "<ClientActions>\n"	
 		#if obj:
 		#	ll = obj.get_all_children()
@@ -1156,11 +1163,11 @@ class VDOM_web_services_server(object):
 		#				result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
 		#			result += "</Action>\n"
 		#result += "</ClientActions>\n"
-		
+
 		result += self.__do_get_client_actions(app, obj)
 		result += self.get_server_actions_list(sid, skey, appid, objid, check=False, full=True)
 		return "<E2vdom>%s</E2vdom>" % result
-		
+
 	def set_events_structure(self, sid, skey, appid, objid, events ):	
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
@@ -1237,13 +1244,13 @@ class VDOM_web_services_server(object):
 					action_object = app.search_object(action_object_id)
 					if action_object and 1 != action_object.type.container:
 						action_object.set_action_attributes(child)
-					
+
 		#else:
 		#	app.set_global_actions(server_actions_element)
 		root.delete()
 		app.sync()
 		return self.__success()
-	
+
 	def __do_get_server_actions(self, obj ):
 		if not len(obj.actions["name"]): return ""
 		if 1 == obj.type.container: return ""
@@ -1254,12 +1261,12 @@ class VDOM_web_services_server(object):
 			result += """<![CDATA[%s]]>\n""" % x.code
 			result += "</Action>\n"
 		result += '</Container>\n'
-	
+
 		for x in obj.objects_list:
 			result += self.__do_get_server_actions(x)
 		return result
 
-	
+
 	def set_application_events(self, sid, skey, appid, objid, events):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
@@ -1366,7 +1373,7 @@ class VDOM_web_services_server(object):
 		root.delete()
 		app.sync()
 		return self.__success()
-	
+
 	def get_server_actions(self, sid, skey, appid, objid, check=True):
 		if check:
 			if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1386,25 +1393,25 @@ class VDOM_web_services_server(object):
 			result += "</Container>\n"
 		result += "</ServerActions>\n"
 		return result
-		
+
 	def __do_get_server_actions_list(self, obj, full ):
 		if not len(obj.actions["name"]): return ""
 		if 1 == obj.type.container: return ""
 		result = "" # '<Container ID="%s">\n' % obj.id
 		for _name in obj.actions["name"]:
 			x = obj.actions["name"][_name]
-			
+
 			additional = ""	
 			if full:
 				additional = """  Top="%s" Left="%s" State="%s"  """%( x.top, x.left, x.state)
-			
+
 			result += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id, obj.name , additional)
-			
+
 		if full:
 			for x in obj.objects_list:
 				result += self.__do_get_server_actions_list(x, full)
 		return result	
-	
+
 	def get_server_actions_list(self, sid, skey, appid, objid, check=True, full=False ):
 		if check:
 			if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1424,9 +1431,9 @@ class VDOM_web_services_server(object):
 				result += """<Action ID="%s" Name="%s" ObjectID="%s" ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id ,  obj.name, additional)
 		result += "</ServerActions>\n"
 		return result
-		
+
 	# addition to server actions API
-	
+
 	def create_server_action(self, sid, skey, appid, objid, actionname, actionvalue):
 		"""create server action"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1437,7 +1444,7 @@ class VDOM_web_services_server(object):
 			actionid = obj.create_action(actionname, actionvalue)
 			app.sync()
 			return '<Action ID="%s" Name="%s" ObjectID="%s"/>' % (actionid, actionname, objid)
-	
+
 	def delete_server_action(self, sid, skey, appid, objid, actionid):
 		"""remove server action"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1448,7 +1455,7 @@ class VDOM_web_services_server(object):
 			obj.delete_action(actionid)
 			app.sync()
 			return self.__success()
-		
+
 	def rename_server_action(self, sid, skey, appid, objid, actionid, new_actionname):
 		"""rename server action"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1483,10 +1490,10 @@ class VDOM_web_services_server(object):
 				        action.id, action.name, objid, action.top, action.left, action.state, action.code)
 		else:
 			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
-	
+
 	def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
 		"""set server action"""
-		
+
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
 		if not app:
@@ -1503,7 +1510,7 @@ class VDOM_web_services_server(object):
 		else:
 			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
 
-		
+
 ##### ----- ========================================================================================================
 
 	def modify_resource(self, sid, skey, appid, objid, resid, attrname, operation, attr):
@@ -1642,7 +1649,7 @@ class VDOM_web_services_server(object):
 		try: shutil.rmtree(path)
 		except: pass
 		return data.decode("utf-8")
-	
+
 	def update_application(self, sid, skey, appxml):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		tmpfilename = ""
@@ -1662,7 +1669,7 @@ class VDOM_web_services_server(object):
 				return self.__format_error(_("Update error: %s" % outp[1]))
 		except Exception as e:
 			return self.__format_error(_("Update error: %s" % str(e)))
-		
+
 	def check_application_exists(self, sid, skey, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		result = ""
@@ -1673,8 +1680,8 @@ class VDOM_web_services_server(object):
 		except:
 			result = "false"
 		return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
-	
-	
+
+
 	def backup_application(self, sid, skey, appid, driverid ):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		revision = managers.backup_manager.backup(appid, driverid, 30)
@@ -1682,8 +1689,8 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(application_backup_error, _("Backup error"), _("Application was not backuped"))
 
 		return """<Result> <Revision>%s</Revision></Result>"""%revision
-			
-	
+
+
 	def restore_application(self,sid, skey, appid, driverid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		try:
@@ -1703,7 +1710,7 @@ class VDOM_web_services_server(object):
 		for driver in backup_drivers:
 			driver_obj = backup_drivers[driver]
 			ret +="""\n\t<Driver>\n\t\t<ID>%(id)s</ID>\n\t\t<Name>%(name)s</Name>\n\t\t<Description>%(type)s</Description>\n\t</Driver>\n"""%{"id":driver_obj.id, "name":driver_obj.name, "type":driver_obj.type}
-		
+
 		return "<Result>%s</Result>"%ret
 
 ### ==================================================================================================================
