@@ -611,6 +611,97 @@ class VDOM_local_folder_drive(VDOM_storage_driver):
 		debug("LOCAL BACKUP: umount %s OK"%self.__path)	
 		return True
 
+class VDOM_sshfs_drive(VDOM_storage_driver):
+
+	def __init__(self, crypt=False):
+		self.id = str(utils.uuid.uuid4())
+		self.name = "SSHFS Drive"
+		self.type = "external_drive"
+		self.__path = None
+		self.__ssh_hostname = None
+		self.__ssh_login = None
+		self.__ssh_password = None
+		self.__ssh_port = None
+		self.__ssh_remote_path = None
+		self.crypt = crypt
+
+	def authentificate(self, login, password, hostname, port="", remote_path=""):
+			try:
+				remote_path_key = "-P %s"%remote_path if remote_path != ""
+				port_key = "-p %s"%port if port != ""
+				cmd = """sh /opt/boot/mount_sshfs.sh -C -l %s -p %s -h %s %s %s"""%(login, password, hostname, remote_path_key, port_key)
+				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+				out.wait()
+				rc = out.returncode
+				if rc == 0:
+					debug("SSHFS test connection to %s OK."%(hostname))
+					self.__ssh_hostname = hostname
+					self.__ssh_login = login
+					self.__ssh_password = password
+					self.__ssh_port = port
+					self.__ssh_remote_path = remote_path
+	
+					return True
+				else:
+					debug("SSHFS test connection to %s under %s %s FAILED!"%(hostname, login, password))
+					return False
+			except Exception as e :
+				debug("SSHFS connection failed: %s" % str(e))
+
+
+		
+	def erase_storage(self):
+		try:
+			debug("let us remove everything from %s"%self.__path)
+			self.mount()
+			cmd = """sh /opt/boot/erase_storage.sh -p %s"""%(self.__path)
+			out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+			out.wait()
+			rc = out.returncode
+			if rc == 0:
+				debug("Erasing of %s successfully completed."%(self.__path))
+				return True
+			else:
+				debug("Erasing of %s totally failed!"%(self.__path))
+				return False
+		except Exception,e :
+			debug("Erasing failed: %s", e)
+
+			
+	def mount(self):
+		debug("MOUNT SSHFS")
+		# 
+		remote_path_key = "-P %s"%remote_path if self.__ssh_remote_path else remote_path_key = ""
+		port_key = "-p %s"%port if self.__ssh_port else port_key = ""
+		cmd = """sh /opt/boot/mount_sshfs.sh -M  -l %s -p %s -h %s %s %s"""%(self.__ssh_login, self.__ssh_password, self.__ssh_hostname, remote_path_key, port_key)
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+
+		if rc == 0:
+			debug("SSHFS MOUNT OK")
+			self.__path = str(out.stdout.read()).strip('\n')
+			return self.__path
+		elif rc == 1:
+			debug("SSHFS MOUNT FAILED")
+			return False
+
+	def umount(self):
+		debug("SSHFS UMOUNT")
+		cmd = """sh /opt/boot/mount_sshfs.sh -U -m %s"""%self.__path
+		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
+		out.wait()
+		rc = out.returncode
+		if rc == 0:
+			debug("SSHFS UMOUNT -OK-")
+			return True
+		else:
+			debug("SSHFS UMOUNT =FAILED=")
+			return str(out.stderr.read())
+		
+	dev = property(lambda self: self.__dev)
+
+
 
 
 backup_storage_manager = VDOM_backup_storage_manager()
