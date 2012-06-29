@@ -17,7 +17,7 @@ from storage.storage import VDOM_config
 from version import *
 import soap.SOAPBuilder
 from soap.wsdl import methods as soap_methods
-from utils.exception import VDOM_exception
+from utils.exception import VDOM_exception, VDOM_exception_missing_app
 
 # A class to describe how header messages are handled
 class HeaderHandler:
@@ -150,19 +150,22 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				app_id = vh.get_site(host.lower())
 				realm = ""    
 				if app_id:
-					appl = managers.xml_manager.get_application(app_id)
-					dav_map = getattr(appl,"dav_map",None)
-					if not dav_map:
-						appl.dav_map = set()
-						dav_map = appl.dav_map
-						for obj in appl.get_objects_list():
-							if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
-								dav_map.add("/" + obj.name)
-       
-					for realm in dav_map:    
-						if self.path.startswith(realm):
-							mname = 'do_WebDAV'
-     
+					try:
+						appl = managers.xml_manager.get_application(app_id)
+					except VDOM_exception_missing_app as e:
+						debug(e)
+					else:
+						dav_map = getattr(appl,"dav_map",None)
+						if not dav_map:
+							appl.dav_map = set()
+							dav_map = appl.dav_map
+							for obj in appl.get_objects_list():
+								if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
+									dav_map.add("/" + obj.name)
+						for realm in dav_map:    
+							if self.path.startswith(realm):
+								mname = 'do_WebDAV'
+
 			if not hasattr(self, mname):
 				self.send_error(501, "Unsupported method (%r)" % self.command)
 				return
