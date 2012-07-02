@@ -16,7 +16,8 @@ class VDOM_backup_manager(object):
 		if not path:
 			debug("Storage driver is not mounted")
 			return
-		result = backup.backup(app_id, path, rotation)
+		no_encryption = 1 if sd.type == "local_folder" else 0
+		result = backup.backup(app_id, path, rotation, no_encryption)
 		sd.umount()
 		return result
 
@@ -112,4 +113,5 @@ class VDOM_backup_manager(object):
 
 	def restore(self, driver_id, app_id, revision_number):
 		driver = backup_storage_manager.get_driver(driver_id)
-		return VDOM_restore().restore(driver, app_id, revision_number)
+		no_encryption = 1 if driver.type == "local_folder" else 0
+		return VDOM_restore().restore(driver, app_id, revision_number, no_encryption)

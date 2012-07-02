@@ -95,6 +95,8 @@ class VDOM_app_info_extracter(VDOM_extracter):
     <Icon>%(icon)s</Icon>
     <RevisionNumber>REV</RevisionNumber>
     <Size>SIZE</Size>
+    <Duptime>DUPTIME</Duptime>
+    <Isfull>ISFULL</Isfull>
     <BackupTime>%(backup_time)s</BackupTime>
 </Information>""" % {"id": appl.id,
                      "name": appl.name,
