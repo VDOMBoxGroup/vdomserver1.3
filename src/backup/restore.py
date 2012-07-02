@@ -6,7 +6,7 @@ import shlex, shutil, os
 
 class VDOM_restore(object):
     
-    def restore(self, driver, app_id, revision_number):
+    def restore(self, driver, app_id, revision_number, no_encryption=0):
         extracters = VDOM_extracter.get_extracters(app_id)
 	dirs= {}
 	driver_path = driver.mount()
@@ -41,8 +41,9 @@ class VDOM_restore(object):
 		crypto_arg="--passphrase %s" % result	
 	    debug("Crypto argument :: %s" % crypto_arg)
 	    debug("Restore after DIRS and DIRNAME or smth")
-	    cmd = """sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg)
-	    debug("""sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg))
+	    no_encryption_arg = "-N" if no_encryption == 1 else ""
+	    cmd = """sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg, no_encryption_arg)
+	    debug("""sh /opt/boot/do_restore.sh --mountpoint %s --guid %s --revision %s -n %s -p %s %s %s"""%(driver_path, app_id, revision_number, dirname, dirs[dirname], crypto_arg, no_encryption_arg))
 	    out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 	    out.wait()
 	    rc = out.returncode
