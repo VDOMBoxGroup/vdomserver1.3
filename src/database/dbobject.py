@@ -412,13 +412,16 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 					name = cell.getAttribute("name")
 					if not name:
 						continue
-					if not cell.firstChild or cell.firstChild.nodeValue == "NULL":
+					if not cell.firstChild:
+						value = "''"
+					elif cell.firstChild.nodeValue == "NULL":
 						value = "NULL"
 					else:
-						value = cell.firstChild.nodeValue
+						value = "\'%s\'"%cell.firstChild.nodeValue
+						
 					if assignment != "":
 						assignment +=", "
-					assignment += "`%s` = \'%s\'"%(name, value)
+					assignment += "`%s` = %s"%(name, value)
 				if assignment:
 					query = VDOM_sql_query(self.owner_id,self.database_id, "UPDATE `%s` SET %s WHERE id = \'%s\'"%(self.name,assignment,cid))
 					query.commit()
