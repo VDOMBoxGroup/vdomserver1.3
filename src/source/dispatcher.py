@@ -69,6 +69,8 @@ class VDOM_dispatcher:
 			request.arguments().arguments({"xml_param":[xml_param],"xml_data":[xml_data]})
 			app = managers.xml_manager.get_application(app_id)
 			obj = app.search_object(object_id)
+			if not obj:
+				raise Exception("Container id:%s not found"%object_id)
 			managers.engine.execute(app, obj, None, func_name, True)
 			ret = request.session().value("response")
 			request.session().remove("response")
