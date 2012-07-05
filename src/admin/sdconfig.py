@@ -567,7 +567,7 @@ function ChangeBackup(obj){
 
   </div>
   <div class="clear"> </div>
- </div>""" % {"icon": drv_icon, "driver": driver.name if driver else default_drv_name, "free": humanize_bytes(int(free)), "size": humanize_bytes(int(size)), "dev": driver.id if driver else "", "crypt": crypt_box})
+ </div>""" % {"icon": drv_icon, "driver": driver.name if driver else default_drv_name, "free": humanize_bytes(int("100")), "size": humanize_bytes(int(size)), "dev": driver.id if driver else "", "crypt": crypt_box})
 	request.write("""
  <div class="block">
 	<h2>Backup following applications :</h2>
