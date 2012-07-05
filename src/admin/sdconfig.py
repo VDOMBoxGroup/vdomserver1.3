@@ -207,11 +207,19 @@ def run(request):
 		if "devid" in args:
 			try:
 				if hasattr(driver, "authentificate"):
-					try:
-						if not driver.authentificate(args["username"][0], args["passwd"][0], args["server_adr"][0], args["location"][0]):
+					if driver.type == "smb_drive":
+						try:
+							if not driver.authentificate(args["username"][0], args["passwd"][0], args["server_adr"][0], args["location"][0]):
+								raise Exception("Incorrect login or password")
+						except:
 							raise Exception("Incorrect login or password")
-					except:
-						raise Exception("Incorrect login or password")
+					elif driver.type == "sshfs_drive":
+						if "port" in args and "remote_path" in args:
+							try:
+								if not driver.authentificate(args["username"][0], args["passwd"][0], args["server_adr"][0], args["port"][0], args["remote_path"][0]):
+									raise Exception("Incorrect login or password")
+							except:
+								raise Exception("Incorrect login or password")
 				if "backup_app[]" in args:
 					for appid in args["backup_app[]"]:
 						managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
