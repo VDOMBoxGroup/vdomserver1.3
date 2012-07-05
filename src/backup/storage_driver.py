@@ -628,7 +628,7 @@ class VDOM_sshfs_drive(VDOM_storage_driver):
 	def authentificate(self, login, password, hostname, port="", remote_path=""):
 			try:
 				remote_path_key = "-P %s"%remote_path if remote_path != "" else ""
-				port_key = "-p %s"%port if port != "" else ""
+				port_key = "--port %s"%port if port != "" else ""
 				cmd = """sh /opt/boot/mount_sshfs.sh -C -l %s -p %s -h %s %s %s"""%(login, password, hostname, remote_path_key, port_key)
 				out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 				out.wait()
@@ -672,7 +672,7 @@ class VDOM_sshfs_drive(VDOM_storage_driver):
 		debug("MOUNT SSHFS")
 		# 
 		remote_path_key = "-P %s"%remote_path if self.__ssh_remote_path else ""
-		port_key = "-p %s"%port if self.__ssh_port else ""
+		port_key = "--port %s"%port if self.__ssh_port else ""
 		cmd = """sh /opt/boot/mount_sshfs.sh -M  -l %s -p %s -h %s %s %s"""%(self.__ssh_login, self.__ssh_password, self.__ssh_hostname, remote_path_key, port_key)
 		out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
 		out.wait()
