@@ -69,19 +69,20 @@ def set_system_name(name):
 	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "system_name"), system_options["system_name"])
 
 def set_server_state(state):
-	system_options["server_state"] = state
-	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "server_state"), system_options["server_state"])
+	#system_options["server_state"] = state
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "server_status"), state)
 
-def set_card_state(state):
-	system_options["card_state"] = state
-	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "card_state"), system_options["card_state"])
+def set_card_state(state=""):
+	if state:
+		system_options["card_state"] = state
+	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "cardprocess_status"), system_options["card_state"])
 
-def set_loaded_application(app_list):
+def set_loaded_applications(app_list):
 	from cStringIO import StringIO
 	buff = StringIO()
-	system_options["applications"] = app_list
-	for app in app_list:
-		buff.write("%s (%s)\n" % (app.name, app.id))
+	#system_options["applications"] = app_list
+	for app_id, app_obj in app_list.items():
+		buff.write("%s (%s)\n" % (app_obj.name, app_id))
 	managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "loaded_applications"), buff.getvalue())
 	buff.close()
 

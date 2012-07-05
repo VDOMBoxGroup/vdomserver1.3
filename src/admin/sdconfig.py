@@ -4,7 +4,7 @@ from datetime import time
 from random import randint
 from utils.system import get_external_drives
 from utils.exception import VDOM_exception
-from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver, VDOM_smb_storage_driver
+from backup.storage_driver import VDOM_sd_external_drive, VDOM_cloud_storage_driver, VDOM_smb_storage_driver, VDOM_sshfs_drive
 
 def run(request):
 	sess = request.session()
@@ -41,7 +41,7 @@ def run(request):
 	d_backup_time = t.strftime("%H:%M")
 	h_backup_time = '1'
 	crypt_box = ""
-	server = user = passwd = location = ""
+	server = user = passwd = location = port = remote_path = ""
 	if "erase" in args and args["erase"][0] != "":
 		driver = managers.backup_manager.get_storage(args["erase"][0])
 		driver.erase_storage()
@@ -63,6 +63,8 @@ def run(request):
 			drv_icon = "images/cloud.png"
 		elif args["type"][0] == "smb_drive":
 			default_drv_name = "Windows Share"
+		elif args["type"][0] == "sshfs_drive":
+			default_drv_name = "SSHFS Drive"
 	if "save" in args:
 		ok = True
 		if not driver:
@@ -74,8 +76,10 @@ def run(request):
 					elif args["type"][0] == "cloud_drive":
 						driver = VDOM_cloud_storage_driver(crypt)
 					elif args["type"][0] == "smb_drive":
-
 						driver = VDOM_smb_storage_driver()
+					elif args["type"][0] == "sshfs_drive":
+						driver = VDOM_sshfs_drive(crypt)
+					
 
 				except Exception as e:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
@@ -88,9 +92,16 @@ def run(request):
 				server = args["server_adr"][0]
 				user = args["username"][0]
 				passwd = args["passwd"][0]
-				location = args["location"][0]
-				if not driver.authentificate(user, passwd, server, location):
-					raise Exception("Incorrect login or password for host %s" % server)
+				if driver.type == "smb_drive":
+					location = args["location"][0]
+					if not driver.authentificate(user, passwd, server, location):
+						raise Exception("Incorrect login or password for host %s" % server)
+				elif driver.type == "sshfs_drive":
+					if "port" in args and "remote_path" in args:
+						port = args["port"][0]
+						remote_path = args["remote_path"][0]
+						if not driver.authentificate(user, passwd, server, port, remote_path):
+							raise Exception("Incorrect login or password for host %s" % server)
 			except Exception as e:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 				ok = False
@@ -172,6 +183,12 @@ def run(request):
 			user = driver.login or ""
 			passwd = driver.password or ""
 			location = driver.location or ""
+		elif driver.type == "sshfs_drive":
+			server = driver.host or ""
+			user = driver.login or ""
+			passwd = driver.password or ""
+			port = driver.port or ""
+			remote_path = driver.remote_path or ""
 
 		#crypt_box = " disabled checked" if hasattr(driver, 'crypt') and driver.crypt else " disabled"
 		try:
@@ -502,9 +519,17 @@ function ChangeBackup(obj){
    <div id="location"><label for="location">Location: </label><input type="text" name="location" value="%(location)s"></div>
    <div id="username"><label for="username">Username: </label><input type="text" name="username" value="%(usrname)s"></div>
    <div id="passwd"><label for="passwd">Password: </label><input type="password" name="passwd" value="%(passwd)s"></div>""" % {"serv_adr": server, "location": location, "usrname": user, "passwd": passwd})
+	if "type" in args and args["type"][0] == "sshfs_drive":
+		request.write("""
+   <div id="server_adr"><label for="server_adr">Server: </label><input type="text" name="server_adr" value="%(serv_adr)s"></div>
+   <div id="port"><label for="port">Port: </label><input type="text" name="port" value="%(port)s"></div>
+   <div id="remote_path"><label for="remote_path">Remote: </label><input type="text" name="remote_path" value="%(remote_path)s"></div>
+   <div id="username"><label for="username">Username: </label><input type="text" name="username" value="%(usrname)s"></div>
+   <div id="passwd"><label for="passwd">Password: </label><input type="password" name="passwd" value="%(passwd)s"></div>""" % {"serv_adr": server, "port": port, "remote_path": remote_path, "usrname": user, "passwd": passwd})
 	request.write("""
    <div class="clear"> </div>
   </div>""")
+	
 	request.write("""
   <div class="week"%(display)s>
 	<div class="week-day"><label for="mon">M</label><input id="mon" name="week-day[]" value="1" type="checkbox"%(mon)s/></div>

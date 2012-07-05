@@ -30,6 +30,6 @@ def system_options_reinit():
 	__builtin__.system_options = {"server_license_type": "0",	# online server, 1=development
 	                              "firmware" : "N/A",
 	                              "card_state" : "2",	# 0 - red, 1 - green, 2 - red blinkin, 3 - green blinking
-	                              "object_amount" : "0"}
+	                              "object_amount" : "15000"}
 	
 	

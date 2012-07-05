@@ -5,6 +5,7 @@ from metaimporter import VDOM_metaimporter
 from utils.threads import VDOM_daemon
 from daemon import VDOM_xml_synchronizer
 from utils.card_connect import send_to_card, get_system_attribute
+from utils.system import set_loaded_applications, set_server_state
 from names import APPLICATION_SECTION, ON_UNINSTALL
 from database.dbobject import VDOM_sql_query
 
@@ -51,10 +52,13 @@ class VDOM_xml_manager(object):
 			fname = types[counter]
 			if counter > types_count/4.0 and counter <= (types_count/4.0 +1):
 				send_to_card("booting 30")
+				set_server_state("30")
 			elif counter > types_count/4.0*2 and counter <= (types_count/4.0*2 +1):
 				send_to_card("booting 40")
+				set_server_state("40")
 			elif counter > types_count/4.0*3 and counter <= (types_count/4.0*3 +1):
 				send_to_card("booting 50")
+				set_server_state("50")
 			try:
 				(result, type_object) = self.load_type(fname)
 				if result:
@@ -66,6 +70,7 @@ class VDOM_xml_manager(object):
 				traceback.print_exc(file=debugfile)
 		wait_for_options()
 		send_to_card("booting 60")
+		set_server_state("60")
 		# list files in app directory and load applications from files
 		apps = VDOM_application_enumerator().get()
 		apps_count = len(apps)
@@ -73,10 +78,13 @@ class VDOM_xml_manager(object):
 			fname = apps[counter]
 			if counter > apps_count/4.0 and counter <= (apps_count/4.0 +1):
 				send_to_card("booting 70")
+				set_server_state("70")
 			elif counter > apps_count/4.0*2 and counter <= (apps_count/4.0*2 +1):
 				send_to_card("booting 80")
+				set_server_state("80")
 			elif counter > apps_count/4.0*3 and counter <= (apps_count/4.0*3 +1):
 				send_to_card("booting 90")
+				set_server_state("90")
 			try:
 				(result, app_object) = self.load_application(fname, boot = True)
 				sys.stderr.write(_("Loaded application \'") + str(app_object.id) + "\'\n")
@@ -99,6 +107,8 @@ class VDOM_xml_manager(object):
 		self.__daemon=VDOM_xml_synchronizer(self)
 		self.__daemon.start()
 		send_to_card("booting 100")
+		set_loaded_applications(self.__applications)
+		set_server_state("100")
 
 
 	def work(self):
