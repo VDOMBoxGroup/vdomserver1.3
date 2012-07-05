@@ -122,7 +122,6 @@ __builtin__.decrease_objects_count = decrease_objects_count
 from utils.card_connect import system_options_reinit
 system_options_reinit()
 
-
 # verify that server is not running
 
 addr_try = VDOM_CONFIG["SERVER-ADDRESS"] or "localhost"

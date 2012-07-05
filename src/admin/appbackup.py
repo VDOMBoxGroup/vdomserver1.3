@@ -204,9 +204,10 @@ function LoadImgWait(message){
     <option value="external_drive">External device</option>""")
 	if add_cloud:
 		request.write("""
-    <option value="cloud_drive">Cloud storage</option>""")
+    <option value="cloud_drive">Cloud Storage</option>""")
 	request.write("""
-    <option value="smb_drive">Windows share</option>
+    <option value="smb_drive">Windows Share</option>
+    <option value="sshfs_drive">SSH File Storage</option>
    </select>
    <input type="submit" name="abs" value="Add storage"/>
   </div>
