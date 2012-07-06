@@ -31,7 +31,7 @@ def set_ip_and_mask(ip, mask):
 	f = open("/etc/opt/ip", "w")
 	f.write(ip)
 	f.close()
-	f = open("/etc/opt/mask", "w")
+	f = open("/etc/opt/netmask", "w")
 	f.write(mask)
 	f.close()
 	reinit_network()
