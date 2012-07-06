@@ -2,6 +2,7 @@
 import managers
 from storage.storage import VDOM_config
 from utils.exception import VDOM_exception
+from utils.system_linux import open_debug_port, close_debug_port
 
 def run(request):
 	sess = request.session()
@@ -117,7 +118,10 @@ function MM_swapImage() { //v3.0
         </tr>
       </table>
      </td>""")
-
+	if "0" == opt and modify:
+		open_debug_port()
+	elif "0" != opt and modify:
+		close_debug_port()
 	en_tag = cf.get_opt("DEBUG-ENABLE-TAGS")
 	s = ""
 	if "1" == en_tag:

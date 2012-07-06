@@ -177,6 +177,20 @@ def get_vfs_users():
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return r
 
+def open_debug_port():
+	try:
+		subprocess.check_call(["/bin/sh","/opt/boot/vdom_debug_port_on_off.sh", "--on"])
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: Open port failed. %s"%str(e),"system_linux")
+		
+def close_debug_port():
+	try:
+		subprocess.check_call(["/bin/sh","/opt/boot/vdom_debug_port_on_off.sh", "--off"])
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: Close port failed. %s"%str(e),"system_linux")
+
 def move(src, dst):
 	try:
 		subprocess.check_call(["mv", src, dst])
