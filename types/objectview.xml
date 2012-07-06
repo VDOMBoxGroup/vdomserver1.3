@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.16.6720</Version>
+    <Version>1.17.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1094,6 +1094,9 @@ $j(function(){
 </script>"""
 
 	JS_DYNAMIC = u"""
+	$j("#%(id)s").data('cssc',"%(cssc)s");
+	$j("#%(id)s").data('woid',"%(woid)s");
+
 	$j("#%(id)s>div.%(cssc)s-item").addClass('not-loaded');
 
 	$j("#%(id)s").bind('scrollstop', function() {
@@ -1546,8 +1549,9 @@ $j(function(){
 function vdom_ov_inDiv(w0, s){
 	var w = $j(w0), result = [], els = $j(s, w);
 	var o = w.position(), wTop = w.scrollTop();
-	var wHeight = w.height() + o.top;
-	var wBottom = wHeight + wTop + o.top;
+	var otop = (o == null) ? 0 : o.top;
+	var wHeight = w.height() + otop;
+	var wBottom = wHeight + wTop + otop;
 	els.each(function(){
 		var el = $j(this);
 		if (el.hasClass('not-loaded')) {
@@ -1662,6 +1666,14 @@ $j('>div[dataid]',this.domCont).hide(0);
 for (x in items) {
 	$j('>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
 }
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="refresh">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var o=this.domCont;
+$j('>div[dataid]',o).remove();
+execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
 ]]></SourceCode>
         </Action>
       </Container>
