@@ -59,13 +59,15 @@ class VDOM_request:
 							args[key+"_filename"] = [filename]
 				else:
 					self.postdata = handler.rfile.read(int(self.__headers.header("Content-length")))
-			except: pass
+			except Exception as e: 
+				debug("Error while reading socket: %s"%e)
+				
 		try:
 			args1 = cgi.parse_qs(self.__environment.environment()["QUERY_STRING"], True)
 			for key in args1.keys():
 				args[key] = args1[key]
-		except:
-			pass
+		except Exception as e:
+			debug("Error while Query String reading: %s"%e)
 
 		self.fault_type_http_code = 500
 		if "user-agent" in self.__headers.headers():
