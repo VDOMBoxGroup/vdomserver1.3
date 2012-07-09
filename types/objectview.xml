@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.17.6720</Version>
+    <Version>1.18.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -158,6 +158,18 @@
       <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>sortable</Name>
+      <DisplayName>#Lang(120)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(320)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>tmpobj</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
@@ -239,18 +251,6 @@
       <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>sortable</Name>
-      <DisplayName>#Lang(120)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(320)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -965,17 +965,6 @@ class VDOM_objectview(VDOM_object):
 	tmp_list = []
 
 	JS_DRAG = u"""
-(function($) {
-	$.fn.liveDraggable = function (opts) {
-		this.live("mouseover", function() {
-			if (!$(this).data("initdrag")) {
-				$(this).data("initdrag", true).draggable(opts);
-			}
-		});
-		return $();
-	};
-}(jQuery));
-
 $j("#%(id)s>.%(class)s-item").liveDraggable({
 	connectToDynatree: true,
 	appendTo: 'body',
@@ -990,10 +979,11 @@ $j("#%(id)s>.%(class)s-item").liveDraggable({
 	},
 	connectToSortable: '#%(id)s',
 	revert: "invalid",
-	helper: 'clone'
-	/*helper: function(e) {
+	revertDuration: 200,
+	/*helper: 'clone'*/
+	helper: function(e) {
 		return $j("<div style='width:50px;height:20px;background:#555'></div>");
-	}*/
+	}
 });
 /*
 $('#%(id)s').droppable({
@@ -1010,17 +1000,6 @@ $('#%(id)s').droppable({
 """
 
 	JS_SORTABLE = u"""
-(function($) {
-	$.fn.liveSortable = function (opts) {
-		this.live("mouseover", function() {
-			if (!$(this).data("initsort")) {
-				$(this).data("initsort", true).sortable(opts);
-			}
-		});
-		return $();
-	};
-}(jQuery));
-
 $j('#%(id)s').liveSortable({
 	receive: function (event, ui){
 		ui.item.remove();
@@ -1056,77 +1035,63 @@ $j('#%(id)s').liveSortable({
 #%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
 </style>
 <script type="text/javascript">
-%(id)s_doo = false;
 %(js_loading)s
+
 $j(function(){
-	//$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
-	//$j("#%(id)s>.%(class)s-item").live('click', function(e){
-	$j("#%(id)s>.%(class)s-item").bind('click dblclick', function(e){
+
+	$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
 		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
 		var t = $j(this);
 		if (e.type == 'dblclick') {
-			%(id)s_doo = false;
+			t.data('doo', false);
 			%(js_loading_call)s
 			execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
+			return false;
 		} else {
 			setTimeout(function() {
-				if (%(id)s_doo == true) {
+				if (t.data('doo') == true) {
 					%(js_loading_call)s
 					execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
+					return false;
 				}
 			}, 220);
-			%(id)s_doo = true;
+			t.data('doo', true);
 		}
 		return false;
 	});
-	$j("#%(id)s>.%(class)s-item").hover(function(e){
+
+	$j("#%(id)s>.%(class)s-item").live('mouseover', function(e){
 		execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
 		return false;
-	},function(e){
+	}).live('mouseout', function(e){
 		execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
 		return false;
 	});
 
-	%(dynamic)s
 	%(sortable)s
 	%(js_drag)s
+	%(dynamic)s
+
 });
 </script>"""
 
 	JS_DYNAMIC = u"""
-	$j("#%(id)s").data('cssc',"%(cssc)s");
-	$j("#%(id)s").data('woid',"%(woid)s");
 
-	$j("#%(id)s>div.%(cssc)s-item").addClass('not-loaded');
 
-	$j("#%(id)s").bind('scrollstop', function() {
+"""
+
+	# //$j("#%(id)s>div.%(cssc)s-item").addClass('not-loaded');
+	JS_DYNAMIC_E2 = u"""<script type="text/javascript">
+
+	$j("#%(id)s").bind('scrollstop resize', function() {
 		vdom_ov_markShow("%(woid)s","%(cssc)s");
 	});
 
-	$j("#sel1").click(function(){
-		$j("#%(id)s>div.%(cssc)s-item").each(function(){
-			var t = $j(this);
-			if (t.hasClass('%(cssc)s-item-1') || t.hasClass('%(cssc)s-item-2') || t.hasClass('%(cssc)s-item-3')) {
-				t.show();
-			} else {
-				t.hide();
-			}
-		});
-		vdom_ov_markShow("%(woid)s","%(cssc)s");
-		return false;
-	});
-
-	$j("#sel2").click(function(){
-		return false;
-	});
-
-	$j("#%(id)s").bind('resize',function(){
+	$j(function(){
 		vdom_ov_markShow("%(woid)s","%(cssc)s");
 	});
 
-	//$j(function(){
-	vdom_ov_markShow("%(woid)s","%(cssc)s");
-	//});
+</script>
 """
 
 	def create_dupes_recurse(self, application, res, object, children):
@@ -1261,12 +1226,13 @@ $j(function(){
 				obj.set_attribute_ex("height", source_object_attr['height'].value, False)
 				obj.set_attribute_ex("data", item_data, False)
 				obj.set_attribute_ex("dataid", item_data_id, False)
-				obj.set_attribute_ex("classauto", "%(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s" % {
+				obj.set_attribute_ex("classauto", "%(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s %(notloaded)s" % {
 					 "class":      classname
 					,"nn":         str(nn)
 					,"classfirst": classfirst
 					,"classlast":  classlast
 					,"classodd":   classodd
+					,"notloaded":  "not-loaded" if onlydiv else ""
 				}, False)
 				obj.set_attribute_ex("classname", "%(userdef)s" % {
 					 "name":       obj.name
@@ -1421,8 +1387,10 @@ $j(function(){
 
 			if self.dynamicloading == "1":
 				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid, "cssc": classname_item }
+				js_dynamic_e2 = self.JS_DYNAMIC_E2 % { "id": id, "woid": woid, "cssc": classname_item }
 			else:
 				js_dynamic = ""
+				js_dynamic_e2 = ""
 
 			js = self.JS % {
 				"js_drag":          js_drag
@@ -1436,12 +1404,13 @@ $j(function(){
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-06-18'" % (self.name, self.type.version)
+				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-07-09'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
 			result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
-				id = id, js = js, debug_info = debug_info,
+				js = js_dynamic_e2 if request.render_type == "e2vdom" else js,
+				id = id, debug_info = debug_info,
 				style = style.strip(), style_items = style_items.strip(), 
 				classname = classname.strip(), contents = inner_render
 			)
@@ -1546,18 +1515,46 @@ $j(function(){
 <script type="text/javascript" src="/e0cc0355-d598-33f6-92e9-731bed2c78eb.res"></script>
 <script type='text/javascript'>
 
+(function($) {
+	$.fn.liveDraggable = function (o) {
+		this.live("mouseover", function() {
+			if (!$(this).data("initdrag")) {
+				$(this).data("initdrag", true).draggable(o);
+			}
+		});
+		return $();
+	};
+}(jQuery));
+
+(function($) {
+	$.fn.liveSortable = function (o) {
+		this.live("mouseover", function() {
+			if (!$(this).data("initsort")) {
+				$(this).data("initsort", true).sortable(o);
+			}
+		});
+		return $();
+	};
+}(jQuery));
+
 function vdom_ov_inDiv(w0, s){
-	var w = $j(w0), result = [], els = $j(s, w);
+//console.info('vdom_ov_inDiv ===');
+	var w = $j(w0), result = [], els = $j(s, w), pa, opa;
 	var o = w.position(), wTop = w.scrollTop();
 	var otop = (o == null) ? 0 : o.top;
-	var wHeight = w.height() + otop;
+	if (w.parent()) {
+		p = w.parent();
+		opa = p.position();
+		otop += (opa == null) ? 0 : opa.top;
+	}
+	var wHeight = w.outerHeight(true) + otop;
 	var wBottom = wHeight + wTop + otop;
 	els.each(function(){
 		var el = $j(this);
 		if (el.hasClass('not-loaded')) {
 			var offset = el.offset();
 			var elTop = offset.top;
-			var elBottom = offset.top + el.height();
+			var elBottom = offset.top + el.outerHeight(true);
 			//if( (elTop >= wTop && elTop <= wBottom) || (elBottom <= wBottom && elBottom >= wTop) ) {
 			if( (elTop >= 0 && elTop <= wHeight) || (elBottom <= wHeight && elBottom >= 0) ) {
 				el.removeClass('not-loaded');
@@ -1570,9 +1567,11 @@ function vdom_ov_inDiv(w0, s){
 }
 
 function vdom_ov_markShow(eee, qq) {
+//console.info('vdom_ov_markShow ===');
 	var q = qq || "ov";
 	q = ">div."+q+'-item';
 	var a = [], z = vdom_ov_inDiv('#o_'+eee, q);
+//console.info('z.size() > 0 ',z.size() > 0);
 	if (z.size() > 0) {
 		z.each(function(){
 			a.push($j(this).attr('dataid'));
@@ -1581,7 +1580,8 @@ function vdom_ov_markShow(eee, qq) {
 	}
 }
 
-</script>]]></Library>
+</script>
+]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
