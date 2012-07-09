@@ -35,7 +35,7 @@ class dictionary(subtype):
 	def erase(self, *arguments):
 		if arguments:
 			if len(arguments)>1: raise errors.wrong_number_of_arguments
-			try: del self._items[argument[0].as_simple]
+			try: del self._items[arguments[0].as_simple]
 			except KeyError: raise errors.invalid_procedure_call
 		else:
 			self._items.clear()
