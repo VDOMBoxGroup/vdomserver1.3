@@ -41,6 +41,13 @@ def run(request):
 		except Exception, e:
 			error += "Error: " + str(e) + "<br>\n"
 
+	if "hostname" in args:
+		try:
+			set_hostname(args["hostname"][0])
+			_send = True
+		except Exception, e:
+			error += "Error: " + str(e) + "<br>\n"
+			
 	if "gateway" in args and "" != args["gateway"][0]:
 		try:
 			_old = get_default_gateway()
@@ -67,6 +74,10 @@ def run(request):
 		the_gate = ""
 
 	(the_pdns, the_sdns) = get_dns()
+	
+	the_hostname = get_hostname()
+	if not the_hostname:
+		the_hostname = ""
 
 	smtpaddr = ""
 	smtpport = ""
@@ -168,6 +179,12 @@ a:visited {
           <td><input type="text" name="sdns" value="%s"/>
           </td>
         </tr>
+	<tr>
+          <td class="Style2"><div align="right">Hostname : 
+          </div></td>
+          <td><input type="text" name="hostname" value="%s"/>
+          </td>
+        </tr>
         <tr>
           <td>&nbsp;</td>
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
@@ -199,7 +216,7 @@ a:visited {
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
         </tr>
     </table>
-</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, smtpaddr, smtpport, smtplogin))
+</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, the_hostname, smtpaddr, smtpport, smtplogin))
 
 	request.write("""<form method="post" action="">
       <table border="0"><tr>
