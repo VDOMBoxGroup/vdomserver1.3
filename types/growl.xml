@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.1.6720</Version>
+    <Version>1.2.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -458,18 +458,15 @@ class VDOM_growl(VDOM_object):
 				z = unicode(self.userclass)
 		vstyle = ',"class_name":"%s"' % z
 		res = """<script type="text/javascript">
-jQuery(document).ready(function($){
+jQuery(function($){
 	if (typeof $.growl === 'undefined') {
 		$.growl=function(t,m){
 			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''%(class)s});
 		}
 	}
-	$('span.growls').each(function(){
-		var t=$.trim($('>span',this).html()), m=$.trim($('>div',this).html());
-		if (t!=''&&m!='') $.growl(t,m);
-	});
 });
 </script>""" % { "class": vstyle }
+		res = u""
 		if self.active == '1':
 			if self.title.strip() != '' and self.text.strip() != '':
 				res += "<span class='growls' style='display:none'><span>%s</span><div>%s</div></span>"%(self.title, self.text)
@@ -491,8 +488,23 @@ jQuery(document).ready(function($){
 	]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[
-			<link rel="stylesheet" type="text/css" href="/f3c84c23-dc6a-e27f-750b-29368302c6ac.res" />
-			<script language="javascript" type="text/javascript" src="/58db188c-f7c3-e026-6eaf-d38812ea1af7.res"></script>
+
+<link rel="stylesheet" type="text/css" href="/f3c84c23-dc6a-e27f-750b-29368302c6ac.res" />
+<script type="text/javascript" src="/58db188c-f7c3-e026-6eaf-d38812ea1af7.res"></script>
+<script type="text/javascript">
+jQuery(function($){
+	if (typeof $.growl === 'undefined') {
+		$.growl=function(t,m){
+			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''});
+		}
+	}
+	$('span.growls').each(function(){
+		var t=$.trim($('>span',this).html()), m=$.trim($('>div',this).html());
+		if (t!='' && m!='' && $.growl) $.growl(t,m);
+	});
+});
+</script>
+
 		]]></Library>
   </Libraries>
   <E2vdom>
