@@ -4,6 +4,7 @@ import managers
 from subprocess import CalledProcessError
 rexp_ifconfig = re.compile(r"inet addr:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*Mask:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL)
 rexp_gateway = re.compile(r"^0\.0\.0\.0\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})", re.IGNORECASE | re.DOTALL | re.MULTILINE)
+rexp_hostname = re.compile(r"^[\w.-]+$")
 
 def reinit_network():
 	try:
@@ -97,6 +98,28 @@ def set_dns(pdns, sdns):
 	except Exception, e:
 		debug("Error: " + str(e))
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+		
+def set_hostname(hostname):
+	try:
+		res = rexp_hostname.match(hostname)
+		if res:
+			f = open("/etc/hostname", "wt")
+			f.write(hostname)
+			f.close()
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+		
+def get_hostname():
+	data = ""
+	try:
+		f = open("/etc/hostname", "rt")
+		data = f.read()
+		f.close()
+	except Exception, e:
+		debug("Error: " + str(e))
+		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
+	return data
 
 def get_date_and_time():
 	try:
