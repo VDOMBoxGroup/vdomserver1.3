@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.19.6720</Version>
+    <Version>1.20.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1076,6 +1076,9 @@ $j(function(){
 </script>"""
 
 	JS_DYNAMIC = u"""
+	$j("#%(id)s").bind('scrollstop resize', function() {
+		vdom_ov_markShow("%(woid)s","%(cssc)s");
+	});
 	vdom_ov_markShow("%(woid)s","%(cssc)s");
 """
 
@@ -1403,7 +1406,7 @@ $j(function(){
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-07-10'" % (self.name, self.type.version)
+				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-07-11'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
