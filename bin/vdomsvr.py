@@ -10,15 +10,11 @@ sys.path.append("../src")
 from utils import codecs
 from utils.card_connect import send_to_card
 import utils.obsolete
-import logging
 #Seting 10% to progressbar
+from utils.system import set_card_state
+
 send_to_card("booting 10")
-log_dir = VDOM_CONFIG["LOG-DIRECTORY"]
-logging.basicConfig(level=logging.NOTSET,
-                            format='%(asctime)s %(name)-12s %(message)s',
-                            datefmt='%d %b %Y %H:%M:%S',
-                            filename=log_dir + "/server",
-                            filemode='w')
+
 import managers
 
 from server import VDOM_server
@@ -71,6 +67,10 @@ try:
 	managers.register("server_manager", VDOM_server_manager)	
 	managers.register("backup_manager", VDOM_backup_manager)
 
+	if sys.platform.startswith("linux") and VDOM_CONFIG_1["DEBUG"] == "1":
+		from utils.system_linux import open_debug_port
+		open_debug_port()
+	set_card_state()
 	if sys.argv and "--unittest" in sys.argv:
 		from unittest import TestLoader, TextTestRunner
 		loader=TestLoader()
@@ -78,6 +78,7 @@ try:
 		TextTestRunner(verbosity=2).run(suite)
 	else:
 		managers.server.start()
+	#managers.file_manager.write_file(os.path.join(VDOM_CONFIG["SERVER-INFORMATION-DIRECTORY"], "virtcard_name"), system_options)
 except:
 	from traceback import print_exc
 	sys.stderr.write("\n")
