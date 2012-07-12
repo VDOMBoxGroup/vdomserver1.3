@@ -39,7 +39,7 @@ def get_week_count(firstdayofweek, firstweekofyear, year, month, day):
 
 def is_leap_year(year):
 	return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
- 
+
 def max_dayin_month(year, month):
 	if month in (4, 6, 9, 11):
 		return 30
@@ -283,10 +283,10 @@ def v_datediff(interval, value1, value2, firstdayofweek=None, firstweekofyear=No
 	elif interval==u"d":
 		return integer(int(value2)-int(value1))
 	elif interval==u"w":
-		days=math.fabs(int(value2)-int(value1))
+		days=fabs(int(value2)-int(value1))
 		return integer((days//7)*sign)
 	elif interval==u"ww":
-		days=math.fabs(int(value2)-int(value1))
+		days=fabs(int(value2)-int(value1))
 		wd=weekday(year1, month1, day1)+2 if sign==1 else weekday(year2, month2, day2)+2
 		wd=1 if wd==8 else wd
 		days+=wd-firstdayofweek
@@ -294,14 +294,14 @@ def v_datediff(interval, value1, value2, firstdayofweek=None, firstweekofyear=No
 	elif interval==u"h":
 		s2=1 if value2>=0 else -1
 		s1=1 if value1>=0 else -1
-		d2=math.fabs(value2*86400)//3600*s2
-		d1=math.fabs(value1*86400)//3600*s1
+		d2=fabs(value2*86400)//3600*s2
+		d1=fabs(value1*86400)//3600*s1
 		return integer(d2-d1)
 	elif interval==u"n":
 		s2=1 if value2>=0 else -1
 		s1=1 if value1>=0 else -1
-		d2=math.fabs(value2*86400)//60*s2
-		d1=math.fabs(value1*86400)//60*s1
+		d2=fabs(value2*86400)//60*s2
+		d1=fabs(value1*86400)//60*s1
 		return integer(d2-d1)
 	elif interval==u"s":
 		return integer(int((value2-value1)*86400))
