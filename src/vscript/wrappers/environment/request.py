@@ -136,41 +136,41 @@ class v_parameterscollection(generic):
 
 class v_request(generic):
 
-	def v_cookies(self, **keywords):
+	def v_cookies(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("cookies")
 		else:
-			return v_cookiescollection()
+			return v_cookiescollection() if name is None else v_cookiescollection()(name)
 
-	def v_arguments(self, **keywords):
+	def v_arguments(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("arguments")
 		else:
-			return v_argumentscollection()
+			return v_argumentscollection() if name is None else v_argumentscollection()(name)
 
-	def v_form(self, **keywords):
+	def v_form(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("form")
 		else:
-			return v_argumentscollection()
+			return v_argumentscollection() if name is None else v_argumentscollection()(name)
 
-	def v_querystring(self, **keywords):
+	def v_querystring(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("querystring")
 		else:
-			return v_argumentscollection()
+			return v_argumentscollection() if name is None else v_argumentscollection()(name)
 
-	def v_servervariables(self, **keywords):
+	def v_servervariables(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("servervariables")
 		else:
-			return v_servervariablescollection()
+			return v_servervariablescollection() if name is None else v_servervariablescollection()(name)
 
-	def v_parameters(self, **keywords):
+	def v_parameters(self, index=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("parameters")
 		else:
-			return v_parameterscollection()
+			return v_parameterscollection() if index is None else v_parameterscollection()(index)
 
 
 v_request=v_request()
