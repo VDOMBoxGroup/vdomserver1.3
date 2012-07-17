@@ -8,11 +8,11 @@ from .request import v_cookiescollection
 
 class v_response(generic):
 
-	def v_cookies(self, **keywords):
+	def v_cookies(self, name=None, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("cookies")
 		else:
-			return v_cookiescollection()
+			return v_cookiescollection() if name is None else v_cookiescollection()(name)
 	
 	def v_isclientconnected(self, **keywords):
 		if "let" in keywords or "set" in keywords:
