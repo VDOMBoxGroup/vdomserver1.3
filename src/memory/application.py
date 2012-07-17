@@ -115,7 +115,7 @@ class VDOM_application(VDOM_parser):
 			__import__(self.id)
 			try:
 				managers.engine.special(self, on_start, namespace={})
-			except:
+			except Exception as e:
 				debug("Error while executing application onstart action: %s"%str(e))
 				traceback.print_exc(file=debugfile)
 			#threading.currentThread().application=None
@@ -430,7 +430,7 @@ class VDOM_application(VDOM_parser):
 					managers.file_manager.write_lib(self.id, name, x)
 					self.libs[name] = y
 				except:
-					pass # WTF!?!
+					debug("Library %s compilation error"%name)
 				finally:
 					threading.currentThread().application=None
 			else:
