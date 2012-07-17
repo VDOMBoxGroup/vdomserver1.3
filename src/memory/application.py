@@ -1,6 +1,6 @@
 """XML application module"""
 
-import re, sys, os, SOAPpy, thread, threading
+import re, sys, os, SOAPpy, thread, threading, traceback
 from threading import Condition
 from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH,ON_UNINSTALL
 from parser import VDOM_parser
