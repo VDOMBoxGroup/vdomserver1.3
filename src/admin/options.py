@@ -19,6 +19,7 @@ def run(request):
 		param["date"] = None
 		param["time"] = None
 		param["firmware"] = system_options["firmware"]
+		param["system_name"] = system_options.get("system_name") or "N/A"
 		param["objlim"] = system_options["object_amount"]
 		param["obj"] = managers.xml_manager.obj_count
 		param["_o"] = int(100.0 * managers.xml_manager.obj_count / int(system_options["object_amount"])) if int(system_options["object_amount"]) != 0 else 100
@@ -134,7 +135,7 @@ body {
                     <td width="207" background="images/cadre-general-1.jpg" height="22" style="border-width:0; border-color:black; border-style:solid;"></td>
                 </tr>
                 <tr>
-                    <td width="207" background="images/cadre-bas.jpg" height="60" valign="top">
+                    <td width="207" style="background: url(/images/cadre-bas.png) 0 0 no-repeat;" height="78" valign="top">
                         <table border="0" width="204">
                             <tr>
                                 <td width="75" class="Texte" align="right">Ver :</td>
@@ -147,6 +148,10 @@ body {
                             <tr>
                                 <td width="75" class="Texte" align="right" height="14">Firmware :</td>
                                 <td class="Texte" height="14">%(firmware)s</td>
+                            </tr>
+		            <tr>
+                                <td width="75" class="Texte" align="right" height="14">System :</td>
+                                <td class="Texte" height="14">%(system_name)s</td>
                             </tr>
                         </table>
                     </td>
@@ -196,7 +201,7 @@ body {
                     <td width="207" background="images/cadre-datetime.jpg" height="22" style="border-width:0; border-color:black; border-style:solid;"></td>
                 </tr>
                 <tr>
-                    <td width="207" background="images/cadre-time.jpg" height="57" valign="top">
+                    <td width="207" background="images/cadre-time.png" height="46" valign="top">
                         <table border="0" width="204">
                             <tr>
                                 <td width="75" class="Texte" align="right" height="19">Date :</td>
