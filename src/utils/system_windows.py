@@ -54,6 +54,10 @@ def set_default_gateway(gate):
 		f.close()
 	except Exception, e:
 		debug("Error: " + str(e))
+def get_hostname():
+	data = ""
+
+	return data
 
 def get_dns():
 	pdns = sdns = ""

@@ -31,13 +31,19 @@ def run(request):
 			managers.server.stop_secure_server()
 			msg = "SSL Server is turned off."# Please reboot to apply changes."
 	elif "btn_upload_certs" in args:
-		if "key" in args:
+		msg = ""
+		if "key" in request.files:
 			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "server.pem",request.files["key"][0])
-		if "cert" in args:
+			msg += "You installed private key file.<br/>"
+		if "cert" in request.files:
 			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "server.cert",request.files["cert"][0])
-		if "ca" in args:
+			msg += "You installed public certificate file.<br/>"
+		if "ca" in request.files:
 			managers.file_manager.write(managers.file_manager.CERTIFICATES,None, None, "ca.cert",request.files["ca"][0])
-			
+			msg += "You installed public certification authority file(CA, chain certificate).<br/>"
+		
+		msg += "Make sure that you installed all files of certificate before turning SSL on."
+		
 	ssl_on = True if cf.get_opt("ENABLE-SSL") == "1" else False
 	if "del_keys" in args: 
 		ssl_on = False

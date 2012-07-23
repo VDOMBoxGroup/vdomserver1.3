@@ -57,7 +57,7 @@ class date(subtype):
 		else:
 			raise errors.type_mismatch
 		if self._value<-657434 or self._value>=2958466:
-			print "->", self._value
+			#print "->", self._value
 			self.__class__=double
 
 
