@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.29.6720</Version>
+    <Version>1.38.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -182,56 +182,8 @@
   </Languages>
   <Resources>
     <Resource ID="a3e2da76-c09a-7619-c6f1-4dd41c35de7d" Name="Icon" Type="png"><![CDATA[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]]></Resource>
-    <Resource ID="c23a45c0-9809-6576-1c14-4dd41c3551d6" Name="Icon" Type="png"><![CDATA[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]]></Resource>
-    <Resource ID="fc45e770-5f89-c96a-ad88-4dd41c35073f" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADiUlEQVR42jWSa2hcRRTH/2dm7r37
-			zD6SdZvYhKZdBRtaRUEobbT9KCqIxBZjQNGKYE0rDSIFUVso9kt9VSzS4AubitqQQlGwH0pBamuN
-			SonVKjahJsFNu9lkH/fevXtnxtmIB4bDnDNz5szv/ElrTadW94gLjQY7dHOhoQ+M4vWjr8BmGNqm
-			rSMVKXGJ1PDdIvLZg7Mz0IV7Qdd+cG4nW12VjZBg7M/eAgbm5zAjg/QDdvShqWYweBNq07OxtrbN
-			sRiihMp53//+jOeO5R379BKXS9+Uqhgu3AIayqbjMU0b7hD24G1CPGJpdJ+oVTDu1fFSMoM8F/jC
-			reK85yEtOEaS6b+JsQlX40Q3tyZbHUybtWajbWNfWxZxwcMzbg0Tvsv2xNMmr3GgWtaPR+NqWzSO
-			K2Eg+oSNPHFMCjlFeYv7xaa09+dy4SZmc5dAlzwX79creNEU8JTCEXdZ74q3oSwVjtUrOk0sPNaR
-			t7SgKTq9uvvyFdfrExJsXTyiIRW5TEMrrFigNbjxghF6mcDTpaJ2tVYf51axOaXeovXcPrg9mRz5
-			0qs6Kc7Vy+ksa2hg0Q+wv1KGNp94LZFBT8zBdBCgFITqzkSUvq3V6bu6+zC126LfBCf6Ik52FZja
-			ncqytGB4Z7mM8VptpYsdySTuj8bw/EIR2xMJ9ZPfYNM6dB2wbtLP9Sc+OPnHz14oC1nO5XvVZb43
-			kwE3LR9dWlop8ILZ/173cVU1cdytyn4rwoZT6euPisQaOllYi3PF0rk6sPnrRl2VpBRcAiPtWbrP
-			jkKAMGaAGoD6yXgSM2EzXBdxWA3qQkpjC/2HCh+1CfbUesvxzSHn01qFbiilD7fnyNTCwcWSnqeQ
-			mIR+IpZsGM1ENljOh6HGM7TVibIoqHNWhm8fynYMNIi0kbEshqFwONfKTKGNiM7W3fBs6PHLfoN2
-			ZTNfQek9XdwqktdZoE+ormuGvAO9O6fpDaEppgjNDDGhTNzIOswSWb/6vvvqcnlflxDv/tUMoM18
-			6Xq+Fz9WfVo2z3R6XKVs6x5th6MXXfeuizJQVSOerQbalkTsFxXwnTKQk7MRyQYX51oC0SsMPs/c
-			ilBodIRMjDVr4ZwMkimLHx6vVHe28gOp5Gg5kCM9wq7uEAnh2QgfW5iFYYD/IeJ4rgspxdBj2Xzj
-			P9da7MwE8GbLh8Delv+tcy2fbgRykSsM3ZhfufcvTYCh0NGkENoAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="c23a45c0-9809-6576-1c14-4dd41c3551d6" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAHGUlEQVR42nVVe4xU1Rn/nXPunbkzd2Z2Z2dn9gW7LqusRssGqPjA1vCyGmkaC9VYJIQW0jY0mJqmtiSFWgy2DWDUYiUaWbNIqGLbNNpCkRIktn/UgouWFbu4RZbHjju787537r3nnH4zwRTT9iQ3995zvnyP3/f7fofhyvr5tR0ohTQOny2wBzPNof4aV/dkL/gaA2AYxtHO7l1cqlVaK4wDL6/KRjeATgavdfCN0XFTAzwTMrysF2hctdjSZAzbyi0Y6dX8SLfH3n1zSm7oa0NfSWFp9mL3DTBXlsJ65X12Ys5yIxyxBMOohJMU+lSXGzrgdooDd/7jo4/rznotA2NuIOhTnzR61OEeD+ybHS1iz8Up9VL/TL0zU0TbaW3dFo0sWVAzV7/hlO7e75SbclIiwTjW2024JR5BSHJcQzkfcmrY55YL71bdg+R0iPI9Qr7dRuYa7NmZnZz9oDuNFggUlRy4EeH7Z0isGIfqTyoGm2sMlavB79wSWx6N8zVWtFH2Yd/DwUpJnajV6nAYIcZwL52tsRNnRqFeuyTUK90hY1gQhCzK2VZP61s5Y4tuD0XEupiNVmHKScb0e1WHv1gusEklkRICG+0k1QFsL0/pvFLoEAaWWBF9e8xW8zmFEUpc9IAEV/K8xrHLUfU6q+PVKImeNtPw10QSYp5lMZP++0yOw47HXqwVsDhs4/4QwUOGB2ouDjhFPBBKYHUsoodrAXZXixAG018zY3KuYRjnFdj5qJRUHD6mCB1xg4stbRncLA0IYsoYGCsHAZ4qTOODwEOYDB+NpZCnap6p5BtZdXCBtdEmvOaUcEb6jUTriW1vzsiFURMjjn6dPdadGTkx7Vx/tFTBL9MZfQ0X7D2ukKAe3EDhTwYSh7xqA44VVEFArgcrFRTJ5t6Qjc8bAh8ojT21Iv5cKEMRIo+nM7JfmGLUkpvZ7nTXywtM8dXTtZo1XPP0QjvCpoloaZ+hbGhUKPO5WsChzE5QJZyaMMDDsIkmw1SNoIA92sC+Wgm/yuex0I7qTfFm3USWJ3y9nF3PrAfvsq2n74nHWjfmsqoCxb+TTGIJC+F9ytKkSlI0O/urJbzqVBrQrIjYeCiaQJ4SqbN+juYYLJbRSdXMiduq6gf87Uql+lY5uK7e2xg9w71hc1bc5PJUuSbusKN4JNGCSeL/XMHxZtXFjwq5qwcUW5tSWB6N4KDysC9fRB838TNKbNAty8FykV/2ggtkNpOZFKIzbB475/pfXByzg1nMJKr5bEeqBe8TBGU6/8jzsDU3+ZkAP2xNYZ4RwaPTExir+bjZpv74Wp/0XFmfjXlx6+2qUnewvW1dMENs8Fi+vGbSl/6zmZT5+FQeZwIfX2lO4EZCeYJa94JbxJFCpeF8SVMMayNxzCRo1k9mMSsaxohXw6jrod8M+eviTeaMaHiQGLWW7U12oKzVTxbFQpv/UHL9MRWYMBh7enqKMDWwKZ5EtxVGmByfo0wldWE2/eeJOX+vVpAkqi6LRrEqexldkZBebyf82Zybo77aQrO4lVrZWF9fatlDA7aln8jl2HURkxWlYhOebBzelYhhIzXV0Az1HU4S8mOaj3eqDobaOiADhYrU+hY7rE9JRVOkWN7WqyTT+9kVSG+l56/tIREYnPG8J/mT6Tb9x2KZ/cYpNwx2tXeA+g1Ns6HI4YaJy7Bp485EFMfzVf18uo3lAl8lDEO1c2H8y9ULAsX+Vg/ADKApAI7T901PpDPBeNXnX45avMUUeq/r4GChxLa3pBAnJaqrvcckflEoghqpn5ycQkQwNtey1OmqpwZb24x2zk+dregv2CYrNQL0ClM7WsVdpXdua2pZd2csgr/4MgiYNvoJY6mU/lBoFiWIFA1YXY8HtNDniW0/LeYxPx4J9k7ljV7LxHfTqRemLfWI46rSMhlmDYhIHvB8qhM1wvaiDlaHOH/K1kjGOPychmE15B1ak8aTFJDgMe3TXl5L3Q8jeMdzze9PT07T0cNhzoZCnOG23ji+V4o1RBQzKMAbyS78vtljcZdrQ2L2TM2eM5le9ImG9Ml9UkG0MqEJSlyknRrnsu4oQyJ91vGOnnC9b7tMf/hrp8jmNEd0X8bCyikbnzYZumc+NvNxLMuG+ZnmQE1wzftc8VhcqE221Hx9bjJYnIoZn5DCvjVdDV5JZwzf4CoXsG2XInrLDCruAZXgsQsjqqL/cy2zq6dzR28HBiYNPPc5h909FtIph6Fk40ta6d0PZy/35KVq8DZF0r4j036OKviWXWGHsmGFne0FdjzbpXsu/RP/N0B9vZqagZFUgPOGwp/8kmidgKzfF2PV2q58oO6r2zQb/Le9dngDsfbSdAcTi3hc9gQk7zkDK3Pjn/H3XwE+XUMkIauTE6DbhliM4Mr2nivvtVfehrgpFLyUTeOh7IX/6eff/H45vMx/rwwAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="fc45e770-5f89-c96a-ad88-4dd41c35073f" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADiUlEQVR42jWSa2hcRRTH/2dm7r37zD6SdZvYhKZdBRtaRUEobbT9KCqIxBZjQNGKYE0rDSIFUVso9kt9VSzS4AubitqQQlGwH0pBamuNSonVKjahJsFNu9lkH/fevXtnxtmIB4bDnDNz5szv/ElrTadW94gLjQY7dHOhoQ+M4vWjr8BmGNqmrSMVKXGJ1PDdIvLZg7Mz0IV7Qdd+cG4nW12VjZBg7M/eAgbm5zAjg/QDdvShqWYweBNq07OxtrbNsRiihMp53//+jOeO5R379BKXS9+Uqhgu3AIayqbjMU0b7hD24G1CPGJpdJ+oVTDu1fFSMoM8F/jCreK85yEtOEaS6b+JsQlX40Q3tyZbHUybtWajbWNfWxZxwcMzbg0Tvsv2xNMmr3GgWtaPR+NqWzSOK2Eg+oSNPHFMCjlFeYv7xaa09+dy4SZmc5dAlzwX79creNEU8JTCEXdZ74q3oSwVjtUrOk0sPNaRt7SgKTq9uvvyFdfrExJsXTyiIRW5TEMrrFigNbjxghF6mcDTpaJ2tVYf51axOaXeovXcPrg9mRz50qs6Kc7Vy+ksa2hg0Q+wv1KGNp94LZFBT8zBdBCgFITqzkSUvq3V6bu6+zC126LfBCf6Ik52FZjancqytGB4Z7mM8VptpYsdySTuj8bw/EIR2xMJ9ZPfYNM6dB2wbtLP9Sc+OPnHz14oC1nO5XvVZb43kwE3LR9dWlop8ILZ/173cVU1cdytyn4rwoZT6euPisQaOllYi3PF0rk6sPnrRl2VpBRcAiPtWbrPjkKAMGaAGoD6yXgSM2EzXBdxWA3qQkpjC/2HCh+1CfbUesvxzSHn01qFbiilD7fnyNTCwcWSnqeQmIR+IpZsGM1ENljOh6HGM7TVibIoqHNWhm8fynYMNIi0kbEshqFwONfKTKGNiM7W3fBs6PHLfoN2ZTNfQek9XdwqktdZoE+ormuGvAO9O6fpDaEppgjNDDGhTNzIOswSWb/6vvvqcnlflxDv/tUMoM186Xq+Fz9WfVo2z3R6XKVs6x5th6MXXfeuizJQVSOerQbalkTsFxXwnTKQk7MRyQYX51oC0SsMPs/cilBodIRMjDVr4ZwMkimLHx6vVHe28gOp5Gg5kCM9wq7uEAnh2QgfW5iFYYD/IeJ4rgspxdBj2XzjP9da7MwE8GbLh8Delv+tcy2fbgRykSsM3ZhfufcvTYCh0NGkENoAAAAASUVORK5CYII=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -254,6 +206,14 @@ class VDOM_xmldialog(VDOM_object):
 					res[p.getAttribute("name")] = p.childNodes[0].nodeValue.strip()
 		return res
 
+	def get_options(self, e):
+		res = {}
+		if e.getElementsByTagName("option"):
+			for p in e.getElementsByTagName("option"):
+				if p.childNodes:
+					res[p.getAttribute("id")] = p.childNodes[0].nodeValue.strip()
+		return res
+
 	def the_prop(self, arr, x):
 		return arr[x] if x in arr else ''
 
@@ -272,7 +232,7 @@ class VDOM_xmldialog(VDOM_object):
 		data = u""
 		data_out = u""
 
-		xd = (self.xmldata).replace('<!--[CDATA[', '<![CDATA[')
+		xd = (self.xmldata).encode('utf8').replace('<!--[CDATA[', '<![CDATA[')
 		xd = xd.replace(']]-->', ']'+']>')
 
 		try:
@@ -289,7 +249,7 @@ class VDOM_xmldialog(VDOM_object):
 					if e.localName == 'Heading':
 						res = self.get_prop(e)
 						data += u"<h3>%s</h3>" % self.the_prop(res, 'text');
-					
+
 					elif e.localName == 'TextBox':
 						res = self.get_prop(e)
 						htm = u"<input type='text' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
@@ -297,19 +257,52 @@ class VDOM_xmldialog(VDOM_object):
 
 					elif e.localName == 'DropDown':
 						res = self.get_prop(e)
-						htm = u"<select name=\"%s\"></select>" % ( attr_id );
+						#htm = u"<select name=\"%s\"></select>" % ( attr_id );
+						#data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
+						htm = u""
+						sa = self.the_prop(res, 'selected').split(',')
+						sa = [ s.strip() for s in sa ]
+						for ik, iv in self.get_options(e).items():
+							sel = 'selected="selected"' if ik in sa else ''
+							htm += u"<option value=\"%s\" />%s</option>" % ( ik.replace('"', '&quot;'), iv );
+						lmult = int("0%s" % self.the_prop(res, 'multiple'))
+						lsize = int("0%s" % self.the_prop(res, 'size'))
+						lines = "" if lsize <= 1 else u"size='%s'" % lsize
+						multi = ""
+						if len(sa) > 1 or lmult == 1:
+							multi = "multiple='multiple'"
+							if lines == "":
+								lines = "size='2'"
+						htm = u"<select name=\"%s\" %s %s>%s</select>" % ( attr_id, lines, multi, htm );
 						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
-					
+
 					elif e.localName == 'RadioButton':
 						res = self.get_prop(e)
-						htm = u"<input type='radio' name=\"%s\" />" % ( attr_id );
+						#p = e.getAttribute("selected").strip().lower()
+						#sel = 'checked="checked"' if p == 'true' or p == '1' else ''
+						#htm = u"<input autocomplete='off' type='radio' name=\"%s\" />" % ( attr_id );
+						htm = u"";
+						sa = self.the_prop(res, 'selected').strip()
+						for ik, iv in self.get_options(e).items():
+							sel = 'checked="checked"' if ik == sa else ''
+							htm += u"<label><input autocomplete='off' type='radio' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
 						data += self.the_item('radio', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'CheckBox':
 						res = self.get_prop(e)
-						htm = u"<input type='checkbox' name=\"%s\" />" % ( attr_id );
+						#p = e.getAttribute("selected").strip().lower()
+						#sel = 'checked="checked"' if p == 'true' or p == '1' else ''
+						#htm = u"<input type='checkbox' name=\"%s\" %s />" % ( attr_id, sel );
+						#data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
+						htm = u"";
+						sa = self.the_prop(res, 'selected').split(',')
+						sa = [ s.strip() for s in sa ]
+						for ik, iv in self.get_options(e).items():
+							sel = 'checked="checked"' if ik in sa else ''
+							htm += u"<label><input autocomplete='off' type='checkbox' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
 						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
-					
+						print data
+
 					elif e.localName == 'Upload':
 						res = self.get_prop(e)
 						htm = u"<input type='file' name=\"%s\" />" % ( attr_id );
@@ -320,11 +313,32 @@ class VDOM_xmldialog(VDOM_object):
 						htm = u"<textarea name=\"%s\">%s</textarea>" % ( attr_id, self.the_prop(res, 'defaultValue') );
 						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
 
-			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
+					elif e.localName == 'Hypertext':
+						res = self.get_prop(e)
+						htm = u"%s" % self.the_prop(res, 'value');
+						data += self.the_item('hypertext', self.the_prop(res, 'label'), htm, e)
+
+					elif e.localName == 'Button':
+						res = self.get_prop(e)
+						label = self.the_prop(res, 'label');
+						required = e.getAttribute("required")
+						visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
+						align = self.the_prop(res, 'buttonAlign').strip().replace("'",'&acute;')
+						img = self.the_prop(res, 'buttonImage').strip().replace("'",'&acute;')
+						btn = u"<input type='submit' value='%s' />" % label if img == '' else u"<input type='image' alt='%s' title='%s' src='%s' />" % (label, label, img)
+						data += u"<div class='row' %s><div class='submit' style='text-align:%s'>%s</div></div>" % (visible, align, btn)
+
+			#data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
+			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s</form>" % data;
 
 		except Exception as e:
-			debug("Error: XML data is not valid")
+			debug("[XMLDialog] Error: XML data is not valid")
 			debug(e)
+
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='xmldialog' objname='%s' ver='%s @ 2012-07-23'" % (self.name, self.type.version)
+		else:
+			debug_info = u""
 
 		result = """
 <style>
@@ -349,6 +363,7 @@ width: auto;
 .xml-dialog-form div.row div.item select,
 .xml-dialog-form div.row div.item textarea {
 width: 99%%;
+resize: none;
 }
 .xml-dialog-form div.row div.item br {
 width: 100%%;
@@ -357,12 +372,16 @@ clear: both;
 overflow: hidden;
 height: 1px;
 }
-.xml-dialog-form div.item div.submit {
+.xml-dialog-form div.submit {
 text-align: center;
 margin-top: 10px;
 }
+	.xml-dialog-form div.submit img {
+	border: none;
+	cursor: pointer;
+	}
 </style>
-<div style='display:none'><div id='%(id)s'>%(data)s</div></div>
+<div style='display:none' %(debug_info)s><div id='%(id)s'>%(data)s</div></div>
 <script type='text/javascript'>$q(function(){
 	$q("#%(id)s").data('ev','1');
 	$q("#%(id)s:ui-dialog").dialog("destroy");
@@ -374,7 +393,7 @@ margin-top: 10px;
 		draggable: !%(modal)s,
 		resizable: false,
 		autoOpen: %(show)s,
-		open: function(e,u) { 
+		open: function(e,u) {
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "show", {});
 		},
 		close: function(e,u) {
@@ -390,11 +409,26 @@ margin-top: 10px;
 	});
 });</script>""" % {
 			"data": data_out, "id": id, "idn": idn, "width": self.width, "height": self.height,
-			"title": self.title, "show": show, "modal": modal }
+			"title": self.title, "show": show, "modal": modal, "debug_info": debug_info }
 
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
+
+		xd = (self.xmldata).encode('utf8').replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>').strip()
+		xmldata = u''
+		if xd <> "":
+			try:
+				dom = parseString(xd)
+				props = dom.getElementsByTagName('Properties')[0]
+				comps = dom.getElementsByTagName('Components')[0]
+				for e in comps.childNodes:
+					if e.nodeType == e.ELEMENT_NODE:
+						xmldata += u"%s [%s]<br />" % (e.localName, e.getAttribute("id").replace('"', '&quot;'))
+			except Exception as e:
+				xmldata = u"<p style='color:red'>Error: XML data is not valid</p>"
+				debug("[XMLDialog] Error: XML data is not valid")
+				debug(e)
 
 		result= "<container id=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
 					"<svg>"\
@@ -402,8 +436,9 @@ margin-top: 10px;
 							"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"40\" fill=\"#e9e9e9\"/>"\
 						"</rect>"\
 					"</svg>"\
-					"<text top=\"10\" width=\"%s\" fontsize=\"14\" color=\"black\" textalign=\"center\">%s</text>"\
+					"<text top=\"12\" width=\"%s\" fontsize=\"14\" color=\"black\" textalign=\"center\">%s</text>"\
 					"<text textalign='right' fontweight='bold' top='%s' left='%s' color='#aaaaaa'>XML Dialog</text>"\
+					"<htmltext top=\"50\" left=\"10\" width=\"%s\" height=\"%s\"><div style=\"font-size:12px\">%s</div></htmltext>"\
 				"%s</container>"%(
 					self.id, self.hierarchy, self.order, self.top, self.left, int(self.width) + 3, int(self.height) + 3,
 					0, 0, self.width, self.height,
@@ -411,6 +446,9 @@ margin-top: 10px;
 					self.width, self.title,
 					int(self.height) - 24,
 					int(self.width) - 140,
+					int(self.width) - 20,
+					int(self.height) - 60,
+					xmldata,
 					contents)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
@@ -428,23 +466,22 @@ def set_attr(app_id, object_id, param):
     <Library Target="HTML"><![CDATA[<script type='text/javascript'>
 String.prototype.fmt=function(){
 	var a = arguments;
-	return this.replace(/{(\d+)}/g, function(m, n) { 
+	return this.replace(/{(\d+)}/g, function(m, n) {
 		return typeof a[n] != 'undefined' ? a[n] : m;
 	});
 };
 function vdom_xd_load(id,xd){
-	//xd = $q.trim(xd).replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>');
 	xd = $q.trim(xd).split('<!--[CDATA[').join('<![CDATA[').split(']]-->').join(']'+']>');
 	var p = $q.parseXML(xd), x = $q(p), w = $q(id), data = [],
 		dodiv = function(cn,lbl,htm,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
 			//return "<div class='item "+cn+"' "+vis+">"+h+"</div><br style='clear:both' />";
-			return "<div class='row {1}' {0}><label class='title'>{2}</label><div class='item'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm)
+			return "<div class='row' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm)
 		}
 	w.html('');
 	x.find("VDOMFormContainer>Components>*").each(function(){
-		var t = $q(this), t0 = this, opts, s, sel;
+		var t = $q(this), t0 = this, opts, s, sa, sel;
 
 		if (t0.tagName == 'Heading') {
 			data.push("<h3>"+t.find('Property[name=text]').text()+"</h3>");
@@ -460,7 +497,7 @@ function vdom_xd_load(id,xd){
 				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'">'+s+'</option>');
 			});
 			//data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
-			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
+			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\">"+opts.join(' ')+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
 			opts = [], sel = t.attr('selected');
@@ -472,21 +509,38 @@ function vdom_xd_load(id,xd){
 			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
 		}
 		else if (t0.tagName == 'CheckBox') {
-			s = !!t.attr('selected') ? 'checked="checked"' : '';
-			//data.push(dodiv('checkbox',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='checkbox' name=\""+t.attr('id')+"\" />", t));
-			data.push(dodiv('checkbox', t.find('Property[name=label]').text(), "<input type='checkbox' name=\""+t.attr('id')+"\" />", t));
+			//s = !!t.attr('selected') ? 'checked="checked"' : '';
+			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
+			t.find("Property[name=options]>option").each(function(){
+				s = ($.inArray($(this).attr('id').trim(), sa) >= 0) ? "checked='checked'" : "";
+				opts.push("<label><input type='checkbox' name=\""+t.attr('id').replace('"','&quot;')+"["+$(this).attr('id')+"]\" "+s+" />&nbsp;"+$(this).text().trim()+"</label>");
+			});
+			data.push(dodiv('checkbox', t.find('Property[name=label]').text(), opts.join('<br />'), t));
 		}
 		else if (t0.tagName == 'Upload') {
 			//data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
-			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id')+"\" />", t));
+			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id').replace('"','&quot;')+"\" />", t));
 		}
 		else if (t0.tagName == 'TextArea') {
 			//data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
-			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id').replace('"','&quot;')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+		}
+		else if (t0.tagName == 'Hypertext') {
+			data.push(dodiv('hypertext', t.find('Property[name=label]').text(), t.find('Property[name=value]').text(), t));
+		}
+		else if (t0.tagName == 'Button') {
+			var vis = parseInt(t.attr('visible') || '0', 10);
+			var align = t.find('Property[name=buttonAlign]').text().replace("'",'&acute;');
+			var lbl = t.find('Property[name=label]').text().replace("'",'&acute;');
+			var img = $j.trim(t.find('Property[name=buttonImage]').text().replace("'",'&acute;'));
+			var btn = (img == '') ? "<input type='submit' value='"+lbl+"' />" : "<input type='image' alt='"+lbl+"' title='"+lbl+"' src='"+img+"' />";
+			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
+			data.push( "<div class='row' "+vis+"><div class='submit' style='text-align:"+align+"'>"+btn+"</div></div>" );
 		}
 	});
 	w.data('ev','');
-	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"<div class='submit'><input type='submit' /></div></form>").dialog('close').dialog('open');
+	//w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"<div class='submit'><input type='submit' /></div></form>").dialog('close').dialog('open');
+	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"</form>").dialog('close').dialog('open');
 	w.data('ev','1');
 }
 
