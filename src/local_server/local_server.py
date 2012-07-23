@@ -1,6 +1,6 @@
 """local server"""
 
-import socket, sys, time, select, json
+import socket, sys, time, select, json, traceback
 
 from utils.system import *
 from utils.card_connect import send_to_card,send_to_card_and_wait
