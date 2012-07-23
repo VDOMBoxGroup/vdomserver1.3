@@ -22,7 +22,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		self.__stop = False
 		self.restart = False
 
-		sys.stderr.write(_("WSDL file available at %s\n" % VDOM_CONFIG["WSDL-FILE-URL"]))
+		print(_("WSDL file available at %s" % VDOM_CONFIG["WSDL-FILE-URL"]))
 
 		# initialize random generator
 		random.seed()
@@ -160,6 +160,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 	def shutdown(self):
 		self.active=False
 		SocketServer.ThreadingTCPServer.shutdown(self)
+		self.server_close()
 
 	def verify_request(self, request, client_address):
 		"""verify the request by matching client address with the stored regexp"""

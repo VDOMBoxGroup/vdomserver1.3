@@ -50,7 +50,7 @@ def v_filter(strings, substring, include=None, compare=None):
 	compare=0 if compare is None else compare.as_integer
 	if compare<0 or compare>1: raise errors.invalid_procedure_call(name="filter")
 	values, substring=[], substring.lower() if compare else substring
-	print repr(strings), repr(include)
+	#print repr(strings), repr(include)
 	for items in strings.items:
 		items=items.as_string.lower() if compare else items.as_string
 		if include and items.find(substring)>=0 or \
