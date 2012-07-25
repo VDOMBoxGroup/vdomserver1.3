@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.4.6720</Version>
+    <Version>1.5.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1134,11 +1134,11 @@ $j(document).ready(function(){
 	dialog_win_%(id)s=new Boxy($j('#%(id)s'),{
 		width: %(width)s
 		,height: %(height)s
-		,title: '%(title)s'
+		,title: "%(title)s"
 		,closeText: ''
 		,show: %(show)s
 		,modal: %(modal)s
-		,userclass: '%(classname)s'
+		,userclass: "%(classname)s"
 		,afterHide: function(){ 
 			execEventBinded("%(idn)s", "hide", {});
 			$j('#ui-datepicker-div,#ColorDropdown_selector').fadeOut(); 
@@ -1155,7 +1155,7 @@ $j(document).ready(function(){
 });
 </script>""" % {
 			"id": id, "idn": idn, "width": self.width, "height": self.height, "drag": draggable,
-			"title": self.title, "show": show, "modal": modal, "classname": self.classname }
+			"title": (self.title).replace('"','&quot;'), "show": show, "modal": modal, "classname": (self.classname).replace('"','&quot;') }
 
 		return VDOM_object.render(self, parent, contents=result)
 
