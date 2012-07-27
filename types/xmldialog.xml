@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.39.6720</Version>
+    <Version>1.40.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -240,6 +240,7 @@ class VDOM_xmldialog(VDOM_object):
 			dom = parseString(xd)
 			props = dom.getElementsByTagName('Properties')[0]
 			comps = dom.getElementsByTagName('Components')[0]
+			nobtn = True
 			for e in comps.childNodes:
 				if e.nodeType == e.ELEMENT_NODE:
 					#print "tagName  : %s" % e.localName
@@ -301,7 +302,6 @@ class VDOM_xmldialog(VDOM_object):
 							sel = 'checked="checked"' if ik in sa else ''
 							htm += u"<label><input autocomplete='off' type='checkbox' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
 						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
-						print data
 
 					elif e.localName == 'Upload':
 						res = self.get_prop(e)
@@ -319,6 +319,7 @@ class VDOM_xmldialog(VDOM_object):
 						data += self.the_item('hypertext', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Button':
+						nobtn = False
 						res = self.get_prop(e)
 						label = self.the_prop(res, 'label');
 						required = e.getAttribute("required")
@@ -329,6 +330,8 @@ class VDOM_xmldialog(VDOM_object):
 						data += u"<div class='row' %s><div class='submit' style='text-align:%s'>%s</div></div>" % (visible, align, btn)
 
 			#data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
+			if nobtn:
+				data += u"<div class='submit'><input type='submit' /></div>"
 			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s</form>" % data;
 
 		except Exception as e:
@@ -336,7 +339,7 @@ class VDOM_xmldialog(VDOM_object):
 			debug(e)
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='xmldialog' objname='%s' ver='%s @ 2012-07-23'" % (self.name, self.type.version)
+			debug_info = u"objtype='xmldialog' objname='%s' ver='%s @ 2012-07-27'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
@@ -480,6 +483,7 @@ function vdom_xd_load(id,xd){
 			return "<div class='row' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm)
 		}
 	w.html('');
+	var nobtn = true;
 	x.find("VDOMFormContainer>Components>*").each(function(){
 		var t = $q(this), t0 = this, opts, s, sa, sel;
 
@@ -529,6 +533,7 @@ function vdom_xd_load(id,xd){
 			data.push(dodiv('hypertext', t.find('Property[name=label]').text(), t.find('Property[name=value]').text(), t));
 		}
 		else if (t0.tagName == 'Button') {
+			nobtn = false;
 			var vis = parseInt(t.attr('visible') || '0', 10);
 			var align = t.find('Property[name=buttonAlign]').text().replace("'",'&acute;');
 			var lbl = t.find('Property[name=label]').text().replace("'",'&acute;');
@@ -540,6 +545,9 @@ function vdom_xd_load(id,xd){
 	});
 	w.data('ev','');
 	//w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"<div class='submit'><input type='submit' /></div></form>").dialog('close').dialog('open');
+	if (nobtn) { /* if no btn, add default submit */
+		data.push( "<div class='submit'><input type='submit' /></div>" );
+	}
 	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"</form>").dialog('close').dialog('open');
 	w.data('ev','1');
 }
