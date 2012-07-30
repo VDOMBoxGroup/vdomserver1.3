@@ -1,12 +1,14 @@
 
 import sys, traceback, os.path, re
 from copy import copy, deepcopy
+from weakref import WeakKeyDictionary
 import managers
 from utils.mutex import VDOM_named_mutex_auto as auto_mutex
 from . import errors, lexemes, syntax
 from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
+from .subtypes import v_nothing
 from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session
 
 
@@ -17,15 +19,17 @@ vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
 vscript_default_environment={u"v_this": None,
 	u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
-	"v_vdomdbconnection": vscript_wrappers_name, "v_vdomdbrecordset": vscript_wrappers_name,
-	"v_vdomimaging": vscript_wrappers_name, "v_vdombox": vscript_wrappers_name,
-	"v_wholeconnection": vscript_wrappers_name, "v_wholeapplication": vscript_wrappers_name,
-	"v_wholeerror": vscript_wrappers_name, "v_wholeconnectionerror": vscript_wrappers_name,
-	"v_wholenoconnectionerror": vscript_wrappers_name,
-	"v_wholeremotecallerror": vscript_wrappers_name, "v_wholeincorrectresponse": vscript_wrappers_name,
-	"v_wholenoapierror": vscript_wrappers_name, "v_wholenoapplication": vscript_wrappers_name}
+	u"v_vdomdbconnection": vscript_wrappers_name, u"v_vdomdbrecordset": vscript_wrappers_name,
+	u"v_vdomimaging": vscript_wrappers_name, u"v_vdombox": vscript_wrappers_name,
+	u"v_wholeconnection": vscript_wrappers_name, u"v_wholeapplication": vscript_wrappers_name,
+	u"v_wholeerror": vscript_wrappers_name, u"v_wholeconnectionerror": vscript_wrappers_name,
+	u"v_wholenoconnectionerror": vscript_wrappers_name,
+	u"v_wholeremotecallerror": vscript_wrappers_name, u"v_wholeincorrectresponse": vscript_wrappers_name,
+	u"v_wholenoapierror": vscript_wrappers_name, u"v_wholenoapplication": vscript_wrappers_name}
 
-
+weakuses=WeakKeyDictionary()
+	
+	
 def check_exception(source, error, error_type=errors.generic.runtime, quiet=None):
 	exclass, exexception, extraceback=sys.exc_info()
 	history=traceback.extract_tb(extraceback)
@@ -55,14 +59,13 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 		debug(error, console=True)
 	del exclass, exexception, extraceback, history
 	#managers.log_manager.error_bug(error, "vscript")
-	
-	
-def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, anyway=0, quiet=None): # CHECK: def vcompile(script, bytecode=1, package=None, lines=None):
-	# debug("[VScript] Wait for mutex...")
-	mutex=auto_mutex("vscript_engine_compile_mutex")
-	# debug("[VScript] Done")
-	source=None
+
+
+def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, use=None, anyway=1, quiet=None, safe=None):
+	if not safe:
+		mutex=auto_mutex("vscript_engine_compile_mutex")
 	try:
+		source=None
 		if not quiet:
 			debug("- - - - - - - - - - - - - - - - - - - -")
 			for line, statement in enumerate(script.split("\n")):
@@ -86,6 +89,9 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 		code=u"\n".join([u"%s%s"%(u"\t"*ident, string) for line, ident, string in source])
 		if bytecode:
 			code=compile(code, filename or vscript_source_string, u"exec") # CHECK: code=compile(code, vscript_source_string, u"exec")
+		if use:
+			use_code, use_source=vcompile(use, package=package, environment=environment, safe=True)
+			weakuses[code]=use_code, use_source
 		return code, source
 	except errors.generic as error:
 		check_exception(None, error, error_type=errors.generic.compilation, quiet=quiet)
@@ -95,12 +101,14 @@ def vcompile(script, filename=None, bytecode=1, package=None, lines=None, enviro
 		check_exception(source, errors.system_error(unicode(error)), error_type=errors.generic.compilation, quiet=quiet)
 		raise
 	finally:
-		del mutex
+		if not safe:
+			del mutex
 
-def vexecute(code, source, object=None, namespace=None, environment=None, quiet=None):
+def vexecute(code, source, object=None, namespace=None, environment=None, use=None, quiet=None):
 	try:
 		try:
-			if namespace is None: namespace={}
+			if namespace is None:
+				namespace={}
 			if environment is None:
 				namespace[u"v_this"]=v_vdomobject(object) if object else v_nothing
 				namespace[u"v_server"]=v_server
@@ -109,6 +117,9 @@ def vexecute(code, source, object=None, namespace=None, environment=None, quiet=
 				namespace[u"v_session"]=v_session
 			else:
 				namespace.update(environment)
+			if use:
+				use_code, use_source=weakuses[code]
+				vexecute(use_code, use_source, namespace=namespace, environment=environment)
 			exec code in namespace
 		except exitloop:
 			exclass, exexception, extraceback=sys.exc_info()
