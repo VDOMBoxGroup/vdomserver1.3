@@ -30,7 +30,7 @@ class v_proxy(generic):
 			return self._value[key.as_string]
 
 
-class v_httppasswordmanager(generic):
+class v_passwordmanager(generic):
 
 	def __init__(self):
 		generic.__init__(self)

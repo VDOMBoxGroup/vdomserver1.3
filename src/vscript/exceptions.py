@@ -5,7 +5,7 @@ from .subtypes.error import error
 
 
 __all__=["v_genericerror", "v_servererror", "v_scripterror",
-	"v_subscriptoutofrange", "v_divizionbyzero", "v_overflow"]
+	"v_subscriptoutofrange", "v_divisionbyzero", "v_overflow"]
 
 
 v_genericerror=error(errors.python)
