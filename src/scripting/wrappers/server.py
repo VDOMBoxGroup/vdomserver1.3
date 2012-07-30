@@ -5,10 +5,10 @@ from vscript.engine import vcompile, vexecute
 
 class VDOM_vscript(object):
 
-	def execute(self, source, **keywords):
+	def execute(self, source, use=None, **keywords):
 		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
-		code, vsource=vcompile(source, environment=environment)
-		vexecute(code, vsource, environment=environment)
+		code, vsource=vcompile(source, environment=environment, use=use)
+		vexecute(code, vsource, environment=environment, use=use)
 
 class VDOM_server(object):
 
