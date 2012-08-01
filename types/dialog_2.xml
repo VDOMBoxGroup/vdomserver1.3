@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.5.6720</Version>
+    <Version>1.6.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -184,7 +184,33 @@
     <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>.boxy-wrapper { position: absolute; }.boxy-wrapper.fixed { position: fixed; }.boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }.boxy-wrapper .title-bar {position: relative;background-color: #e9e9e9;padding:1px;font-size:10px;text-align:center;}.boxy-wrapper .title-bar a.close{outline: none;position: absolute;background: url("/3938bd92-e009-2767-09e2-1da56035c24a.png") -95px -128px;height: 18px;width: 19px;top: 6px;right: 6px;}.boxy-wrapper .title-bar a.close:hover{border: 1px inset #999999;}.boxy-inner {background-color:#fff !important;border:3px solid #ccc;}</DefaultValue>
+      <DefaultValue>.boxy-wrapper { position: absolute; }
+.boxy-wrapper.fixed { position: fixed; }
+.boxy-modal-blackout { position: absolute; background-color: black; left: 0; top: 0; }
+
+.boxy-wrapper .title-bar {
+position: relative;
+background-color: #e9e9e9;
+padding:1px;
+font-size:10px;
+text-align:center;
+}
+.boxy-wrapper .title-bar a.close{
+outline: none;
+position: absolute;
+background: url("/3938bd92-e009-2767-09e2-1da56035c24a.png") -95px -128px;
+height: 18px;
+width: 19px;
+top: 6px;
+right: 6px;
+}
+.boxy-wrapper .title-bar a.close:hover{
+border: 1px inset #999999;
+}
+.boxy-inner {
+background-color:#fff !important;
+border:3px solid #ccc;
+}</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>3</InterfaceType>
@@ -1161,19 +1187,33 @@ $j(document).ready(function(){
 
 	def wysiwyg(self, parent, contents=""):
 
-		result= "<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<svg>"\
-						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" stroke=\"#cccccc\" stroke-width=\"3\" fill=\"#ffffff\">"\
-							"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"40\" fill=\"#e9e9e9\"/>"\
-						"</rect>"\
-					"</svg>"\
-					"<text top=\"10\" width=\"%s\" fontsize=\"14\" color=\"black\" textalign=\"center\">%s</text>"\
-				"%s</container>"%(
-					self.id, self.zindex, self.hierarchy, self.order, self.top, self.left, int(self.width) + 3, int(self.height) + 3,
-					0, 0, self.width, self.height,
-					0, 0, self.width,
-					self.width, self.title,
-					contents)
+		result= \
+			u"""<container id="{id}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" top="{top}" left="{left}" width="{container_width}" height="{container_height}">
+				<svg>
+					<rect x="0" y="0" width="{width}" height="{height}" stroke="#cccccc" stroke-width="3" fill="#ffffff">
+						<rect x="0" y="0" width="{width}" height="40" fill="#e9e9e9"/>
+						<line x1="{line_x1}"  y1="16" x2="{line_x2}"   y2="24" style="stroke:#222222"/>
+						<line x1="{line_x1}"  y1="24" x2="{line_x2}"   y2="16" style="stroke:#222222"/>
+					</rect>
+				</svg>
+				<text top="10" width="{width}" fontsize="14" color="black" textalign="center">{title}</text>
+				{contents}
+			</container>""".format(
+				id               = self.id, 
+				zind             = self.zindex, 
+				hierarchy        = self.hierarchy, 
+				order            = self.order, 
+				top              = self.top, 
+				left             = self.left, 
+				container_width  = int(self.width) + 3, 
+				container_height = int(self.height) + 3,
+				width            = self.width, 
+				height           = self.height,
+				title            = self.title,
+				contents         = contents,
+				line_x1          = int(self.width) - 20,
+				line_x2          = int(self.width) - 12
+			)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
