@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.34.6200</Version>
+    <Version>1.131.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -296,7 +296,7 @@
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(428)|italic)|(#Lang(429)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|italic)|(#Lang(411)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>^(normal|italic)$</RegularExpressionValidation>
@@ -320,7 +320,7 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(431)|bold)|(#Lang(432)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(412)|bold)|(#Lang(413)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^(normal|bold)$</RegularExpressionValidation>
@@ -332,7 +332,7 @@
       <Visible>1</Visible>
       <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(433)|underline)|(#Lang(434)|none))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(414)|underline)|(#Lang(415)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none)$</RegularExpressionValidation>
@@ -356,7 +356,7 @@
       <Visible>1</Visible>
       <Help>#Lang(231)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(435)|left)|(#Lang(436)|center)|(#Lang(437)|right))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(416)|left)|(#Lang(417)|center)|(#Lang(418)|right))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
@@ -380,7 +380,7 @@
       <Visible>1</Visible>
       <Help>#Lang(233)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(438)|0)|(#Lang(439)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
@@ -391,180 +391,163 @@
       <Sentence ID="001">Button</Sentence>
       <Sentence ID="002">Used to add an element that provides a way to trigger an event. It can be used as an external or an internal hyperlink.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Add new CSS class</Sentence>
-      <Sentence ID="601">addClass</Sentence>
-      <Sentence ID="701">className</Sentence>
-      <Sentence ID="801">Name of CSS class</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Move the object to a new position</Sentence>
-      <Sentence ID="603">moveTo</Sentence>
-      <Sentence ID="703">newX</Sentence>
-      <Sentence ID="803">X-coordinate of new point</Sentence>
-      <Sentence ID="704">newY</Sentence>
-      <Sentence ID="804">Y-coordinate of new point</Sentence>
-      <Sentence ID="705">Effect</Sentence>
-      <Sentence ID="805">visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="604">moveZindexTo</Sentence>
-      <Sentence ID="706">newZindex</Sentence>
-      <Sentence ID="806">New Z-index value</Sentence>
-      <Sentence ID="505">Set button image</Sentence>
-      <Sentence ID="605">setButtonImage</Sentence>
-      <Sentence ID="707">resourceUrl</Sentence>
-      <Sentence ID="807">Resource identifier of the image</Sentence>
-      <Sentence ID="506">Set button rollover</Sentence>
-      <Sentence ID="606">setButtonRollover</Sentence>
-      <Sentence ID="708">resourceUrl</Sentence>
-      <Sentence ID="808">Resource identifier of the image</Sentence>
-      <Sentence ID="507">Set CSS class</Sentence>
-      <Sentence ID="607">setClass</Sentence>
-      <Sentence ID="709">className</Sentence>
-      <Sentence ID="809">Name of new CSS class</Sentence>
-      <Sentence ID="508">Set new container URL</Sentence>
-      <Sentence ID="608">setLink</Sentence>
-      <Sentence ID="711">containerUrl</Sentence>
-      <Sentence ID="811">Container URL</Sentence>
-      <Sentence ID="509">Set new text inside the object</Sentence>
-      <Sentence ID="609">setText</Sentence>
-      <Sentence ID="712">Text</Sentence>
-      <Sentence ID="812">String to load into Text attribute</Sentence>
-      <Sentence ID="511">Show the object</Sentence>
-      <Sentence ID="611">Show</Sentence>
-      <Sentence ID="713">Fade</Sentence>
-      <Sentence ID="813">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="512">Show the object</Sentence>
-      <Sentence ID="612">Show</Sentence>
-      <Sentence ID="513">Show the object</Sentence>
-      <Sentence ID="613">Show</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">TabIndex</Sentence>
+      <Sentence ID="109">Hint</Sentence>
+      <Sentence ID="111">Button image</Sentence>
+      <Sentence ID="112">Rollover image</Sentence>
+      <Sentence ID="113">Disabled Image</Sentence>
+      <Sentence ID="114">External link</Sentence>
+      <Sentence ID="115">Container link</Sentence>
+      <Sentence ID="116">Text</Sentence>
+      <Sentence ID="117">Highlight button</Sentence>
+      <Sentence ID="118">Pressed state</Sentence>
+      <Sentence ID="119">Disabled</Sentence>
+      <Sentence ID="121">Border</Sentence>
+      <Sentence ID="122">Text color</Sentence>
+      <Sentence ID="123">FontFamily</Sentence>
+      <Sentence ID="124">FontSize</Sentence>
+      <Sentence ID="125">FontStyle</Sentence>
+      <Sentence ID="126">CSS Class</Sentence>
+      <Sentence ID="127">FontWeight</Sentence>
+      <Sentence ID="128">Text-decoration</Sentence>
+      <Sentence ID="129">FontShift</Sentence>
+      <Sentence ID="131">Alignment</Sentence>
+      <Sentence ID="132">Style</Sentence>
+      <Sentence ID="133">Skin</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
+      <Sentence ID="208">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
+      <Sentence ID="209">A bubble help that is shown when the cursor points at the object.</Sentence>
+      <Sentence ID="211">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
+      <Sentence ID="212">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
+      <Sentence ID="213">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
+      <Sentence ID="214">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
+      <Sentence ID="215">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
+      <Sentence ID="216">The text of the object.</Sentence>
+      <Sentence ID="217">The highlighting of the object when the cursor points at it.</Sentence>
+      <Sentence ID="218">The pressed state of the button.</Sentence>
+      <Sentence ID="219">Define if the object is active or not. It is useful when you want to display the button which is inactive at the moment, but which is active in another circumstances.</Sentence>
+      <Sentence ID="221">The border width of the object in pixels</Sentence>
+      <Sentence ID="222">The text color.</Sentence>
+      <Sentence ID="223">The font type of the object.</Sentence>
+      <Sentence ID="224">The font size of the object in points.</Sentence>
+      <Sentence ID="225">The font style.</Sentence>
+      <Sentence ID="226">The name of the CSS class.</Sentence>
+      <Sentence ID="227">The font weight.</Sentence>
+      <Sentence ID="228">The text decoration.</Sentence>
+      <Sentence ID="229">The text indent in pixels.</Sentence>
+      <Sentence ID="231">The text alignment.</Sentence>
+      <Sentence ID="232">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="233">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="309">Incorrect value, must contain only printable characters.</Sentence>
+      <Sentence ID="311">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="312">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="313">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="314">Incorrect value, must be a valid link.</Sentence>
+      <Sentence ID="315">Incorrect value, must be valid internal container.</Sentence>
+      <Sentence ID="316">Incorrect value, must be valid text.</Sentence>
+      <Sentence ID="317">Incorrect value.</Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
+      <Sentence ID="319">Incorrect value.</Sentence>
+      <Sentence ID="321">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="322">Incorrect value.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="325">Incorrect value.</Sentence>
+      <Sentence ID="326">Incorrect value.</Sentence>
+      <Sentence ID="327">Incorrect value.</Sentence>
+      <Sentence ID="328">Incorrect value.</Sentence>
+      <Sentence ID="329">Incorrect value, must be positive integer from 1 to 9999.</Sentence>
+      <Sentence ID="331">Incorrect value.</Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="108">TabIndex</Sentence>
-      <Sentence ID="208">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="109">Hint</Sentence>
-      <Sentence ID="209">A bubble help that is shown when the cursor points at the object.</Sentence>
-      <Sentence ID="309">Incorrect value, must contain only printable characters.</Sentence>
-      <Sentence ID="111">Button image</Sentence>
-      <Sentence ID="211">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
-      <Sentence ID="311">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="112">Rollover image</Sentence>
-      <Sentence ID="212">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
-      <Sentence ID="312">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="113">Disabled Image</Sentence>
-      <Sentence ID="213">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
-      <Sentence ID="313">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="114">External link</Sentence>
-      <Sentence ID="214">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="314">Incorrect value, must be a valid link.</Sentence>
-      <Sentence ID="115">Container link</Sentence>
-      <Sentence ID="215">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="315">Incorrect value, must be valid internal container.</Sentence>
-      <Sentence ID="116">Text</Sentence>
-      <Sentence ID="216">The text of the object.</Sentence>
-      <Sentence ID="316">Incorrect value, must be valid text.</Sentence>
-      <Sentence ID="117">Highlight button</Sentence>
-      <Sentence ID="217">The highlighting of the object when the cursor points at it.</Sentence>
-      <Sentence ID="317">Incorrect value.</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="118">Pressed state</Sentence>
-      <Sentence ID="218">The pressed state of the button.</Sentence>
-      <Sentence ID="318">Incorrect value.</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="119">Disabled</Sentence>
-      <Sentence ID="219">Define if the object is active or not. It is useful when you want to display the button which is inactive at the moment, but which is active in another circumstances.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="121">Border</Sentence>
-      <Sentence ID="221">The border width of the object in pixels</Sentence>
-      <Sentence ID="321">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="122">Text color</Sentence>
-      <Sentence ID="222">The text color.</Sentence>
-      <Sentence ID="322">Incorrect value.</Sentence>
-      <Sentence ID="123">FontFamily</Sentence>
-      <Sentence ID="223">The font type of the object.</Sentence>
-      <Sentence ID="323">Incorrect value.</Sentence>
-      <Sentence ID="409">Andale Mono</Sentence>
-      <Sentence ID="411">Arial</Sentence>
-      <Sentence ID="412">Arial Black</Sentence>
-      <Sentence ID="413">Book Antiqua</Sentence>
-      <Sentence ID="414">Comic Sans MS</Sentence>
-      <Sentence ID="415">Courier New</Sentence>
-      <Sentence ID="416">Georgia</Sentence>
-      <Sentence ID="417">Helvetica</Sentence>
-      <Sentence ID="418">Impact</Sentence>
-      <Sentence ID="419">Symbol</Sentence>
-      <Sentence ID="421">Tahoma</Sentence>
-      <Sentence ID="422">Terminal</Sentence>
-      <Sentence ID="423">Times New Roman</Sentence>
-      <Sentence ID="424">Times</Sentence>
-      <Sentence ID="425">Verdana</Sentence>
-      <Sentence ID="426">Webdings</Sentence>
-      <Sentence ID="427">Wingdings</Sentence>
-      <Sentence ID="124">FontSize</Sentence>
-      <Sentence ID="224">The font size of the object in points.</Sentence>
-      <Sentence ID="324">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="125">FontStyle</Sentence>
-      <Sentence ID="225">The font style.</Sentence>
-      <Sentence ID="325">Incorrect value.</Sentence>
-      <Sentence ID="428">Italic</Sentence>
-      <Sentence ID="429">Normal</Sentence>
-      <Sentence ID="126">CSS Class</Sentence>
-      <Sentence ID="226">The name of the CSS class.</Sentence>
-      <Sentence ID="326">Incorrect value.</Sentence>
-      <Sentence ID="127">FontWeight</Sentence>
-      <Sentence ID="227">The font weight.</Sentence>
-      <Sentence ID="327">Incorrect value.</Sentence>
-      <Sentence ID="431">Bold</Sentence>
-      <Sentence ID="432">Normal</Sentence>
-      <Sentence ID="128">Text-decoration</Sentence>
-      <Sentence ID="228">The text decoration.</Sentence>
-      <Sentence ID="328">Incorrect value.</Sentence>
-      <Sentence ID="433">Underline</Sentence>
-      <Sentence ID="434">None</Sentence>
-      <Sentence ID="129">FontShift</Sentence>
-      <Sentence ID="229">The text indent in pixels.</Sentence>
-      <Sentence ID="329">Incorrect value, must be positive integer from 1 to 9999.</Sentence>
-      <Sentence ID="131">Alignment</Sentence>
-      <Sentence ID="231">The text alignment.</Sentence>
-      <Sentence ID="331">Incorrect value.</Sentence>
-      <Sentence ID="435">Left</Sentence>
-      <Sentence ID="436">Center</Sentence>
-      <Sentence ID="437">Right</Sentence>
-      <Sentence ID="132">Style</Sentence>
-      <Sentence ID="232">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="332"></Sentence>
-      <Sentence ID="133">Skin</Sentence>
-      <Sentence ID="233">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
-      <Sentence ID="333"></Sentence>
-      <Sentence ID="438">User Defined</Sentence>
-      <Sentence ID="439">ProSuite</Sentence>
+      <Sentence ID="409">Italic</Sentence>
+      <Sentence ID="411">Normal</Sentence>
+      <Sentence ID="412">Bold</Sentence>
+      <Sentence ID="413">Normal</Sentence>
+      <Sentence ID="414">Underline</Sentence>
+      <Sentence ID="415">None</Sentence>
+      <Sentence ID="416">Left</Sentence>
+      <Sentence ID="417">Center</Sentence>
+      <Sentence ID="418">Right</Sentence>
+      <Sentence ID="419">User Defined</Sentence>
+      <Sentence ID="421">ProSuite</Sentence>
+      <Sentence ID="501">Add new CSS class</Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="503">Move the object to a new position</Sentence>
+      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="505">Set button image</Sentence>
+      <Sentence ID="506">Set button rollover</Sentence>
+      <Sentence ID="507">Set CSS class</Sentence>
+      <Sentence ID="508">Set new container URL</Sentence>
+      <Sentence ID="509">Set new text inside the object</Sentence>
+      <Sentence ID="511">Show the object</Sentence>
+      <Sentence ID="512">Show the object</Sentence>
+      <Sentence ID="513">Show the object</Sentence>
+      <Sentence ID="601">addClass</Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
+      <Sentence ID="604">moveZindexTo</Sentence>
+      <Sentence ID="605">setButtonImage</Sentence>
+      <Sentence ID="606">setButtonRollover</Sentence>
+      <Sentence ID="607">setClass</Sentence>
+      <Sentence ID="608">setLink</Sentence>
+      <Sentence ID="609">setText</Sentence>
+      <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612">Show</Sentence>
+      <Sentence ID="613">Show</Sentence>
+      <Sentence ID="701">className</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="706">newZindex</Sentence>
+      <Sentence ID="707">resourceUrl</Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="709">className</Sentence>
+      <Sentence ID="711">containerUrl</Sentence>
+      <Sentence ID="712">Text</Sentence>
+      <Sentence ID="713">Fade</Sentence>
+      <Sentence ID="801">Name of CSS class</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">New Z-index value</Sentence>
+      <Sentence ID="807">Resource identifier of the image</Sentence>
+      <Sentence ID="808">Resource identifier of the image</Sentence>
+      <Sentence ID="809">Name of new CSS class</Sentence>
+      <Sentence ID="811">Container URL</Sentence>
+      <Sentence ID="812">String to load into Text attribute</Sentence>
+      <Sentence ID="813">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -586,180 +569,163 @@
       <Sentence ID="001">Кнопка</Sentence>
       <Sentence ID="002">Кнопка в виде ссылки или изображения</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Добавить объекту класс CSS</Sentence>
-      <Sentence ID="601">Добавить класс CSS</Sentence>
-      <Sentence ID="701">Имя класса CSS</Sentence>
-      <Sentence ID="801">Имя класса CSS</Sentence>
-      <Sentence ID="502">Скрыть объект</Sentence>
-      <Sentence ID="602">Скрыть</Sentence>
-      <Sentence ID="702">Исчезновение</Sentence>
-      <Sentence ID="802">Время исчезновения</Sentence>
-      <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="603">Сдвинуть</Sentence>
-      <Sentence ID="703">Координата новой точки по оси X</Sentence>
-      <Sentence ID="803">Координата новой точки по оси X</Sentence>
-      <Sentence ID="704">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="705">Эффект</Sentence>
-      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="504">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="604">Изменить позицию</Sentence>
-      <Sentence ID="706">Позиция</Sentence>
-      <Sentence ID="806">Новое значение позиции</Sentence>
-      <Sentence ID="505">Установить новое изображение для объекта</Sentence>
-      <Sentence ID="605">Установить изображение</Sentence>
-      <Sentence ID="707">URL ресурса</Sentence>
-      <Sentence ID="807">URL ресурса для изображения</Sentence>
-      <Sentence ID="506">Изображение, которое появляется при наведении курсора на объект</Sentence>
-      <Sentence ID="606">Изображение при наведении курсора</Sentence>
-      <Sentence ID="708">URL ресурса</Sentence>
-      <Sentence ID="808">URL ресурса для изображения</Sentence>
-      <Sentence ID="507">Установить новый класс CSS</Sentence>
-      <Sentence ID="607">Установить класс CSS</Sentence>
-      <Sentence ID="709">Имя класса CSS</Sentence>
-      <Sentence ID="809">Имя нового класса CSS</Sentence>
-      <Sentence ID="508">Установить новую ссылку на контейнер</Sentence>
-      <Sentence ID="608">Установить ссылку</Sentence>
-      <Sentence ID="711">URL контейнера</Sentence>
-      <Sentence ID="811">URL нового контейнера</Sentence>
-      <Sentence ID="509">Изменение атрибута Текст</Sentence>
-      <Sentence ID="609">Установить текст</Sentence>
-      <Sentence ID="712">Текст</Sentence>
-      <Sentence ID="812">Строка для загрузки в атрибут Текст</Sentence>
-      <Sentence ID="511">Показать объект</Sentence>
-      <Sentence ID="611">Отображать</Sentence>
-      <Sentence ID="713">Исчезновение</Sentence>
-      <Sentence ID="813">Время появления</Sentence>
-      <Sentence ID="512">Показать объект</Sentence>
-      <Sentence ID="612">Отображать</Sentence>
-      <Sentence ID="513">Показать объект</Sentence>
-      <Sentence ID="613">Отображать</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Порядок</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Индекс табуляции</Sentence>
+      <Sentence ID="109">Подсказка</Sentence>
+      <Sentence ID="111">Изображение кнопки</Sentence>
+      <Sentence ID="112">Изображение при наведении</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114">Внешняя ссылка</Sentence>
+      <Sentence ID="115">Ссылка на контейнер</Sentence>
+      <Sentence ID="116">Текст</Sentence>
+      <Sentence ID="117">Выделить кнопку</Sentence>
+      <Sentence ID="118">Нажатое состояние</Sentence>
+      <Sentence ID="119">Disabled</Sentence>
+      <Sentence ID="121">Граница</Sentence>
+      <Sentence ID="122">Цвет текста</Sentence>
+      <Sentence ID="123">Шрифт</Sentence>
+      <Sentence ID="124">Размер шрифта</Sentence>
+      <Sentence ID="125">Стиль шрифта</Sentence>
+      <Sentence ID="126">Класс CSS</Sentence>
+      <Sentence ID="127">Выделение</Sentence>
+      <Sentence ID="128">Оформление текста</Sentence>
+      <Sentence ID="129">Смещение текста</Sentence>
+      <Sentence ID="131">Выравнивание</Sentence>
+      <Sentence ID="132">Стиль</Sentence>
+      <Sentence ID="133">Скин</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Индекс табуляции для объекта на странице</Sentence>
+      <Sentence ID="209">Всплывающая подсказка при наведении на объект</Sentence>
+      <Sentence ID="211">Графическое изображение объекта</Sentence>
+      <Sentence ID="212">Графическое изображение объекта при наведении курсора</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214">Ссылка на внешнюю веб-страницу</Sentence>
+      <Sentence ID="215">Ссылка на внутренний контейнер</Sentence>
+      <Sentence ID="216">Текст, отображающийся на кнопке</Sentence>
+      <Sentence ID="217">Выделить кнопку при наведении курсора мыши</Sentence>
+      <Sentence ID="218">Отобразить кнопку в нажатом состоянии</Sentence>
+      <Sentence ID="219">Enable or disable button</Sentence>
+      <Sentence ID="221">Толщина границы объекта в пикселях</Sentence>
+      <Sentence ID="222">Цвет текста</Sentence>
+      <Sentence ID="223">Cемейство шрифтов</Sentence>
+      <Sentence ID="224">Размер шрифта</Sentence>
+      <Sentence ID="225">Стиль шрифта</Sentence>
+      <Sentence ID="226">Имя класса CSS</Sentence>
+      <Sentence ID="227">Выделение шрифта</Sentence>
+      <Sentence ID="228">Оформление текста</Sentence>
+      <Sentence ID="229">Смещение текста от края кнопки</Sentence>
+      <Sentence ID="231">Выравнивание текста</Sentence>
+      <Sentence ID="232">Стиль CSS</Sentence>
+      <Sentence ID="233">Скин объекта</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="309">Неправильное значение, должно содержать только печатаемые символы</Sentence>
+      <Sentence ID="311">Неправильный файл, должно быть изображение</Sentence>
+      <Sentence ID="312">Неправильный файл, должен быть изображением</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Неправильное значение, должно быть допустимой ссылкой</Sentence>
+      <Sentence ID="315">Неправильное значение, должен быть существующий контейнер</Sentence>
+      <Sentence ID="316">Неправильное значение, должно быть текстом</Sentence>
+      <Sentence ID="317">Неправильное значение</Sentence>
+      <Sentence ID="318">Неправильное значение</Sentence>
+      <Sentence ID="319">Incorrect value</Sentence>
+      <Sentence ID="321">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="322">Неправильное значение</Sentence>
+      <Sentence ID="323">Неправильное значение</Sentence>
+      <Sentence ID="324">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="325">Неправильное значение</Sentence>
+      <Sentence ID="326">Неправильное значение</Sentence>
+      <Sentence ID="327">Неправильное значение</Sentence>
+      <Sentence ID="328">Неправильное значение</Sentence>
+      <Sentence ID="329">Неправильное значение, должно быть указано целое положительное число от 1 до 4</Sentence>
+      <Sentence ID="331">Неправильное значение</Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Порядок</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Индекс табуляции</Sentence>
-      <Sentence ID="208">Индекс табуляции для объекта на странице</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="109">Подсказка</Sentence>
-      <Sentence ID="209">Всплывающая подсказка при наведении на объект</Sentence>
-      <Sentence ID="309">Неправильное значение, должно содержать только печатаемые символы</Sentence>
-      <Sentence ID="111">Изображение кнопки</Sentence>
-      <Sentence ID="211">Графическое изображение объекта</Sentence>
-      <Sentence ID="311">Неправильный файл, должно быть изображение</Sentence>
-      <Sentence ID="112">Изображение при наведении</Sentence>
-      <Sentence ID="212">Графическое изображение объекта при наведении курсора</Sentence>
-      <Sentence ID="312">Неправильный файл, должен быть изображением</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114">Внешняя ссылка</Sentence>
-      <Sentence ID="214">Ссылка на внешнюю веб-страницу</Sentence>
-      <Sentence ID="314">Неправильное значение, должно быть допустимой ссылкой</Sentence>
-      <Sentence ID="115">Ссылка на контейнер</Sentence>
-      <Sentence ID="215">Ссылка на внутренний контейнер</Sentence>
-      <Sentence ID="315">Неправильное значение, должен быть существующий контейнер</Sentence>
-      <Sentence ID="116">Текст</Sentence>
-      <Sentence ID="216">Текст, отображающийся на кнопке</Sentence>
-      <Sentence ID="316">Неправильное значение, должно быть текстом</Sentence>
-      <Sentence ID="117">Выделить кнопку</Sentence>
-      <Sentence ID="217">Выделить кнопку при наведении курсора мыши</Sentence>
-      <Sentence ID="317">Неправильное значение</Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
-      <Sentence ID="118">Нажатое состояние</Sentence>
-      <Sentence ID="218">Отобразить кнопку в нажатом состоянии</Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
-      <Sentence ID="119">Disabled</Sentence>
-      <Sentence ID="219">Enable or disable button</Sentence>
-      <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="407">Нет</Sentence>
       <Sentence ID="408">Да</Sentence>
-      <Sentence ID="121">Граница</Sentence>
-      <Sentence ID="221">Толщина границы объекта в пикселях</Sentence>
-      <Sentence ID="321">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="122">Цвет текста</Sentence>
-      <Sentence ID="222">Цвет текста</Sentence>
-      <Sentence ID="322">Неправильное значение</Sentence>
-      <Sentence ID="123">Шрифт</Sentence>
-      <Sentence ID="223">Cемейство шрифтов</Sentence>
-      <Sentence ID="323">Неправильное значение</Sentence>
-      <Sentence ID="409">Andale Mono</Sentence>
-      <Sentence ID="411">Arial</Sentence>
-      <Sentence ID="412">Arial Black</Sentence>
-      <Sentence ID="413">Book Antiqua</Sentence>
-      <Sentence ID="414">Comic Sans MS</Sentence>
-      <Sentence ID="415">Courier New</Sentence>
-      <Sentence ID="416">Georgia</Sentence>
-      <Sentence ID="417">Helvetica</Sentence>
-      <Sentence ID="418">Impact</Sentence>
-      <Sentence ID="419">Symbol</Sentence>
-      <Sentence ID="421">Tahoma</Sentence>
-      <Sentence ID="422">Terminal</Sentence>
-      <Sentence ID="423">Times New Roman</Sentence>
-      <Sentence ID="424">Times</Sentence>
-      <Sentence ID="425">Verdana</Sentence>
-      <Sentence ID="426">Webdings</Sentence>
-      <Sentence ID="427">Wingdings</Sentence>
-      <Sentence ID="124">Размер шрифта</Sentence>
-      <Sentence ID="224">Размер шрифта</Sentence>
-      <Sentence ID="324">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="125">Стиль шрифта</Sentence>
-      <Sentence ID="225">Стиль шрифта</Sentence>
-      <Sentence ID="325">Неправильное значение</Sentence>
-      <Sentence ID="428">Курсив</Sentence>
-      <Sentence ID="429">Обычный</Sentence>
-      <Sentence ID="126">Класс CSS</Sentence>
-      <Sentence ID="226">Имя класса CSS</Sentence>
-      <Sentence ID="326">Неправильное значение</Sentence>
-      <Sentence ID="127">Выделение</Sentence>
-      <Sentence ID="227">Выделение шрифта</Sentence>
-      <Sentence ID="327">Неправильное значение</Sentence>
-      <Sentence ID="431">Полужирный</Sentence>
-      <Sentence ID="432">Обычный</Sentence>
-      <Sentence ID="128">Оформление текста</Sentence>
-      <Sentence ID="228">Оформление текста</Sentence>
-      <Sentence ID="328">Неправильное значение</Sentence>
-      <Sentence ID="433">Подчеркнутый</Sentence>
-      <Sentence ID="434">Обычный</Sentence>
-      <Sentence ID="129">Смещение текста</Sentence>
-      <Sentence ID="229">Смещение текста от края кнопки</Sentence>
-      <Sentence ID="329">Неправильное значение, должно быть указано целое положительное число от 1 до 4</Sentence>
-      <Sentence ID="131">Выравнивание</Sentence>
-      <Sentence ID="231">Выравнивание текста</Sentence>
-      <Sentence ID="331">Неправильное значение</Sentence>
-      <Sentence ID="435">Слева</Sentence>
-      <Sentence ID="436">По центру</Sentence>
-      <Sentence ID="437">Справа</Sentence>
-      <Sentence ID="132">Стиль</Sentence>
-      <Sentence ID="232">Стиль CSS</Sentence>
-      <Sentence ID="332"></Sentence>
-      <Sentence ID="133">Скин</Sentence>
-      <Sentence ID="233">Скин объекта</Sentence>
-      <Sentence ID="333"></Sentence>
-      <Sentence ID="438">Определенный пользователем</Sentence>
-      <Sentence ID="439">ProSuite</Sentence>
+      <Sentence ID="409">Курсив</Sentence>
+      <Sentence ID="411">Обычный</Sentence>
+      <Sentence ID="412">Полужирный</Sentence>
+      <Sentence ID="413">Обычный</Sentence>
+      <Sentence ID="414">Подчеркнутый</Sentence>
+      <Sentence ID="415">Обычный</Sentence>
+      <Sentence ID="416">Слева</Sentence>
+      <Sentence ID="417">По центру</Sentence>
+      <Sentence ID="418">Справа</Sentence>
+      <Sentence ID="419">Определенный пользователем</Sentence>
+      <Sentence ID="421">ProSuite</Sentence>
+      <Sentence ID="501">Добавить объекту класс CSS</Sentence>
+      <Sentence ID="502">Скрыть объект</Sentence>
+      <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="504">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="505">Установить новое изображение для объекта</Sentence>
+      <Sentence ID="506">Изображение, которое появляется при наведении курсора на объект</Sentence>
+      <Sentence ID="507">Установить новый класс CSS</Sentence>
+      <Sentence ID="508">Установить новую ссылку на контейнер</Sentence>
+      <Sentence ID="509">Изменение атрибута Текст</Sentence>
+      <Sentence ID="511">Показать объект</Sentence>
+      <Sentence ID="512">Показать объект</Sentence>
+      <Sentence ID="513">Показать объект</Sentence>
+      <Sentence ID="601">Добавить класс CSS</Sentence>
+      <Sentence ID="602">Скрыть</Sentence>
+      <Sentence ID="603">Сдвинуть</Sentence>
+      <Sentence ID="604">Изменить позицию</Sentence>
+      <Sentence ID="605">Установить изображение</Sentence>
+      <Sentence ID="606">Изображение при наведении курсора</Sentence>
+      <Sentence ID="607">Установить класс CSS</Sentence>
+      <Sentence ID="608">Установить ссылку</Sentence>
+      <Sentence ID="609">Установить текст</Sentence>
+      <Sentence ID="611">Отображать</Sentence>
+      <Sentence ID="612">Отображать</Sentence>
+      <Sentence ID="613">Отображать</Sentence>
+      <Sentence ID="701">Имя класса CSS</Sentence>
+      <Sentence ID="702">Исчезновение</Sentence>
+      <Sentence ID="703">Координата новой точки по оси X</Sentence>
+      <Sentence ID="704">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="705">Эффект</Sentence>
+      <Sentence ID="706">Позиция</Sentence>
+      <Sentence ID="707">URL ресурса</Sentence>
+      <Sentence ID="708">URL ресурса</Sentence>
+      <Sentence ID="709">Имя класса CSS</Sentence>
+      <Sentence ID="711">URL контейнера</Sentence>
+      <Sentence ID="712">Текст</Sentence>
+      <Sentence ID="713">Исчезновение</Sentence>
+      <Sentence ID="801">Имя класса CSS</Sentence>
+      <Sentence ID="802">Время исчезновения</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="806">Новое значение позиции</Sentence>
+      <Sentence ID="807">URL ресурса для изображения</Sentence>
+      <Sentence ID="808">URL ресурса для изображения</Sentence>
+      <Sentence ID="809">Имя нового класса CSS</Sentence>
+      <Sentence ID="811">URL нового контейнера</Sentence>
+      <Sentence ID="812">Строка для загрузки в атрибут Текст</Sentence>
+      <Sentence ID="813">Время появления</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -781,180 +747,163 @@
       <Sentence ID="001">Bouton</Sentence>
       <Sentence ID="002">Lien sur une image</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="802">Fade time</Sentence>
-      <Sentence ID="503">Move object to selected point</Sentence>
-      <Sentence ID="603">moveTo</Sentence>
-      <Sentence ID="703">newX</Sentence>
-      <Sentence ID="803">X-coordinate of new point</Sentence>
-      <Sentence ID="704">newY</Sentence>
-      <Sentence ID="804">Y-coordinate of new point</Sentence>
-      <Sentence ID="705">Effect</Sentence>
-      <Sentence ID="805">Visual effect by moving</Sentence>
-      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="604">moveZindexTo</Sentence>
-      <Sentence ID="706">newZindex</Sentence>
-      <Sentence ID="806">New Z-index value</Sentence>
-      <Sentence ID="505">Set new button image</Sentence>
-      <Sentence ID="605">setButtonImage</Sentence>
-      <Sentence ID="707">resourceUrl</Sentence>
-      <Sentence ID="807">Resource URL of new image</Sentence>
-      <Sentence ID="506">Set button image when the cursor is over</Sentence>
-      <Sentence ID="606">setButtonRollover</Sentence>
-      <Sentence ID="708">resourceUrl</Sentence>
-      <Sentence ID="808">Resource URL of new image</Sentence>
-      <Sentence ID="507">Set new CSS class</Sentence>
-      <Sentence ID="607">setClass</Sentence>
-      <Sentence ID="709">className</Sentence>
-      <Sentence ID="809">New CSS class name</Sentence>
-      <Sentence ID="508">Set new container link</Sentence>
-      <Sentence ID="608">setLink</Sentence>
-      <Sentence ID="711">containerUrl</Sentence>
-      <Sentence ID="811">New container URL</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="712"></Sentence>
-      <Sentence ID="812"></Sentence>
-      <Sentence ID="511">Show the object</Sentence>
-      <Sentence ID="611">Show</Sentence>
-      <Sentence ID="713">Fade</Sentence>
-      <Sentence ID="813">Time of appearance</Sentence>
-      <Sentence ID="512">Show the object</Sentence>
-      <Sentence ID="612">Show</Sentence>
-      <Sentence ID="513">Show the object</Sentence>
-      <Sentence ID="613">Show</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">TabIndex</Sentence>
+      <Sentence ID="109">Info bulle</Sentence>
+      <Sentence ID="111">Image</Sentence>
+      <Sentence ID="112">Image de survol</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114">Lien externe</Sentence>
+      <Sentence ID="115">Lien vers page</Sentence>
+      <Sentence ID="116">Texte</Sentence>
+      <Sentence ID="117">Highlight button</Sentence>
+      <Sentence ID="118">Pressed state</Sentence>
+      <Sentence ID="119">Disabled</Sentence>
+      <Sentence ID="121">Bordure</Sentence>
+      <Sentence ID="122">Couleur</Sentence>
+      <Sentence ID="123">Police</Sentence>
+      <Sentence ID="124">Taille</Sentence>
+      <Sentence ID="125">Style</Sentence>
+      <Sentence ID="126">Class</Sentence>
+      <Sentence ID="127">Gras</Sentence>
+      <Sentence ID="128">Text-decoration</Sentence>
+      <Sentence ID="129">Décalage du texte</Sentence>
+      <Sentence ID="131">Alignment</Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Tab index</Sentence>
+      <Sentence ID="209">Texte alternatif, s'affichant au survol de l'objet</Sentence>
+      <Sentence ID="211">Image du bouton</Sentence>
+      <Sentence ID="212">Image du bouton au survol</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214">Lien vers une page web externe</Sentence>
+      <Sentence ID="215">Liens vers une rubrique interne du site</Sentence>
+      <Sentence ID="216">Texte du bouton</Sentence>
+      <Sentence ID="217">Highlight button while mouse over</Sentence>
+      <Sentence ID="218">Draw button in pressed state</Sentence>
+      <Sentence ID="219">Enable or disable button</Sentence>
+      <Sentence ID="221">Epaisseur de la bordure de l'objet en pixels</Sentence>
+      <Sentence ID="222">Couleur du texte</Sentence>
+      <Sentence ID="223">Famille de police</Sentence>
+      <Sentence ID="224">Taille du texte</Sentence>
+      <Sentence ID="225">Style de police : italique ou normal</Sentence>
+      <Sentence ID="226">CSS class name</Sentence>
+      <Sentence ID="227">Graisse de la police : gras ou normal</Sentence>
+      <Sentence ID="228">Décoration du texte : souligné ou pas</Sentence>
+      <Sentence ID="229">Décalage du texte par rapport au bord de l'image du bouton</Sentence>
+      <Sentence ID="231">Alignement du texte</Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être comprise entre 0 et 99</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
+      <Sentence ID="311">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="312">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Valeur Incorrecte, doit être un lien valide</Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être un texte valide</Sentence>
+      <Sentence ID="317">Incorrect value</Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="319">Incorrect value</Sentence>
+      <Sentence ID="321">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="322">Valeur Incorrecte</Sentence>
+      <Sentence ID="323">Valeur Incorrecte</Sentence>
+      <Sentence ID="324">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="325">Valeur Incorrecte</Sentence>
+      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="327">Valeur Incorrecte</Sentence>
+      <Sentence ID="328">Valeur Incorrecte</Sentence>
+      <Sentence ID="329">Valeur Incorrecte, doit être compris entre 1 et 4</Sentence>
+      <Sentence ID="331">Valeur Incorrecte</Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être comprise entre 0 et 99</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">TabIndex</Sentence>
-      <Sentence ID="208">Tab index</Sentence>
-      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="109">Info bulle</Sentence>
-      <Sentence ID="209">Texte alternatif, s'affichant au survol de l'objet</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
-      <Sentence ID="111">Image</Sentence>
-      <Sentence ID="211">Image du bouton</Sentence>
-      <Sentence ID="311">Fichier Incorrect, doit être un fichier image</Sentence>
-      <Sentence ID="112">Image de survol</Sentence>
-      <Sentence ID="212">Image du bouton au survol</Sentence>
-      <Sentence ID="312">Fichier Incorrect, doit être un fichier image</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114">Lien externe</Sentence>
-      <Sentence ID="214">Lien vers une page web externe</Sentence>
-      <Sentence ID="314">Valeur Incorrecte, doit être un lien valide</Sentence>
-      <Sentence ID="115">Lien vers page</Sentence>
-      <Sentence ID="215">Liens vers une rubrique interne du site</Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
-      <Sentence ID="116">Texte</Sentence>
-      <Sentence ID="216">Texte du bouton</Sentence>
-      <Sentence ID="316">Valeur Incorrecte, doit être un texte valide</Sentence>
-      <Sentence ID="117">Highlight button</Sentence>
-      <Sentence ID="217">Highlight button while mouse over</Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="118">Pressed state</Sentence>
-      <Sentence ID="218">Draw button in pressed state</Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="119">Disabled</Sentence>
-      <Sentence ID="219">Enable or disable button</Sentence>
-      <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="121">Bordure</Sentence>
-      <Sentence ID="221">Epaisseur de la bordure de l'objet en pixels</Sentence>
-      <Sentence ID="321">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="122">Couleur</Sentence>
-      <Sentence ID="222">Couleur du texte</Sentence>
-      <Sentence ID="322">Valeur Incorrecte</Sentence>
-      <Sentence ID="123">Police</Sentence>
-      <Sentence ID="223">Famille de police</Sentence>
-      <Sentence ID="323">Valeur Incorrecte</Sentence>
-      <Sentence ID="409">Andale Mono</Sentence>
-      <Sentence ID="411">Arial</Sentence>
-      <Sentence ID="412">Arial Black</Sentence>
-      <Sentence ID="413">Book Antiqua</Sentence>
-      <Sentence ID="414">Comic Sans MS</Sentence>
-      <Sentence ID="415">Courier New</Sentence>
-      <Sentence ID="416">Georgia</Sentence>
-      <Sentence ID="417">Helvetica</Sentence>
-      <Sentence ID="418">Impact</Sentence>
-      <Sentence ID="419">Symbol</Sentence>
-      <Sentence ID="421">Tahoma</Sentence>
-      <Sentence ID="422">Terminal</Sentence>
-      <Sentence ID="423">Times New Roman</Sentence>
-      <Sentence ID="424">Times</Sentence>
-      <Sentence ID="425">Verdana</Sentence>
-      <Sentence ID="426">Webdings</Sentence>
-      <Sentence ID="427">Wingdings</Sentence>
-      <Sentence ID="124">Taille</Sentence>
-      <Sentence ID="224">Taille du texte</Sentence>
-      <Sentence ID="324">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="125">Style</Sentence>
-      <Sentence ID="225">Style de police : italique ou normal</Sentence>
-      <Sentence ID="325">Valeur Incorrecte</Sentence>
-      <Sentence ID="428">Italique</Sentence>
-      <Sentence ID="429">Normal</Sentence>
-      <Sentence ID="126">Class</Sentence>
-      <Sentence ID="226">CSS class name</Sentence>
-      <Sentence ID="326">Incorrect value</Sentence>
-      <Sentence ID="127">Gras</Sentence>
-      <Sentence ID="227">Graisse de la police : gras ou normal</Sentence>
-      <Sentence ID="327">Valeur Incorrecte</Sentence>
-      <Sentence ID="431">Gras</Sentence>
-      <Sentence ID="432">Normal</Sentence>
-      <Sentence ID="128">Text-decoration</Sentence>
-      <Sentence ID="228">Décoration du texte : souligné ou pas</Sentence>
-      <Sentence ID="328">Valeur Incorrecte</Sentence>
-      <Sentence ID="433">Souligné</Sentence>
-      <Sentence ID="434">Aucune</Sentence>
-      <Sentence ID="129">Décalage du texte</Sentence>
-      <Sentence ID="229">Décalage du texte par rapport au bord de l'image du bouton</Sentence>
-      <Sentence ID="329">Valeur Incorrecte, doit être compris entre 1 et 4</Sentence>
-      <Sentence ID="131">Alignment</Sentence>
-      <Sentence ID="231">Alignement du texte</Sentence>
-      <Sentence ID="331">Valeur Incorrecte</Sentence>
-      <Sentence ID="435">Gauche</Sentence>
-      <Sentence ID="436">Centrer</Sentence>
-      <Sentence ID="437">Droite</Sentence>
-      <Sentence ID="132"></Sentence>
-      <Sentence ID="232"></Sentence>
-      <Sentence ID="332"></Sentence>
-      <Sentence ID="133"></Sentence>
-      <Sentence ID="233"></Sentence>
-      <Sentence ID="333"></Sentence>
-      <Sentence ID="438"></Sentence>
-      <Sentence ID="439"></Sentence>
+      <Sentence ID="409">Italique</Sentence>
+      <Sentence ID="411">Normal</Sentence>
+      <Sentence ID="412">Gras</Sentence>
+      <Sentence ID="413">Normal</Sentence>
+      <Sentence ID="414">Souligné</Sentence>
+      <Sentence ID="415">Aucune</Sentence>
+      <Sentence ID="416">Gauche</Sentence>
+      <Sentence ID="417">Centrer</Sentence>
+      <Sentence ID="418">Droite</Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="503">Move object to selected point</Sentence>
+      <Sentence ID="504">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="505">Set new button image</Sentence>
+      <Sentence ID="506">Set button image when the cursor is over</Sentence>
+      <Sentence ID="507">Set new CSS class</Sentence>
+      <Sentence ID="508">Set new container link</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511">Show the object</Sentence>
+      <Sentence ID="512">Show the object</Sentence>
+      <Sentence ID="513">Show the object</Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
+      <Sentence ID="604">moveZindexTo</Sentence>
+      <Sentence ID="605">setButtonImage</Sentence>
+      <Sentence ID="606">setButtonRollover</Sentence>
+      <Sentence ID="607">setClass</Sentence>
+      <Sentence ID="608">setLink</Sentence>
+      <Sentence ID="609"></Sentence>
+      <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612">Show</Sentence>
+      <Sentence ID="613">Show</Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="706">newZindex</Sentence>
+      <Sentence ID="707">resourceUrl</Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="709">className</Sentence>
+      <Sentence ID="711">containerUrl</Sentence>
+      <Sentence ID="712"></Sentence>
+      <Sentence ID="713">Fade</Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802">Fade time</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">Visual effect by moving</Sentence>
+      <Sentence ID="806">New Z-index value</Sentence>
+      <Sentence ID="807">Resource URL of new image</Sentence>
+      <Sentence ID="808">Resource URL of new image</Sentence>
+      <Sentence ID="809">New CSS class name</Sentence>
+      <Sentence ID="811">New container URL</Sentence>
+      <Sentence ID="812"></Sentence>
+      <Sentence ID="813">Time of appearance</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -1119,7 +1068,7 @@ class VDOM_button(VDOM_object):
 			clname = u"""class="%s" """ % self.classname if self.classname else u""
 			donot = u""
 
-		return u"""<a style="display:block;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot}>
+		return u"""<a style="display:block;text-decoration:none;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot}>
 				""".format(bgimage = bgimg, height = height, link = link, hint = (self.hint).replace('"', '&quot;'), classname = clname, donot = donot)
 
 
@@ -1205,6 +1154,15 @@ class VDOM_button(VDOM_object):
 				representation = u"""<span>{text}</span>""".format(text = self.text)
 			spstyle.close()
 
+		if not self.text and not self.image and not self.style:
+			def_image_id = u"34d5d4aa-26eb-4a21-8063-421ab465c75c"
+			
+			representation = \
+				u"""<img src="/{image}.res" width={width} height={height} style="text-decoration:none;border:0" title="{hint}">
+				""".format(
+						image = def_image_id, width = self.width, 
+						height = self.height, hint = self.hint)
+		
 		width_style = u"width:%spx;" % self.width if self.width else u""
 		height_style = u"height:%spx;" % self.height if self.height else u""
 
@@ -1212,7 +1170,8 @@ class VDOM_button(VDOM_object):
 
 		style = u"""overflow:hidden;position:absolute;{zindex}left:{left}px;top:{top}px;
 					{wstyle}{hstyle}text-align:{align};border:{border}px solid black;
-				""".format(zindex = style_zindex, left = self.left, top = self.top, 
+				""".format(
+						zindex = style_zindex, left = self.left, top = self.top, 
 						wstyle = width_style, hstyle = height_style, align = self.align, border = self.border)
 
 		display = u" display:none; " if self.visible == "0" else u""
@@ -1230,7 +1189,7 @@ class VDOM_button(VDOM_object):
 			scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='text' objname='%s' ver='%s @ 2012-05-30'" % (self.type.version, self.name)
+			debug_info = u"objtype='button' objname='%s' ver='%s @ 2012-05-30'" % (self.type.version, self.name)
 		else:
 			debug_info = u""
 
@@ -1238,12 +1197,14 @@ class VDOM_button(VDOM_object):
 					<div {debug_info} id="{id}" tabindex="{tabind}" style="{style}{disp}">
 						{anchor}{repr}</a>
 					</div>{disabled}{styleblk}{scriptblk}{disablecss}
-				""".format(debug_info = debug_info, ocss = overcss, id = id_out, tabind = self.tabindex, style = style, disp = display,
-						anchor = anchor, repr = representation, disabled = disabled_html, styleblk = styleblock, scriptblk = scriptblock, disablecss = disablecss)
+				""".format(
+						debug_info = debug_info, ocss = overcss, id = id_out, tabind = self.tabindex,
+						style = style, disp = display,
+						anchor = anchor, repr = representation, disabled = disabled_html,
+						styleblk = styleblock, scriptblk = scriptblock, disablecss = disablecss)
 		
 		
 	def wysiwyg(self, parent, contents=""):
-		
 		if self.border and self.border != "0":
 			bw = int(self.border)
 			minsize = min(int(self.width), int(self.height))
@@ -1256,20 +1217,25 @@ class VDOM_button(VDOM_object):
 			
 		if not self.text and not self.image:
 			image_id = u"34d5d4aa-26eb-4a21-8063-421ab465c75c"
-			outer_width = outer_height = image_width = image_height = 58	# size by default ?
+			
+			outer_width = int(self.width)
+			outer_height = int(self.height)
 			
 			result = \
 				u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
 						top="{top}" left="{left}" width="{out_wid}" height="{out_hei}">
 						<svg>
-							<image href="#Res({img_id})" x="0" y="0" width="{img_wid}" height="{img_hei}"/>
-						</svg>{contents}
+							<image href="#Res({img_id})" x="0" y="0" width="{out_wid}" height="{out_hei}"/>
+						</svg>
+						{contents}
 					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex,
+				""".format(
+						id = self.id, vis = self.visible, zind = self.zindex,
 						hierarchy = self.hierarchy, order = self.order,
 						top = self.top, left = self.left, out_wid = outer_width, out_hei = outer_height,
-						img_id = image_id, img_wid = image_width, img_hei = image_height,
+						img_id = image_id, 
 						contents = contents)
+						
 			return VDOM_object.wysiwyg(self, parent, contents=result)
 		
 		width = self.width if self.width else 50
@@ -1286,7 +1252,8 @@ class VDOM_button(VDOM_object):
 							<rect x="{rleft}" y="{rtop}" width="{rwid}" height="{rhei}" fill="#FFFFFF" fill-opacity=".0" {bord}/>
 						</svg>
 					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex,
+				""".format(
+						id = self.id, vis = self.visible, zind = self.zindex,
 						hierarchy = self.hierarchy, order = self.order,
 						top = self.top, left = self.left, width = width, height = height,
 						image = self.finalimage, contents = contents,
@@ -1307,14 +1274,16 @@ class VDOM_button(VDOM_object):
 							{label}
 						</text>{contents}
 					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
+				""".format(
+						id = self.id, vis = self.visible, zind = self.zindex, 
 						hierarchy = self.hierarchy, order = self.order, 
 						top = self.top, left = self.left, width = self.width, height = self.height, 
 						rec_left = bw/2, rec_top = bw/2, rec_wid = int(self.width)-bw, rec_hei = int(self.height)-bw,
 						bord = border_string,
 						txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
 						align = self.align, color = self.color, fstyle = self.fontstyle, 
-						txt_decor = self.textdecoration, fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
+						txt_decor = self.textdecoration,
+						fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
 						fsize = fontsize, label = label, contents = contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
