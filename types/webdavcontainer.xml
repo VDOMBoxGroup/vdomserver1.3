@@ -29,42 +29,42 @@
   <Attributes>
     <Attribute>
       <Name>hierarchy</Name>
-      <DisplayName>#Lang(100)</DisplayName>
+      <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(300)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(200)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(101)</DisplayName>
+      <DisplayName>#Lang(102)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(301)</Help>
+      <Help>#Lang(202)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(400)|0)|(#Lang(401)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(201)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">WebDAV Container</Sentence>
-      <Sentence ID="002">WebDAV Container</Sentence>
+      <Sentence ID="001">WebDAV container</Sentence>
+      <Sentence ID="002">A container used for WebDAV services maintenance. It does not need to contain other VDOM types.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="100">Hierarchy</Sentence>
-      <Sentence ID="200">Incorrect value</Sentence>
-      <Sentence ID="300">newAttribute0</Sentence>
-      <Sentence ID="101">Visibility</Sentence>
-      <Sentence ID="201">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="301">Visibility of the object</Sentence>
-      <Sentence ID="400">Invisible</Sentence>
-      <Sentence ID="401">Visible</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="301">Incorrect value.</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
     </Language>
   </Languages>
   <Resources>
