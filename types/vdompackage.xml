@@ -78,61 +78,61 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">VDOM Package</Sentence>
-      <Sentence ID="002">A container for VDOMClass objects, which are then used by the Object view type to output the data in the form of specified information blocks, called items.</Sentence>
+      <Sentence ID="001">VDOM package</Sentence>
+      <Sentence ID="002">A container for VDOMClass objects, which are used by the Object view type to output the data in the form of specified information blocks, called items.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
-      <Sentence ID="202">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="104">Title</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the Z-Index indicates the order of their displaying. The larger Z-Index is, the upper the object is situated.</Sentence>
+      <Sentence ID="203">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="204">The title of the object to display, may be in HTML format. In some objects the title is not displayed if the Title appearance attribute is set to 'Title off'.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="304">Incorrect value, must be string.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="104">Title</Sentence>
-      <Sentence ID="204">The title of the object.</Sentence>
-      <Sentence ID="304">Incorrect value, must be string.</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">VDOM Комплект</Sentence>
       <Sentence ID="002">VDOM Комплект</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Отображается объект или нет</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Позиция</Sentence>
-      <Sentence ID="202">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="103">Отображение</Sentence>
+      <Sentence ID="104">Заголовок</Sentence>
+      <Sentence ID="201">Отображается объект или нет</Sentence>
+      <Sentence ID="202">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="203">Заголовок контейнера</Sentence>
+      <Sentence ID="204">Заголовок объекта</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="104">Заголовок</Sentence>
-      <Sentence ID="204">Заголовок объекта</Sentence>
-      <Sentence ID="304">Неправильное значение, должна быть строка</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Conteneur HTML</Sentence>
       <Sentence ID="002">Conteneur HTML</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="102">Z-index</Sentence>
-      <Sentence ID="202">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="103">Visibilité</Sentence>
+      <Sentence ID="104">Titre</Sentence>
+      <Sentence ID="201">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="202">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
       <Sentence ID="203">Titre du conteneur</Sentence>
+      <Sentence ID="204">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="104">Titre</Sentence>
-      <Sentence ID="204">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
     </Language>
   </Languages>
   <Resources>
