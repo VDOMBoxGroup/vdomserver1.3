@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.21.6720</Version>
+    <Version>1.22.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1676,6 +1676,30 @@ for (x in items) {
 var o=this.domCont;
 $j('>div[dataid]',o).remove();
 execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	for (x in items) {
+		$j('>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).addClass('selected');
+	}
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="unselectItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	for (x in items) {
+		$j('>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).removeClass('selected');
+	}
+}
 ]]></SourceCode>
         </Action>
       </Container>
