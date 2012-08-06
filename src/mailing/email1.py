@@ -160,7 +160,7 @@ class VDOM_email_manager(object):
 						msg.attach(text2)
 						attach = item.get("attach",[])
 						for a in attach:
-							a1 = MIME_VDOM(a[0], a[2], a[3])
+							a1 = MIME_VDOM(a[0], *a[2:])
 							if a[1]:
 								a1.add_header('content-disposition', 'attachment', filename=a[1])
 								a1.add_header('content-location', a[1])
