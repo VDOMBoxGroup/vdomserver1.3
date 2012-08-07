@@ -149,7 +149,7 @@
       <Name>minwidth</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -161,7 +161,7 @@
       <Name>minheight</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -237,85 +237,85 @@ border:3px solid #ccc;
       <Sentence ID="001">Dialog v2</Sentence>
       <Sentence ID="002">Used to create pop-up dialog boxes (the temporary window requiring the data entry and/or performs the options selection) over the web pages.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Time of appearance</Sentence>
-      <Sentence ID="502">Set new title of the object.</Sentence>
-      <Sentence ID="602">LoadHTML</Sentence>
-      <Sentence ID="702">HTMLdata</Sentence>
-      <Sentence ID="802">Data in HTML format</Sentence>
-      <Sentence ID="503">Set new content (it can be in HTML format).</Sentence>
-      <Sentence ID="603">LoadHTML</Sentence>
-      <Sentence ID="703">HTMLdata</Sentence>
-      <Sentence ID="803">Data in HTML format</Sentence>
-      <Sentence ID="504">Change size of the object</Sentence>
-      <Sentence ID="604">resizeTo</Sentence>
-      <Sentence ID="704">Width</Sentence>
-      <Sentence ID="804">New width value</Sentence>
-      <Sentence ID="705">Height</Sentence>
-      <Sentence ID="805">New height value</Sentence>
-      <Sentence ID="505">Show the object</Sentence>
-      <Sentence ID="605">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
-      <Sentence ID="202">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="103">Top</Sentence>
-      <Sentence ID="203">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="104">Left</Sentence>
-      <Sentence ID="204">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="105">Width</Sentence>
-      <Sentence ID="205">Width of the object in pixels.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="106">Height</Sentence>
-      <Sentence ID="206">Height of the object in pixels.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="107">Title</Sentence>
-      <Sentence ID="207">The title of the object displayed as a header of a dialog.</Sentence>
-      <Sentence ID="307">Incorrect value, must be string.</Sentence>
       <Sentence ID="108">Draggable</Sentence>
-      <Sentence ID="208">Allow to drag dialog or not (if not modal)</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="401">Yes</Sentence>
-      <Sentence ID="402">No</Sentence>
       <Sentence ID="109">Modal</Sentence>
+      <Sentence ID="111">Show</Sentence>
+      <Sentence ID="112">Minimum Width</Sentence>
+      <Sentence ID="113">Minimum Height</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">Style</Sentence>
+      <Sentence ID="116">CSS Class</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="203">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="204">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="205">Width of the object in pixels.</Sentence>
+      <Sentence ID="206">Height of the object in pixels.</Sentence>
+      <Sentence ID="207">The title of the object displayed as a header of a dialog.</Sentence>
+      <Sentence ID="208">Allow to drag dialog or not (if not modal)</Sentence>
       <Sentence ID="209">The modality of the object (Yes or No):
 if yes - only the dialog will be displayed, the background will be hidden;
 if no - nothing will be hidden.</Sentence>
+      <Sentence ID="211">The object visibility on loading the page.</Sentence>
+      <Sentence ID="212">The minimum width of the object in pixels. When the content of the object changes dynamically and its volume is reduced, the object will collapse to the size defined in this attribute.</Sentence>
+      <Sentence ID="213">The minimum height of the object in pixels. When the content of the object changes dynamically and its volume is reduced, the object will collapse to the size defined in this attribute.</Sentence>
+      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="215">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="216">The name of the CSS class.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be string.</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="309">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="311">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="312">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="313">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
+      <Sentence ID="315">Incorrect value</Sentence>
+      <Sentence ID="316">Incorrect value.</Sentence>
+      <Sentence ID="401">Yes</Sentence>
+      <Sentence ID="402">No</Sentence>
       <Sentence ID="403">Yes</Sentence>
       <Sentence ID="404">No</Sentence>
-      <Sentence ID="111">Show</Sentence>
-      <Sentence ID="211">The object visibility on loading the page.</Sentence>
-      <Sentence ID="311">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="405">Yes</Sentence>
       <Sentence ID="406">No</Sentence>
-      <Sentence ID="112">Minimum Width</Sentence>
-      <Sentence ID="212">The minimum width of the object in pixels. When the content of the object changes dynamically and its volume is reduced, the object will collapse to the size defined in this attribute.</Sentence>
-      <Sentence ID="312">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="113">Minimum Height</Sentence>
-      <Sentence ID="213">The minimum height of the object in pixels. When the content of the object changes dynamically and its volume is reduced, the object will collapse to the size defined in this attribute.</Sentence>
-      <Sentence ID="313">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
-      <Sentence ID="314">Incorrect value.</Sentence>
       <Sentence ID="407">User Defined</Sentence>
       <Sentence ID="408">Square</Sentence>
       <Sentence ID="409">Rounded</Sentence>
       <Sentence ID="411">ProSuite</Sentence>
-      <Sentence ID="115">Style</Sentence>
-      <Sentence ID="215">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="116">CSS Class</Sentence>
-      <Sentence ID="216">The name of the CSS class.</Sentence>
-      <Sentence ID="316">Incorrect value.</Sentence>
+      <Sentence ID="501">Visibility</Sentence>
+      <Sentence ID="502">Change size of the object</Sentence>
+      <Sentence ID="503">Set new content (it can be in HTML format).</Sentence>
+      <Sentence ID="504">Set new title of the object.</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">resizeTo</Sentence>
+      <Sentence ID="603">LoadHTML</Sentence>
+      <Sentence ID="604">LoadHTML</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">HTMLdata</Sentence>
+      <Sentence ID="705">HTMLdata</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="801">Time of appearance</Sentence>
+      <Sentence ID="802">New width value</Sentence>
+      <Sentence ID="803">New height value</Sentence>
+      <Sentence ID="804">Data in HTML format</Sentence>
+      <Sentence ID="805">Data in HTML format</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -337,83 +337,83 @@ if no - nothing will be hidden.</Sentence>
       <Sentence ID="001">Диалоговое окно v2</Sentence>
       <Sentence ID="002">Диалоговое окно v2</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Отображение</Sentence>
-      <Sentence ID="601">Спрятать</Sentence>
-      <Sentence ID="701">Задержка</Sentence>
-      <Sentence ID="801">Время задержки</Sentence>
-      <Sentence ID="502">Загрузить данные в формате HTML</Sentence>
-      <Sentence ID="602">Загрузить HTML</Sentence>
-      <Sentence ID="702">HTML-данные</Sentence>
-      <Sentence ID="802">Данные в формате HTML</Sentence>
-      <Sentence ID="503">Загрузить данные в формате HTML</Sentence>
-      <Sentence ID="603">Загрузить HTML</Sentence>
-      <Sentence ID="703">HTML-данные</Sentence>
-      <Sentence ID="803">Данные в формате HTML</Sentence>
-      <Sentence ID="504">Изменить размеры объекта</Sentence>
-      <Sentence ID="604">Изменить размеры</Sentence>
-      <Sentence ID="704">Ширина</Sentence>
-      <Sentence ID="804">Новое значение ширины</Sentence>
-      <Sentence ID="705">Высота</Sentence>
-      <Sentence ID="805">Новое значение высоты</Sentence>
-      <Sentence ID="505">Показать объект</Sentence>
-      <Sentence ID="605">Показать</Sentence>
-      <Sentence ID="706">Задержка</Sentence>
-      <Sentence ID="806">Время задержки</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="102">Z-Индекс</Sentence>
-      <Sentence ID="202">Заголовок контейнера</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="103">Верх</Sentence>
-      <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="104">Лево</Sentence>
-      <Sentence ID="204">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="105">Ширина</Sentence>
-      <Sentence ID="205">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="106">Высота</Sentence>
-      <Sentence ID="206">Высота объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="107">Заголовок</Sentence>
-      <Sentence ID="207">Заголовок диалога</Sentence>
-      <Sentence ID="307">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="108">Перемещаемый</Sentence>
+      <Sentence ID="109">Modal</Sentence>
+      <Sentence ID="111">Показать</Sentence>
+      <Sentence ID="112">Минимальная ширина</Sentence>
+      <Sentence ID="113">Минимальная высота</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">Style</Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="202">Заголовок контейнера</Sentence>
+      <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="204">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="206">Высота объекта в пикселях</Sentence>
+      <Sentence ID="207">Заголовок диалога</Sentence>
       <Sentence ID="208">Разрешить перемещение диалога или нет</Sentence>
+      <Sentence ID="209">Modal dialog</Sentence>
+      <Sentence ID="211">Показать после создания</Sentence>
+      <Sentence ID="212">Минимальня ширина в пикселях</Sentence>
+      <Sentence ID="213">Минимальная высота в пикселях</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">CSS стили для диалога</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="313">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="401">Да</Sentence>
       <Sentence ID="402">Нет</Sentence>
-      <Sentence ID="109">Modal</Sentence>
-      <Sentence ID="209">Modal dialog</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="403">Да</Sentence>
       <Sentence ID="404">Нет</Sentence>
-      <Sentence ID="111">Показать</Sentence>
-      <Sentence ID="211">Показать после создания</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
       <Sentence ID="405">Да</Sentence>
       <Sentence ID="406">Нет</Sentence>
-      <Sentence ID="112">Минимальная ширина</Sentence>
-      <Sentence ID="212">Минимальня ширина в пикселях</Sentence>
-      <Sentence ID="312">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="113">Минимальная высота</Sentence>
-      <Sentence ID="213">Минимальная высота в пикселях</Sentence>
-      <Sentence ID="313">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
       <Sentence ID="407">Пользовательский</Sentence>
       <Sentence ID="408">Стандартный</Sentence>
       <Sentence ID="409"></Sentence>
       <Sentence ID="411">ProSuite</Sentence>
-      <Sentence ID="115">Style</Sentence>
-      <Sentence ID="215">CSS стили для диалога</Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="116">Class</Sentence>
-      <Sentence ID="216">CSS class name</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="501">Отображение</Sentence>
+      <Sentence ID="502">Изменить размеры объекта</Sentence>
+      <Sentence ID="503">Загрузить данные в формате HTML</Sentence>
+      <Sentence ID="504">Загрузить данные в формате HTML</Sentence>
+      <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="601">Спрятать</Sentence>
+      <Sentence ID="602">Изменить размеры</Sentence>
+      <Sentence ID="603">Загрузить HTML</Sentence>
+      <Sentence ID="604">Загрузить HTML</Sentence>
+      <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="701">Задержка</Sentence>
+      <Sentence ID="702">Ширина</Sentence>
+      <Sentence ID="703">Высота</Sentence>
+      <Sentence ID="704">HTML-данные</Sentence>
+      <Sentence ID="705">HTML-данные</Sentence>
+      <Sentence ID="706">Задержка</Sentence>
+      <Sentence ID="801">Время задержки</Sentence>
+      <Sentence ID="802">Новое значение ширины</Sentence>
+      <Sentence ID="803">Новое значение высоты</Sentence>
+      <Sentence ID="804">Данные в формате HTML</Sentence>
+      <Sentence ID="805">Данные в формате HTML</Sentence>
+      <Sentence ID="806">Время задержки</Sentence>
       <Sentence ID="901">Лево</Sentence>
       <Sentence ID="902">Верх</Sentence>
       <Sentence ID="903">Лево</Sentence>
@@ -435,83 +435,83 @@ if no - nothing will be hidden.</Sentence>
       <Sentence ID="001">Dialogue v2</Sentence>
       <Sentence ID="002">Dialogue v2</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Time of appearance</Sentence>
-      <Sentence ID="502">Load HTML-data</Sentence>
-      <Sentence ID="602">LoadHTML</Sentence>
-      <Sentence ID="702">HTMLdata</Sentence>
-      <Sentence ID="802">Data in HTML format</Sentence>
-      <Sentence ID="503">Load HTML-data</Sentence>
-      <Sentence ID="603">LoadHTML</Sentence>
-      <Sentence ID="703">HTMLdata</Sentence>
-      <Sentence ID="803">Data in HTML format</Sentence>
-      <Sentence ID="504">Change size of the object</Sentence>
-      <Sentence ID="604">resizeTo</Sentence>
-      <Sentence ID="704">Width</Sentence>
-      <Sentence ID="804">New width value</Sentence>
-      <Sentence ID="705">Height</Sentence>
-      <Sentence ID="805">New height value</Sentence>
-      <Sentence ID="505">Show the object</Sentence>
-      <Sentence ID="605">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
-      <Sentence ID="202">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="103">Haut</Sentence>
-      <Sentence ID="203">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="104">Gauche</Sentence>
-      <Sentence ID="204">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="105">Largeur</Sentence>
-      <Sentence ID="205">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="106">Hauteur</Sentence>
-      <Sentence ID="206">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="107">Titre</Sentence>
-      <Sentence ID="207">Titre du dialogue</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être une chaîne</Sentence>
       <Sentence ID="108">Déplaçables</Sentence>
+      <Sentence ID="109">Modal</Sentence>
+      <Sentence ID="111">Show</Sentence>
+      <Sentence ID="112">Largeur Minimum</Sentence>
+      <Sentence ID="113">Hauteur Minimum</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">Style</Sentence>
+      <Sentence ID="116">Class</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="202">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="203">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="204">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="206">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Titre du dialogue</Sentence>
       <Sentence ID="208">Autoriser ou interdir le déplacement du dialogue</Sentence>
+      <Sentence ID="209">Modal dialog</Sentence>
+      <Sentence ID="211">Show after create</Sentence>
+      <Sentence ID="212">Largeur Minimum en pixels</Sentence>
+      <Sentence ID="213">Hauteur Minimum en pixels</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">User defined style for dialog</Sentence>
+      <Sentence ID="216">CSS class name</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être une chaîne</Sentence>
       <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="313">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Valeur Incorrecte</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="401">Oui</Sentence>
       <Sentence ID="402">Non</Sentence>
-      <Sentence ID="109">Modal</Sentence>
-      <Sentence ID="209">Modal dialog</Sentence>
-      <Sentence ID="309">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Oui</Sentence>
       <Sentence ID="404">Non</Sentence>
-      <Sentence ID="111">Show</Sentence>
-      <Sentence ID="211">Show after create</Sentence>
-      <Sentence ID="311">Valeur Incorrecte</Sentence>
       <Sentence ID="405">Oui</Sentence>
       <Sentence ID="406">Non</Sentence>
-      <Sentence ID="112">Largeur Minimum</Sentence>
-      <Sentence ID="212">Largeur Minimum en pixels</Sentence>
-      <Sentence ID="312">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="113">Hauteur Minimum</Sentence>
-      <Sentence ID="213">Hauteur Minimum en pixels</Sentence>
-      <Sentence ID="313">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
       <Sentence ID="407">User defined</Sentence>
       <Sentence ID="408">Standard</Sentence>
       <Sentence ID="409"></Sentence>
       <Sentence ID="411">ProSuite</Sentence>
-      <Sentence ID="115">Style</Sentence>
-      <Sentence ID="215">User defined style for dialog</Sentence>
-      <Sentence ID="315">Valeur Incorrecte</Sentence>
-      <Sentence ID="116">Class</Sentence>
-      <Sentence ID="216">CSS class name</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="501">Visibility</Sentence>
+      <Sentence ID="502">Change size of the object</Sentence>
+      <Sentence ID="503">Load HTML-data</Sentence>
+      <Sentence ID="504">Load HTML-data</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">resizeTo</Sentence>
+      <Sentence ID="603">LoadHTML</Sentence>
+      <Sentence ID="604">LoadHTML</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Width</Sentence>
+      <Sentence ID="703">Height</Sentence>
+      <Sentence ID="704">HTMLdata</Sentence>
+      <Sentence ID="705">HTMLdata</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="801">Time of appearance</Sentence>
+      <Sentence ID="802">New width value</Sentence>
+      <Sentence ID="803">New height value</Sentence>
+      <Sentence ID="804">Data in HTML format</Sentence>
+      <Sentence ID="805">Data in HTML format</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -1421,10 +1421,10 @@ background: url("/ac84402d-b5d7-dcc7-fb33-357b0426918f.png") left bottom repeat-
 eval("dialog_win_" + this.domCont.id + ".hide();");
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="resizeTo">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="width" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="height" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".resize("+parseInt(width,10)+","+parseInt(height,10)+");");*/
@@ -1438,15 +1438,15 @@ if (typeof y == 'number') d.boxy.css({marginTop: ny});
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setContent">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="content" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="content" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".setContent(\""+content.replace('"','&quot;')+"\");");*/
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setTitle">
+        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setTitle">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="title" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="title" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".setTitle(\""+title.replace('"','&quot;')+"\");");*/
