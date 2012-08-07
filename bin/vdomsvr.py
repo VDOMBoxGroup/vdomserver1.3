@@ -39,6 +39,7 @@ from soap import VDOM_soap_server
 from managment import VDOM_server_manager
 from scheduler import VDOM_scheduler_manager
 from backup import VDOM_backup_manager
+from webdav_server import VDOM_webdav_manager
 
 try:
 	managers.register("server", VDOM_server)
@@ -66,6 +67,7 @@ try:
 	managers.register("soap_server", VDOM_soap_server)
 	managers.register("server_manager", VDOM_server_manager)	
 	managers.register("backup_manager", VDOM_backup_manager)
+	managers.register("webdav", VDOM_webdav_manager)
 
 	if sys.platform.startswith("linux") and VDOM_CONFIG_1["DEBUG"] == "1":
 		from utils.system_linux import open_debug_port
