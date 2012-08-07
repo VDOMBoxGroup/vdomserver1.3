@@ -151,13 +151,14 @@ class VDOM_email_manager(object):
 						msg['To'] = item["to"]
 						if 'reply-to' in item:
 							msg['Reply-to'] = item['reply-to']
-						msgbody = item["msg"]
-						if isinstance(msgbody, unicode):
-							msgbody = msgbody.encode("utf-8")
-						text2 = MIMEText(msgbody)
-						text2.set_type("text/html")
-						text2.set_charset("utf-8")
-						msg.attach(text2)
+						msgbody = item.get("msg")
+						if  msgbody:
+							if isinstance(msgbody, unicode):
+								msgbody = msgbody.encode("utf-8")
+							text2 = MIMEText(msgbody)
+							text2.set_type("text/html")
+							text2.set_charset("utf-8")
+							msg.attach(text2)
 						attach = item.get("attach",[])
 						for a in attach:
 							a1 = MIME_VDOM(a[0], *a[2:])
