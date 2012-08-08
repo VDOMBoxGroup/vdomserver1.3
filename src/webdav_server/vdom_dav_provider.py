@@ -112,7 +112,8 @@ class VDOM_resource(_DAVResource):
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
 			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
-			return res
+			if res:
+				return res
 
 		raise DAVError(HTTP_FORBIDDEN)               
 
@@ -122,8 +123,9 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self.path)
-			return self.provider.getResourceInst(ret, self.environ)
+			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
+			if res:
+				return res
 		raise DAVError(HTTP_FORBIDDEN)               
 
 
@@ -166,7 +168,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
-
+		
 	def handleDelete(self):
 		if self.provider.readonly:
 			raise DAVError(HTTP_FORBIDDEN) 
@@ -174,7 +176,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
+			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))			
 			return True
 
 		raise DAVError(HTTP_FORBIDDEN)
@@ -194,7 +196,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self.path, destPath)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))
+			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))		
 			if util.getUriParent(destPath) != util.getUriParent(self.path):
 				get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
 			return True
@@ -274,5 +276,14 @@ class VDOM_Provider(DAVProvider):
 		
 class VDOM_webdav_manager(object):
 	
-	def invalidate(appid, objid, path):
+	def invalidate(self, appid, objid, path):
 		get_properties.invalidate(appid, objid, path)
+		
+	def clear(self):
+		get_properties.clear()
+		
+	def change_property_value(self, app_id, obj_id, path, propname, value):
+		get_properties.change_property_value(app_id, obj_id, path, propname, value)
+		
+	def change_parents_property(self, app_id, obj_id, path, propname, value):
+		get_properties.change_parents_property(self, app_id, obj_id, path, propname, value)

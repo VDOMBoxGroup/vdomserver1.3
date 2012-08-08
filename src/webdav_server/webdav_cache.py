@@ -43,6 +43,22 @@ def lru_cache(maxsize=100):
 				   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
 					cnames.append(util.getUriName(key[2]))
 			return cnames
+		
+		def change_property_value(app_id, obj_id, path, propname, value):
+			props = cache.get((app_id, obj_id, path))
+			if props:
+				try:
+					props[propname] = value
+					cache[(app_id, obj_id, path)] = props
+				except:
+					pass
+			
+					
+		def change_parents_property(app_id, obj_id, path, propname, value):
+			change_property_value(app_id, obj_id, path, propname, value)
+			for key in cache:
+				if (key[0], key[1]) == (app_id, obj_id) and os.path.normpath(util.getUriParent(path)) == os.path.normpath(key[2]):
+					change_parents_property(app_id, obj_id, key[2], propname, value)			
 
 		def clear():
 			cache.clear()
@@ -51,6 +67,8 @@ def lru_cache(maxsize=100):
 			
 		wrapper.invalidate = invalidate
 		wrapper.get_children_names = get_children_names
+		wrapper.change_property_value = change_property_value
+		wrapper.change_parents_property = change_parents_property
 		wrapper.hits = wrapper.misses = 0
 		wrapper.clear = clear
 		return wrapper
