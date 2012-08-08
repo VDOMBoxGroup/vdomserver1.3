@@ -176,7 +176,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))			
+			#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))			
 			return True
 
 		raise DAVError(HTTP_FORBIDDEN)
@@ -186,7 +186,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self.path, destPath)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))
+			#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))
 			return True
 
 		raise DAVError(HTTP_FORBIDDEN)	
@@ -196,9 +196,9 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self.path, destPath)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))		
+			#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(destPath)))		
 			if util.getUriParent(destPath) != util.getUriParent(self.path):
-				get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
+				#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
 			return True
 
 		raise DAVError(HTTP_FORBIDDEN)	
