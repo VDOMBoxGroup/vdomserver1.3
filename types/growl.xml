@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.2.6720</Version>
+    <Version>1.4.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -112,7 +112,7 @@
     <Attribute>
       <Name>active</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
@@ -433,7 +433,7 @@ AAAAAElFTkSuQmCC]]></Resource>
   <SourceCode><![CDATA[
 
 import re
-	
+
 class VDOM_growl(VDOM_object):
 
 	def render(self, parent, contents=""):
@@ -457,7 +457,7 @@ class VDOM_growl(VDOM_object):
 			if self.userclass != "":
 				z = unicode(self.userclass)
 		vstyle = ',"class_name":"%s"' % z
-		res = """<script type="text/javascript">
+		res = u"""<script type="text/javascript">
 jQuery(function($){
 	if (typeof $.growl === 'undefined') {
 		$.growl=function(t,m){
@@ -476,13 +476,14 @@ jQuery(function($){
 		return res
 
 	def wysiwyg(self, parent, contents=""):
-		result="<container id=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
+		result = \
+			u"<container id=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
 				"<svg>"\
 					"<rect opacity=\"0.5\" x=\"0\" y=\"0\" width=\"80\" height=\"50\" fill=\"#D8C760\" stroke=\"#B1A44F\"/>"\
 				"</svg>"\
 				"<text top=\"2\" left=\"5\" width=\"80\" color=\"#67602E\">Growl msg</text>"\
-				"</container>"%(
-					self.id, self.hierarchy, self.top, self.left, self.width)
+			"</container>" % (
+				self.id, self.hierarchy, self.top, self.left, self.width)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 	]]></SourceCode>
@@ -515,7 +516,7 @@ jQuery(function($){
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
         <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hideAll">
           <Parameters/>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery.gritter.removeAll();
 					]]></SourceCode>
         </Action>
@@ -528,9 +529,36 @@ jQuery.gritter.removeAll();
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="sticky" Help="#Lang(805)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="t" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery.gritter.add({'title':title,'text':txt,'sticky':sticky,'time':t,'image':img,'class_name':css});
-					]]></SourceCode>
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="showWarning">
+          <Parameters>
+            <Parameter DefaultValue="'Warning'" Interface="" InterfaceName="#Lang(701)" ScriptName="title" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(702)" ScriptName="txt" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow warning'});
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="showError">
+          <Parameters>
+            <Parameter DefaultValue="'Error'" Interface="" InterfaceName="#Lang(701)" ScriptName="title" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(702)" ScriptName="txt" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'red error','sticky':true});
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="showInformation">
+          <Parameters>
+            <Parameter DefaultValue="'Information'" Interface="" InterfaceName="#Lang(701)" ScriptName="title" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(702)" ScriptName="txt" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow error'});
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
