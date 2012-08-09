@@ -121,6 +121,31 @@ def get_hostname():
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_linux")
 	return data
 
+def set_proxy(addr, port, login="", password=""):
+	try:
+		f = open("/etc/opt/proxy", "w")
+		f.writelines([addr, port, login, password])
+		f.close()
+	except Exception, e:
+		debug("Error: " + unicode(e))
+		managers.log_manager.error_server("System call error: %s"%unicode(e),"system_linux")
+	
+def get_proxy():
+	addr = port = login = passwd = ""	
+	try:
+		f = open("/etc/opt/proxy", "r")
+		data = f.readlines()
+		f.close()
+		if data:
+			addr = data[0]
+			port = data[1] if len(data) > 1 else ""
+			login = data[2] if len(data) > 2 else ""
+			passwd = data[3] if len(data) > 3 else ""
+	except Exception, e:
+		debug("Error: " + unicode(e))
+		managers.log_manager.error_server("System call error: %s"%unicode(e),"system_linux")
+	return (addr, port, login, passwd)
+
 def get_date_and_time():
 	try:
 		outp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'])
