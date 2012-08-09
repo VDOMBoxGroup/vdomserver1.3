@@ -124,7 +124,9 @@ def get_hostname():
 def set_proxy(addr, port, login="", password=""):
 	try:
 		f = open("/etc/opt/proxy", "w")
-		f.writelines([addr, port, login, password])
+		data = [addr, port, login, password]
+		for el in data: 
+			f.write(el+"\n")
 		f.close()
 	except Exception, e:
 		debug("Error: " + unicode(e))
