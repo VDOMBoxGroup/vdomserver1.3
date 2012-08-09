@@ -113,6 +113,7 @@ class VDOM_resource(_DAVResource):
 		if ret:
 			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
 			if res:
+				get_properties.invalidate(self._app_id, self._obj_id, self.path)
 				return res
 
 		raise DAVError(HTTP_FORBIDDEN)               
@@ -125,6 +126,7 @@ class VDOM_resource(_DAVResource):
 		if ret:
 			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
 			if res:
+				get_properties.invalidate(self._app_id, self._obj_id, self.path)
 				return res
 		raise DAVError(HTTP_FORBIDDEN)               
 

@@ -114,6 +114,23 @@ def run(request):
 	if None == smtplogin:
 		smtplogin = ""
 
+	proxyaddr = ""
+	proxyport = ""
+	proxylogin = ""
+	proxypass = ""
+	
+	if "proxyaddr" in args and "proxyport" in args and "" != args["proxyaddr"][0] and "" != args["proxyport"][0]:
+		proxyaddr = args["proxyaddr"][0]
+		proxyport = args["proxyport"][0]
+		if "proxylogin" in args:
+			proxylogin = args["proxylogin"][0]
+			if "proxypass" in args:
+				proxypass = args["proxypass"][0]
+		set_proxy(proxyaddr, proxyport, proxylogin, proxypass)
+	
+	
+	proxyaddr, proxyport, proxylogin, proxypass = get_proxy()
+	
 	request.write("""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -224,5 +241,37 @@ a:visited {
     <TD><INPUT value="" type="password" maxLength="20" name="smtppassword"></TD>
     <TD align="right"><input style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" type="submit" name="button4" id="button4" value="Set password"/></td>
   </tr></table>""")
+	request.write("""<form method="post" action="" enctype="multipart/form-data">
+      <table border="0">
+        <tr>
+          <td class="Style2"><div align="right">Proxy server address : 
+          </div></td>
+          <td><input type="text" name="proxyaddr" value="%s"/>
+          </td>
+	</tr>
+	</tr>
+          <td class="Style2"><div align="right">Port :
+          </div></td>
+          <td><input type="text" name="proxyport" value="%s"/>
+          </td>
+        </tr>
+        <tr>
+          <td class="Style2"><div align="right">Login : 
+          </div></td>
+          <td><input type="text" name="proxylogin" value="%s"/>
+          </td>
+	</tr>
+	<tr>
+          <td class="Style2"><div align="right">Password : 
+          </div></td>
+          <td><input type="password" name="proxypass" value="%s"/>
+          </td>
+	</tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+        </tr>
+    </table>
+</form>""" % (proxyaddr, proxyport, proxylogin, proxypass))
 
 	request.write("""</center></body></html>""")
