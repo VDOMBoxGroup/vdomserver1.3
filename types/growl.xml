@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.6.6720</Version>
+    <Version>1.8.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -128,7 +128,7 @@
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1)|(#Lang(405)|2)|(#Lang(406)|3)|(#Lang(407)|4)|(#Lang(408)|5)|(#Lang(409)|6))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1)|(#Lang(405)|2)|(#Lang(406)|3))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123456]$</RegularExpressionValidation>
@@ -197,9 +197,9 @@
       <Sentence ID="209">View style of the object.</Sentence>
       <Sentence ID="309">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="403">User CSS class</Sentence>
-      <Sentence ID="404">Yellow</Sentence>
-      <Sentence ID="405">Red</Sentence>
-      <Sentence ID="406">Green</Sentence>
+      <Sentence ID="404">Information</Sentence>
+      <Sentence ID="405">Warning</Sentence>
+      <Sentence ID="406">Error</Sentence>
       <Sentence ID="407">Blue</Sentence>
       <Sentence ID="408">Black</Sentence>
       <Sentence ID="409">White</Sentence>
@@ -257,9 +257,9 @@
       <Sentence ID="209">Стиль отображения</Sentence>
       <Sentence ID="309">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="403">Пользовательский класс CSS</Sentence>
-      <Sentence ID="404">Жёлтый</Sentence>
-      <Sentence ID="405">Красный</Sentence>
-      <Sentence ID="406">Зелёный</Sentence>
+      <Sentence ID="404">Информация</Sentence>
+      <Sentence ID="405">Предупреждение</Sentence>
+      <Sentence ID="406">Ошибка</Sentence>
       <Sentence ID="407">Голубой</Sentence>
       <Sentence ID="408">Чёрный</Sentence>
       <Sentence ID="409">Белый</Sentence>
@@ -317,9 +317,9 @@
       <Sentence ID="209">View style</Sentence>
       <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="403">User class</Sentence>
-      <Sentence ID="404">Yellow</Sentence>
-      <Sentence ID="405">Red</Sentence>
-      <Sentence ID="406">Green</Sentence>
+      <Sentence ID="404">Information</Sentence>
+      <Sentence ID="405">Warning</Sentence>
+      <Sentence ID="406">Error</Sentence>
       <Sentence ID="407">Blue</Sentence>
       <Sentence ID="408">Black</Sentence>
       <Sentence ID="409">White</Sentence>
@@ -438,40 +438,33 @@ class VDOM_growl(VDOM_object):
 
 	def render(self, parent, contents=""):
 
-		z = ''
+		vstyle = u''
 		style = int(self.style)
 		if style > 0:
 			x = style
 			if x > 5: x = 5
 			if x > 1:
 				xa = {
-					1: 'yellow',
-					2: 'red',
-					3: 'green',
-					4: 'blue',
-					5: 'black',
-					6: 'white'
+					1: 'yellow information',
+					2: 'yellow warning',
+					3: 'red error'
 				}
-				z = xa[x]
+				vstyle = xa[x]
 		else:
 			if self.userclass != "":
-				z = unicode(self.userclass)
-		vstyle = ',"class_name":"%s"' % z
-		res = u"""<script type="text/javascript">
-jQuery(function($){
-	if (typeof $.growl === 'undefined') {
-		$.growl=function(t,m){
-			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''%(class)s});
-		}
-	}
-});
-</script>""" % { "class": vstyle }
-		res = u""
+				vstyle = unicode(self.userclass).replace('"', '&quot;')
+
+		res = u''
 		if self.active == '1':
-			if self.title.strip() != '' and self.text.strip() != '':
-				res += "<span class='growls' style='display:none'><span>%s</span><div>%s</div></span>"%(self.title, self.text)
-		else:
-			res += ""
+			title = unicode(self.title).strip().replace('"', '&quot;')
+			text = unicode(self.text).strip().replace('"', '&quot;')
+			if title != '' and text != '':
+				#res += "<span class='growls' style='display:none'><span>%s</span><div>%s</div></span>"%(self.title, self.text)
+				res = u"""<script type="text/javascript">
+jQuery(function($){
+	$.gritter.add({title:"%(title)s",text:"%(text)s",sticky:false,time:'',class_name:"%(vstyle)s"});
+});
+</script>""" % { "vstyle": vstyle, "title": title , "text": text }
 
 		return res
 
@@ -499,10 +492,12 @@ jQuery(function($){
 			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''});
 		}
 	}
+	/*
 	$('span.growls').each(function(){
 		var t=$.trim($('>span',this).html()), m=$.trim($('>div',this).html());
 		if (t!='' && m!='' && $.growl) $.growl(t,m);
 	});
+	*/
 });
 </script>
 
