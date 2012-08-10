@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.22.6720</Version>
+    <Version>1.23.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1559,7 +1559,7 @@ function vdom_ov_inDiv(w0, s){
 			var elBottom = offset.top + el.outerHeight(true);
 			//if( (elTop >= wTop && elTop <= wBottom) || (elBottom <= wBottom && elBottom >= wTop) ) {
 			if( (elTop >= 0 && elTop <= wHeight) || (elBottom <= wHeight && elBottom >= 0) ) {
-				el.removeClass('not-loaded');
+				//el.removeClass('not-loaded');
 				result.push(this);
 			}
 			//if( wTop <= elTop && (el.height() + elTop) < (wTop + wHeight) ) result.push(this);
