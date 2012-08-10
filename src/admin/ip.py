@@ -126,7 +126,7 @@ def run(request):
 			proxylogin = args["proxylogin"][0]
 			if "proxypass" in args:
 				proxypass = args["proxypass"][0]
-		set_proxy(proxyaddr, proxyport, proxylogin, proxypass)
+	set_proxy(proxyaddr, proxyport, proxylogin, proxypass)
 	
 	
 	proxyaddr, proxyport, proxylogin, proxypass = get_proxy()
