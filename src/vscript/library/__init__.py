@@ -1,5 +1,5 @@
 
-from .conversions import v_isarray, v_isdate, v_isempty, v_isnothing, v_isnull, \
+from .conversions import v_isarray, v_isdictionary, v_isdate, v_isempty, v_isnothing, v_isnull, \
 	v_isnumeric, v_isobject, v_cbool, v_cdate, v_csng, v_cdbl, v_cbyte, v_cint, \
 	v_clng, v_cstr, v_hex, v_oct, v_chr, v_asc, v_rgb
 from .arrays import v_array, v_dictionary, \

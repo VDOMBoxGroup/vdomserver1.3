@@ -147,7 +147,7 @@ class VDOM_compiler(object):
 							object.containers.update(xobject.containers)
 							object.libraries.update(xobject.libraries)
 
-							if xobject.dynamic[(action_name, context)]:
+							if xobject.dynamic.get((action_name, context),1):
 								object.dynamic[(action_name, context)]=1
 								source.include(xsource)
 								xobjects.append(realname)
