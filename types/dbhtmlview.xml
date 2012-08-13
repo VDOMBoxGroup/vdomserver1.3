@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Database</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.9.6720</Version>
+    <Version>1.10.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -187,67 +187,67 @@
       <Sentence ID="001">DB HTML View</Sentence>
       <Sentence ID="002">Used to display the selection from the database</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Visibility</Sentence>
-      <Sentence ID="701">Incorrect value</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">Visibility</Sentence>
-      <Sentence ID="702">Incorrect value</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">Incorrect value</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Incorrect value</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">Visibility</Sentence>
-      <Sentence ID="705">Incorrect value</Sentence>
-      <Sentence ID="805">New position in visual hierarchy</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Visibility</Sentence>
-      <Sentence ID="706">Incorrect value</Sentence>
-      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Declaration</Sentence>
+      <Sentence ID="109">Paging</Sentence>
+      <Sentence ID="111">Attached DB</Sentence>
+      <Sentence ID="112">SQL query</Sentence>
+      <Sentence ID="113">Limit</Sentence>
+      <Sentence ID="114">Offset</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">HTML declaration of the data representation</Sentence>
+      <Sentence ID="209">Number of elements per page</Sentence>
+      <Sentence ID="211">Attached secondary database</Sentence>
+      <Sentence ID="212">Structured Query Language query</Sentence>
+      <Sentence ID="213">Limit</Sentence>
+      <Sentence ID="214">Offset of records</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value, can't find &lt;!-- / --&gt; and &lt;!-- \\ --&gt;</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="312">Incorrect value, must start with 'SELECT'</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Declaration</Sentence>
-      <Sentence ID="208">HTML declaration of the data representation</Sentence>
-      <Sentence ID="308">Incorrect value, can't find &lt;!-- / --&gt; and &lt;!-- \\ --&gt;</Sentence>
-      <Sentence ID="109">Paging</Sentence>
-      <Sentence ID="209">Number of elements per page</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="111">Attached DB</Sentence>
-      <Sentence ID="211">Attached secondary database</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">SQL query</Sentence>
-      <Sentence ID="212">Structured Query Language query</Sentence>
-      <Sentence ID="312">Incorrect value, must start with 'SELECT'</Sentence>
-      <Sentence ID="113">Limit</Sentence>
-      <Sentence ID="213">Limit</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="114">Offset</Sentence>
-      <Sentence ID="214">Offset of records</Sentence>
-      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601">Visibility</Sentence>
+      <Sentence ID="602">Visibility</Sentence>
+      <Sentence ID="603">Visibility</Sentence>
+      <Sentence ID="604">Visibility</Sentence>
+      <Sentence ID="701">Incorrect value</Sentence>
+      <Sentence ID="702">Incorrect value</Sentence>
+      <Sentence ID="703">Incorrect value</Sentence>
+      <Sentence ID="704">Incorrect value</Sentence>
+      <Sentence ID="705">Incorrect value</Sentence>
+      <Sentence ID="706">Incorrect value</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New position in visual hierarchy</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -270,67 +270,67 @@
       <Sentence ID="001">БД HTML представление</Sentence>
       <Sentence ID="002">Используется для отображения выборки данных</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Отображение</Sentence>
-      <Sentence ID="701">Неправильное значение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Переместить объект в новую позицию</Sentence>
-      <Sentence ID="602">Отображение</Sentence>
-      <Sentence ID="702">Неправильное значение</Sentence>
-      <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Неправильное значение</Sentence>
-      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="704">Неправильное значение</Sentence>
-      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="503">Установить новую позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="603">Отображение</Sentence>
-      <Sentence ID="705">Неправильное значение</Sentence>
-      <Sentence ID="805">Новая позиция в визуальной иерархии объектов</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Отображение</Sentence>
-      <Sentence ID="706">Неправильное значение</Sentence>
-      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Шаблон</Sentence>
+      <Sentence ID="109">Элементов на странице</Sentence>
+      <Sentence ID="111">Ассоциированная БД</Sentence>
+      <Sentence ID="112">SQL запрос</Sentence>
+      <Sentence ID="113">Ограничение</Sentence>
+      <Sentence ID="114">Смещение</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">HTML представление одного элемента</Sentence>
+      <Sentence ID="209">Количество элементов на странице</Sentence>
+      <Sentence ID="211">Ассоциированная дополнительная база данных</Sentence>
+      <Sentence ID="212">SQL запрос</Sentence>
+      <Sentence ID="213">Ограничение</Sentence>
+      <Sentence ID="214">Смещение</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно включать &lt;!-- / --&gt; и &lt;!-- \\ --&gt;</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение, должно начинаться с 'SELECT'</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Шаблон</Sentence>
-      <Sentence ID="208">HTML представление одного элемента</Sentence>
-      <Sentence ID="308">Неправильное значение, должно включать &lt;!-- / --&gt; и &lt;!-- \\ --&gt;</Sentence>
-      <Sentence ID="109">Элементов на странице</Sentence>
-      <Sentence ID="209">Количество элементов на странице</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
-      <Sentence ID="111">Ассоциированная БД</Sentence>
-      <Sentence ID="211">Ассоциированная дополнительная база данных</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">SQL запрос</Sentence>
-      <Sentence ID="212">SQL запрос</Sentence>
-      <Sentence ID="312">Неправильное значение, должно начинаться с 'SELECT'</Sentence>
-      <Sentence ID="113">Ограничение</Sentence>
-      <Sentence ID="213">Ограничение</Sentence>
-      <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="114">Смещение</Sentence>
-      <Sentence ID="214">Смещение</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Переместить объект в новую позицию</Sentence>
+      <Sentence ID="503">Установить новую позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="601">Отображение</Sentence>
+      <Sentence ID="602">Отображение</Sentence>
+      <Sentence ID="603">Отображение</Sentence>
+      <Sentence ID="604">Отображение</Sentence>
+      <Sentence ID="701">Неправильное значение</Sentence>
+      <Sentence ID="702">Неправильное значение</Sentence>
+      <Sentence ID="703">Неправильное значение</Sentence>
+      <Sentence ID="704">Неправильное значение</Sentence>
+      <Sentence ID="705">Неправильное значение</Sentence>
+      <Sentence ID="706">Неправильное значение</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="805">Новая позиция в визуальной иерархии объектов</Sentence>
+      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Сверху</Sentence>
       <Sentence ID="903">Слева</Sentence>
@@ -353,67 +353,67 @@
       <Sentence ID="001">BDD HTML</Sentence>
       <Sentence ID="002">BDD HTML</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Visibilité</Sentence>
-      <Sentence ID="701">Valeur Incorrecte</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">Visibilité</Sentence>
-      <Sentence ID="702">Valeur Incorrecte</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">Valeur Incorrecte</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Valeur Incorrecte</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">Visibilité</Sentence>
-      <Sentence ID="705">Valeur Incorrecte</Sentence>
-      <Sentence ID="805">New position in visual hierarchy</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Visibilité</Sentence>
-      <Sentence ID="706">Valeur Incorrecte</Sentence>
-      <Sentence ID="806">Valeur Incorrecte</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Déclaration</Sentence>
+      <Sentence ID="109">Pagination</Sentence>
+      <Sentence ID="111">Base de donnée liée</Sentence>
+      <Sentence ID="112">Requête SQL</Sentence>
+      <Sentence ID="113">Limite</Sentence>
+      <Sentence ID="114">Offset</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Code HTML pour l'affichage des enregistrements de la base</Sentence>
+      <Sentence ID="209">Nombre d'enregistrement s'affichant par page</Sentence>
+      <Sentence ID="211">Base de donnée référence</Sentence>
+      <Sentence ID="212">Requête SQL</Sentence>
+      <Sentence ID="213">Nombre maximum d'enregistrement s'affichant</Sentence>
+      <Sentence ID="214">les premiers enregistrements à éviter - exemple : 3 = les 3 premiers enregistrements n'apparaissent pas</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être comprise en 0 et 99</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, ne trouve pas &lt;!-- / --&gt; and &lt;!-- \\ --&gt;</Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312">Valeur Incorrecte, doit commencer par 'SELECT'</Sentence>
+      <Sentence ID="313">Valeur Incorrecte</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être comprise en 0 et 99</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Déclaration</Sentence>
-      <Sentence ID="208">Code HTML pour l'affichage des enregistrements de la base</Sentence>
-      <Sentence ID="308">Valeur Incorrecte, ne trouve pas &lt;!-- / --&gt; and &lt;!-- \\ --&gt;</Sentence>
-      <Sentence ID="109">Pagination</Sentence>
-      <Sentence ID="209">Nombre d'enregistrement s'affichant par page</Sentence>
-      <Sentence ID="309">Valeur Incorrecte</Sentence>
-      <Sentence ID="111">Base de donnée liée</Sentence>
-      <Sentence ID="211">Base de donnée référence</Sentence>
-      <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="112">Requête SQL</Sentence>
-      <Sentence ID="212">Requête SQL</Sentence>
-      <Sentence ID="312">Valeur Incorrecte, doit commencer par 'SELECT'</Sentence>
-      <Sentence ID="113">Limite</Sentence>
-      <Sentence ID="213">Nombre maximum d'enregistrement s'affichant</Sentence>
-      <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="114">Offset</Sentence>
-      <Sentence ID="214">les premiers enregistrements à éviter - exemple : 3 = les 3 premiers enregistrements n'apparaissent pas</Sentence>
-      <Sentence ID="314">Valeur Incorrecte</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Set new position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601">Visibilité</Sentence>
+      <Sentence ID="602">Visibilité</Sentence>
+      <Sentence ID="603">Visibilité</Sentence>
+      <Sentence ID="604">Visibilité</Sentence>
+      <Sentence ID="701">Valeur Incorrecte</Sentence>
+      <Sentence ID="702">Valeur Incorrecte</Sentence>
+      <Sentence ID="703">Valeur Incorrecte</Sentence>
+      <Sentence ID="704">Valeur Incorrecte</Sentence>
+      <Sentence ID="705">Valeur Incorrecte</Sentence>
+      <Sentence ID="706">Valeur Incorrecte</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New position in visual hierarchy</Sentence>
+      <Sentence ID="806">Valeur Incorrecte</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -609,26 +609,23 @@ dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
 IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
 ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
 cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
-PSJ4bXAuaWlkOjYzQThFMDk4MUZENzExRTFBQTk1OUM5RDNDNDQ0Q0U3IiB4bXBNTTpEb2N1bWVu
-dElEPSJ4bXAuZGlkOjYzQThFMDk5MUZENzExRTFBQTk1OUM5RDNDNDQ0Q0U3Ij4gPHhtcE1NOkRl
-cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjNBOEUwOTYxRkQ3MTFFMUFBOTU5
-QzlEM0M0NDRDRTciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjNBOEUwOTcxRkQ3MTFFMUFB
-OTU5QzlEM0M0NDRDRTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
-dGE+IDw/eHBhY2tldCBlbmQ9InIiPz4sXtYVAAAC60lEQVR42mSTa0hUQRTH/zP37l29u7qaqai1
-tlhUampYCn6IPoREBBEYQVGJX8roU4VJ6KeeWAlBT+pTTyp7KWQJBT3UCD9ICD3YjF0LzWXd691d
-dV8zzd3a2toDd+bMuef85pyZM4Rzjt9CjMGnabZAMLhTDwS26brfrum6qk/rn7WA/ioYnOnc07jr
-h5qeHksEUfwVHpoLlYr5q0CdBUet0AuE2cYJXwVODkSi4bHOC5cakmLiAPJbtwjtlZizkh2I8ZuD
-MDAxSpQxdrPt+MnKZECihnrhOi/uLSyEkjj6V4k8TiKSYeNSts22NyUDzlhRfKacCQs3IJIIEBwW
-ExgKBolQsZZR4rAvTslgxOm2MiOWE0opiQnvqNicccEQS4MHgy12x0L7svkph9j3iS5zu10QIVHD
-VaaIgcjEKB1MuBET7AVF2LJxPXrefMpLxMkJJaLazVd6H6OhxiMvL1vKJCXLlGaSYVUVLHI4kJ+V
-jTm/jjv3e+GcLlFSAPPpRGiieB2uvXmK4v4+usheAjXNKs7BDK9Xg8fjw7Bbw8fpQrQ2LTGlANze
-sHxw9Tfcsm7A5de1sDwfhHnOBTqrwT2lws8yUVZdhdtH6nD1wRDfvKYwAeCEHAC/11jkvNDdg611
-HjTtL8Vj51q4xkPQPDp25EpYZc9Aoaqjq6sbY5GFk0kZGAcs2i7DOT6wYB06ep6gUn6G5RVLUZ5j
-g5Kj4Lvbg+EX33FxdBb9nnzcOLx4NAnACD9D+aP774f2VXHcMdWzu++qqe31e6jhcdCYH5MzJkzN
-WpBfsATXD1XAN/ahDyscvzqV85i4I8pIEyPnV557WFNTsSl3QTlefo7ANRWCTw/CIUqoLEpHnuJH
-/8Dbr+FopLK5udmfBBBlcEaOHjtBEQ11WiyW3fZih5KRqcJMFXinNUx4JjHxw9uryNL2tvZ235+3
-IgDkn7cjvpaWVguLhjeKpnSInswgEhshVB7sOHX6C/6TnwIMAGarMf/aqyMBAAAAAElFTkSuQmCC
-]]></Resource>
+PSJ4bXAuaWlkOkIyODYzQzAxMUYyMTExRTFBQ0VFQ0Y3QTQ4NDU3MjJGIiB4bXBNTTpEb2N1bWVu
+dElEPSJ4bXAuZGlkOkIyODYzQzAyMUYyMTExRTFBQ0VFQ0Y3QTQ4NDU3MjJGIj4gPHhtcE1NOkRl
+cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjI4NjNCRkYxRjIxMTFFMUFDRUVD
+RjdBNDg0NTcyMkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjI4NjNDMDAxRjIxMTFFMUFD
+RUVDRjdBNDg0NTcyMkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+dGE+IDw/eHBhY2tldCBlbmQ9InIiPz7kRp81AAACZklEQVR42oRST2jTcBT+kvXvVjedXbfOssKc
+4OassMFuuqNeJnMWRMExN2iHO9ib6MVLERREdxFREFHBgwcPXnYpClbGQA+1MDuLdFjarSuymibQ
+Jm3iS9KUdDJ84ct7/PLel/e+32MURYFhu6VSFy8IC1yZv8SVywN/OM5FfoPj+TidL0fCoQz2GGsE
+1Wr1JDk14QFhgtBHcBHGCTcI6bsPl6/uR6AmfiQcwv7WRnhx5979CYZhYMAgOEfoxv+N7eo8EDIf
+WNSXLMte86GqiwH6BrleR71WQ43g9fiGKMVupGoE339mOwZ9HuwlqVOh1WrFtSuXtXYbgk8GRbFi
+iK8RxNLMkFXJwu12txRLkgRJFLXYTGyONQLR4XO8jq3gbKAIv98Pp90Gqb2diqtQnE6I5M2md6NR
+6ATdTLFW7DuNl59iOLq6hiPeXlgsFioUwXEcxsZOqbm6LvSwDNvopEGQ25UscyNbeGc9g5Vvw3Al
+k2CFLUjCb7BtLC4GJcqV9bahmIRqaHB8sP/Xmw/6CFPBAXxOB7CZ78dOIY8eG09aVOg2FL2LRqU6
+RlPE8c7N/BdjBMsavL09GLEr8B8WUCwWUalU1f61vxsathAkEomvc8MnmiN0JBNghDwqXIE6ryEo
+SlQqozE2Hj97rhUvhed1gpn49OqTnafvJ0dHp9QR4j8CyORohO0sDjIl1OpSc7GMP4fmZ7G+nsow
+xr1Go1EbuUcOh2PB4/GoMXieR6GwjekL5//Z6VRqI7sYvv6KMS+Gyh6JRLy0sjOCIByjK3TTUf3W
+7ZuzrcWp3GJ46W25XM7+FWAAN8M4TvG4t9wAAAAASUVORK5CYII=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
