@@ -275,6 +275,15 @@ class VDOM_Provider(DAVProvider):
 		
 class VDOM_webdav_manager(object):
 	
+	def add_to_cache(self, appid, objid, path):
+		if isinstance(path, unicode):
+			try:
+				utf8path = path.encode('utf8')
+				path = utf8path
+			except Exception, e:
+				debug("Error: " + unicode(e))
+		get_properties(appid, objid, path)
+		
 	def invalidate(self, appid, objid, path):
 		get_properties.invalidate(appid, objid, path)
 		

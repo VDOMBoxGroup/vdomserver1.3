@@ -32,7 +32,7 @@ def lru_cache(maxsize=100):
 
 		def invalidate(app_id, obj_id, path):
 			for key in cache:
-				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]):
+				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
 					del cache[key]
 
 
