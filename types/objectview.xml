@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.23.6720</Version>
+    <Version>1.24.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -136,7 +136,7 @@
     <Attribute>
       <Name>layout</Name>
       <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
@@ -325,8 +325,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="320">Sort items using drag-n-drop</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="403">Horizontal</Sentence>
-      <Sentence ID="404">Vertical</Sentence>
+      <Sentence ID="403">Vertical</Sentence>
+      <Sentence ID="404">Horizontal</Sentence>
       <Sentence ID="405">Vertical wide</Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
@@ -430,8 +430,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="320"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="403">Horizontal</Sentence>
-      <Sentence ID="404">Vertical</Sentence>
+      <Sentence ID="404">Horizontal</Sentence>
+      <Sentence ID="403">Vertical</Sentence>
       <Sentence ID="405">Vertical wide</Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
@@ -535,8 +535,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="320"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="403">Горизонтальный</Sentence>
-      <Sentence ID="404">Вертикальный</Sentence>
+      <Sentence ID="404">Горизонтальный</Sentence>
+      <Sentence ID="403">Вертикальный</Sentence>
       <Sentence ID="405">Ширина по вертикали</Sentence>
       <Sentence ID="406">Нет</Sentence>
       <Sentence ID="407">Да</Sentence>
@@ -1352,9 +1352,9 @@ $j(function(){
 				classname_item = 'ov'
 
 			# layout css for inner items
-			if self.layout == "0":
+			if self.layout == "1":
 				layout = u"float: left;"
-			elif self.layout == "1":
+			elif self.layout == "0":
 				layout = u"clear: both;"
 			else:
 				layout = u"width: 100% !important; clear: both;"
@@ -1449,9 +1449,9 @@ $j(function(){
 				data = b + tail
 				html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
 
-		if self.layout == "0":
+		if self.layout == "1":
 			layout = u"width: 150px;"
-		elif self.layout == "1":
+		elif self.layout == "0":
 			layout = u"width: 150px; clear: both;"
 		else:
 			layout = u"width: 100%; clear: both;"

@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.126.6720</Version>
+    <Version>1.127.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata</Containers>
@@ -148,7 +148,7 @@
     <Attribute>
       <Name>layout</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
@@ -275,8 +275,8 @@
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">Single</Sentence>
       <Sentence ID="404">Multi</Sentence>
-      <Sentence ID="405">Horizontal</Sentence>
-      <Sentence ID="406">Vertical</Sentence>
+      <Sentence ID="405">Vertical</Sentence>
+      <Sentence ID="406">Horizontal</Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
       <Sentence ID="409">User defined</Sentence>
@@ -359,8 +359,8 @@
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">Single</Sentence>
       <Sentence ID="404">Multi</Sentence>
-      <Sentence ID="405">Horizontal</Sentence>
-      <Sentence ID="406">Vertical</Sentence>
+      <Sentence ID="406">Horizontal</Sentence>
+      <Sentence ID="405">Vertical</Sentence>
       <Sentence ID="407">No</Sentence>
       <Sentence ID="408">Yes</Sentence>
       <Sentence ID="409">User defined</Sentence>
@@ -443,8 +443,8 @@
       <Sentence ID="402">Да</Sentence>
       <Sentence ID="403">Одиночный</Sentence>
       <Sentence ID="404">Множественный</Sentence>
-      <Sentence ID="405">Горизонтальный</Sentence>
-      <Sentence ID="406">Вертикальный</Sentence>
+      <Sentence ID="406">Горизонтальный</Sentence>
+      <Sentence ID="405">Вертикальный</Sentence>
       <Sentence ID="407">Нет</Sentence>
       <Sentence ID="408">Да</Sentence>
       <Sentence ID="409">Определено пользователем</Sentence>
@@ -663,7 +663,7 @@ class VDOM_list(VDOM_object):
 			js_multiselect = u""
 
 
-		hlayout = u"#%(id)s ul li{display: inline;}" % {"id": id} if self.layout == "0" else u""
+		hlayout = u"#%(id)s ul li{display: inline;}" % {"id": id} if self.layout == "1" else u""
 
 		css = u"#%(id)s ul{list-style: none outside none;margin: 0;padding: 0;}%(hlayout)s" % {"id": id, "hlayout": hlayout}
 
@@ -791,7 +791,7 @@ $q(function(){
 				)
 
 		res_buffer = StringIO.StringIO(u"")
-		if self.layout == "0":
+		if self.layout == "1":
 			res_buffer.write(u"""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0">""")
 			for key, value in data.items():
 				if isinstance(value, list):
