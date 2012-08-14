@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -594,57 +594,115 @@ import utils
 class VDOM_image(VDOM_object):
 
 	def render(self, parent, contents=""):
-		type = ""
-		if self.visible == "0":
-			type = "display:none; "
-			
-#		link=src.util.id.id2link(self.value)
-		link=utils.id.id2link1(self.value)
-		if self.externalurl and not self.value:
-			link=self.externalurl
-		style="z-index: %s;position: %s;top: %spx;left: %spx"%(self.zindex, self.position, self.top, self.left)
+
+		if self.value:
+			link = utils.id.id2link1(self.value)
+		elif self.externalurl:
+			link = self.externalurl
+		else:
+			link = ""
+
+		visible = u"display:none;" if self.visible == "0" else ""
+
+		style = u"z-index: {zindex}; position: {position}; top: {top}px; left: {left}px".format(
+			zindex = self.zindex,
+			position = self.position,
+			top = self.top,
+			left = self.left)
 		id = 'o_' + (self.id).replace('-', '_')
 		title = iw = ih = ""
 		if self.hint:
-			title = 'title="%s"' % self.hint
+			title = u"""title="{hint}" """.format(hint = self.hint)
 		if self.width == "":
 			self.width = 0
 		if int(self.width) > 0:
-			iw = 'width="%s"' % self.width
+			iw = u"""width="{width}" """.format(width = self.width)
 		if self.height == "":
 			self.height = 0
 		if int(self.height) > 0:
-			ih = 'height="%s"' % self.height
-		result="<div id=\"%s\" style=\" %s %s\"><img src=\"%s\" %s %s tabindex=\"%s\" %s /></div>"%(id, type, style, link, iw, ih, self.tabindex, title)
-		
-		
+			ih = u"""height="{height}" """.format(height = self.height)
+
+		result = \
+			u"""<div id="{id}" style=" {visible} {style}">
+					<img src="{link}" {width} {height} tabindex="{tabindex}" {title} />
+				</div>
+			""".format(
+					id = id,
+					visible = visible,
+					style = style,
+					link = link,
+					width = iw,
+					height = ih,
+					tabindex = self.tabindex,
+					title = title)
+
 		return VDOM_object.render(self, parent, contents=result)
 
+	def is_correct_exturnal_url (self, url) :
+		if url.lower().startswith("http://") or url.lower().startswith("https://"):
+			return True
+		return False
+
 	def wysiwyg(self, parent, contents=""):
-	
-		image_id = self.value
-		image_width = outer_width = self.width
-		image_height = outer_height = self.height
-		editable = "editable=\"value\""
-		
-		if "" == image_id:
+		import utils.wysiwyg
+
+		if self.value:		# show image from resources
+			editable = u' editable="value" '
+
+			result = \
+				u"""<container id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}"
+						width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000">
+						<svg>
+							<image x="{image_x}" y="{image_y}" href="#Res({image_id})"
+								width="{width}" height="{height}" {editable}/>
+						</svg>
+					</container>
+				""".format(
+						id = self.id,
+						zindex = self.zindex,
+						hierarchy = self.hierarchy,
+						top = self.top,
+						left = self.left,
+						width = self.width,
+						height = self.height,
+						image_x = 0,
+						image_y = 0,
+						image_id = self.value,
+						editable = editable)
+
+		elif self.externalurl:
+			url = self.externalurl
+			if not self.is_correct_exturnal_url(self.externalurl):
+				url = u"http://empty.png"
+
+			result = \
+				u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}"
+						order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
+						<htmltext top="0" left="0" width="{width}" height="{height}" locked="true">
+							<img width="{width}" height="{height}" src="{image_url}"/>
+						</htmltext>
+					</container>
+				""".format(
+						id = self.id,
+						visible = self.visible,
+						zindex = self.zindex,
+						hierarchy = self.hierarchy,
+						order = self.order,
+						top = self.top,
+						left = self.left,
+						width = self.width,
+						height = self.height,
+						image_url = url)
+
+		else:
 			image_id = "854dd513-b296-46cd-b0eb-df9d5c86a2d5"
-			outer_width = outer_height = image_width = image_height = 58
-			editable = ""
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<svg>"\
-						"<image x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" href=\"#Res(%s)\" %s/>"\
-					"</svg>%s"\
-				"</container>"%(
-					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, outer_width, outer_height,
-					0, 0, image_width, image_height, image_id, editable, 
-					contents)
-		
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 def set_attr(app_id, object_id, param):
 	o = application.objects.search(object_id)
-		
+
 	if "value" in param and not "width" in param and not "height" in param:
 		attr = param["value"]
 		res_id = attr["value"]
@@ -659,7 +717,7 @@ def set_attr(app_id, object_id, param):
 		s = cStringIO.StringIO()
 		s.write(ro.get_data())
 		s.seek(0, 0)
-		im = Image.open(s)	
+		im = Image.open(s)
 		width, height = im.size
 		# set attributes
 		if o.attributes.width != width or o.attributes.height != height:
@@ -746,7 +804,7 @@ def set_attr(app_id, object_id, param):
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(223)" ScriptName="cursorType" Help="#Lang(224)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 this.domCont.style.cursor = cursorType;
                     ]]></SourceCode>
         </Action>
@@ -766,7 +824,7 @@ vdom_ui_dragStop();
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(202)" ScriptName="fade" Help="#Lang(212)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
@@ -776,7 +834,7 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(217)" ScriptName="newY" Help="#Lang(218)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(219)" ScriptName="Effect" Help="#Lang(220)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
@@ -784,7 +842,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(221)" ScriptName="newZindex" Help="#Lang(222)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_moveZindexTo(this.domCont, newZindex);
                     ]]></SourceCode>
         </Action>
@@ -792,7 +850,7 @@ vdom_ui_moveZindexTo(this.domCont, newZindex);
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(225)" ScriptName="text" Help="#Lang(226)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery(this.domCont).attr('alt', text);
                     ]]></SourceCode>
         </Action>
@@ -800,7 +858,7 @@ jQuery(this.domCont).attr('alt', text);
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(227)" ScriptName="resource" Help="#Lang(228)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery('img',this.domCont).attr('src', resource);
                     ]]></SourceCode>
         </Action>
@@ -808,7 +866,7 @@ jQuery('img',this.domCont).attr('src', resource);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(213)" ScriptName="fade" Help="#Lang(214)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
