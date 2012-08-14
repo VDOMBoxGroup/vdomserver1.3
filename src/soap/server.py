@@ -823,7 +823,7 @@ class VDOM_web_services_server(object):
 			result += "<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
 		result += "</Attributes>\n"
 #		result += "<Objects/>\n"
-		#result += self.__get_code_interface(obj)
+		result += self.__get_code_interface(obj)
 		result += "</Object>"
 		return result
 
