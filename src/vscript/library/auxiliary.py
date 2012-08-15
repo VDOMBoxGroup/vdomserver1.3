@@ -7,7 +7,7 @@ def v_vartype(value):
 	return integer(value.subtype.code)
 
 def v_typename(value):
-	return integer(value.subtype.name)
+	return string(value.subtype.name)
 
 
 def v_scriptengine():
