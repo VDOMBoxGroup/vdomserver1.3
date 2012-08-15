@@ -46,7 +46,7 @@ def as_binary(value):
 	return value.as_binary
 
 
-def pack(self, default=None):
+def pack(value, default=None):
 	def unknown(value): raise errors.type_mismatch
 	return {
 		int: lambda value: integer(value),
@@ -56,9 +56,9 @@ def pack(self, default=None):
 		bool: lambda value: boolean(value),
 		float: lambda value: double(value),
 		types.NoneType: lambda value: v_null} \
-			.get(type(self), default or unknown)(value)
+			.get(type(value), default or unknown)(value)
 
-def unpack(self, default=None):
+def unpack(value, default=None):
 	def unknown(value): raise errors.type_mismatch
 	return {
 		integer: lambda value: value.value,
@@ -66,4 +66,4 @@ def unpack(self, default=None):
 		boolean: lambda value: value.value,
 		double: lambda value: value.value,
 		null: lambda value: None} \
-			.get(type(self), default or unknown)(value)
+			.get(type(value), default or unknown)(value)
