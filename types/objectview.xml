@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.33.6720</Version>
+    <Version>1.34.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1052,7 +1052,7 @@ class VDOM_objectview(VDOM_object):
 	tmp_list = []
 
 	JS_DRAG = u"""
-$j("#%(id)s>.%(class)s-item").liveDraggable({
+$j("#%(id)s div[dataid]").liveDraggable({
 	connectToDynatree: true,
 	appendTo: 'body',
 	containment: 'document',
@@ -1127,7 +1127,7 @@ $j('#%(id)s').liveSortable({
 $j(function(){
 	$j("#%(id)s").data("ovitemclass","%(class)s-item");
 
-	$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
+	$j("#%(id)s div[dataid]").live('click dblclick', function(e){
 		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
 		var t = $j(this);
 		if (e.type == 'dblclick') {
@@ -1148,7 +1148,7 @@ $j(function(){
 		return false;
 	});
 
-	$j("#%(id)s>.%(class)s-item").live('mouseover', function(e){
+	$j("#%(id)s div[dataid]").live('mouseover', function(e){
 		execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
 		return false;
 	}).live('mouseout', function(e){
