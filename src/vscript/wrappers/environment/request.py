@@ -33,8 +33,15 @@ class v_argumentscollection(generic):
 			try: value=managers.request_manager.get_request().arguments() \
 				.arguments()[name.as_string][0]
 			except KeyError: return v_empty
-			try: return string(unicode(value.decode("utf-8")))
-			except UnicodeDecodeError: return binary(value)
+			
+			try: 			
+				if isinstance(value, str):
+					return string(unicode(value.decode("utf-8", "ignore")))
+				else:
+					return string(unicode(value))
+	
+			except UnicodeDecodeError: 
+				return binary(value)
 
 
 	def __iter__(self):
