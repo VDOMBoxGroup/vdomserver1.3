@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.24.6720</Version>
+    <Version>1.33.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -159,99 +159,123 @@
     </Attribute>
     <Attribute>
       <Name>sortable</Name>
-      <DisplayName>#Lang(120)</DisplayName>
+      <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(320)</Help>
+      <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>tmpobj</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(213)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>3</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>overflow</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1)|(#Lang(411)|2)|(#Lang(412)|3))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1)|(#Lang(413)|2)|(#Lang(414)|3))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>classname</Name>
-      <DisplayName>#Lang(115)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>loading</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(413)|1)|(#Lang(414)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|1)|(#Lang(416)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>itemstorender</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue/>
-      <Visible>0</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(9999999)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>noreplace</Name>
       <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>0</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
+      <CodeInterface>TextField(9999999)</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>dynamicloading</Name>
+      <Name>noreplace</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>dynamicloading</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>itemslimit</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>10</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>\d*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>itemscount</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>10</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>\d*</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -270,14 +294,16 @@
       <Sentence ID="109">Data</Sentence>
       <Sentence ID="111">Layout</Sentence>
       <Sentence ID="112">Drag-and-drop</Sentence>
-      <Sentence ID="113">Hierarchy</Sentence>
-      <Sentence ID="114">Overflow</Sentence>
-      <Sentence ID="115">CSS Class</Sentence>
-      <Sentence ID="116">Loading</Sentence>
-      <Sentence ID="117"></Sentence>
+      <Sentence ID="113">Sortable</Sentence>
+      <Sentence ID="114">Hierarchy</Sentence>
+      <Sentence ID="115">Overflow</Sentence>
+      <Sentence ID="116">CSS Class</Sentence>
+      <Sentence ID="117">Loading</Sentence>
       <Sentence ID="118"></Sentence>
-      <Sentence ID="119">Dynamic Load</Sentence>
-      <Sentence ID="120">Sortable</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121">Dynamic Load</Sentence>
+      <Sentence ID="122">Infinite scroll</Sentence>
+      <Sentence ID="123">Items count</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -292,18 +318,20 @@ horizontal - the item width does not change, they are disposed across the whole 
 vertical - the items are disposed vertically without changing their width;
 vertical wide - the  items are disposed vertically, their width is stretched to the Object view object's boundaries.</Sentence>
       <Sentence ID="212">Using drag-and-drop.</Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="214">The overflow control mode:
+      <Sentence ID="213">Sort items using drag-n-drop</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">The overflow control mode:
 Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown;
 Hidden - if the content does not fit in the object' borders - it will be cropped within the borders;
 Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not;
 Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
-      <Sentence ID="215">The name of the CSS class.</Sentence>
-      <Sentence ID="216">Show progress control over the item after left-click or double-click on it.</Sentence>
-      <Sentence ID="217"></Sentence>
+      <Sentence ID="216">The name of the CSS class.</Sentence>
+      <Sentence ID="217">Show progress control over the item after left-click or double-click on it.</Sentence>
       <Sentence ID="218"></Sentence>
-      <Sentence ID="219">Use dynamic loading of items. See WIKI for details.</Sentence>
-      <Sentence ID="220">Incorrect value</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221">Use dynamic loading of items. See WIKI for details.</Sentence>
+      <Sentence ID="222">Infinite scroll</Sentence>
+      <Sentence ID="223">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -315,14 +343,16 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="309">Incorrect, must be in JSON format.</Sentence>
       <Sentence ID="311">Incorrect value, must be either 0, 1 or 2.</Sentence>
       <Sentence ID="312">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="313">Hierarchy of the object</Sentence>
-      <Sentence ID="314">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
-      <Sentence ID="315">Incorrect value.</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="314">Hierarchy of the object</Sentence>
+      <Sentence ID="315">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
       <Sentence ID="316">Incorrect value.</Sentence>
-      <Sentence ID="317"></Sentence>
+      <Sentence ID="317">Incorrect value.</Sentence>
       <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="320">Sort items using drag-n-drop</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="322">newAttribute19</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -330,42 +360,57 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="405">Vertical wide</Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">Auto</Sentence>
-      <Sentence ID="409">Hidden</Sentence>
-      <Sentence ID="411">Scroll</Sentence>
-      <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="413">Yes</Sentence>
-      <Sentence ID="414">No</Sentence>
-      <Sentence ID="415">No</Sentence>
-      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="408">No</Sentence>
+      <Sentence ID="409">Yes</Sentence>
+      <Sentence ID="411">Auto</Sentence>
+      <Sentence ID="412">Hidden</Sentence>
+      <Sentence ID="413">Scroll</Sentence>
+      <Sentence ID="414">Visible</Sentence>
+      <Sentence ID="415">Yes</Sentence>
+      <Sentence ID="416">No</Sentence>
       <Sentence ID="417">No</Sentence>
       <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="506">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="507">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="508">Load the items of the object on scrolling to them.</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606">Show</Sentence>
+      <Sentence ID="607">Show</Sentence>
+      <Sentence ID="608">Show</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Width</Sentence>
       <Sentence ID="703">Height</Sentence>
       <Sentence ID="704">Fade</Sentence>
       <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">Fade</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">New value of width</Sentence>
       <Sentence ID="803">New value of height</Sentence>
       <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
+      <Sentence ID="807">Time of appearance</Sentence>
       <Sentence ID="901">Start dragging the object.</Sentence>
       <Sentence ID="902">Left-click on the item of the object.</Sentence>
       <Sentence ID="903">Double left-click on the item of the object.</Sentence>
       <Sentence ID="904">Cursor leaves the object bounds.</Sentence>
       <Sentence ID="905">Cursor points at the object.</Sentence>
       <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Object View</Sentence>
@@ -382,14 +427,16 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="109">Data</Sentence>
       <Sentence ID="111">Layout</Sentence>
       <Sentence ID="112">Drag-and-drop</Sentence>
-      <Sentence ID="113">Hierarchy</Sentence>
-      <Sentence ID="114">Overflow</Sentence>
-      <Sentence ID="115">CSS Class</Sentence>
-      <Sentence ID="116"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114">Hierarchy</Sentence>
+      <Sentence ID="115">Overflow</Sentence>
+      <Sentence ID="116">CSS Class</Sentence>
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="120"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -402,13 +449,15 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="211">Items layout</Sentence>
       <Sentence ID="212">Define if drag-and-drop is used or not</Sentence>
       <Sentence ID="213"></Sentence>
-      <Sentence ID="214">Overflow control mode</Sentence>
-      <Sentence ID="215">Names of CSS classes</Sentence>
-      <Sentence ID="216"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Overflow control mode</Sentence>
+      <Sentence ID="216">Names of CSS classes</Sentence>
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
-      <Sentence ID="220"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -420,57 +469,74 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="309">Incorrect, must be JSON</Sentence>
       <Sentence ID="311">Incorrect, must be 0, 1 or 2</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Hierarchy of the object</Sentence>
-      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Hierarchy of the object</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
-      <Sentence ID="320"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="404">Horizontal</Sentence>
       <Sentence ID="403">Vertical</Sentence>
+      <Sentence ID="404">Horizontal</Sentence>
       <Sentence ID="405">Vertical wide</Sentence>
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">Auto</Sentence>
-      <Sentence ID="409">Hidden</Sentence>
-      <Sentence ID="411">Scroll</Sentence>
-      <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="413"></Sentence>
-      <Sentence ID="414"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Auto</Sentence>
+      <Sentence ID="412">Hidden</Sentence>
+      <Sentence ID="413">Scroll</Sentence>
+      <Sentence ID="414">Visible</Sentence>
       <Sentence ID="415"></Sentence>
       <Sentence ID="416"></Sentence>
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">Show the items of the object</Sentence>
+      <Sentence ID="506">Show the items of the object</Sentence>
+      <Sentence ID="507">Show the items of the object</Sentence>
+      <Sentence ID="508">Show the items of the object</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606">Show</Sentence>
+      <Sentence ID="607">Show</Sentence>
+      <Sentence ID="608">Show</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Width</Sentence>
       <Sentence ID="703">Height</Sentence>
       <Sentence ID="704">Fade</Sentence>
       <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">Fade</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">New value of width</Sentence>
       <Sentence ID="803">New value of height</Sentence>
       <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
+      <Sentence ID="807">Time of appearance</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
       <Sentence ID="904"></Sentence>
       <Sentence ID="905"></Sentence>
       <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Объектное представление</Sentence>
@@ -487,14 +553,16 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="109">Данные</Sentence>
       <Sentence ID="111">Расположение</Sentence>
       <Sentence ID="112">Перемещение</Sentence>
-      <Sentence ID="113">Иерархия</Sentence>
-      <Sentence ID="114">Переполнение</Sentence>
-      <Sentence ID="115">Класс CSS</Sentence>
-      <Sentence ID="116"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114">Иерархия</Sentence>
+      <Sentence ID="115">Переполнение</Sentence>
+      <Sentence ID="116">Класс CSS</Sentence>
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="120"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -507,13 +575,15 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="211">Расположение элементов</Sentence>
       <Sentence ID="212">Использовать перемещение или нет</Sentence>
       <Sentence ID="213"></Sentence>
-      <Sentence ID="214">Режим переполнения</Sentence>
-      <Sentence ID="215">Имена классов CSS</Sentence>
-      <Sentence ID="216"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Режим переполнения</Sentence>
+      <Sentence ID="216">Имена классов CSS</Sentence>
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
-      <Sentence ID="220"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -525,57 +595,74 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="309">Неправильное значение, должно быть в формате JSON</Sentence>
       <Sentence ID="311">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316"></Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
-      <Sentence ID="320"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="404">Горизонтальный</Sentence>
       <Sentence ID="403">Вертикальный</Sentence>
+      <Sentence ID="404">Горизонтальный</Sentence>
       <Sentence ID="405">Ширина по вертикали</Sentence>
       <Sentence ID="406">Нет</Sentence>
       <Sentence ID="407">Да</Sentence>
-      <Sentence ID="408">Авто</Sentence>
-      <Sentence ID="409">Скрытый</Sentence>
-      <Sentence ID="411">Прокрутка</Sentence>
-      <Sentence ID="412">Отображать</Sentence>
-      <Sentence ID="413"></Sentence>
-      <Sentence ID="414"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Авто</Sentence>
+      <Sentence ID="412">Скрытый</Sentence>
+      <Sentence ID="413">Прокрутка</Sentence>
+      <Sentence ID="414">Отображать</Sentence>
       <Sentence ID="415"></Sentence>
       <Sentence ID="416"></Sentence>
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
       <Sentence ID="504">Показать объект</Sentence>
       <Sentence ID="505">Показать элементы объекта</Sentence>
+      <Sentence ID="506">Показать элементы объекта</Sentence>
+      <Sentence ID="507">Показать элементы объекта</Sentence>
+      <Sentence ID="508">Показать элементы объекта</Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Показать</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Показать</Sentence>
       <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="606">Показать</Sentence>
+      <Sentence ID="607">Показать</Sentence>
+      <Sentence ID="608">Показать</Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Ширина</Sentence>
       <Sentence ID="703">Высота</Sentence>
       <Sentence ID="704">Исчезновение</Sentence>
       <Sentence ID="705">Исчезновение</Sentence>
+      <Sentence ID="706">Исчезновение</Sentence>
+      <Sentence ID="707">Исчезновение</Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Новое значение ширины</Sentence>
       <Sentence ID="803">Новое значение высоты</Sentence>
       <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="805">Время появления</Sentence>
+      <Sentence ID="806">Время появления</Sentence>
+      <Sentence ID="807">Время появления</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
       <Sentence ID="904"></Sentence>
       <Sentence ID="905"></Sentence>
       <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1026,7 +1113,7 @@ $j('#%(id)s').liveSortable({
 		var x = $j('<div class="loading" style="width:100%%;height:100%%"></div>').css({position:'absolute',opacity:0.9}).hide().fadeIn(100);
 		t.append(x);
 	}
-	e2vdomAfterResponse('$j("#%(id)s>div[dataid='+t.attr('dataid')+']>.loading").fadeOut(100);');
+	e2vdomAfterResponse('$j("#%(id)s>div.ov-content>div[dataid='+t.attr('dataid')+']>.loading").fadeOut(100);');
 }
 """
 
@@ -1038,6 +1125,7 @@ $j('#%(id)s').liveSortable({
 %(js_loading)s
 
 $j(function(){
+	$j("#%(id)s").data("ovitemclass","%(class)s-item");
 
 	$j("#%(id)s>.%(class)s-item").live('click dblclick', function(e){
 		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
@@ -1068,32 +1156,42 @@ $j(function(){
 		return false;
 	});
 
-	%(sortable)s
+	%(js_sortable)s
 	%(js_drag)s
-	%(dynamic)s
+	%(js_dynamic)s
 
 });
 </script>"""
 
 	JS_DYNAMIC = u"""
 	$j("#%(id)s").bind('scrollstop resize', function() {
-		vdom_ov_markShow("%(woid)s","%(cssc)s");
+		var obj = $j("#%(id)s");
+		var $content = $('>div.ov-content', obj);
+		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
+		if (canLoadContent) {
+			execEventBinded("%(woid)s", 'endscroll', {});
+		}
+		vdom_ov_markShow("%(woid)s");
 	});
-	vdom_ov_markShow("%(woid)s","%(cssc)s");
+	vdom_ov_markShow("%(woid)s");
+	window.setTimeout('vdom_ov_markShow("%(woid)s")', 2000);
 """
 
-	# //$j("#%(id)s>div.%(cssc)s-item").addClass('not-loaded');
-	JS_DYNAMIC_E2 = u"""<script type="text/javascript">
+	JS_DYNAMIC_E2 = u"""<script type="text/javascript">%s</script>""" % JS_DYNAMIC
 
-	$j("#%(id)s").bind('scrollstop resize', function() {
-		vdom_ov_markShow("%(woid)s","%(cssc)s");
-	});
-
-	$j(function(){
-		vdom_ov_markShow("%(woid)s","%(cssc)s");
-	});
-
-</script>
+	JS_INFINITE_SCROLL = u"""
+$j('#%(id)s').infiniteScroll({
+	'ovid': '%(woid)s',
+	'cssc': '%(cssc)s'
+});
+/*
+var obj = $j("#%(id)s");
+var $content = $('>div.ov-content', obj);
+var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
+if (canLoadContent) {
+	execEventBinded("%(woid)s", 'itemsrequestforinfinite', { loaded: $('>div.ov-content>div[dataid]',obj).size() });
+}
+*/
 """
 
 	def create_dupes_recurse(self, application, res, object, children):
@@ -1144,14 +1242,13 @@ $j(function(){
 		return result
 
 
-	def do_compile(self, object, idlist):
+	def do_compile(self, object, items, onlydiv):
 		result = ""
-		onlydiv = True if (len(idlist) <= 0 and self.dynamicloading == "1") else False
 
 		if self.vdomclassid:
 			self.tmp_list = []
 
-			# get object with id == vdomclassid
+			#get object with id == vdomclassid
 
 			classname = u"ov" if self.classname == "" else self.classname
 
@@ -1169,37 +1266,39 @@ $j(function(){
 
 			# parse ov.data
 
-			#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
 			try:
 				obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 			except:
 				obj_data = {}
 
+			if isinstance(obj_data, list):
+				nod = {}
+				for x in obj_data:
+					nod[x] = {}
+				obj_data = nod
+
 			nn = 1
 			nn_first = 1
-			#for key in obj_data:
+
 			for index, key in enumerate(obj_data):
 
-				if not onlydiv and self.dynamicloading == "1":
-					if key not in idlist:
+				if self.dynamicloading == "1" and not onlydiv:
+					if key not in items:
 						continue
 					else:
 						pass
 
 				# create new object for item container
 
-				#obj = application.objects.create('0bb24c16-14fe-08ef-858f-ba24aafc8049', object.id)
 				d_name = "vdomclass_%d" % index
 				obj = DummyObject(source_object, d_name, e2vdom.virtual_context, source_object, index)
 				obj_id = obj.id
 				self.tmp_list.append(obj_id)
 
-				#obj_attr = source_object.get_attributes()
 				for a in source_object_attr:
 					obj.set_attribute_ex(source_object_attr[a].name, source_object_attr[a].value, False)
 				obj.set_attribute_ex('data', obj_data[key], False)
 
-				#obj.actions = source_object.actions
 				obj.actions = copy.copy(source_object.actions)
 
 				res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
@@ -1241,23 +1340,18 @@ $j(function(){
 					,"userdef":    source_object_attr["classname"].value
 				}, False)
 
-				# first render - output all items, but as empty DIVs
-				if onlydiv:
-					#print "'''''''''''''''''''''''''''''''''''''''''''''''' onlydiv: first render"
+				if self.dynamicloading == "1" and onlydiv:
+					# render for requested items
 					try:
 						tmp_res = managers.engine.render(application, obj, object, "vdom")
 						result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
 					except:
 						raise
-				# render for requested items
 				else:
-					#print "'''''''''''''''''''''''''''''''''''''''''''''''' onlydiv: render requested"
+					# first render - output all items, but as empty DIVs
 					result += managers.engine.render(application, obj, object, "vdom")
 
 				nn += 1
-
-		#debug("!!!!!!!! result ")
-		#debug(result)
 
 		return result
 
@@ -1271,41 +1365,55 @@ $j(function(){
 		woid = (self.id).replace('-', '_')
 		id = u"o_" + woid
 
+		#itemslimit = int("0%s" % (self.itemslimit).strip())
+		#if itemslimit <= 0: itemslimit = 10
+
+
 		######## render separate items
 
-		if self.dynamicloading == "1" and request.render_type == "e2vdom" and self.itemstorender != "":  # html || e2vdom
+		if self.dynamicloading == "1" and request.render_type == "e2vdom":
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
 
-			try:
+			if self.itemstorender != "":
 				itemstorender = json.loads(self.itemstorender)
-			except:
-				itemstorender = []
-				#raise
+			else:
+				itemstorender = json.loads(self.data)
+
+			if not isinstance(itemstorender, list):
+				newi = []
+				for x in itemstorender:
+					newi.append(x)
+				itemstorender = newi
 
 			if itemstorender == []:
 				itemstorender.append("dummy-item-554f180b-1c2a-6705-3608-87f71366710b")
 
-			inner_render = self.do_compile(application.objects.search(self.id), itemstorender)
+			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, False)
 
 			tmp_id = u"ov" + str(utils.uuid.uuid4())
 
-			result = u"""<noreplace/>
+			result = u"""
+<noreplace/>
 
 <div id="%(tmp_id)s" style="display:none">%(inner_render)s</div>
 
-<script>
-	var x = $j('#%(id)s');
+<script type='text/javascript'>
+	var x = $j('#%(id)s>div.ov-content');
 	$j('#%(tmp_id)s>div[dataid]').each(function(){
-		var i = $j("div[dataid="+$j(this).attr('dataid')+"]", x);
-		i.after($j(this));
-		i.remove();
+		var i = $j(">div[dataid="+$j(this).attr('dataid')+"]", x);
+		if (i.size() > 0) {
+			i.after($j(this));
+			i.remove();
+		} else {
+			$j(">span.ov-eoi", x).before($j(this));
+		}
 	});
 </script>
-""" % {
+			""" % {
 				"id": id, "inner_render": inner_render, "tmp_id": tmp_id
 			}
 
-			return VDOM_object.render(self, parent, contents=result)
+			return VDOM_object.render(self, parent, contents = result)
 
 
 		######## render whole object but only wraps for items
@@ -1313,17 +1421,16 @@ $j(function(){
 		else:
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "html"'
 
+			try:
+				itemstorender = json.loads(self.data)
+			except:
+				itemstorender = []
+
 			# render items
 
-			inner_render = self.do_compile(application.objects.search(self.id), [])
+			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, self.dynamicloading == "1")
 
-			# remove on_compile's objects
-
-			#managers.source_cache.invalidate(application.id, self.id)
-			#for object_id in self.tmp_list:
-			#	application.objects.delete(object_id)
-
-			# render object
+			# initial render objectview
 
 			display = u" display:none; " if self.visible == "0" else u""
 
@@ -1347,11 +1454,10 @@ $j(function(){
 
 			classname = u"""class="%s" """ % self.classname if self.classname else u""
 
-			classname_item = (self.classname).replace(' ', '')
-			if self.classname == '':
-				classname_item = 'ov'
+			classname_item = 'ov' if self.classname == '' else (self.classname).replace(' ', '')
 
-			# layout css for inner items
+			# items layout
+
 			if self.layout == "1":
 				layout = u"float: left;"
 			elif self.layout == "0":
@@ -1370,22 +1476,12 @@ $j(function(){
 				,"layout": layout
 			}
 
-			if self.draggable == '1':
-				js_drag = self.JS_DRAG % { "id": id, "woid": woid, "class": classname_item }
-			else:
-				js_drag = ""
-
 			if self.loading == "0":
 				js_loading_call = u""
 				js_loading = u""
 			else:
 				js_loading_call = u"%s_ld(t);" % id
 				js_loading = self.JS_LOADING % { "id": id }
-
-			if self.sortable == "1":
-				js_sortable = self.JS_SORTABLE % { "id": id, "woid": woid }
-			else:
-				js_sortable = ""
 
 			if self.dynamicloading == "1":
 				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid, "cssc": classname_item }
@@ -1394,26 +1490,30 @@ $j(function(){
 				js_dynamic = ""
 				js_dynamic_e2 = ""
 
+			js_drag = self.JS_DRAG % { "id": id, "woid": woid, "class": classname_item } if self.draggable == "1" else ""
+
+			js_sortable = self.JS_SORTABLE % { "id": id, "woid": woid } if self.sortable == "1" else ""
+
 			js = self.JS % {
-				"js_drag":          js_drag
-				,"id":              id
-				,"woid":            woid
-				,"class":           classname_item
-				,"js_loading":      js_loading
-				,"js_loading_call": js_loading_call
-				,"dynamic":         js_dynamic
-				,"sortable":        js_sortable
+				"js_drag":            js_drag
+				,"id":                id
+				,"woid":              woid
+				,"class":             classname_item
+				,"js_loading":        js_loading
+				,"js_loading_call":   js_loading_call
+				,"js_dynamic":        js_dynamic
+				,"js_sortable":       js_sortable
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-07-11'" % (self.name, self.type.version)
+				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-08-16'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
-			result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{style_items}{contents}</div>{js}""".format(
+			result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{style_items}<div class='ov-content'>{contents}<span class='ov-eoi' style='display:block;clear:both'></span></div></div>{js}""".format(
 				js = js_dynamic_e2 if request.render_type == "e2vdom" else js,
 				id = id, debug_info = debug_info,
-				style = style.strip(), style_items = style_items.strip(), 
+				style = style.strip(), style_items = style_items.strip(),
 				classname = classname.strip(), contents = inner_render
 			)
 
@@ -1431,9 +1531,8 @@ $j(function(){
 		html_items = u""
 		datalen = 0
 		if self.data != "":
-			#obj_data_t = u"""%s""" % (self.data).replace("\n", "")
 			try:
-				obj_data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
+				obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 			except:
 				obj_data = {}
 			datalen = len(obj_data)
@@ -1540,7 +1639,6 @@ $j(function(){
 }(jQuery));
 
 function vdom_ov_inDiv(w0, s){
-//console.info('vdom_ov_inDiv ===');
 	var w = $j(w0), result = [], els = $j(s, w), pa, opa;
 	var o = w.position(), wTop = w.scrollTop();
 	var otop = (o == null) ? 0 : o.top;
@@ -1568,19 +1666,75 @@ function vdom_ov_inDiv(w0, s){
 	return $j(result);
 }
 
-function vdom_ov_markShow(eee, qq) {
-//console.info('vdom_ov_markShow ===');
-	var q = qq || "ov";
-	q = ">div."+q+'-item';
-	var a = [], z = vdom_ov_inDiv('#o_'+eee, q);
-//console.info('z.size() > 0 ',z.size() > 0);
+function vdom_ov_markShow(i) {
+	q = '>div.ov-content>div[dataid]';
+	var a = [], z = vdom_ov_inDiv('#o_'+i, q);
 	if (z.size() > 0) {
 		z.each(function(){
 			a.push($j(this).attr('dataid'));
 		});
-		execEventBinded(eee, "itemsrequest", {idlist: a});
+		execEventBinded(i, "itemsrequest", {idlist: a});
 	}
 }
+
+function vdom_ov_makeDiv(i, o) {
+	var s = $j('>div.ov-content>div[dataid]:first', o).attr('style');
+	if (s == '') s = 'height:10px;width:10px;';
+	return '<div dataid="'+i+'" class="'+$j(o).data("ovitemclass")+' not-loaded" style="'+s+'"></div>';
+}
+
+
+/**
+ * Anderson Ferminiano
+ * contato@andersonferminiano.com -- feel free to contact me for bugs or new implementations.
+ * jQuery ScrollPagination
+ * 28th/March/2011
+ * http://andersonferminiano.com/jqueryscrollpagination/
+ * You may use this script for free, but keep my credits.
+ * Thank you.
+ * # modified for VDOM Box Research by Leo @ 2012-08-14
+ */
+
+(function($){
+	$.fn.infiniteScroll = function(options) {
+		var opts = $.extend($.fn.infiniteScroll.defaults, options);
+		return this.each(function() {
+		  $.fn.infiniteScroll.init($(this), opts);
+		});
+	};
+
+	$.fn.stopinfiniteScroll = function(){
+		return this.each(function() {
+			$(this).attr('infiniteScroll', 'disabled');
+		});
+	};
+
+	$.fn.infiniteScroll.loadContent = function(obj, opts){
+		var $content = $('>div.ov-content', obj);
+		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= opts.heightOffset;
+		if (canLoadContent) {
+			execEventBinded(opts.ovid, 'itemsbatchrequest', { loaded: $('>div.ov-content>div[dataid]',$(obj)).size() });
+		}
+	};
+
+	$.fn.infiniteScroll.init = function(obj, opts){
+		obj.attr('infiniteScroll', 'enabled');
+		obj.scroll(function(event){
+			if (obj.attr('infiniteScroll') == 'enabled'){
+				$.fn.infiniteScroll.loadContent(obj, opts);
+			} else {
+				event.stopPropagation();
+			}
+		});
+		$.fn.infiniteScroll.loadContent(obj, opts);
+	 };
+
+	$.fn.infiniteScroll.defaults = {
+		'ovid': '',
+		'cssc': '',
+		'heightOffset': 30
+	};
+})(jQuery);
 
 </script>
 ]]></Library>
@@ -1618,10 +1772,13 @@ function vdom_ov_markShow(eee, qq) {
             <Parameter Name="idlist" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
+        <Event Name="endscroll">
+          <Parameters/>
+        </Event>
         <Event Name="itemsort">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="position" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="position" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -1639,7 +1796,7 @@ vdom_ui_hide(this.domCont, fade);
         <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hideLoading">
           <Parameters/>
           <SourceCode><![CDATA[
-$j('>div>.loading',this.domCont).fadeOut(100);
+$j('>div.ov-content>div>.loading',this.domCont).fadeOut(100);
 ]]></SourceCode>
         </Action>
         <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
@@ -1664,40 +1821,103 @@ vdom_ui_show(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$j('>div[dataid]',this.domCont).hide(0);
-for (x in items) {
-	$j('>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
+$j('>div.ov-content>div[dataid]',this.domCont).hide(0);
+for (var x in items) {
+	$j('>div.ov-content>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
 }
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="refresh">
+        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="refresh">
           <Parameters/>
           <SourceCode><![CDATA[
 var o=this.domCont;
-$j('>div[dataid]',o).remove();
+$j('>div.ov-content>div[dataid]',o).remove();
 execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectItems">
+        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="items" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
-	for (x in items) {
-		$j('>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).addClass('selected');
+	for (var x in items) {
+		$j('>div.ov-content>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).addClass('selected');
 	}
 }
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="unselectItems">
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="unselectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
-	for (x in items) {
-		$j('>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).removeClass('selected');
+	for (var x in items) {
+		$j('>div.ov-content>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).removeClass('selected');
+	}
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="insertAtBeginning">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	var o = this.domCont, z = $j('>div.ov-content>div:first',o);
+	if (z.size() <= 0) z = $j('>div.ov-content>span.ov-eoi',o);
+	for (var x in items) {
+		$j(vdom_ov_makeDiv(items[x], o)).insertBefore(z);
+	}
+	vdom_ov_markShow(o.id.substring(2, o.id.length));
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="insertAtEnd">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	var o = this.domCont;
+	for (var x in items) {
+		$j(vdom_ov_makeDiv(items[x], o)).insertBefore($j('>div.ov-content>span.ov-eoi',o));
+	}
+	vdom_ov_markShow(o.id.substring(2, o.id.length));
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="insertAfter">
+          <Parameters>
+            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(707)" ScriptName="id" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	var o = this.domCont, z = $j('>div.ov-content>div['+id+']',o);
+	if (z.size() > 0) {
+		for (var x in items) {
+			$j(vdom_ov_makeDiv(items[x], o)).insertAfter(z);
+		}
+		vdom_ov_markShow(o.id.substring(2, o.id.length));
+	}
+}
+]]></SourceCode>
+        </Action>
+        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="insertBefore">
+          <Parameters>
+            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(707)" ScriptName="id" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof items === 'object') {
+	var o = this.domCont, z = $j('>div.ov-content>div['+id+']',o);
+	if (z.size() > 0) {
+		for (var x in items) {
+			$j(vdom_ov_makeDiv(items[x], o)).insertBefore(z);
+		}
+		vdom_ov_markShow(o.id.substring(2, o.id.length));
 	}
 }
 ]]></SourceCode>
