@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.32.6720</Version>
+    <Version>2.33.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -8852,7 +8852,11 @@ console.info(msg);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="url" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-document.location.href=url; return false;
+/*document.location.href=url; return false;*//* not working in chrome */
+window.setTimeout(function(){
+	window.location = url;
+},500);
+return false;
 					]]></SourceCode>
         </Action>
         <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="hide">
