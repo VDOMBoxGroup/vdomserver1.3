@@ -1343,13 +1343,15 @@ if (canLoadContent) {
 				if self.dynamicloading == "1" and onlydiv:
 					# render for requested items
 					try:
-						tmp_res = managers.engine.render(application, obj, object, "vdom")
+						#tmp_res = managers.engine.render(application, obj, object, "vdom")
+						tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
 						result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
 					except:
 						raise
 				else:
 					# first render - output all items, but as empty DIVs
-					result += managers.engine.render(application, obj, object, "vdom")
+					#result += managers.engine.render(application, obj, object, "vdom")
+					result += managers.engine.render(application.itself, obj, object, "vdom")
 
 				nn += 1
 
