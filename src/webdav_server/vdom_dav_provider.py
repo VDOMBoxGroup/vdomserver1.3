@@ -39,7 +39,7 @@ BUFFER_SIZE = 8192
 def get_properties(app_id, obj_id, path):
 	props = managers.dispatcher.dispatch_action(app_id, obj_id, "getResourseProperties", "", """{"path": "%s"}""" % path)
 	if props:
-		return props
+		return (props, 1)
 
 
 class VDOM_resource(_DAVResource):
@@ -50,9 +50,12 @@ class VDOM_resource(_DAVResource):
 		self._app_id = app_id
 
 	def _get_info(self, prop):
-		properties = get_properties(self._app_id, self._obj_id, self.path)
-		if properties:
-			return properties.get(prop)
+		try:
+			properties = get_properties(self._app_id, self._obj_id, self.path)[0]
+			if properties:
+				return properties.get(prop)
+		except:
+			return None
 
 	def getContentLength(self):
 		if self.isCollection:
@@ -113,7 +116,7 @@ class VDOM_resource(_DAVResource):
 		if ret:
 			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
 			if res:
-				get_properties.invalidate(self._app_id, self._obj_id, self.path)
+				#get_properties.invalidate(self._app_id, self._obj_id, self.path)
 				return res
 
 		raise DAVError(HTTP_FORBIDDEN)               
@@ -126,7 +129,7 @@ class VDOM_resource(_DAVResource):
 		if ret:
 			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
 			if res:
-				get_properties.invalidate(self._app_id, self._obj_id, self.path)
+				#get_properties.invalidate(self._app_id, self._obj_id, self.path)
 				return res
 		raise DAVError(HTTP_FORBIDDEN)               
 
@@ -139,13 +142,6 @@ class VDOM_resource(_DAVResource):
 	def getMemberNames(self):
 		assert self.isCollection
 		memberNames = get_properties.get_children_names(self._app_id, self._obj_id, self.path)
-
-		if not memberNames:
-			func_name = "getMembers"
-			xml_data = """{"path": "%s"}""" % self.path
-			ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-			if ret:
-				memberNames = list(ret.keys())
 		return memberNames	
 
 			
@@ -169,7 +165,7 @@ class VDOM_resource(_DAVResource):
 		func_name = "close"
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
+		#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
 		
 	def handleDelete(self):
 		if self.provider.readonly:
@@ -258,7 +254,10 @@ class VDOM_Provider(DAVProvider):
 		path = os.path.normpath(path)
 		try:
 			if self.__app and obj_id:
-				res = get_properties(self.__app.id, obj_id, path)
+				try:
+					res = get_properties(self.__app.id, obj_id, path)[0]
+				except:
+					res = None
 				if res:
 					isCollection = True if res["resourcetype"] == "Directory" else False
 					return VDOM_resource(path, isCollection, environ, self.__app.id, obj_id)

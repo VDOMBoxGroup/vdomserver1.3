@@ -1,6 +1,7 @@
 import collections, os
 import functools
 import wsgidav.util as util
+import managers
 
 def lru_cache(maxsize=100):
 	'''Least-recently-used cache decorator.
@@ -31,25 +32,44 @@ def lru_cache(maxsize=100):
 			return result
 
 		def invalidate(app_id, obj_id, path):
-			for key in cache:
-				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-					del cache[key]
+			key = (app_id, obj_id, path.encode("utf8"))
+			try:
+				result = cache.pop(key)
+				cache[key] = (result[0], 1)
+			except:
+				pass
+			#for key in cache:
+			#	if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
+			#		del cache[key]
 
 
 		def get_children_names(app_id, obj_id, path):
 			cnames = []
-			for key in cache:
-				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
-				   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
-					cnames.append(util.getUriName(key[2]))
+			parent = cache.get((app_id, obj_id, path))
+			if parent and parent[1] == 1:
+				for key in cache:
+					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
+						del cache[key]				
+				func_name = "getMembers"
+				xml_data = """{"path": "%s"}""" % path
+				ret = managers.dispatcher.dispatch_action(app_id, obj_id, func_name, "",xml_data)
+				if ret:
+					cnames = list(ret.keys())
+				cache.pop((app_id, obj_id, path))
+				cache[(app_id, obj_id, path)] = (parent[0], 0)
+			else:
+				for key in cache:
+					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
+					   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
+						cnames.append(util.getUriName(key[2]))
 			return cnames
 		
 		def change_property_value(app_id, obj_id, path, propname, value):
-			props = cache.get((app_id, obj_id, path))
+			props = cache.get((app_id, obj_id, path))[0]
 			if props:
 				try:
 					props[propname] = value
-					cache[(app_id, obj_id, path)] = props
+					cache[(app_id, obj_id, path)] = (props, 0)
 				except:
 					pass
 			
@@ -62,7 +82,6 @@ def lru_cache(maxsize=100):
 
 		def clear():
 			cache.clear()
-			use_count.clear()
 			wrapper.hits = wrapper.misses = 0
 			
 		wrapper.invalidate = invalidate
