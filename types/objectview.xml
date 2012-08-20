@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.34.6720</Version>
+    <Version>1.37.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1374,10 +1374,19 @@ if (canLoadContent) {
 		if self.dynamicloading == "1" and request.render_type == "e2vdom":
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
 
+			itemstorender = []
+
 			if self.itemstorender != "":
-				itemstorender = json.loads(self.itemstorender)
-			else:
-				itemstorender = json.loads(self.data)
+				try:
+					itemstorender = json.loads(self.itemstorender)
+				except:
+					itemstorender = []
+
+			if itemstorender == []:
+				try:
+					itemstorender = json.loads(self.data)
+				except:
+					itemstorender = []
 
 			if not isinstance(itemstorender, list):
 				newi = []
