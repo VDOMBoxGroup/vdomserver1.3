@@ -6,7 +6,7 @@ prefix=u"v_"
 
 reserved=(u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE", u"USE",
 	u"BYVAL", u"BYREF", u"CALL", u"PROPERTY", u"GET", u"LET", u"SET", u"SUB", u"FUNCTION",
-	u"CLASS", u"PUBLIC", u"PRIVATE", u"DEFAULT", u"NEW", u"WITH", u"INHERITS", u"MYBASE", u"MYCLASS", u"MY",
+	u"CLASS", u"PUBLIC", u"PRIVATE", u"DEFAULT", u"NEW", u"WITH", u"INHERITS", u"MYBASE", u"MYCLASS", u"ME",
 	#u"PROTECTED", u"FRIEND",
 	#u"NOTINHERITABLE", u"MUSTINHERIT",
 	#u"OVERRIDABLE", u"OVERRIDES", u"NOTOVERRIDABLE", u"MUSTOVERRIDE",    
