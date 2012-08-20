@@ -312,5 +312,6 @@ class VDOM_application(object):
 	databases=property(lambda self: self._databases)
 	resources=property(lambda self: self._resources)
 	storage=property(lambda self: self._storage)
+	itself=property(lambda self: managers.request_manager.current.application()) # temporary, for objectview
 
 	
