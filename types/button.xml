@@ -1189,7 +1189,7 @@ class VDOM_button(VDOM_object):
 			scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='button' objname='%s' ver='%s @ 2012-05-30'" % (self.type.version, self.name)
+			debug_info = u"objtype='button' objname='%s' ver='%s @ 2012-05-30'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
