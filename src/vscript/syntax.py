@@ -114,9 +114,9 @@ def p_name_starts_with_mybase(p):
 	"""name : MYBASE"""
 	p[0]=vmybase(line=p[1][0])
 
-def p_name_starts_with_my(p):
-	"""name : MY"""
-	p[0]=vmy(line=p[1][0])
+def p_name_starts_with_me(p):
+	"""name : ME"""
+	p[0]=vme(line=p[1][0])
 
 def p_name_starts_with_myclass(p):
 	"""name : MYCLASS"""

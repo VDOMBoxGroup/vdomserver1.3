@@ -4,7 +4,7 @@ from . import errors, lexemes, library, exceptions
 from register import register
 
 
-__all__=[u"vname", u"vmybase", u"vmy", u"vmyclass", u"vnames",
+__all__=[u"vname", u"vmybase", u"vme", u"vmyclass", u"vnames",
 	u"vexpression", u"vexpressions",
 	u"vsubscripts", u"varguments", u"vstatements", u"vdeclarations", u"vredim",
 	u"verase", u"vlet", u"vset", u"vuse", u"vpython", u"vconstant", u"vcall",
@@ -135,7 +135,7 @@ class vnames(list):
 	def __unicode__(self):
 		return u", ".join([unicode(name) for name in self])
 
-class vmy(vname):
+class vme(vname):
 
 	def __init__(self, line=None):
 		vname.__init__(self, None, line=line)
