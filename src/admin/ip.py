@@ -114,10 +114,7 @@ def run(request):
 	if None == smtplogin:
 		smtplogin = ""
 
-	proxyaddr = ""
-	proxyport = ""
-	proxylogin = ""
-	proxypass = ""
+	proxyaddr, proxyport, proxylogin, proxypass = get_proxy()
 	
 	if "proxyaddr" in args and "proxyport" in args and "" != args["proxyaddr"][0] and "" != args["proxyport"][0]:
 		proxyaddr = args["proxyaddr"][0]
