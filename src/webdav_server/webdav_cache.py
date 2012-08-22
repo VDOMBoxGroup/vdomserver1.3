@@ -44,24 +44,24 @@ def lru_cache(maxsize=100):
 
 
 		def get_children_names(app_id, obj_id, path):
-			cnames = []
+			cnames = []			
+			func_name = "getMembers"
+			xml_data = """{"path": "%s"}""" % path
+			ret = managers.dispatcher.dispatch_action(app_id, obj_id, func_name, "",xml_data)
+			if ret:
+				cnames = list(ret.keys()) if isinstance(ret, dict) else ret
 			parent = cache.get((app_id, obj_id, path))
 			if parent and parent[1] == 1:
 				for key in cache:
 					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-						del cache[key]				
-				func_name = "getMembers"
-				xml_data = """{"path": "%s"}""" % path
-				ret = managers.dispatcher.dispatch_action(app_id, obj_id, func_name, "",xml_data)
-				if ret:
-					cnames = list(ret.keys())
+						del cache[key]
 				cache.pop((app_id, obj_id, path))
-				cache[(app_id, obj_id, path)] = (parent[0], 0)
-			else:
-				for key in cache:
-					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
-					   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
-						cnames.append(util.getUriName(key[2]))
+				cache[(app_id, obj_id, path)] = (parent[0], 0)				
+			#else:
+			#	for key in cache:
+			#		if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
+			#		   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
+			#			cnames.append(util.getUriName(key[2]))
 			return cnames
 		
 		def change_property_value(app_id, obj_id, path, propname, value):
