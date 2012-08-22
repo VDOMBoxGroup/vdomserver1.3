@@ -114,16 +114,17 @@ def run(request):
 	if None == smtplogin:
 		smtplogin = ""
 
-	proxyaddr, proxyport, proxylogin, proxypass = get_proxy()
+	proxyaddr, proxyport, proxylogin, proxypass = ("", "", "", "")
 	
-	if "proxyaddr" in args and "proxyport" in args and "" != args["proxyaddr"][0] and "" != args["proxyport"][0]:
-		proxyaddr = args["proxyaddr"][0]
-		proxyport = args["proxyport"][0]
-		if "proxylogin" in args:
-			proxylogin = args["proxylogin"][0]
-			if "proxypass" in args:
-				proxypass = args["proxypass"][0]
-	set_proxy(proxyaddr, proxyport, proxylogin, proxypass)
+	if "set_proxy" in args:
+		if "proxyaddr" in args and "proxyport" in args and "" != args["proxyaddr"][0] and "" != args["proxyport"][0]:
+				proxyaddr = args["proxyaddr"][0]
+				proxyport = args["proxyport"][0]
+				if "proxylogin" in args:
+					proxylogin = args["proxylogin"][0]
+					if "proxypass" in args:
+						proxypass = args["proxypass"][0]	
+		set_proxy(proxyaddr, proxyport, proxylogin, proxypass)
 	
 	
 	proxyaddr, proxyport, proxylogin, proxypass = get_proxy()
@@ -266,7 +267,7 @@ a:visited {
 	</tr>
         <tr>
           <td>&nbsp;</td>
-          <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
+          <td align="left"><input type="submit" name="set_proxy" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
         </tr>
     </table>
 </form>""" % (proxyaddr, proxyport, proxylogin, proxypass))
