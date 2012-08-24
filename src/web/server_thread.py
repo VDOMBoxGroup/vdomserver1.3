@@ -30,7 +30,7 @@ class VDOM_web_server_thread(VDOM_thread):
 		config = DEFAULT_CONFIG.copy()
 		config.update({"host": VDOM_CONFIG["SERVER-ADDRESS"],
 		               "port": VDOM_CONFIG["SERVER-DAV-PORT"],
-		               "propsmanager": VDOM_property_manager(),
+		               "propsmanager": True,
 		               "provider_mapping": {"/": VDOM_Provider()},
 		               "domaincontroller": VDOM_domain_controller(), # None: domain_controller.WsgiDAVDomainController(user_mapping)
 		               "acceptbasic": True,      # Allow basic authentication, True or False
