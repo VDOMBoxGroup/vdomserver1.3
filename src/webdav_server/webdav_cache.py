@@ -38,9 +38,9 @@ def lru_cache(maxsize=100):
 				cache[key] = (result[0], 1)
 			except:
 				pass
-			#for key in cache:
-			#	if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-			#		del cache[key]
+			for key in cache:
+				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
+					del cache[key]
 
 
 		def get_children_names(app_id, obj_id, path):
@@ -52,9 +52,6 @@ def lru_cache(maxsize=100):
 				cnames = list(ret.keys()) if isinstance(ret, dict) else ret
 			parent = cache.get((app_id, obj_id, path))
 			if parent and parent[1] == 1:
-				for key in cache:
-					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-						del cache[key]
 				cache.pop((app_id, obj_id, path))
 				cache[(app_id, obj_id, path)] = (parent[0], 0)				
 			#else:

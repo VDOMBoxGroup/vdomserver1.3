@@ -267,10 +267,6 @@ class VDOM_Provider(DAVProvider):
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
 
-	def setPropManager(self, propManager):
-		assert not propManager or hasattr(propManager, "copyProperties"), "Must be compatible with wsgidav.property_manager.PropertyManager"
-		self.propManager1 = propManager
-		self.propManager = PropertyManager()
 		
 class VDOM_webdav_manager(object):
 	
