@@ -1,4 +1,6 @@
 
+import sys
+from .. import errors
 from .primitive import primitive
 from ..subtypes import generic
 
