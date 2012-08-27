@@ -2,7 +2,7 @@
 import urllib, urllib2, httplib, mimetools, codecs
 from StringIO import StringIO
 from .. import errors
-from ..subtypes import generic, binary, string, v_empty, v_mismatch
+from ..subtypes import generic, boolean, binary, string, true, false, v_empty, v_mismatch
 
 
 v_connectionerror=urllib2.URLError
