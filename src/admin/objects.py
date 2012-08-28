@@ -52,7 +52,7 @@ function MM_swapImage() { //v3.0
 </head>
 
 <body onLoad="MM_preloadImages('Images/bt-objects-add_s.jpg','Images/bt-objects-delete_s.jpg')">
- <p class="Texte"><a href="config.py">Configuration</a><a href="menuAppli.html"></a> &gt; Objects </p>
+ <p class="Texte"><a href="config.py">Configuration</a><a href="menuAppli.html"></a> &gt; Types </p>
 <center>
 <table width="565" border="0">
   <tr>
