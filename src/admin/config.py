@@ -112,7 +112,7 @@ function MM_swapImage() { //v3.0
     <td>&nbsp;</td>
     <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('track','','images/bt-track_s.gif',1)" onmouseout="MM_swapImgRestore()"><a href="track.py">Track</a></div></td>
     <td>&nbsp;</td>
-    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('Objects','','Images/bt-objects-new_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="objects.py">Object</a></div></td>
+    <td><div align="center" class="Texte-liens" onmouseover="MM_swapImage('Objects','','Images/bt-objects-new_s.jpg',1)" onmouseout="MM_swapImgRestore()"><a href="objects.py">Types</a></div></td>
     <td>&nbsp;</td>
     """)
 		if ssh:
