@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.12.6720</Version>
+    <Version>2.14.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -2260,8 +2260,9 @@ jQuery(document).ready(function($){
 			});
 			execEventBinded("%(woid)s", "select", {keyList: a});
 		},
-		onExpand: function(node) {
-			fixfooter()
+		onExpand: function(flag, node) {
+			if (typeof fixfooter !== 'undefined') fixfooter();
+			execEventBinded("%(woid)s", "expand", {});
 		}
 		/*,dnd: {
 			onDragStart: function(node) {
@@ -2457,6 +2458,9 @@ jQuery(document).ready(function($){
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
+        </Event>
+        <Event Name="expand">
+          <Parameters />
         </Event>
       </Userinterfaceevents>
     </Events>
