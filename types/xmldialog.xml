@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.40.6720</Version>
+    <Version>1.43.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -220,7 +220,8 @@ class VDOM_xmldialog(VDOM_object):
 	def the_item(self, css_class, lbl, html, e):
 		attr_required = e.getAttribute("required")
 		visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
-		return u"<div class='row' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (visible, lbl, css_class, html)
+		fw = u"fullsize" if int("0%s" % e.getAttribute("fullsize").strip()) == 1 else ""
+		return u"<div class='row %s' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (fw, visible, lbl, css_class, html)
 
 	def render(self, parent, contents=""):
 
@@ -358,6 +359,11 @@ width: 45%%;
 float: right;
 width: 50%%;
 }
+.xml-dialog-form div.fullsize label,
+.xml-dialog-form div.fullsize div.item {
+float: none;
+width: 100%%;
+}
 .xml-dialog-form div.row div.item label {
 float: none;
 width: auto;
@@ -479,8 +485,9 @@ function vdom_xd_load(id,xd){
 		dodiv = function(cn,lbl,htm,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
-			//return "<div class='item "+cn+"' "+vis+">"+h+"</div><br style='clear:both' />";
-			return "<div class='row' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm)
+			var fw = parseInt(a.attr('fullsize') || '0', 10);
+			if (fw === 1) fw = 'fullsize'; else fw = '';
+			return "<div class='row {4}' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm, fw);
 		}
 	w.html('');
 	var nobtn = true;
