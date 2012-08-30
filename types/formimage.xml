@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.10.6200</Version>
+    <Version>1.34.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>130</DefaultValue>
+      <DefaultValue>50</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>22</DefaultValue>
+      <DefaultValue>50</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -175,68 +175,68 @@
       <Sentence ID="001">Form Image</Sentence>
       <Sentence ID="002">Used to add images</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">moveZindexTo</Sentence>
-      <Sentence ID="705">newZindex</Sentence>
-      <Sentence ID="805">New position in visual hierarchy of objects</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Value</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">Class CSS</Sentence>
+      <Sentence ID="112">Highlight image</Sentence>
+      <Sentence ID="113">Pressed state</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Image to display</Sentence>
+      <Sentence ID="209">Index number of switching the elements on pressing the tab key</Sentence>
+      <Sentence ID="211">CSS class name</Sentence>
+      <Sentence ID="212">Highlight the image when the cursor points at the object</Sentence>
+      <Sentence ID="213">Draw the image in pressed state</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="313">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="108">Value</Sentence>
-      <Sentence ID="208">Image to display</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Index number of switching the elements on pressing the tab key</Sentence>
-      <Sentence ID="309">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="111">Class CSS</Sentence>
-      <Sentence ID="211">CSS class name</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">Highlight image</Sentence>
-      <Sentence ID="212">Highlight the image when the cursor points at the object</Sentence>
-      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="113">Pressed state</Sentence>
-      <Sentence ID="213">Draw the image in pressed state</Sentence>
-      <Sentence ID="313">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">moveZindexTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">newZindex</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New position in visual hierarchy of objects</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -258,68 +258,68 @@
       <Sentence ID="001">Изображение-ссылка</Sentence>
       <Sentence ID="002">Добавление зображения-ссылки на форму</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">Координата по оси X</Sentence>
-      <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Координата по оси Y</Sentence>
-      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="603">Изменить позицию</Sentence>
-      <Sentence ID="705">Позиция</Sentence>
-      <Sentence ID="805">Новое значение позиции</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="706">Появление</Sentence>
-      <Sentence ID="806">Время появления в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Значение</Sentence>
+      <Sentence ID="109">Индекс табуляции</Sentence>
+      <Sentence ID="111">Класс CSS</Sentence>
+      <Sentence ID="112">Выделить изображение</Sentence>
+      <Sentence ID="113">Нажатое состояние</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображать объект или нет</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Изображаемый рисунок</Sentence>
+      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
+      <Sentence ID="211">Имя класса CSS</Sentence>
+      <Sentence ID="212">Выделить изображение при наведении курсора мыши</Sentence>
+      <Sentence ID="213">Отобразить рисунок в нажатом состоянии</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="313">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Значение</Sentence>
-      <Sentence ID="208">Изображаемый рисунок</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="109">Индекс табуляции</Sentence>
-      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="111">Класс CSS</Sentence>
-      <Sentence ID="211">Имя класса CSS</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">Выделить изображение</Sentence>
-      <Sentence ID="212">Выделить изображение при наведении курсора мыши</Sentence>
-      <Sentence ID="312">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="403">Нет</Sentence>
       <Sentence ID="404">Да</Sentence>
-      <Sentence ID="113">Нажатое состояние</Sentence>
-      <Sentence ID="213">Отобразить рисунок в нажатом состоянии</Sentence>
-      <Sentence ID="313">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Сдвинуть</Sentence>
+      <Sentence ID="603">Изменить позицию</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Координата по оси X</Sentence>
+      <Sentence ID="703">Координата по оси Y</Sentence>
+      <Sentence ID="704">Эффект</Sentence>
+      <Sentence ID="705">Позиция</Sentence>
+      <Sentence ID="706">Появление</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="805">Новое значение позиции</Sentence>
+      <Sentence ID="806">Время появления в миллисекундах</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -341,68 +341,68 @@
       <Sentence ID="001">Image de Formulaire</Sentence>
       <Sentence ID="002">Link image on form</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Move object to selected point</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">moveZindexTo</Sentence>
-      <Sentence ID="705">newZindex</Sentence>
-      <Sentence ID="805">New Z-index value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Valeur</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">Class</Sentence>
+      <Sentence ID="112">Highlight image</Sentence>
+      <Sentence ID="113">Pressed state</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Image à l'intérieur du champs</Sentence>
+      <Sentence ID="209">Tab index of the object on the page</Sentence>
+      <Sentence ID="211">CSS class name</Sentence>
+      <Sentence ID="212">Highlight image while mouse over</Sentence>
+      <Sentence ID="213">Draw image in pressed state</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Valeur</Sentence>
-      <Sentence ID="208">Image à l'intérieur du champs</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Tab index of the object on the page</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="111">Class</Sentence>
-      <Sentence ID="211">CSS class name</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="112">Highlight image</Sentence>
-      <Sentence ID="212">Highlight image while mouse over</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="113">Pressed state</Sentence>
-      <Sentence ID="213">Draw image in pressed state</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move object to selected point</Sentence>
+      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">moveZindexTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">newZindex</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="804">Visual effect by moving</Sentence>
+      <Sentence ID="805">New Z-index value</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -581,7 +581,7 @@ oWIXg6+xVCp1OE7L9oVvM4dlGLophNAnJydz4+MTfQMDheF0Ol2MxWIF0zQLKkYF1uv1TCKROPor
 wACLBhsn+wNC3gAAAABJRU5ErkJggg==]]></Resource>
     <Resource ID="2ca0f428-ffc2-ca5b-3337-610d2384821f" Name="Image1px" Type="gif"><![CDATA[R0lGODlhAQABAAAAACH5BAEAAAEALAAAAAABAAEAgAAAAAAAAAICTAEAOw==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[		import utils		class VDOM_formimage(VDOM_object):	def render(self, parent, contents=""):				link = utils.id.id2link1(self.value)		id_out = u"o_" + (self.id).replace('-', '_')		styleblock = u""		scriptblock = u""		display = u"display:none;" if self.visible == "0" else u""				style = u"""border:0px; z-index:{zind}; position:{pos}; top:{top}px; left:{left}px;					width:{width}px; height:{height}px; cursor:pointer; {display}				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 					width = self.width, height = self.height, display = display)				if self.ishover == "1":			src_classname = self.classname if self.classname else u"imagebutton" 			src_id = id_out[2:]			classtut = u"{src_cname}_{src_id}".format(src_cname = src_classname, src_id = src_id)			if self.ispressed == "1":				self.classname = u"{classtut} {classtut}_sel".format(classtut = classtut)			else:				self.classname = classtut						styleblock = u"""<style>.%(class)s,.%(class)s_sel{background:url("%(link)s") left top no-repeat;}								.%(class)s_sel{background-position:left -%(height)spx!important}</style>						""" % {"class": classtut, "link": link, "height": self.height}			scriptblock = u"""<script type="text/javascript">									jQuery("#%(id)s").hover(function(){jQuery(this).addClass("%(class)s_sel");},										function(){jQuery(this).removeClass("%(class)s_sel");});									jQuery("#%(id)s").click(function(){jQuery(this).toggleClass("%(class)s_sel");});							</script>						""" % {"id": id_out, "class": self.classname}			link = u"/2ca0f428-ffc2-ca5b-3337-610d2384821f.gif"		linkclass = u""" class="%s" """ % self.classname if self.classname else u""		result = u"""<input value=" " id="{id}" name="{name}" style="{style}" tabindex="{tabind}" 					src="{link}" border="0" type="image" {lclass} />{styleblk} {scriptblk}			""".format(id = id_out, name = self.name, style = style, tabind = self.tabindex, 						link = link, lclass = linkclass, styleblk = styleblock, scriptblk = scriptblock)		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		image_id = self.value		image_width = outer_width = self.width		image_height = outer_height = self.height		editable = u"""editable="value" """				if not image_id:			image_id = u"ef86150b-1aec-469f-a353-18b4751095dc"			outer_width = outer_height = image_width = image_height = 58			editable = u""					result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 							top="{top}" left="{left}" width="{width}" height="{height}">						<svg>							<image x="0" y="0" width="{img_wid}" height="{img_hei}" href="#Res({img_id})" {editable}/>						</svg>{contents}					</container>				""".format(id = self.id, vis = self.visible, zind = self.zindex, 							hierarchy = self.hierarchy, order = self.order, 							top = self.top, left = self.left, width = outer_width, height = outer_height,							img_wid = image_width, img_hei = image_height, img_id = image_id, editable = editable, 							contents = contents)				return VDOM_object.wysiwyg(self, parent, contents=result)def set_attr(app_id, object_id, param):	import managers	o = managers.xml_manager.search_object(app_id, object_id)			if "value" in param and not "width" in param and not "height" in param:		attr = param["value"]		res_id = attr["value"]		ro = managers.resource_manager.get_resource(app_id, res_id)		if not ro:			return "Resource not found"		# get image resource, obtain width and height and set width and height of the object		from PIL import Image		import cStringIO		s = cStringIO.StringIO()		s.write(ro.get_data())		s.seek(0, 0)		im = Image.open(s)			width, height = im.size		# set attributes		if o.attributes.width != width or o.attributes.height != height:			o.set_attributes({"width": width, "height": height})	else:		if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:			o.set_attributes({"width": 2500})		if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:			o.set_attributes({"height": 2500})	return ""			]]></SourceCode>
+  <SourceCode><![CDATA[		import utils		class VDOM_formimage(VDOM_object):	def render(self, parent, contents=""):				link = utils.id.id2link1(self.value)		id_out = u"o_" + (self.id).replace('-', '_')		styleblock = u""		scriptblock = u""		display = u"display:none;" if self.visible == "0" else u""						style = u"""border:0px; z-index:{zind}; position:{pos}; top:{top}px; left:{left}px;					width:{width}px; height:{height}px; cursor:pointer; {display}				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 					width = self.width, height = self.height, display = display)				if self.ishover == "1":			src_classname = self.classname if self.classname else u"imagebutton" 			src_id = id_out[2:]			classtut = u"{src_cname}_{src_id}".format(src_cname = src_classname, src_id = src_id)			if self.ispressed == "1":				self.classname = u"{classtut} {classtut}_sel".format(classtut = classtut)			else:				self.classname = classtut						styleblock = u"""<style>.%(class)s,.%(class)s_sel{background:url("%(link)s") left top no-repeat;}								.%(class)s_sel{background-position:left -%(height)spx!important}</style>						""" % {"class": classtut, "link": link, "height": self.height}			scriptblock = u"""<script type="text/javascript">									jQuery("#%(id)s").hover(function(){jQuery(this).addClass("%(class)s_sel");},										function(){jQuery(this).removeClass("%(class)s_sel");});									jQuery("#%(id)s").click(function(){jQuery(this).toggleClass("%(class)s_sel");});							</script>						""" % {"id": id_out, "class": self.classname}			link = u"/2ca0f428-ffc2-ca5b-3337-610d2384821f.gif"		linkclass = u""" class="%s" """ % self.classname if self.classname else u""		result = u"""<input value=" " id="{id}" name="{name}" style="{style}" tabindex="{tabind}" 					src="{link}" border="0" type="image" {lclass} />{styleblk} {scriptblk}			""".format(id = id_out, name = self.name, style = style, tabind = self.tabindex, 						link = link, lclass = linkclass, styleblk = styleblock, scriptblk = scriptblock)		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		image_id = self.value				if not image_id:			import utils.wysiwyg						image_id = "ef86150b-1aec-469f-a353-18b4751095dc"			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)						return VDOM_object.wysiwyg(self, parent, contents=result)					image_width = u""" width="{width}" """.format(width = self.width)		image_height = u""" height="{height}" """.format(height = self.height)				if self.ishover == "1" :			image_width = image_height = u""			if self.ispressed == "1" :				image_id = "2ca0f428-ffc2-ca5b-3337-610d2384821f"					result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 							top="{top}" left="{left}" width="{width}" height="{height}">						<svg>							<image x="0" y="0" {image_width} {image_height} href="#Res({img_id})" editable="value"/>						</svg>						{contents}					</container>				""".format(id = self.id, vis = self.visible, zind = self.zindex, 							hierarchy = self.hierarchy, order = self.order, 							top = self.top, left = self.left, 							width = self.width, height = self.height,							image_width = image_width, image_height = image_height,							img_id = image_id,							contents = contents)				return VDOM_object.wysiwyg(self, parent, contents=result)def set_attr(app_id, object_id, param):	import managers	o = managers.xml_manager.search_object(app_id, object_id)			if "value" in param and not "width" in param and not "height" in param:		attr = param["value"]		res_id = attr["value"]		ro = managers.resource_manager.get_resource(app_id, res_id)		if not ro:			return "Resource not found"		# get image resource, obtain width and height and set width and height of the object		from PIL import Image		import cStringIO		s = cStringIO.StringIO()		s.write(ro.get_data())		s.seek(0, 0)		im = Image.open(s)			width, height = im.size		# set attributes		if o.attributes.width != width or o.attributes.height != height:			o.set_attributes({"width": width, "height": height})	else:		if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:			o.set_attributes({"width": 2500})		if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:			o.set_attributes({"height": 2500})	return ""			]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
