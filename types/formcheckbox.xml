@@ -14,8 +14,8 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.26.6200</Version>
-    <InterfaceType>3</InterfaceType>
+    <Version>1.233.6200</Version>
+    <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, container</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>85</DefaultValue>
+      <DefaultValue>86</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>16</DefaultValue>
+      <DefaultValue>18</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -199,92 +199,92 @@
       <Sentence ID="001">Form Checkbox</Sentence>
       <Sentence ID="002">Used to add a checkbox</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Изменит состояние на "Выбран"</Sentence>
-      <Sentence ID="601">disable</Sentence>
-      <Sentence ID="502">Make the object enabled</Sentence>
-      <Sentence ID="602">enable</Sentence>
-      <Sentence ID="503">Hide the object</Sentence>
-      <Sentence ID="603">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="504">Move the object to a new position</Sentence>
-      <Sentence ID="604">moveTo</Sentence>
-      <Sentence ID="702">Effect</Sentence>
-      <Sentence ID="802">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="703">Координата по оси X</Sentence>
-      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Координата по оси Y</Sentence>
-      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="505">Change the object's state to "Selected"</Sentence>
-      <Sentence ID="605">Select</Sentence>
-      <Sentence ID="506">Set label of the object</Sentence>
-      <Sentence ID="606">setLabel</Sentence>
-      <Sentence ID="705">Label</Sentence>
-      <Sentence ID="805">New label value</Sentence>
-      <Sentence ID="507">Set new CSS style of the object</Sentence>
-      <Sentence ID="607">setStyle</Sentence>
-      <Sentence ID="706">cssStyleValue</Sentence>
-      <Sentence ID="806">CSS style value</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="509">Test action</Sentence>
-      <Sentence ID="609">Test</Sentence>
-      <Sentence ID="708">Text</Sentence>
-      <Sentence ID="808">Text to submit</Sentence>
-      <Sentence ID="511">Change the object's state to "Not selected"</Sentence>
-      <Sentence ID="611">Unselect</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Value</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">State</Sentence>
+      <Sentence ID="112">Disable</Sentence>
+      <Sentence ID="113">Label</Sentence>
+      <Sentence ID="114">FontWeight</Sentence>
+      <Sentence ID="115">FontSize</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Returned value of the object</Sentence>
+      <Sentence ID="209">Index number of switching the elements on pressing the tab key</Sentence>
+      <Sentence ID="211">Initial state of the checkbox</Sentence>
+      <Sentence ID="212">Define if the object is disabled or not</Sentence>
+      <Sentence ID="213">Label to the right of the checkbox</Sentence>
+      <Sentence ID="214">Font weight</Sentence>
+      <Sentence ID="215">Font size of the object in point</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="311">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="313">Incorrect value</Sentence>
+      <Sentence ID="314">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="315">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Value</Sentence>
-      <Sentence ID="208">Returned value of the object</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Index number of switching the elements on pressing the tab key</Sentence>
-      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="111">State</Sentence>
-      <Sentence ID="211">Initial state of the checkbox</Sentence>
-      <Sentence ID="311">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="403">Unchecked</Sentence>
       <Sentence ID="404">Checked</Sentence>
-      <Sentence ID="112">Disable</Sentence>
-      <Sentence ID="212">Define if the object is disabled or not</Sentence>
-      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="113">Label</Sentence>
-      <Sentence ID="213">Label to the right of the checkbox</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="114">FontWeight</Sentence>
-      <Sentence ID="214">Font weight</Sentence>
-      <Sentence ID="314">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="407">Bold</Sentence>
       <Sentence ID="408">Normal</Sentence>
-      <Sentence ID="115">FontSize</Sentence>
-      <Sentence ID="215">Font size of the object in point</Sentence>
-      <Sentence ID="315">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="501">Изменит состояние на "Выбран"</Sentence>
+      <Sentence ID="502">Make the object enabled</Sentence>
+      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="504">Move the object to a new position</Sentence>
+      <Sentence ID="505">Change the object's state to "Selected"</Sentence>
+      <Sentence ID="506">Set label of the object</Sentence>
+      <Sentence ID="507">Set new CSS style of the object</Sentence>
+      <Sentence ID="508">Show the object</Sentence>
+      <Sentence ID="509">Test action</Sentence>
+      <Sentence ID="511">Change the object's state to "Not selected"</Sentence>
+      <Sentence ID="601">disable</Sentence>
+      <Sentence ID="602">enable</Sentence>
+      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="604">moveTo</Sentence>
+      <Sentence ID="605">Select</Sentence>
+      <Sentence ID="606">setLabel</Sentence>
+      <Sentence ID="607">setStyle</Sentence>
+      <Sentence ID="608">Show</Sentence>
+      <Sentence ID="609">Test</Sentence>
+      <Sentence ID="611">Unselect</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Effect</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
+      <Sentence ID="705">Label</Sentence>
+      <Sentence ID="706">cssStyleValue</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708">Text</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">New label value</Sentence>
+      <Sentence ID="806">CSS style value</Sentence>
+      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="808">Text to submit</Sentence>
       <Sentence ID="901">New value of the object</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -307,92 +307,92 @@
       <Sentence ID="001">Флажок формы</Sentence>
       <Sentence ID="002">Добавление кнопки-флажка в форму</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Отключить использование объекта</Sentence>
-      <Sentence ID="601">Отключить</Sentence>
-      <Sentence ID="502">Включить использование объекта</Sentence>
-      <Sentence ID="602">Включить</Sentence>
-      <Sentence ID="503">Скрыть объект</Sentence>
-      <Sentence ID="603">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="504">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="604">Сдвинуть</Sentence>
-      <Sentence ID="702">Эффект</Sentence>
-      <Sentence ID="802">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="703">Координата по оси X</Sentence>
-      <Sentence ID="803">Координата новой точки по оси X</Sentence>
-      <Sentence ID="704">Координата по оси Y</Sentence>
-      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="505">Изменить состояние на "Выбран"</Sentence>
-      <Sentence ID="605">Установить отметку</Sentence>
-      <Sentence ID="506">Установить новую метку флажка</Sentence>
-      <Sentence ID="606">Установить метку</Sentence>
-      <Sentence ID="705">Метка</Sentence>
-      <Sentence ID="805">Новое значение метки</Sentence>
-      <Sentence ID="507">Установить новый стиль CSS</Sentence>
-      <Sentence ID="607">Установить стиль</Sentence>
-      <Sentence ID="706">Стиль</Sentence>
-      <Sentence ID="806">Новое значение стиля CSS</Sentence>
-      <Sentence ID="508">Показать объект</Sentence>
-      <Sentence ID="608">Показать</Sentence>
-      <Sentence ID="707">Появление</Sentence>
-      <Sentence ID="807">Время появления в миллисекундах</Sentence>
-      <Sentence ID="509">Проверочное действие</Sentence>
-      <Sentence ID="609">Проверка</Sentence>
-      <Sentence ID="708">Текст</Sentence>
-      <Sentence ID="808">Передаваемый текст</Sentence>
-      <Sentence ID="511">Изменить состояние на "Не выбран"</Sentence>
-      <Sentence ID="611">Снять отметку</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Значение</Sentence>
+      <Sentence ID="109">Индекс табуляции</Sentence>
+      <Sentence ID="111">Состояние</Sentence>
+      <Sentence ID="112">Отключить</Sentence>
+      <Sentence ID="113">Метка</Sentence>
+      <Sentence ID="114">Выделение шрифта</Sentence>
+      <Sentence ID="115">Размер шрифта</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Возвращаемое значение объекта</Sentence>
+      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
+      <Sentence ID="211">Начальное состояние флажка</Sentence>
+      <Sentence ID="212">Определяет, включена кнопка-флажок или нет</Sentence>
+      <Sentence ID="213">Текст справа от флажка</Sentence>
+      <Sentence ID="214">Выделение шрифта</Sentence>
+      <Sentence ID="215">Размер шрифта</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="311">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="312">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="314">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="315">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="108">Значение</Sentence>
-      <Sentence ID="208">Возвращаемое значение объекта</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="109">Индекс табуляции</Sentence>
-      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="111">Состояние</Sentence>
-      <Sentence ID="211">Начальное состояние флажка</Sentence>
-      <Sentence ID="311">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="403">Не отмечен</Sentence>
       <Sentence ID="404">Отмечен</Sentence>
-      <Sentence ID="112">Отключить</Sentence>
-      <Sentence ID="212">Определяет, включена кнопка-флажок или нет</Sentence>
-      <Sentence ID="312">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
-      <Sentence ID="113">Метка</Sentence>
-      <Sentence ID="213">Текст справа от флажка</Sentence>
-      <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="114">Выделение шрифта</Sentence>
-      <Sentence ID="214">Выделение шрифта</Sentence>
-      <Sentence ID="314">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="407">Полужирный</Sentence>
       <Sentence ID="408">Обычный</Sentence>
-      <Sentence ID="115">Размер шрифта</Sentence>
-      <Sentence ID="215">Размер шрифта</Sentence>
-      <Sentence ID="315">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="501">Отключить использование объекта</Sentence>
+      <Sentence ID="502">Включить использование объекта</Sentence>
+      <Sentence ID="503">Скрыть объект</Sentence>
+      <Sentence ID="504">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="505">Изменить состояние на "Выбран"</Sentence>
+      <Sentence ID="506">Установить новую метку флажка</Sentence>
+      <Sentence ID="507">Установить новый стиль CSS</Sentence>
+      <Sentence ID="508">Показать объект</Sentence>
+      <Sentence ID="509">Проверочное действие</Sentence>
+      <Sentence ID="511">Изменить состояние на "Не выбран"</Sentence>
+      <Sentence ID="601">Отключить</Sentence>
+      <Sentence ID="602">Включить</Sentence>
+      <Sentence ID="603">Скрыть</Sentence>
+      <Sentence ID="604">Сдвинуть</Sentence>
+      <Sentence ID="605">Установить отметку</Sentence>
+      <Sentence ID="606">Установить метку</Sentence>
+      <Sentence ID="607">Установить стиль</Sentence>
+      <Sentence ID="608">Показать</Sentence>
+      <Sentence ID="609">Проверка</Sentence>
+      <Sentence ID="611">Снять отметку</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Эффект</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
+      <Sentence ID="705">Метка</Sentence>
+      <Sentence ID="706">Стиль</Sentence>
+      <Sentence ID="707">Появление</Sentence>
+      <Sentence ID="708">Текст</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Новое значение метки</Sentence>
+      <Sentence ID="806">Новое значение стиля CSS</Sentence>
+      <Sentence ID="807">Время появления в миллисекундах</Sentence>
+      <Sentence ID="808">Передаваемый текст</Sentence>
       <Sentence ID="901">Новое значение</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение Y</Sentence>
@@ -415,92 +415,92 @@
       <Sentence ID="001">Case à cocher de Formulaire</Sentence>
       <Sentence ID="002">Case à cocher Formulaire</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Изменит состояние на "Выбран"</Sentence>
-      <Sentence ID="601">disable</Sentence>
-      <Sentence ID="502">Make the object enabled</Sentence>
-      <Sentence ID="602">enable</Sentence>
-      <Sentence ID="503">Hide the object</Sentence>
-      <Sentence ID="603">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="504">Move object to selected point</Sentence>
-      <Sentence ID="604">moveTo</Sentence>
-      <Sentence ID="702">Effect</Sentence>
-      <Sentence ID="802">Visual effect by moving</Sentence>
-      <Sentence ID="703">newX</Sentence>
-      <Sentence ID="803">X-coordinate of new point</Sentence>
-      <Sentence ID="704">newY</Sentence>
-      <Sentence ID="804">Y-coordinate of new point</Sentence>
-      <Sentence ID="505">Set checkbox to selected state</Sentence>
-      <Sentence ID="605">Select</Sentence>
-      <Sentence ID="506">Set new checkbox label</Sentence>
-      <Sentence ID="606">setLabel</Sentence>
-      <Sentence ID="705">Label</Sentence>
-      <Sentence ID="805">New label value</Sentence>
-      <Sentence ID="507">Set new CSS style</Sentence>
-      <Sentence ID="607">setStyle</Sentence>
-      <Sentence ID="706">cssStyleValue</Sentence>
-      <Sentence ID="806">New CSS style value</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="807">Time of appearance</Sentence>
-      <Sentence ID="509">Test action</Sentence>
-      <Sentence ID="609">Test</Sentence>
-      <Sentence ID="708">Text</Sentence>
-      <Sentence ID="808">Text to submit</Sentence>
-      <Sentence ID="511">Set checkbox to unselected state</Sentence>
-      <Sentence ID="611">Unselect</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Valeur</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">Etat</Sentence>
+      <Sentence ID="112">Disable</Sentence>
+      <Sentence ID="113">Texte</Sentence>
+      <Sentence ID="114">Graisse</Sentence>
+      <Sentence ID="115">Taille</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Retourne la valeur de la checkbox</Sentence>
+      <Sentence ID="209">Tab index</Sentence>
+      <Sentence ID="211">Etat initial de la checkbox</Sentence>
+      <Sentence ID="212">Define if the object is disabled or not</Sentence>
+      <Sentence ID="213">Texte à droite de la checkbox</Sentence>
+      <Sentence ID="214">Graisse de la police</Sentence>
+      <Sentence ID="215">Taille de la police</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="313">Valeur Incorrecte</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Valeur</Sentence>
-      <Sentence ID="208">Retourne la valeur de la checkbox</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Tab index</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="111">Etat</Sentence>
-      <Sentence ID="211">Etat initial de la checkbox</Sentence>
-      <Sentence ID="311">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Non-cochée</Sentence>
       <Sentence ID="404">Cochée</Sentence>
-      <Sentence ID="112">Disable</Sentence>
-      <Sentence ID="212">Define if the object is disabled or not</Sentence>
-      <Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="113">Texte</Sentence>
-      <Sentence ID="213">Texte à droite de la checkbox</Sentence>
-      <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="114">Graisse</Sentence>
-      <Sentence ID="214">Graisse de la police</Sentence>
-      <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="407">Gras</Sentence>
       <Sentence ID="408">Normal</Sentence>
-      <Sentence ID="115">Taille</Sentence>
-      <Sentence ID="215">Taille de la police</Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="501">Изменит состояние на "Выбран"</Sentence>
+      <Sentence ID="502">Make the object enabled</Sentence>
+      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="504">Move object to selected point</Sentence>
+      <Sentence ID="505">Set checkbox to selected state</Sentence>
+      <Sentence ID="506">Set new checkbox label</Sentence>
+      <Sentence ID="507">Set new CSS style</Sentence>
+      <Sentence ID="508">Show the object</Sentence>
+      <Sentence ID="509">Test action</Sentence>
+      <Sentence ID="511">Set checkbox to unselected state</Sentence>
+      <Sentence ID="601">disable</Sentence>
+      <Sentence ID="602">enable</Sentence>
+      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="604">moveTo</Sentence>
+      <Sentence ID="605">Select</Sentence>
+      <Sentence ID="606">setLabel</Sentence>
+      <Sentence ID="607">setStyle</Sentence>
+      <Sentence ID="608">Show</Sentence>
+      <Sentence ID="609">Test</Sentence>
+      <Sentence ID="611">Unselect</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Effect</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Label</Sentence>
+      <Sentence ID="706">cssStyleValue</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708">Text</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">Visual effect by moving</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">New label value</Sentence>
+      <Sentence ID="806">New CSS style value</Sentence>
+      <Sentence ID="807">Time of appearance</Sentence>
+      <Sentence ID="808">Text to submit</Sentence>
       <Sentence ID="901">New value for checkbox</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -641,34 +641,29 @@ $('#inp_%(id)s').click(function(){
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		if int(self.state):
-			state = u"""
-						<line stroke="#000000" stroke-width="2" x1="{xa}" y1="{ya}" x2="{xb}" y2="{yb}"/>
-						<line stroke="#000000" stroke-width="2" x1="{xb}" y1="{yb}" x2="{xc}" y2="{yc}"/>
-					""".format(xa = 5, ya = 8, xb = 9, yb = 12, xc = 14, yc = 6)
-		else:
-			state = u""
-		fontsize = u"""fontsize="%s" """ % self.fontsize if self.fontsize else u""
-		label = u"<![CDATA[%s%s]>" % (self.label, "]")
+		fontsize = u" {fsize}px ".format(fsize = self.fontsize) if self.fontsize else u" "
+		state = [u"", u""" checked="checked" """][int(self.state)]
+		disable = u""" disabled="disabled" """ if self.disable == "1" else u""
 		
 		result = \
 			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-						top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect x="{rec_left}" y="{rec_top}" width="{rec_wid}" height="{rec_hei}" fill="#EEEEEE" stroke="#000000"/>
-						{state}
-					</svg>
-					<text top="{txt_top}" left="{txt_left}" width="{txt_wid}" height="{txt_hei}" 
-						color="#000000" fontweight="{fweight}" {fsize}>{label}</text>
-					{contents}
+						top="{top}" left="{left}" width="{width}" height="{height}" >
+					<htmltext top="0" left="0" width="{width}" height="{height}" locked="true" overflow="hidden">
+						<input type="checkbox" {state} {disable}
+									style="vertical-align:top; font: {fontweight} {fontsize} tahoma;" /> 
+						<label style="vertical-align:middle; font: {fontweight} {fontsize} tahoma;">{label}</label>
+						
+					</htmltext>
 				</container>
 			""".format(
 				id = self.id, vis = self.visible, zind = self.zindex, 
 				hierarchy = self.hierarchy, order = self.order, 
 				top = self.top, left = self.left, width = self.width, height = self.height,
-				rec_left = 2, rec_top = 2, rec_wid = 13, rec_hei = 13, state = state,
-				txt_top = 0, txt_left = 16, txt_wid = int(self.width)-16, txt_hei = self.height, 
-				fweight = self.fontweight, fsize = fontsize, label = label, contents = contents)
+				label=self.label,
+				fontsize = fontsize,
+				fontweight = self.fontweight,
+				state = state,
+				disable = disable)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
