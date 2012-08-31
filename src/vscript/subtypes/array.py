@@ -38,9 +38,11 @@ def redim(items, subscripts, index):
 		for item in items:
 			redim(item, subscripts, index-1)
 	else:
-		if subscript<len(items):
+		if subscript<0:
+			raise errors.subscript_out_of_range
+		elif subscript<len(items)-1:
 			del items[subscript+1:]
-		elif subscript>len(items):
+		elif subscript>len(items)-1:
 			items.extend([v_empty]*(subscript+1-len(items)))
 
 def erase(items):
@@ -180,11 +182,15 @@ class array(subtype):
 	def lbound(self, dimension):
 		if dimension<1 or dimension>len(self._subscripts):
 			raise errors.wrong_number_of_arguments
+		if self._subscripts[dimension-1]<0:
+			raise errors.subscript_out_of_range
 		return 0
 
 	def ubound(self, dimension):
 		if dimension<1 or dimension>len(self._subscripts):
 			raise errors.wrong_number_of_arguments
+		if self._subscripts[dimension-1]<0:
+			raise errors.subscript_out_of_range
 		return self._subscripts[dimension-1]
 	
 

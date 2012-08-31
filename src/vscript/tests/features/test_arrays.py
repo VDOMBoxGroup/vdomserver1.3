@@ -38,8 +38,20 @@ class TestArrays(VScriptTestCase):
 				next
 			next""").is_integer(36)
 
+	def test_static_array_ubound(self):
+		self.evaluate("dim a(0)", let="ubound(a)").is_integer(0)
+		self.evaluate("dim a(3)", let="ubound(a)").is_integer(3)
+
 	def test_dynamic_array_enumeration(self):
 		assert self.execute("""
 			for each item in array(1, 2, 3)
 				result=result+item
 			next""").is_integer(6)
+
+	def test_dynamic_array_ubound(self):
+		with raises(errors.subscript_out_of_range):
+			self.evaluate("dim a()", let="ubound(a)").is_integer(0)
+		with raises(errors.subscript_out_of_range):
+			self.evaluate("a=array()", let="ubound(a)").is_integer(0)
+		self.evaluate("a=array(1)", let="ubound(a)").is_integer(0)
+		self.evaluate("a=array(1, 2, 3)", let="ubound(a)").is_integer(3)
