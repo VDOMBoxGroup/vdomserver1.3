@@ -1157,6 +1157,7 @@ $j("#"""+id+""" table tr th:not([checkbox])").click(function(){
 window.selectionmode_"""+id+""" = 'multi';
 
 $j("#"""+id+""" table tr th input:checkbox").click(function(){
+	params_"""+id+""" = [];
 	if(this.checked){
 		$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
 		  params_"""+id+""".push(window.keys_"""+id+"""[i]);
@@ -1164,7 +1165,6 @@ $j("#"""+id+""" table tr th input:checkbox").click(function(){
 
 	}else{
 		$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
-		params_"""+id+""" = [];
 	}
 	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
   });
