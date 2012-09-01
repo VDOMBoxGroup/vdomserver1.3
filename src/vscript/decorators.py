@@ -10,16 +10,13 @@ from .conversions import pack, unpack
 __all__=["auto", "native", "vclass", "vfunction", "vsub", "vproperty", "vcollection"]
 
 
-class auto_class(object): pass
-class native_class(object): pass
-
-auto=auto_class()
-native=native_class()
+class auto(object): pass
+class native(object): pass
 
 
 wrappers={
-	auto_class: pack,
-	native_class: lambda value: value,
+	auto: pack,
+	native: lambda value: value,
 	generic: lambda value: value,
 	integer: lambda value: integer(int(value)),
 	string: lambda value: string(unicode(value)),
@@ -28,8 +25,8 @@ wrappers={
 	double: lambda value: double(float(value))}
 
 unwrappers={
-	auto_class: unpack,
-	native_class: lambda value: value.as_is,
+	auto: unpack,
+	native: lambda value: value.as_is,
 	generic: lambda value: value.as_generic,
 	integer: lambda value: value.as_integer,
 	string: lambda value: value.as_string,
