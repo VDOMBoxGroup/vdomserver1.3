@@ -149,7 +149,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Uploader v2</Sentence>
-      <Sentence ID="002">Allows to upload multiple files with AJAX</Sentence>
+      <Sentence ID="002">The Uploader v2 type produces an object that allows user to choose one or more files from file local computer to upload them. The files for uploading can be dragged and dropped onto the Uploader v2 object. It allows interrupting the process of uploading files.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -189,6 +189,11 @@
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">Start upload</Sentence>
       <Sentence ID="506">Start upload</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setStyle</Sentence>
@@ -254,6 +259,11 @@
       <Sentence ID="504">Показать объект</Sentence>
       <Sentence ID="505"></Sentence>
       <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
       <Sentence ID="603">Установить стиль</Sentence>
@@ -319,6 +329,11 @@
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505"></Sentence>
       <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setStyle</Sentence>
@@ -2078,32 +2093,32 @@ form.file_upload button,
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="start">
+        <Event Name="start" Help="#Lang(507)">
           <Parameters/>
         </Event>
-        <Event Name="progress">
+        <Event Name="progress" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="total" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="loaded" Order="" VbType="" Help="#Lang(902)"/>
             <Parameter Name="percent" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="done">
+        <Event Name="done" Help="#Lang(509)">
           <Parameters/>
         </Event>
-        <Event Name="error">
+        <Event Name="error" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="text" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="cancel">
+        <Event Name="cancel" Help="#Lang(512)">
           <Parameters/>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^[0-9]{1,99}$"/>
           </Parameters>
@@ -2111,7 +2126,7 @@ form.file_upload button,
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation="^[0-9]{1,99}$"/>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation="^[0-9]{1,99}$"/>
@@ -2121,7 +2136,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="TextField(0,999)" InterfaceName="#Lang(705)" ScriptName="cssStyleValue" Help="#Lang(805)" RegularExpressionValidation="^.{0,999}$"/>
           </Parameters>
@@ -2129,7 +2144,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 jQuery(this).attr('style', cssStyleValue);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation="^[0-9]{1,99}$"/>
           </Parameters>
@@ -2137,14 +2152,14 @@ jQuery(this).attr('style', cssStyleValue);
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="submit">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="submit">
           <Parameters/>
           <SourceCode><![CDATA[
 $j('#'+this.domCont.id+' .file_upload_start button').click();
 return false;
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="cancel">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="cancel">
           <Parameters/>
           <SourceCode><![CDATA[
 var id = this.domCont.id;

@@ -161,51 +161,60 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Tabview</Sentence>
-      <Sentence ID="002">Used as a container for tabs</Sentence>
+      <Sentence ID="002">The Tabview type allows storing and displaying the blocks of information, called tabs, in a predefined way.</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">currenttab</Sentence>
+      <Sentence ID="109">Show tabs</Sentence>
+      <Sentence ID="111">Style</Sentence>
+      <Sentence ID="112">Skin</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
+      <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">The sequence number of the current inserted element</Sentence>
+      <Sentence ID="209">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="211">CSS style of the object</Sentence>
+      <Sentence ID="212">Visual appearance of the object</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="405">User defined</Sentence>
+      <Sentence ID="406">Custom</Sentence>
       <Sentence ID="501">Tab is activated</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">activateTab</Sentence>
       <Sentence ID="701">open tab</Sentence>
       <Sentence ID="801">Name of the opened tab</Sentence>
-      <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">currenttab</Sentence>
-      <Sentence ID="208">The sequence number of the current inserted element</Sentence>
-      <Sentence ID="308">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="109">Show tabs</Sentence>
-      <Sentence ID="209">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="111">Style</Sentence>
-      <Sentence ID="211">CSS style of the object</Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="112">Skin</Sentence>
-      <Sentence ID="212">Visual appearance of the object</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="405">User defined</Sentence>
-      <Sentence ID="406">Custom</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -230,49 +239,58 @@
       <Sentence ID="001">Tabs</Sentence>
       <Sentence ID="002">Container for tabs</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Hiérarchie</Sentence>
+      <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">currentTab</Sentence>
+      <Sentence ID="109">Show tabs</Sentence>
+      <Sentence ID="111">Style</Sentence>
+      <Sentence ID="112">Skin</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Current tab</Sentence>
+      <Sentence ID="209">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="211">CSS style of the object</Sentence>
+      <Sentence ID="212">Visual appearance of the object</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="405">User defined</Sentence>
+      <Sentence ID="406">Custom</Sentence>
       <Sentence ID="501">activate tab</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">activateTab</Sentence>
       <Sentence ID="701">newTab</Sentence>
       <Sentence ID="801">new tab</Sentence>
-      <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="102">Visibilité</Sentence>
-      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">currentTab</Sentence>
-      <Sentence ID="208">Current tab</Sentence>
-      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="109">Show tabs</Sentence>
-      <Sentence ID="209">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="111">Style</Sentence>
-      <Sentence ID="211">CSS style of the object</Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="112">Skin</Sentence>
-      <Sentence ID="212">Visual appearance of the object</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="405">User defined</Sentence>
-      <Sentence ID="406">Custom</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -297,49 +315,58 @@
       <Sentence ID="001">Вкладка</Sentence>
       <Sentence ID="002">Используется как контейнер для вкладок</Sentence>
       <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Иерархия</Sentence>
+      <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Текущая вкладка</Sentence>
+      <Sentence ID="109">Показывать вкладки</Sentence>
+      <Sentence ID="111">Стиль</Sentence>
+      <Sentence ID="112">Оформление</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Порядковый номер текущей вкладки</Sentence>
+      <Sentence ID="209">Определяет, будут ли отображаться вкладки</Sentence>
+      <Sentence ID="211">CSS стиль объекта</Sentence>
+      <Sentence ID="212">Визуальное оформление объекта</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="401">Не отображать</Sentence>
+      <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="403">Нет</Sentence>
+      <Sentence ID="404">Да</Sentence>
+      <Sentence ID="405">Определено пользователем</Sentence>
+      <Sentence ID="406">Пользовательский</Sentence>
       <Sentence ID="501">Активировать вкладку</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">Активировать вкладку</Sentence>
       <Sentence ID="701">Открыть вкладку</Sentence>
       <Sentence ID="801">Имя открытой вкладки</Sentence>
-      <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="202">Режим отображения объекта</Sentence>
-      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="401">Не отображать</Sentence>
-      <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Текущая вкладка</Sentence>
-      <Sentence ID="208">Порядковый номер текущей вкладки</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="109">Показывать вкладки</Sentence>
-      <Sentence ID="209">Определяет, будут ли отображаться вкладки</Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="403">Нет</Sentence>
-      <Sentence ID="404">Да</Sentence>
-      <Sentence ID="111">Стиль</Sentence>
-      <Sentence ID="211">CSS стиль объекта</Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="112">Оформление</Sentence>
-      <Sentence ID="212">Визуальное оформление объекта</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="405">Определено пользователем</Sentence>
-      <Sentence ID="406">Пользовательский</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -664,55 +691,55 @@ var tabview_children_%(id)s = %(arr)s;
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(502)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(503)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(504)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="tabchanged">
+        <Event Name="tabchanged" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="ID" Order="" VbType="" Help="#Lang(918)"/>
             <Parameter Name="Name" Order="" VbType="" Help="#Lang(919)"/>
@@ -723,7 +750,7 @@ var tabview_children_%(id)s = %(arr)s;
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateTab">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateTab">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="openTab" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>

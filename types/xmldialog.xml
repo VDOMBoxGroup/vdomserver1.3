@@ -87,97 +87,111 @@
     </Attribute>
     <Attribute>
       <Name>title</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(309)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(209)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>xmldata</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(50000)</CodeInterface>
+      <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>show</Name>
+      <Name>xmldata</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|1)|(#Lang(402)|0))</CodeInterface>
+      <CodeInterface>MultiLine(50000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>show</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|1)|(#Lang(402)|0))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>modal</Name>
-      <DisplayName>#Lang(108)</DisplayName>
+      <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
+      <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|1)|(#Lang(404)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">XMLDialog</Sentence>
-      <Sentence ID="002">Build form in dialog window</Sentence>
+      <Sentence ID="002">The XML dialog type produces an object displayed as a dialog window. The content of the dialog is described in the 'XML data' attribute ib XML format.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="601"></Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="802"></Sentence>
       <Sentence ID="101">Herarchy</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="102">Top</Sentence>
-      <Sentence ID="202">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="103">Left</Sentence>
-      <Sentence ID="203">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="104">Width</Sentence>
-      <Sentence ID="204">Width in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="105">Height</Sentence>
+      <Sentence ID="106">Title</Sentence>
+      <Sentence ID="107">XML data</Sentence>
+      <Sentence ID="108">Show</Sentence>
+      <Sentence ID="109">Modal</Sentence>
+      <Sentence ID="201">Hierarchy of the object</Sentence>
+      <Sentence ID="202">Distance from the top edge of the parent in pixels</Sentence>
+      <Sentence ID="203">Distance from the left edge of the parent in pixels</Sentence>
+      <Sentence ID="204">Width in pixels</Sentence>
       <Sentence ID="205">Height in pixels</Sentence>
+      <Sentence ID="206">Title of the object to display, HTML allowed</Sentence>
+      <Sentence ID="207">XML data</Sentence>
+      <Sentence ID="208">Show dialog after page load</Sentence>
+      <Sentence ID="209">Open dialog in modal window</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="106">XML data</Sentence>
-      <Sentence ID="206">XML data</Sentence>
       <Sentence ID="306">Incorrect value</Sentence>
-      <Sentence ID="107">Show</Sentence>
-      <Sentence ID="207">Show dialog after page load</Sentence>
       <Sentence ID="307">Incorrect value</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
-      <Sentence ID="108">Modal</Sentence>
-      <Sentence ID="208">Open dialog in modal window</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="403">Yes</Sentence>
       <Sentence ID="404">No</Sentence>
-      <Sentence ID="109">Title</Sentence>
-      <Sentence ID="209">Incorrect value</Sentence>
-      <Sentence ID="309">Title of the object to display, HTML allowed</Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
+      <Sentence ID="705"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802"></Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="901"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -564,22 +578,22 @@ function vdom_xd_load(id,xd){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="hide">
+        <Event Name="hide" Help="#Lang(505)">
           <Parameters/>
         </Event>
-        <Event Name="show">
+        <Event Name="show" Help="#Lang(506)">
           <Parameters/>
         </Event>
-        <Event Name="submit">
+        <Event Name="submit" Help="#Lang(507)">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -587,7 +601,7 @@ function vdom_xd_load(id,xd){
 $q("#"+this.domCont.id).dialog('close');
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -595,18 +609,18 @@ $q("#"+this.domCont.id).dialog('close');
 $q("#"+this.domCont.id).dialog('open');
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="resizeTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="width" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 $q("#"+this.domCont.id).dialog("option",{width:parseInt(width,10),height:parseInt(height,10)});
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="loadData">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadData">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="xmldata" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="xmldata" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 vdom_xd_load("#"+this.domCont.id,xmldata);

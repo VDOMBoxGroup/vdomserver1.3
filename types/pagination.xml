@@ -161,63 +161,72 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Pagination</Sentence>
-      <Sentence ID="002">Provides functionality of separation information on pages</Sentence>
+      <Sentence ID="002">The Pagination type produces an object displaying the numeration of web pages of VDOM application. When user clicks on a link to the web page, the 'pageSelected' event occurs and the number of the selected web page is passed in the 'pagenumber' parameter of 'pageSelected' event.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="603">moveZindexTo</Sentence>
-      <Sentence ID="705">newZindex</Sentence>
-      <Sentence ID="805">New position in visual hierarchy of objects</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visible</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Current page</Sentence>
+      <Sentence ID="109">Pages count</Sentence>
+      <Sentence ID="111">Show count</Sentence>
+      <Sentence ID="112">Style</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
+      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels, no more than 2880 pixels</Sentence>
+      <Sentence ID="208">The number of current active pages</Sentence>
+      <Sentence ID="209">The number of pages in pagination</Sentence>
+      <Sentence ID="211">The number of pages to display in pagination</Sentence>
+      <Sentence ID="212">CSS style of the object</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even  integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even  integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels, no more than 2880 pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Current page</Sentence>
-      <Sentence ID="208">The number of current active pages</Sentence>
-      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="109">Pages count</Sentence>
-      <Sentence ID="209">The number of pages in pagination</Sentence>
-      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="111">Show count</Sentence>
-      <Sentence ID="211">The number of pages to display in pagination</Sentence>
-      <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="212">CSS style of the object</Sentence>
-      <Sentence ID="312"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">moveZindexTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">newZindex</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New position in visual hierarchy of objects</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903"></Sentence>
@@ -260,61 +269,70 @@
       <Sentence ID="001">Пагинация</Sentence>
       <Sentence ID="002">Предоставляет возможность постраничного отображения информации</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">Координата новой точки по оси X</Sentence>
-      <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="603">Изменить позицию</Sentence>
-      <Sentence ID="705">Позиция</Sentence>
-      <Sentence ID="805">Новое значение позиции</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="706">Исчезновение</Sentence>
-      <Sentence ID="806">Время появления</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображать</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Текущая страница</Sentence>
+      <Sentence ID="109">Количество страниц</Sentence>
+      <Sentence ID="111">Количество страниц для отображения</Sentence>
+      <Sentence ID="112">Стиль</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях, не более 2880 пикселей</Sentence>
+      <Sentence ID="208">Текущая активная страница</Sentence>
+      <Sentence ID="209">Количество страниц в пагинации</Sentence>
+      <Sentence ID="211">Количество страниц, которые будут отображены в пагинации</Sentence>
+      <Sentence ID="212">CSS стиль объекта</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях, не более 2880 пикселей</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Текущая страница</Sentence>
-      <Sentence ID="208">Текущая активная страница</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="109">Количество страниц</Sentence>
-      <Sentence ID="209">Количество страниц в пагинации</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="111">Количество страниц для отображения</Sentence>
-      <Sentence ID="211">Количество страниц, которые будут отображены в пагинации</Sentence>
-      <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="112">Стиль</Sentence>
-      <Sentence ID="212">CSS стиль объекта</Sentence>
-      <Sentence ID="312"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="503">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Сдвинуть</Sentence>
+      <Sentence ID="603">Изменить позицию</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Координата новой точки по оси X</Sentence>
+      <Sentence ID="703">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="704">Эффект</Sentence>
+      <Sentence ID="705">Позиция</Sentence>
+      <Sentence ID="706">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="805">Новое значение позиции</Sentence>
+      <Sentence ID="806">Время появления</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903"></Sentence>
@@ -821,7 +839,7 @@ class VDOM_pagination(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
@@ -831,7 +849,7 @@ class VDOM_pagination(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
@@ -841,7 +859,7 @@ class VDOM_pagination(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
@@ -851,7 +869,7 @@ class VDOM_pagination(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
@@ -861,25 +879,25 @@ class VDOM_pagination(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(926)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(929)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(931)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(932)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(933)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
@@ -889,7 +907,7 @@ class VDOM_pagination(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(939)"/>
           </Parameters>
         </Event>
-        <Event Name="pageSelected">
+        <Event Name="pageSelected" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="pagenumber" Order="" VbType="" Help="#Lang(941)"/>
           </Parameters>
@@ -898,7 +916,7 @@ class VDOM_pagination(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -906,7 +924,7 @@ class VDOM_pagination(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -916,7 +934,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -924,7 +942,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
