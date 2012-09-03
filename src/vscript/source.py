@@ -104,6 +104,9 @@ class vname(object):
 			if self.base not in mysource.using[self.base].import_names:
 				mysource.using[self.base].import_names.append(self.base)
 		elif myprocedure and no_explicit:
+			import inspect, traceback, sys
+			for e in inspect.stack(): print e
+			print ">>>>>>>>>>>> V2", self.base, "|", self.string, "|", self.values
 			self.member=0
 			myprocedure.names[self.base]="variant()"
 		elif no_explicit:
