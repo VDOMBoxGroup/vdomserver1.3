@@ -17,7 +17,7 @@ class binary(subtype):
 
 
 	as_simple=property(lambda self: self)
-	as_binary=property(lambda self: self)
+	as_binary=property(lambda self: self._value)
 
 
 	def __hash__(self):
