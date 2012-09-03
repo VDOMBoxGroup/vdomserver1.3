@@ -137,7 +137,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Uploader</Sentence>
-      <Sentence ID="002">Allows to upload files</Sentence>
+      <Sentence ID="002">The Uploader type produces an object that allows user to choose a file from file local computer to upload them. It can be contained only in the Form object.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -439,7 +439,7 @@ class VDOM_uploader(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^[0-9]{1,99}$"/>
           </Parameters>
@@ -447,7 +447,7 @@ class VDOM_uploader(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation="^[0-9]{1,99}$"/>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation="^[0-9]{1,99}$"/>
@@ -457,7 +457,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="TextField(0,999)" InterfaceName="#Lang(705)" ScriptName="cssStyleValue" Help="#Lang(805)" RegularExpressionValidation="^.{0,999}$"/>
           </Parameters>
@@ -465,7 +465,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 jQuery(this).attr('style', cssStyleValue);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation="^[0-9]{1,99}$"/>
           </Parameters>

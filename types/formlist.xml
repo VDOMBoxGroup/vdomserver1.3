@@ -160,8 +160,8 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Form List</Sentence>
-      <Sentence ID="002">Form list</Sentence>
+      <Sentence ID="001">Form list</Sentence>
+      <Sentence ID="002">The Form list type produces an object displayed as a list. It can be contained only in the Form and Container objects. The data to display must be written in the 'Value' attribute as a dictionary (for example, {"key": "value"}) or a list (for example, ["value1", "value2", "value3"]).</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Visibility</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
@@ -208,6 +208,14 @@
       <Sentence ID="506">Set new CSS style of the object</Sentence>
       <Sentence ID="507">Show the object</Sentence>
       <Sentence ID="508">Sort the list of items</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">Add Item</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -308,6 +316,14 @@
       <Sentence ID="506">Установить новый стиль CSS</Sentence>
       <Sentence ID="507">Показать объект</Sentence>
       <Sentence ID="508">Сортировать значения</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">Добавить элемент</Sentence>
       <Sentence ID="602">Спрятать</Sentence>
       <Sentence ID="603">Сдвинуть</Sentence>
@@ -408,6 +424,14 @@
       <Sentence ID="506">Set new CSS style</Sentence>
       <Sentence ID="507">Show the object</Sentence>
       <Sentence ID="508">Sort list items or not</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">Add Item</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -634,49 +658,49 @@ U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="valuechange">
+        <Event Name="valuechange" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="item" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="itemValue" Order="" VbType="" Help="#Lang(917)"/>
@@ -686,7 +710,7 @@ U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addItem">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addItem">
           <Parameters>
             <Parameter DefaultValue="New Item" Interface="" InterfaceName="#Lang(701)" ScriptName="item" Help="#Lang(801)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="itemValue" Help="#Lang(802)" RegularExpressionValidation=".*"/>
@@ -696,7 +720,7 @@ U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
 vdom_ui_addItem(this.domCont, item, itemValue, selected);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -704,7 +728,7 @@ vdom_ui_addItem(this.domCont, item, itemValue, selected);
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newX" Help="#Lang(805)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newY" Help="#Lang(806)" RegularExpressionValidation=".*"/>
@@ -714,7 +738,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeItem">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeItem">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="item" Help="#Lang(808)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="itemValue" Help="#Lang(809)" RegularExpressionValidation=".*"/>
@@ -723,7 +747,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 vdom_ui_removeItem(this.domCont, item, itemValue);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectItem">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectItem">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="itemId" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -731,7 +755,7 @@ vdom_ui_removeItem(this.domCont, item, itemValue);
 jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'selected');
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setStyle">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="cssStyleValue" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -739,7 +763,7 @@ jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'sele
 jQuery(this).attr('style', cssStyleValue);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="show">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="fade" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -747,7 +771,7 @@ jQuery(this).attr('style', cssStyleValue);
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="sortItem">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="sortItem">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="sort" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>

@@ -208,8 +208,8 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Form Date</Sentence>
-      <Sentence ID="002">Used as form date input field</Sentence>
+      <Sentence ID="001">Form date</Sentence>
+      <Sentence ID="002">The Form date type produces an object used as a form date input field. It can be contained only in the Form, Password, and Container objects.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -279,6 +279,15 @@
       <Sentence ID="504">Set new CSS style of the object</Sentence>
       <Sentence ID="505">Set new text value</Sentence>
       <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setFocus</Sentence>
@@ -389,6 +398,15 @@
       <Sentence ID="504">Установить новый стиль CSS</Sentence>
       <Sentence ID="505">Установить новый текст</Sentence>
       <Sentence ID="506">Показать объект</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
       <Sentence ID="603">Установить фокус</Sentence>
@@ -499,6 +517,15 @@
       <Sentence ID="504">Set new CSS style</Sentence>
       <Sentence ID="505">Set new text</Sentence>
       <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setFocus</Sentence>
@@ -1540,55 +1567,55 @@ def set_attr(app_id, object_id, param):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="valuechange">
+        <Event Name="valuechange" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="itemValue" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
@@ -1597,7 +1624,7 @@ def set_attr(app_id, object_id, param):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1605,7 +1632,7 @@ def set_attr(app_id, object_id, param):
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -1615,13 +1642,13 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFocus">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFocus">
           <Parameters/>
           <SourceCode><![CDATA[
 jQuery(this.domCont).focus();
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setStyle">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="cssStyleValue" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1630,7 +1657,7 @@ var t=$q(this.domCont);
 t.attr('style', t.attr('style') + ';' + cssStyleValue);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setValue">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setValue">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="value" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1638,7 +1665,7 @@ t.attr('style', t.attr('style') + ';' + cssStyleValue);
 vdom_evt_setvalue(this, value);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>

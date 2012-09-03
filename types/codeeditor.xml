@@ -124,67 +124,69 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Code Editor</Sentence>
-      <Sentence ID="002">Code editor</Sentence>
+      <Sentence ID="001">Code editor</Sentence>
+      <Sentence ID="002">The Code editor type produces an object used to display the multiline text as a piece of code. It can automatically numerate the lines of code and highlight the code elements.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Move the object to a new position</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="503">Set new text value</Sentence>
-      <Sentence ID="603">setValue</Sentence>
-      <Sentence ID="504">Set new text value</Sentence>
-      <Sentence ID="604">setValue</Sentence>
-      <Sentence ID="705">Value</Sentence>
-      <Sentence ID="805">New text value</Sentence>
-      <Sentence ID="505">Set new text value</Sentence>
-      <Sentence ID="605">setValue</Sentence>
-      <Sentence ID="506">Show the object</Sentence>
-      <Sentence ID="606">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="507">Show the object</Sentence>
-      <Sentence ID="607">Show</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="708">Fade</Sentence>
-      <Sentence ID="808">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Value</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">Text to display</Sentence>
+      <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Value</Sentence>
-      <Sentence ID="208">Text to display</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move the object to a new position</Sentence>
+      <Sentence ID="503">Set new text value</Sentence>
+      <Sentence ID="504">Set new text value</Sentence>
+      <Sentence ID="505">Set new text value</Sentence>
+      <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507">Show the object</Sentence>
+      <Sentence ID="508">Show the object</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">setValue</Sentence>
+      <Sentence ID="604">setValue</Sentence>
+      <Sentence ID="605">setValue</Sentence>
+      <Sentence ID="606">Show</Sentence>
+      <Sentence ID="607">Show</Sentence>
+      <Sentence ID="608">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">Value</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">New text value</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="808">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -193,64 +195,66 @@
       <Sentence ID="001">Поле текста</Sentence>
       <Sentence ID="002">Текстовое поле формы</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="602">Сдвинуть</Sentence>
-      <Sentence ID="702">Координата по оси X</Sentence>
-      <Sentence ID="802">Координата новой точки по оси X</Sentence>
-      <Sentence ID="703">Координата по оси X</Sentence>
-      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="704">Эффект</Sentence>
-      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="503">Установить новый текст</Sentence>
-      <Sentence ID="603">Установить текст</Sentence>
-      <Sentence ID="504">Установить новый текст</Sentence>
-      <Sentence ID="604">Установить текст</Sentence>
-      <Sentence ID="705">Текст</Sentence>
-      <Sentence ID="805">Новый текст</Sentence>
-      <Sentence ID="505">Установить новый текст</Sentence>
-      <Sentence ID="605">Установить текст</Sentence>
-      <Sentence ID="506">Показать объект</Sentence>
-      <Sentence ID="606">Показать</Sentence>
-      <Sentence ID="706">Появление</Sentence>
-      <Sentence ID="806">Время появления в миллисекундах</Sentence>
-      <Sentence ID="507">Показать объект</Sentence>
-      <Sentence ID="607">Показать</Sentence>
-      <Sentence ID="707">Появление</Sentence>
-      <Sentence ID="807">Время появления в миллисекундах</Sentence>
-      <Sentence ID="508">Показать объект</Sentence>
-      <Sentence ID="608">Показать</Sentence>
-      <Sentence ID="708">Появление</Sentence>
-      <Sentence ID="808">Время появления в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Значение</Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Отображаемый текст</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="108">Значение</Sentence>
-      <Sentence ID="208">Отображаемый текст</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="503">Установить новый текст</Sentence>
+      <Sentence ID="504">Установить новый текст</Sentence>
+      <Sentence ID="505">Установить новый текст</Sentence>
+      <Sentence ID="506">Показать объект</Sentence>
+      <Sentence ID="507">Показать объект</Sentence>
+      <Sentence ID="508">Показать объект</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Сдвинуть</Sentence>
+      <Sentence ID="603">Установить текст</Sentence>
+      <Sentence ID="604">Установить текст</Sentence>
+      <Sentence ID="605">Установить текст</Sentence>
+      <Sentence ID="606">Показать</Sentence>
+      <Sentence ID="607">Показать</Sentence>
+      <Sentence ID="608">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Координата по оси X</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="704">Эффект</Sentence>
+      <Sentence ID="705">Текст</Sentence>
+      <Sentence ID="706">Появление</Sentence>
+      <Sentence ID="707">Появление</Sentence>
+      <Sentence ID="708">Появление</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Координата новой точки по оси X</Sentence>
+      <Sentence ID="803">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="805">Новый текст</Sentence>
+      <Sentence ID="806">Время появления в миллисекундах</Sentence>
+      <Sentence ID="807">Время появления в миллисекундах</Sentence>
+      <Sentence ID="808">Время появления в миллисекундах</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -259,64 +263,66 @@
       <Sentence ID="001">Zone de Texte</Sentence>
       <Sentence ID="002">Zone de Texte</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Move object to selected point</Sentence>
-      <Sentence ID="602">moveTo</Sentence>
-      <Sentence ID="702">newX</Sentence>
-      <Sentence ID="802">X-coordinate of new point</Sentence>
-      <Sentence ID="703">newY</Sentence>
-      <Sentence ID="803">Y-coordinate of new point</Sentence>
-      <Sentence ID="704">Effect</Sentence>
-      <Sentence ID="804">Visual effect by moving</Sentence>
-      <Sentence ID="503">Set new text</Sentence>
-      <Sentence ID="603">setValue</Sentence>
-      <Sentence ID="504">Set new text</Sentence>
-      <Sentence ID="604">setValue</Sentence>
-      <Sentence ID="705">Value</Sentence>
-      <Sentence ID="805">New text</Sentence>
-      <Sentence ID="505">Set new text</Sentence>
-      <Sentence ID="605">setValue</Sentence>
-      <Sentence ID="506">Show the object</Sentence>
-      <Sentence ID="606">Show</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="806">Time of appearance</Sentence>
-      <Sentence ID="507">Show the object</Sentence>
-      <Sentence ID="607">Show</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="807">Time of appearance</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="708">Fade</Sentence>
-      <Sentence ID="808">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Valeur</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Texte dans le champs</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Valeur</Sentence>
-      <Sentence ID="208">Texte dans le champs</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Move object to selected point</Sentence>
+      <Sentence ID="503">Set new text</Sentence>
+      <Sentence ID="504">Set new text</Sentence>
+      <Sentence ID="505">Set new text</Sentence>
+      <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507">Show the object</Sentence>
+      <Sentence ID="508">Show the object</Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">moveTo</Sentence>
+      <Sentence ID="603">setValue</Sentence>
+      <Sentence ID="604">setValue</Sentence>
+      <Sentence ID="605">setValue</Sentence>
+      <Sentence ID="606">Show</Sentence>
+      <Sentence ID="607">Show</Sentence>
+      <Sentence ID="608">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704">Effect</Sentence>
+      <Sentence ID="705">Value</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="804">Visual effect by moving</Sentence>
+      <Sentence ID="805">New text</Sentence>
+      <Sentence ID="806">Time of appearance</Sentence>
+      <Sentence ID="807">Time of appearance</Sentence>
+      <Sentence ID="808">Time of appearance</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -4055,13 +4061,13 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="getvalue">
+        <Event Name="getvalue" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="value" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -4070,7 +4076,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -4078,7 +4084,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 vdom_ui_hide(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -4088,13 +4094,13 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFocus">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFocus">
           <Parameters/>
           <SourceCode><![CDATA[ 
 eval("#"+this.domCont.id+'_codeeditor.focus();');
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setValue">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setValue">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -4102,28 +4108,28 @@ eval("#"+this.domCont.id+'_codeeditor.focus();');
 eval(this.domCont.id+"_codeeditor.setValue(value);");
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="getValue">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="getValue">
           <Parameters/>
           <SourceCode><![CDATA[
 eval('var x='+this.domCont.id+"_codeeditor.getValue(value);");
 execEventBinded(id.substring(2, id.length), "getvalue", {value:x});
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setTheme">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setTheme">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="theme" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setSyntax">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setSyntax">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="syntax" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="fade" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
