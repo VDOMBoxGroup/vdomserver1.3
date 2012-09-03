@@ -221,7 +221,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">List</Sentence>
-      <Sentence ID="002">Used to insert horizontal or vertical list</Sentence>
+      <Sentence ID="002">The List type produces an object displayed as a horizontal or vertical list.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -286,6 +286,11 @@
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">Toggle</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">hide</Sentence>
       <Sentence ID="602">show</Sentence>
       <Sentence ID="603"></Sentence>
@@ -370,6 +375,11 @@
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">toggle</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">hide</Sentence>
       <Sentence ID="602">show</Sentence>
       <Sentence ID="603"></Sentence>
@@ -454,6 +464,11 @@
       <Sentence ID="503">Отменить выделение всех рядов</Sentence>
       <Sentence ID="504">Показать объект</Sentence>
       <Sentence ID="505">Переключение</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Показать</Sentence>
       <Sentence ID="603"></Sentence>
@@ -849,27 +864,27 @@ def set_attr(app_id, object_id, param):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="custom">
+        <Event Name="custom" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="param" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
-        <Event Name="drop">
+        <Event Name="drop" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick">
+        <Event Name="itemclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblclick">
+        <Event Name="itemdblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="rowsselected">
+        <Event Name="rowsselected" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
@@ -878,7 +893,7 @@ def set_attr(app_id, object_id, param):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -886,7 +901,7 @@ def set_attr(app_id, object_id, param):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
 var t = $j(this.domCont), ii = this.domCont.id;
@@ -898,7 +913,7 @@ if (t.hasClass('multiselect')){
 }
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
 var t = $j(this.domCont), ii = this.domCont.id;
@@ -908,7 +923,7 @@ if (t.hasClass('multiselect')){
 }
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -916,7 +931,7 @@ if (t.hasClass('multiselect')){
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="toggle">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="toggle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="id" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>

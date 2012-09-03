@@ -161,7 +161,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Sensitive</Sentence>
-      <Sentence ID="002">Transparent field for transition to the external or internal link by click</Sentence>
+      <Sentence ID="002">The Sensitive type produces an object used as a transparent field for implementing a transition to the external or internal link on click.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -204,6 +204,14 @@
       <Sentence ID="406">Top window</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="701">Incorrect value</Sentence>
@@ -272,6 +280,14 @@
       <Sentence ID="406">Верхнее окно</Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Отобразить объект</Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="701">Неправильное значение</Sentence>
@@ -340,6 +356,14 @@
       <Sentence ID="406">Fenêtre du niveau le plus haut</Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="701">Incorrect value</Sentence>
@@ -512,49 +536,49 @@ class VDOM_Sensitive(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(503)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(504)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -564,7 +588,7 @@ class VDOM_Sensitive(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -572,7 +596,7 @@ class VDOM_Sensitive(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>

@@ -173,7 +173,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Image</Sentence>
-      <Sentence ID="002">Used to place images in the container.</Sentence>
+      <Sentence ID="002">The Image type produces an object displayed as an image. As a resource file here can be used image of any well-known type format: png, jpg, gif, bmp. The "Width" and "Height" attributes of the Image object change their values according to the size of the resource file.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -225,6 +225,16 @@
       <Sentence ID="511">Visibility</Sentence>
       <Sentence ID="512">Visibility</Sentence>
       <Sentence ID="513">Visibility</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -332,6 +342,16 @@
       <Sentence ID="511">Отображение</Sentence>
       <Sentence ID="512">Отображение</Sentence>
       <Sentence ID="513">Отображение</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
@@ -439,6 +459,16 @@
       <Sentence ID="511">Visibilité</Sentence>
       <Sentence ID="512">Visibilité</Sentence>
       <Sentence ID="513">Visibilité</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -733,63 +763,63 @@ def set_attr(app_id, object_id, param):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="border">
+        <Event Name="border" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
             <Parameter Name="pos" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(904)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="corner">
+        <Event Name="corner" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="pos" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(923)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(924)"/>
@@ -799,7 +829,7 @@ def set_attr(app_id, object_id, param):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="cursorType" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -807,19 +837,19 @@ def set_attr(app_id, object_id, param):
 this.domCont.style.cursor = cursorType;
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="dragStart">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="dragStart">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_dragStart(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStop">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStop">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_dragStop();
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="hide">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -827,7 +857,7 @@ vdom_ui_dragStop();
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
@@ -837,7 +867,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -845,7 +875,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 vdom_ui_moveZindexTo(this.domCont, newZindex);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setAlt">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setAlt">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="text" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -853,7 +883,7 @@ vdom_ui_moveZindexTo(this.domCont, newZindex);
 jQuery(this.domCont).attr('alt', text);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setImage">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setImage">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="resource" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -861,7 +891,7 @@ jQuery(this.domCont).attr('alt', text);
 jQuery('img',this.domCont).attr('src', resource);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="fade" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -869,19 +899,19 @@ jQuery('img',this.domCont).attr('src', resource);
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="startResizeX">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="startResizeX">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeX(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeXY">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeXY">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeXY(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeY">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeY">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeY(this.domCont);

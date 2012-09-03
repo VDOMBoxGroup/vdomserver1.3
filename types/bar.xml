@@ -125,7 +125,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Bar</Sentence>
-      <Sentence ID="002">Used to display a bar with specified color. It is usually used as a colored base plate for other objects.</Sentence>
+      <Sentence ID="002">The Bar type produces an object displayed as a bar with specified color. It is usually used in the function of a colored base for other objects.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -166,6 +166,16 @@
       <Sentence ID="512">Start changing the width of the object</Sentence>
       <Sentence ID="513">Start changing the size of the object</Sentence>
       <Sentence ID="514">Start changing the height of the object</Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
       <Sentence ID="601">changeColor</Sentence>
       <Sentence ID="602">changeCursor</Sentence>
       <Sentence ID="603">dragStart</Sentence>
@@ -267,6 +277,16 @@
       <Sentence ID="512">Начать изменение ширины объекта</Sentence>
       <Sentence ID="513">Начать изменение размеров объекта</Sentence>
       <Sentence ID="514">Начать изменение высоты объекта</Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
       <Sentence ID="601">Изменить цвет</Sentence>
       <Sentence ID="602">Изменить курсор</Sentence>
       <Sentence ID="603">Начать перетаскивание</Sentence>
@@ -368,6 +388,16 @@
       <Sentence ID="512">Start changing width of the object</Sentence>
       <Sentence ID="513">Start changing size of the object</Sentence>
       <Sentence ID="514">Start changing height of the object</Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">dragStart</Sentence>
@@ -666,63 +696,63 @@ class VDOM_bar(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="border">
+        <Event Name="border" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
             <Parameter Name="pos" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(904)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="corner">
+        <Event Name="corner" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="pos" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(525)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(923)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(924)"/>
@@ -732,7 +762,7 @@ class VDOM_bar(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeColor">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeColor">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="NewColor" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -740,7 +770,7 @@ class VDOM_bar(VDOM_object):
 this.domCont.style.backgroundColor = NewColor;
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeCursor">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeCursor">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="cursorType" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -748,19 +778,19 @@ this.domCont.style.backgroundColor = NewColor;
 this.domCont.style.cursor = cursorType;
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStart">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStart">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_dragStart(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="dragStop">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="dragStop">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_dragStop();
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="hide">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -768,7 +798,7 @@ vdom_ui_dragStop();
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveTo">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
@@ -778,7 +808,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveZindexTo">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newZindex" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -786,7 +816,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="width" Help="#Lang(808)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="height" Help="#Lang(809)" RegularExpressionValidation=".*"/>
@@ -795,7 +825,7 @@ this.domCont.style.zindex = parseInt(newZindex,10);
 $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setTransparency">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setTransparency">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="value" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -804,7 +834,7 @@ var nn = parseInt(value,10) / 100;
 $q(this.domCont).css('opacity', nn);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="fade" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -812,19 +842,19 @@ $q(this.domCont).css('opacity', nn);
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeX">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeX">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeX(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeXY">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeXY">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeXY(this.domCont);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(514)" InterfaceName="#Lang(614)" MethodName="startResizeY">
+        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="startResizeY">
           <Parameters/>
           <SourceCode><![CDATA[
 vdom_ui_startResizeY(this.domCont);

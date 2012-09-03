@@ -235,7 +235,7 @@ border:3px solid #ccc;
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Dialog v2</Sentence>
-      <Sentence ID="002">Used to create pop-up dialog boxes (the temporary window requiring the data entry and/or performs the options selection) over the web pages.</Sentence>
+      <Sentence ID="002">The Dialog v2 type produces an object displayed as a pop-up dialog box (the temporary window requiring the data entry and/or performs the options selection) over the web pages. It is a container and can include other objects, such as images, forms, text and so on.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
@@ -299,6 +299,16 @@ if no - nothing will be hidden.</Sentence>
       <Sentence ID="503">Set new content (it can be in HTML format).</Sentence>
       <Sentence ID="504">Set new title of the object.</Sentence>
       <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">resizeTo</Sentence>
       <Sentence ID="603">LoadHTML</Sentence>
@@ -397,6 +407,16 @@ if no - nothing will be hidden.</Sentence>
       <Sentence ID="503">Загрузить данные в формате HTML</Sentence>
       <Sentence ID="504">Загрузить данные в формате HTML</Sentence>
       <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Спрятать</Sentence>
       <Sentence ID="602">Изменить размеры</Sentence>
       <Sentence ID="603">Загрузить HTML</Sentence>
@@ -495,6 +515,16 @@ if no - nothing will be hidden.</Sentence>
       <Sentence ID="503">Load HTML-data</Sentence>
       <Sentence ID="504">Load HTML-data</Sentence>
       <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">resizeTo</Sentence>
       <Sentence ID="603">LoadHTML</Sentence>
@@ -1355,65 +1385,65 @@ background: url("/ac84402d-b5d7-dcc7-fb33-357b0426918f.png") left bottom repeat-
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="hide">
+        <Event Name="hide" Help="#Lang(515)">
           <Parameters/>
         </Event>
-        <Event Name="show">
+        <Event Name="show" Help="#Lang(516)">
           <Parameters/>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1421,7 +1451,7 @@ background: url("/ac84402d-b5d7-dcc7-fb33-357b0426918f.png") left bottom repeat-
 eval("dialog_win_" + this.domCont.id + ".hide();");
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="resizeTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -1436,7 +1466,7 @@ if (ny < 0) ny = 0;
 if (typeof y == 'number') d.boxy.css({marginTop: ny});
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setContent">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setContent">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="content" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1444,7 +1474,7 @@ if (typeof y == 'number') d.boxy.css({marginTop: ny});
 /*eval("dialog_win_" + this.domCont.id + ".setContent(\""+content.replace('"','&quot;')+"\");");*/
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setTitle">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setTitle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="title" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1454,7 +1484,7 @@ eval("var d=dialog_win_" + this.domCont.id);
 d.setTitle(title);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>

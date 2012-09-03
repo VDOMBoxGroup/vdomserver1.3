@@ -125,7 +125,12 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Copy</Sentence>
-      <Sentence ID="002">Used to display an associated object specified by the Source attribute.</Sentence>
+      <Sentence ID="002">The Copy type produces an object displayed as the identical copy of some associated object specified by the 'Source' attribute. Different Copy objects can use one and the same source object. After specifying a new source object the Copy object's position (Left and Top attributes) becomes exactly the same as that of the source object. The Copy object's position can be changed manually (without affecting the source object's position). All changes made to the source object are applied to all Copy objects associated with it. If you want to set an action on the object inserted into the Copy object, you must set the action on the source object, since the Copy object only reflects the appearance of the source object and can not have any actions.
+The Copy type does not make the copies of:
+- the top-level containers;
+- the objects situated on the same page as the Copy object;
+- the objects situated on the pages with other Copy objects.
+Such restriction is introduced in order to avoid the recursion problems. To avoid these problems, the Copy object should be placed on some other web page which does not contain any Copy object.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Color in WYSIWYG</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>

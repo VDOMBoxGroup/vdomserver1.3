@@ -281,7 +281,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
-      <Sentence ID="002">Representing the data in the datasheet view</Sentence>
+      <Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The 'Header' attribute defines the names of columns to display, the data are set as an array or dictionary in the 'Data' attribute. This type supports single- and multi-selection of table lines.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -362,6 +362,17 @@
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -393,7 +404,7 @@
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
-      <Sentence ID="002">Representing the data in the datasheet view</Sentence>
+      <Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The 'Header' attribute defines the names of columns to display, the data are set as an array or dictionary in the 'Data' attribute. This type supports single- and multi-selection of table lines.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -474,6 +485,17 @@
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -505,7 +527,7 @@
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
-      <Sentence ID="002">Representing the data in the datasheet view</Sentence>
+      <Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The 'Header' attribute defines the names of columns to display, the data are set as an array or dictionary in the 'Data' attribute. This type supports single- and multi-selection of table lines.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -586,6 +608,17 @@
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -698,6 +731,17 @@
       <Sentence ID="502">Выделить все строки</Sentence>
       <Sentence ID="503">Снять выделение всех строк</Sentence>
       <Sentence ID="504">Отобразить объект</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -810,6 +854,17 @@
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
       <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -1021,66 +1076,66 @@ xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==]]></Resource>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="cellclick">
+        <Event Name="cellclick" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="keyField" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="cellData" Order="" VbType="" Help="#Lang(902)"/>
             <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="celldblclick">
+        <Event Name="celldblclick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="keyField" Order="" VbType="" Help="#Lang(904)"/>
             <Parameter Name="cellData" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="headerData" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="custom">
+        <Event Name="custom" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="headerselected">
+        <Event Name="headerselected" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="headername" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="rowsselected">
+        <Event Name="rowsselected" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart">
+        <Event Name="dragstart" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
@@ -1089,7 +1144,7 @@ xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==]]></Resource>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
@@ -1097,7 +1152,7 @@ xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==]]></Resource>
 vdom_ui_hide(this.domCont, fade);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
 var id = this.domCont.id;
@@ -1110,7 +1165,7 @@ if(selectionmode == 'multi'){
 }
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
 var id = this.domCont.id;
@@ -1123,7 +1178,7 @@ if(selectionmode == 'multi'){
 }
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
