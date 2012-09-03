@@ -1,5 +1,5 @@
 
-from .environment import v_server, v_request, v_response, v_session
+from .environment import v_server, v_request, v_response, v_session, v_application
 from .scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from .databases import v_vdomdbconnection, v_vdomdbrecordset
 from .imaging import v_vdomimaging

@@ -9,7 +9,7 @@ from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
 from .subtypes import v_nothing
-from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session
+from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session, v_application
 
 
 vscript_source_string=u"<vscript>"
@@ -18,7 +18,7 @@ vscript_wrappers_name="wrappers"
 vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
 vscript_default_environment={u"v_this": None,
-	u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None,
+	u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None, u"v_application": None,
 	u"v_vdomdbconnection": vscript_wrappers_name, u"v_vdomdbrecordset": vscript_wrappers_name,
 	u"v_vdomimaging": vscript_wrappers_name, u"v_vdombox": vscript_wrappers_name,
 	u"v_wholeconnection": vscript_wrappers_name, u"v_wholeapplication": vscript_wrappers_name,
@@ -115,6 +115,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
 				namespace[u"v_request"]=v_request
 				namespace[u"v_response"]=v_response
 				namespace[u"v_session"]=v_session
+				namespace[u"v_application"]=v_application
 			else:
 				namespace.update(environment)
 			if use:
