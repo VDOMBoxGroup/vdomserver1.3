@@ -14,7 +14,7 @@ class generic(python):
 
 	
 	def __init__(self, message=u"Unknown error", details=None, line=None):
-		self.source=generic.compilation
+		self.source=generic.runtime
 		self.message=message
 		self.line=line
 
@@ -289,7 +289,7 @@ class wrong_number_of_arguments(generic):
 	def __init__(self, name=None, line=None):
 		details=u": '%s'"%(name[2:] if name.startswith(u"v_") else name) if name and name!="__call__" else u""
 		generic.__init__(self,
-			message=u"Wrong number of arguments or invalid property assignment%s"%details,
+			message=u"Wrong number of arguments or invalid assignment%s"%details,
 			line=line)
 
 class invalid_procedure_call(generic):
