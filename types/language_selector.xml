@@ -125,7 +125,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Language Selector</Sentence>
-      <Sentence ID="002">Allows choosing the localization language</Sentence>
+      <Sentence ID="002">The Language selector type produces an object that allows selecting the displayed language of a web page and application.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -155,6 +155,7 @@
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Icon</Sentence>
       <Sentence ID="404">List</Sentence>
+      <Sentence ID="501"></Sentence>
       <Sentence ID="901">Send language name - en_US, ru_RU</Sentence>
     </Language>
     <Language Code="ru_RU">
@@ -189,6 +190,7 @@
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Иконка</Sentence>
       <Sentence ID="404">Выпадающий список</Sentence>
+      <Sentence ID="501"></Sentence>
       <Sentence ID="901">Отсылает серверу выбранный язык</Sentence>
     </Language>
     <Language Code="fr_FR">
@@ -223,6 +225,7 @@
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Icon</Sentence>
       <Sentence ID="404">List</Sentence>
+      <Sentence ID="501"></Sentence>
       <Sentence ID="901">Send language name - en_US, ru_RU</Sentence>
     </Language>
   </Languages>
@@ -570,7 +573,7 @@ class VDOM_langsel(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="select">
+        <Event Name="select" Help="#Lang(501)">
           <Parameters>
             <Parameter Name="lang" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
