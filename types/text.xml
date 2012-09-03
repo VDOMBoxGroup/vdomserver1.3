@@ -245,7 +245,8 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Text</Sentence>
-      <Sentence ID="002">Used to display plain text.</Sentence>
+      <Sentence ID="002">The Text type produces an object that is used to display plain text.
+All changes of attributes are applied to the whole text. You cannot change the style of one word, but you can change the style of the whole text. The height of the Text object is unchangeable, it adjusts to the text length, but you can change the width of the Text object. If some words are too long and they do not fit into the Text object's width, you will have a horizontal scrolling.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -320,6 +321,14 @@
       <Sentence ID="504">Set font size</Sentence>
       <Sentence ID="505">Set new text inside the object</Sentence>
       <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -456,6 +465,14 @@
       <Sentence ID="504">Размер шрифта</Sentence>
       <Sentence ID="505">Изменить текст объекта</Sentence>
       <Sentence ID="506">Показать объект</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
@@ -592,6 +609,14 @@
       <Sentence ID="504">Visibilité</Sentence>
       <Sentence ID="505">Visibilité</Sentence>
       <Sentence ID="506">Visibilité</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -901,7 +926,7 @@ class VDOM_text(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
@@ -911,7 +936,7 @@ class VDOM_text(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
@@ -921,7 +946,7 @@ class VDOM_text(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
@@ -931,7 +956,7 @@ class VDOM_text(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(922)"/>
@@ -941,25 +966,25 @@ class VDOM_text(VDOM_object):
             <Parameter Name="shiftKey" Order="" VbType="" Help="#Lang(926)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(927)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(928)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(929)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(931)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(932)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(933)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(934)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(935)"/>
@@ -973,7 +998,7 @@ class VDOM_text(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -981,7 +1006,7 @@ class VDOM_text(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -991,7 +1016,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFontFamily">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFontFamily">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="familyName" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -999,7 +1024,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 vdom_ui_setFontFamily(this.domCont, familyName);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setFontSize">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setFontSize">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="size" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1007,7 +1032,7 @@ vdom_ui_setFontFamily(this.domCont, familyName);
 jQuery(this.domCont).css("font-size", size);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setText">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setText">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="text" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1015,7 +1040,7 @@ jQuery(this.domCont).css("font-size", size);
 jQuery(this.domCont).text(text);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="fade" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>

@@ -401,7 +401,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Calendar</Sentence>
-      <Sentence ID="002">Used to add calendar to the page</Sentence>
+      <Sentence ID="002">The Calendar type produces an object displayed as a calendar. The Calendar object can also send in arguments of the GET request method the selected dates, which can be processed by VDOM server.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -1353,7 +1353,7 @@ class VDOM_calendar(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1361,7 +1361,7 @@ class VDOM_calendar(VDOM_object):
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="newX" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newY" Help="#Lang(803)" RegularExpressionValidation=".*"/>
@@ -1371,7 +1371,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1379,14 +1379,14 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setDate">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setDate">
           <Parameters>
             <Parameter DefaultValue="0" Interface="TextField(10)" InterfaceName="#Lang(706)" ScriptName="newDate" Help="#Lang(806)" RegularExpressionValidation="^[0-9]{2}\.[0-9]{2}\.[0-9]{4}$"/>
           </Parameters>
           <SourceCode><![CDATA[
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>

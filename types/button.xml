@@ -389,7 +389,8 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Button</Sentence>
-      <Sentence ID="002">Used to add an element that provides a way to trigger an event. It can be used as an external or an internal hyperlink.</Sentence>
+      <Sentence ID="002">The Button type produces an object displayed as a button, that provides a way to trigger an event. It can also be used as an external or an internal hyperlink.
+There are the following ways of displaying the Button object: if the 'Text' attribute is set, the object will be displayed as a hyperlink; if a 'Button image' attribute is set, the object will be displayed as a button; if none of these attributes is set, the default image will be displayed; if both attributes are set, both image and text will be displayed.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -512,6 +513,14 @@
       <Sentence ID="511">Show the object</Sentence>
       <Sentence ID="512">Show the object</Sentence>
       <Sentence ID="513">Show the object</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601">addClass</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -690,6 +699,14 @@
       <Sentence ID="511">Показать объект</Sentence>
       <Sentence ID="512">Показать объект</Sentence>
       <Sentence ID="513">Показать объект</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601">Добавить класс CSS</Sentence>
       <Sentence ID="602">Скрыть</Sentence>
       <Sentence ID="603">Сдвинуть</Sentence>
@@ -868,6 +885,14 @@
       <Sentence ID="511">Show the object</Sentence>
       <Sentence ID="512">Show the object</Sentence>
       <Sentence ID="513">Show the object</Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -1363,49 +1388,49 @@ font-family:Arial,sans-serif;
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -1415,7 +1440,7 @@ font-family:Arial,sans-serif;
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1423,7 +1448,7 @@ font-family:Arial,sans-serif;
 $q(this.domCont).children('a').addClass(className);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1431,7 +1456,7 @@ $q(this.domCont).children('a').addClass(className);
 vdom_ui_hide(this.domCont, fade);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
@@ -1441,7 +1466,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1449,7 +1474,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 this.domCont.style.zindex = parseInt(newZindex,10);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setButtonImage">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setButtonImage">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="resourceUrl" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1457,7 +1482,7 @@ this.domCont.style.zindex = parseInt(newZindex,10);
 vdom_ui_setButtonImage(this.domCont, resourceUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setButtonRollover">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setButtonRollover">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="resourceUrl" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1465,7 +1490,7 @@ vdom_ui_setButtonImage(this.domCont, resourceUrl);
 vdom_ui_setButtonRollover(this.domCont, resourceUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setClass">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="className" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1473,7 +1498,7 @@ vdom_ui_setButtonRollover(this.domCont, resourceUrl);
 $q(this.domCont).children('a').attr('class',className);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setLink">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setLink">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="containerUrl" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1481,14 +1506,14 @@ $q(this.domCont).children('a').attr('class',className);
 vdom_ui_setLink(this.domCont, containerUrl);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setText">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setText">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="text" Help="#Lang(812)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[
 $q('a span',this.domCont).text(text);]]></SourceCode>
         </Action>
-        <Action Description="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="fade" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -1496,12 +1521,12 @@ $q('a span',this.domCont).text(text);]]></SourceCode>
 vdom_ui_show(this.domCont, fade);
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(512)" InterfaceName="#Lang(612)" MethodName="enable">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="enable">
           <Parameters/>
           <SourceCode><![CDATA[ 
 		  ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(513)" InterfaceName="#Lang(613)" MethodName="disable">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="disable">
           <Parameters/>
           <SourceCode><![CDATA[ 
 		  ]]></SourceCode>
