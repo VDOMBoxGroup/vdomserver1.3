@@ -26,12 +26,12 @@ def wrap(value):
 
 
 def vscript_parse_object(*arguments):
-	value, position=JSONObject(*arguments)
-	return dictionary({string(key): wrap(value) for key, value in value.iteritems()}), position
+	subject, position=JSONObject(*arguments)
+	return dictionary({string(key): wrap(value) for key, value in subject.iteritems()}), position
 
 def vscript_parse_array(*arguments):
-	value, position=JSONArray(*arguments)
-	return array([wrap(item) for item in value]), position
+	subject, position=JSONArray(*arguments)
+	return array([wrap(item) for item in subject]), position
 
 
 class VScriptJSONDecoder(JSONDecoder):
