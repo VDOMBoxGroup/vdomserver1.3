@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Type>
   <Information>
     <Name>indexconnector</Name>
-    <DisplayName>#Lang(002)</DisplayName>
-    <Description>#Lang(001)</Description>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
     <ClassName>VDOM_indexconnector</ClassName>
     <ID>ef95abe6-ad0d-4344-9ce4-c7e86b08d632</ID>
     <Icon>#Res(4400f962-fe3c-4a51-90bb-87d6ad95d484)</Icon>
@@ -14,14 +14,13 @@
     <Container>1</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>1</Dynamic>
-    <Version>1</Version>
+    <Version>1.0.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
-    <RenderType/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
@@ -126,7 +125,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Indexconnector</Sentence>
-      <Sentence ID="002">Indexconnector</Sentence>
+      <Sentence ID="002">The Indexconnector type produces an object that provides an interface to add and delete new text data for local Xapian database. When new row is added, the information is indexed and can be found using the Fulltextsearch object type.</Sentence>
       <Sentence ID="003">Additional</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>

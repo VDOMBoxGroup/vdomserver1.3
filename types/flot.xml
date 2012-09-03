@@ -149,62 +149,70 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Flot</Sentence>
-      <Sentence ID="002">Used to draw diagrams</Sentence>
+      <Sentence ID="002">The Flot type allows drawing diagrams.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="502">Load Data</Sentence>
-      <Sentence ID="602">Load Data</Sentence>
-      <Sentence ID="702">JSON</Sentence>
-      <Sentence ID="802">JSON</Sentence>
-      <Sentence ID="503">Resize the object width and height</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="803">New value of width</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="804">New value of height</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Data</Sentence>
+      <Sentence ID="109">Show lines</Sentence>
+      <Sentence ID="111">Show points</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
+      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">The data in JSON (JavaScript Object Notation) format</Sentence>
+      <Sentence ID="209">Define if the lines are shown or not</Sentence>
+      <Sentence ID="211">Define if the points are shown or not</Sentence>
+      <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="108">Data</Sentence>
-      <Sentence ID="208">The data in JSON (JavaScript Object Notation) format</Sentence>
-      <Sentence ID="308">Incorrect value</Sentence>
-      <Sentence ID="109">Show lines</Sentence>
-      <Sentence ID="209">Define if the lines are shown or not</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="403">Yes</Sentence>
       <Sentence ID="404">No</Sentence>
-      <Sentence ID="111">Show points</Sentence>
-      <Sentence ID="211">Define if the points are shown or not</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="405">Yes</Sentence>
       <Sentence ID="406">No</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Load Data</Sentence>
+      <Sentence ID="503">Resize the object width and height</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">Load Data</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">JSON</Sentence>
+      <Sentence ID="703">Width</Sentence>
+      <Sentence ID="704">Height</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">JSON</Sentence>
+      <Sentence ID="803">New value of width</Sentence>
+      <Sentence ID="804">New value of height</Sentence>
+      <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -226,60 +234,68 @@
       <Sentence ID="001">Диаграмма</Sentence>
       <Sentence ID="002">Используется для рисования диаграмм</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Отображение</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="502">Загрузка данных</Sentence>
-      <Sentence ID="602">Загрузка данных</Sentence>
-      <Sentence ID="702">JSON</Sentence>
-      <Sentence ID="802">JSON</Sentence>
-      <Sentence ID="503">Изменить размеры объекта</Sentence>
-      <Sentence ID="603">Изменить размеры</Sentence>
-      <Sentence ID="703">Ширина</Sentence>
-      <Sentence ID="803">Новое значение ширины</Sentence>
-      <Sentence ID="704">Высота</Sentence>
-      <Sentence ID="804">Новое значение высоты</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="705">Исчезновение</Sentence>
-      <Sentence ID="805">Время появления</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Данные</Sentence>
+      <Sentence ID="109">Показывать линии</Sentence>
+      <Sentence ID="111">Показывать точки</Sentence>
+      <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Данные в формате JSON (JavaScript Object Notation)</Sentence>
+      <Sentence ID="209">Определяет, отображать линии или нет</Sentence>
+      <Sentence ID="211">Определяет, отображать точки или нет</Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение</Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
       <Sentence ID="401">Да</Sentence>
       <Sentence ID="402">Нет</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Данные</Sentence>
-      <Sentence ID="208">Данные в формате JSON (JavaScript Object Notation)</Sentence>
-      <Sentence ID="308">Неправильное значение</Sentence>
-      <Sentence ID="109">Показывать линии</Sentence>
-      <Sentence ID="209">Определяет, отображать линии или нет</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="403">Да</Sentence>
       <Sentence ID="404">Нет</Sentence>
-      <Sentence ID="111">Показывать точки</Sentence>
-      <Sentence ID="211">Определяет, отображать точки или нет</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
       <Sentence ID="405">Да</Sentence>
       <Sentence ID="406">Нет</Sentence>
+      <Sentence ID="501">Отображение</Sentence>
+      <Sentence ID="502">Загрузка данных</Sentence>
+      <Sentence ID="503">Изменить размеры объекта</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Загрузка данных</Sentence>
+      <Sentence ID="603">Изменить размеры</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">JSON</Sentence>
+      <Sentence ID="703">Ширина</Sentence>
+      <Sentence ID="704">Высота</Sentence>
+      <Sentence ID="705">Исчезновение</Sentence>
+      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="802">JSON</Sentence>
+      <Sentence ID="803">Новое значение ширины</Sentence>
+      <Sentence ID="804">Новое значение высоты</Sentence>
+      <Sentence ID="805">Время появления</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -301,60 +317,68 @@
       <Sentence ID="001">Flot</Sentence>
       <Sentence ID="002">Diagram</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Visibilité</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Load Data</Sentence>
-      <Sentence ID="602">Load Data</Sentence>
-      <Sentence ID="702">JSON</Sentence>
-      <Sentence ID="802">JSON</Sentence>
-      <Sentence ID="503">Change size of the object</Sentence>
-      <Sentence ID="603">resizeTo</Sentence>
-      <Sentence ID="703">Width</Sentence>
-      <Sentence ID="803">New width value</Sentence>
-      <Sentence ID="704">Height</Sentence>
-      <Sentence ID="804">New height value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Data</Sentence>
+      <Sentence ID="109">Show lines</Sentence>
+      <Sentence ID="111">Show points</Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Show or not object</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">JSON Data</Sentence>
+      <Sentence ID="209">Lines</Sentence>
+      <Sentence ID="211">Points</Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="401">Oui</Sentence>
       <Sentence ID="402">Non</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Data</Sentence>
-      <Sentence ID="208">JSON Data</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="109">Show lines</Sentence>
-      <Sentence ID="209">Lines</Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="403">Oui</Sentence>
       <Sentence ID="404">Non</Sentence>
-      <Sentence ID="111">Show points</Sentence>
-      <Sentence ID="211">Points</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="405">Oui</Sentence>
       <Sentence ID="406">Non</Sentence>
+      <Sentence ID="501">Visibilité</Sentence>
+      <Sentence ID="502">Load Data</Sentence>
+      <Sentence ID="503">Change size of the object</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">Load Data</Sentence>
+      <Sentence ID="603">resizeTo</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">JSON</Sentence>
+      <Sentence ID="703">Width</Sentence>
+      <Sentence ID="704">Height</Sentence>
+      <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">JSON</Sentence>
+      <Sentence ID="803">New width value</Sentence>
+      <Sentence ID="804">New height value</Sentence>
+      <Sentence ID="805">Time of appearance</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -556,59 +580,59 @@ $j(function(){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
-          </Parameters>
-        </Event>
-        <Event Name="ctrlclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown">
-          <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove">
+        <Event Name="click" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="ctrlclick" Help="#Lang(506)">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="dblclick" Help="#Lang(507)">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mousemove" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout" Help="#Lang(511)">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover" Help="#Lang(512)">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup" Help="#Lang(513)">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -616,7 +640,7 @@ $j(function(){
 $q(this.domCont).hide(fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadData">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadData">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="jsondata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -624,7 +648,7 @@ $q(this.domCont).hide(fade);
 eval('$q.plot($q(this.domCont),jsondata,opt_'+this.domCont.id+');');
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="width" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
@@ -633,7 +657,7 @@ eval('$q.plot($q(this.domCont),jsondata,opt_'+this.domCont.id+');');
 $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>

@@ -2,8 +2,8 @@
 <Type>
   <Information>
     <Name>fulltextsearch</Name>
-    <DisplayName>#Lang(002)</DisplayName>
-    <Description>#Lang(001)</Description>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
     <ClassName>VDOM_fulltextsearch</ClassName>
     <ID>197bf583-ebb7-401e-b716-d49c6214f3cc</ID>
     <Icon>#Res(2db770ce-258e-b7b8-402b-7d8096947cb6)</Icon>
@@ -14,14 +14,13 @@
     <Container>1</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>1</Dynamic>
-    <Version>1</Version>
+    <Version>1.0.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
-    <RenderType/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
@@ -126,7 +125,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Fulltextsearch</Sentence>
-      <Sentence ID="002">Fulltextsearch</Sentence>
+      <Sentence ID="002">The Fulltextsearch type produces an object that provides an interface to the search indexed data through the local Xapian database. For more information, see the Xapian documentation.</Sentence>
       <Sentence ID="003">Additional</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Z-Index</Sentence>
