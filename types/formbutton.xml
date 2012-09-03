@@ -184,74 +184,82 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Form Button</Sentence>
-      <Sentence ID="002">Used to add a button to the form that provides a way to trigger an event.</Sentence>
+      <Sentence ID="001">Form button</Sentence>
+      <Sentence ID="002">The Form button type produces an object displayed as a button of a form, that provides a way to trigger an event. The Form button object has the appearance of a standard button and is rendered by the web browser. It can be contained only in the Form, Password, Dialog v2, and Container objects.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object.</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="502">Set new label of the object.</Sentence>
-      <Sentence ID="602">setLabel</Sentence>
-      <Sentence ID="702">Label</Sentence>
-      <Sentence ID="802">New label.</Sentence>
-      <Sentence ID="503">Set new CSS style of the object.</Sentence>
-      <Sentence ID="603">setStyle</Sentence>
-      <Sentence ID="703">cssStyleValue</Sentence>
-      <Sentence ID="803">CSS style value.</Sentence>
-      <Sentence ID="504">Show the object.</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds.</Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="202">Visibility of the object.</Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="401">Invisible</Sentence>
-      <Sentence ID="402">Visible</Sentence>
       <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="104">Top</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="105">Left</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="206">Width of the object in pixels.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="207">Height of the object in pixels.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="108">Type</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">Label</Sentence>
+      <Sentence ID="112">Class CSS</Sentence>
+      <Sentence ID="113">Style</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Visibility of the object.</Sentence>
+      <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
       <Sentence ID="208">The type of the button:
 Common - does not do anything, it can take a special action on the event;
 Reset - reset all the filled fields;
 Submit - send the from data using the request method selected in the Method attribute of the Form object.</Sentence>
+      <Sentence ID="209">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
+      <Sentence ID="211">The label of the object.</Sentence>
+      <Sentence ID="212">The names of CSS classes divided by spaces.</Sentence>
+      <Sentence ID="213">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="308">Incorrect value, must be either 0, 1 or 2.</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer.</Sentence>
+      <Sentence ID="311">Incorrect value.</Sentence>
+      <Sentence ID="312">Incorrect value.</Sentence>
+      <Sentence ID="313">Incorrect value.</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
+      <Sentence ID="401">Invisible</Sentence>
+      <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Submit</Sentence>
       <Sentence ID="404">Reset</Sentence>
       <Sentence ID="405">Common</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
-      <Sentence ID="309">Incorrect value, must be even positive integer.</Sentence>
-      <Sentence ID="111">Label</Sentence>
-      <Sentence ID="211">The label of the object.</Sentence>
-      <Sentence ID="311">Incorrect value.</Sentence>
-      <Sentence ID="112">Class CSS</Sentence>
-      <Sentence ID="212">The names of CSS classes divided by spaces.</Sentence>
-      <Sentence ID="312">Incorrect value.</Sentence>
-      <Sentence ID="113">Style</Sentence>
-      <Sentence ID="213">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="313">Incorrect value.</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
-      <Sentence ID="314">Incorrect value.</Sentence>
       <Sentence ID="406">Default</Sentence>
       <Sentence ID="407">ProSuite</Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502">Set new label of the object.</Sentence>
+      <Sentence ID="503">Set new CSS style of the object.</Sentence>
+      <Sentence ID="504">Show the object.</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">setLabel</Sentence>
+      <Sentence ID="603">setStyle</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Label</Sentence>
+      <Sentence ID="703">cssStyleValue</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="802">New label.</Sentence>
+      <Sentence ID="803">CSS style value.</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds.</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -273,68 +281,76 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="001">Кнопка формы</Sentence>
       <Sentence ID="002">Кнопка формы</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="502">Установить новую метку для кнопки</Sentence>
-      <Sentence ID="602">Установить метку</Sentence>
-      <Sentence ID="702">Метка</Sentence>
-      <Sentence ID="802">Новая метка</Sentence>
-      <Sentence ID="503">Установить новый стиль CSS</Sentence>
-      <Sentence ID="603">Установить стиль</Sentence>
-      <Sentence ID="703">Стиль</Sentence>
-      <Sentence ID="803">Новое значение стиля CSS</Sentence>
-      <Sentence ID="504">Показать объект</Sentence>
-      <Sentence ID="604">Показать</Sentence>
-      <Sentence ID="704">Появление</Sentence>
-      <Sentence ID="804">Время появления в миллисекундах</Sentence>
       <Sentence ID="101">Иерархия</Sentence>
-      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="102">Отображение</Sentence>
+      <Sentence ID="103">Позиция</Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108">Тип</Sentence>
+      <Sentence ID="109">Индекс табуляции</Sentence>
+      <Sentence ID="111">Метка</Sentence>
+      <Sentence ID="112">Класс CSS</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
+      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208">Тип кнопки</Sentence>
+      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
+      <Sentence ID="211">Текст справа от кнопки</Sentence>
+      <Sentence ID="212">Имена классов CSS</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
-      <Sentence ID="103">Позиция</Sentence>
-      <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="108">Тип</Sentence>
-      <Sentence ID="208">Тип кнопки</Sentence>
-      <Sentence ID="308">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
       <Sentence ID="403">Подтверждение</Sentence>
       <Sentence ID="404">Сброс</Sentence>
       <Sentence ID="405">Обычная</Sentence>
-      <Sentence ID="109">Индекс табуляции</Sentence>
-      <Sentence ID="209">Индекс табуляции объекта на странице</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="111">Метка</Sentence>
-      <Sentence ID="211">Текст справа от кнопки</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="112">Класс CSS</Sentence>
-      <Sentence ID="212">Имена классов CSS</Sentence>
-      <Sentence ID="312">Неправильное значение</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Установить новую метку для кнопки</Sentence>
+      <Sentence ID="503">Установить новый стиль CSS</Sentence>
+      <Sentence ID="504">Показать объект</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">Установить метку</Sentence>
+      <Sentence ID="603">Установить стиль</Sentence>
+      <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702">Метка</Sentence>
+      <Sentence ID="703">Стиль</Sentence>
+      <Sentence ID="704">Появление</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Новая метка</Sentence>
+      <Sentence ID="803">Новое значение стиля CSS</Sentence>
+      <Sentence ID="804">Время появления в миллисекундах</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -356,68 +372,76 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="001">Bouton de Formulaire</Sentence>
       <Sentence ID="002">Bouton Formulaire</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="502">Set new button label</Sentence>
-      <Sentence ID="602">setLabel</Sentence>
-      <Sentence ID="702">Label</Sentence>
-      <Sentence ID="802">New label value</Sentence>
-      <Sentence ID="503">Set new CSS style</Sentence>
-      <Sentence ID="603">setStyle</Sentence>
-      <Sentence ID="703">cssStyleValue</Sentence>
-      <Sentence ID="803">New CSS style value</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="604">Show</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="804">Time of appearance</Sentence>
       <Sentence ID="101">Hiérarchie</Sentence>
-      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="102">Visibilité</Sentence>
+      <Sentence ID="103">Z-Index</Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108">Type</Sentence>
+      <Sentence ID="109">TabIndex</Sentence>
+      <Sentence ID="111">Texte</Sentence>
+      <Sentence ID="112">Class</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208">Type du bouton</Sentence>
+      <Sentence ID="209">Tab index</Sentence>
+      <Sentence ID="211">Texte apparaissant sur le bouton</Sentence>
+      <Sentence ID="212">CSS class name</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Valeur Incorrecte</Sentence>
+      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="103">Z-Index</Sentence>
-      <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="106">Largeur</Sentence>
-      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="107">Hauteur</Sentence>
-      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="108">Type</Sentence>
-      <Sentence ID="208">Type du bouton</Sentence>
-      <Sentence ID="308">Valeur Incorrecte</Sentence>
       <Sentence ID="403">Submit</Sentence>
       <Sentence ID="404">Reset</Sentence>
       <Sentence ID="405">Common</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="209">Tab index</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="111">Texte</Sentence>
-      <Sentence ID="211">Texte apparaissant sur le bouton</Sentence>
-      <Sentence ID="311">Valeur Incorrecte</Sentence>
-      <Sentence ID="112">Class</Sentence>
-      <Sentence ID="212">CSS class name</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="314"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Set new button label</Sentence>
+      <Sentence ID="503">Set new CSS style</Sentence>
+      <Sentence ID="504">Show the object</Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">setLabel</Sentence>
+      <Sentence ID="603">setStyle</Sentence>
+      <Sentence ID="604">Show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Label</Sentence>
+      <Sentence ID="703">cssStyleValue</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">New label value</Sentence>
+      <Sentence ID="803">New CSS style value</Sentence>
+      <Sentence ID="804">Time of appearance</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -757,49 +781,49 @@ border:1px solid #a8a8a8;
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -809,7 +833,7 @@ border:1px solid #a8a8a8;
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -817,7 +841,7 @@ border:1px solid #a8a8a8;
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setLabel">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setLabel">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="label" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -825,7 +849,7 @@ vdom_ui_hide(this.domCont, fade);
 jQuery(this.domCont).val(label);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="cssStyleValue" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -833,7 +857,7 @@ jQuery(this.domCont).val(label);
 jQuery(this).attr('style', cssStyleValue);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>

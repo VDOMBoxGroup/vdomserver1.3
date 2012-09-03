@@ -185,7 +185,7 @@
   <Languages>
     <Language Code="en_US">
       <Sentence ID="001">Form</Sentence>
-      <Sentence ID="002">Used to add forms to the page. These forms are created to exchange the data between the user and the server.</Sentence>
+      <Sentence ID="002">The Form type produces an object that serves as a container for other form objects. Together they make up a form used for exchanging the data between the client and VDOM server. The form data can be sent by the 'POST', 'GET' or 'event' method selected in the 'Method' attribute, where the 'event' method means that the data will be sent as a parameter of the 'submit' event.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
       <Sentence ID="102">Visibility</Sentence>
@@ -247,6 +247,15 @@
       <Sentence ID="504">Set URL where to send the data</Sentence>
       <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506">Send the form</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">LoadHTML</Sentence>
       <Sentence ID="603">ResizeTo</Sentence>
@@ -347,6 +356,15 @@
       <Sentence ID="504">Установить новую ссылку</Sentence>
       <Sentence ID="505">Показать объект</Sentence>
       <Sentence ID="506">Передать форму</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Загрузить HTML</Sentence>
       <Sentence ID="603">Изменить размеры</Sentence>
@@ -447,6 +465,15 @@
       <Sentence ID="504">Set new target URL</Sentence>
       <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506">Submit the form</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Load HTML</Sentence>
       <Sentence ID="603">ResizeTo</Sentence>
@@ -780,55 +807,55 @@ $j(function(){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="submit">
+        <Event Name="submit" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(918)"/>
           </Parameters>
@@ -837,7 +864,7 @@ $j(function(){
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -845,7 +872,7 @@ $j(function(){
 vdom_ui_hide(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadHTMLData">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="loadHTMLData">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="HTMLdata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -853,7 +880,7 @@ vdom_ui_hide(this.domCont, fade);
 $q(this.domCont).html(HTMLdata);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="width" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="height" Help="#Lang(804)" RegularExpressionValidation=".*"/>
@@ -862,7 +889,7 @@ $q(this.domCont).html(HTMLdata);
 $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setUrlTarget">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setUrlTarget">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="containerUrl" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -870,7 +897,7 @@ $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 $q(this.domCont).attr('action', containerUrl);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -878,7 +905,7 @@ $q(this.domCont).attr('action', containerUrl);
 vdom_ui_show(this.domCont,fade);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(506)" InterfaceName="#Lang(606)" MethodName="submit">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="submit">
           <Parameters/>
           <SourceCode><![CDATA[ 
 $q(this.domCont).submit();
