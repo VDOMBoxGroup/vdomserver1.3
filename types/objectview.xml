@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.39.6720</Version>
+    <Version>1.40.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -280,9 +280,9 @@
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Object View</Sentence>
-      <Sentence ID="002">The Object view type produces an object that outputs the data in the form of specified information blocks, called items. This type works together with the VDOM package top-level container and the VDOMClass object. The Object view objects displayes the items, while their appearance is set by the VDOMClass object located in the VDOM package top-level container.
-Before using the Object view type, create a new VDOM package top-level container and place a VDOMClass object in it. Then place the Object view object on the web page where you want to display the items. In the 'VDOMClass' attribute of the Object view object select the VDOMClass to use. The 'Data' attribute of the Object view object specifies the data used in the items of the Object view object and can be formed dynamically by modifying it from the script. The data there must be written in the following format:
+      <Sentence ID="001">Object view</Sentence>
+      <Sentence ID="002">The Object view type produces an object that outputs the data in the form of specified information blocks, called items. This type works together with the VDOM package top-level container and the VDOM class object. The Object view objects displayes the items, while their appearance is set by the VDOM class object located in the VDOM package top-level container.
+Before using the Object view type, create a new VDOM package top-level container and place a VDOM class object in it. Then place the Object view object on the web page where you want to display the items. In the 'VDOM class' attribute of the Object view object select the VDOM class to use. The 'Data' attribute of the Object view object specifies the data used in the items of the Object view object and can be formed dynamically by modifying it from the script. The data there must be written in the following format:
 {
   "1": "{'city': 'Tomsk', 'zip': '634041', 'phone': '64-02-12'}",
   "2": "{'city': 'Sofia', 'zip': '1000', 'phone': '943 31 54'}" 
@@ -295,7 +295,7 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="105">Left</Sentence>
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108">VDOMClass</Sentence>
+      <Sentence ID="108">VDOM class</Sentence>
       <Sentence ID="109">Data</Sentence>
       <Sentence ID="111">Layout</Sentence>
       <Sentence ID="112">Drag-and-drop</Sentence>
