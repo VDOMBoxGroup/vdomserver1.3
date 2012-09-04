@@ -628,16 +628,16 @@ def p_statement_do_loop_until(p):
 	p[0]=vdoloopuntil(p[5], p[2], line=p[1][0])
 
 def p_statement_for_each(p):
-	"""statement : FOR EACH name IN expression statements NEXT"""
-	p[0]=vforeach(p[3], p[5], p[6], line=p[1][0])
+	"""statement : FOR EACH NAME IN expression statements NEXT"""
+	p[0]=vforeach(vname(p[3][1], line=p[3][0]), p[5], p[6], line=p[1][0])
 
 def p_statement_for(p):
-	"""statement : FOR name '=' expression TO expression statements NEXT"""
-	p[0]=vfor(p[2], (p[4], p[6]), p[7], line=p[1][0])
+	"""statement : FOR NAME '=' expression TO expression statements NEXT"""
+	p[0]=vfor(vname(p[2][1], line=p[2][0]), (p[4], p[6]), p[7], line=p[1][0])
 
 def p_statement_for_step(p):
-	"""statement : FOR name '=' expression TO expression STEP expression statements NEXT"""
-	p[0]=vforstep(p[2], (p[4], p[6]), p[8], p[9], line=p[1][0])
+	"""statement : FOR NAME '=' expression TO expression STEP expression statements NEXT"""
+	p[0]=vforstep(vname(p[2][1], line=p[2][0]), (p[4], p[6]), p[8], p[9], line=p[1][0])
 
 def p_statement_while(p):
 	"""statement : WHILE expression newline statements WEND"""
