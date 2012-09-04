@@ -41,6 +41,3 @@ class v_response(generic):
 	def v_write(self, data):
 		managers.request_manager.get_request().write(data.as_string)
 		return v_mismatch
-
-
-v_response=v_response()

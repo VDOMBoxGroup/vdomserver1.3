@@ -17,15 +17,33 @@ vscript_wrappers_name="wrappers"
 
 vscript_default_code=compile(u"", vscript_source_string, u"exec")
 vscript_default_source=[]
-vscript_default_environment={u"v_this": None,
-	u"v_server": None, u"v_request": None, u"v_response": None, u"v_session": None, u"v_application": None,
-	u"v_vdomdbconnection": vscript_wrappers_name, u"v_vdomdbrecordset": vscript_wrappers_name,
-	u"v_vdomimaging": vscript_wrappers_name, u"v_vdombox": vscript_wrappers_name,
-	u"v_wholeconnection": vscript_wrappers_name, u"v_wholeapplication": vscript_wrappers_name,
-	u"v_wholeerror": vscript_wrappers_name, u"v_wholeconnectionerror": vscript_wrappers_name,
+
+vscript_default_action_namespace={
+	u"v_server": v_server(),
+	u"v_request": v_request(),
+	u"v_response": v_response(),
+	u"v_session": v_session(),
+	u"v_application": v_application()}
+vscript_default_environment={
+	u"v_this": None,
+	u"v_server": None,
+	u"v_request": None,
+	u"v_response": None,
+	u"v_session": None,
+	u"v_application": None,
+	u"v_vdomdbconnection": vscript_wrappers_name,
+	u"v_vdomdbrecordset": vscript_wrappers_name,
+	u"v_vdomimaging": vscript_wrappers_name,
+	u"v_vdombox": vscript_wrappers_name,
+	u"v_wholeconnection": vscript_wrappers_name,
+	u"v_wholeapplication": vscript_wrappers_name,
+	u"v_wholeerror": vscript_wrappers_name,
+	u"v_wholeconnectionerror": vscript_wrappers_name,
 	u"v_wholenoconnectionerror": vscript_wrappers_name,
-	u"v_wholeremotecallerror": vscript_wrappers_name, u"v_wholeincorrectresponse": vscript_wrappers_name,
-	u"v_wholenoapierror": vscript_wrappers_name, u"v_wholenoapplication": vscript_wrappers_name}
+	u"v_wholeremotecallerror": vscript_wrappers_name,
+	u"v_wholeincorrectresponse": vscript_wrappers_name,
+	u"v_wholenoapierror": vscript_wrappers_name,
+	u"v_wholenoapplication": vscript_wrappers_name}
 
 weakuses=WeakKeyDictionary()
 	
@@ -111,11 +129,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
 				namespace={}
 			if environment is None:
 				namespace[u"v_this"]=v_vdomobject(object) if object else v_nothing
-				namespace[u"v_server"]=v_server
-				namespace[u"v_request"]=v_request
-				namespace[u"v_response"]=v_response
-				namespace[u"v_session"]=v_session
-				namespace[u"v_application"]=v_application
+				namespace.update(vscript_default_action_namespace)
 			else:
 				namespace.update(environment)
 			if use:

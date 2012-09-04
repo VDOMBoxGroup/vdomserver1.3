@@ -178,6 +178,3 @@ class v_request(generic):
 			raise errors.object_has_no_property("parameters")
 		else:
 			return v_parameterscollection() if index is None else v_parameterscollection()(index)
-
-
-v_request=v_request()

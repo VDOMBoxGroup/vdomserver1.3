@@ -30,7 +30,6 @@ class vinitialregister(vregister):
 		self.import_names("exceptions", alias=None)
 		self.import_names("library", alias=None)
 		self.import_names("extensions")
-		# self.import_names("wrappers")
 		self.__class__=vregister
 		return self._names
 		

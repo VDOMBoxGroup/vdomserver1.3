@@ -34,6 +34,3 @@ class v_session(generic):
 
 	def v_abandon(self):
 		raise errors.not_implemented
-
-
-v_session=v_session()

@@ -89,6 +89,3 @@ class v_server(generic):
 	def v_sendmail(self, sender, recipient, subject, message):
 		managers.email_manager.send(sender.as_string,
 			recipient.as_string, subject.as_string, message.as_string)
-
-
-v_server=v_server()
