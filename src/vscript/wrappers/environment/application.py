@@ -83,6 +83,3 @@ class v_application(generic):
 			raise errors.object_has_no_property("storage")
 		else:
 			return v_storage()
-
-
-v_application=v_application()
