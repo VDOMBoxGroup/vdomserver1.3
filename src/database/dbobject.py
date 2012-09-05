@@ -406,6 +406,7 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 				if not cid:
 					continue
 				assignment = ""
+				params = []
 				for cell in row.childNodes:
 					if cell.nodeType != Node.ELEMENT_NODE:
 						continue
@@ -421,9 +422,11 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 						
 					if assignment != "":
 						assignment +=", "
-					assignment += "`%s` = %s"%(name, value)
-				if assignment:
-					query = VDOM_sql_query(self.owner_id,self.database_id, "UPDATE `%s` SET %s WHERE id = \'%s\'"%(self.name,assignment,cid))
+					assignment += "`%s` = ?"%name
+					params.append(value)
+				params.append(cid)
+				if assignment and params:
+					query = VDOM_sql_query(self.owner_id,self.database_id, "UPDATE `%s` SET %s WHERE id = ?"%(self.name,assignment),params)
 					query.commit()
 
 	
