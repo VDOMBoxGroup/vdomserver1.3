@@ -34,3 +34,16 @@ class v_session(generic):
 
 	def v_abandon(self):
 		raise errors.not_implemented
+	
+	def v_securitycode(self, **keywords):
+		if "let" in keywords:
+			managers.request_manager.get_request().session().value("SecurityCode", value=keywords["let"].as_string)
+		elif "set" in keywords:
+			raise errors.object_has_no_property("securitycode")
+		else:
+			value = managers.request_manager.get_request().session().value("SecurityCode")
+			if value is None:
+				return v_empty
+			else:
+				return string(value)
+

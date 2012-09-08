@@ -2,7 +2,7 @@
 import re
 import managers, utils.uuid
 from ... import errors
-from ...subtypes import binary, generic, string, v_mismatch, v_nothing
+from ...subtypes import binary, generic, string, v_mismatch, v_nothing, integer
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 
 
@@ -87,5 +87,9 @@ class v_server(generic):
 		return string(unicode(string2encode.as_string.encode("url")))
 
 	def v_sendmail(self, sender, recipient, subject, message):
-		managers.email_manager.send(sender.as_string,
-			recipient.as_string, subject.as_string, message.as_string)
+		return integer(managers.email_manager.send(sender.as_string,
+			recipient.as_string, subject.as_string, message.as_string))
+
+	def v_mailstatus(self, msg_id):
+		ret = managers.email_manager.check(msg_id.as_integer)
+		return string(ret) if ret else v_nothing
