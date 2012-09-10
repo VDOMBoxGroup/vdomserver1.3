@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.51.6720</Version>
+    <Version>1.710.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -148,7 +148,7 @@
     <Attribute>
       <Name>children</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
@@ -292,14 +292,14 @@
     <Attribute>
       <Name>fontfamily</Name>
       <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue>Tahoma</DefaultValue>
+      <DefaultValue>Tahoma, "Geneva CY", geneva, sans-serif</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|Tahoma)|(#Lang(415)|Verdana))</CodeInterface>
+      <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[\w ]{3,30}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
@@ -1020,7 +1020,7 @@ class VDOM_menu(VDOM_object):
 				imagefile = resource.id
 			else:
 				im1 = VDOM_imaging()
-				im1.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
+				im1.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))
 				im1.load(application.id,image)
 				color1 = "000000"
 				if self.color:
@@ -1033,7 +1033,7 @@ class VDOM_menu(VDOM_object):
 				rolloverfile = resource.id
 			else:
 				im2 = VDOM_imaging()
-				im2.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))#, fontstyle = self.fontstyle, fontweight = self.fontweight)
+				im2.create_font(name = self.fontfamily.replace('"', "'"), size = int(self.fontsize))
 				im2.load(application.id,rollover)
 				color1 = "000000"
 				if self.color:
@@ -1064,6 +1064,7 @@ class VDOM_menu(VDOM_object):
 				currentitem = None
 				currentitem_name = ""
 				currentitem_title = ""
+
 			self.pages = []
 			neighbours_hash = {}
 			self.parents_list = []
@@ -1073,12 +1074,12 @@ class VDOM_menu(VDOM_object):
 			currentitem_parents = []
 			parent_map_children = []
 			currentitem_children = []
-						
+
 			if currentitem:
 				currentitem_parents.extend(currentitem.parents)
 				get_index = lambda obj: getattr(obj, "index")
 				currentitem_parents.sort(None, get_index)
-				for parent in currentitem_parents:  
+				for parent in currentitem_parents:
 					if self.parents == "1":
 						obj = application.objects.search(parent.id)
 						self.parents_list.append((parent.id,obj.name,obj.attributes.title))
@@ -1098,9 +1099,9 @@ class VDOM_menu(VDOM_object):
 								obj = application.objects.search(neighbour.id)
 								neighbours_hash[neighbour] = None
 								self.neighbours_list.append((neighbour.id,obj.name,obj.attributes.title))
-								self.pages.append((neighbour.id,obj.attributes.title,obj.name))	
-								
-									
+								self.pages.append((neighbour.id,obj.attributes.title,obj.name))
+
+
 				if shown_current and self.current == "1":
 					obj = application.objects.search(currentitem.id)
 					self.pages.append(("",obj.attributes.title,""))
@@ -1119,7 +1120,7 @@ class VDOM_menu(VDOM_object):
 			self.headerheight = 0
 			self.headerwidth = 0
 			shown_current = True
-			
+
 			if self.image:
 				self.pages = []
 				im1 = VDOM_imaging()
@@ -1131,7 +1132,7 @@ class VDOM_menu(VDOM_object):
 					self.headerwidth = str(im1.size[0])
 					self.imagefiles.append(self.menuheader)
 					self.rolloverfiles.append("")
-			
+
 				if self.parents == "1":
 					for (id,name, title) in self.parents_list:
 						self.pages.append((id, title, name))
@@ -1139,7 +1140,7 @@ class VDOM_menu(VDOM_object):
 						self.imagefiles.append(image)
 						if self.rollover:
 							self.rolloverfiles.append(rollover)
-				
+
 				if self.neighbours == "1":
 					for (id,name, title) in self.neighbours_list:
 						self.pages.append((id, title, name))
@@ -1160,7 +1161,7 @@ class VDOM_menu(VDOM_object):
 							self.imagefiles.append(image)
 							if self.rollover:
 								self.rolloverfiles.append(rollover)
-							
+
 				if shown_current and self.current == "1":
 					self.pages.append((current.id, currentitem_title, currentitem_name))
 					if self.selected:
@@ -1169,7 +1170,7 @@ class VDOM_menu(VDOM_object):
 						__img = self.rollover
 					else:
 						__img = self.image
-					(image, rollover) = self.subscribe_image(currentitem_title, __img, "selected"+currentitem_name, None,None)	
+					(image, rollover) = self.subscribe_image(currentitem_title, __img, "selected"+currentitem_name, None,None)
 					self.imagefiles.append(image)
 					self.rolloverfiles.append("")
 
@@ -1193,197 +1194,311 @@ class VDOM_menu(VDOM_object):
 					self.imagefiles.append(self.menufooter)
 					self.rolloverfiles.append("")
 
-	def render(self,parent, contents=""):
-		if self.visible == "1":
-			vis=""
+	def get_fontstyle (self):
+		fontstyle=""
+
+		fontstyles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : ""}
+
+		if "" != self.color:
+			fontstyles["color"] = u" #{color};".format(color = self.color)
+
+		if self.fontweight == "bold":
+			fontstyles["font"] += self.fontweight + " "
+
+		if self.fontstyle == "italic":
+			fontstyles["font"] += self.fontstyle + " "
+
+		if "" != self.fontsize:
+			fontstyles["font"] += self.fontsize + u"px "
 		else:
-			vis="display:none;"
+			fontstyles["font"] += u"12px "
+
+		if "" != self.fontfamily:
+			fontstyles["font"] += self.fontfamily.replace('"', "'")
+
+		fontstyles["font"] += ";"
+
+		for key in fontstyles:
+			if "" != fontstyles[key]:
+				fontstyle += (key + ":" + fontstyles[key])
+
+		return fontstyle
+
+	def get_image_top_position (self, header, index) :
+		# vertical layout
+		if int(self.layout) == 0:
+			return str(int(self.headerheight)+(index-header)*int(self.finalheight))
+
+		# horizontal layout
+		return "0"
+
+	def get_image_left_position (self, header, index) :
+		# vertical layout
+		if int(self.layout) == 0:
+			return "0"
+
+		# horizontal layout
+		return str(int(self.headerwidth)+(index-header)*int(self.finalwidth))
+
+	def render(self, parent, contents=""):
+		vis = "" if self.visible == "1" else "display:none;"
+		text_align = "" if self.image else "text-align: left;"
+
 		if len(self.pages) == 0:
 			return ""
-		import utils
-		result = ""
-		header = 0
-		if not self.layout or self.layout == "" or self.layout == "0":
-			separator = "<br>"
-		else:
-			separator = "&nbsp; &nbsp;"
+
 		if self.image and len(self.pages) != len(self.imagefiles) or (self.rollover and len(self.imagefiles) != len(self.rolloverfiles)):
 			return ""
+
+		import utils
+
+		menu_content = ""
+		header = 0
 		for i in xrange(0,(len(self.pages))):
-			representation = ""
-			if self.image:
+			if self.image: # images
 				if self.rollover and self.rolloverfiles[i] != "":
-					onmouse = " OnMouseOver=\"this.src=\'"+utils.id.id2link1(self.rolloverfiles[i])+"\'\" OnMouseOut=\"this.src=\'"+utils.id.id2link1(self.imagefiles[i])+"\'\""
+					onmouse = \
+						u""" OnMouseOver="this.src='{image_over}'" OnMouseOut="this.src='{image_out}'"
+						""".format(
+								image_over = utils.id.id2link1(self.rolloverfiles[i]),
+								image_out = utils.id.id2link1(self.imagefiles[i]))
 				else:
 					onmouse = ""
-				representation = "<IMG src=%s %s title=\"%s\" style=\"border:none\" width=\"%s\" height=\"%s\">"%(utils.id.id2link1(self.imagefiles[i]),onmouse,self.pages[i][1],self.finalwidth,self.finalheight)
-			else:
-				representation = self.pages[i][1]
-			if self.pages[i][0] == "":
-				link_render_1 = ""
-				link_render_2 = ""
-			else:
-				style = ""
-				if self.linkcolor:
-					style = 'style="color: #%s"' % self.linkcolor
-				link_render_1 = "<a href=\"%s.vdom\" %s>"%(self.pages[i][2],style)
-				link_render_2 = "</a>"
-			
-			if self.image:
-				if self.pages[i][1]=="menuheader":
-					top_style = "top: 0px;"
-					left_style = "left: 0px;"
-					header = 1
-				elif self.layout == "0" or self.layout == 0:
-					top_style = "top: "+str(int(self.headerheight)+(i-header)*int(self.finalheight))+"px;"
-					left_style = "left: 0px;"
-				else:
-					top_style = "top: 0px;"
-					left_style = "left: "+str(int(self.headerwidth)+(i-header)*int(self.finalwidth))+"px;"
-				
-				width_style = "width: %spx; "%(self.finalwidth,)
-				height_style = "height: %spx; "%(self.finalheight,)
-				style = "position: absolute; z-index: "+self.zindex+"; "+left_style+top_style+ width_style + height_style
-				result +=  "<div style=\""+style+"\">"+link_render_1+representation+link_render_2+"</div>"
-				text_align = ""
-			else:
-				fontstyle=""
-				fontstyles = {"text-align" : "", "font" : "", "color" : "", "text-decoration" : ""}
-				if "" != self.color:
-					fontstyles["color"] = " #%s;" % self.color
-				if "" != self.fontweight and self.fontweight == "bold":
-					fontstyles["font"] += self.fontweight + " "
-				if "" != self.fontstyle and self.fontstyle == "italic":
-					fontstyles["font"] += self.fontstyle + " "
-				if "" != self.fontsize:
-					fontstyles["font"] += self.fontsize + "px "
-				else:
-					fontstyles["font"] += "12px "
-				if "" != self.fontfamily:
-					fontstyles["font"] += self.fontfamily.replace('"', "'")
-				fontstyles["font"] += ";"
-				
-				for key in fontstyles:
-					if "" != fontstyles[key]:
-						fontstyle += (key + ":" + fontstyles[key])
-				result += "<span style=\"" + fontstyle+"\">" + link_render_1 + representation + link_render_2 + separator + "</span>"
-				#text_align = "text-align: center;"
-				text_align = "text-align: left;"
-		mainstyle="%s z-index: %s;position: %s;top: %spx;left: %spx; width: %spx; height: %spx; %s"%(vis, self.zindex, self.position, self.top, self.left, self.width, self.height, text_align)
-		id = 'o_' + (self.id).replace('-', '_')
-		
-		return "<div id=\"%s\" style=\"%s\">%s</div>"%(id, mainstyle, result)
 
-	def wysiwyg(self, parent, contents=""):
-	
-		if self.image and len(self.pages) != len(self.imagefiles) or (self.rollover and len(self.imagefiles) != len(self.rolloverfiles)):
-			return ""
-		
-		result = ""
-		result += "<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"%(
-						self.id, self.zindex, self.hierarchy, self.top, self.left, self.width, self.height)
-						
-		result +="<svg>"
-		
-		if not self.image:
-			result +="</svg>"
-		
+				image = \
+					u"""<IMG src={source} {onmouse} title="{title}" style="border:none" width="{width}" height="{height}">
+					""".format(
+							source = utils.id.id2link1(self.imagefiles[i]),
+							onmouse = onmouse,
+							title = self.pages[i][1],
+							width = self.finalwidth,
+							height = self.finalheight)
+
+				if self.pages[i][1]=="menuheader":
+					top_style = "top:0;"
+					left_style = "left:0;"
+					header = 1
+				else:
+					top_style = "top: {top}px;".format( top = self.get_image_top_position(header, i) )
+					left_style = "left: {left}px;".format( left = self.get_image_left_position(header, i) )
+
+				width_style = "width: {width}px; ".format(width = self.finalwidth)
+				height_style = "height: {height}px; ".format(height = self.finalheight)
+
+				style = u"position: absolute; z-index: {zindex}; {left_style} {top_style} {width_style} {height_style}".format(
+					zindex = self.zindex,
+					left_style = left_style,
+					top_style = top_style,
+					width_style = width_style,
+					height_style = height_style)
+
+				menu_content +=  u"""<div style="{style}"> {image} </div>""".format(style = style, image = image)
+			else: # text/links
+				if not self.layout or self.layout == "" or self.layout == "0":
+					separator = "<br/>"
+				else:
+					separator = "&nbsp; &nbsp;"
+
+				fontstyle=self.get_fontstyle()
+
+				if self.pages[i][0] == "":
+					link = str(self.pages[i][1])
+				else:
+					style = ""
+					if self.linkcolor:
+						style = u""" style="color: #{linkcolor};" """.format(linkcolor = self.linkcolor)
+
+					link = u"""<a href="{page}.vdom" {style} >{text}</a>""".format(
+						style = style,
+						text = self.pages[i][1],
+						page = self.pages[i][2])
+
+				menu_content += u"""<span style="{fontstyle}"> {link} {separator} </span>""".format(
+					fontstyle = fontstyle,
+					separator = separator,
+					link = link)
+
+		mainstyle = \
+			u"""{visible} z-index: {zindex}; position: {position}; top: {top}px; left: {left}px;
+				width: {width}px; height: {height}px; {align}
+			""".format(
+					visible = vis,
+					zindex = self.zindex,
+					position = self.position,
+					top = self.top,
+					left = self.left,
+					width = self.width,
+					height = self.height,
+					align =text_align)
+
+		id = 'o_' + (self.id).replace('-', '_')
+
+		result = u"""<div id="{id}" style="{mainstyle}">{menu_content}</div>""".format(
+			id = id,
+			mainstyle = mainstyle,
+			menu_content = menu_content)
+
+		return result
+
+	def wysiwyg_image_content (self) :
 		if not self.layout or self.layout == "" or self.layout == "0":
 			separator = "\n"
 		else:
 			separator = "  "
-		
-		representation = ""
-		header = 0
-		
-		for i in xrange(0,(len(self.pages))):
-			if self.image:
-				if self.pages[i][1]=="menuheader":
-					top_style = "0"
-					left_style = "0"
-					header = 1
-					width_style = int(self.headerwidth)#self.finalwidth
-					height_style = int(self.headerheight)#self.finalheight
-				elif self.pages[i][1]=="menufooter":
-					top_style = str(int(self.headerheight)+(i-header)*int(self.finalheight))
-					left_style = "0"
-					width_style = int(self.footerwidth)
-					height_style = int(self.footerheight)
-				elif self.layout == "0" or self.layout == 0:
-					top_style = str(int(self.headerheight)+(i-header)*int(self.finalheight))
-					left_style = "0"
-					width_style = self.finalwidth
-					height_style = self.finalheight
-				else:
-					top_style = "0"
-					left_style = str(int(self.headerwidth)+(i-header)*int(self.finalwidth))
-					width_style = self.finalwidth
-					height_style = self.finalheight
 
-				representation += "<image y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" href=\"#Res(%s)\" />"%(
-										top_style, left_style, width_style, height_style, self.imagefiles[i])
+		images = ""
+		header = 0
+		for i in xrange(0,(len(self.pages))):
+			if self.pages[i][1]=="menuheader":
+				top_style = "0"
+				left_style = "0"
+				header = 1
 			else:
-				representation += "%s%s"%(self.pages[i][1], separator)
-				
-		if self.image:
-			result += representation
-			result +="</svg>"
+				top_style = self.get_image_top_position(header, i)
+				left_style = self.get_image_left_position(header, i)
+
+			images += u"""<image x="{x}" y="{y}" width="{width}" height="{height}" href="#Res({image})" />""".format(
+				x = left_style,
+				y = top_style,
+				width = self.finalwidth,
+				height = self.finalheight,
+				image = self.imagefiles[i])
+
+		return images
+
+	def wysiwyg_text_content (self) :
+		if len(self.pages) == 0:
+			return ""
+
+		result = ""
+		if not self.layout or self.layout == "" or self.layout == "0":
+			separator = "<br/>"
 		else:
-			if representation:
-				result +="<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" color=\"#%s\" textalign=\"left\" fontfamily=\"%s\" fontsize=\"%s\" fontstyle=\"%s\" fontweight=\"%s\">%s</text>"%(
-							0, 0, self.width, self.height, self.color, self.fontfamily.replace('"', '').replace("'", ''), self.fontsize, self.fontstyle, self.fontweight, "<![CD"+"ATA[" + representation + "]"+"]>")
-				
-		result += "</container>"
-		
+			separator = "&nbsp; &nbsp;"
+
+		for i in xrange(0,(len(self.pages))):
+			fontstyle = self.get_fontstyle()
+
+			if self.pages[i][0] == "":
+				link = str(self.pages[i][1])
+			else:
+				if self.linkcolor:
+					style = """ style="color: #{linkcolor};" """.format(linkcolor = self.linkcolor)
+				else:
+					style = """ style="color: #000000;" """
+
+				link = u"""<a {style} href="href.html">{text}</a>""".format(style = style, text = self.pages[i][1])
+
+			result += u"""<span style="{fontstyle}"> {link} {separator} </span>""".format(
+				fontstyle = fontstyle,
+				link = link,
+				separator = separator)
+
+		return result
+
+	def wysiwyg(self, parent, contents=""):
+
+		if not getattr(self,"pages", None):
+			self.compute()
+
+		if  len(self.pages) == 0:
+			import utils.wysiwyg
+
+			image_id = "15d0bb29-3aa0-4ea7-b65d-f79c6fafdae1"
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+
+			return VDOM_object.wysiwyg(self, parent, contents=result)
+
+		if self.image:
+			if len(self.pages) != len(self.imagefiles) or (self.rollover and len(self.imagefiles) != len(self.rolloverfiles)):
+				return ""
+
+			images = self.wysiwyg_image_content()
+
+			result = \
+				u"""<container id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}" width="{width}" height="{height}">
+						<svg>
+							{images}
+						</svg>
+					</container>
+				""".format(
+						id = self.id,
+						zindex = self.zindex,
+						hierarchy = self.hierarchy,
+						top = self.top,
+						left = self.left,
+						width = self.width,
+						height = self.height,
+						images = images)
+		else:
+			text_content = self.wysiwyg_text_content()
+
+			c_data = u"""<div style="top: 0px;left: 0px;">{text_content}</div>""".format(text_content = text_content)
+
+			result = \
+				u"""<container id="{id}" zindex="{zindex}" width="{width}" height="{height}" top="{top}" left="{left}" >
+						<htmltext width="{width}" locked="true" >
+							{c_data}
+						</htmltext>
+					</container>
+				""".format(
+						id = self.id,
+						zindex = self.zindex,
+						width = self.width,
+						height = self.height,
+						top = self.top,
+						left = self.left,
+						c_data = "<![CD"+"ATA["+ c_data+ "]"+"]>")
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 	]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click" Help="#Lang(504)">
+        <Event Name="click">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(505)">
+        <Event Name="ctrlclick">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(506)">
+        <Event Name="dblclick">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(507)">
+        <Event Name="mousedown">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(508)">
+        <Event Name="mousemove">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(509)">
+        <Event Name="mouseout">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(511)">
+        <Event Name="mouseover">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(512)">
+        <Event Name="mouseup">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -1393,27 +1508,27 @@ class VDOM_menu(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="toparent" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="zindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade, zindex, toparent);
                     ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="Effect" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="timeout" Help="#Lang(808)" RegularExpressionValidation=".*"/>
@@ -1422,10 +1537,10 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="zindexOff" Help="#Lang(812)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="toparentOff" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade, zindex, toparent);
 if (timeout > 0) vdom_ui_setMenuHide(this.domCont, timeout, zindexOff, toparentOff);
-					]]></SourceCode>
+]]></SourceCode>
         </Action>
       </Container>
     </Actions>
