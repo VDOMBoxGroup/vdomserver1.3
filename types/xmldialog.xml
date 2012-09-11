@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.43.6720</Version>
+    <Version>1.46.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -278,17 +278,18 @@ class VDOM_xmldialog(VDOM_object):
 						htm = u""
 						sa = self.the_prop(res, 'selected').split(',')
 						sa = [ s.strip() for s in sa ]
+						da = self.the_prop(res, 'disabled').split(',')
+						da = [ s.strip() for s in da ]
 						for ik, iv in self.get_options(e).items():
 							sel = 'selected="selected"' if ik in sa else ''
-							htm += u"<option value=\"%s\" />%s</option>" % ( ik.replace('"', '&quot;'), iv );
+							dis = 'disabled="disabled"' if ik in da else ''
+							htm += u"<option value=\"%s\" %s %s />%s</option>" % ( ik.replace('"', '&quot;'), sel, dis, iv );
 						lmult = int("0%s" % self.the_prop(res, 'multiple'))
-						lsize = int("0%s" % self.the_prop(res, 'size'))
-						lines = "" if lsize <= 1 else u"size='%s'" % lsize
+						lsize = int("0%s" % self.the_prop(res, 'rows'))
+						lines = u"size='%s'" % lsize if lsize > 0 else ""
 						multi = ""
 						if len(sa) > 1 or lmult == 1:
 							multi = "multiple='multiple'"
-							if lines == "":
-								lines = "size='2'"
 						htm = u"<select name=\"%s\" %s %s>%s</select>" % ( attr_id, lines, multi, htm );
 						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
 
@@ -506,7 +507,7 @@ function vdom_xd_load(id,xd){
 	w.html('');
 	var nobtn = true;
 	x.find("VDOMFormContainer>Components>*").each(function(){
-		var t = $q(this), t0 = this, opts, s, sa, sel;
+		var t = $q(this), t0 = this, opts, s, sa, da, dis, sel;
 
 		if (t0.tagName == 'Heading') {
 			data.push("<h3>"+t.find('Property[name=text]').text()+"</h3>");
@@ -516,13 +517,20 @@ function vdom_xd_load(id,xd){
 			data.push(dodiv('textbox', t.find('Property[name=label]').text(), "<input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
 		}
 		else if (t0.tagName == 'DropDown') {
-			opts = [];
+			var lsize = parseInt(t.find("Property[name=rows]").text(), 10);
+			lines = (lsize > 0) ? 'size="'+lsize+'"' : '';
+			var mult = parseInt(t.attr('multiple') || '0', 10);
+			mult = (mult == 1) ? "multiple='multiple'" : "";
+			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
+			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
 			t.find("Property[name=options]>option").each(function(){
+				sel = ($.inArray($(this).attr('id').trim(), sa) >= 0) ? "selected='selected'" : "";
+				dis = ($.inArray($(this).attr('id').trim(), da) >= 0) ? "disabled='disabled'" : "";
 				s = $(this).text().trim();
-				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'">'+s+'</option>');
+				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'" '+dis+' '+sel+'>'+s+'</option>');
 			});
 			//data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
-			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\">"+opts.join(' ')+"</select>", t));
+			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+">"+opts.join(' ')+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
 			opts = [], sel = t.attr('selected');
