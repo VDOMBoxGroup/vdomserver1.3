@@ -134,9 +134,9 @@ def p_name_starts_with_dot_name(p):
 	"""name : '.' NAME"""
 	p[0]=vname(None, line=p[2][0]).join(p[2][1])
 
-def p_name_starts_with_expression(p):
-	"""name : '(' expression ')'"""
-	p[0]=vname("", line=p[1][0]).join(p[2])
+#def p_name_starts_with_expression(p):
+#	"""name : '(' expression ')'"""
+#	p[0]=vname("", line=p[1][0]).join(p[2])
 
 
 
