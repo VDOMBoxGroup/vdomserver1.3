@@ -147,7 +147,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				mname = 'do_WebDAV'
 			else:
 				vh = managers.virtual_hosts
-				app_id = vh.get_site(host.lower()) or vh.get_def_site()
+
+				app_id = (vh.get_site(host.lower()) if host else None) or vh.get_def_site()
 				realm = ""    
 				if app_id:
 					try:
