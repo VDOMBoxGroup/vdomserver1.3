@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.46.6720</Version>
+    <Version>1.47.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -271,6 +271,11 @@ class VDOM_xmldialog(VDOM_object):
 						htm = u"<input type='text' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
 						data += self.the_item('textbox', self.the_prop(res, 'label'), htm, e)
 
+					elif e.localName == 'Password':
+						res = self.get_prop(e)
+						htm = u"<input type='password' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
+						data += self.the_item('password', self.the_prop(res, 'label'), htm, e)
+
 					elif e.localName == 'DropDown':
 						res = self.get_prop(e)
 						#htm = u"<select name=\"%s\"></select>" % ( attr_id );
@@ -515,6 +520,9 @@ function vdom_xd_load(id,xd){
 		else if (t0.tagName == 'TextBox') {
 			//data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
 			data.push(dodiv('textbox', t.find('Property[name=label]').text(), "<input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
+		}
+		else if (t0.tagName == 'Password') {
+			data.push(dodiv('password', t.find('Property[name=label]').text(), "<input type='password' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
 		}
 		else if (t0.tagName == 'DropDown') {
 			var lsize = parseInt(t.find("Property[name=rows]").text(), 10);
