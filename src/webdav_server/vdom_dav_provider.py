@@ -169,7 +169,10 @@ class VDOM_resource(_DAVResource):
 		
 	def handleDelete(self):
 		if self.provider.readonly:
-			raise DAVError(HTTP_FORBIDDEN) 
+			raise DAVError(HTTP_FORBIDDEN)
+		self.provider.lockManager.checkWritePermission(self.path, self.environ["HTTP_DEPTH"], 
+                                     self.environ["wsgidav.ifLockTokenList"], 
+                                     self.environ["wsgidav.username"])
 		func_name = "delete"
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
