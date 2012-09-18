@@ -27,12 +27,14 @@ class date(subtype):
 
 	pattern=re.compile("^(?:(?P<day>\d{1,2})[\.\-\/](?P<month>\d{1,2})(?:[\.\-\/](?P<year>\d{2,4}))?)?"\
 		"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
+	pattern2=re.compile("^(?:(?P<year>\d{2,4})[\.\-\/](?P<month>\d{1,2})[\.\-\/](?P<day>\d{1,2}))?"\
+		"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
 
 	def __init__(self, value):
 		if isinstance(value, (int, float)):
 			self._value=float(value)
 		elif isinstance(value, basestring):
-			match=self.pattern.match(value)
+			match=self.pattern.match(value) or self.pattern2.match(value)
 			if match:
 				day=match.group("day")
 				month=match.group("month")
