@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.7.6720</Version>
+    <Version>1.8.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1491,7 +1491,7 @@ d.setTitle(title);
           <SourceCode><![CDATA[
 /*eval("dialog_win_" + this.domCont.id + ".show();");*/
 eval("var d = dialog_win_" + this.domCont.id + ";");
-if (d.isVisible()) d.show();
+if (!d.isVisible()) d.show();
 ]]></SourceCode>
         </Action>
       </Container>
