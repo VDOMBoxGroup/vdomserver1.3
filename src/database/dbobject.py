@@ -411,14 +411,14 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 					if cell.nodeType != Node.ELEMENT_NODE:
 						continue
 					name = cell.getAttribute("name")
-					if not name:
+					if not name or name == "id":
 						continue
 					if not cell.firstChild:
 						value = "''"
 					elif cell.firstChild.nodeValue == "NULL":
 						value = "NULL"
 					else:
-						value = "\'%s\'"%cell.firstChild.nodeValue
+						value = cell.firstChild.nodeValue
 						
 					if assignment != "":
 						assignment +=", "
