@@ -414,7 +414,7 @@ END TRANSACTION;"""%{"newtable":newtable, "newtablename":self.name+"_new","oldta
 					if not name or name == "id":
 						continue
 					if not cell.firstChild:
-						value = "''"
+						value = ""
 					elif cell.firstChild.nodeValue == "NULL":
 						value = "NULL"
 					else:
