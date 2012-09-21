@@ -68,7 +68,7 @@ class VDOM_webdav_request_server(RequestServer):
 		if srcRes.isCollection:
 			destPath = destPath.rstrip("/") + "/"
 	
-		if destScheme and destScheme.lower() != environ["wsgi.url_scheme"].lower():
+		if destScheme and not destScheme.lower().startswith(environ["wsgi.url_scheme"].lower()):
 			self._fail(HTTP_BAD_GATEWAY,
 				   "Source and destination must have the same scheme.")
 		elif destNetloc and http_host.lower() != environ["HTTP_HOST"].lower():

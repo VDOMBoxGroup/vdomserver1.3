@@ -91,8 +91,8 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			SocketServer.BaseServer.__init__(self, server_address, request_handler_class)
 			self.socket = ssl.wrap_socket(socket.socket(self.address_family,self.socket_type),
 				                      server_side=True,do_handshake_on_connect=True,
-				        certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_SSLv3, 
-			                ca_certs=ca_certs)
+				        certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_SSLv23, 
+			                ca_certs=ca_certs, ciphers="ALL")
 			
 			self.server_bind()
 			self.server_activate()

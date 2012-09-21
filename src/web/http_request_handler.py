@@ -8,6 +8,7 @@ if sys.platform.startswith("freebsd"):
 import SocketServer, BaseHTTPServer, SimpleHTTPServer
 from cStringIO import StringIO
 import xml.sax.saxutils
+import webdav_server
 from wsgidav.wsgidav_app import WsgiDAVApp
 from wsgiref.util import guess_scheme
 
@@ -18,6 +19,7 @@ from version import *
 import soap.SOAPBuilder
 from soap.wsdl import methods as soap_methods
 from utils.exception import VDOM_exception, VDOM_exception_missing_app
+
 
 # A class to describe how header messages are handled
 class HeaderHandler:
@@ -191,7 +193,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 	def do_WebDAV(self):
 		self.create_request(self.command.lower())
 		environ = self.get_environ()
-		application = self.server.wsgi_app
+		application = webdav_server.server.wsgi_app
 		for v in application(environ, self.start_response):
 			shutil.copyfileobj(StringIO(v), self.wfile)
 			
@@ -238,6 +240,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			sys.setcheckinterval(100)
 			#self.copyfile(f, self.wfile)
 			f.close()
+		#if not self.wfile.closed:
+		#	if self.__request.nokeepalive:
+		#		self.close_connection = 1		
 
 	def create_request(self, method):
 		"""initialize request, <method> is either 'post' or 'get'"""
