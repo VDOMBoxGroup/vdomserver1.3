@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.133.8388</Version>
+    <Version>3.134.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -1381,47 +1381,48 @@ $j('#%(id)s tr').draggable({
 			js_drag = ""
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='datatable_v3' objname='%s' ver='%s @ 2012-09-12'" % (self.name, self.type.version)
+			debug_info = u"objtype='datatable_v3' objname='%s' ver='%s @ 2012-09-24'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
 		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick + js_singleselect
 
-		result = u"""<script type="text/javascript">
-$q(function(){
-	var id_""" + id + """ = '""" + id + """';
-	window.keys_""" + id + """ = """ + json.dumps(keys) + """;
-	window.header_""" + id + """ = """ + json.dumps(vheader) + """
-	var params_""" + id + """ = [];
-	"""+select+"""
-	"""+js_headerselect+"""
-	"""+js_drag+"""
-});
-</script>
-<style type="text/css">
-"""+self.style % {"id": id}+"""
-</style>
-<div """+debug_info+""" id='""" + id + """' style="%(style)s" %(class)s>
+		result = u"""
+<div """+debug_info+""" id='""" + id + """' style='"""+style+"""' """+cssclass+""">
+	<style type="text/css">
+	"""+self.style % {"id": id}+"""
+	</style>
 	<table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
-		<caption>%(title)s</caption>
-		%(theader)s
+		<caption>"""+ self.title +"""</caption>
+		"""+(theader if self.showheader == '1' else '')+"""
 		<tbody>
-			%(tdata)s
+			"""+tdata+"""
 		</tbody>
-</table>
-</div>
-""" % {
-		"js_drag": js_drag,
-		"name": self.name,
-		"select": select,
-		"headerselect": js_headerselect,
-		"id": id,
-		"idn": idn,
-		"style": style,
-		"class": cssclass,
-		"title": self.title,
-		"theader": theader if self.showheader == '1' else '',
-		"tdata": tdata }
+	</table>
+	<script type="text/javascript">
+	$q(function(){
+		var id_""" + id + """ = '""" + id + """';
+		window.keys_""" + id + """ = """ + json.dumps(keys) + """;
+		window.header_""" + id + """ = """ + json.dumps(vheader) + """
+		var params_""" + id + """ = [];
+		"""+select+"""
+		"""+js_headerselect+"""
+		"""+js_drag+"""
+		execEventBinded('"""+idn+"""', 'load', {width:$q('#""" + id + """').outerWidth(),height:$q('#""" + id + """').outerHeight()});
+	});
+	</script>
+</div>""" % {
+			"js_drag": js_drag,
+			"name": self.name,
+			"select": select,
+			"headerselect": js_headerselect,
+			"id": id,
+			"idn": idn,
+			"style": style,
+			"class": cssclass,
+			"title": self.title,
+			"theader": theader if self.showheader == '1' else '',
+			"tdata": tdata }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -1763,6 +1764,12 @@ def set_attr(app_id, object_id, param):
         <Event Name="dragstart" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(922)"/>
+          </Parameters>
+        </Event>
+        <Event Name="load" Help="#Lang(516)">
+          <Parameters>
+            <Parameter Name="width" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="height" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
