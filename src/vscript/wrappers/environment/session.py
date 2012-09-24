@@ -11,7 +11,7 @@ class v_session(generic):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("sessionid")
 		else:
-			return string(unicode(managers.request_manager.get_request().sid))
+			return string(unicode(managers.request_manager.current.sid))
 
 	def v_timeout(self, **keywords):
 		raise errors.not_implemented
@@ -19,11 +19,11 @@ class v_session(generic):
 	def v_variables(self, name, **keywords):
 		name=name.as_string
 		if "let" in keywords:
-			managers.request_manager.get_request().session().value(name, value=keywords["let"].as_is)
+			managers.request_manager.current.session().value(name, value=keywords["let"].as_is)
 		elif "set" in keywords:
-			managers.request_manager.get_request().session().value(name, value=keywords["set"].as_is)
+			managers.request_manager.current.session().value(name, value=keywords["set"].as_is)
 		else:
-			value=managers.request_manager.get_request().session().value(name)
+			value=managers.request_manager.current.session().value(name)
 			if isinstance(value, subtype):
 				return value
 			elif value is None:
@@ -37,13 +37,10 @@ class v_session(generic):
 	
 	def v_securitycode(self, **keywords):
 		if "let" in keywords:
-			managers.request_manager.get_request().session().value("SecurityCode", value=keywords["let"].as_string)
+			managers.request_manager.current.session().value("SecurityCode", value=keywords["let"].as_string)
 		elif "set" in keywords:
 			raise errors.object_has_no_property("securitycode")
 		else:
-			value = managers.request_manager.get_request().session().value("SecurityCode")
-			if value is None:
-				return v_empty
-			else:
-				return string(value)
+			value=managers.request_manager.current.session().value("SecurityCode")
+			return v_empty if value is None else string(value)
 
