@@ -15,14 +15,14 @@ class v_server(generic):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("application")
 		else:
-			return v_vdomapplication(managers.request_manager.get_request().application())
+			return v_vdomapplication(managers.request_manager.current.application())
 
 
 	def v_getapplication(self):
-		return v_vdomapplication(managers.request_manager.get_request().application())
+		return v_vdomapplication(managers.request_manager.current.application())
 
 	def v_createobject(self, type, parent, name=None):
-		application=managers.request_manager.get_request().application()
+		application=managers.request_manager.current.application()
 		type=type.as_string.lower()
 		if not self.check_regex.search(type):
 			xml_type=managers.xml_manager.get_type_by_name(type)
@@ -42,7 +42,7 @@ class v_server(generic):
 		return v_vdomobject(object)
 
 	def v_getobject(self, object_string):
-		application=managers.request_manager.get_request().application()
+		application=managers.request_manager.current.application()
 		object_string=object_string.as_string.lower()
 		if self.check_regex.search(object_string):
 			object=application.search_object(object_string)
@@ -52,7 +52,7 @@ class v_server(generic):
 		return v_vdomobject(object) if object else v_nothing
 
 	def v_deleteobject(self, object_string):
-		application=managers.request_manager.get_request().application()
+		application=managers.request_manager.current.application()
 		object_string=object_string.as_string.lower()
 		if self.check_regex.search(object_string):
 			object=application.search_object(object_string)
@@ -65,7 +65,7 @@ class v_server(generic):
 		return v_mismatch
 
 	def v_createresource(self, type, name, data):
-		application=managers.request_manager.get_request().application()
+		application=managers.request_manager.current.application()
 		data=data.as_simple
 		resid=unicode(utils.uuid.uuid4())
 		if isinstance(data, binary):
@@ -77,7 +77,7 @@ class v_server(generic):
 		return string(resid)
 		
 	def v_deleteresource(self, resource):
-		managers.resource_manager.delete_resource(managers.request_manager.get_request().application(),
+		managers.resource_manager.delete_resource(managers.request_manager.current.application(),
 			resource.as_string)
 
 	def v_htmlencode(self, string2encode):

@@ -1,7 +1,8 @@
 
 import managers
+from utils.file_argument import File_argument
 from ... import errors
-from ...subtypes import integer, generic, string, v_empty, v_mismatch
+from ...subtypes import integer, generic, string, binary, v_empty, v_mismatch, v_nothing
 from ...variables import variant
 
 
@@ -9,18 +10,19 @@ class v_cookiescollection(generic):
 
 	def __call__(self, name, **keywords):
 		if "let" in keywords:
-			managers.request_manager.current.cookies()[name.as_string.encode("utf-8")]=keywords["let"].as_string.encode("utf-8")
+			managers.request_manager.current.cookies()[name.as_string.encode("utf-8")]= \
+				keywords["let"].as_string.encode("utf-8")
 		elif "set" in keywords:
 			raise errors.object_has_no_property
 		else:
 			try:
-				return string(managers.request_manager.current.cookies()[name.as_string.encode("utf-8")].value.decode("utf-8"))
+				return string(managers.request_manager.current.cookies()[name.as_string.encode("utf-8")] \
+					.value.decode("utf-8"))
 			except KeyError:
 				return v_empty
 
-
 	def __iter__(self):
-		for cookie in managers.request_manager.get_request().cookies().cookies():
+		for cookie in managers.request_manager.current.cookies().cookies():
 			yield variant(string(unicode(cookie)))
 
 
@@ -30,10 +32,10 @@ class v_argumentscollection(generic):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
-			try: value=managers.request_manager.get_request().arguments() \
-				.arguments()[name.as_string][0]
-			except KeyError: return v_empty
-			
+			try:
+				value=managers.request_manager.current.arguments().arguments()[name.as_string][0]
+			except KeyError:
+				return v_empty
 			try: 			
 				if isinstance(value, str):
 					return string(unicode(value.decode("utf-8", "ignore")))
@@ -43,38 +45,61 @@ class v_argumentscollection(generic):
 			except UnicodeDecodeError: 
 				return binary(value)
 
-
 	def __iter__(self):
-		for argument in managers.request_manager.get_request().arguments().arguments():
+		for argument in managers.request_manager.current.arguments().arguments():
 			yield variant(string(unicode(argument)))
 
 
-class v_servervariablescollection(generic):
+class v_file(generic):
+	
+	def __init__(self, file_argument):
+		self._file_argument=file_argument
+
+	def v_name(self, **keywords):
+		if "let" in keywords or "set" in keywords:
+			raise errors.object_has_no_property("name")
+		else:
+			return string(unicode(self._file_argument[1]))
+
+	def v_contents(self, **keywords):
+		if "let" in keywords or "set" in keywords:
+			raise errors.object_has_no_property("contents")
+		else:
+			return binary(unicode(self._file_argument[0]))
+
+class v_filescollection(generic):
 
 	def __call__(self, name, **keywords):
-		name=name.as_string.upper()
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
-		elif name.startswith(u"HEADER_"):
-			return string(unicode(managers.request_manager.get_request().headers() \
-				.headers()[name[7:]]))
-		elif name.startswith(u"HTTP_"):
-			return string(unicode(managers.request_manager.get_request().headers() \
-				.headers()[name[5:].replace(u"_", u"-")]))
 		else:
-			return self.variable_table[name](self)
+			try:
+				value=managers.request_manager.current.arguments().arguments()[name.as_string]
+			except KeyError:
+				return v_nothing
+			if isinstance(value, File_argument):
+				return v_file(value)
+			else:
+				return v_nothing
 
+	def __iter__(self):
+		for argument, value in managers.request_manager.current.arguments().arguments().iteritems():
+			if isinstance(value, File_argument):
+				yield variant(string(unicode(argument)))
+
+
+class v_servervariablescollection(generic):
 
 	variable_table={
 		u"ALL_HTTP": lambda self: string(u"\n".join([u"HTTP_%s=%s"%(unicode(name.upper()) \
 			.replace(u"-", u"_"), unicode(value)) for name, value in managers.request_manager \
 			.get_request().headers().headers().items()])),
 		u"RAW_HTTP": lambda self: string(u"\n".join([u"%s=%s"%(unicode(name), \
-			unicode(value)) for name, value in managers.request_manager.get_request().headers() \
+			unicode(value)) for name, value in managers.request_manager.current.headers() \
 			.headers().items()])),
 		u"AUTH_PASSWORD": lambda self: v_empty,
 		u"AUTH_TYPE": lambda self: string(u"Basic"),
-		u"AUTH_USER": lambda self: string(unicode(managers.request_manager.get_request().session().user)),
+		u"AUTH_USER": lambda self: string(unicode(managers.request_manager.current.session().user)),
 		u"CONTENT_LENGTH": lambda self: v_empty,
 		u"CONTENT_TYPE": lambda self: v_empty,
 		u"GATEWAY_INTERFACE": lambda self: string(unicode(managers.request_manager \
@@ -87,7 +112,7 @@ class v_servervariablescollection(generic):
 		u"REMOTE_HOST": lambda self: v_empty,
 		u"REMOTE_PORT": lambda self: string(unicode(managers.request_manager \
 			.get_request().environment().environment()["REMOTE_PORT"])),
-		u"REMOTE_USER": lambda self: string(unicode(managers.request_manager.get_request().session().user)),
+		u"REMOTE_USER": lambda self: string(unicode(managers.request_manager.current.session().user)),
 		u"REQUEST_METHOD": lambda self: string(unicode(managers.request_manager \
 			.get_request().environment().environment()["REQUEST_METHOD"])),
         u"SCRIPT_NAME": lambda self: string(unicode(managers.request_manager \
@@ -107,11 +132,21 @@ class v_servervariablescollection(generic):
 		u"SCRIPT_NAME": lambda self: string(unicode(managers.request_manager \
 			.get_request().environment().environment()["SCRIPT_NAME"]))}
 
+	def __call__(self, name, **keywords):
+		name=name.as_string.upper()
+		if "let" in keywords or "set" in keywords:
+			raise errors.object_has_no_property
+		elif name.startswith(u"HEADER_"):
+			return string(unicode(managers.request_manager.current.headers().headers()[name[7:]]))
+		elif name.startswith(u"HTTP_"):
+			return string(unicode(managers.request_manager.current.headers().headers()[name[5:].replace(u"_", u"-")]))
+		else:
+			return self.variable_table[name](self)
 
 	def __iter__(self):
 		for name in self.variable_table:
 			yield variant(string(unicode(name)))
-		for name in managers.request_manager.get_request().headers().headers():
+		for name in managers.request_manager.current.headers().headers():
 			yield variant(string(u"HEADER_%s"%name))
 			yield variant(string(u"HTTP_%s"%name.upper().replace(u"-", u"_")))
 
@@ -125,16 +160,18 @@ class v_parameterscollection(generic):
 			try:
 				index, parameters=index.as_integer, managers.request_manager \
 					.get_request().arguments().arguments()["xml_data"][0]
-				if isinstance(parameters, list): return string(unicode(parameters[index]))
-				else: return v_empty if index else string(unicode(parameters))
+				if isinstance(parameters, list):
+					return string(unicode(parameters[index]))
+				else:
+					return v_empty if index else string(unicode(parameters))
 			except KeyError:
 				return v_empty
 
-
 	def __iter__(self):
-		try: parameters=managers.request_manager.get_request().arguments() \
-			.arguments()["xml_data"][0]
-		except KeyError: return
+		try:
+			parameters=managers.request_manager.current.arguments().arguments()["xml_data"][0]
+		except KeyError:
+			return
 		if isinstance(parameters, list):
 			for parameter in parameters: yield variant(string(unicode(parameter)))
 		else:
@@ -143,56 +180,72 @@ class v_parameterscollection(generic):
 
 class v_request(generic):
 
+	def __init__(self):
+		self._cookies=v_cookiescollection()
+		self._arguments=v_argumentscollection()
+		self._files=v_filescollection()
+		self._servervariables=v_servervariablescollection()
+		self._parameters=v_parameterscollection()
+
 	def v_cookies(self, name=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("cookies")
 			else:
-				return v_cookiescollection()
+				return self._cookies
 		else:
-			return v_cookiescollection()(name, **keywords)
+			return self._cookies(name, **keywords)
 
 	def v_arguments(self, name=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("arguments")
 			else:
-				return v_argumentscollection()
+				return self._arguments
 		else:
-			return v_argumentscollection()(name, **keywords)
+			return self._arguments(name, **keywords)
 
 	def v_form(self, name=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("form")
 			else:
-				return v_argumentscollection()
+				return self._arguments
 		else:
-			return v_argumentscollection()(name, **keywords)
+			return self._arguments(name, **keywords)
+
+	def v_files(self, name=None, **keywords):
+		if name is None:
+			if "let" in keywords or "set" in keywords:
+				raise errors.object_has_no_property("form")
+			else:
+				return self._files
+		else:
+			return self._files(name, **keywords)
 
 	def v_querystring(self, name=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("querystring")
 			else:
-				return v_argumentscollection()
+				return self._arguments
 		else:
-			return v_argumentscollection()(name, **keywords)
+			return self._arguments(name, **keywords)
 
 	def v_servervariables(self, name=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("servervariables")
 			else:
-				return v_servervariablescollection()
+				return self._servervariables
 		else:
-			return v_servervariablescollection()(name, **keywords)
+			return self._servervariables(name, **keywords)
 
 	def v_parameters(self, index=None, **keywords):
 		if name is None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("parameters")
 			else:
-				return v_parameterscollection()
+				return self._parameters
 		else:
-			return v_parameterscollection()(index, **keywords)
+			return self._parameters(index, **keywords)

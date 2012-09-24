@@ -66,20 +66,23 @@ class v_storage(generic):
 
 class v_application(generic):
 
+	def __init__(self):
+		self._storage=v_storage()
+
 	def v_id(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("storage")
 		else:
-			return string(managers.request_manager.get_request().application().id)
+			return string(managers.request_manager.current.application().id)
 
 	def v_name(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("storage")
 		else:
-			return string(managers.request_manager.get_request().application().name)
+			return string(managers.request_manager.current.application().name)
 
 	def v_storage(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("storage")
 		else:
-			return v_storage()
+			return self._storage
