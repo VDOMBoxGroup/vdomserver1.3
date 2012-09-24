@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.8.6720</Version>
+    <Version>1.9.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -487,7 +487,7 @@ class VDOM_growl(VDOM_object):
 		style = int(self.style)
 		if style > 0:
 			x = style
-			if x > 5: x = 5
+			if x > 3: x = 3
 			if x > 1:
 				xa = {
 					1: 'yellow information',
