@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.7.8082</Version>
+    <Version>1.9.8082</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -627,10 +627,10 @@ $q(function(){
 <script type="text/javascript">
 jQuery.fn.accordeon = function() {
 	function update(dl) {
-		$q("div:not(.active)", dl).css("cursor", "pointer");
-		$q("div.active", dl).css("cursor", "");
-		$q("div:not(.active) div.content", dl).slideUp();
-		$q("div.active div.content", dl).slideDown(300/*,function(){
+		$q(">div:not(.active)", dl).css("cursor", "pointer");
+		$q(">div.active", dl).css("cursor", "");
+		$q(">div:not(.active) div.content", dl).slideUp();
+		$q(">div.active div.content", dl).slideDown(300/*,function(){
 			var x = $q(this).parent().attr('id') || '';
 			if (x !== '') {
 				execEventBinded(x.substring(2, x.length), "itemshow", {name:$q('>div.title',this).text(), index:$q('>div.title',this).index()});
@@ -651,7 +651,7 @@ jQuery.fn.accordeon = function() {
 	});
 };
 function vdom_accordeon(id,opened) {
-	var i=$q(id), o = opened || false;
+	var i=$q(id), o = parseInt(opened || 0, 10);
 	$q('>div:visible',i).each(function(r){
 		$q(this).attr('rel',r+1).css({display:'block',position:'relative',left:0,top:0,height:'auto',overflow:'hidden'});
 		var mh=0;
@@ -661,7 +661,7 @@ function vdom_accordeon(id,opened) {
 		});
 		$q('div.content',this).height(mh).css({display:'block',position:'relative'});
 	});
-	if (o !== false) $q('>div[rel="%(opened)s"]',i).addClass('active');
+	if (o > 0) $q('>div[rel="'+o+'"]',i).addClass('active');
 	i.accordeon();
 }
 </script>
