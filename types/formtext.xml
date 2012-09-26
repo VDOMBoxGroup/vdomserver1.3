@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.13.6200</Version>
+    <Version>1.79.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
-    <Handlers/>
+    <Handlers>set_attr</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -854,12 +854,12 @@ class VDOM_formtext(VDOM_object):
 		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
 
 		result += u"""<script type='text/javascript'>
-$j(document).ready(function($){
-	$('#%(id)s').blur(function(){
-		var cnt = $.trim($(this).val()).length;
+$j(document).ready(function(){
+	$j('#%(id)s').blur(function(){
+		var cnt = $j.trim($j(this).val()).length;
 		execEventBinded("%(clean_id)s", "blur", { charCount: cnt });
 	});
-	$('#%(id)s').focusin(function(){
+	$j('#%(id)s').focusin(function(){
 		execEventBinded("%(clean_id)s", "focus", {});
 	});
 	%(focused)s
@@ -868,29 +868,67 @@ $j(document).ready(function($){
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		text_size = self.width if self.value else 0
 		
-		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-							top="{top}" left="{left}" width="{width}" height="{height}">
-						<svg>
-							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
-						</svg>
-						<text top="4" width="{txt_wid}" color="#000000">{value}</text>
-					</container>
-				 """.format(id = self.id, vis = self.visible, zind = self.zindex, 
-						hierarchy = self.hierarchy, order = self.order, 
-						top = self.top, left = self.left, width = self.width, height = self.height, 
-						rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
-						txt_wid = text_size, value = self.value)
+		disabled = u""" disabled="disabled" """ if self.mode=="2" else u""
+		border = u"border-width:0;" if self.multiline == "0" and self.border == "0" else u""
+		placeholder = u"placeholder=\"%s\"" % (self.placeholder).replace('"', '&quot;') if self.placeholder!="" else u""
 		
+		style = u""" style="width: {width}px; height: {height}px;  font: 14px tahoma; padding: 2px 5px; {border}" """.format(
+			border = border,
+			width = self.width, height = self.height)
+		
+		if self.multiline == "1" : #multiline
+			text = \
+				u"""<textarea objtype="formtext" {style} {disabled} {placeholder}>
+						{value}
+					</textarea>
+				""".format(
+						width = self.width, height = self.height,
+						value = self.value, placeholder = placeholder,
+						disabled = disabled, 
+						style = style)
+		else : #singleline
+			text = u"""<input objtype="formtext" value="{value}" {style} {disabled} {placeholder}/>""".format(
+				width = self.width, height = self.height,
+				value = self.value, placeholder = placeholder,
+				disabled = disabled,
+				style = style)
+			
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+						top="{top}" left="{left}" width="{width}" height="{height}" >
+					<htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden">
+						{text}
+					</htmltext>
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order, 
+					top = self.top, left = self.left, 
+					width = self.width, height = self.height,
+					text = text)
+				
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
-		]]></SourceCode>
+def set_attr(app_id, object_id, param):
+	o = application.objects.search(object_id)
+
+	if "width" in param:
+		width = param["width"]["value"]
+		if int(width) < 10:
+			o.set_attributes({"width": "10"})
+
+	if "height" in param:
+		height = param["height"]["value"]
+		if int(height) < 4:
+			o.set_attributes({"height": "4"})
+
+]]></SourceCode>
   <Libraries>
     <Library Target="Html"><![CDATA[
 <script type="text/javascript" src="/cb185b0a-942e-5ea6-6410-51a426b39fcc.res"></script>
 <script type="text/javascript">
-jQuery(function($){ $('input[placeholder], textarea[placeholder]').placeholder(); });
+jQuery(function(){ $j('input[placeholder], textarea[placeholder]').placeholder(); });
 </script>
 ]]></Library>
   </Libraries>
