@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.12.6200</Version>
+    <Version>1.18.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>22</DefaultValue>
+      <DefaultValue>100</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -534,20 +534,22 @@ class VDOM_formtextarea(VDOM_object):
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		text_size = self.width if self.value else 0
 		
-		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-							top="{top}" left="{left}" width="{width}" height="{height}">
-						<svg>
-							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
-						</svg>
-						<text top="4" width="{txt_wid}" color="#000000">{value}</text>
-					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
-							hierarchy = self.hierarchy, order = self.order, 
-							top = self.top, left = self.left, width = self.width, height = self.height, 
-							rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
-							txt_wid = text_size, value = self.value)
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+						top="{top}" left="{left}" width="{width}" height="{height}" >
+					<htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden">
+						<textarea style="width: {width}px; height: {height}px;  font: 14px tahoma; padding: 2px 5px;">
+							{value}
+						</textarea>
+					</htmltext>
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order, 
+					top = self.top, left = self.left, 
+					width = self.width, height = self.height,
+					value = self.value)
 		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 		]]></SourceCode>

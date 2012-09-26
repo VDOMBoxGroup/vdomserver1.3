@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.24.0</Version>
+    <Version>1.361.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -3995,23 +3995,60 @@ class VDOM_codeeditor(VDOM_object):
 
 		return VDOM_object.render(self, parent, contents=result)
 
+	def get_lines_amount (self, value) : 			
+		count = value.count("\n")
+		
+		return int(count)+1
+	
+	def get_lines_text (self, value, text_height) :
+		
+		amount = self.get_lines_amount(value)
+		
+		lines = \
+			u""" <text x="0" y="2" width="28" height="{text_height}" 
+					font-family="tahoma" font-size="14" fill="#aaaaaa" align="right"> 
+			""".format(text_height=text_height)
+		
+		i = 1
+		while (i <= amount):
+			text_y = (i-1)*17
+			
+			if text_y >= text_height :
+				i = i + 1
+				break
+				
+			text_h = 20 if text_y + 20 <= text_height else text_height-text_y
+			lines += u""" <tspan y="{y}" height="{height}">{line_number}</tspan> """.format(y=text_y, line_number=i, height=text_h)
+			i = i + 1
+		
+		lines += u" </text> "
+		
+		return lines
+		
 	def wysiwyg(self, parent, contents=""):
-		import xml.sax.saxutils
-		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-							top="{top}" left="{left}" width="{width}" height="{height}">
+		
+		text_width = int(self.width) - 38
+		text_height = int(self.height) - 2
+
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+							top="{top}" left="{left}" width="{width}" height="{height}" 
+							backgroundcolor="#ffffff" bordercolor="#cccccc">
 						<svg>
-							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" stroke="#000000"/>
+						<rect x="1" y="1" width="28" height="{text_height}" fill="#F7F7F7"/>
+						<line x1="30" y1="1" x2="30" y2="{line_y_end}" style="stroke:#eeeeee"/>
+						<text x="40" y="17" width="{text_width}" height="{text_height}" font-family="Courier New" font-size="14">{value}</text>
+						{lines}
 						</svg>
-						<htmltext top="2" left="2" width="{txt_wid}" height="{txt_hei}">
-							<div style="font:12px 'Courier New',monospace">{value}</div>
-						</htmltext>
 					</container>
 				""".format(id = self.id, vis = self.visible, zind = self.zindex,
 							hierarchy = self.hierarchy, order = self.order,
-							top = self.top, left = self.left, width = self.width, height = self.height,
-							rec_wid = int(self.width) - 1, rec_hei = int(self.height) - 1,
-							txt_wid = int(self.width) - 8, txt_hei = int(self.height) - 4,
-							value = "<br />".join((xml.sax.saxutils.escape(self.value)).split("\n"))  )
+					top = self.top, left = self.left, 
+					width = self.width, height = self.height,
+					text_width = text_width, text_height = text_height,
+					line_y_end = 1+int(self.height)-2,
+					value = self.value,
+					lines = self.get_lines_text(self.value, text_height))
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
