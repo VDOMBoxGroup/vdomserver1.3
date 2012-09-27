@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.8.6720</Version>
+    <Version>1.9.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1186,7 +1186,11 @@ filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=
 
 		result += """<script type='text/javascript'>
 $j(document).ready(function(){
-	/* ver 2011-12-22 */
+	/* ver 2012-09-27 */
+	if (typeof dialog_win_%(id)s !== 'undefined') {
+		dialog_win_%(id)s.hide();
+		delete(dialog_win_%(id)s);
+	}
 	dialog_win_%(id)s=new Boxy($j('#%(id)s'),{
 		width: %(width)s
 		,height: %(height)s
