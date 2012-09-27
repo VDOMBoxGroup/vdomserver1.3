@@ -48,3 +48,16 @@ class v_response(generic):
 	def v_write(self, data):
 		managers.request_manager.current.write(data.as_string)
 		return v_mismatch
+
+	def v_sendfile(self, filename, contents):
+		try:
+			contents=contents.as_string
+		except errors.type_mismatch:
+			contents=contents.as_binary
+		request=managers.request_manager.current
+		request.add_header("Content-type", "application/octet-stream")
+		request.add_header("Content-Disposition", "attachment; filename=\"%s\""%filename.as_string)
+		request.add_header("Content-Length", str(len(contents)))
+		request.set_nocache()
+		request.write(contents)
+

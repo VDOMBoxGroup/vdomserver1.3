@@ -39,25 +39,25 @@ class v_storage(generic):
 
 	def v_read(self, filename):
 		try:
-			content=managers.file_manager.read(storage,
+			contents=managers.file_manager.read(storage,
 				managers.request_manager.current.application_id, None,
 				normailze(filename.as_string))
 		except IOError as exception:
 			raise errors.system_error(exception.strerror)
 		try:
-			return string(content.decode("utf-8"))
+			return string(contents.decode("utf-8"))
 		except UnicodeDecodeError:
-			return binary(content)
+			return binary(contents)
 
-	def v_write(self, filename, content, asynchronous=None):
+	def v_write(self, filename, contents, asynchronous=None):
 		try:
-			content=content.as_string.encode("utf-8")
+			contents=contents.as_string.encode("utf-8")
 		except errors.type_mismatch:
-			content=content.as_binary
+			contents=contents.as_binary
 		try:
 			managers.file_manager.write(storage,
 				managers.request_manager.current.application_id, None,
-				normailze(filename.as_string), content,
+				normailze(filename.as_string), contents,
 				async=False if asynchronous is None else asynchronous.as_boolean)
 		except IOError as exception:
 			raise errors.system_error(exception.strerror)
