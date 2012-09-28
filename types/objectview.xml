@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.40.6720</Version>
+    <Version>1.41.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1924,7 +1924,8 @@ for (var x in items) {
           <SourceCode><![CDATA[
 var o=this.domCont;
 $j('>div.ov-content>div[dataid]',o).remove();
-execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
+/*execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});*/
+vdom_ov_markShow(o.id.substring(2, o.id.length));
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
