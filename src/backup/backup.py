@@ -62,11 +62,12 @@ class VDOM_backup(object):
 		rc = out.returncode
 
 		if rc == 0:
-			continue
+		    continue
 		else:
-			debug(str(out.stderr.read()))
-			debug("%s has not backuped" % dirname)
-			ok = False
+		    debug(str(out.stderr.read()))
+		    debug("%s has not backuped" % dirname)
+		    ok = False
+		    raise Exception("%s backup failed"%(dirname))
 			
 	    for dirname in src_path:
 		if not src_path[dirname].startswith(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"]) and not src_path[dirname].startswith(VDOM_CONFIG["SHARE-DIRECTORY"]):
