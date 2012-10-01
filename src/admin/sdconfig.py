@@ -223,7 +223,7 @@ def run(request):
 				if "backup_app[]" in args:
 					for appid in args["backup_app[]"]:
 						managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
-						request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s backuped..";</script>'%appid)
+					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s backuped..";</script>'%args["backup_app[]"])
 				else:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
 			except Exception as e:
