@@ -223,10 +223,11 @@ def run(request):
 				if "backup_app[]" in args:
 					for appid in args["backup_app[]"]:
 						managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
+						request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s backuped..";</script>'%appid)
 				else:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
 			except Exception as e:
-				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Error: %s";</script>' % unicode(e))
 
 		else:
 			request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Storage driver not found";</script>')
