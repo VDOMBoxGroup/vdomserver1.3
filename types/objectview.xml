@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.41.6720</Version>
+    <Version>1.49.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1360,6 +1360,7 @@ if (canLoadContent) {
 
 			nn = 1
 			nn_first = 1
+			styleforitem = ''
 
 			for index, key in enumerate(obj_data):
 
@@ -1385,7 +1386,6 @@ if (canLoadContent) {
 				res = self.create_dupes_recurse(application, result, obj, source_object.get_objects_list())
 
 				if nn_first == 1:
-					nn_first = 0
 					classfirst = u"%s-item-first" % classname
 				else:
 					classfirst = ''
@@ -1403,30 +1403,47 @@ if (canLoadContent) {
 				item_data_id = key
 				item_data = obj_data[key]
 
-				obj.set_attribute_ex("visible", "1", False)
-				obj.set_attribute_ex("width", source_object_attr['width'].value, False)
-				obj.set_attribute_ex("height", source_object_attr['height'].value, False)
-				obj.set_attribute_ex("data", item_data, False)
-				obj.set_attribute_ex("dataid", item_data_id, False)
-				obj.set_attribute_ex("classauto", "%(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s %(notloaded)s" % {
+				classes = u"%(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s %(notloaded)s" % {
 					 "class":      classname
 					,"nn":         str(nn)
 					,"classfirst": classfirst
 					,"classlast":  classlast
 					,"classodd":   classodd
 					,"notloaded":  "not-loaded" if onlydiv else ""
-				}, False)
+					}
+
+				obj.set_attribute_ex("visible", "1", False)
+				obj.set_attribute_ex("width", source_object_attr['width'].value, False)
+				obj.set_attribute_ex("height", source_object_attr['height'].value, False)
+				obj.set_attribute_ex("data", item_data, False)
+				obj.set_attribute_ex("dataid", item_data_id, False)
+				obj.set_attribute_ex("classauto", classes, False)
 				obj.set_attribute_ex("classname", "%(userdef)s" % {
 					 "name":       obj.name
 					,"userdef":    source_object_attr["classname"].value
 				}, False)
 
-				if self.dynamicloading == "1" and onlydiv:
+				#if self.dynamicloading == "1" and onlydiv:
+				if onlydiv:
 					# render for requested items
 					try:
-						#tmp_res = managers.engine.render(application, obj, object, "vdom")
-						tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
-						result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
+						###tmp_res = managers.engine.render(application, obj, object, "vdom")
+						#tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
+						#result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
+
+						if nn_first == 1:
+							tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
+							re.purge()
+							#z = re.sub("^.*?<div[^>]*?style=[\"\'](.*?)[\'\"]", "\\1", tmp_res, flags=re.M|re.I|re.S)
+							z = re.match("^.*?<div[^>]*?style=[\"\']([^\'^\"]*?)[\'\"]", tmp_res)
+							if z.group(1):
+								styleforitem = z.group(1)
+
+						result += u'<div class="%(classes)s" dataid="%(id)s" style="%(style)s"></div>' % {
+							"id": item_data_id,
+							"classes": classes,
+							"style": styleforitem
+							}
 					except:
 						raise
 				else:
@@ -1435,6 +1452,7 @@ if (canLoadContent) {
 					result += managers.engine.render(application.itself, obj, object, "vdom")
 
 				nn += 1
+				nn_first = 0
 
 		return result
 
@@ -1451,25 +1469,26 @@ if (canLoadContent) {
 		#itemslimit = int("0%s" % (self.itemslimit).strip())
 		#if itemslimit <= 0: itemslimit = 10
 
+		itemstorender = []
+		onlydiv = False
+
+		if self.itemstorender != "":
+			try:
+				itemstorender = json.loads(self.itemstorender)
+			except:
+				itemstorender = []
+
+		if itemstorender == []:
+			try:
+				itemstorender = json.loads(self.data)
+				onlydiv = True
+			except:
+				itemstorender = []
 
 		######## render separate items
 
 		if self.dynamicloading == "1" and request.render_type == "e2vdom":
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
-
-			itemstorender = []
-
-			if self.itemstorender != "":
-				try:
-					itemstorender = json.loads(self.itemstorender)
-				except:
-					itemstorender = []
-
-			if itemstorender == []:
-				try:
-					itemstorender = json.loads(self.data)
-				except:
-					itemstorender = []
 
 			if not isinstance(itemstorender, list):
 				newi = []
@@ -1480,7 +1499,7 @@ if (canLoadContent) {
 			if itemstorender == []:
 				itemstorender.append("dummy-item-554f180b-1c2a-6705-3608-87f71366710b")
 
-			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, False)
+			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, onlydiv)
 
 			tmp_id = u"ov" + str(utils.uuid.uuid4())
 
@@ -1500,9 +1519,10 @@ if (canLoadContent) {
 			$j(">span.ov-eoi", x).before($j(this));
 		}
 	});
+	vdom_ov_markShow("%(woid)s");
 </script>
 			""" % {
-				"id": id, "inner_render": inner_render, "tmp_id": tmp_id
+				"id": id, "inner_render": inner_render, "tmp_id": tmp_id, "woid": woid
 			}
 
 			return VDOM_object.render(self, parent, contents = result)
@@ -1513,10 +1533,10 @@ if (canLoadContent) {
 		else:
 			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "html"'
 
-			try:
-				itemstorender = json.loads(self.data)
-			except:
-				itemstorender = []
+			#try:
+			#	itemstorender = json.loads(self.data)
+			#except:
+			#	itemstorender = []
 
 			# render items
 
@@ -1598,7 +1618,7 @@ if (canLoadContent) {
 			}
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='objectview' objname='%s' ver='%s @ 2012-08-16'" % (self.name, self.type.version)
+				debug_info = u"objtype='objectview' objname='%s' ver='%s'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
@@ -1924,8 +1944,8 @@ for (var x in items) {
           <SourceCode><![CDATA[
 var o=this.domCont;
 $j('>div.ov-content>div[dataid]',o).remove();
-/*execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});*/
-vdom_ov_markShow(o.id.substring(2, o.id.length));
+execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
+/*vdom_ov_markShow(o.id.substring(2, o.id.length));*/
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
