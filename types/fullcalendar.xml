@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.13.11</Version>
+    <Version>2.25.11</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -3996,44 +3996,164 @@ b250aW51ZTsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBpZiAo
 IWZvdW5kKSB7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgIH0KICAg
 ICAgICB9CiAgICB9CgogICAgLy8gY2hlY2sgcnJ1bGVfYnlzZXRwb3MgcHJvY2Vzc2VkIGluIHBl
 cmlvZF9sb29wCiAgICByZXR1cm4gdHJ1ZTsKfQoK]]></Resource>
-    <Resource ID="7df64b35-c17d-db3b-5252-6f4f5ba1d4ef" Name="parseRrule.js" Type="js"><![CDATA[ZnVuY3Rpb24gcGFyc2VScnVsZVNvdXJjZXMoIHNvdXJjZXMgKQ0KCQl7DQoJCQlmdW5jdGlvbiBm
-b3JtYXRlZERhdGUoIGRhdGUgKQ0KCQkJew0KCQkJCXJldHVybiBkYXRlLnRvSVNPU3RyaW5nKCk7
-DQoJCQkJLypyZXR1cm4gWyBkYXRlLmdldEZ1bGxZZWFyKCksIGRhdGUuZ2V0TW9udGgoKSwgZGF0
-ZS5nZXREYXRlKCldLmpvaW4oIi0iKSArICJUIiArIFsgZGF0ZS5nZXRIb3VycygpLCBkYXRlLmdl
-dE1pbnV0ZXMoKSwgZGF0ZS5nZXRTZWNvbmRzKCldLmpvaW4oIjoiKSsiWiI7Ki8NCgkJCX0NCgkJ
-CQ0KCQkJdmFyIHN0YXJ0RGF0ZSAJPSBuZXcgRGF0ZSggc291cmNlcy5zdGFydCApOw0KCQkJdmFy
-IGVuZERhdGUJCT0gbmV3IERhdGUoIHNvdXJjZXMuZW5kICk7DQoJCQl2YXIgZXZlbnRTb3VyY2Vz
-PSBbXTsNCgkJCXZhciBzb3VyY2UJCT0gc291cmNlcy5zb3VyY2U7DQoNCgkJCWZvciAoIHZhciBp
-ID0gMDsgaSA8IHNvdXJjZS5sZW5ndGg7IGkrKyApDQoJCQl7DQoJCQkJdmFyIGNhbCA9IHNvdXJj
-ZVsgaSBdIDsNCgkJCQl2YXIgY29sb3IgPSBjYWwuY29sb3I7DQoJCQkJdmFyIHRleHRDb2xvciA9
-IGNhbC50ZXh0Q29sb3I7DQoJCQkJdmFyIGJvcmRlckNvbG9yID0gY2FsLmJvcmRlckNvbG9yOw0K
-DQoJCQkJZm9yICggdmFyIGogPSAwOyBqIDwgY2FsLmV2ZW50cy5sZW5ndGg7IGorKyApDQoJCQkJ
-ewkNCgkJCQkJZXZlbnQgCQkJCT0gY2FsLmV2ZW50c1sgaiBdOw0KCQkJCQlldmVudC50ZXh0Q29s
-b3IgCT0gdGV4dENvbG9yOw0KCQkJCQlldmVudC5ib3JkZXJDb2xvciAJPSBib3JkZXJDb2xvcjsN
-CgkJCQkJZXZlbnQuY29sb3IgCQk9IGNvbG9yOw0KCQkJCQ0KCQkJCQlpZiAoIGV2ZW50Lmhhc093
-blByb3BlcnR5KCAicnJ1bGUiICkgJiYgZXZlbnQucnJ1bGUgIT0gbnVsbCApDQoJCQkJCXsJDQoJ
-CQkJCQl2YXIgZXZlbnRfc3RhcnQgPSBuZXcgRGF0ZSggZXZlbnQuc3RhcnQgKTsNCgkJCQkJCXZh
-ciBldmVudF9lbmQgCSAJPSBuZXcgRGF0ZSggZXZlbnQuZW5kICk7DQoJCQkJCQl2YXIgZGVsdGEg
-PSBldmVudF9lbmQuZ2V0VGltZSgpIC0gZXZlbnRfc3RhcnQuZ2V0VGltZSgpOw0KCQkJCQkJDQoJ
-CQkJCQl2YXIgc2NoID0gbmV3IFNjaGVkdWxlciggZXZlbnRfc3RhcnQsIGV2ZW50LnJydWxlLnRv
-VXBwZXJDYXNlKCkgKTsJCQkJCQkNCgkJCQkJDQoJCQkJCQlpZiAoIGV2ZW50Lmhhc093blByb3Bl
-cnR5KCAiZXhkYXRlcyIgKSAmJiBldmVudC5leGRhdGVzICE9IG51bGwgKQ0KCQkJCQkJewkNCgkJ
-CQkJCQl2YXIgZXhkYXRlcyA9IFtdOw0KCQkJCQkJCWZvciAoIHZhciBrID0gMCA7IGsgPCBldmVu
-dC5leGRhdGVzLmxlbmd0aDsgaysrICkNCgkJCQkJCQkJZXhkYXRlcy5wdXNoKCBuZXcgRGF0ZSgg
-ZXZlbnQuZXhkYXRlc1sgayBdICkgKTsNCgkJCQkJCQ0KCQkJCQkJCXNjaC5hZGRfZXhjZXB0aW9u
-X2RhdGVzKCBleGRhdGVzICk7DQoJCQkJCQl9DQoJCQkJCQkNCgkJCQkJCXZhciBvY2N1cnJlbmNl
-cyA9IHNjaC5vY2N1cnJlbmNlc19iZXR3ZWVuKCBzdGFydERhdGUsIGVuZERhdGUgKTsNCg0KCQkJ
-CQkJZm9yICggdmFyIGsgPSAwOyBrIDwgb2NjdXJyZW5jZXMubGVuZ3RoOyBrKysgKQ0KCQkJCQkJ
-ew0KCQkJCQkJCXZhciBjb3B5ID0ge307DQoJCQkJCQkJalF1ZXJ5LmV4dGVuZCggY29weSwgZXZl
-bnQgKTsNCgkJCQkJCQl2YXIgdF9zdGFydCA9IG9jY3VycmVuY2VzWyBrIF07DQoJCQkJCQkJY29w
-eS5zdGFydCA9IGZvcm1hdGVkRGF0ZSggdF9zdGFydCApOw0KCQkJCQkJCWNvcHkuaW5zdGFuY2Ug
-PSBrKzE7DQoJCQkJCQkJY29weS5lbmQgPSBmb3JtYXRlZERhdGUobmV3IERhdGUoIHRfc3RhcnQu
-Z2V0VGltZSgpICsgZGVsdGEgKSk7DQoJCQkJCQkJZXZlbnRTb3VyY2VzLnB1c2goIGNvcHkgKTsN
-CgkJCQkJCX0NCgkJCQkJfQ0KCQkJCQllbHNlDQoJCQkJCXsJDQoJCQkJCQlldmVudC5zdGFydCA9
-IGZvcm1hdGVkRGF0ZShuZXcgRGF0ZSggZXZlbnQuc3RhcnQgKSk7DQoJCQkJCQlldmVudC5lbmQg
-PSBmb3JtYXRlZERhdGUobmV3IERhdGUoIGV2ZW50LmVuZCApKTsNCgkJCQkJCWV2ZW50U291cmNl
-cy5wdXNoKCBldmVudCApOw0KCQkJCQl9DQoJCQkJfQ0KCQkJfQ0KCQkJcmV0dXJuIGV2ZW50U291
-cmNlczsNCgkJfQ==]]></Resource>
+    <Resource ID="c81084e1-0296-56fc-339a-1b9328e787dd" Name="es5-shim.min.js" Type="js"><![CDATA[KGZ1bmN0aW9uKG4peyJmdW5jdGlvbiI9PXR5cGVvZiBkZWZpbmU/ZGVmaW5lKG4pOiJmdW5jdGlv
+biI9PXR5cGVvZiBZVUk/WVVJLmFkZCgiZXM1IixuKTpuKCl9KShmdW5jdGlvbigpe2Z1bmN0aW9u
+IG4oYSl7dHJ5e3JldHVybiBPYmplY3QuZGVmaW5lUHJvcGVydHkoYSwic2VudGluZWwiLHt9KSwi
+c2VudGluZWwiaW4gYX1jYXRjaChjKXt9fUZ1bmN0aW9uLnByb3RvdHlwZS5iaW5kfHwoRnVuY3Rp
+b24ucHJvdG90eXBlLmJpbmQ9ZnVuY3Rpb24oYSl7dmFyIGM9dGhpcztpZigiZnVuY3Rpb24iIT10
+eXBlb2YgYyl0aHJvdyBuZXcgVHlwZUVycm9yKCJGdW5jdGlvbi5wcm90b3R5cGUuYmluZCBjYWxs
+ZWQgb24gaW5jb21wYXRpYmxlICIrYyk7dmFyIGI9cS5jYWxsKGFyZ3VtZW50cywxKSxkPWZ1bmN0
+aW9uKCl7aWYodGhpcyBpbnN0YW5jZW9mIGQpe3ZhciBlPWZ1bmN0aW9uKCl7fTtlLnByb3RvdHlw
+ZT1jLnByb3RvdHlwZTt2YXIgZT1uZXcgZSxnPWMuYXBwbHkoZSxiLmNvbmNhdChxLmNhbGwoYXJn
+dW1lbnRzKSkpOwpyZXR1cm4gT2JqZWN0KGcpPT09Zz9nOmV9cmV0dXJuIGMuYXBwbHkoYSxiLmNv
+bmNhdChxLmNhbGwoYXJndW1lbnRzKSkpfTtyZXR1cm4gZH0pO3ZhciBsPUZ1bmN0aW9uLnByb3Rv
+dHlwZS5jYWxsLGY9T2JqZWN0LnByb3RvdHlwZSxxPUFycmF5LnByb3RvdHlwZS5zbGljZSxtPWwu
+YmluZChmLnRvU3RyaW5nKSxoPWwuYmluZChmLmhhc093blByb3BlcnR5KSx1LHYscixzLHA7aWYo
+cD1oKGYsIl9fZGVmaW5lR2V0dGVyX18iKSl1PWwuYmluZChmLl9fZGVmaW5lR2V0dGVyX18pLHY9
+bC5iaW5kKGYuX19kZWZpbmVTZXR0ZXJfXykscj1sLmJpbmQoZi5fX2xvb2t1cEdldHRlcl9fKSxz
+PWwuYmluZChmLl9fbG9va3VwU2V0dGVyX18pO0FycmF5LmlzQXJyYXl8fChBcnJheS5pc0FycmF5
+PWZ1bmN0aW9uKGEpe3JldHVybiBtKGEpPT0iW29iamVjdCBBcnJheV0ifSk7QXJyYXkucHJvdG90
+eXBlLmZvckVhY2h8fChBcnJheS5wcm90b3R5cGUuZm9yRWFjaD1mdW5jdGlvbihhLGMpe3ZhciBi
+PQppKHRoaXMpLGQ9LTEsZT1iLmxlbmd0aD4+PjA7aWYobShhKSE9IltvYmplY3QgRnVuY3Rpb25d
+Iil0aHJvdyBuZXcgVHlwZUVycm9yO2Zvcig7KytkPGU7KWQgaW4gYiYmYS5jYWxsKGMsYltkXSxk
+LGIpfSk7QXJyYXkucHJvdG90eXBlLm1hcHx8KEFycmF5LnByb3RvdHlwZS5tYXA9ZnVuY3Rpb24o
+YSxjKXt2YXIgYj1pKHRoaXMpLGQ9Yi5sZW5ndGg+Pj4wLGU9QXJyYXkoZCk7aWYobShhKSE9Iltv
+YmplY3QgRnVuY3Rpb25dIil0aHJvdyBuZXcgVHlwZUVycm9yKGErIiBpcyBub3QgYSBmdW5jdGlv
+biIpO2Zvcih2YXIgZz0wO2c8ZDtnKyspZyBpbiBiJiYoZVtnXT1hLmNhbGwoYyxiW2ddLGcsYikp
+O3JldHVybiBlfSk7QXJyYXkucHJvdG90eXBlLmZpbHRlcnx8KEFycmF5LnByb3RvdHlwZS5maWx0
+ZXI9ZnVuY3Rpb24oYSxjKXt2YXIgYj1pKHRoaXMpLGQ9Yi5sZW5ndGg+Pj4wLGU9W10sZztpZiht
+KGEpIT0iW29iamVjdCBGdW5jdGlvbl0iKXRocm93IG5ldyBUeXBlRXJyb3IoYSsKIiBpcyBub3Qg
+YSBmdW5jdGlvbiIpO2Zvcih2YXIgbz0wO288ZDtvKyspaWYobyBpbiBiKXtnPWJbb107YS5jYWxs
+KGMsZyxvLGIpJiZlLnB1c2goZyl9cmV0dXJuIGV9KTtBcnJheS5wcm90b3R5cGUuZXZlcnl8fChB
+cnJheS5wcm90b3R5cGUuZXZlcnk9ZnVuY3Rpb24oYSxjKXt2YXIgYj1pKHRoaXMpLGQ9Yi5sZW5n
+dGg+Pj4wO2lmKG0oYSkhPSJbb2JqZWN0IEZ1bmN0aW9uXSIpdGhyb3cgbmV3IFR5cGVFcnJvcihh
+KyIgaXMgbm90IGEgZnVuY3Rpb24iKTtmb3IodmFyIGU9MDtlPGQ7ZSsrKWlmKGUgaW4gYiYmIWEu
+Y2FsbChjLGJbZV0sZSxiKSlyZXR1cm4gZmFsc2U7cmV0dXJuIHRydWV9KTtBcnJheS5wcm90b3R5
+cGUuc29tZXx8KEFycmF5LnByb3RvdHlwZS5zb21lPWZ1bmN0aW9uKGEsYyl7dmFyIGI9aSh0aGlz
+KSxkPWIubGVuZ3RoPj4+MDtpZihtKGEpIT0iW29iamVjdCBGdW5jdGlvbl0iKXRocm93IG5ldyBU
+eXBlRXJyb3IoYSsiIGlzIG5vdCBhIGZ1bmN0aW9uIik7Zm9yKHZhciBlPQowO2U8ZDtlKyspaWYo
+ZSBpbiBiJiZhLmNhbGwoYyxiW2VdLGUsYikpcmV0dXJuIHRydWU7cmV0dXJuIGZhbHNlfSk7QXJy
+YXkucHJvdG90eXBlLnJlZHVjZXx8KEFycmF5LnByb3RvdHlwZS5yZWR1Y2U9ZnVuY3Rpb24oYSl7
+dmFyIGM9aSh0aGlzKSxiPWMubGVuZ3RoPj4+MDtpZihtKGEpIT0iW29iamVjdCBGdW5jdGlvbl0i
+KXRocm93IG5ldyBUeXBlRXJyb3IoYSsiIGlzIG5vdCBhIGZ1bmN0aW9uIik7aWYoIWImJmFyZ3Vt
+ZW50cy5sZW5ndGg9PTEpdGhyb3cgbmV3IFR5cGVFcnJvcigicmVkdWNlIG9mIGVtcHR5IGFycmF5
+IHdpdGggbm8gaW5pdGlhbCB2YWx1ZSIpO3ZhciBkPTAsZTtpZihhcmd1bWVudHMubGVuZ3RoPj0y
+KWU9YXJndW1lbnRzWzFdO2Vsc2V7ZG97aWYoZCBpbiBjKXtlPWNbZCsrXTticmVha31pZigrK2Q+
+PWIpdGhyb3cgbmV3IFR5cGVFcnJvcigicmVkdWNlIG9mIGVtcHR5IGFycmF5IHdpdGggbm8gaW5p
+dGlhbCB2YWx1ZSIpO313aGlsZSgxKX1mb3IoO2Q8YjtkKyspZCBpbgpjJiYoZT1hLmNhbGwodm9p
+ZCAwLGUsY1tkXSxkLGMpKTtyZXR1cm4gZX0pO0FycmF5LnByb3RvdHlwZS5yZWR1Y2VSaWdodHx8
+KEFycmF5LnByb3RvdHlwZS5yZWR1Y2VSaWdodD1mdW5jdGlvbihhKXt2YXIgYz1pKHRoaXMpLGI9
+Yy5sZW5ndGg+Pj4wO2lmKG0oYSkhPSJbb2JqZWN0IEZ1bmN0aW9uXSIpdGhyb3cgbmV3IFR5cGVF
+cnJvcihhKyIgaXMgbm90IGEgZnVuY3Rpb24iKTtpZighYiYmYXJndW1lbnRzLmxlbmd0aD09MSl0
+aHJvdyBuZXcgVHlwZUVycm9yKCJyZWR1Y2VSaWdodCBvZiBlbXB0eSBhcnJheSB3aXRoIG5vIGlu
+aXRpYWwgdmFsdWUiKTt2YXIgZCxiPWItMTtpZihhcmd1bWVudHMubGVuZ3RoPj0yKWQ9YXJndW1l
+bnRzWzFdO2Vsc2V7ZG97aWYoYiBpbiBjKXtkPWNbYi0tXTticmVha31pZigtLWI8MCl0aHJvdyBu
+ZXcgVHlwZUVycm9yKCJyZWR1Y2VSaWdodCBvZiBlbXB0eSBhcnJheSB3aXRoIG5vIGluaXRpYWwg
+dmFsdWUiKTt9d2hpbGUoMSl9ZG8gYiBpbiB0aGlzJiYKKGQ9YS5jYWxsKHZvaWQgMCxkLGNbYl0s
+YixjKSk7d2hpbGUoYi0tKTtyZXR1cm4gZH0pO0FycmF5LnByb3RvdHlwZS5pbmRleE9mfHwoQXJy
+YXkucHJvdG90eXBlLmluZGV4T2Y9ZnVuY3Rpb24oYSl7dmFyIGM9aSh0aGlzKSxiPWMubGVuZ3Ro
+Pj4+MDtpZighYilyZXR1cm4tMTt2YXIgZD0wO2FyZ3VtZW50cy5sZW5ndGg+MSYmKGQ9dyhhcmd1
+bWVudHNbMV0pKTtmb3IoZD1kPj0wP2Q6TWF0aC5tYXgoMCxiK2QpO2Q8YjtkKyspaWYoZCBpbiBj
+JiZjW2RdPT09YSlyZXR1cm4gZDtyZXR1cm4tMX0pO0FycmF5LnByb3RvdHlwZS5sYXN0SW5kZXhP
+Znx8KEFycmF5LnByb3RvdHlwZS5sYXN0SW5kZXhPZj1mdW5jdGlvbihhKXt2YXIgYz1pKHRoaXMp
+LGI9Yy5sZW5ndGg+Pj4wO2lmKCFiKXJldHVybi0xO3ZhciBkPWItMTthcmd1bWVudHMubGVuZ3Ro
+PjEmJihkPU1hdGgubWluKGQsdyhhcmd1bWVudHNbMV0pKSk7Zm9yKGQ9ZD49MD9kOmItTWF0aC5h
+YnMoZCk7ZD49MDtkLS0paWYoZCBpbgpjJiZhPT09Y1tkXSlyZXR1cm4gZDtyZXR1cm4tMX0pO09i
+amVjdC5nZXRQcm90b3R5cGVPZnx8KE9iamVjdC5nZXRQcm90b3R5cGVPZj1mdW5jdGlvbihhKXty
+ZXR1cm4gYS5fX3Byb3RvX198fChhLmNvbnN0cnVjdG9yP2EuY29uc3RydWN0b3IucHJvdG90eXBl
+OmYpfSk7T2JqZWN0LmdldE93blByb3BlcnR5RGVzY3JpcHRvcnx8KE9iamVjdC5nZXRPd25Qcm9w
+ZXJ0eURlc2NyaXB0b3I9ZnVuY3Rpb24oYSxjKXtpZih0eXBlb2YgYSE9Im9iamVjdCImJnR5cGVv
+ZiBhIT0iZnVuY3Rpb24ifHxhPT09bnVsbCl0aHJvdyBuZXcgVHlwZUVycm9yKCJPYmplY3QuZ2V0
+T3duUHJvcGVydHlEZXNjcmlwdG9yIGNhbGxlZCBvbiBhIG5vbi1vYmplY3Q6ICIrYSk7aWYoaChh
+LGMpKXt2YXIgYj17ZW51bWVyYWJsZTp0cnVlLGNvbmZpZ3VyYWJsZTp0cnVlfTtpZihwKXt2YXIg
+ZD1hLl9fcHJvdG9fXzthLl9fcHJvdG9fXz1mO3ZhciBlPXIoYSxjKSxnPXMoYSxjKTthLl9fcHJv
+dG9fXz1kO2lmKGV8fApnKXtpZihlKWIuZ2V0PWU7aWYoZyliLnNldD1nO3JldHVybiBifX1iLnZh
+bHVlPWFbY107cmV0dXJuIGJ9fSk7T2JqZWN0LmdldE93blByb3BlcnR5TmFtZXN8fChPYmplY3Qu
+Z2V0T3duUHJvcGVydHlOYW1lcz1mdW5jdGlvbihhKXtyZXR1cm4gT2JqZWN0LmtleXMoYSl9KTtP
+YmplY3QuY3JlYXRlfHwoT2JqZWN0LmNyZWF0ZT1mdW5jdGlvbihhLGMpe3ZhciBiO2lmKGE9PT1u
+dWxsKWI9e19fcHJvdG9fXzpudWxsfTtlbHNle2lmKHR5cGVvZiBhIT0ib2JqZWN0Iil0aHJvdyBu
+ZXcgVHlwZUVycm9yKCJ0eXBlb2YgcHJvdG90eXBlWyIrdHlwZW9mIGErIl0gIT0gJ29iamVjdCci
+KTtiPWZ1bmN0aW9uKCl7fTtiLnByb3RvdHlwZT1hO2I9bmV3IGI7Yi5fX3Byb3RvX189YX1jIT09
+dm9pZCAwJiZPYmplY3QuZGVmaW5lUHJvcGVydGllcyhiLGMpO3JldHVybiBifSk7aWYoT2JqZWN0
+LmRlZmluZVByb3BlcnR5KXt2YXIgbD1uKHt9KSx6PSJ1bmRlZmluZWQiPT10eXBlb2YgZG9jdW1l
+bnR8fApuKGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImRpdiIpKTtpZighbHx8IXopdmFyIHQ9T2Jq
+ZWN0LmRlZmluZVByb3BlcnR5fWlmKCFPYmplY3QuZGVmaW5lUHJvcGVydHl8fHQpT2JqZWN0LmRl
+ZmluZVByb3BlcnR5PWZ1bmN0aW9uKGEsYyxiKXtpZih0eXBlb2YgYSE9Im9iamVjdCImJnR5cGVv
+ZiBhIT0iZnVuY3Rpb24ifHxhPT09bnVsbCl0aHJvdyBuZXcgVHlwZUVycm9yKCJPYmplY3QuZGVm
+aW5lUHJvcGVydHkgY2FsbGVkIG9uIG5vbi1vYmplY3Q6ICIrYSk7aWYodHlwZW9mIGIhPSJvYmpl
+Y3QiJiZ0eXBlb2YgYiE9ImZ1bmN0aW9uInx8Yj09PW51bGwpdGhyb3cgbmV3IFR5cGVFcnJvcigi
+UHJvcGVydHkgZGVzY3JpcHRpb24gbXVzdCBiZSBhbiBvYmplY3Q6ICIrYik7aWYodCl0cnl7cmV0
+dXJuIHQuY2FsbChPYmplY3QsYSxjLGIpfWNhdGNoKGQpe31pZihoKGIsInZhbHVlIikpaWYocCYm
+KHIoYSxjKXx8cyhhLGMpKSl7dmFyIGU9YS5fX3Byb3RvX187YS5fX3Byb3RvX189ZjsKZGVsZXRl
+IGFbY107YVtjXT1iLnZhbHVlO2EuX19wcm90b19fPWV9ZWxzZSBhW2NdPWIudmFsdWU7ZWxzZXtp
+ZighcCl0aHJvdyBuZXcgVHlwZUVycm9yKCJnZXR0ZXJzICYgc2V0dGVycyBjYW4gbm90IGJlIGRl
+ZmluZWQgb24gdGhpcyBqYXZhc2NyaXB0IGVuZ2luZSIpO2goYiwiZ2V0IikmJnUoYSxjLGIuZ2V0
+KTtoKGIsInNldCIpJiZ2KGEsYyxiLnNldCl9cmV0dXJuIGF9O09iamVjdC5kZWZpbmVQcm9wZXJ0
+aWVzfHwoT2JqZWN0LmRlZmluZVByb3BlcnRpZXM9ZnVuY3Rpb24oYSxjKXtmb3IodmFyIGIgaW4g
+YyloKGMsYikmJmIhPSJfX3Byb3RvX18iJiZPYmplY3QuZGVmaW5lUHJvcGVydHkoYSxiLGNbYl0p
+O3JldHVybiBhfSk7T2JqZWN0LnNlYWx8fChPYmplY3Quc2VhbD1mdW5jdGlvbihhKXtyZXR1cm4g
+YX0pO09iamVjdC5mcmVlemV8fChPYmplY3QuZnJlZXplPWZ1bmN0aW9uKGEpe3JldHVybiBhfSk7
+dHJ5e09iamVjdC5mcmVlemUoZnVuY3Rpb24oKXt9KX1jYXRjaChFKXtPYmplY3QuZnJlZXplPQpm
+dW5jdGlvbihhKXtyZXR1cm4gZnVuY3Rpb24oYyl7cmV0dXJuIHR5cGVvZiBjPT0iZnVuY3Rpb24i
+P2M6YShjKX19KE9iamVjdC5mcmVlemUpfU9iamVjdC5wcmV2ZW50RXh0ZW5zaW9uc3x8KE9iamVj
+dC5wcmV2ZW50RXh0ZW5zaW9ucz1mdW5jdGlvbihhKXtyZXR1cm4gYX0pO09iamVjdC5pc1NlYWxl
+ZHx8KE9iamVjdC5pc1NlYWxlZD1mdW5jdGlvbigpe3JldHVybiBmYWxzZX0pO09iamVjdC5pc0Zy
+b3plbnx8KE9iamVjdC5pc0Zyb3plbj1mdW5jdGlvbigpe3JldHVybiBmYWxzZX0pO09iamVjdC5p
+c0V4dGVuc2libGV8fChPYmplY3QuaXNFeHRlbnNpYmxlPWZ1bmN0aW9uKGEpe2lmKE9iamVjdChh
+KSE9PWEpdGhyb3cgbmV3IFR5cGVFcnJvcjtmb3IodmFyIGM9IiI7aChhLGMpOyljPWMrIj8iO2Fb
+Y109dHJ1ZTt2YXIgYj1oKGEsYyk7ZGVsZXRlIGFbY107cmV0dXJuIGJ9KTtpZighT2JqZWN0Lmtl
+eXMpe3ZhciB4PSEwLHk9InRvU3RyaW5nIHRvTG9jYWxlU3RyaW5nIHZhbHVlT2YgaGFzT3duUHJv
+cGVydHkgaXNQcm90b3R5cGVPZiBwcm9wZXJ0eUlzRW51bWVyYWJsZSBjb25zdHJ1Y3RvciIuc3Bs
+aXQoIiAiKSwKQT15Lmxlbmd0aCxqO2ZvcihqIGlue3RvU3RyaW5nOm51bGx9KXg9ITE7T2JqZWN0
+LmtleXM9ZnVuY3Rpb24oYSl7aWYodHlwZW9mIGEhPSJvYmplY3QiJiZ0eXBlb2YgYSE9ImZ1bmN0
+aW9uInx8YT09PW51bGwpdGhyb3cgbmV3IFR5cGVFcnJvcigiT2JqZWN0LmtleXMgY2FsbGVkIG9u
+IGEgbm9uLW9iamVjdCIpO3ZhciBjPVtdLGI7Zm9yKGIgaW4gYSloKGEsYikmJmMucHVzaChiKTtp
+Zih4KWZvcihiPTA7YjxBO2IrKyl7dmFyIGQ9eVtiXTtoKGEsZCkmJmMucHVzaChkKX1yZXR1cm4g
+Y319aWYoIURhdGUucHJvdG90eXBlLnRvSVNPU3RyaW5nfHwtMT09PShuZXcgRGF0ZSgtNjIxOTg3
+NTUyRTUpKS50b0lTT1N0cmluZygpLmluZGV4T2YoIi0wMDAwMDEiKSlEYXRlLnByb3RvdHlwZS50
+b0lTT1N0cmluZz1mdW5jdGlvbigpe3ZhciBhLGMsYixkO2lmKCFpc0Zpbml0ZSh0aGlzKSl0aHJv
+dyBuZXcgUmFuZ2VFcnJvcigiRGF0ZS5wcm90b3R5cGUudG9JU09TdHJpbmcgY2FsbGVkIG9uIG5v
+bi1maW5pdGUgdmFsdWUuIik7CmE9W3RoaXMuZ2V0VVRDTW9udGgoKSsxLHRoaXMuZ2V0VVRDRGF0
+ZSgpLHRoaXMuZ2V0VVRDSG91cnMoKSx0aGlzLmdldFVUQ01pbnV0ZXMoKSx0aGlzLmdldFVUQ1Nl
+Y29uZHMoKV07ZD10aGlzLmdldFVUQ0Z1bGxZZWFyKCk7ZD0oZDwwPyItIjpkPjk5OTk/IisiOiIi
+KSsoIjAwMDAwIitNYXRoLmFicyhkKSkuc2xpY2UoMDw9ZCYmZDw9OTk5OT8tNDotNik7Zm9yKGM9
+YS5sZW5ndGg7Yy0tOyl7Yj1hW2NdO2I8MTAmJihhW2NdPSIwIitiKX1yZXR1cm4gZCsiLSIrYS5z
+bGljZSgwLDIpLmpvaW4oIi0iKSsiVCIrYS5zbGljZSgyKS5qb2luKCI6IikrIi4iKygiMDAwIit0
+aGlzLmdldFVUQ01pbGxpc2Vjb25kcygpKS5zbGljZSgtMykrIloifTtEYXRlLm5vd3x8KERhdGUu
+bm93PWZ1bmN0aW9uKCl7cmV0dXJuKG5ldyBEYXRlKS5nZXRUaW1lKCl9KTtEYXRlLnByb3RvdHlw
+ZS50b0pTT058fChEYXRlLnByb3RvdHlwZS50b0pTT049ZnVuY3Rpb24oKXtpZih0eXBlb2YgdGhp
+cy50b0lTT1N0cmluZyE9CiJmdW5jdGlvbiIpdGhyb3cgbmV3IFR5cGVFcnJvcigidG9JU09TdHJp
+bmcgcHJvcGVydHkgaXMgbm90IGNhbGxhYmxlIik7cmV0dXJuIHRoaXMudG9JU09TdHJpbmcoKX0p
+O2lmKCFEYXRlLnBhcnNlfHw4NjRFMTMhPT1EYXRlLnBhcnNlKCIrMjc1NzYwLTA5LTEzVDAwOjAw
+OjAwLjAwMFoiKSlEYXRlPWZ1bmN0aW9uKGEpe3ZhciBjPWZ1bmN0aW9uIGcoYixjLGQsZixoLGks
+ail7dmFyIGs9YXJndW1lbnRzLmxlbmd0aDtpZih0aGlzIGluc3RhbmNlb2YgYSl7az1rPT0xJiYi
+IitiPT09Yj9uZXcgYShnLnBhcnNlKGIpKTprPj03P25ldyBhKGIsYyxkLGYsaCxpLGopOms+PTY/
+bmV3IGEoYixjLGQsZixoLGkpOms+PTU/bmV3IGEoYixjLGQsZixoKTprPj00P25ldyBhKGIsYyxk
+LGYpOms+PTM/bmV3IGEoYixjLGQpOms+PTI/bmV3IGEoYixjKTprPj0xP25ldyBhKGIpOm5ldyBh
+O2suY29uc3RydWN0b3I9ZztyZXR1cm4ga31yZXR1cm4gYS5hcHBseSh0aGlzLGFyZ3VtZW50cyl9
+LGI9UmVnRXhwKCJeKFxcZHs0fXxbKy1dXFxkezZ9KSg/Oi0oXFxkezJ9KSg/Oi0oXFxkezJ9KSg/
+OlQoXFxkezJ9KTooXFxkezJ9KSg/OjooXFxkezJ9KSg/OlxcLihcXGR7M30pKT8pPyg/Olp8KD86
+KFstK10pKFxcZHsyfSk6KFxcZHsyfSkpKT8pPyk/KT8kIiksCmQ7Zm9yKGQgaW4gYSljW2RdPWFb
+ZF07Yy5ub3c9YS5ub3c7Yy5VVEM9YS5VVEM7Yy5wcm90b3R5cGU9YS5wcm90b3R5cGU7Yy5wcm90
+b3R5cGUuY29uc3RydWN0b3I9YztjLnBhcnNlPWZ1bmN0aW9uKGMpe3ZhciBkPWIuZXhlYyhjKTtp
+ZihkKXtkLnNoaWZ0KCk7Zm9yKHZhciBmPTE7Zjw3O2YrKyl7ZFtmXT0rKGRbZl18fChmPDM/MTow
+KSk7Zj09MSYmZFtmXS0tfXZhciBoPStkLnBvcCgpLGk9K2QucG9wKCksaj1kLnBvcCgpLGY9MDtp
+ZihqKXtpZihpPjIzfHxoPjU5KXJldHVybiBOYU47Zj0oaSo2MCtoKSo2RTQqKGo9PSIrIj8tMTox
+KX1oPStkWzBdO2lmKDA8PWgmJmg8PTk5KXtkWzBdPWgrNDAwO3JldHVybiBhLlVUQy5hcHBseSh0
+aGlzLGQpK2YtMTI2MjI3ODA4RTV9cmV0dXJuIGEuVVRDLmFwcGx5KHRoaXMsZCkrZn1yZXR1cm4g
+YS5wYXJzZS5hcHBseSh0aGlzLGFyZ3VtZW50cyl9O3JldHVybiBjfShEYXRlKTtqPSJcdFxuXHgw
+Qlx1MDAwY1xyIFx1MDBhMFx1MTY4MFx1MTgwZVx1MjAwMFx1MjAwMVx1MjAwMlx1MjAwM1x1MjAw
+NFx1MjAwNVx1MjAwNlx1MjAwN1x1MjAwOFx1MjAwOVx1MjAwYVx1MjAyZlx1MjA1Zlx1MzAwMFx1
+MjAyOFx1MjAyOVx1ZmVmZiI7CmlmKCFTdHJpbmcucHJvdG90eXBlLnRyaW18fGoudHJpbSgpKXtq
+PSJbIitqKyJdIjt2YXIgQj1SZWdFeHAoIl4iK2oraisiKiIpLEM9UmVnRXhwKGoraisiKiQiKTtT
+dHJpbmcucHJvdG90eXBlLnRyaW09ZnVuY3Rpb24oKXtpZih0aGlzPT09dm9pZCAwfHx0aGlzPT09
+bnVsbCl0aHJvdyBuZXcgVHlwZUVycm9yKCJjYW4ndCBjb252ZXJ0ICIrdGhpcysiIHRvIG9iamVj
+dCIpO3JldHVybigiIit0aGlzKS5yZXBsYWNlKEIsIiIpLnJlcGxhY2UoQywiIil9fXZhciB3PWZ1
+bmN0aW9uKGEpe2E9K2E7YSE9PWE/YT0wOmEhPT0wJiYoYSE9PTEvMCYmYSE9PS0oMS8wKSkmJihh
+PShhPjB8fC0xKSpNYXRoLmZsb29yKE1hdGguYWJzKGEpKSk7cmV0dXJuIGF9LEQ9ImEiIT0iYSJb
+MF0saT1mdW5jdGlvbihhKXtpZihhPT1udWxsKXRocm93IG5ldyBUeXBlRXJyb3IoImNhbid0IGNv
+bnZlcnQgIithKyIgdG8gb2JqZWN0Iik7cmV0dXJuIEQmJnR5cGVvZiBhPT0ic3RyaW5nIiYmYT9h
+LnNwbGl0KCIiKToKT2JqZWN0KGEpfX0pOw==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 import json
@@ -4115,13 +4235,13 @@ class VDOM_fullcalendar(VDOM_object):
 
 			select: function(startDate, endDate, allDay)
 			{
-				end = 	endDate.getTime() / 1000;
+				end = endDate.getTime() / 1000;
 				start = startDate.getTime() / 1000;
 				$j("#%(id_out)s").fullCalendar('unselect');
 				execEventBinded("%(id_woo)s", "daysSelected", {
 					start: start,
 					end: end,
-					allDay: allDay,
+					allDay: allDay || 0,
 					timezoneOffset: startDate.getTimezoneOffset()
 				});
 			},
@@ -4132,34 +4252,34 @@ class VDOM_fullcalendar(VDOM_object):
 
 			eventDrop: function(event, dayDelta, minuteDelta, allDay)
 			{
-				start = event.start;
+				start = event.start || 0;
 				end = event.end === null ? start : event.end;
 				execEventBinded("%(id_woo)s", "eventDrag", {
 					id: event.id,
 					start: Math.round( start.getTime() / 1000),
 					end: Math.round( end.getTime() / 1000),
 					instance: event.instance,
-					allDay: allDay,
-					dayDelta: dayDelta,
-					minuteDelta: minuteDelta,
+					allDay: allDay || 0,
+					dayDelta: dayDelta || 0,
+					minuteDelta: minuteDelta || 0,
 					timezoneOffset: event.start.getTimezoneOffset()
 				})
 			},
 
 			eventResize: function( event, dayDelta, minuteDelta )
 			{
-				start = event.start;
+				start = event.start || 0;
 				end = event.end === null ? start : event.end;
 				execEventBinded("%(id_woo)s", "eventResize", {
 					id: event.id,
 					start: Math.round( start.getTime() / 1000),
 					end: Math.round( end.getTime() / 1000),
 					instance: event.instance,
-					dayDelta: dayDelta,
-					minuteDelta: minuteDelta,
+					dayDelta: dayDelta || 0,
+					minuteDelta: minuteDelta || 0,
 					timezoneOffset: event.start.getTimezoneOffset()
 				})
-			},
+			}
 		});
 
 		$j("#%(id_out)s").fullCalendar( 'render' );
@@ -4380,7 +4500,81 @@ class VDOM_fullcalendar(VDOM_object):
     <Library Target="Html"><![CDATA[<link rel="stylesheet" type="text/css" href="/02dfd9db-16fe-3690-73e1-baf58cd3e6f4.res" />]]></Library>
     <Library Target="Html"><![CDATA[<script type='text/javascript' src='/10b18a20-59c9-2b2b-e4b3-7281bcc66d4f.res'></script>]]></Library>
     <Library Target="Html"><![CDATA[<script type='text/javascript' src='/d1e1abad-b15d-450e-b769-4fe10ccb02af.res'></script>]]></Library>
-    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/7df64b35-c17d-db3b-5252-6f4f5ba1d4ef.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/c81084e1-0296-56fc-339a-1b9328e787dd.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[
+
+<script type='text/javascript'>
+
+function parseRruleSources( sources )
+{
+	function formatedDate( date )
+	{
+		/*return [ date.getFullYear(), date.getMonth(), date.getDate()].join("-") + "T" + [ date.getHours(), date.getMinutes(), date.getSeconds()].join(":")+"Z";*/
+		return date.toISOString();
+	}
+
+	var startDate    = new Date( sources.start || 0 );
+	var endDate      = new Date( sources.end || 0 );
+	var eventSources = [];
+	var source       = sources.source || [];
+
+	for ( var i = 0; i < source.length; i++ )
+	{
+		var cal = source[ i ] ;
+		var color = cal.color;
+		var textColor = cal.textColor;
+		var borderColor = cal.borderColor;
+
+		for ( var j = 0; j < cal.events.length; j++ )
+		{
+			var event          = cal.events[ j ] || [];
+			event.textColor    = textColor || "";
+			event.borderColor  = borderColor || "";
+			event.color        = color || "";
+
+			if ( event.hasOwnProperty( "rrule" ) && event.rrule != null )
+			{
+				var event_start = new Date( event.start || 0 );
+				var event_end   = new Date( event.end || 0 );
+				var delta = event_end.getTime() - event_start.getTime();
+
+				var sch = new Scheduler( event_start, event.rrule.toUpperCase() );
+
+				if ( event.hasOwnProperty( "exdates" ) && event.exdates != null )
+				{
+					var exdates = [];
+					for ( var k = 0 ; k < event.exdates.length; k++ )
+						exdates.push( new Date( event.exdates[ k ] ) );
+
+					sch.add_exception_dates( exdates );
+				}
+
+				var occurrences = sch.occurrences_between( startDate, endDate );
+
+				for ( var k = 0; k < occurrences.length; k++ )
+				{
+					var copy = {};
+					jQuery.extend( copy, event );
+					var t_start = occurrences[ k ];
+					copy.start = formatedDate( t_start );
+					copy.instance = k+1;
+					copy.end = formatedDate(new Date( t_start.getTime() + delta ));
+					eventSources.push( copy );
+				}
+			}
+			else
+			{
+				event.start = formatedDate(new Date( event.start || 0 ));
+				event.end = formatedDate(new Date( event.end || 0 ));
+				eventSources.push( event );
+			}
+		}
+	}
+	return eventSources;
+}
+</script>
+
+]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
@@ -4593,11 +4787,14 @@ jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', eval(eventSource) 
         </Action>
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setEventsWithRrule">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="eventData" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="{}" Interface="" InterfaceName="#Lang(714)" ScriptName="eventData" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-		eval( 'var data = ' + eventData + ';' );
-		jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', parseRruleSources( data ) );
+eval('var data = ' + eventData + ';');
+jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', parseRruleSources(data));
+/*
+jQuery("div#"+this.domCont.id).fullCalendar('addEventSource', parseRruleSources(eventData));
+*/
 		  ]]></SourceCode>
         </Action>
         <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="show">
