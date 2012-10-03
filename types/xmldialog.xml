@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.48.6720</Version>
+    <Version>1.50.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -371,7 +371,8 @@ class VDOM_xmldialog(VDOM_object):
 						sa = self.the_prop(res, 'selected').strip()
 						for ik, iv in self.get_options(e).items():
 							sel = 'checked="checked"' if ik == sa else ''
-							htm += u"<label><input autocomplete='off' type='radio' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
+							#htm += u"<label><input autocomplete='off' type='radio' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
+							htm += u"<label><input autocomplete='off' type='radio' name=\"%s\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), sel, iv );
 						data += self.the_item('radio', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'CheckBox':
@@ -424,7 +425,7 @@ class VDOM_xmldialog(VDOM_object):
 			debug(e)
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='xmldialog' objname='%s' ver='%s @ 2012-07-27'" % (self.name, self.type.version)
+			debug_info = u"objtype='xmldialog' objname='%s' ver='%s'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
