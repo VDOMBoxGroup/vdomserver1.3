@@ -281,6 +281,13 @@ class VDOM_file_manager(object):
 			os.makedirs(path)
 		except: pass
 		
+	def list_app_storage_directory(self, application_id,folder_name):
+		"""List directory of app storage"""
+		path = self.__get_app_storage_file_path(application_id, folder_name )
+		try:
+			return os.listdir(path)
+		except: pass	
+
 	def delete_app_storage_user_directory(self, application_id,folder_name):
 		"""create directory to store app databases"""
 		path = self.__get_app_storage_file_path(application_id, folder_name )

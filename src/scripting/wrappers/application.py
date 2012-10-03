@@ -96,6 +96,18 @@ class VDOM_file_storage(object):
 		from scripting.wrappers import application
 		managers.file_manager.delete_app_storage_user_directory(application.id, self.__norm_filename(foldername))
 		
+	def listdir(self, foldername):
+		from scripting.wrappers import application
+		return managers.file_manager.list_app_storage_directory(application.id, self.__norm_filename(foldername))
+	
+	def isfile(self, path):
+		from scripting.wrappers import application
+		return os.path.isfile(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename)))		
+
+	def isdir(self,path):
+		from scripting.wrappers import application
+		return os.path.isdir(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename)))		
+	
 	def __norm_filename(self, filename):
 		from scripting.wrappers import application
 		norm_name = os.path.normpath(filename)
