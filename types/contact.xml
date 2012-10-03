@@ -10,11 +10,11 @@
     <EditorIcon>#Res(685665d6-9010-44a5-ba81-21ea4801f16c)</EditorIcon>
     <StructureIcon>#Res(f2e48402-0346-45a8-99ab-11cee59a3ec9)</StructureIcon>
     <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
+    <Resizable>1</Resizable>
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.7.6720</Version>
+    <Version>1.211.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell</Containers>
@@ -101,7 +101,7 @@
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -419,11 +419,8 @@ class VDOM_contact(VDOM_object):
 			else:
 				overflow = u"auto"
 
-			#style = u"font-size:14px; font-family: Tahoma; z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx;background: #EEEEEE" % (
-			#	self.zindex, self.position, self.top, self.left, self.width, self.height)
-			style = u"z-index: %s; position: absolute; top: %spx; left: %spx; width: %spx; height: %spx; overflow: %s;" % (
-				self.zindex, self.top, self.left, self.width, self.height, overflow)
-			#table_style = u"font-size:14px; font-family: Tahoma;"
+			style = u"z-index: %s; position: absolute; top: %spx; left: %spx; width: %spx; overflow: %s;" % (
+				self.zindex, self.top, self.left, self.width, overflow)
 
 			if self.language == "0":
 				addr = u"Your address: "
@@ -520,109 +517,67 @@ class VDOM_contact(VDOM_object):
 
 
 	def wysiwyg(self, parent, contents=""):
-
-		if self.language == "0":
-			addr = "Your address :"
-			subj = "Subject :"
-			msg = "Message :"
-			send = "Send"
-		elif self.language == "1":
-			addr = "Ваш e-mail :".decode("utf8")
-			subj = "Тема :".decode("utf8")
-			msg = "Сообщение :".decode("utf8")
-			send = "Отправить".decode("utf8")
+		if self.overflow == "1":
+			overflow = u"hidden"
+		elif self.overflow == "2":
+			overflow = u"scroll"
+		elif self.overflow == "3":
+			overflow = u"visible"
 		else:
-			addr = "Votre e-mail :".decode("utf8")
-			subj = "Sujet :".decode("utf8")
-			msg = "Message :".decode("utf8")
-			send = "Envoyer".decode("utf8")
+			overflow = u"auto"
+		
+		style = u"position: absolute; width: {width}px; overflow: {overflow}; font-family: verdana; font-size: 12".format(
+			width = self.width, overflow = overflow)
 
-		if int(self.width) < 70:
-			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-						"<svg>"\
-							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-						"</svg>"\
-					"</container>"%(
-						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-						int(self.width), int(self.height))
-		elif int(self.width) < 85:
-			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-						"<svg>"\
-							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
-						"</svg>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-					"%s</container>"%(
-						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-						int(self.width), int(self.height),
-						33, int(self.width) - 1, 20,
-						75, int(self.width) - 1, 20,
-						115, int(self.width) - 1, int(self.height)- 145,
-						int(self.height)-22, 70, 22,
-						0, int(self.width) - 1, "Tahoma", 14, "Your",
-						17, int(self.width) - 1, "Tahoma", 14, "address: ",
-						59, int(self.width) - 1, "Tahoma", 14, subj,
-						99, int(self.width) -1, "Tahoma", 14, msg,
-						int(self.height)-18, 70, 18, "Tahoma", 12, send,
-						contents)
-		elif int(self.width) < 235:
-			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-						"<svg>"\
-							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
-						"</svg>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-					"%s</container>"%(
-						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-						int(self.width), int(self.height),
-						19, int(self.width) - 1, 20,
-						61, int(self.width) - 1, 20,
-						101, int(self.width) - 1, int(self.height)- 130,
-						int(self.height) - 23, 70, 22,
-						0, self.width, "Tahoma", 14, addr,
-						42, int(self.width) - 1, "Tahoma", 14, subj,
-						82, int(self.width) - 1, "Tahoma", 14, msg,
-						int(self.height)-21, 70, 18, "Tahoma", 12, send,
-						contents)
-		else:
-			result = "<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-						"<svg>"\
-							"<rect width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" x=\"%s\" width=\"%s\" height=\"%s\" fill=\"#FFFFFF\" stroke=\"#000000\"/>"\
-							"<rect y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#CCCCCC\" stroke=\"#000000\"/>"\
-						"</svg>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" color=\"#000000\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-						"<text top=\"%s\" width=\"%s\" height=\"%s\" color=\"#000000\" textalign=\"center\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-					"%s</container>"%(
-						self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-						int(self.width), int(self.height),
-						3, 90, 150, 20,
-						28, 90, 150, 20,
-						70, 0, int(self.width) - 1, int(self.height)- 100,
-						int(self.height)-23, 70, 22,
-						3, int(self.width) - 1, "Tahoma", 14, addr,
-						28, int(self.width) - 1 , "Tahoma", 14, subj,
-						50, int(self.width) - 1, "Tahoma", 14, msg,
-						int(self.height) - 20, 70, 18, "Tahoma", 12, send,
-						contents)
+		if self.language == "0":	# English
+			addr = u"Your address: "
+			subj = u"Subject: "
+			msg  = u"Message: "
+			send = u"Send"
+		elif self.language == "1":	# Russian
+			addr = u"Ваш e-mail: "
+			subj = u"Тема: "
+			msg  = u"Сообщение: "
+			send = u"Отправить"
+		else:						# French
+			addr = u"Votre e-mail: " 
+			subj = u"Sujet: "
+			msg  = u"Message: "
+			send = u"Envoyer "
+		
+		form_data = \
+			u"""
+			<label style="display: block; float: left; white-space: nowrap;">{addr}</label>
+			<input type="text" name="fromaddr" style="display: block; width:{input_width}; float: right;" />
+			<div style='clear:both'></div>
+			<label style="display: block; float: left; white-space: nowrap;">{subj}</label>
+			<input type="text" name="subject" style="display: block; width:{input_width}; float: right;" />
+			<div style='clear:both'></div>
+			<label style="display: block; float: left; white-space: nowrap;">{msg}</label>
+			<textarea name="message" rows="6" cols="30" style="display: block; float: right; width: 100%; ">&nbsp;</textarea>
+			<input class="send" type="submit" value="{send}" style="width:auto; float: none; clear:both; display: block;" />
+			""".format(
+					addr = addr,
+					subj = subj,
+					msg  = msg,
+					input_width = "100%" if (int(self.width) <= 200) else "50%",
+					send = send.replace('"', '&quot;') )
 
+		html_content = u"""<div ><form name="{name}" style="{form_style}">{form}</form></div>""".format(
+			name       = self.name,
+			form_style = style,
+			form       = form_data )
+		
+		result = \
+			u"""<container id="{id}" zindex="{zindex}" width="{width}" top="{top}" left="{left}">
+					<htmltext width="{width}" blendMode="normal" locked="true" overflow="visible" >
+						{html_content}
+					</htmltext>
+				</container>
+			""".format(id = self.id, zindex = self.zindex, width=self.width, height=self.height,
+				top = self.top, left = self.left,
+				html_content = html_content)
+		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 
