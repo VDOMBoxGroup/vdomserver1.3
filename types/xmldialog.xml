@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.50.6720</Version>
+    <Version>1.52.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -299,7 +299,8 @@ class VDOM_xmldialog(VDOM_object):
 		attr_required = e.getAttribute("required")
 		visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
 		fw = u"fullsize" if int("0%s" % e.getAttribute("fullsize").strip()) == 1 else ""
-		return u"<div class='row %s' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (fw, visible, lbl, css_class, html)
+		classes = u"%s" % e.getAttribute("class").strip()
+		return u"<div class='row %s %s' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (fw, classes, visible, lbl, css_class, html)
 
 	def render(self, parent, contents=""):
 
@@ -489,6 +490,12 @@ margin-top: 10px;
 		autoOpen: %(show)s,
 		open: function(e,u) {
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "show", {});
+
+			$j.datepicker.setDefaults($j.datepicker.regional['fr']);
+			$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
+				dateFormat: 'dd/mm/yy', showButtonPanel: true
+			});
+
 		},
 		close: function(e,u) {
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "hide", {});
@@ -572,7 +579,8 @@ function vdom_xd_load(id,xd){
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
 			var fw = parseInt(a.attr('fullsize') || '0', 10);
 			if (fw === 1) fw = 'fullsize'; else fw = '';
-			return "<div class='row {4}' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm, fw);
+			var classes = a.attr('class') || '';
+			return "<div class='row {4} {5}' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm, fw, classes);
 		}
 	w.html('');
 	var nobtn = true;
