@@ -102,11 +102,11 @@ class VDOM_file_storage(object):
 	
 	def isfile(self, path):
 		from scripting.wrappers import application
-		return os.path.isfile(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename)))		
+		return os.path.isfile(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(path)))		
 
 	def isdir(self,path):
 		from scripting.wrappers import application
-		return os.path.isdir(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(filename)))		
+		return os.path.isdir(managers.file_manager.get_path(app_storage, application.id, None, self.__norm_filename(path)))		
 	
 	def __norm_filename(self, filename):
 		from scripting.wrappers import application
