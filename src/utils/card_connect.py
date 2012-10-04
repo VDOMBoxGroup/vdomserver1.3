@@ -21,10 +21,6 @@ def send_to_card_and_wait( message, key, timeout = 1, delta = 0.1 ):
 		time.sleep(delta)
 	return system_options[key]
 
-	
-def get_application_attribute(application_id, attribute_id):
-	return send_to_card_and_wait("getlicense %s %s" % (application_id, attribute_id),  "%s/%s" % (application_id, attribute_id))
-
 
 def get_system_attribute(part_type_attribute_id):
 	return send_to_card_and_wait("getlicense 0 %s" % str(part_type_attribute_id),"0/%s" %str(part_type_attribute_id) )
