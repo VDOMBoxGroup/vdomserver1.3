@@ -1375,6 +1375,9 @@ def set_attr(app_id, object_id, param):
  font-size:14px;
 color:#000;
 font-family:Arial,sans-serif;
+}
+#%(id)s a.disabled span {
+color: #999 !important;
 }"""
 	if "skin" in param:
 		if param["skin"]["value"] == "1":
