@@ -762,9 +762,6 @@ box-shadow:inset 0px 0px 6px #fff;
 -o-box-shadow:inset 0px 0px 6px #fff;
 -ms-box-shadow:inset 0px 0px 6px #fff;
 border:1px solid #a8a8a8;
-}
-#%(id)s a.disabled span {
-color: #999 !important;
 }"""
 		
 	o = application.objects.search(object_id)
