@@ -527,6 +527,7 @@ class VDOM_object(object):
 			self.name = value.lower()
 			self.xml_obj.attributes["Name"] = value
 			self.__do_invalidate(self)
+			managers.dispatcher.dispatch_handler(self.application.id, self.id, "set_name", {"name":value})
 		finally:
 			self.__sem.unlock()
 

@@ -48,6 +48,7 @@ class VDOM_application(VDOM_parser):
 		self.objects = {}	# top-level objects - map id to VDOM_object instance
 		self.objects_list = []	# list of top-level objects as they appear in xml
 		self.__all_objects = {}	# map of all objects in the application - for quick searching by ID
+		self.all_dynamic_objects = {} #map of DummyObjects that exist now
 		self.resources = {}
 		self.structure_resources = {}
 		self.languages = ""
@@ -780,6 +781,8 @@ class VDOM_application(VDOM_parser):
 		"""find object in the application"""
 		if id_obj in self.__all_objects:
 			return self.__all_objects[id_obj]
+		elif id_obj in self.all_dynamic_objects:
+			return self.all_dynamic_objects[id_obj]
 		else:
 			return None
 
