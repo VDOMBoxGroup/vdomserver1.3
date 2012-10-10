@@ -82,17 +82,16 @@ class VDOM_object(object):
 				setattr(type(self), attribute.name, VDOM_descriptor(attribute.name))
 
 			attribute_value = attribute.value
-			if isinstance(attribute.value, list): ## by Leo @ 2012-10-05
-				if attribute.value.count("#Lang") != 0:
-					temp = self.test4lang(attribute.value)
-					if obsolete_request.session["vdom_current_language"] not in self.__object.languages:
-						for i in xrange(attribute.value.count("#Lang")):
-							if temp[i] in self.__object.languages[managers.request_manager.get_request().application().default_language]:
-								attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[managers.request_manager.get_request().application().default_language][temp[i]])	
-					else:
-						for i in xrange(attribute.value.count("#Lang")):
-							if temp[i] in self.__object.languages[obsolete_request.session["vdom_current_language"]]:
-								attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[obsolete_request.session["vdom_current_language"]][temp[i]])			
+			if attribute.value.count("#Lang") != 0:
+				temp = self.test4lang(attribute.value)
+				if obsolete_request.session["vdom_current_language"] not in self.__object.languages:
+					for i in xrange(attribute.value.count("#Lang")):
+						if temp[i] in self.__object.languages[managers.request_manager.get_request().application().default_language]:
+							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[managers.request_manager.get_request().application().default_language][temp[i]])	
+				else:
+					for i in xrange(attribute.value.count("#Lang")):
+						if temp[i] in self.__object.languages[obsolete_request.session["vdom_current_language"]]:
+							attribute_value = attribute.value.replace('#Lang('+temp[i]+')',self.__object.languages[obsolete_request.session["vdom_current_language"]][temp[i]])			
 
 
 			setattr(self, attribute_value_name%attribute.name, attribute_value)
