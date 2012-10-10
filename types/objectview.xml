@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.49.6720</Version>
+    <Version>1.60.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -245,7 +245,7 @@
       <Name>dynamicloading</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
@@ -1088,19 +1088,6 @@ class DummyAttributes(object):
 
 class DummyObject(object):
 
-	#def __init__(self, vdomclass, name, action_name, context, index):
-	#	self.__original=vdomclass
-	#	self.name=name
-	#	self.id=vdomclass.id
-	#	self.type=vdomclass.type
-	#	try: self.order=vdomclass.attributes["order"].value
-	#	except: self.order=0
-	#	self.dynamic={(action_name, context): vdomclass.type.dynamic}
-	#	self.attributes=DummyAttributes()
-	#	self.actions=vdomclass.actions
-	#	self.types={self.type.id: self.type}
-	#	self.containers={}
-	#	self.libraries={}
 	def __init__(self, vdomclass, name, action_name, context, index):
 		self.__original=vdomclass
 		self.name=name
@@ -1198,6 +1185,22 @@ $j('#%(id)s').liveSortable({
 }
 """
 
+	JS_DYNAMIC = u"""
+	$j("#%(id)s").bind('scrollstop resize', function() {
+		var obj = $j("#%(id)s");
+		var $content = $('>div.ov-content', obj);
+		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
+		if (canLoadContent) {
+			execEventBinded("%(woid)s", 'endscroll', {});
+		}
+		vdom_ov_markShow("%(woid)s");
+	});
+	vdom_ov_markShow("%(woid)s");
+	window.setTimeout('vdom_ov_markShow("%(woid)s")', 2000);
+"""
+
+	JS_DYNAMIC_E2 = u"""<script type="text/javascript">%s</script>""" % JS_DYNAMIC
+
 	JS = u"""<style type='text/css'>
 #%(id)s .loading { background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; }
 #%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
@@ -1230,7 +1233,7 @@ $j(function(){
 	});
 
 	$j("#%(id)s div[dataid]").live('mouseover', function(e){
-		execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid")});
+		execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
 		return false;
 	}).live('mouseout', function(e){
 		execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
@@ -1243,22 +1246,6 @@ $j(function(){
 
 });
 </script>"""
-
-	JS_DYNAMIC = u"""
-	$j("#%(id)s").bind('scrollstop resize', function() {
-		var obj = $j("#%(id)s");
-		var $content = $('>div.ov-content', obj);
-		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
-		if (canLoadContent) {
-			execEventBinded("%(woid)s", 'endscroll', {});
-		}
-		vdom_ov_markShow("%(woid)s");
-	});
-	vdom_ov_markShow("%(woid)s");
-	window.setTimeout('vdom_ov_markShow("%(woid)s")', 2000);
-"""
-
-	JS_DYNAMIC_E2 = u"""<script type="text/javascript">%s</script>""" % JS_DYNAMIC
 
 	JS_INFINITE_SCROLL = u"""
 $j('#%(id)s').infiniteScroll({
@@ -1339,6 +1326,9 @@ if (canLoadContent) {
 				result += u"Invalid vdomclass"
 				return result
 
+			vdomclass_w = source_object.attributes['width'].value
+			vdomclass_h = source_object.attributes['height'].value
+
 			if 'get_attributes' in dir(source_object):
 				source_object_attr = source_object.get_attributes()
 			else:
@@ -1353,22 +1343,13 @@ if (canLoadContent) {
 				obj_data = {}
 
 			if isinstance(obj_data, list):
-				nod = {}
-				for x in obj_data:
-					nod[x] = {}
-				obj_data = nod
+				obj_data = {u"%s" % key: {} for key in obj_data}
 
 			nn = 1
 			nn_first = 1
 			styleforitem = ''
 
 			for index, key in enumerate(obj_data):
-
-				if self.dynamicloading == "1" and not onlydiv:
-					if key not in items:
-						continue
-					else:
-						pass
 
 				# create new object for item container
 
@@ -1431,13 +1412,14 @@ if (canLoadContent) {
 						#tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
 						#result += re.sub('^.*(<div.*dataid=[^>]*>).*(<\/div>)$', '\\1\\2', tmp_res, flags=re.M|re.I|re.S)
 
-						if nn_first == 1:
-							tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
-							re.purge()
-							#z = re.sub("^.*?<div[^>]*?style=[\"\'](.*?)[\'\"]", "\\1", tmp_res, flags=re.M|re.I|re.S)
-							z = re.match("^.*?<div[^>]*?style=[\"\']([^\'^\"]*?)[\'\"]", tmp_res)
-							if z.group(1):
-								styleforitem = z.group(1)
+						#if nn_first == 1:
+						#	tmp_res = managers.engine.render(application.itself, obj, object, "vdom")
+						#	re.purge()
+						#	#z = re.sub("^.*?<div[^>]*?style=[\"\'](.*?)[\'\"]", "\\1", tmp_res, flags=re.M|re.I|re.S)
+						#	z = re.match("^.*?<div[^>]*?style=[\"\']([^\'^\"]*?)[\'\"]", tmp_res)
+						#	if z.group(1):
+						#		styleforitem = z.group(1)
+						styleforitem = u"position:relative;width:%spx;height:%spx;display:block;" % ( vdomclass_w, vdomclass_h )
 
 						result += u'<div class="%(classes)s" dataid="%(id)s" style="%(style)s"></div>' % {
 							"id": item_data_id,
@@ -1469,79 +1451,79 @@ if (canLoadContent) {
 		#itemslimit = int("0%s" % (self.itemslimit).strip())
 		#if itemslimit <= 0: itemslimit = 10
 
-		itemstorender = []
+		itemstorender = {}
 		onlydiv = False
 
-		if self.itemstorender != "":
-			try:
-				itemstorender = json.loads(self.itemstorender)
-			except:
-				itemstorender = []
+		try:
+			itemstorender = json.loads(self.data)
+		except:
+			itemstorender = {}
 
-		if itemstorender == []:
-			try:
-				itemstorender = json.loads(self.data)
-				onlydiv = True
-			except:
-				itemstorender = []
-
-		######## render separate items
-
-		if self.dynamicloading == "1" and request.render_type == "e2vdom":
-			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "e2vdom"'
-
-			if not isinstance(itemstorender, list):
-				newi = []
-				for x in itemstorender:
-					newi.append(x)
-				itemstorender = newi
-
+		if isinstance(itemstorender, list):
+			onlydiv = True
 			if itemstorender == []:
 				itemstorender.append("dummy-item-554f180b-1c2a-6705-3608-87f71366710b")
 
-			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, onlydiv)
+		inner_render = self.do_compile(application.objects.search(self.id), itemstorender, onlydiv)
+
+		if request.render_type == "e2vdom":
+			# render called from action
 
 			tmp_id = u"ov" + str(utils.uuid.uuid4())
 
-			result = u"""
-<noreplace/>
-
-<div id="%(tmp_id)s" style="display:none">%(inner_render)s</div>
-
-<script type='text/javascript'>
+			if onlydiv:   # [] - empty frames: rerender
+				js = u"""
+var x = $j('#%(id)s>div.ov-content');
+$j('>div[dataid]', x).remove();
+var ovtmp = $j('#%(tmp_id)s:last');
+if ($j.trim(ovtmp.html()) != '') {
+	$j(">span.ov-eoi", x).before( $j('>div[dataid]', ovtmp) );
+	vdom_ov_markShow("%(woid)s");
+}
+					""" % {
+						"id":     id,
+						"tmp_id": tmp_id,
+						"woid":   woid
+					}
+			else:         # {} - items with content: render items in empty frames
+				js = u"""
+var ovtmp = $j('#%(tmp_id)s:last');
+if ($j.trim(ovtmp.html()) != '') {
 	var x = $j('#%(id)s>div.ov-content');
-	$j('#%(tmp_id)s>div[dataid]').each(function(){
+	$j('>div[dataid]',ovtmp).each(function(){
 		var i = $j(">div[dataid="+$j(this).attr('dataid')+"]", x);
 		if (i.size() > 0) {
 			i.after($j(this));
 			i.remove();
-		} else {
-			$j(">span.ov-eoi", x).before($j(this));
+			//} else {
+			//	$j(">span.ov-eoi", x).before($j(this));
 		}
+		vdom_ov_markShow("%(woid)s");
 	});
-	vdom_ov_markShow("%(woid)s");
+}
+					""" % {
+						"id":     id,
+						"tmp_id": tmp_id,
+						"woid":   woid
+					}
+
+			result = u"""
+<noreplace/>
+<div id="%(tmp_id)s" style="display:none">%(inner_render)s</div>
+<script type='text/javascript'>
+ 	%(js)s
 </script>
 			""" % {
-				"id": id, "inner_render": inner_render, "tmp_id": tmp_id, "woid": woid
+				"js":           js,
+				"inner_render": inner_render,
+				"id":           id,
+				"tmp_id":       tmp_id,
+				"woid":         woid
 			}
 
 			return VDOM_object.render(self, parent, contents = result)
 
-
-		######## render whole object but only wraps for items
-
 		else:
-			#print '++++++++++++++++++++++++++++++++++++++++++++++++++ render_type == "html"'
-
-			#try:
-			#	itemstorender = json.loads(self.data)
-			#except:
-			#	itemstorender = []
-
-			# render items
-
-			inner_render = self.do_compile(application.objects.search(self.id), itemstorender, self.dynamicloading == "1")
-
 			# initial render objectview
 
 			display = u" display:none; " if self.visible == "0" else u""
@@ -1561,8 +1543,10 @@ if (canLoadContent) {
 
 			style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
 						width: {width}px; overflow: {overflow}; {height}"""\
-					.format(display = display, zind = self.zindex, pos = self.position,
-							top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
+				.format(
+					display = display, zind = self.zindex, pos = self.position,
+					top = self.top, left = self.left, width = self.width,
+					overflow = overflow, height = height)
 
 			classname = u"""class="%s" """ % self.classname if self.classname else u""
 
@@ -1595,12 +1579,8 @@ if (canLoadContent) {
 				js_loading_call = u"%s_ld(t);" % id
 				js_loading = self.JS_LOADING % { "id": id }
 
-			if self.dynamicloading == "1":
-				js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid, "cssc": classname_item }
-				js_dynamic_e2 = self.JS_DYNAMIC_E2 % { "id": id, "woid": woid, "cssc": classname_item }
-			else:
-				js_dynamic = ""
-				js_dynamic_e2 = ""
+			js_dynamic = self.JS_DYNAMIC % { "id": id, "woid": woid, "cssc": classname_item }
+			js_dynamic_e2 = self.JS_DYNAMIC_E2 % { "id": id, "woid": woid, "cssc": classname_item }
 
 			js_drag = self.JS_DRAG % { "id": id, "woid": woid, "class": classname_item } if self.draggable == "1" else ""
 
@@ -1622,11 +1602,23 @@ if (canLoadContent) {
 			else:
 				debug_info = u""
 
-			result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{style_items}<div class='ov-content'>{contents}<span class='ov-eoi' style='display:block;clear:both'></span></div></div>{js}""".format(
+			result = u"""
+				<div {debug_info} id="{id}" style="{style}" {classname}>
+					{style_items}
+					<div class='ov-content'>
+						{contents}
+						<span class='ov-eoi' style='display:block;clear:both'></span>
+					</div>
+				</div>
+				{js}
+				""".format(
 				js = js_dynamic_e2 if request.render_type == "e2vdom" else js,
-				id = id, debug_info = debug_info,
-				style = style.strip(), style_items = style_items.strip(),
-				classname = classname.strip(), contents = inner_render
+						id = id,
+						debug_info = debug_info,
+						style = style.strip(),
+						style_items = style_items.strip(),
+						classname = classname.strip(),
+						contents = inner_render
 			)
 
 			return VDOM_object.render(self, parent, contents=result)
@@ -1647,18 +1639,22 @@ if (canLoadContent) {
 				obj_data = json.loads(self.data, object_pairs_hook = collections.OrderedDict)
 			except:
 				obj_data = {}
+
+			if isinstance(obj_data, list):
+				obj_data = {u"%s" % key: {} for key in obj_data}
+
 			datalen = len(obj_data)
-			nn = 0
-			for key in obj_data:
-				nn += 1
-				item_data_id = key
-				item_data = obj_data[key]
-				b, tail = item_data[:0], item_data
-				while len(tail)>2:
-					b += tail[:2] + "&shy;"
-					tail = tail[2:]
-				data = b + tail
-				html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
+			#nn = 0
+			#for key in obj_data:
+			#	nn += 1
+			#	item_data_id = key
+			#	item_data = obj_data[key]
+			#	b, tail = item_data[:0], item_data
+			#	while len(tail)>2:
+			#		b += tail[:2] + "&shy;"
+			#		tail = tail[2:]
+			#	data = b + tail
+			#	html_items += u"<div><b>{nn}</b> <i>{id}</i><br />{data}</div>".format( nn = nn, id = item_data_id, data = data )
 
 		if self.layout == "1":
 			layout = u"width: 150px;"
@@ -1708,7 +1704,9 @@ if (canLoadContent) {
 						<text textalign="right" fontweight="bold" top="{ttop}" left="{tleft}" color="#aaaaaa">Object View ({len})</text>
 						<htmltext top="2" left="2" width="{hwidth}" height="{hheight}">{html}</htmltext>
 					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex, hierarchy = self.hierarchy, order = self.order,
+				""".format(
+						id = self.id, vis = self.visible, zind = self.zindex,
+						hierarchy = self.hierarchy, order = self.order,
 						top = self.top, left = self.left, width = self.width, height = self.height,
 						contents = "" #contents
 						,tleft   = int(self.width) - 130
@@ -1779,13 +1777,22 @@ function vdom_ov_inDiv(w0, s){
 }
 
 function vdom_ov_markShow(i) {
-	q = '>div.ov-content>div[dataid]';
+	var q = '>div.ov-content>div[dataid]';
 	var a = [], z = vdom_ov_inDiv('#o_'+i, q);
 	if (z.size() > 0) {
 		z.each(function(){
 			a.push($j(this).attr('dataid'));
 		});
-		execEventBinded(i, "itemsrequest", {idlist: a});
+		//execEventBinded(i, "itemsrequest", {idlist: a});
+		var
+			d = $j('#o_'+i),
+			dx = parseInt(d.data('markshow'), 10);
+		if (dx > 2) {
+			d.data('markshow', 0);
+		} else {
+			execEventBinded(i, "itemsrequest", {idlist: a});
+			d.data('markshow', dx + 1);
+		}
 	}
 }
 
@@ -1874,6 +1881,12 @@ function vdom_ov_makeDiv(i, o) {
             <Parameter Name="id" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
+        <Event Name="mouseover" Help="#Lang(518)">
+          <Parameters>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
         <Event Name="itemmouseover" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(905)"/>
@@ -1940,7 +1953,9 @@ for (var x in items) {
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="refresh">
-          <Parameters/>
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
           <SourceCode><![CDATA[
 var o=this.domCont;
 $j('>div.ov-content>div[dataid]',o).remove();
