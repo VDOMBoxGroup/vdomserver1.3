@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.60.6720</Version>
+    <Version>1.62.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -244,7 +244,7 @@
     <Attribute>
       <Name>dynamicloading</Name>
       <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
@@ -1471,8 +1471,25 @@ if (canLoadContent) {
 
 			tmp_id = u"ov" + str(utils.uuid.uuid4())
 
-			if onlydiv:   # [] - empty frames: rerender
-				js = u"""
+			if self.dynamicloading == "0":  # in order to save compatibility with older version
+
+					js = u"""
+var x = $j('#%(id)s>div.ov-content');
+$j('>div[dataid]', x).remove();
+var ovtmp = $j('#%(tmp_id)s:last');
+if ($j.trim(ovtmp.html()) != '') {
+	$j(">span.ov-eoi", x).before( $j('>div[dataid]', ovtmp) );
+}
+						""" % {
+							"id":     id,
+							"tmp_id": tmp_id,
+							"woid":   woid
+						}
+
+			else:
+
+				if onlydiv:   # [] - empty frames: rerender
+					js = u"""
 var x = $j('#%(id)s>div.ov-content');
 $j('>div[dataid]', x).remove();
 var ovtmp = $j('#%(tmp_id)s:last');
@@ -1480,13 +1497,13 @@ if ($j.trim(ovtmp.html()) != '') {
 	$j(">span.ov-eoi", x).before( $j('>div[dataid]', ovtmp) );
 	vdom_ov_markShow("%(woid)s");
 }
-					""" % {
-						"id":     id,
-						"tmp_id": tmp_id,
-						"woid":   woid
-					}
-			else:         # {} - items with content: render items in empty frames
-				js = u"""
+						""" % {
+							"id":     id,
+							"tmp_id": tmp_id,
+							"woid":   woid
+						}
+				else:         # {} - items with content: render items in empty frames
+					js = u"""
 var ovtmp = $j('#%(tmp_id)s:last');
 if ($j.trim(ovtmp.html()) != '') {
 	var x = $j('#%(id)s>div.ov-content');
@@ -1501,11 +1518,11 @@ if ($j.trim(ovtmp.html()) != '') {
 		vdom_ov_markShow("%(woid)s");
 	});
 }
-					""" % {
-						"id":     id,
-						"tmp_id": tmp_id,
-						"woid":   woid
-					}
+						""" % {
+							"id":     id,
+							"tmp_id": tmp_id,
+							"woid":   woid
+						}
 
 			result = u"""
 <noreplace/>
@@ -1943,7 +1960,7 @@ vdom_ui_show(this.domCont, fade);
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="showItems">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 $j('>div.ov-content>div[dataid]',this.domCont).hide(0);
@@ -1961,6 +1978,20 @@ var o=this.domCont;
 $j('>div.ov-content>div[dataid]',o).remove();
 execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
 /*vdom_ov_markShow(o.id.substring(2, o.id.length));*/
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="sortItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectToggle">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
