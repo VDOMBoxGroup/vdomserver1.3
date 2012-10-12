@@ -82,6 +82,8 @@ def run(request):
 	smtpaddr = ""
 	smtpport = ""
 	smtplogin = ""
+	smtpsender = ""
+	smtpoverssl = ""
 
 	if "smtpaddr" in args and "smtpport" in args and "" != args["smtpport"][0] and "smtplogin" in args:
 		try:
@@ -92,8 +94,17 @@ def run(request):
 			cf.set_opt_sync("SMTP-SERVER-ADDRESS", smtpaddr)
 			cf.set_opt_sync("SMTP-SERVER-PORT", int(smtpport))
 			cf.set_opt_sync("SMTP-SERVER-USER", smtplogin)
+			if "smtpsender" in args:
+				smtpsender = args["smtpsender"][0]
+				cf.set_opt_sync("SMTP-SERVER-SENDER", smtpsender)
+			
+			smtpoverssl = True if "usessl" in args else False
+			cf.set_opt_sync("SMTP-OVER-SSL", smtpoverssl)
+				
+				
 		except Exception, e:
 			error += "Error: " + str(e) + "<br>\n"
+		
 
 	if "smtppassword" in args:
 		try:
@@ -113,6 +124,15 @@ def run(request):
 	smtplogin = cf.get_opt("SMTP-SERVER-USER")
 	if None == smtplogin:
 		smtplogin = ""
+		
+	smtpsender = cf.get_opt("SMTP-SERVER-SENDER")
+	if None == smtpsender:
+		smtpsender = ""
+	smtpoverssl = cf.get_opt("SMTP-OVER-SSL")
+	if not smtpoverssl:
+		smtpoverssl = ""
+	elif True == smtpoverssl:
+		smtpoverssl = 'checked="checked"'
 
 	proxyaddr, proxyport, proxylogin, proxypass = ("", "", "", "")
 	
@@ -226,12 +246,24 @@ a:visited {
           <td><input type="text" name="smtplogin" value="%s"/>
           </td>
 	</tr>
+	<tr>
+          <td class="Style2"><div align="right">SMTP sender : 
+          </div></td>
+          <td><input type="text" name="smtpsender" value="%s"/>
+          </td>
+	</tr>
+	<tr>
+          <td class="Style2"><div align="right">use ssl : 
+          </div></td>
+          <td><input type="checkbox" name="usessl" %s />
+          </td>
+	</tr>
         <tr>
           <td>&nbsp;</td>
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
         </tr>
     </table>
-</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, the_hostname, smtpaddr, smtpport, smtplogin))
+</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, the_hostname, smtpaddr, smtpport, smtplogin, smtpsender, smtpoverssl))
 
 	request.write("""<form method="post" action="">
       <table border="0"><tr>

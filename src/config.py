@@ -88,6 +88,8 @@ VDOM_CONFIG_1 = {
 	"SMTP-SERVER-PORT"			: 25,
 	"SMTP-SERVER-USER"			: "",
 	"SMTP-SERVER-PASSWORD"			: "",
+        "SMTP-SERVER-SENDER"                    : "",
+        "SMTP-OVER-SSL"                         : False,
 
 	# security
 	"ROOT-PASSWORD"				: "root",
