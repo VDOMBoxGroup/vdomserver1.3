@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.22.6720</Version>
+    <Version>1.23.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, form</Containers>
@@ -1128,34 +1128,50 @@ position: relative;
 		### debug info
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='smartfolder' objname='%s' ver='2012-03-06'" % self.name
+			debug_info = u"objtype='smartfolder' objname='%s' ver='%s'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
 		### out
 
-		result = u"""{css}<div {debug_info} id="{id}" style="{style}"><div class="title"></div><div class="info"><form class="metafields"></form>
-		<a class="btn-edit" href="#"></a><a class="btn-add" href="#"></a>
-		<a class="btn-save" style='display:none' href="#"></a><a class="btn-cancel" style='display:none' href="#"></a>
-		</div><div class='items'>{contents}</div><div class='pages'></div><div class='sf-disabled' style='display:none'></div></div>{js}{testhtml}"""\
-			.format( debug_info = debug_info, id = id, style = style, js = js, css = css, testhtml = testhtml, toolbar = toolbar, contents = contents )
+		result = u"""
+			{css}
+			<div {debug_info} {classname} id="{id}" style="{style}">
+				<div class="title"></div>
+				<div class="info">
+					<form class="metafields"></form>
+					<a class="btn-edit" href="#"></a><a class="btn-add" href="#"></a>
+					<a class="btn-save" style='display:none' href="#"></a><a class="btn-cancel" style='display:none' href="#"></a>
+				</div>
+				<div class='items'>{contents}</div>
+				<div class='pages'></div>
+				<div class='sf-disabled' style='display:none'></div>
+			</div>
+			{js}
+			{testhtml}
+			""".format(
+					debug_info = debug_info, id = id, style = style, js = js, css = css, classname = classname,
+					testhtml = testhtml, toolbar = toolbar, contents = contents
+				)
 
 		return VDOM_object.render(self, parent, contents=result)
 
 
-	def wysiwyg(self, parent, contents=""):
+	def wysiwyg(self, parent, contents = ""):
 
-		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-							top="{top}" left="{left}" width="{width}" height="{height}">
-						<svg>
-							<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff" stroke="#cccccc" stroke-width="3" />
-						</svg>
-						{contents}
-					</container>
-				""".format( id = self.id, vis = self.visible, zind = self.zindex, 
-							hierarchy = self.hierarchy, order = self.order,
-							top = self.top, left = self.left, width = self.width, height = self.height,
-							contents = contents)
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+					top="{top}" left="{left}" width="{width}" height="{height}">
+					<svg>
+						<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff" stroke="#cccccc" stroke-width="3" />
+					</svg>
+					{contents}
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order,
+					top = self.top, left = self.left, width = self.width, height = self.height,
+					contents = contents)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
