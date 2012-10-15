@@ -10,14 +10,14 @@
     <EditorIcon>#Res(53013121-5dc7-9d18-0d57-dbb308819b5e)</EditorIcon>
     <StructureIcon>#Res(e5d7633d-36d5-41ac-2408-92ec4617ad1e)</StructureIcon>
     <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
+    <Resizable>0</Resizable>
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.7.6720</Version>
+    <Version>1.37.8507</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>2</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell</Containers>
+    <Containers>htmlcontainer,dialog,container,tablecell</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers/>
     <RemoteMethods/>
@@ -454,17 +454,23 @@ class VDOM_time(VDOM_object):
 				jstartscript = """vdom_ui_timerStartOnce("%s", %s);""" % ( oid, self.interval )
 			else:
 				jstartscript = """vdom_ui_timerStart2("%s", %s);""" % ( oid, self.interval )
-			jstart = """<script language='javascript' type='text/javascript'> jQuery(function($){ $(function($){ %s }); }); </script>""" % ( jstartscript )
+			jstart = """<script language='javascript' type='text/javascript'> $j(function(){ $j(function(){ %s }); }); </script>""" % ( jstartscript )
 		else:
 			jstart = ''
 		result += """<div id="%s" style="display:none">%s</div>""" % ( oid, jstart )
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		result = """<container id="%s" visible="0" hierarchy="%s" order="%s" top="%s" left="%s" width="42" height="42"><svg><circle cx="20" cy="20" r="19" fill="#ffffff" stroke="#777777" stroke-dasharray="null"/><line x1="20" y1="2" x2="20" y2="19" stroke="#000000" stroke-width="2" stroke-dasharray="null" fill="none"/><line x1="20" y1="19" x2="30" y2="13" stroke="#000000" stroke-width="2" stroke-dasharray="null" fill="none"/><line x1="2" y1="19" x2="6" y2="19" stroke="#000000" stroke-width="2" stroke-dasharray="null" fill="none"/><line x1="34" y1="19" x2="38" y2="19" stroke="#000000" stroke-width="2" stroke-dasharray="null" fill="none"/><line x1="20" y1="34" x2="20" y2="38" stroke="#000000" stroke-width="2" stroke-dasharray="null" fill="none"/></svg>%s</container>"""%(self.id, self.hierarchy, self.order, self.top, self.left, contents)
-		return VDOM_object.wysiwyg(self, parent, contents=result)
-
-	]]></SourceCode>
+		import utils.wysiwyg
+		
+		self.zindex = "0"
+		self.width = "50"
+		self.height = "50"
+		
+		image_id = "309f7d7b-b8d7-eb70-46a6-9abbb0ae0cc4"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id, 0.4)
+		
+		return VDOM_object.wysiwyg(self, parent, contents=result)]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[
 <script language='javascript' type='text/javascript'>
@@ -477,8 +483,6 @@ function vdom_ui_timerStartOnce(ob, interval)
 	obj.timerfreeze = 0;
 	$q(obj).oneTime(interval, function(i){
 		if (parseInt(obj.timerfreeze,10) == 0) {
-//console.info('vdom_ui_timerStartOnce');
-//console.info(ob);
 			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
 /*
 			var vdomEvent = new VDOM_Event();
@@ -499,7 +503,6 @@ function vdom_ui_timerStart2(ob, interval)
 	obj.timerfreeze = 0;
 	$q(obj).everyTime(interval, function(i){
 		if (parseInt(obj.timerfreeze,10) == 0) {
-//console.info('vdom_ui_timerStart2');
 			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
 		}
 	});
