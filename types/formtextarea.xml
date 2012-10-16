@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.18.6200</Version>
+    <Version>1.19.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
@@ -538,8 +538,8 @@ class VDOM_formtextarea(VDOM_object):
 		result = \
 			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
 						top="{top}" left="{left}" width="{width}" height="{height}" >
-					<htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden">
-						<textarea style="width: {width}px; height: {height}px;  font: 14px tahoma; padding: 2px 5px;">
+					<htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden" blendMode="normal">
+						<textarea style="width: {width}px; height: {height}px; background-color:#ffffff; font: 14px tahoma; padding: 2px 5px;">
 							{value}
 						</textarea>
 					</htmltext>
