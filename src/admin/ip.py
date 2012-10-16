@@ -83,7 +83,7 @@ def run(request):
 	smtpport = ""
 	smtplogin = ""
 	smtpsender = ""
-	smtpoverssl = ""
+	smtpoverssl = 0
 
 	if "smtpaddr" in args and "smtpport" in args and "" != args["smtpport"][0] and "smtplogin" in args:
 		try:
@@ -98,10 +98,17 @@ def run(request):
 				smtpsender = args["smtpsender"][0]
 				cf.set_opt_sync("SMTP-SERVER-SENDER", smtpsender)
 			
-			smtpoverssl = True if "usessl" in args else False
-			cf.set_opt_sync("SMTP-OVER-SSL", smtpoverssl)
+			if "use_ssl" in args:
+				if args["use_ssl"][0] == "ssl": smtpoverssl = 1
+				elif args["use_ssl"][0] == "tls": smtpoverssl = 2
+				else: smtpoverssl = 0
+				cf.set_opt_sync("SMTP-OVER-SSL", smtpoverssl)
 				
-				
+			err_msg = managers.email_manager.check_connection()
+			if err_msg:
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(err_msg))
+			else:
+				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="SMTP Connection is OK";</script>')
 		except Exception, e:
 			error += "Error: " + str(e) + "<br>\n"
 		
@@ -114,6 +121,10 @@ def run(request):
 		except Exception, e:
 			error += "Error: " + str(e) + "<br>\n"
 
+	nosll = ""
+	usessl = ""	
+	usetls = ""
+	
 	cf = VDOM_config()
 	smtpaddr = cf.get_opt("SMTP-SERVER-ADDRESS")
 	if None == smtpaddr:
@@ -130,9 +141,11 @@ def run(request):
 		smtpsender = ""
 	smtpoverssl = cf.get_opt("SMTP-OVER-SSL")
 	if not smtpoverssl:
-		smtpoverssl = ""
-	elif True == smtpoverssl:
-		smtpoverssl = 'checked="checked"'
+		nosll = 'checked="checked"'
+	elif 1 == smtpoverssl:
+		usessl = 'checked="checked"'
+	elif 2 == smtpoverssl:
+		usetls = 'checked="checked"'
 
 	proxyaddr, proxyport, proxylogin, proxypass = ("", "", "", "")
 	
@@ -253,9 +266,21 @@ a:visited {
           </td>
 	</tr>
 	<tr>
-          <td class="Style2"><div align="right">use ssl : 
+          <td class="Style2"><div align="right">No secure connection : 
           </div></td>
-          <td><input type="checkbox" name="usessl" %s />
+          <td><input type="radio" name="use_ssl" value="nossl" %s />
+          </td>
+	</tr>
+	<tr>
+          <td class="Style2"><div align="right">Use SSLv23 : 
+          </div></td>
+          <td><input type="radio" name="use_ssl" value="ssl" %s />
+          </td>
+	</tr>
+	<tr>
+          <td class="Style2"><div align="right">Use TLS : 
+          </div></td>
+          <td><input type="radio" name="use_ssl" value="tls" %s />
           </td>
 	</tr>
         <tr>
@@ -263,7 +288,7 @@ a:visited {
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
         </tr>
     </table>
-</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, the_hostname, smtpaddr, smtpport, smtplogin, smtpsender, smtpoverssl))
+</form>""" % (error, the_ip, the_mask, the_gate, the_pdns, the_sdns, the_hostname, smtpaddr, smtpport, smtplogin, smtpsender, nosll, usessl, usetls))
 
 	request.write("""<form method="post" action="">
       <table border="0"><tr>
