@@ -1,29 +1,42 @@
 import thread, time, email, email.generator, copy
-from smtplib import SMTP,SMTPConnectError,SMTPHeloError,SMTPAuthenticationError,SMTPException,SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError
-from socket import error as socket_error
+from smtplib import SMTP,SMTP_SSL,SMTPConnectError,SMTPHeloError,SMTPAuthenticationError,SMTPException,SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError,SSLFakeFile
+from socket import create_connection, error as socket_error
+from ssl import PROTOCOL_SSLv23, PROTOCOL_SSLv3, PROTOCOL_TLSv1, wrap_socket
 from email import encoders
 from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
-
+from collections import namedtuple
 from utils.semaphore import VDOM_semaphore
 from storage.storage import VDOM_config
 import managers
 from daemon import VDOM_mailer
 
-
+MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 class VDOM_SMTP(SMTP):
-
+	
 	def __init__(self, host = '', port = 0, local_hostname = None):
 		cf = VDOM_config()
 		self.tout = cf.get_opt("SMTP-SENDMAIL-TIMEOUT")
 		if None == self.tout: self.tout = 30.0
 		self.tout = float(self.tout)
+		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
+		if None == self.use_ssl: self.use_ssl = 0
 		SMTP.__init__(self, host = '', port = 0, local_hostname = None)
 
 	def getreply(self):
 		self.sock.settimeout(self.tout)
 		return SMTP.getreply(self)
+	
+	def _get_socket(self, host, port, timeout):
+		new_socket = create_connection((host, port), timeout)
+		if self.use_ssl != 0:
+			ssl_version = PROTOCOL_SSLv23 if self.use_ssl == 1 else PROTOCOL_TLSv1
+			new_socket = wrap_socket(new_socket, ssl_version=ssl_version)
+			self.file = SSLFakeFile(new_socket)
+		return new_socket
+
+
 
 class MIME_VDOM(MIMENonMultipart):
 
@@ -55,6 +68,10 @@ class VDOM_email_manager(object):
 		if None == self.smtp_user: self.smtp_user = ""
 		self.smtp_pass = cf.get_opt("SMTP-SERVER-PASSWORD")
 		if None == self.smtp_pass: self.smtp_pass = ""
+		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
+		if None == self.use_ssl: self.use_ssl = 0
+		self.smtp_sender = cf.get_opt("SMTP-SERVER-SENDER")
+		if None == self.smtp_sender: self.smtp_sender = ""
 		try:
 			self.smtp_port = int(self.smtp_port)
 		except:
@@ -66,6 +83,7 @@ class VDOM_email_manager(object):
 			return None
 		self.__sem.lock()
 		x = self.__id
+		if not fr: fr = self.smtp_sender
 		m = {"from": fr, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
 		if reply:
 			m['reply-to'] = reply
@@ -83,6 +101,36 @@ class VDOM_email_manager(object):
 		self.__sem.unlock()
 		return x
 
+	def check_connection(self):
+		self.__sem.lock()
+		try:		
+			self.__load_config()
+			s = VDOM_SMTP()
+			#connecting
+			s.connect(self.smtp_server, self.smtp_port)
+			self.__error = ""
+			#authentification
+			if "" != self.smtp_user:
+				s.login(self.smtp_user, self.smtp_pass)
+				self.__error = ""
+			s.quit()
+			del s		
+		except (SMTPConnectError,SMTPHeloError,socket_error) as e: #Connect error
+			debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
+			self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
+			managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (str(e),self.smtp_server, self.smtp_port), "email")
+		except SMTPAuthenticationError as e:
+			#debug("Authentication error: %s" % str(e))
+			self.__error = "SMTP Authentication error: %s" % str(e)
+			managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")		
+		except SMTPException, e:
+			self.__error = "General SMTP error: %s" % str(e)
+		except Exception, e:
+			self.__error = "Unknown error: %s" % str(e)
+		finally:
+			self.__sem.unlock()
+		return self.status()
+			
 	def cancel(self, _id):
 		"""cancel email if it has not been sent, return True if email has been successfully cancelled"""
 		x = False
@@ -128,6 +176,7 @@ class VDOM_email_manager(object):
 					self.__load_config()
 					if not self.smtp_server:
 						raise SMTPConnectError(0,"No server adress in config")
+					VDOM_SMTP = get_smtp_class(self.use_ssl)
 					s = VDOM_SMTP()
 					#connecting
 					s.connect(self.smtp_server, self.smtp_port)
