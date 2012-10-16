@@ -32,7 +32,7 @@ class VDOM_SMTP(SMTP):
 		new_socket = create_connection((host, port), timeout)
 		if self.use_ssl != 0:
 			ssl_version = PROTOCOL_SSLv23 if self.use_ssl == 1 else PROTOCOL_TLSv1
-			new_socket = wrap_socket(new_socket, ssl_version=ssl_version)
+			new_socket = wrap_socket(new_socket, ssl_version=ssl_version, ciphers="ALL")
 			self.file = SSLFakeFile(new_socket)
 		return new_socket
 
