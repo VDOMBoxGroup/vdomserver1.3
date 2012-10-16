@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.9.6720</Version>
+    <Version>1.10.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -504,12 +504,8 @@ class VDOM_growl(VDOM_object):
 			title = unicode(self.title).strip().replace('"', '&quot;')
 			text = unicode(self.text).strip().replace('"', '&quot;')
 			if title != '' and text != '':
-				#res += "<span class='growls' style='display:none'><span>%s</span><div>%s</div></span>"%(self.title, self.text)
-				res = u"""<script type="text/javascript">
-jQuery(function($){
-	$.gritter.add({title:"%(title)s",text:"%(text)s",sticky:false,time:'',class_name:"%(vstyle)s"});
-});
-</script>""" % { "vstyle": vstyle, "title": title , "text": text }
+				res += "<span class='growls' style='display:none' vstyle='%s'><span>%s</span><div>%s</div></span>" % ( vstyle, title, text )
+				#res += u"""<script type="text/javascript">$j(function(){ $j.gritter.add({title:"%(title)s",text:"%(text)s",sticky:false,time:'',class_name:"%(vstyle)s"}); });</script>""" % { "vstyle": vstyle, "title": title , "text": text }
 
 		return res
 
@@ -537,12 +533,10 @@ jQuery(function($){
 			$.gritter.add({'title':t,'text':m,'sticky':false,'time':''});
 		}
 	}
-	/*
 	$('span.growls').each(function(){
 		var t=$.trim($('>span',this).html()), m=$.trim($('>div',this).html());
 		if (t!='' && m!='' && $.growl) $.growl(t,m);
 	});
-	*/
 });
 </script>
 
