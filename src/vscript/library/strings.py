@@ -1,7 +1,7 @@
 
 import datetime, re
 from .. import errors
-from ..subtypes import v_null, array, integer, string
+from ..subtypes import v_null, array, integer, string, empty
 
 
 def ireplace(s1, s2, s3, count=0):
@@ -121,7 +121,7 @@ def v_space(number):
 	return string(u" "*number)
 
 def v_string(number, character):
-	number, character=number.as_string, character.as_simple
+	number, character=number.as_integer, character.as_simple
 	if character is v_null: return v_null
 	if isinstance(character, (integer, empty)):
 		try: return string(unichr(character)*number)
