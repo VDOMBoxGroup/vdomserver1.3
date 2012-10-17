@@ -1,12 +1,13 @@
 """database object"""
-import managers, file_access
-import utils.uuid
 import sqlite3
 import re
 from xml.dom import Node
 from xml.dom.minidom import parse, parseString
+from StringIO import StringIO
+import managers, file_access
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
+import utils.uuid
 
 class VDOM_database_object:
 	"""database object class"""
@@ -619,25 +620,26 @@ class VDOM_sql_query:
 		return allrows
 	
 	def fetchall_xml(self):
-		result = u"<queryresult>\n"
-		result += "\t<table>\n"
-		result += "\t\t<header>\n"
+		result = StringIO()
+		result.write(u"<queryresult>\n")
+		result.write("\t<table>\n")
+		result.write("\t\t<header>\n")
 		for header in self.headers:
-			result +="\t\t\t<column id=\"\" name=\"%s\"/>\n"%header.decode("UTF-8")
-		result += "\t\t</header>\n"
-		result += "\t\t<data>\n"
+			result.write("\t\t\t<column id=\"\" name=\"%s\"/>\n"%header.decode("UTF-8"))
+		result.write("\t\t</header>\n")
+		result.write("\t\t<data>\n")
 		for row in self.__cur:
-			result += "\t\t\t<row>\n"
+			result.write("\t\t\t<row>\n")
 			for column in self.headers:
 				data = row[column]
 				if data == None or data == "None":
 					data = "NULL"
-				result +="\t\t\t\t<cell><![CDATA[%s]]></cell>\n"%data
-			result += "\t\t\t</row>\n"
-		result += "\t\t</data>\n"
-		result += "\t</table>\n"
-		result += "</queryresult>"
-		return result
+				result.write("\t\t\t\t<cell><![CDATA[%s]]></cell>\n"%unicode(data).encode("xml"))
+			result.write("\t\t\t</row>\n")
+		result.write("\t\t</data>\n")
+		result.write("\t</table>\n")
+		result.write("</queryresult>")
+		return result.getvalue()
 	
 	
 	
