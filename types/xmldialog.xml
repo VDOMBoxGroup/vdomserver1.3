@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.52.6720</Version>
+    <Version>1.55.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -326,6 +326,8 @@ class VDOM_xmldialog(VDOM_object):
 					#print "tagName  : %s" % e.localName
 
 					attr_id = e.getAttribute("id").replace('"', '&quot;')
+					disa = u"disabled='disabled'" if int("0%s" % e.getAttribute("disabled").strip()) == 1 else u""
+					ro = u"readonly='readonly'" if int("0%s" % e.getAttribute("readonly").strip()) == 1 else u""
 
 					if e.localName == 'Heading':
 						res = self.get_prop(e)
@@ -333,12 +335,12 @@ class VDOM_xmldialog(VDOM_object):
 
 					elif e.localName == 'TextBox':
 						res = self.get_prop(e)
-						htm = u"<input type='text' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
+						htm = u"<input type='text' name=\"%s\" value=\"%s\" %s %s />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;'), disa, ro );
 						data += self.the_item('textbox', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Password':
 						res = self.get_prop(e)
-						htm = u"<input type='password' name=\"%s\" value=\"%s\" />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;') );
+						htm = u"<input type='password' name=\"%s\" value=\"%s\" %s %s />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;'), disa, ro );
 						data += self.the_item('password', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'DropDown':
@@ -360,7 +362,7 @@ class VDOM_xmldialog(VDOM_object):
 						multi = ""
 						if len(sa) > 1 or lmult == 1:
 							multi = "multiple='multiple'"
-						htm = u"<select name=\"%s\" %s %s>%s</select>" % ( attr_id, lines, multi, htm );
+						htm = u"<select name=\"%s\" %s %s %s>%s</select>" % ( attr_id, lines, multi, disa, htm );
 						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'RadioButton':
@@ -373,7 +375,7 @@ class VDOM_xmldialog(VDOM_object):
 						for ik, iv in self.get_options(e).items():
 							sel = 'checked="checked"' if ik == sa else ''
 							#htm += u"<label><input autocomplete='off' type='radio' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
-							htm += u"<label><input autocomplete='off' type='radio' name=\"%s\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), sel, iv );
+							htm += u"<label><input autocomplete='off' type='radio' name=\"%s\" %s %s />&nbsp;%s</label>" % ( e.getAttribute("id"), sel, disa, iv );
 						data += self.the_item('radio', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'CheckBox':
@@ -387,17 +389,17 @@ class VDOM_xmldialog(VDOM_object):
 						sa = [ s.strip() for s in sa ]
 						for ik, iv in self.get_options(e).items():
 							sel = 'checked="checked"' if ik in sa else ''
-							htm += u"<label><input autocomplete='off' type='checkbox' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
+							htm += u"<label><input autocomplete='off' type='checkbox' name=\"%s[%s]\" %s %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, disa, iv );
 						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Upload':
 						res = self.get_prop(e)
-						htm = u"<input type='file' name=\"%s\" />" % ( attr_id );
+						htm = u"<input type='file' name=\"%s\" %s />" % ( attr_id, disa );
 						data += self.the_item('upload', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'TextArea':
 						res = self.get_prop(e)
-						htm = u"<textarea name=\"%s\">%s</textarea>" % ( attr_id, self.the_prop(res, 'defaultValue') );
+						htm = u"<textarea name=\"%s\" %s>%s</textarea>" % ( attr_id, disa, self.the_prop(res, 'defaultValue') );
 						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Hypertext':
@@ -413,7 +415,7 @@ class VDOM_xmldialog(VDOM_object):
 						visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
 						align = self.the_prop(res, 'buttonAlign').strip().replace("'",'&acute;')
 						img = self.the_prop(res, 'buttonImage').strip().replace("'",'&acute;')
-						btn = u"<input type='submit' value='%s' />" % label if img == '' else u"<input type='image' alt='%s' title='%s' src='%s' />" % (label, label, img)
+						btn = u"<input type='submit' value='%s' %s />" % ( label, disa ) if img == '' else u"<input type='image' alt='%s' title='%s' src='%s' %s />" % (label, label, img, disa)
 						data += u"<div class='row' %s><div class='submit' style='text-align:%s'>%s</div></div>" % (visible, align, btn)
 
 			#data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
@@ -585,19 +587,28 @@ function vdom_xd_load(id,xd){
 	w.html('');
 	var nobtn = true;
 	x.find("VDOMFormContainer>Components>*").each(function(){
-		var t = $q(this), t0 = this, opts, s, sa, da, dis, sel;
+		var t = $q(this), t0 = this, opts, s, sa, da, dis, sel, ro, disa;
 
 		if (t0.tagName == 'Heading') {
 			data.push("<h3>"+t.find('Property[name=text]').text()+"</h3>");
 		}
 		else if (t0.tagName == 'TextBox') {
-			//data.push(dodiv('textbox',"<label>"+t.find('Property[name=label]').text()+"</label> <input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
-			data.push(dodiv('textbox', t.find('Property[name=label]').text(), "<input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
+			var ro = parseInt(t.attr('readonly') || '0', 10);
+			ro = (ro == 1) ? "readonly='readonly'" : "";
+			data.push(dodiv('textbox', t.find('Property[name=label]').text(), "<input type='text' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" "+dis+" "+ro+" />", t));
 		}
 		else if (t0.tagName == 'Password') {
-			data.push(dodiv('password', t.find('Property[name=label]').text(), "<input type='password' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" />", t));
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
+			var ro = parseInt(t.attr('readonly') || '0', 10);
+			ro = (ro == 1) ? "readonly='readonly'" : "";
+			data.push(dodiv('password', t.find('Property[name=label]').text(), "<input type='password' name=\""+t.attr('id')+"\" value=\""+t.find('Property[name=defaultValue]').text().replace('"','&quot;')+"\" "+dis+" "+ro+" />", t));
 		}
 		else if (t0.tagName == 'DropDown') {
+			var disa = parseInt(t.attr('disabled') || '0', 10);
+			disa = (disa == 1) ? "disabled='disabled'" : "";
 			var lsize = parseInt(t.find("Property[name=rows]").text(), 10);
 			lines = (lsize > 0) ? 'size="'+lsize+'"' : '';
 			var mult = parseInt(t.attr('multiple') || '0', 10);
@@ -610,45 +621,50 @@ function vdom_xd_load(id,xd){
 				s = $(this).text().trim();
 				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'" '+dis+' '+sel+'>'+s+'</option>');
 			});
-			//data.push(dodiv('dropdown',"<label>"+t.find('Property[name=label]').text()+"</label> <select name=\""+t.attr('id')+"\">"+opts.join(' ')+"</select>", t));
-			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+">"+opts.join(' ')+"</select>", t));
+			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+" "+disa+">"+opts.join(' ')+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
 			opts = [], sel = t.attr('selected');
 			t.find("Property[name=options]>option").each(function(){
 				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
-				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" /> "+$(this).text().trim()+"</label>");
+				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" "+dis+" /> "+$(this).text().trim()+"</label>");
 			});
-			//data.push(dodiv('radio',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> "+opts.join(' '), t));
 			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
 		}
 		else if (t0.tagName == 'CheckBox') {
-			//s = !!t.attr('selected') ? 'checked="checked"' : '';
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
 			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
 			t.find("Property[name=options]>option").each(function(){
 				s = ($.inArray($(this).attr('id').trim(), sa) >= 0) ? "checked='checked'" : "";
-				opts.push("<label><input type='checkbox' name=\""+t.attr('id').replace('"','&quot;')+"["+$(this).attr('id')+"]\" "+s+" />&nbsp;"+$(this).text().trim()+"</label>");
+				opts.push("<label><input type='checkbox' name=\""+t.attr('id').replace('"','&quot;')+"["+$(this).attr('id')+"]\" "+s+" "+dis+" />&nbsp;"+$(this).text().trim()+"</label>");
 			});
 			data.push(dodiv('checkbox', t.find('Property[name=label]').text(), opts.join('<br />'), t));
 		}
 		else if (t0.tagName == 'Upload') {
-			//data.push(dodiv('upload',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <input type='file' name=\""+t.attr('id')+"\" />", t));
-			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id').replace('"','&quot;')+"\" />", t));
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
+			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id').replace('"','&quot;')+"\" "+dis+" />", t));
 		}
 		else if (t0.tagName == 'TextArea') {
-			//data.push(dodiv('textarea',"<label class='title'>"+t.find('Property[name=label]').text()+"</label> <textarea name=\""+t.attr('id')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
-			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id').replace('"','&quot;')+"\">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
+			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id').replace('"','&quot;')+"\" "+dis+">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
 		}
 		else if (t0.tagName == 'Hypertext') {
 			data.push(dodiv('hypertext', t.find('Property[name=label]').text(), t.find('Property[name=value]').text(), t));
 		}
 		else if (t0.tagName == 'Button') {
+			var dis = parseInt(t.attr('disabled') || '0', 10);
+			dis = (dis == 1) ? "disabled='disabled'" : "";
 			nobtn = false;
 			var vis = parseInt(t.attr('visible') || '0', 10);
 			var align = t.find('Property[name=buttonAlign]').text().replace("'",'&acute;');
 			var lbl = t.find('Property[name=label]').text().replace("'",'&acute;');
 			var img = $j.trim(t.find('Property[name=buttonImage]').text().replace("'",'&acute;'));
-			var btn = (img == '') ? "<input type='submit' value='"+lbl+"' />" : "<input type='image' alt='"+lbl+"' title='"+lbl+"' src='"+img+"' />";
+			var btn = (img == '') ? "<input type='submit' value='"+lbl+"' />" : "<input type='image' alt='"+lbl+"' title='"+lbl+"' src='"+img+"' "+dis+" />";
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
 			data.push( "<div class='row' "+vis+"><div class='submit' style='text-align:"+align+"'>"+btn+"</div></div>" );
 		}
