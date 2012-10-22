@@ -10,11 +10,11 @@
     <EditorIcon>#Res(c234bf92-9fd4-7269-3534-1308ffc2fc22)</EditorIcon>
     <StructureIcon>#Res(1446fea5-e3c0-3dd8-7566-e0a8cb7f70af)</StructureIcon>
     <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
+    <Resizable>0</Resizable>
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.10.6720</Version>
+    <Version>1.26.8507</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -510,14 +510,15 @@ class VDOM_growl(VDOM_object):
 		return res
 
 	def wysiwyg(self, parent, contents=""):
-		result = \
-			u"<container id=\"%s\" hierarchy=\"%s\" top=\"%s\" left=\"%s\" width=\"90\">"\
-				"<svg>"\
-					"<rect opacity=\"0.5\" x=\"0\" y=\"0\" width=\"80\" height=\"50\" fill=\"#D8C760\" stroke=\"#B1A44F\"/>"\
-				"</svg>"\
-				"<text top=\"2\" left=\"5\" width=\"80\" color=\"#67602E\">Growl msg</text>"\
-			"</container>" % (
-				self.id, self.hierarchy, self.top, self.left)
+		import utils.wysiwyg
+
+		self.zindex = "0"
+		self.width = "50"
+		self.height = "50"
+
+		image_id = "8a8afb53-7cfa-349e-2050-48fdb29a4f8c"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id, 0.4)
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 	]]></SourceCode>
