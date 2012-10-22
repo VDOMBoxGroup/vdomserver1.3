@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.11.1</Version>
+    <Version>2.12.1</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, dialog_2, vdomclass</Containers>
@@ -101,7 +101,7 @@
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>40</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -477,18 +477,13 @@ ka8AAAAASUVORK5CYII=]]></Resource>
 class VDOM_breadcrumbs(VDOM_object):
 
 	def __mk_ref(self, oid, txt):
-		style = ""
-		if self.linkcolor:
-			style = 'style="color: #%s"' % self.linkcolor
-		return "<a href=\"/%s.vdom\" %s>%s</a>" % (oid, style, txt)
 
-	def render(self,parent, contents=""):
-		display = u"display:none;" if self.visible == "0" else u""
-		font = ""
-		mainstyle="z-index: %s;position: %s;top: %spx;left: %spx; width: %spx; overflow: visible;%s"%(self.zindex, self.position, self.top, self.left, self.width, display)
-		mainstyle += " font: %spx %s;" % (self.fontsize, self.fontfamily.replace('"', "'"))
-		if self.textcolor:
-			mainstyle += " color: #%s;" % self.textcolor
+		color_number = self.linkcolor if self.linkcolor else u"000000"
+		style = u""" style="color: #{color_number}" """.format( color_number = color_number )
+
+		return """<a href="/{oid}.vdom" {style}>{text}</a> """.format( oid = oid, style = style, text = txt )
+
+	def get_value (self) :
 		top = application.objects.search(self.id)
 		while top.parent:
 			top = top.parent
@@ -520,49 +515,53 @@ class VDOM_breadcrumbs(VDOM_object):
 		if 0 == len(result): res = top.attributes.title
 		else: res = " &gt; ".join(result)
 
-		id = 'o_' + (self.id).replace('-', '_')
-		
-		out = u"<div id='%s' style='%s'>%s</div>" % (id, mainstyle, res)
+		return res
+
+	def render(self,parent, contents=""):
+		mainstyle = \
+			u"""z-index:{zindex}; position:{position}; top:{top}px; left:{left}px;
+				width:{width}px; overflow:visible; {display}
+				font: {fontsize}px {fontfamily}; color: #{textcolor};
+			""".format(
+					zindex = self.zindex,  position = self.position,
+					hierarchy = self.hierarchy, order = self.order,
+					top = self.top, left = self.left, width = self.width,
+					display = u"display:none;" if self.visible == "0" else u"",
+					fontsize = self.fontsize, fontfamily = self.fontfamily.replace('"', "'"),
+					textcolor = self.textcolor)
+
+		out = u"""<div id="{id}" style="{mainstyle}">{value}</div>""".format(
+			id = 'o_' + (self.id).replace('-', '_'),
+			mainstyle = mainstyle,
+			value = self.get_value())
+
 		return VDOM_object.render(self, parent, contents=out)
 
 	def wysiwyg(self, parent, contents=""):
-		top = application.objects.search(self.id)
-		while top.parent:
-			top = top.parent
-		st = application.structure
-		lvl = 0
-		try:
-			lvl = int(self.level)
-		except: pass
-		if lvl < 0 or lvl > 9:
-			lvl = 0
-		st_lv = None
-		try:
-			st_lv = st[str(lvl)]
-		except: pass
+		style = u""" font: {fontsize}px {fontfamily}; color: #{textcolor}; """.format(
+			fontsize = self.fontsize,
+			fontfamily = self.fontfamily.replace('"', "'"),
+			textcolor=self.textcolor)
 
-		oid = top.id
-		result = []
-		while st_lv:
-			if oid not in st_lv.level_map: break
-			if oid != top.id:
-				result.insert(0, application.objects.search(oid).attributes.title)
-			else:
-				result.insert(0, application.objects.search(oid).attributes.title)
-			if 0 == len(st_lv.level_map[oid].parents): break
-			oid = st_lv.level_map[oid].parents[0].id
-			if oid == top.id: break
+		value = self.get_value()
 
-		res = ""
-		if 0 == len(result): res = top.attributes.title
-		else: res = " &gt; ".join(result)
+		out = u"""<div style="{style}">{value}</div>""".format(value=value, style=style)
 
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-				"<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" fontfamily=\"%s\" fontsize=\"%s\">%s</text>"\
-				"%s</container>"%(
-					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-					0, 0, self.width, self.height, self.fontfamily.replace('"', '').replace("'", ''), self.fontsize, res, 
-					contents)
+		result = \
+			u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}"
+							order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
+					<htmltext width="{width}" locked="true">
+						{out}
+					</htmltext>
+				</container>
+			""".format(
+					id = self.id, visible = self.visible,
+					zindex = self.zindex, hierarchy = self.hierarchy,
+					order = self.order,
+					top = self.top, left = self.left,
+					width = self.width, height = self.height,
+					out = out)
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 	]]></SourceCode>
@@ -577,7 +576,7 @@ class VDOM_breadcrumbs(VDOM_object):
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
@@ -585,7 +584,7 @@ vdom_ui_hide(this.domCont, fade);
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(702)" ScriptName="newZindex" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_moveZindexTo(this.domCont, newZindex);
                     ]]></SourceCode>
         </Action>
@@ -593,7 +592,7 @@ vdom_ui_moveZindexTo(this.domCont, newZindex);
           <Parameters>
             <Parameter DefaultValue="0" Interface="Number(0,9999)" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
