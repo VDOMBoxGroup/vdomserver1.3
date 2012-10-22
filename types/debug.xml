@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.10.6720</Version>
+    <Version>1.18.8388</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell</Containers>
@@ -509,34 +509,49 @@ class VDOM_debug(VDOM_object):
 
 	def render(self, parent, contents=""):
 		if self.visible == "1":
-			style="z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx;background: #EEEEEE;font: 10px tahoma"%(self.zindex, self.position, self.top, self.left, self.width, self.height)
-			innerstyle="margin: 5px"
-			arguments=request.arguments
-			value="<b>ARGUMENTS</b><br>"
+			style = \
+				u"""z-index:{zindex}; position:{position}; top:{top}px; left:{left}px;
+					width:{width}px; height:{height}px; background:#f0f0f0; font:10px tahoma;
+				""".format(
+						zindex = self.zindex, position = self.position,
+						top = self.top, left = self.left,
+						width = self.width, height = self.height)
+
+			innerstyle = u"margin: 5px"
+
+			arguments = request.arguments
+			value = u"<b>ARGUMENTS</b><br/>"
 			for argument in arguments:
-				value+="<b>%s</b>:&nbsp;%s<br>"%(argument, arguments.get(argument,[],list))
+				value += u"<b>{arg}</b>:&nbsp;{arg_value}>".format(
+					arg = argument,
+					arg_value = arguments.get(argument,[],list))
+
 			id = 'o_' + (self.id).replace('-', '_')
-			result="<div id=\"%s\" style=\"%s\"><div style=\"%s\">%s</div></div>"%(id, style, innerstyle, value.decode("utf-8"))
+
+			result = \
+				u"""<div id="{id}" style="{style}">
+						<div style="{innerstyle}">{val}</div>
+					</div>"
+				""".format(
+						id = id,
+						style = style,
+						innerstyle = innerstyle,
+						val = value.decode("utf-8")
+						)
 		else:
-			result=""
+			result = ""
+
 		return VDOM_object.render(self, parent, contents=result)
 
-	def wysiwyg(self, parent, contents=""):
-		label="Debug"
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<text top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\" color=\"#FFFFFF\">%s</text>"\
-					"<svg>"\
-						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-					"</svg>%s"\
-				"</container>"%(
-					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height, 
-					0, 0, self.width, self.height, label, 
-					0, 0, self.width, self.height, 
-					contents)
-					
-		return VDOM_object.wysiwyg(self, parent, contents=result)
+	def wysiwyg(self, parent, contents = ""):
+		import utils.wysiwyg
 
-		]]></SourceCode>
+		image_id = "ad389bd4-68a0-42df-8ac3-886690b67330"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+
+		return VDOM_object.wysiwyg(self, parent, contents = result)
+
+]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
@@ -597,7 +612,7 @@ class VDOM_debug(VDOM_object):
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="data" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery(this.domCont).find('div:first').append(data);
                     ]]></SourceCode>
         </Action>
@@ -605,7 +620,7 @@ jQuery(this.domCont).find('div:first').append(data);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
@@ -613,7 +628,7 @@ vdom_ui_hide(this.domCont, fade);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newZindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 this.domCont.style.zindex = parseInt(newZindex,10);
                     ]]></SourceCode>
         </Action>
@@ -621,7 +636,7 @@ this.domCont.style.zindex = parseInt(newZindex,10);
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="data" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery(this.domCont).find('div:first').html(data);
                     ]]></SourceCode>
         </Action>
@@ -629,7 +644,7 @@ jQuery(this.domCont).find('div:first').html(data);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
         </Action>
