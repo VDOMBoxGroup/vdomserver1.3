@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.55.6720</Version>
+    <Version>1.56.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -311,6 +311,7 @@ class VDOM_xmldialog(VDOM_object):
 		modal = "false" if self.modal == "0" else "true"
 		data = u""
 		data_out = u""
+		dialog_title = self.title
 
 		xd = (self.xmldata).encode('utf8').replace('<!--[CDATA[', '<![CDATA[')
 		xd = xd.replace(']]-->', ']'+']>')
@@ -423,6 +424,13 @@ class VDOM_xmldialog(VDOM_object):
 				data += u"<div class='submit'><input type='submit' /></div>"
 			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s</form>" % data;
 
+			for e in props.childNodes:
+				if e.nodeType == e.ELEMENT_NODE and e.localName == 'Property':
+					if e.getAttribute("name") == 'label':
+						temp_title = e.childNodes[0].nodeValue.strip()
+						if temp_title != "":
+							dialog_title = temp_title
+
 		except Exception as e:
 			debug("[XMLDialog] Error: XML data is not valid")
 			debug(e)
@@ -512,7 +520,7 @@ margin-top: 10px;
 	});
 });</script>""" % {
 			"data": data_out, "id": id, "idn": idn, "width": self.width, "height": self.height,
-			"title": (self.title).replace('"','&quot;'), "show": show, "modal": modal, "debug_info": debug_info }
+			"title": dialog_title.replace('"','&quot;'), "show": show, "modal": modal, "debug_info": debug_info }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -675,6 +683,7 @@ function vdom_xd_load(id,xd){
 		data.push( "<div class='submit'><input type='submit' /></div>" );
 	}
 	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"</form>").dialog('close').dialog('open');
+	w.dialog('option', 'title', x.find("VDOMFormContainer>Properties>Property[name=label]").text() );
 	w.data('ev','1');
 }
 
