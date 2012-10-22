@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.363.8400</Version>
+    <Version>1.365.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -4676,7 +4676,7 @@ class VDOM_codeeditor(VDOM_object):
 
 		display = u"display:none;" if self.visible == "0" else u"display:block;"
 
-		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: visible; position: absolute;
+		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: hidden; position: absolute;
 			width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
 			""".format(zind = self.zindex, top = self.top, left = self.left,
 					width = self.width, height = self.height, display = display)
@@ -4939,6 +4939,12 @@ execEventBinded(id.substring(2, id.length), "getvalue", {value:x});
           </Parameters>
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="refresh">
+          <Parameters/>
+          <SourceCode><![CDATA[
+eval(this.domCont.id+"_codeeditor.refresh();");
 ]]></SourceCode>
         </Action>
       </Container>
