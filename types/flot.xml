@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.11.8477</Version>
+    <Version>1.111.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -2338,19 +2338,14 @@ $j(function(){
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
+		import utils.wysiwyg
 
-		result="<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<svg>"\
-						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#EFEFEF\" fill-opacity=\".5\" />"\
-					"</svg>%s"\
-				"</container>"%(
-					self.id, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-					0, 0, self.width, self.height,
-					contents)
+		image_id = "d3e6612f-b2a2-ee88-7419-af3e7cdc6016"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
-		]]></SourceCode>
+]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
