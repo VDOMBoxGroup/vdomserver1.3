@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.9.6720</Version>
+    <Version>1.106.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,accordeon</Containers>
@@ -569,55 +569,41 @@ import utils
 class VDOM_progressbar(VDOM_object):
 
 	def render(self, parent, contents=""):
-		css1 = "position:absolute;overflow:hidden;position:relative;left:%spx;top:%spx;" % ( self.left, self.top )
-		css2 = "position:absolute;left:0;top:0;"
-		
+		css1 = u" position:absolute; overflow:hidden; position:relative; left:{left}px; top:{top}px; ".format(
+			left = self.left, top = self.top )
+		css2 = u" position:absolute; left:0; top:0; "
+
 		if self.visible == "0":
-			css1 += "display:none;"
+			css1 += u" display:none; "
 
 		image1 = utils.id.id2link1(self.image1)
 		image2 = utils.id.id2link1(self.image2)
 
 		if self.skin == "1":
-			css1 += 'width:250px;height:26px;background:url("/361b54a5-a944-8020-ff02-e5d396cd8d04.res");'
-			css2 += 'height:26px;background:url("/225ef69a-9a1c-e0e8-b240-4174ea3a4881.res");'
+			css1 += u""" width:250px; height:26px; background:url("/361b54a5-a944-8020-ff02-e5d396cd8d04.res"); """
+			css2 += u""" height:26px; background:url("/225ef69a-9a1c-e0e8-b240-4174ea3a4881.res"); """
 		else:
-			css1 += 'width:%spx;height:%spx;background:url("%s");' % ( self.width, self.height, image1 )
-			css2 += 'height:%spx;background:url("%s");' % ( self.height, image2 )
+			css1 += u""" width:{width}px; height:{height}px; background:url("{image}"); """.format(
+				width=self.width, height=self.height, image=image1)
+			css2 += u""" height:{height}px; background:url("{image}"); """.format(
+				height = self.height, image = image2 )
 
-		min = int(self.min)
-		max = int(self.max)
-		val = int(self.value)
-		if max < min:
-			max = min
-		if val < min:
-			val = min
-		if val > max:
-			val = max
-		val = (val * 100) / (max - min)
+		val = self.get_current_value()
 
-		css2 += "width:%s%%;" % ( val )
+		css2 += u" width:{val}%; ".format( val = val )
 
 		id = 'o_' + (self.id).replace('-', '_')
 
-		result = u"""<div id="%(id)s" style='%(css1)s' min="%(min)s" max="%(max)s"><div style='%(css2)s'></div></div>"""%{
-			"id": id, "css1": css1, "css2": css2, "min": min, "max": max }
+		result = \
+			u"""<div id="{id}" style='{css1}' min="{min}" max="{max}">
+					<div style='{css2}'></div>
+				</div>
+			""".format( id = id, css1 = css1, css2 = css2, min = min, max = max)
 
 		return VDOM_object.render(self, parent, contents=result)
 
-	def wysiwyg(self, parent, contents=""):
 
-		image_id1 = self.image1
-		image_id2 = self.image2
-		image_width = outer_width = int(self.width)
-		image_height = outer_height = int(self.height)
-		
-		if "" == image_id1:
-			image_id1 = "361b54a5-a944-8020-ff02-e5d396cd8d04"
-			image_id2 = "225ef69a-9a1c-e0e8-b240-4174ea3a4881"
-			image_width = outer_width = 250
-			image_height = outer_height = 26
-
+	def get_current_value (self) :
 		min = int(self.min)
 		max = int(self.max)
 		val = int(self.value)
@@ -627,19 +613,60 @@ class VDOM_progressbar(VDOM_object):
 			val = min
 		if val > max:
 			val = max
-		val = (val * 100) / (max - min)
-		valw = (int(image_width) * val) / 100
 
-		result="""<container id="%(id)s" visible="%(visible)s" zindex="%(z)s" hierarchy="%(h)s" order="%(o)s" top="%(top)s" left="%(left)s" width="%(width)s" height="%(height)s">
-				<svg>
-					<image x="0" y="0" width="%(width)s" height="%(height)s" href="#Res(%(image1)s)" />
-					<image x="0" y="0" width="%(val)s" height="%(height)s" href="#Res(%(image2)s)" />
-				</svg>
-			</container>"""%{
-				"id": self.id, "visible": self.visible, "z": self.zindex, "h": self.hierarchy, "o": self.order,
-				"top": self.top, "left": self.left, "width": outer_width, "height": outer_height,
-				"image1": image_id1, "image2": image_id2, "val": valw  }
-		
+		if max == min :
+			return 0
+
+		val = (val * 100) / (max - min)
+		return val
+
+
+	def wysiwyg(self, parent, contents = ""):
+
+		image_id1 = "361b54a5-a944-8020-ff02-e5d396cd8d04"
+		image_id2 = "225ef69a-9a1c-e0e8-b240-4174ea3a4881"
+		image_width = 250
+		image_height = 26
+
+		if self.skin == "0":	 # user defined skin
+			if not self.image1 and not self.image2 :
+				import utils.wysiwyg
+
+				image_id = "bf7ae5dc-cdd4-4c4f-9637-c2ecf7eada9d"
+				result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+				return VDOM_object.wysiwyg(self, parent, contents=result)
+			else :
+				image_id1 = self.image1
+				image_id2 = self.image2
+				image_width = int(self.width)
+				image_height = int(self.height)
+
+		progress_image = u""
+		progress_width = (int(image_width) * self.get_current_value()) / 100
+
+		if progress_width>0 :
+			progress_image = \
+				u"""<image x="0" y="0" href="#Res({image2})" repeat="repeat"
+						containerWidth="{width}" containerHeight="{height}"/>
+				""".format( image2 = image_id2, width = progress_width, height = image_height )
+
+		result=\
+			u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" order="{order}"
+					top="{top}" left="{left}" width="{width}" height="{height}">
+					<svg>
+						<image x="0" y="0" href="#Res({image1})"
+							repeat="repeat" containerWidth="{width}" containerHeight="{height}"/>
+						{progress_image}
+					</svg>
+				</container>
+			""".format(
+					id = self.id, visible = self.visible, zindex = self.zindex,
+					hierarchy = self.hierarchy, order = self.order,
+					top = self.top, left = self.left,
+					width = image_width, height = image_height,
+					image1 = image_id1,
+					progress_image = progress_image)
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 		]]></SourceCode>
@@ -703,7 +730,7 @@ class VDOM_progressbar(VDOM_object):
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
@@ -712,7 +739,7 @@ vdom_ui_hide(this.domCont, fade);
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 this.domCont.style.width=parseInt(width,10);
 this.domCont.style.height=parseInt(height,10);
 					]]></SourceCode>
@@ -721,13 +748,13 @@ this.domCont.style.height=parseInt(height,10);
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 vdom_ui_show(this.domCont,fade);
 					]]></SourceCode>
         </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="submit">
           <Parameters/>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 jQuery(this.domCont).submit();
 					]]></SourceCode>
         </Action>
@@ -735,7 +762,7 @@ jQuery(this.domCont).submit();
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[ 
+          <SourceCode><![CDATA[
 var j=jQuery, td=this.domCont, t=j(td), x1=parseInt('0'+t.attr('min'),10), x2=parseInt('0'+t.attr('max'),10);
 x2=(x2<x1)?x1:x2;
 var v=parseInt('0'+value,10);
