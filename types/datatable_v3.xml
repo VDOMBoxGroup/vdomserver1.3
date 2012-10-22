@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.134.8388</Version>
+    <Version>3.137.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -1320,11 +1320,13 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 		nn = 1
 		classfirst = u"first"
 		classlast = u""
+
 		if vheader:
 			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>' if self.selectionmode == "1" else u'<tr header class="thead">'
 			for (index, colname) in zip(range(len(vheader)), vheader):
 				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>'
 			theader += u'</tr>'
+
 		lendata = len(data)
 		for (row_i, row) in zip(range(lendata), data):
 
@@ -1381,48 +1383,52 @@ $j('#%(id)s tr').draggable({
 			js_drag = ""
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='datatable_v3' objname='%s' ver='%s @ 2012-09-24'" % (self.name, self.type.version)
+			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
 		else:
 			debug_info = u""
 
 		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick + js_singleselect
 
 		result = u"""
-<div """+debug_info+""" id='""" + id + """' style='"""+style+"""' """+cssclass+""">
+<div %(debug_info)s id='%(id)s' style='%(style)s' %(cssclass)s>
 	<style type="text/css">
-	"""+self.style % {"id": id}+"""
+		%(selfstyle)s
 	</style>
 	<table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
-		<caption>"""+ self.title +"""</caption>
-		"""+(theader if self.showheader == '1' else '')+"""
+		<caption>%(title)s</caption>
+		%(theader)s
 		<tbody>
-			"""+tdata+"""
+			%(tdata)s
 		</tbody>
 	</table>
 	<script type="text/javascript">
-	$q(function(){
-		var id_""" + id + """ = '""" + id + """';
-		window.keys_""" + id + """ = """ + json.dumps(keys) + """;
-		window.header_""" + id + """ = """ + json.dumps(vheader) + """
-		var params_""" + id + """ = [];
-		"""+select+"""
-		"""+js_headerselect+"""
-		"""+js_drag+"""
-		execEventBinded('"""+idn+"""', 'load', {width:$q('#""" + id + """').outerWidth(),height:$q('#""" + id + """').outerHeight()});
-	});
+		$q(function(){
+			var id_%(id)s = '%(id)s';
+			window.keys_%(id)s = %(keys)s;
+			window.header_%(id)s = %(vheader)s;
+			var params_%(id)s = [];
+			%(select)s
+			%(js_headerselect)s
+			%(js_drag)s
+			execEventBinded('%(idn)s', 'load', {width:$q('#%(id)s').outerWidth(),height:$q('#%(id)s').outerHeight()});
+		});
 	</script>
 </div>""" % {
-			"js_drag": js_drag,
-			"name": self.name,
-			"select": select,
-			"headerselect": js_headerselect,
-			"id": id,
-			"idn": idn,
-			"style": style,
-			"class": cssclass,
-			"title": self.title,
-			"theader": theader if self.showheader == '1' else '',
-			"tdata": tdata }
+			"keys":            json.dumps(keys),
+			"vheader":         json.dumps(vheader),
+			"debug_info":      debug_info,
+			"js_drag":         js_drag,
+			"name":            self.name,
+			"select":          select,
+			"js_headerselect": js_headerselect,
+			"id":              id,
+			"idn":             idn,
+			"style":           style,
+			"selfstyle":       self.style % {"id": id},
+			"cssclass":        cssclass,
+			"title":           self.title,
+			"theader":         u"<thead>%s</thead>" % theader if self.showheader == '1' else '',
+			"tdata":           tdata }
 
 		return VDOM_object.render(self, parent, contents=result)
 
