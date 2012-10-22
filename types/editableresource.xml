@@ -10,11 +10,11 @@
     <EditorIcon>#Res(21d2bb7e-b1fc-14b2-13bf-14dcfcfd8ae7)</EditorIcon>
     <StructureIcon>#Res(995b6431-67a5-3ccb-a9ef-4227a72410ed)</StructureIcon>
     <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
+    <Resizable>0</Resizable>
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.16.6720</Version>
+    <Version>1.90.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password</Containers>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>160</DefaultValue>
+      <DefaultValue>50</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>30</DefaultValue>
+      <DefaultValue>50</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -409,7 +409,7 @@ class VDOM_editableresource(VDOM_object):
 			udata = ""
 			if self.datatype == "1":
 				if res_id:
-					udata = u'<script type="text/javascript" src="/%s.res"></script>' % res_id 
+					udata = u'<script type="text/javascript" src="/%s.res"></script>' % res_id
 					request.dyn_libraries[self.name] = udata
 					return ""
 				else:
@@ -440,24 +440,50 @@ class VDOM_editableresource(VDOM_object):
 				else:
 					ov = 'auto'
 				style = "overflow:"+ov+"; position: absolute; z-index: "+self.zindex+"; top: "+self.top+"px; left: "+self.left+"px; width: "+self.width+"px; height: "+self.height+"px"
-				return u"<div id=\"%(id)s\" style=\"%(style)s\">%(data)s</div>"%{"id":id, "style":style, "data":udata}
+				return u"<div id=\"%(id)s\" style=\"%(style)s\">%(data)s</div>" % { "id":id, "style":style, "data":udata }
 		else:
 			return ""
 
-	def wysiwyg(self, parent, contents=""):
-		t = "js" if self.datatype == '1' else "css" if self.datatype == '2' else "txt"
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\">"\
-				"<htmltext top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">%s</htmltext>"\
-				"%s"\
-				"<svg>"\
-					"<rect opacity=\"0.5\" x=\"0\" y=\"0\" width=\"150\" height=\"20\" fill=\"#FFFFCC\" stroke=\"#FFFF33\"/>"\
-				"</svg>"\
-				"<text top=\"2\" left=\"5\" width=\"150\" color=\"#FF0000\">Editable Resource (%s)</text>"\
-				"</container>" % (
-					self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, 
-					0, 0, self.width, self.height, "", contents, t)
-		return VDOM_object.wysiwyg(self, parent, contents=result)
+	def get_data_format (self) :
+		format_dict = {"1":"JS", "2":"CSS"}
 
+		text_format = ""
+		try:
+			text_format = format_dict[self.datatype] if self.datatype in format_dict else ""
+		except: pass
+
+		return text_format
+
+	def wysiwyg(self, parent, contents=""):
+		self.width = "50"
+		self.height = "50"
+
+		image_width = image_height = 50
+		image_x = image_y = 0
+
+		image_id = "3488cd86-0e75-292e-78a0-0c9269285dc3"
+
+		text_format = self.get_data_format()
+
+		result = \
+			u"""<container id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}"
+					width="{width}" height="{height}" backgroundcolor="#f0f0f0" alpha="0.5">
+					<svg>
+						<image x="{image_x}" y="{image_y}" href="#Res({image_id})" width="{image_width}" height="{image_height}"/>
+					</svg>
+					<text top="30" left="3" width="{text_width}" textalign="right" color="#ffffff">{text_format}</text>
+				</container>
+			""".format(
+					id = self.id,
+					zindex = self.zindex, hierarchy = self.hierarchy,
+					top = self.top, left = self.left,
+					width = self.width, height = self.height,
+					image_x = image_x, image_y = image_y,
+					image_id = image_id, text_format = text_format,
+					image_width = image_width, image_height = image_height,
+					text_width = image_width-6)
+
+		return VDOM_object.wysiwyg(self, parent, contents=result)
 			]]></SourceCode>
   <Libraries/>
   <E2vdom>
