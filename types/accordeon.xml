@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.9.8082</Version>
+    <Version>1.19.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -611,14 +611,30 @@ $q(function(){
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
-		result="<container id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-				"<svg>"\
-					"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#EEEEEE\"/>"\
-				"</svg>%s"\
-			"</container>"%(
-				self.id, self.visible, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-				0, 0, self.width, self.height,
-				contents)
+		if len(contents) == 0:
+			import utils.wysiwyg
+			
+			image_id = "1a654852-5b19-0106-faa6-c360538648d8"
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+			
+		else:	
+			
+			result=\
+					u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" 
+							order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
+						<svg>
+							<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE"/>
+						</svg>
+						{contents}
+					</container>
+				""".format(
+				id = self.id, visible = self.visible, 
+				zindex = self.zindex, hierarchy = self.hierarchy, 
+				order = self.order, 
+				top = self.top, left = self.left, 
+				width = self.width, height = self.height,
+				contents = contents)
+
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 		]]></SourceCode>
