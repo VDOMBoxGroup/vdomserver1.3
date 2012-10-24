@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.65.6720</Version>
+    <Version>1.66.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1343,7 +1343,7 @@ if (canLoadContent) {
 				obj_data = {}
 
 			if isinstance(obj_data, list):
-				obj_data = collections.OrderedDict([ (key, {} ) for key in obj_data ])
+				obj_data = collections.OrderedDict([ (u"%s" % key, {} ) for key in obj_data ])
 
 			nn = 1
 			nn_first = 1
@@ -1465,7 +1465,6 @@ if (canLoadContent) {
 				itemstorender.append("dummy-item-554f180b-1c2a-6705-3608-87f71366710b")
 
 		inner_render = self.do_compile(application.objects.search(self.id), itemstorender, onlydiv)
-		print "inner_render %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%", inner_render
 
 		if request.render_type == "e2vdom":
 			# render called from action
