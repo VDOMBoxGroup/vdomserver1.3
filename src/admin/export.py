@@ -1,5 +1,5 @@
 
-import os, tempfile, traceback, shutil, time
+import os, tempfile, traceback, shutil, time, re
 from utils.exception import VDOM_exception
 from utils.system import get_external_drives, device_exists, mount_device, umount_device
 import managers
@@ -25,8 +25,12 @@ def run(request):
 			try:
 				managers.xml_manager.export_application(appl, format, path, embedtypes)
 				toread = os.path.join(path, appl)
+				a = managers.xml_manager.get_application(appl)
+				name = a.name
+				ver = ""
+				if a.version: ver = "_ver_%s" % re.sub('\D', '_', a.version)
 				request.add_header("Content-Type", "application/octet-stream");
-				request.add_header("Content-Disposition", "attachment; filename=%s.%s" % (appl, format));
+				request.add_header("Content-Disposition", "attachment; filename=%s%s.%s" % (name, ver, format));
 				toread = ".".join([toread, format])
 				f = open(toread, "rb")
 				request.set_nocache()
