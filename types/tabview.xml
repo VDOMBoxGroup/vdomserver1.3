@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.212.6720</Version>
+    <Version>1.213.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -596,9 +596,24 @@ cdWLjJfB9tVQTI7RlrW3MWcJwe1a6g/OyRG9nAW6LrKNXYs/AY3tpqTf0QQf2He+LnqWeU34VrZ9
 DCzt7OzomuHtFGjUYGisrKwU32+vmczh28LLIhSFlOT/GQop5I8AAwDZI0qB3sUACgAAAABJRU5E
 rkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[import e2vdomdef on_compile(application, object, action_name, context, objects):	result=objects	for xobject in object.get_objects_list():		result.append({"object": xobject})	return resultclass VDOM_tabview(VDOM_object):		def render(self, parent, contents=""):
+  <SourceCode><![CDATA[
+import e2vdom
+
+def on_compile(application, object, action_name, context, objects):
+	result=objects
+	for xobject in object.get_objects_list():
+		result.append({"object": xobject})
+	return result
+
+class VDOM_tabview(VDOM_object):
+	
+	def render(self, parent, contents=""):
 		from collections import OrderedDict
-		display = u" display:none; " if self.visible == "0" else u""		e2vdom.process(self, parent)		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; border: none;""".format(display = display, zind = self.zindex, pos = self.position, 
+		display = u" display:none; " if self.visible == "0" else u""
+
+		e2vdom.process(self, parent)
+
+		style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; border: none;""".format(display = display, zind = self.zindex, pos = self.position, 
 						top = self.top, left = self.left, width = self.width, height = self.height)
 
 		id = u"o_" + (self.id).replace('-', '_')		
@@ -616,33 +631,34 @@ rkJggg==]]></Resource>
 			if self.currenttab == child.hierarchy:
 				show_guid = u"o_" + (child.id).replace('-', '_')
 				js = u"""<script type="text/javascript">
-	$j('#%(id)s div.content_%(id)s').children('div').hide();
-	$j('#%(id)s #%(show_guid)s').show();
-	$j('#%(id)s ul.tabNavigation a').removeClass('active');
-	$j('#%(id)s ul.tabNavigation a[href="#%(show_guid)s"]').addClass('active');
+$j('#%(id)s div.content_%(id)s').children('div').hide();
+$j('#%(id)s #%(show_guid)s').show();
+$j('#%(id)s ul.tabNavigation a').removeClass('active');
+$j('#%(id)s ul.tabNavigation a[href="#%(show_guid)s"]').addClass('active');
 </script>""" % { "id": id, "show_guid": show_guid }
 		
 		sortTagArray = OrderedDict(sorted(tag_array.items(), key=lambda t: t[0]))
 		for key in sortTagArray:
 			tab_tag += tag_array[key]
 		
-		css = u"""#ul_%(id)s{
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
+		css = u"""
+#ul_%(id)s {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
 }
 
-#ul_%(id)s li{
-    display: inline;
+#ul_%(id)s li {
+	display: inline;
 }
 """ % {"id": id}
 
 		if self.showtabs == '1':
 			css += self.style % {"id": id}
-			tabs = u'<ul id="ul_%(id)s" class="tabNavigation" style="list-style: none">\n%(tab)s\n</ul>' % {"id": id, "tab": tab_tag}
+			tabs = u'<ul id="ul_%(id)s" class="tabNavigation" style="list-style: none"> %(tab)s </ul>' % {"id": id, "tab": tab_tag}
 			js += u"""<script type="text/javascript">
 var tabview_children_%(id)s = %(arr)s;
-jQuery(document).ready(function($){
+$j(document).ready(function($){
 	$("#ul_%(id)s a").click(function(){
 		$("#%(id)s>div.content_%(id)s>div").fadeOut(100);
 		$("#%(id)s>div.content_%(id)s>div").filter(this.hash).fadeIn(100);
@@ -665,17 +681,102 @@ jQuery(document).ready(function($){
 var tabview_children_%(id)s = %(arr)s;
 </script>""" % { "id": id, "arr": str(children_array) }
 
-		result = u"""<style type="text/css">{css}</style>
-<div id="{id}" style="{style}" >
-{tabs}
-{cont_tag}
-</div>
-{js}""".format(css = css, id = id, style = style, tabs = tabs, cont_tag = cont_tag, js = js)
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
+		else:
+			debug_info = u""
 
-		return VDOM_object.render(self, parent, contents=result)		def wysiwyg(self, parent, contents=""):			object_width = 200		object_height = 200		if self.width and self.width > 0:			object_width = self.width		if self.height and self.height > 0:			object_height = self.height				image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"		result=u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 							top="{top}" left="{left}" width="{width}" height="{height}">							<svg>								<rect x="{panel_width}" y="0" width="140" height="20" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE">									 <image x="5" y="0" width="131" height="17" href="#Res({img_id})" />								</rect>							</svg>							<svg>								<rect x="0" y="20" width="{container_width}" height="{container_height}" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE"/>							</svg>{contents}					</container>				""".format(id = self.id, vis = self.visible, zind = self.zindex, 						hierarchy = self.hierarchy, top = self.top, left = self.left, width = int(object_width) + 2, height = int(object_height) + 2, 						panel_width = int(object_width) - 140, container_height = int(object_height) - 20, container_width = object_width, 						img_id = image_id, contents = contents)		return VDOM_object.wysiwyg(self, parent, contents=result)		def set_attr(app_id, object_id, param):
-		obj = application.objects.search(object_id)	if "width" in param:		if param["width"]["value"] and param["width"]["value"] > 0:				width = int(param["width"]["value"])		else:			width = 200			if obj.attributes.width != width:			obj.set_attribute_ex("width", width)	if "height" in param:		if param["height"]["value"] and param["height"]["value"] > 0:				height = int(param["height"]["value"])		else:			height = 200					if obj.attributes.height != height:			obj.set_attribute_ex("height", height)			
-		childs = obj.objects
-		for key in childs:		child = childs[key]		if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":			child.set_attribute_ex("zindex", "1")		elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":			child.set_attribute_ex("zindex", "0")				if "width" in param:			if param["width"]["value"] and param["width"]["value"] > 0:					width = int(param["width"]["value"]) - 2			else:				width = 200				child.set_attribute_ex("width", width)		if "height" in param:			if param["height"]["value"] and param["height"]["value"] > 0:					height = int(param["height"]["value"]) - 20			else:				height = 200						child.set_attribute_ex("height", height)
+		result = \
+			u"""
+<style type="text/css">{css}</style>
+<div {debug_info} id="{id}" style="{style}">
+	{tabs}
+	{cont_tag}
+</div>
+{js}
+			""".format(
+					debug_info = debug_info,
+					css = css, id = id, style = style,
+					tabs = tabs, cont_tag = cont_tag, js = js)
+
+		return VDOM_object.render(self, parent, contents=result)
+	
+	def wysiwyg(self, parent, contents=""):
+	
+		object_width = 200
+		object_height = 200
+		if self.width and self.width > 0:
+			object_width = self.width
+		if self.height and self.height > 0:
+			object_height = self.height
+		
+		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
+					top="{top}" left="{left}" width="{width}" height="{height}">
+					<svg>
+						<rect x="{panel_width}" y="0" width="140" height="20" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE">
+							<image x="5" y="0" width="131" height="17" href="#Res({img_id})" />
+						</rect>
+					</svg>
+					<svg>
+						<rect x="0" y="20" width="{container_width}" height="{container_height}" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE"/>
+					</svg>{contents}
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, top = self.top, left = self.left,
+					width = int(object_width) + 2,
+					height = int(object_height) + 2, 
+					panel_width = int(object_width) - 140,
+					container_height = int(object_height) - 20,
+					container_width = object_width, 
+					img_id = image_id,
+					contents = contents)
+
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+		
+def set_attr(app_id, object_id, param):
+	
+	obj = application.objects.search(object_id)
+	if "width" in param:
+		if param["width"]["value"] and param["width"]["value"] > 0:	
+			width = int(param["width"]["value"])
+		else:
+			width = 200	
+		if obj.attributes.width != width:
+			obj.set_attribute_ex("width", width)
+	if "height" in param:
+		if param["height"]["value"] and param["height"]["value"] > 0:	
+			height = int(param["height"]["value"])
+		else:
+			height = 200			
+		if obj.attributes.height != height:
+			obj.set_attribute_ex("height", height)
+		
+	
+	
+	childs = obj.objects
+	
+	for key in childs:
+		child = childs[key]
+		if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
+			child.set_attribute_ex("zindex", "1")
+		elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
+			child.set_attribute_ex("zindex", "0")
+		
+		if "width" in param:
+			if param["width"]["value"] and param["width"]["value"] > 0:	
+				width = int(param["width"]["value"]) - 2
+			else:
+				width = 200	
+			child.set_attribute_ex("width", width)
+		if "height" in param:
+			if param["height"]["value"] and param["height"]["value"] > 0:	
+				height = int(param["height"]["value"]) - 20
+			else:
+				height = 200			
+			child.set_attribute_ex("height", height)
 
 	css = u""""""
 	
@@ -686,7 +787,36 @@ var tabview_children_%(id)s = %(arr)s;
 			obj.set_attributes({"style": css})
 	if "style" in param and param["style"]["value"] and obj.attributes.style != css:		
 		obj.set_attributes({"skin": 0})
-		return ""	def add_child(app_id, object_id, param):	object = application.objects.search(param["child_id"])						width_container = int(object.parent.attributes.width) - 2	height_container = int(object.parent.attributes.height) - 20		object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})		childs = object.parent.objects	container_hierarchy = []	for key in childs:		child = application.objects.search(key)		container_hierarchy.append(child.attributes.hierarchy)				if object.parent.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":			child.set_attributes({"zindex": "1"})		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":			child.set_attributes({"zindex": "0"})			if len(container_hierarchy) > 1 and int(object.attributes.hierarchy) == 0:		object.set_attributes({"hierarchy": int(max(container_hierarchy)) + 1})		if object.parent.attributes.currenttab == child.attributes.hierarchy and str(object.attributes.zindex) != "1":			object.set_attributes({"zindex": "1"})		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(object.attributes.zindex) != "0":			object.set_attributes({"zindex": "0"})					return ""]]></SourceCode>
+	
+	return ""
+	
+def add_child(app_id, object_id, param):
+	object = application.objects.search(param["child_id"])				
+	
+	width_container = int(object.parent.attributes.width) - 2
+	height_container = int(object.parent.attributes.height) - 20
+	
+	object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})
+	
+	childs = object.parent.objects
+	container_hierarchy = []
+	for key in childs:
+		child = application.objects.search(key)
+		container_hierarchy.append(child.attributes.hierarchy)
+		
+		if object.parent.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
+			child.set_attributes({"zindex": "1"})
+		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
+			child.set_attributes({"zindex": "0"})
+		
+	if len(container_hierarchy) > 1 and int(object.attributes.hierarchy) == 0:
+		object.set_attributes({"hierarchy": int(max(container_hierarchy)) + 1})
+		if object.parent.attributes.currenttab == child.attributes.hierarchy and str(object.attributes.zindex) != "1":
+			object.set_attributes({"zindex": "1"})
+		elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(object.attributes.zindex) != "0":
+			object.set_attributes({"zindex": "0"})
+				
+	return ""]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>

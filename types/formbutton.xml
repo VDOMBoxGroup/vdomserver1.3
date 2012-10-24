@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.12.6200</Version>
+    <Version>1.13.6200</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, dialog_2, container</Containers>
@@ -698,28 +698,44 @@ class VDOM_formbutton(VDOM_object):
 			.format(disp = display, zind = self.zindex, pos = self.position, 
 					top = self.top, left = self.left, wid = self.width, hei = self.height)
 		id = u"o_" + (self.id).replace('-', '_')
-		result = u"""<style type="text/css">
-{css}
-</style>
-<input id="{id}" name="{name}" style="{style}" type="{type}" tabindex="{tabind}" value="{label}" {clname} />""" \
-				.format(css = self.style % {"id": id}, id = id, name = self.name, style = style, type = type, tabind = self.tabindex, label = self.label, clname = clname)
+
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='formbutton' objname='%s'" % ( (self.label).replace("'", "") )
+		else:
+			debug_info = u""
+
+		result = u"""<style type="text/css">{css}</style>
+<input {debug_info} id="{id}" name="{name}" style="{style}" type="{type}" tabindex="{tabind}" value="{label}" {clname} />
+			""".format(
+					debug_info = debug_info,
+					css = self.style % {"id": id},
+					id = id,
+					name = self.name,
+					style = style,
+					type = type,
+					tabind = self.tabindex,
+					label = self.label,
+					clname = clname)
 			
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
 		label = u"<![CDATA[%s%s]>" % (self.label, "]")
-		result =u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-							top="{top}" left="{left}" width="{width}" height="{height}">
-						<svg>
-							<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#CCCCCC" stroke="#000000"/>
-						</svg>
-						<text top="{txt_top}" width="{txt_wid}" color="#000000" textalign="center">{label}</text>{contents}
-					</container>
-				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
-				hierarchy = self.hierarchy, order = self.order, 
-				top = self.top, left = self.left, width = self.width, height = self.height,
-				rec_wid = int(self.width)-1, rec_hei = int(self.height)-1,
-				txt_top = int(self.height)/2-9, txt_wid = int(self.width)-4, label = label, contents = contents)
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+					top="{top}" left="{left}" width="{width}" height="{height}">
+					<svg>
+						<rect x="0" y="0" width="{rec_wid}" height="{rec_hei}" fill="#CCCCCC" stroke="#000000"/>
+					</svg>
+					<text top="{txt_top}" width="{txt_wid}" color="#000000" textalign="center">{label}</text>{contents}
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order, 
+					top = self.top, left = self.left, width = self.width, height = self.height,
+					rec_wid = int(self.width)-1, rec_hei = int(self.height)-1,
+					txt_top = int(self.height)/2-9, txt_wid = int(self.width)-4, label = label,
+					contents = contents)
 				
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 		
