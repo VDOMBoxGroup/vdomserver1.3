@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.9.6720</Version>
+    <Version>1.10.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container, tablecell</Containers>
@@ -1171,13 +1171,20 @@ filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=
 			modal = "true"
 		else: modal = "false"
 
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
+		else:
+			debug_info = u""
+
 		result += """<table style='display:none' cellspacing='0' cellpadding='0' border='0' class='boxy-wrapper'>
 			<tr><td class='top-left'></td><td class='top'></td><td class='top-right'></td></tr>
 			<tr><td class='left'></td><td class='boxy-inner'>
-				<div id='%(id)s' style='position: relative; width: %(width)spx; height: %(height)spx; z-index: %(zindex)s'>%(contents)s</div>
+				<div %(debug_info)s id='%(id)s' style='position: relative; width: %(width)spx; height: %(height)spx; z-index: %(zindex)s'>%(contents)s</div>
 			</td><td class='right'></td></tr>
 			<tr><td class='bottom-left'></td><td class='bottom'></td><td class='bottom-right'></td></tr></table>""" % {
-			"id": id, "width": self.width, "height": self.height, "zindex": self.zindex, "contents": contents, "classname": self.classname
+				"debug_info": debug_info,
+				"id": id, "width": self.width, "height": self.height, "zindex": self.zindex,
+				"contents": contents, "classname": self.classname
 			}
 
 		#result += """<div style='display:none'><div id='%(id)s' style='width: %(width)spx; height: %(height)spx; z-index: %(zindex)s'>%(contents)s</div></div>""" % {
@@ -1186,7 +1193,6 @@ filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=
 
 		result += """<script type='text/javascript'>
 $j(document).ready(function(){
-	/* ver 2012-09-27 */
 	if (typeof dialog_win_%(id)s !== 'undefined') {
 		dialog_win_%(id)s.hide();
 		delete(dialog_win_%(id)s);

@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.19.8388</Version>
+    <Version>1.20.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -600,13 +600,20 @@ class VDOM_accordeon(VDOM_object):
 
 		classname = u"""class="%s" """ % self.classname if self.classname else u""
 
-		result = u"""<div %(classname)s id="%(id)s" style="%(style)s">%(contents)s</div>
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
+		else:
+			debug_info = u""
+
+		result = u"""<div %(debug_info)s %(classname)s id="%(id)s" style="%(style)s">%(contents)s</div>
 <script type="text/javascript">
 $q(function(){
 	vdom_accordeon('#%(id)s','%(opened)s');
 });
-</script>""" % \
-			{"id": id, "style": style, "contents": contents, "classname": classname, "opened" : self.opened}
+</script>""" % {
+			"debug_info": debug_info,
+			"id": id, "style": style, "contents": contents,
+			"classname": classname, "opened" : self.opened}
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -619,21 +626,21 @@ $q(function(){
 			
 		else:	
 			
-			result=\
-					u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" 
-							order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
+			result = \
+				u"""<container id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" 
+						order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
 						<svg>
 							<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE"/>
 						</svg>
 						{contents}
-					</container>
+						</container>
 				""".format(
-				id = self.id, visible = self.visible, 
-				zindex = self.zindex, hierarchy = self.hierarchy, 
-				order = self.order, 
-				top = self.top, left = self.left, 
-				width = self.width, height = self.height,
-				contents = contents)
+						id = self.id, visible = self.visible, 
+						zindex = self.zindex, hierarchy = self.hierarchy, 
+						order = self.order, 
+						top = self.top, left = self.left, 
+						width = self.width, height = self.height,
+						contents = contents)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
