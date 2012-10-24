@@ -1,6 +1,6 @@
 
 import managers, version, utils
-from vscript.engine import vcompile, vexecute
+from vscript.engine import vcompile, vexecute, vevaluate
 
 
 class VDOM_vscript(object):
@@ -9,6 +9,12 @@ class VDOM_vscript(object):
 		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
 		code, vsource=vcompile(source, environment=environment, use=use)
 		vexecute(code, vsource, environment=environment, use=use)
+
+	def evaluate(self, let=None, set=None, use=None, result=None, **keywords):
+		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
+		code, vsource=vcompile(let=let, set=set, environment=environment, use=use)
+		return vevaluate(code, vsource, environment=environment, use=use, result=result)
+
 
 class VDOM_server(object):
 

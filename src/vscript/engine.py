@@ -79,7 +79,14 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 	#managers.log_manager.error_bug(error, "vscript")
 
 
-def vcompile(script, filename=None, bytecode=1, package=None, lines=None, environment=None, use=None, anyway=1, quiet=None, safe=None):
+def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package=None, lines=None, environment=None, use=None, anyway=1, quiet=None, safe=None):
+	if script is None:
+		if let is not None:
+			script="result=%s"%let
+		elif set is not None:
+			script="set result=%s"%set
+		else:
+			return vscript_default_code, vscript_default_source
 	if not safe:
 		mutex=auto_mutex("vscript_engine_compile_mutex")
 	try:
@@ -192,3 +199,13 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
 	except errors.python as error:
 		check_exception(source, error, quiet=quiet)
 		raise
+
+def vevaluate(code, source, object=None, namespace=None, environment=None, use=None, quiet=None, result=None):
+	if result is None:
+		result=variant()
+	if namespace is None:
+		namespace={"v_result": result}
+	else:
+		namespace["v_result"]=result
+	vexecute(code, source, object=object, namespace=namespace, environment=environment, use=use, quiet=quiet)
+	return namespace["v_result"].subtype
