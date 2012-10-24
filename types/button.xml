@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.132.6200</Version>
+    <Version>1.134.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -1093,8 +1093,12 @@ class VDOM_button(VDOM_object):
 			clname = u"""class="%s" """ % self.classname if self.classname else u""
 			donot = u""
 
-		return u"""<a style="display:block;text-decoration:none;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot}>
-				""".format(bgimage = bgimg, height = height, link = link, hint = (self.hint).replace('"', '&quot;'), classname = clname, donot = donot)
+		return u"""<a style="display:block;text-decoration:none;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot} {tabindex}>
+				""".format(
+						tabindex = "" if int(self.tabindex) <= 0 else u'tabindex="%s"' % self.tabindex,
+						bgimage = bgimg, height = height, link = link,
+						hint = (self.hint).replace('"', '&quot;'),
+						classname = clname, donot = donot)
 
 
 	def render(self, parent, contents=""):
@@ -1123,7 +1127,7 @@ class VDOM_button(VDOM_object):
 				if self.ishover == "0":
 					representation = \
 						u"""<img src="{image}" width={width} height={height} 
-								style="text-decoration:none;border:0" title="{hint}">
+								style="text-decoration:none;border:0" title="{hint}" />
 						""".format(image = hover_link, width = self.width, height = self.height, hint = self.hint)
 				else:
 					if not self.classname:
@@ -1183,7 +1187,7 @@ class VDOM_button(VDOM_object):
 			def_image_id = u"34d5d4aa-26eb-4a21-8063-421ab465c75c"
 			
 			representation = \
-				u"""<img src="/{image}.res" width={width} height={height} style="text-decoration:none;border:0" title="{hint}">
+				u"""<img src="/{image}.res" width={width} height={height} style="text-decoration:none;border:0" title="{hint}" />
 				""".format(
 						image = def_image_id, width = self.width, 
 						height = self.height, hint = self.hint)
@@ -1219,13 +1223,17 @@ class VDOM_button(VDOM_object):
 			debug_info = u""
 
 		return u"""{ocss}
-					<div {debug_info} id="{id}" tabindex="{tabind}" style="{style}{disp}">
+					<div {debug_info} id="{id}" style="{style}{disp}">
 						{anchor}{repr}</a>
 					</div>{disabled}{styleblk}{scriptblk}{disablecss}
 				""".format(
-						debug_info = debug_info, ocss = overcss, id = id_out, tabind = self.tabindex,
+						#tabind = "" if int(self.tabindex) <= 0 else u'tabindex="%s"' % self.tabindex,
+						#tabind = u'tabindex="%s"' % self.tabindex,
+						repr = representation,
+						debug_info = debug_info, ocss = overcss, id = id_out,
 						style = style, disp = display,
-						anchor = anchor, repr = representation, disabled = disabled_html,
+						anchor = anchor,
+						disabled = disabled_html,
 						styleblk = styleblock, scriptblk = scriptblock, disablecss = disablecss)
 		
 		
