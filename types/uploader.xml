@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.12.6200</Version>
+    <Version>1.15.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form</Containers>
@@ -493,13 +493,15 @@ class VDOM_uploader(VDOM_object):
 			<style>{skin}</style>
 			<div style="{style}" id="{id}" {classname}>
 				<div class="label" style="display:none">{text}</div>
-				<input type="file" name="{name}" size="2" tabindex="{tabind}" />
+				<input type="file" name="{name}" {control_width} tabindex="{tabind}" />
 			</div>
 			{js}
 			""".format(
 					id = id, name = self.name, style = style, tabind = self.tabindex, classname = classname,
 					text = self.text, js = js, 
-					skin = self.style % { "id": id } )
+					skin = self.style % { "id": id },
+					control_width = u'size="2"' if int(self.skin) == 1 else u'size="%s"' % ((int(self.width) - 96) / 7 + 1)
+					)
 
 		return VDOM_object.render(self, parent, contents=result)
 
