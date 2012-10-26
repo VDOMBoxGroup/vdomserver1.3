@@ -33,7 +33,7 @@ class VDOM_SMTP(SMTP):
 		new_socket = create_connection((host, port), timeout)
 		if self.use_ssl != 0:
 			ssl_version = PROTOCOL_SSLv23 if self.use_ssl == 1 else PROTOCOL_TLSv1
-			new_socket = wrap_socket(new_socket, ssl_version=ssl_version, ciphers="ALL")
+			new_socket = wrap_socket(new_socket, ssl_version=ssl_version)
 			self.file = SSLFakeFile(new_socket)
 		return new_socket
 
@@ -83,18 +83,20 @@ class VDOM_email_manager(object):
 		if not self.smtp_server:
 			return None
 		self.__sem.lock()
-		x = self.__id
-		if self.smtp_sender and self.smtp_sender.find("@")!=-1:
-			fr = self.smtp_sender
-		elif not fr:
-			return None
-		m = {"from": fr, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
-		if reply:
-			m['reply-to'] = reply
-		self.__queue.append(m)
-		self.__id += 1
-		self.__sem.unlock()
-		return x
+		try:
+			x = self.__id
+			if self.smtp_sender and self.smtp_sender.find("@")!=-1:
+				fr = self.smtp_sender
+			elif not fr:
+				return None
+			m = {"from": fr, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
+			if reply:
+				m['reply-to'] = reply
+			self.__queue.append(m)
+			self.__id += 1
+			return x
+		finally:
+			self.__sem.unlock()
 
 	def check(self, _id):	# check if there was error when sending message, pass here the value returned by .send
 		"""return string if there was error, return None if no error"""
