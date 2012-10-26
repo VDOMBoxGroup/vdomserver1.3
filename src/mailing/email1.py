@@ -13,6 +13,7 @@ import managers
 from daemon import VDOM_mailer
 
 MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
+
 class VDOM_SMTP(SMTP):
 	
 	def __init__(self, host = '', port = 0, local_hostname = None):
@@ -83,7 +84,10 @@ class VDOM_email_manager(object):
 			return None
 		self.__sem.lock()
 		x = self.__id
-		if not fr: fr = self.smtp_sender
+		if self.smtp_sender and self.smtp_sender.find("@")!=-1:
+			fr = self.smtp_sender
+		elif not fr:
+			return None
 		m = {"from": fr, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
 		if reply:
 			m['reply-to'] = reply
@@ -176,7 +180,6 @@ class VDOM_email_manager(object):
 					self.__load_config()
 					if not self.smtp_server:
 						raise SMTPConnectError(0,"No server adress in config")
-					VDOM_SMTP = get_smtp_class(self.use_ssl)
 					s = VDOM_SMTP()
 					#connecting
 					s.connect(self.smtp_server, self.smtp_port)
