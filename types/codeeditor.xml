@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.365.8400</Version>
+    <Version>1.366.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -4696,19 +4696,19 @@ class VDOM_codeeditor(VDOM_object):
 	<textarea name="%(name)s" style='%(style_area)s'>%(value)s</textarea>
 </div>
 <script type="text/javascript">$q(function(){
-	if (typeof %(id)s_codeeditor !== 'undefined') {
-		%(id)s_codeeditor.toTextArea();
-		delete(%(id)s_codeeditor);
+	if (typeof window.%(id)s_codeeditor !== 'undefined') {
+		window.%(id)s_codeeditor.toTextArea();
+		delete(window.%(id)s_codeeditor);
 	}
-	var %(id)s_codeeditor = CodeMirror.fromTextArea($q('#%(id)s>textarea').get(0), {
+	window.%(id)s_codeeditor = CodeMirror.fromTextArea($q('#%(id)s>textarea').get(0), {
 		mode: '%(mode)s',
 		lineNumbers: true,
-		onCursorActivity: function() { %(id)s_codeeditor.matchHighlight("CodeMirror-matchhighlight"); }
+		onCursorActivity: function() { window.%(id)s_codeeditor.matchHighlight("CodeMirror-matchhighlight"); }
 	});
 	$q('#%(id)s').parents('form:first').submit(function(){
-		%(id)s_codeeditor.save();
+		window.%(id)s_codeeditor.save();
 	});
-	%(id)s_codeeditor.refresh();
+	window.%(id)s_codeeditor.refresh();
 });</script>
 			""" % {
 				"mode":       self.syntax,
