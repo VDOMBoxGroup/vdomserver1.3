@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.57.6720</Version>
+    <Version>1.59.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -400,7 +400,14 @@ class VDOM_xmldialog(VDOM_object):
 
 					elif e.localName == 'TextArea':
 						res = self.get_prop(e)
-						htm = u"<textarea name=\"%s\" %s>%s</textarea>" % ( attr_id, disa, self.the_prop(res, 'defaultValue') );
+						w = int(self.the_prop(res, 'width'));
+						h = int(self.the_prop(res, 'height'));
+						if w > 0 or h > 0:
+							style = u"style='%s%s'" % (
+									"width:%spx;" % w if w > 0 else "",
+									"height:%spx;" % h if h > 0 else ""
+								)
+						htm = u"<textarea name=\"%s\" %s>%s</textarea>" % ( attr_id, disa, style, self.the_prop(res, 'defaultValue') );
 						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Hypertext':
@@ -505,7 +512,6 @@ margin-top: 10px;
 			$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
 				dateFormat: 'dd/mm/yy', showButtonPanel: true
 			});
-
 		},
 		close: function(e,u) {
 			$j('#ui-datepicker-div,#ColorDropdown_selector').fadeOut();
@@ -520,8 +526,15 @@ margin-top: 10px;
 		return false;
 	});
 });</script>""" % {
-			"data": data_out, "id": id, "idn": idn, "width": self.width, "height": self.height,
-			"title": dialog_title.replace('"','&quot;'), "show": show, "modal": modal, "debug_info": debug_info }
+			"data":   data_out,
+			"id":     id,
+			"idn":    idn,
+			"width":  self.width,
+			"height": self.height,
+			"title":  dialog_title.replace('"','&quot;'),
+			"show":   show,
+			"modal":  modal,
+			"debug_info": debug_info }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -658,9 +671,16 @@ function vdom_xd_load(id,xd){
 			data.push(dodiv('upload', t.find('Property[name=label]').text(), "<input type='file' name=\""+t.attr('id').replace('"','&quot;')+"\" "+dis+" />", t));
 		}
 		else if (t0.tagName == 'TextArea') {
-			var dis = parseInt(t.attr('disabled') || '0', 10);
+			var
+				dis = parseInt(t.attr('disabled') || '0', 10),
+				w = parseInt(t.find("Property[name=width]").text() || '0', 10),
+				h = parseInt(t.find("Property[name=height]").text() || '0', 10),
+				sty = "";
+			if (w > 0 || h > 0) {
+				sty = "style='"+(w>0?"width:"+w+"px;":"")+(h>0?"height:"+h+"px":"")+"'";
+			}
 			dis = (dis == 1) ? "disabled='disabled'" : "";
-			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id').replace('"','&quot;')+"\" "+dis+">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
+			data.push(dodiv('textarea', t.find('Property[name=label]').text(), "<textarea name=\""+t.attr('id').replace('"','&quot;')+"\" "+dis+" "+sty+">"+t.find('Property[name=defaultValue]').text()+"</textarea>", t));
 		}
 		else if (t0.tagName == 'Hypertext') {
 			data.push(dodiv('hypertext', t.find('Property[name=label]').text(), t.find('Property[name=value]').text(), t));
