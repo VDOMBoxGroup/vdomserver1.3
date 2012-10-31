@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.66.6720</Version>
+    <Version>1.73.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1822,6 +1822,11 @@ function vdom_ov_makeDiv(i, o) {
 	return '<div dataid="'+i+'" class="'+$j(o).data("ovitemclass")+' not-loaded" style="'+s+'"></div>';
 }
 
+function vdom_ov_getSelected(o) {
+	var a = [];
+	$j('#o_'+o+' .ov-content>div[dataid].selected').each(function(){ a.push($j(this).attr('dataid')); });
+	execEventBinded(o, "itemsselected", {idlist: a});
+}
 
 /**
  * Anderson Ferminiano
@@ -1926,6 +1931,11 @@ function vdom_ov_makeDiv(i, o) {
             <Parameter Name="position" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
+        <Event Name="itemsselected" Help="#Lang(522)">
+          <Parameters>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
@@ -1995,30 +2005,57 @@ execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
+if (typeof idlist === 'object') {
+	var o = this.domCont;
+	for (var x in idlist) {
+		$j('>div.ov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]', o).toggleClass('selected');
+	}
+	vdom_ov_getSelected(o.id.substring(2, o.id.length));
+}
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="items" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="idlist" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	for (var x in items) {
-		$j('>div.ov-content>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).addClass('selected');
+if (typeof idlist === 'object') {
+	var o = this.domCont;
+	for (var x in idlist) {
+		$j('>div.ov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]',o).addClass('selected');
 	}
+	vdom_ov_getSelected(o.id.substring(2, o.id.length));
 }
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="unselectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="idlist" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	for (var x in items) {
-		$j('>div.ov-content>div[dataid="'+items[x].replace('"', '&quot;')+'"]',this.domCont).removeClass('selected');
+if (typeof idlist === 'object') {
+	var o = this.domCont;
+	for (var x in idlist) {
+		$j('>div.ov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]',o).removeClass('selected');
 	}
+	vdom_ov_getSelected(o.id.substring(2, o.id.length));
 }
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var o = this.domCont;
+$j('>div.ov-content>div[dataid]',o).addClass('selected');
+vdom_ov_getSelected(o.id.substring(2, o.id.length));
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="unselectAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+var o = this.domCont;
+$j('>div.ov-content>div[dataid]',o).removeClass('selected');
+vdom_ov_getSelected(o.id.substring(2, o.id.length));
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="insertAtBeginning">
