@@ -615,8 +615,9 @@ class VDOM_sql_query:
 	
 	def fetchall(self):
 		allrows = []
-		for row in self.__cur:
-			allrows.append(row)
+		if self.__cur:
+			for row in self.__cur:
+				allrows.append(row)
 		return allrows
 	
 	def fetchall_xml(self):
