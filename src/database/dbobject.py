@@ -5,7 +5,7 @@ from xml.dom import Node
 from xml.dom.minidom import parse, parseString
 from StringIO import StringIO
 import managers, file_access
-from utils.exception import VDOM_exception
+from utils.exception import VDOM_exception,VDOMDatabaseAccessError
 from utils.semaphore import VDOM_semaphore
 import utils.uuid
 
@@ -27,7 +27,7 @@ class VDOM_database_object:
 		"""open database"""
 		#if self.__conn: return True		
 		try:
-			conn = sqlite3.connect(managers.file_manager.get_path(file_access.database,self.owner_id,None,self.filename))
+			conn = sqlite3.connect(managers.file_manager.get_path(file_access.database,self.owner_id,None,self.filename), timeout=20.0)
 			if not simple_rows:
 				conn.row_factory = sqlite3.Row
 		except Exception, e:
@@ -572,10 +572,10 @@ class VDOM_sql_query:
 		self.owner_id =  owner_id
 		self.database_id = database_id
 		if not managers.database_manager.check_database(self.owner_id, self.database_id):
-			return
+			raise VDOMDatabaseAccessError("database not exist")
 		database = managers.database_manager.get_database(self.owner_id, self.database_id)
 		if not database or (not database.is_ready and not database.open()):
-			return
+			raise VDOMDatabaseAccessError("database not ready")
 		self.__conn = database.get_connection(simple_rows)
 		self.__cur = self.__conn.cursor()
 		if executescript:
@@ -615,9 +615,8 @@ class VDOM_sql_query:
 	
 	def fetchall(self):
 		allrows = []
-		if self.__cur:
-			for row in self.__cur:
-				allrows.append(row)
+		for row in self.__cur:
+			allrows.append(row)
 		return allrows
 	
 	def fetchall_xml(self):

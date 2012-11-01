@@ -319,3 +319,30 @@ class element_not_found(generic):
 		generic.__init__(self,
 			message=u"Element not found",
 			line=line)
+
+class database_not_connected(generic):
+
+	number=4001
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Database not connected",
+			line=line)
+
+class database_already_connected(generic):
+
+	number=4002
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Database already connected",
+			line=line)
+
+class database_not_found(generic):
+
+	number=4003
+
+	def __init__(self, name=None, line=None):
+		generic.__init__(self,
+			message=u"Database %s not fount"%name,
+			line=line)

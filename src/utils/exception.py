@@ -81,3 +81,8 @@ class VDOMServiceCallError(Exception):
 
 class VDOMSecureServerError(VDOM_exception):
 	pass
+
+class VDOMDatabaseAccessError(VDOM_exception):
+	def __init__(self, s):
+		VDOM_exception.__init__(self, "Database request failed: " + s)
+
