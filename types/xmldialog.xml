@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.59.6720</Version>
+    <Version>1.60.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -400,14 +400,15 @@ class VDOM_xmldialog(VDOM_object):
 
 					elif e.localName == 'TextArea':
 						res = self.get_prop(e)
-						w = int(self.the_prop(res, 'width'));
-						h = int(self.the_prop(res, 'height'));
+						w = int("0%s" % self.the_prop(res, 'width'));
+						h = int("0%s" % self.the_prop(res, 'height'));
+						style = ''
 						if w > 0 or h > 0:
 							style = u"style='%s%s'" % (
 									"width:%spx;" % w if w > 0 else "",
 									"height:%spx;" % h if h > 0 else ""
 								)
-						htm = u"<textarea name=\"%s\" %s>%s</textarea>" % ( attr_id, disa, style, self.the_prop(res, 'defaultValue') );
+						htm = u"<textarea name=\"%s\" %s %s>%s</textarea>" % ( attr_id, disa, style, self.the_prop(res, 'defaultValue') );
 						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
 
 					elif e.localName == 'Hypertext':
