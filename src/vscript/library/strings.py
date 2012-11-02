@@ -70,18 +70,19 @@ def v_instr(argument1, argument2, argument3=None, compare=None):
 	return integer(string1.as_string.lower().find(string2.as_string.lower(), start)+1) \
 		if compare else integer(string1.as_string.find(string2.as_string, start)+1)
 
-def v_instrrev(string1, string2, start=None, compare=None):
+def v_instrrev(argument1, argument2, start=None, compare=None):
 	if start is None:
-		string1, string2, start=string1.as_simple, argument2.as_simple, -1
+		string1, string2, start=argument1.as_simple, argument2.as_simple, None
 	else:
-		string1, string2, start=string1.as_simple, argument2.as_simple, start.as_integer-1
-		if start==-2: start=-1
-		elif start<0: raise errors.invalid_procedure_call(name=u"instrrev")
-	compare=0 if compare is None else as_integer(compare)
+		string1, string2, start=argument1.as_simple, argument2.as_simple, start.as_integer
+		if start==0: start=None
+		elif start<1: raise errors.invalid_procedure_call(name=u"instrrev")
+	compare=0 if compare is None else compare.as_integer
 	if compare<0 or compare>1: raise errors.invalid_procedure_call(name=u"instrrev")
 	if string1 is v_null or string2 is v_null: return v_null
-	return integer(string1.as_string.lower().rfind(string2.as_string.lower(), start)+1) \
-		if compare else integer(string1.as_string.rfind(string2.as_string, start)+1)
+	print ">>", compare, string1.as_string, string2.as_string, start, string1.as_string.rfind(string2.as_string, 0, start)
+	return integer(string1.as_string.lower().rfind(string2.as_string.lower(), 0, start)+1) \
+		if compare else integer(string1.as_string.rfind(string2.as_string, 0, start)+1)
 	
 
 def v_left(string1, length):
