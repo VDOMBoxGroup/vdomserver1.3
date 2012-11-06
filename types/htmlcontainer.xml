@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.39.6720</Version>
+    <Version>2.40.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -8446,7 +8446,7 @@ class VDOM_htmlcontainer(VDOM_object):
 		%(contents)s
 		%(javascript)s
 	</div>
-	<div id='e2vdomindicator' style='z-index:99999;width:1px;height:1px;position:absolute;position:fixed;left:0;top:0'></div>
+	<div id='e2vdomindicator' style='z-index:99999;width:1px;height:1px;position:absolute;position:fixed;left:0;top:0;display:none'></div>
 
 	<!--[if lt IE 7]>
 	<script type="text/javascript" src="/0b3e0dc0-6429-eb14-26d6-2d30c535b707.res"></script>
