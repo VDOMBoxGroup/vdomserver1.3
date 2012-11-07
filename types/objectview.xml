@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.73.6720</Version>
+    <Version>1.74.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1124,7 +1124,6 @@ $j("#%(id)s div[dataid]").liveDraggable({
 	appendTo: 'body',
 	containment: 'document',
 	zIndex: 99999,
-	opacity: 0.6,
 	/*option: 'accept',*/
 	cursor: 'default',
 	cursorAt: { left: -2, top: 4 },
@@ -1135,8 +1134,9 @@ $j("#%(id)s div[dataid]").liveDraggable({
 	revert: "invalid",
 	revertDuration: 200,
 	/*helper: 'clone'*/
+	opacity: 1,
 	helper: function(e) {
-		return $j("<div style='width:50px;height:20px;background:#555'></div>");
+		return $j("<div class='ov-drag-helper' style='width:50px;height:20px;background:#555'></div>");
 	}
 });
 /*
