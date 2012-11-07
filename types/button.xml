@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.134.6200</Version>
+    <Version>1.136.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -1535,11 +1535,15 @@ vdom_ui_show(this.domCont, fade);
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="enable">
           <Parameters/>
           <SourceCode><![CDATA[ 
+$j('#'+this.domCont.id+' a').removeClass('disabled');
+$j('#'+this.domCont.id+'_e2vdomhelper.disabled-over').hide(0);
 		  ]]></SourceCode>
         </Action>
         <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="disable">
           <Parameters/>
           <SourceCode><![CDATA[ 
+$j('#'+this.domCont.id+' a').addClass('disabled');
+$j('#'+this.domCont.id+'_e2vdomhelper.disabled-over').show(0);
 		  ]]></SourceCode>
         </Action>
       </Container>
