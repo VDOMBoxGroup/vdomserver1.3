@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.137.8388</Version>
+    <Version>3.147.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -277,6 +277,18 @@
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>tristate</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(324)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(414)|1)|(#Lang(415)|0))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -304,6 +316,7 @@
       <Sentence ID="121">Skin</Sentence>
       <Sentence ID="122">CSS Class</Sentence>
       <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="124">Tri state</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -325,6 +338,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
+      <Sentence ID="224">newAttribute21</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -346,6 +360,7 @@
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -358,6 +373,8 @@
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
+      <Sentence ID="414">Yes</Sentence>
+      <Sentence ID="415">No</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
@@ -373,6 +390,7 @@
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -401,6 +419,8 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
@@ -427,6 +447,7 @@
       <Sentence ID="121">Skin</Sentence>
       <Sentence ID="122">CSS Class</Sentence>
       <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="124">Tri state</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -448,6 +469,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
+      <Sentence ID="224">newAttribute21</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -469,6 +491,7 @@
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -481,6 +504,8 @@
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
+      <Sentence ID="414">Yes</Sentence>
+      <Sentence ID="415">No</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
@@ -496,6 +521,7 @@
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -524,6 +550,8 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
     </Language>
     <Language Code="en_US">
       <Sentence ID="001">Datatable v3</Sentence>
@@ -550,6 +578,7 @@
       <Sentence ID="121">Skin</Sentence>
       <Sentence ID="122">CSS Class</Sentence>
       <Sentence ID="123">No cellClick</Sentence>
+      <Sentence ID="124">Tri state</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -571,6 +600,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
+      <Sentence ID="224">newAttribute21</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -592,6 +622,7 @@
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -604,6 +635,8 @@
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
+      <Sentence ID="414">Yes</Sentence>
+      <Sentence ID="415">No</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
@@ -619,6 +652,7 @@
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -647,6 +681,8 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Таблица данных v3</Sentence>
@@ -673,6 +709,7 @@
       <Sentence ID="121">Оформление</Sentence>
       <Sentence ID="122">Класс CSS</Sentence>
       <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -694,6 +731,7 @@
       <Sentence ID="221">Оформление объекта</Sentence>
       <Sentence ID="222">Имена классов CSS</Sentence>
       <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
       <Sentence ID="301">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -715,6 +753,7 @@
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
       <Sentence ID="401">Нет</Sentence>
       <Sentence ID="402">Да</Sentence>
       <Sentence ID="403">Нет</Sentence>
@@ -727,6 +766,8 @@
       <Sentence ID="411">По умолчанию</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Выделить все строки</Sentence>
       <Sentence ID="503">Снять выделение всех строк</Sentence>
@@ -742,6 +783,7 @@
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -770,6 +812,8 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Datatable v3</Sentence>
@@ -796,6 +840,7 @@
       <Sentence ID="121">Skin</Sentence>
       <Sentence ID="122">CSS Class</Sentence>
       <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -817,6 +862,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -838,6 +884,7 @@
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
       <Sentence ID="401">No</Sentence>
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -850,6 +897,8 @@
       <Sentence ID="411">Default</Sentence>
       <Sentence ID="412">EOF</Sentence>
       <Sentence ID="413">ProSuite</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
@@ -865,6 +914,7 @@
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -893,6 +943,8 @@
       <Sentence ID="919">Left</Sentence>
       <Sentence ID="921"></Sentence>
       <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1088,7 +1140,10 @@ class VDOM_datatable_v3(VDOM_object):
 		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
 			.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
 
-		cssclass = "class = \"%s\"" % self.cssclass if self.cssclass else ""
+		cssclass = u'class="datatablev3 {usercss} {multiselect} {tristate}"'.format(
+				usercss     = (self.cssclass).replace('"', '') if self.cssclass else "",
+				multiselect = u"multiselect" if self.selectionmode == "1" else "",
+				tristate    = u"tristate" if self.tristate == "1" else "" )
 
 		if self.header:
 			try:
@@ -1141,9 +1196,13 @@ class VDOM_datatable_v3(VDOM_object):
 					if key and key in header:
 						keys.append( value[key] )
 
+		js_multiselect = u""
+		js_singleselect = u""
+
 		if self.selectedrows:
+
 			try:
-				selectedRows = json.loads(self.selectedrows)
+				selectedRows = json.loads(u'%s' % self.selectedrows)
 				if isinstance(selectedRows, list):
 					js_multiselect = u"""
 window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
@@ -1170,6 +1229,7 @@ for (var j in window.selectedRows_"""+id+"""){
 	}
 }
 """
+
 					js_singleselect = u"""
 window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
 for (var j in window.selectedRows_"""+id+"""){
@@ -1193,77 +1253,103 @@ for (var j in window.selectedRows_"""+id+"""){
 	}
 }
 """
-				else:
-					raise Exception (u"Attribute must be list")
+
+				#else:
+				#	raise Exception (u"Attribute must be list or dict (in tristate mode)")
+				elif not isinstance(selectedRows, dict):
+					raise Exception (u"Attribute must be list or dict (in tristate mode)")
+
 			except:
 				raise Exception (u"Incorrect value in selected rows")
+
 		else:
-			js_multiselect = u""
-			js_singleselect = u""
+			selectedRows = {} if self.tristate == "1" else []
 
 		js_headerselect = u"""
 $j("#"""+id+""" table tr th:not([checkbox])").click(function(){
 	var hname_"""+id+""" = $j(this).html();
-	execEventBinded('"""+idn+"""', "headerselected", {headername:hname_"""+id+"""});
+	execEventBinded('"""+idn+"""', "headerselected", {headername: hname_"""+id+"""});
 });
 """
-
 		js_multiselect += u"""
 window.selectionmode_"""+id+""" = 'multi';
+window.tristate_"""+id+""" = """ + ("true" if self.tristate == "1" else "false") + """;
 
+/* click on checkbox in header */
 $j("#"""+id+""" table tr th input:checkbox").click(function(){
-	params_"""+id+""" = [];
-	if(this.checked){
-		$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
-		  params_"""+id+""".push(window.keys_"""+id+"""[i]);
-		  });
-
-	}else{
-		$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+	vdom_dtv3_triBoxClick(this);
+	$j("#"""+id+""" table tr td input.ms").parent().find('em').hide(0);
+	if (window.tristate_"""+id+""") {
+		params_"""+id+""" = {};
+		if (this.checked) {
+			$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "1";
+			});
+		} else {
+			$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		}
+		$j("#"""+id+""" table tr td input:checkbox").siblings('em').hide(0);
+	} else {
+		params_"""+id+""" = [];
+		if (this.checked) {
+			$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+				params_"""+id+""".push(window.keys_"""+id+"""[i]);
+			});
+		} else {
+			$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		}
 	}
-	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
-  });
+	execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+});
 
+/* click on ckeckbox in row */
 $j("#"""+id+""" table tr td input:checkbox").click(function(){
-	if(this.checked){
+	vdom_dtv3_triBoxClick(this);
+	if (this.checked) {
 		$j(this).parent().parent().addClass('row_selected');
-	}else{
+	} else {
 		$j(this).parent().parent().removeClass('row_selected');
 	}
-	params_"""+id+""" = [];
-	$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
-		if (this.checked){
-		   params_"""+id+""".push(window.keys_"""+id+"""[i]);
+	if (window.tristate_"""+id+""") {
+		params_"""+id+""" = {};
+		$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+			if ($j(this).parent().find('em:visible').size() > 0) {
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "2";
+			} else if (this.checked) {
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "1";
+			}
+		});
+		if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
+			$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+		} else {
+			$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 		}
-	});
-	if($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()){
-		$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
-	}else{
-		$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+		/*$j("#"""+id+""" table tr th input:checkbox").siblings('em').hide(0);*/
+	} else {
+		params_"""+id+""" = [];
+		$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+			if (this.checked) {
+				params_"""+id+""".push(window.keys_"""+id+"""[i]);
+			}
+		});
+		if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
+			$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+		} else {
+			$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+		}
 	}
-	execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
-  });
-if($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()){
+	execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+});
+
+if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
 	$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
-}else{
+} else {
 	$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 }
 """
 
 		js_cellclick = u"""
 
-/*
-if (window.selectionmode_"""+id+""" === 'multi' ) {
-	$j("#"""+id+""":last table tr.row td:nth-child(1)").live('click', function(){
-		//$j('input[type="checkbox"]', this).click();
-		var x = $j('input[type="checkbox"]', this);
-		var stat = !x.attr("checked");
-		x.attr("checked", stat);
-	});
-}
-*/
-
-/*"""+id+"""_tds = $j("#"""+id+""":last table tr.row td:not([checkbox]):not(:first)");*/
 if (window.selectionmode_"""+id+""" === 'multi') {
 	"""+id+"""_tds = $j("#"""+id+""":last table tr.row td:not(:nth-child(1))");
 } else {
@@ -1294,7 +1380,7 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 					if(window.selectionmode_"""+id+""" != 'multi'){
 						$j("#"""+id+""" table tr.row").removeClass('row_selected');
 						t.parent().addClass('row_selected');
-						execEventBinded('"""+idn+"""', "rowsselected", {keyList:params_"""+id+"""});
+						execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
 					} else {
 						$j("#"""+id+""" table tr.row").removeClass('row_clicked');
 						t.parent().addClass('row_clicked');
@@ -1322,9 +1408,10 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 		classlast = u""
 
 		if vheader:
-			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><input type="checkbox"></th>' if self.selectionmode == "1" else u'<tr header class="thead">'
+			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><div class="tri"><input type="checkbox" /><em></em></div></th>' if self.selectionmode == "1" else u'<tr header class="thead">'
 			for (index, colname) in zip(range(len(vheader)), vheader):
 				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>'
+
 			theader += u'</tr>'
 
 		lendata = len(data)
@@ -1350,13 +1437,30 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 				"even":       u"oddrow" if (row_i + 1) % 2 else u"even"
 			}
 
-			tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox"></td>' if self.selectionmode == "1" else ""
+			if isinstance(selectedRows, dict) and self.tristate == "1" and self.selectionmode == "1":
+				checked  = ''
+				visible = u'style="display:none"'
+				for index in selectedRows:
+					if int(index) == int(keys[row_i]):
+						if int(selectedRows[index]) == 1:
+							checked  = u'checked="checked"'
+						elif int(selectedRows[index]) == 2:
+							visible = ''
+
+				tristate = u'<div class="tri"><input type="checkbox" {checked} /><em {visible}></em></div>'.format(
+					checked = checked,
+					visible = visible )
+			else:
+				tristate = u'<input type="checkbox" />'
+
+			#tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox" />%s</td>' % tristate if self.selectionmode == "1" else ""
+			tdata += u'<td checkbox align="center" class="cell cell-0">%s</td>' % tristate if self.selectionmode == "1" else ""
 			if vheader:
 				for (index, col) in zip(range(len(vheader)), vheader):
 					try:
 						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>'
 					except:
-						raise Exception ("In row (%s) no column %s"%(json.dumps(row), col))
+						raise Exception ("In row (%s) no column %s" % (json.dumps(row), col))
 			else:
 				for (index, val) in zip(range(len(row)), row):
 					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>'
@@ -1414,21 +1518,21 @@ $j('#%(id)s tr').draggable({
 		});
 	</script>
 </div>""" % {
-			"keys":            json.dumps(keys),
-			"vheader":         json.dumps(vheader),
-			"debug_info":      debug_info,
-			"js_drag":         js_drag,
-			"name":            self.name,
-			"select":          select,
-			"js_headerselect": js_headerselect,
-			"id":              id,
-			"idn":             idn,
-			"style":           style,
-			"selfstyle":       self.style % {"id": id},
-			"cssclass":        cssclass,
-			"title":           self.title,
-			"theader":         u"<thead>%s</thead>" % theader if self.showheader == '1' else '',
-			"tdata":           tdata }
+				"keys":            json.dumps(keys),
+				"vheader":         json.dumps(vheader),
+				"debug_info":      debug_info,
+				"js_drag":         js_drag,
+				"name":            self.name,
+				"select":          select,
+				"js_headerselect": js_headerselect,
+				"id":              id,
+				"idn":             idn,
+				"style":           style,
+				"selfstyle":       self.style % {"id": id},
+				"cssclass":        cssclass,
+				"title":           self.title,
+				"theader":         u"<thead>%s</thead>" % theader if self.showheader == '1' else '',
+				"tdata":           tdata }
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -1704,7 +1808,76 @@ def set_attr(app_id, object_id, param):
 	return ""
 
  ]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="HTML"><![CDATA[
+<script type='text/javascript'>
+
+function vdom_dtv3_triBoxClick(t) {
+	$j(t).siblings('em').hide(0);
+}
+function vdom_dtv3_triClick(t) {
+	$j(t).parent().find('em').hide(0);
+}
+function vdom_dtv3_triReset() { // todo: fix for specific checkboxes
+	$j('#trailer').show();
+	$j('#chkBox').removeAttr('checked');
+}
+
+$j(function(){
+	//$j('.datatablev3.multiselect.tristate .tri em').click(function(){ vdom_dtv3_triClick(this); });
+	//$j('.datatablev3.multiselect.tristate input:checkbox.ms').live('change click', vdom_dtv3_triBoxClick);
+	//$j('#btnReset').click(vdom_dtv3_triReset);
+});
+
+</script>
+
+<style type="text/css">
+
+.datatablev3.multiselect.tristate div.tri {
+	position: relative;
+	height: 20px;
+}
+
+.datatablev3.multiselect.tristate div.tri input {
+	z-index: 10;  
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	opacity: 0.7;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+}
+
+.datatablev3.multiselect.tristate div.tri em {
+	z-index: 1;
+	background: #6c6;
+	width: 7px;
+	height: 8px;
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 7px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
+
+.lt-ie9 .datatablev3.multiselect.tristate div.tri em {
+	left: 6px;
+}
+
+.lt-ie8 .datatablev3.multiselect.tristate div.tri em {
+	left: 7px;
+	top: 7px;
+}
+
+</style>
+
+]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
@@ -1772,10 +1945,10 @@ def set_attr(app_id, object_id, param):
             <Parameter Name="params" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="load" Help="#Lang(516)">
+        <Event Name="load" Help="#Lang(517)">
           <Parameters>
-            <Parameter Name="width" Order="" VbType="" Help="#Lang(922)"/>
-            <Parameter Name="height" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="width" Order="" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="height" Order="" VbType="" Help="#Lang(924)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -1795,11 +1968,19 @@ vdom_ui_hide(this.domCont, fade);
           <SourceCode><![CDATA[
 var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
-if(selectionmode == 'multi'){
+eval('var tristate = window.tristate_'+id+';');
+if (selectionmode == 'multi') {
 	eval('var keys = window.keys_'+id+';');
+	if (tristate) {
+		var keys2 = {};
+		$j.each(keys, function(i, v){
+			keys2[v] = keys[i];
+		});
+		keys = keys2;
+	}
 	eval('var dth=$j("#'+id+' table input:checkbox");');
 	dth.attr('checked', 'checked').parent().not("th").parent().addClass('row_selected');
-	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
+	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
 }
 		  ]]></SourceCode>
         </Action>
@@ -1808,12 +1989,22 @@ if(selectionmode == 'multi'){
           <SourceCode><![CDATA[
 var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
-if(selectionmode == 'multi'){
+eval('var tristate = window.tristate_'+id+';');
+if (selectionmode == 'multi') {
 	var keys = [];
+	if (tristate) var keys = {};
 	eval('var dth=$j("#'+id+' table input:checkbox");');
 	dth.removeAttr('checked').parent().not("th").parent().removeClass('row_selected');
-	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:keys});
+	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
 }
+		  ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(702)" ScriptName="idlist" Help="#Lang(802)" RegularExpressionValidation="^.*$"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+/* todo */
 		  ]]></SourceCode>
         </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
