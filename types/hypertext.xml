@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.110.8388</Version>
+    <Version>1.111.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password,dialog_2, vdomclass</Containers>
@@ -577,7 +577,7 @@ class VDOM_hypertext(VDOM_object):
 			else:
 				ov = 'auto'
 
-			height = u"height: "+self.height+"px;" if int(self.height) > 0 else u""
+			height = u"height: "+self.height+"px;" if int(u"0%s" % self.height) > 0 else u""
 
 			style = u"overflow:"+ov+"; position: absolute; z-index: "+self.zindex+"; top: "+self.top+"px; left: "+self.left+"px; width: "+self.width+"px; "+height
 
