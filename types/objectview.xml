@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.74.6720</Version>
+    <Version>1.75.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -244,8 +244,8 @@
     <Attribute>
       <Name>dynamicloading</Name>
       <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
