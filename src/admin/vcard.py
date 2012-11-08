@@ -21,27 +21,11 @@ def run(request):
 	if "init" in args:
 		os.system( "/usr/local/etc/init.d/card_process restart" )
 		request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Reinitializing Virtcard process...";</script>')
-	elif "pis_login" in args and "pis_password" in args:
+	elif "system_key" in args:
 		try:
-			from utils.system import login_virtual_card
-			pis_login = args["pis_login"][0]
-			pis_password = args["pis_password"][0]
-			syst_list = login_virtual_card(pis_login,pis_password)
-			sess.value("s_pis_login",pis_login) 
-			sess.value("s_pis_password",pis_password)
-			systems = "".join(["<option value=%s>%s</option>" %(s_id, s_name) for (s_id, s_name) in syst_list])
-			show_form = template_systems % (systems,)
-		except Exception as e:
-			error = unicode(e) + u"\n"
-			show_form = template_login
-			
-	elif "pis_system_guid" in args and sess.value("s_pis_login") and sess.value("s_pis_password"):
-		try:
-			from utils.system import set_virtual_card
-			pis_login = sess.value("s_pis_login")
-			pis_password = sess.value("s_pis_password")
-			pis_system_guid = args["pis_system_guid"][0]
-			error = set_virtual_card(pis_login,pis_password,pis_system_guid)
+			from utils.system import set_virtual_card_key
+			system_key = args["system_key"][0]
+			error = set_virtual_card_key(system_key)
 			if not error:
 				error = "Timeout"
 		except Exception as e:
@@ -57,17 +41,11 @@ def run(request):
 template_login = u"""<form method="post" action="" enctype="multipart/form-data">
       <table border="0">
         <tr>
-          <td class="Style2"><div align="right">PIS login : 
+          <td class="Style2"><div align="right">System key : 
           </div></td>
-          <td><input type="text" name="pis_login" value=""/>
+          <td><input type="text" name="system_key" value=""/>
           </td>
 	</tr>
-	</tr>
-          <td class="Style2"><div align="right">PIS password :
-          </div></td>
-          <td><input type="password" name="pis_password" value=""/>
-          </td>
-        </tr>
         <tr>
           <td>&nbsp;</td>
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
