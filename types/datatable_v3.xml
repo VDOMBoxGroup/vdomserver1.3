@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.147.8388</Version>
+    <Version>3.148.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -1299,7 +1299,11 @@ $j("#"""+id+""" table tr th input:checkbox").click(function(){
 			$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
 		}
 	}
-	execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	if (window.tristate_"""+id+""") {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	} else {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+	}
 });
 
 /* click on ckeckbox in row */
@@ -1338,7 +1342,11 @@ $j("#"""+id+""" table tr td input:checkbox").click(function(){
 			$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 		}
 	}
-	execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	if (window.tristate_"""+id+""") {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	} else {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+	}
 });
 
 if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
@@ -1380,7 +1388,11 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 					if(window.selectionmode_"""+id+""" != 'multi'){
 						$j("#"""+id+""" table tr.row").removeClass('row_selected');
 						t.parent().addClass('row_selected');
-						execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+						if (""" + ("true" if self.tristate == "1" else "false") + """) {
+							execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+						} else {
+							execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+						}
 					} else {
 						$j("#"""+id+""" table tr.row").removeClass('row_clicked');
 						t.parent().addClass('row_clicked');
@@ -1980,7 +1992,11 @@ if (selectionmode == 'multi') {
 	}
 	eval('var dth=$j("#'+id+' table input:checkbox");');
 	dth.attr('checked', 'checked').parent().not("th").parent().addClass('row_selected');
-	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
+	if (tristate) {
+		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
+	} else {
+		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
+	}
 }
 		  ]]></SourceCode>
         </Action>
@@ -1995,7 +2011,11 @@ if (selectionmode == 'multi') {
 	if (tristate) var keys = {};
 	eval('var dth=$j("#'+id+' table input:checkbox");');
 	dth.removeAttr('checked').parent().not("th").parent().removeClass('row_selected');
-	execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
+	if (tristate) {
+		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: JSON.stringify(keys)});
+	} else {
+		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
+	}
 }
 		  ]]></SourceCode>
         </Action>
