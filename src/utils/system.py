@@ -49,6 +49,11 @@ def console_debug(data):
 		pass
 
 
+
+def set_virtual_card_key( system_key ):
+	return send_to_card_and_wait("""vcard licensekey """ +  json.dumps(system_key), "vcard_error", 30, 0.5)
+
+
 def set_virtual_card( user, password, guid ):
 	#a = send_to_card_and_wait("""vcard host """ +  json.dumps([ shost, sl, sp ]), "vcard_error")
 	return send_to_card_and_wait("""vcard setup """ +  json.dumps([ user, password, guid ]), "vcard_error", 30, 0.5)
