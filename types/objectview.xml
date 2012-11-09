@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.75.6720</Version>
+    <Version>1.76.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -245,7 +245,7 @@
       <Name>dynamicloading</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
@@ -276,6 +276,18 @@
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>\d*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>dynamicrender</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(324)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(420)|1))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -309,6 +321,7 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="121">Dynamic Load</Sentence>
       <Sentence ID="122">Items count</Sentence>
       <Sentence ID="123">Items count</Sentence>
+      <Sentence ID="124">Dynamic render</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -337,6 +350,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="221">Use dynamic loading of items. See WIKI for details.</Sentence>
       <Sentence ID="222">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="223">Number of items to load for each request in infinite scroll mode</Sentence>
+      <Sentence ID="224">Invalid value</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -358,6 +372,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="321">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="322">Incorrect value</Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">as a replacement for dynamicloading. now dynamicloading is not use.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -375,6 +390,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="416">No</Sentence>
       <Sentence ID="417">No</Sentence>
       <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="420">Yes</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -387,14 +404,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="511">Load the items of the object on scrolling to them.</Sentence>
       <Sentence ID="512">Load the items of the object on scrolling to them.</Sentence>
       <Sentence ID="513">Load the items of the object on scrolling to them.</Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
+      <Sentence ID="514">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="515">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="516">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="517">Load the items of the object on scrolling to them.</Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
+      <Sentence ID="526"></Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
@@ -407,6 +430,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="611">Show</Sentence>
       <Sentence ID="612">Show</Sentence>
       <Sentence ID="613">Show</Sentence>
+      <Sentence ID="614">Show</Sentence>
+      <Sentence ID="615">Show</Sentence>
+      <Sentence ID="616">Show</Sentence>
+      <Sentence ID="617">Show</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Width</Sentence>
       <Sentence ID="703">Height</Sentence>
@@ -420,6 +447,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="712">Fade</Sentence>
       <Sentence ID="713">Fade</Sentence>
       <Sentence ID="714">Fade</Sentence>
+      <Sentence ID="715">Fade</Sentence>
+      <Sentence ID="716">Fade</Sentence>
+      <Sentence ID="717">Fade</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">New value of width</Sentence>
       <Sentence ID="803">New value of height</Sentence>
@@ -433,14 +463,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="812">Time of appearance</Sentence>
       <Sentence ID="813">Time of appearance</Sentence>
       <Sentence ID="814">Time of appearance</Sentence>
+      <Sentence ID="815">Time of appearance</Sentence>
+      <Sentence ID="816">Time of appearance</Sentence>
+      <Sentence ID="817">Time of appearance</Sentence>
       <Sentence ID="901">Start dragging the object.</Sentence>
       <Sentence ID="902">Left-click on the item of the object.</Sentence>
       <Sentence ID="903">Double left-click on the item of the object.</Sentence>
       <Sentence ID="904">Cursor leaves the object bounds.</Sentence>
-      <Sentence ID="905">Cursor points at the object.</Sentence>
+      <Sentence ID="905"></Sentence>
       <Sentence ID="906"></Sentence>
-      <Sentence ID="907"></Sentence>
+      <Sentence ID="907">Cursor points at the object.</Sentence>
       <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Object View</Sentence>
@@ -467,6 +503,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -488,6 +525,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -509,6 +547,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -526,6 +565,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="416"></Sentence>
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="420"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -538,14 +579,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="511">Show the items of the object</Sentence>
       <Sentence ID="512">Show the items of the object</Sentence>
       <Sentence ID="513">Show the items of the object</Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
+      <Sentence ID="514">Show the items of the object</Sentence>
+      <Sentence ID="515">Show the items of the object</Sentence>
+      <Sentence ID="516">Show the items of the object</Sentence>
+      <Sentence ID="517">Show the items of the object</Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
+      <Sentence ID="526"></Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
@@ -558,6 +605,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="611">Show</Sentence>
       <Sentence ID="612">Show</Sentence>
       <Sentence ID="613">Show</Sentence>
+      <Sentence ID="614">Show</Sentence>
+      <Sentence ID="615">Show</Sentence>
+      <Sentence ID="616">Show</Sentence>
+      <Sentence ID="617">Show</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Width</Sentence>
       <Sentence ID="703">Height</Sentence>
@@ -571,6 +622,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="712">Fade</Sentence>
       <Sentence ID="713">Fade</Sentence>
       <Sentence ID="714">Fade</Sentence>
+      <Sentence ID="715">Fade</Sentence>
+      <Sentence ID="716">Fade</Sentence>
+      <Sentence ID="717">Fade</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">New value of width</Sentence>
       <Sentence ID="803">New value of height</Sentence>
@@ -584,6 +638,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="812">Time of appearance</Sentence>
       <Sentence ID="813">Time of appearance</Sentence>
       <Sentence ID="814">Time of appearance</Sentence>
+      <Sentence ID="815">Time of appearance</Sentence>
+      <Sentence ID="816">Time of appearance</Sentence>
+      <Sentence ID="817">Time of appearance</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -592,6 +649,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="906"></Sentence>
       <Sentence ID="907"></Sentence>
       <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Объектное представление</Sentence>
@@ -618,6 +678,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -639,6 +700,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -660,6 +722,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Вертикальный</Sentence>
@@ -677,6 +740,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="416"></Sentence>
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="420"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
@@ -689,14 +754,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="511">Показать элементы объекта</Sentence>
       <Sentence ID="512">Показать элементы объекта</Sentence>
       <Sentence ID="513">Показать элементы объекта</Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
+      <Sentence ID="514">Показать элементы объекта</Sentence>
+      <Sentence ID="515">Показать элементы объекта</Sentence>
+      <Sentence ID="516">Показать элементы объекта</Sentence>
+      <Sentence ID="517">Показать элементы объекта</Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="525"></Sentence>
+      <Sentence ID="526"></Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Показать</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
@@ -709,6 +780,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="611">Показать</Sentence>
       <Sentence ID="612">Показать</Sentence>
       <Sentence ID="613">Показать</Sentence>
+      <Sentence ID="614">Показать</Sentence>
+      <Sentence ID="615">Показать</Sentence>
+      <Sentence ID="616">Показать</Sentence>
+      <Sentence ID="617">Показать</Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Ширина</Sentence>
       <Sentence ID="703">Высота</Sentence>
@@ -722,6 +797,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="712">Исчезновение</Sentence>
       <Sentence ID="713">Исчезновение</Sentence>
       <Sentence ID="714">Исчезновение</Sentence>
+      <Sentence ID="715">Исчезновение</Sentence>
+      <Sentence ID="716">Исчезновение</Sentence>
+      <Sentence ID="717">Исчезновение</Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Новое значение ширины</Sentence>
       <Sentence ID="803">Новое значение высоты</Sentence>
@@ -735,6 +813,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="812">Время появления</Sentence>
       <Sentence ID="813">Время появления</Sentence>
       <Sentence ID="814">Время появления</Sentence>
+      <Sentence ID="815">Время появления</Sentence>
+      <Sentence ID="816">Время появления</Sentence>
+      <Sentence ID="817">Время появления</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -743,6 +824,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="906"></Sentence>
       <Sentence ID="907"></Sentence>
       <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1404,7 +1488,6 @@ if (canLoadContent) {
 					,"userdef":    source_object_attr["classname"].value
 				}, False)
 
-				#if self.dynamicloading == "1" and onlydiv:
 				if onlydiv:
 					# render for requested items
 					try:
@@ -1471,7 +1554,8 @@ if (canLoadContent) {
 
 			tmp_id = u"ov" + str(utils.uuid.uuid4())
 
-			if self.dynamicloading == "0":  # in order to save compatibility with older version
+			#if self.dynamicloading == "0":  # in order to save compatibility with older version
+			if self.dynamicrender == "0":
 
 					js = u"""
 var x = $j('#%(id)s>div.ov-content');
@@ -1886,54 +1970,54 @@ function vdom_ov_getSelected(o) {
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="dragstart" Help="#Lang(514)">
+        <Event Name="dragstart" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(515)">
+        <Event Name="itemclick" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblclick" Help="#Lang(516)">
+        <Event Name="itemdblclick" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseout" Help="#Lang(517)">
+        <Event Name="itemmouseout" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(518)">
+        <Event Name="mouseover" Help="#Lang(523)">
           <Parameters>
-            <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseover" Help="#Lang(518)">
-          <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(905)"/>
-          </Parameters>
-        </Event>
-        <Event Name="itemsrequest" Help="#Lang(519)">
-          <Parameters>
-            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(906)"/>
-          </Parameters>
-        </Event>
-        <Event Name="endscroll" Help="#Lang(521)">
-          <Parameters/>
-        </Event>
-        <Event Name="itemsort" Help="#Lang(522)">
+        <Event Name="itemmouseover" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="position" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="itemsselected" Help="#Lang(522)">
+        <Event Name="itemsrequest" Help="#Lang(525)">
           <Parameters>
-            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="endscroll" Help="#Lang(526)">
+          <Parameters/>
+        </Event>
+        <Event Name="itemsort" Help="#Lang(527)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="position" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemsselected" Help="#Lang(528)">
+          <Parameters>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -1984,7 +2068,7 @@ for (var x in items) {
         </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="refresh">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="idlist" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 var o=this.domCont;
@@ -1995,14 +2079,14 @@ execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="sortItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="idlist" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectToggle">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="selectToggle">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="idlist" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(708)" ScriptName="idlist" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof idlist === 'object') {
@@ -2014,9 +2098,9 @@ if (typeof idlist === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectItems">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="selectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="idlist" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof idlist === 'object') {
@@ -2028,9 +2112,9 @@ if (typeof idlist === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="unselectItems">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="unselectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="idlist" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(711)" ScriptName="idlist" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof idlist === 'object') {
@@ -2042,7 +2126,7 @@ if (typeof idlist === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="selectAll">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
 var o = this.domCont;
@@ -2050,7 +2134,7 @@ $j('>div.ov-content>div[dataid]',o).addClass('selected');
 vdom_ov_getSelected(o.id.substring(2, o.id.length));
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="unselectAll">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="unselectAll">
           <Parameters/>
           <SourceCode><![CDATA[
 var o = this.domCont;
@@ -2058,9 +2142,9 @@ $j('>div.ov-content>div[dataid]',o).removeClass('selected');
 vdom_ov_getSelected(o.id.substring(2, o.id.length));
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="insertAtBeginning">
+        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="insertAtBeginning">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(708)" ScriptName="items" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(712)" ScriptName="items" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
@@ -2073,9 +2157,9 @@ if (typeof items === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="insertAtEnd">
+        <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="insertAtEnd">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="items" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(713)" ScriptName="items" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
@@ -2087,10 +2171,10 @@ if (typeof items === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="insertAfter">
+        <Action Help="#Lang(516)" InterfaceName="#Lang(616)" MethodName="insertAfter">
           <Parameters>
-            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(711)" ScriptName="id" Help="#Lang(811)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(712)" ScriptName="items" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(714)" ScriptName="id" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(715)" ScriptName="items" Help="#Lang(815)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
@@ -2104,10 +2188,10 @@ if (typeof items === 'object') {
 }
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="insertBefore">
+        <Action Help="#Lang(517)" InterfaceName="#Lang(617)" MethodName="insertBefore">
           <Parameters>
-            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(713)" ScriptName="id" Help="#Lang(813)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(714)" ScriptName="items" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="'item-id'" Interface="" InterfaceName="#Lang(716)" ScriptName="id" Help="#Lang(816)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(717)" ScriptName="items" Help="#Lang(817)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 if (typeof items === 'object') {
