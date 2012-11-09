@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.6.6720</Version>
+    <Version>1.6.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -987,21 +987,11 @@ $j(function(){
 
 
 	def wysiwyg(self, parent, contents=""):
-
-		result = \
-			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-					top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE"/>
-					</svg>
-					{contents}
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, zind = self.zindex,
-					hierarchy = self.hierarchy, order = self.order,
-					top = self.top, left = self.left, width = self.width, height = self.height,
-					contents = contents)
-
+		import utils.wysiwyg
+		
+		image_id = "b39178a5-2e1a-14ba-99e3-d7f392bd1584"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 ]]></SourceCode>
   <Libraries>
