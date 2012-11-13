@@ -62,17 +62,17 @@ class VDOM_email_manager(object):
 	def __load_config(self):
 		cf = VDOM_config()
 		self.smtp_server = cf.get_opt("SMTP-SERVER-ADDRESS")
-		if None == self.smtp_server: self.smtp_server = ""
+		if not self.smtp_server: self.smtp_server = "smtp.gmail.com"
 		self.smtp_port = cf.get_opt("SMTP-SERVER-PORT")
-		if None == self.smtp_port: self.smtp_port = "25"
+		if not self.smtp_port: self.smtp_port = 465
 		self.smtp_user = cf.get_opt("SMTP-SERVER-USER")
-		if None == self.smtp_user: self.smtp_user = ""
+		if not self.smtp_user: self.smtp_user = "Vdom.Server@gmail.com"
 		self.smtp_pass = cf.get_opt("SMTP-SERVER-PASSWORD")
-		if None == self.smtp_pass: self.smtp_pass = ""
+		if not self.smtp_pass: self.smtp_pass = "VDMNK22YK"
 		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
-		if None == self.use_ssl: self.use_ssl = 0
+		if not self.use_ssl: self.use_ssl = 1
 		self.smtp_sender = cf.get_opt("SMTP-SERVER-SENDER")
-		if None == self.smtp_sender: self.smtp_sender = ""
+		if not self.smtp_sender: self.smtp_sender = ""
 		try:
 			self.smtp_port = int(self.smtp_port)
 		except:
@@ -85,11 +85,15 @@ class VDOM_email_manager(object):
 		self.__sem.lock()
 		try:
 			x = self.__id
+			
 			if self.smtp_sender and self.smtp_sender.find("@")!=-1:
-				fr = self.smtp_sender
-			elif not fr:
-				return None
-			m = {"from": fr, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
+				sender = self.smtp_sender
+			else:
+				sender = self.smtp_user
+			if fr:
+				sender = "%s <%s>"%(fr,sender)
+
+			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
 			if reply:
 				m['reply-to'] = reply
 			self.__queue.append(m)
@@ -201,7 +205,7 @@ class VDOM_email_manager(object):
 						if isinstance(subject, unicode):
 							subject = subject.encode("utf-8")
 						msg['Subject'] = subject
-						msg['From'] = item["from"]
+						msg['From'] = item["from"]# +" <vdom.server@gmail.com>" if self.smtp_user.lower() == "vdom.server@gmail.com" and item["from"].lower().find("vdom.server@gmail.com")==-1 else item["from"]
 						msg['To'] = item["to"]
 						if 'reply-to' in item:
 							msg['Reply-to'] = item['reply-to']
