@@ -198,3 +198,6 @@ def copy(src, dst):
 		debug ("Error: return code: %s"%str(e))
 		managers.log_manager.error_server("System call error: %s"%str(e),"system_windows")
 		
+		
+def get_proxy():
+	return None, None,None,None
