@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.5.6720</Version>
+    <Version>1.7.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -297,7 +297,7 @@
       <Name>testhtml</Name>
       <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue/>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
@@ -1114,845 +1114,7 @@ vO6kd4W/D52zP/vatocfAE4VxPbkz7bAo0/eA1u3/yv54qiZDznwN+FlR54Miyf2n3c/9sVtDzFn
 gLmWN8/z0T/o9Xr353l+3rCL9uVtDzGn/Wb5PLX2iJ+H4w5gK+ZLnU7nw+NtD2vfB217eOKJJ+53
 9NFHH3zLLbdQ5nS87eECtf8PF6vcaTllb+UAAAAASUVORK5CYII=]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
-
-import sys
-import json
-import collections
-
-class VDOM_smartfolder(VDOM_object):
-
-	def render(self, parent, contents=""):
-
-		woid = u"" + (self.id).replace('-', '_')
-		id = u"o_" + woid
-
-		display = u"display:none;" if self.visible == "0" else u""
-
-		classname = u"""class="%s" """ % self.classname if self.classname else u""
-		classname_item = 'sf-item'
-
-		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
-
-		#style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; """\
-		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;"""\
-			.format( display = display, zind = style_zindex, pos = self.position, 
-				top = self.top, left = self.left, width = self.width, height = self.height )
-
-		html_items = u""
-		js_items_data = u""
-
-		### javascript
-
-		if self.draggable == '1':
-			js_drag = u"""
-$j("#%(id)s .items .%(class)s").draggable({
-	containment: 'document',
-	revert: 'invalid',
-	revertDuration: 200,
-	zIndex: 99999,
-	opacity: 0.6,
-	helper: 'original',
-	cursor: 'default',
-	start: function(e,u){
-		var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
-		execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
-	}
-});
-$j("#%(id)s .items .%(class)s").droppable({
-	accept: ".%(class)s",
-	//activeClass: "%(class)s-hover",
-	hoverClass: "%(class)s-hover",
-	drop: function(e,u) {
-		$j(u.draggable).fadeOut(100);
-		var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
-		execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
-	}
-});
-""" % { "id": id, "woid": woid, "class": classname_item }
-		else:
-			js_drag = ""
-
-		js_base = u"""
-$j('#%(id)s')
-	%(js_items_data)s
-;
-$j("#%(id)s .items .%(class)s").bind('click dblclick', function(e){
-	if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
-	var t = $j(this);
-	if (e.type == 'dblclick') {
-		%(id)s_doo = false;
-		execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("index")});
-	} else {
-		setTimeout(function() {
-			if (%(id)s_doo == true) {
-
-var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
-%(id)s_current_item = x[i];
-$j('#%(id)s>.%(class)s').removeClass('selected');
-$j(this).addClass('selected');
-
-				execEventBinded('%(woid)s', "itemclick", {"id":t.attr("index")});
-			}
-		}, 300);
-		%(id)s_doo = true;
-	}
-	return false;
-});
-$j("#%(id)s .items .%(class)s").hover(function(e){
-	execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("index")});
-	return false;
-},function(e){
-	execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("index")});
-	return false;
-});
-""" % { "id": id, "woid": woid, "class": classname_item, "js_items_data": js_items_data }
-
-		if self.testhtml != '':
-			js_drag = ""
-			js_add = ""
-			testhtml = self.testhtml % { "id": id, "woid": woid, "class": classname_item }
-		else:
-			testhtml = ""
-			js_add = u"""
-/* // it in click, see upper
-$j("#%(id)s .items .%(class)s").click(function(){
-	var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
-	%(id)s_current_item = x[i];
-	$j('#%(id)s>.%(class)s').removeClass('selected');
-	$j(this).addClass('selected');
-});
-*/
-/*
-$j("#%(id)s>.controls div.control").click(function(){
-	var t = $j(this);
-	if (t.hasClass('add')) {
-		var n = '';
-		execEventBinded('%(woid)s', "newsmartfolder", {"name": n}, true);
-	} else
-	if (t.hasClass('edit')) {
-		execEventBinded('%(woid)s', "rename", {}, true);
-	} else
-	if (t.hasClass('delete')) {
-		var x = [];
-		execEventBinded('%(woid)s', "delete", {"guids": x}, true);
-	} else
-	if (t.hasClass('group')) {
-		var x = [], n = '';
-		execEventBinded('%(woid)s', "group", {"groupname": n, "guids": x}, true);
-	} else
-	if (t.hasClass('ungroup')) {
-		execEventBinded('%(woid)s', "ungroup", {}, true);
-	}
-	return false;
-});
-*/
-
-$j("#%(id)s .controls div.control").click(function(){
-	var t = $j(this), sf = $j("#%(id)s");
-	if (t.hasClass('add')) {
-		if (sf.data('sf_selectmode') == 0) {
-			var n = prompt("Please enter name for new folder:","New Folder");
-			if (n) {
-				n = $j.trim(n);
-				if (n == '') {
-					alert('Folder name is empty');
-				} else {
-					execEventBinded('%(woid)s', "newsmartfolder", {"name": n}, true);
-				}
-			}
-		} else {
-			alert('Not allowed in select mode');
-		}
-	} else
-	if (t.hasClass('edit')) {
-		if (sf.data('sf_selectmode') == 0) {
-			var o = sf.data('sf_current_item') || false;
-			if (!o) {
-				alert('No folder selected');
-			} else {
-				var n = prompt("Please enter new name:",o.data('sf').name);
-				if (n) {
-					n = $j.trim(n);
-					if (n == '') {
-						alert('Folder name is empty');
-					} else {
-						execEventBinded('%(woid)s', "rename", {"guid": o.data('sf').guid, "name": n}, true);
-					}
-				}
-			}
-		} else {
-			alert('Not allowed in select mode');
-		}
-	} else
-	if (t.hasClass('delete')) {
-		var x = sf.data('sf_items_selected') || [];
-		if (x.length) {
-			execEventBinded('%(woid)s', "delete", {"guidlist": x}, true);
-		} else {
-			var o = sf.data('sf_current_item') || false;
-			if (o) {
-				execEventBinded('%(woid)s', "delete", {"guidlist": [o.data('sf').guid]}, true);
-			}
-		}
-	} else
-	if (t.hasClass('group')) {
-		var gs = sf.data('sf_items_selected') || [];
-		if (gs.length) {
-			var n = prompt("Please enter name for new group:","New Group");
-			if (n) {
-				n = $j.trim(n);
-				if (n == '') {
-					alert('Group name is empty');
-				} else {
-					var x = sf.data('sf_items_selected') || [];
-					if (x.length) {
-						execEventBinded('%(woid)s', "group", {"name": n, "guidlist": x}, true);
-					}
-				}
-			}
-		} else {
-			alert('No items selected');
-		}
-	} else
-	if (t.hasClass('ungroup')) {
-		if (sf.data('sf_selectmode') == 0) {
-			var x = sf.data('sf_current_item') || [];
-			if (x.length) {
-				execEventBinded('%(woid)s', "ungroup", {"guid": x.data('sf').guid}, true);
-			} else {
-				alert('Group is not specified');
-			}
-		} else {
-			alert('Not allowed in select mode');
-		}
-	}
-	return false;
-});
-
-$j("#%(id)s .controls .selectmode").click(function(){
-	var t = $j(this), s = 'selectmode-selected', sf = $j("#%(id)s");
-	if (t.hasClass(s)) {
-		$j(sf).data({
-			'sf_selectmode': 0,
-			'sf_items_selected': []
-		});
-		$j(".items .%(class)s",sf).removeClass('selected').droppable('enable').draggable('enable');
-		t.removeClass(s);
-		$j(".items",sf).removeClass('selectmode');
-	} else {
-		$j(sf).data('sf_selectmode', 1);
-		$j(".items .%(class)s",sf).droppable('disable').draggable('disable');
-		var x = $j(".items .selected:first",sf).data('sf');
-		if (typeof x !== 'undefined' && typeof x.guid !== 'undefined') vdom_sf_selected_add(sf, x.guid);
-		t.addClass(s);
-		$j(".items",sf).addClass('selectmode');
-	}
-	return false;
-});
-
-
-function vdom_sf_set_drag(sfid) {
-	$j(".items .%(class)s",sfid).draggable({
-		containment: 'document',
-		revert: 'invalid',
-		revertDuration: 200,
-		zIndex: 99999,
-		opacity: 0.6,
-		helper: 'original',
-		cursor: 'default',
-		start: function(e,u){
-			console.info(u.helper.data());
-
-			//var x = $j(sfid).data("guid"), i = $j(this).attr('index');
-			//execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
-		}
-	});
-	$j(".items .%(class)s",sfid).droppable({
-		accept: ".%(class)s",
-		//activeClass: "%(class)s-hover",
-		hoverClass: "%(class)s-hover",
-		drop: function(e,u) {
-			$j(u.draggable).fadeOut(100);
-			//var x = $j(sfid).data("guid"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
-			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
-		}
-	});
-}
-
-function vdom_sf_set_handlers(sfid){
-	vdom_sf_set_drag(sfid);
-/*
-	$j(".items .%(class)s",sfid).live('click',function(){
-		var t = $j(this), s = 'selected', sc = 'current', sa;
-		var x = t.data("sf");
-		if (sfid.data('sf_selectmode') == 0) {
-			sfid.data('sf_current_item', t);
-			t.parents('.items').find('.sf-item').removeClass(sc);
-			t.addClass(sc);
-		} else {
-			if (x.noselect !== '1') {
-				if (t.hasClass(s)) {
-					t.removeClass(s);
-					vdom_sf_selected_remove(sfid, x.guid);
-				} else {
-					t.addClass(s);
-					vdom_sf_selected_add(sfid, x.guid);
-				}
-			}
-		}
-		return false;
-	});
-*/
-	%(id)s_doo = false;
-	$j(".items .%(class)s",sfid).live('click dblclick', function(e){
-		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
-		var t = $j(this);
-		var x = t.data("sf");
-		if (e.type == 'dblclick') {
-			%(id)s_doo = false;
-			execEventBinded('%(woid)s', "itemdblclick", {"guid":x.guid});
-		} else {
-			setTimeout(function() {
-				if (%(id)s_doo == true) {
-					// click
-					//execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
-					var s = 'selected', sc = 'current', sa;
-					if (sfid.data('sf_selectmode') == 0) {
-						sfid.data('sf_current_item', t);
-						t.parents('.items').find('.sf-item').removeClass(sc);
-						t.addClass(sc);
-					} else {
-						if (x.noselect !== '1') {
-							if (t.hasClass(s)) {
-								t.removeClass(s);
-								vdom_sf_selected_remove(sfid, x.guid);
-							} else {
-								t.addClass(s);
-								vdom_sf_selected_add(sfid, x.guid);
-							}
-						}
-					}
-				}
-			}, 250);
-			%(id)s_doo = true;
-		}
-		return false;
-	});
-
-
-	$j(".pathway a",sfid).live('click',function(){
-		execEventBinded('%(woid)s', "itemclick", {"guid": $j(this).attr('guid')}, true);
-		return false;
-	});
-
-	$j(".pages a",sfid).live('click',function(){
-		var page = 	parseInt($j(this).attr('rel'),10);
-		if (page <= 0) page = 1;
-		sfid.data('sf_current_page', page);
-		var pa = sfid.data('sf_path');
-		var p = (pa.length > 0) ? pa[pa.length-1] : '';
-		execEventBinded('%(woid)s', "requestdata", {"guid": p.guid, 'offset': sfid.data('sf_items_per_page')*(page-1), 'limit': sfid.data('sf_items_per_page') }, true);
-		return false;
-	});
-}
-
-function vdom_sf_selected_add(sfid, guid){
-	var sa = sfid.data('sf_items_selected');
-	var x = $j.inArray(guid, sa);
-	if (x < 0) {
-		sa.push(guid);
-		sfid.data('sf_items_selected', sa);
-	}
-}
-
-function vdom_sf_selected_remove(sfid, guid){
-	var sa = sfid.data('sf_items_selected');
-	var x = $j.inArray(guid, sa);
-	if (x >= 0) {
-		sa.splice(x,1);
-		sfid.data('sf_items_selected', sa);
-	}
-}
-
-function vdom_sf_refresh(sfid){
-	var sf = $j('#'+sfid);
-	var p = sf.data('sf_path') || [], guid = '', ofs = 0;
-	if (p.length) {
-		guid = p[p.length-1];
-	}
-	sf.data('sf_current_item', null);
-	var page = parseInt(sf.data('sf_current_page'),10) - 1;
-	var per = parseInt(sf.data('sf_items_per_page'),10);
-	if (page < 0) page = 0;
-	if (per <= 0) per = 1;
-	ofs = page * per;
-	execEventBinded('%(woid)s', "requestdata", {"guid": guid, "offset": ofs, "limit": per}, true);
-}
-
-function vdom_sf_goto(path){
-	execEventBinded('%(woid)s', "requestdata", {"guid": '', "offset": '', "limit": ''}, true);
-}
-
-function vdom_sf_disable(id){
-	$j('#'+id+' .sf-disabled').fadeIn('fast');
-}
-
-function vdom_sf_enable(id){
-	$j('#'+id+' .sf-disabled').fadeOut('fast');
-}
-
-function vdom_sf_load(id,path,total,data){
-	var sf = $j('#'+id);
-	sf.data('sf_path', path);
-	sf.data('sf_items_count', total);
-	sf.data('sf_current_item', null);
-
-	if (typeof data === 'array' || typeof data === 'object') {
-		var d = $j('<div></div>');
-		$j.each(data, function(i,e){
-			var a = {
-				guid:      e['guid'] || 'no-guid',
-				type:      e['type'] || 'no-type',
-				name:      e['name'] || 'no-name',
-				icon:      e['icon'] || '',
-				nodelete:  e['nodelete'] || '',
-				noedit:    e['noedit'] || '',
-				nomove:    e['nomove'] || '',
-				noselect:  e['noselect'] || ''
-			};
-			var s = $j( '<div class="sf-item"><div class="img"><div></div></div><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
-			if (a['nomove'] == '1') s.append('<div class="sf-item"><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
-			if (a['nomove'] == '1') s.addClass('nomove');
-			if (a['nodelete'] == '1') s.addClass('nodelete');
-			if (a['noedit'] == '1') s.addClass('noedit');
-			if (a['noselect'] == '1') s.addClass('noselect');
-			if (a['type'] == 'group') s.addClass('group');
-			if (sf.data('sf_items_selected').indexOf(e['guid']) >= 0) s.addClass('selected');
-			s.appendTo(d).data('sf', a);
-		});
-	}
-	$j('.items',sf).html('').append($j('>div',d));
-
-	d = [];
-	if (typeof path === 'array' || typeof path === 'object') {
-		$.each(path, function(i,e){
-			if (i < path.length - 1) {
-				d.push("<a href='#' guid='"+e['guid']+"'>"+e['name']+"</a>");
-			} else {
-				d.push("<span guid='"+e['guid']+"'>"+e['name']+"</span>");
-			}
-		});
-	}
-	$j('.pathway',sf).html(d.join(' / '));
-
-	// pages
-	d = [];
-	var ii, tot = parseInt(total, 10), ipp = parseInt(sf.data('sf_items_per_page'),10), curp = parseInt(sf.data('sf_current_page'),10);
-	if (tot <= 0) tot = 1;
-	if (ipp <= 0) ipp = 1;
-	if (curp <= 0) curp = 1;
-	var pages = parseInt(tot / ipp, 10);
-	if (tot %% ipp > 0) pages++;
-	for (ii = 1; ii <= pages; ii++) {
-		if (curp == ii) {
-			d.push("<span>"+ii+"</span>");
-		} else {
-			d.push("<a href='#' rel='"+ii+"'>"+ii+"</a>");
-		}
-	}
-	$j('.pages',sf).html(d.join(' '));
-
-	//vdom_sf_set_handlers(sf);
-	//vdom_sf_set_drag(sf);
-}
-
-function vdom_sf_init(id,page,per,sel){
-	var sf=$j('#'+id);
-	sf.data({
-		'sf_selectmode': 0,
-		'sf_current_item': null,
-		'sf_current_page': parseInt(page,10) || 1,
-		'sf_items_count': 0,
-		'sf_items_per_page': parseInt(per,10) || 6,
-		'sf_items_selected': sel || []
-	}).find('.items').html('');
-	$j('.sf-disabled',sf).css({
-		opacity: 0.7,
-		width: '100%%',
-		height: '100%%'
-	});
-	vdom_sf_set_handlers(sf);
-}
-
-vdom_sf_init('%(id)s', 1, 4);
-
-""" % { "id": id, "woid": woid, "class": classname_item }
-
-		### pages
-
-		currentpage = int(self.currentpage)
-		if currentpage <= 0: currentpage = 1
-
-		itemsperpage = int(self.itemsperpage)
-		if itemsperpage <= 0: itemsperpage = 1
-
-		### consolidate javascript
-
-		js = u"""<script type="text/javascript">
-%(id)s_doo = false;
-%(id)s_current_item = null;
-$j(function(){
-	%(js_base)s
-	%(js_drag)s
-	%(js_add)s
-	execEventBinded('%(woid)s', "requestdata", {guid:'', limit:'%(limit)s', offset:'%(offset)s'}, true);
-});
-</script>""" % { "id": id, "woid": woid, "js_drag": js_drag, "class": classname_item, "js_base": js_base, "js_add": js_add,
-			"offset": str(itemsperpage*(currentpage-1)), "limit": str(itemsperpage) }
-
-		### styles
-
-		css = u"""<style type='text/css'>
-#%(id)s {
-}
-#%(id)s .items {
-width: %(width)spx;
-height: %(height)spx;
-overflow: hidden;
-}
-#%(id)s .items .%(class)s {
-overflow: hidden; 
-width: %(itemwidth)spx;
-height: %(itemheight)spx;
-float: left;
-}
-#%(id)s .items .%(class)s-hover {
-}
-#%(id)s .controls {
-}
-	#%(id)s .controls .control {
-	float: left;
-	white-space: nowrap;
-	cursor: pointer;
-	}
-	#%(id)s .controls .control {
-	}
-	#%(id)s .controls .control:hover {
-	}
-	#%(id)s .controls .control:active {
-	}
-
-
-#%(id)s {
-background: #999;
-border: 1px solid #888;
-border-left: 1px solid #ddd;
-border-top: 1px solid #ddd;
-padding: 1px;
-}
-#%(id)s .items {
-overflow: hidden;
-border: 1px solid silver;
-border-left: 1px solid gray;
-border-top: 1px solid gray;
-background: #fff;
-}
-	#%(id)s .items .%(class)s {
-	margin: 8px 0 0 8px;
-	border: 1px solid #ccc;
-	background: #fff;
-	text-align: center;
-	word-wrap: break-word;
-	}
-		#%(id)s .items .%(class)s .img {
-		width: 82px;
-		height: 63px;
-		overflow: hidden;
-		margin: 0 auto 5px auto;
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left top no-repeat;
-		position: relative;
-		}
-		#%(id)s .items .%(class)s .img  div {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 82px;
-		height: 63px;
-		overflow: hidden;
-		margin: 0;
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -63px no-repeat;
-		}
-		#%(id)s .items .selected .img  div {
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -126px no-repeat;
-		}
-#%(id)s .items .selected {
-border: 1px solid red;
-}
-#%(id)s .items .current {
--webkit-box-shadow: 0 0 3px #000;
--moz-box-shadow: 0 0 3px #000;
-box-shadow: 0 0 3px #000;
-}
-#%(id)s .items .%(class)s-hover {
-background: #fcc;
-}
-#%(id)s .pathway {
-padding: 4px 2px 6px 4px;
-color: #fff;
-}
-	#%(id)s .pathway a {
-	color: #eee;
-	}
-	#%(id)s .pathway a:hover {
-	color: #fff;
-	}
-#%(id)s .controls {
-padding: 1px;
-}
-	#%(id)s .controls .control {
-	background: #eee;
-	border: 1px solid #666;
-	border-left: 1px solid #ccc;
-	border-top: 1px solid #ccc;
-	padding: 4px 8px;
-	margin: 0 3px 0 0;
-	color: #555;
-	box-shadow: 1px 1px 2px #333;
-	}
-	#%(id)s .controls .control:hover {
-	background: #fff;
-	color: #000;
-	}
-	#%(id)s .controls .control:active {
-	background: #fcc;
-	box-shadow: none;
-	margin: 1px 2px -1px 1px;
-	}
-	#%(id)s .controls .selectmode {
-	}
-	#%(id)s .controls .selectmode-selected {
-	background: red;
-	color: yellow;
-	border: 1px solid #666;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	box-shadow: none;
-	margin: 1px 2px -1px 1px;
-	}
-	#%(id)s .controls .selectmode-selected:hover {
-	background: #f44 !important;
-	color: yellow;
-	}
-	#%(id)s .controls .selectmode-selected:active {
-	background: #fcc !important;
-	}
-#%(id)s .selectmode .noselect {
-opacity: 0.5;
-filter: alpha(opacity = 50);
-}
-#%(id)s .sf-disabled {
-background: #fff;
-position: absolute;
-left: 0;
-top: 0;
-}
-#%(id)s .ui-state-disabled {
-opacity: 1;
-}
-#%(id)s .pages {
-}
-	#%(id)s .pages a {
-	color: #eee;
-	}
-	#%(id)s .pages a:hover {
-	color: #fff;
-	text-decoration: none;
-	}
-	#%(id)s .pages a,
-	#%(id)s .pages span {
-	padding: 2px 4px;
-	margin: 1px;
-	display: block;
-	float: left;
-	}
-	#%(id)s .pages span {
-	background: #eee;
-	}
-
-</style>""" % {
-			"id": id, "class": classname_item,
-			"itemwidth": self.itemwidth, "itemheight": self.itemheight,
-			"width": self.width, "height": self.height
-		}
-
-		### parse toolbar's options
-
-		try:
-			tb_opt = json.loads(self.toolbar)
-		except Exception as e:
-			tb_opt = {
-				"show": 1,
-				"buttons": {
-					"edit": {
-						"show": 1,
-						"title": "Edit"
-					},
-					"add": {
-						"show": 1,
-						"title": "Add Smart Folder"
-					},
-					"delete": {
-						"show": 1,
-						"title": "Delete"
-					},
-					"group": {
-						"show": 1,
-						"title": "Group"
-					},
-					"ungroup": {
-						"show": 1,
-						"title": "Ungroup"
-					},
-					"selectmode": {
-						"show": 1,
-						"title": "Select mode"
-					}
-				}
-			}
-			debug("Error [json.loads(toolbar) in smartfolder type]: %s" % str(e))
-
-		if 'buttons' in tb_opt:
-			b = tb_opt['buttons']
-			tb_opt_b_edit          = int(b['edit']['show']) if 'edit' in b else 1
-			tb_opt_b_add           = int(b['add']['show']) if 'add' in b else 1
-			tb_opt_b_delete        = int(b['delete']['show']) if 'delete' in b else 1
-			tb_opt_b_group         = int(b['group']['show']) if 'group' in b else 1
-			tb_opt_b_ungroup       = int(b['ungroup']['show']) if 'ungroup' in b else 1
-			tb_opt_b_selectmode    = int(b['selectmode']['show']) if 'selectmode' in b else 1
-			tb_opt_b_edit_title    = b['edit']['title'] if 'edit' in b else 'Edit'
-			tb_opt_b_add_title     = b['add']['title'] if 'add' in b else 'Add Smart Folder'
-			tb_opt_b_delete_title  = b['delete']['title'] if 'delete' in b else 'Delete'
-			tb_opt_b_group_title   = b['group']['title'] if 'group' in b else 'Group'
-			tb_opt_b_ungroup_title = b['ungroup']['title'] if 'ungroup' in b else 'Ungroup'
-			tb_opt_b_selectmode_title = b['selectmode']['title'] if 'selectmode' in b else 'Select Mode'
-		else:
-			tb_opt_b_edit = 1
-			tb_opt_b_add = 1
-			tb_opt_b_delete = 1
-			tb_opt_b_group = 1
-			tb_opt_b_ungroup = 1
-			tb_opt_b_selectmode = 1
-			tb_opt_b_edit_title = u'Edit'
-			tb_opt_b_add_title = u'Add Smart Folder'
-			tb_opt_b_delete_title = u'Delete'
-			tb_opt_b_group_title = u'Group'
-			tb_opt_b_ungroup_title = u'Ungroup'
-			tb_opt_b_selectmode_title = u'Select Mode'
-
-		tb_opt_show = int(tb_opt['show']) if "show" in tb_opt else 1
-
-		shide = u"style='display:none'"
-
-		toolbar = u"""<div class='controls' %(chide)s>
-<div class='control selectmode' %(b0hide)s>%(b0name)s</div>
-<div class='control add' %(b1hide)s>%(b1name)s</div>
-<div class='control edit' %(b2hide)s>%(b2name)s</div>
-<div class='control delete' %(b3hide)s>%(b3name)s</div>
-<div class='control group' %(b4hide)s>%(b4name)s</div>
-<div class='control ungroup' %(b5hide)s>%(b5name)s</div>
-<div style='clear:both'></div>
-		</div>""" % {
-			"chide":  "" if tb_opt_show == 1 else shide,
-			"b0hide": "" if tb_opt_b_selectmode == 1 else shide,
-			"b1hide": "" if tb_opt_b_add == 1 else shide,
-			"b2hide": "" if tb_opt_b_edit == 1 else shide,
-			"b3hide": "" if tb_opt_b_delete == 1 else shide,
-			"b4hide": "" if tb_opt_b_group == 1 else shide,
-			"b5hide": "" if tb_opt_b_ungroup == 1 else shide,
-			"b0name": tb_opt_b_selectmode_title,
-			"b1name": tb_opt_b_add_title,
-			"b2name": tb_opt_b_edit_title,
-			"b3name": tb_opt_b_delete_title,
-			"b4name": tb_opt_b_group_title,
-			"b5name": tb_opt_b_ungroup_title,
-			"id":     id,
-			"class":  classname_item
-		}
-
-		### pathway
-
-		pathway_visible = u"style='display:none'" if self.pathway == "0" else u""
-		pathway = u"<div class='pathway' " + pathway_visible + "></div>"
-
-		### debug info
-
-		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='smartfolder' objname='%s' ver='2012-02-07'" % self.name
-		else:
-			debug_info = u""
-
-		### out
-
-		result = u"""{css}<div {debug_info} id="{id}" style="{style}">{toolbar}{pathway}<div class='items'>{items}</div><div class='pages'></div><div class='sf-disabled' style='display:none'></div></div>{js}{testhtml}"""\
-			.format( debug_info = debug_info, id = id, style = style, items = html_items, js = js, css = css, testhtml = testhtml, toolbar = toolbar, pathway = pathway )
-
-		return VDOM_object.render(self, parent, contents=result)
-
-
-	def wysiwyg(self, parent, contents=""):
-
-		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-							top="{top}" left="{left}" width="{width}" height="{height}">
-						<svg>
-							<rect x="0" y="0" width="{width}" height="{height}" fill="#DDDDDD"/>
-						</svg>
-						{contents}
-					</container>
-				""".format( id = self.id, vis = self.visible, zind = self.zindex, 
-							hierarchy = self.hierarchy, order = self.order,
-							top = self.top, left = self.left, width = self.width, height = self.height,
-							contents = contents)
-
-		return VDOM_object.wysiwyg(self, parent, contents=result)
-
-
-def set_attr(app_id, object_id, param):
-	css = """
-#%(id)s {
-}
-#%(id)s .items {
-}
-#%(id)s .items .%(class)s {
-}
-#%(id)s .items .%(class)s-hover {
-}
-#%(id)s .controls {
-}
-	#%(id)s .controls .control {
-	}
-	#%(id)s .controls .control {
-	}
-	#%(id)s .controls .control:hover {
-	}
-	#%(id)s .controls .control:active {
-	}
-"""
-
-	o = application.objects.search(object_id)
-
-	if "skin" in param:
-		if param["skin"]["value"] == "1":
-			o.set_attributes({"style": css})
-		#elif param["skin"]["value"] == "2":
-		#	o.set_attributes({"style": eof_style})
-	if "style" in param and param["style"]["value"] and o.attributes.style != css:
-		o.set_attributes({"skin": 0})
-
-	return ""
-
-
-		]]></SourceCode>
+  <SourceCode><![CDATA[import sysimport jsonimport collectionsclass VDOM_smartfolder(VDOM_object):	def render(self, parent, contents=""):		woid = u"" + (self.id).replace('-', '_')		id = u"o_" + woid		display = u"display:none;" if self.visible == "0" else u""		classname = u"""class="%s" """ % self.classname if self.classname else u""		classname_item = 'sf-item'		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""		#style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; """\		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;"""\			.format( display = display, zind = style_zindex, pos = self.position, 				top = self.top, left = self.left, width = self.width, height = self.height )		html_items = u""		js_items_data = u""		### javascript		if self.draggable == '1':			js_drag = u"""$j("#%(id)s .items .%(class)s").draggable({	containment: 'document',	revert: 'invalid',	revertDuration: 200,	zIndex: 99999,	opacity: 0.6,	helper: 'original',	cursor: 'default',	start: function(e,u){		var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');		execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);	}});$j("#%(id)s .items .%(class)s").droppable({	accept: ".%(class)s",	//activeClass: "%(class)s-hover",	hoverClass: "%(class)s-hover",	drop: function(e,u) {		$j(u.draggable).fadeOut(100);		var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');		execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);	}});""" % { "id": id, "woid": woid, "class": classname_item }		else:			js_drag = ""		js_base = u"""$j('#%(id)s')	%(js_items_data)s;$j("#%(id)s .items .%(class)s").bind('click dblclick', function(e){	if (e.preventDefault) e.preventDefault(); else e.returnValue = false;	var t = $j(this);	if (e.type == 'dblclick') {		%(id)s_doo = false;		execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("index")});	} else {		setTimeout(function() {			if (%(id)s_doo == true) {var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');%(id)s_current_item = x[i];$j('#%(id)s>.%(class)s').removeClass('selected');$j(this).addClass('selected');				execEventBinded('%(woid)s', "itemclick", {"id":t.attr("index")});			}		}, 300);		%(id)s_doo = true;	}	return false;});$j("#%(id)s .items .%(class)s").hover(function(e){	execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("index")});	return false;},function(e){	execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("index")});	return false;});""" % { "id": id, "woid": woid, "class": classname_item, "js_items_data": js_items_data }		if self.testhtml != '':			js_drag = ""			js_add = ""			testhtml = self.testhtml % { "id": id, "woid": woid, "class": classname_item }		else:			testhtml = ""			js_add = u"""/* // it in click, see upper$j("#%(id)s .items .%(class)s").click(function(){	var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');	%(id)s_current_item = x[i];	$j('#%(id)s>.%(class)s').removeClass('selected');	$j(this).addClass('selected');});*//*$j("#%(id)s>.controls div.control").click(function(){	var t = $j(this);	if (t.hasClass('add')) {		var n = '';		execEventBinded('%(woid)s', "newsmartfolder", {"name": n}, true);	} else	if (t.hasClass('edit')) {		execEventBinded('%(woid)s', "rename", {}, true);	} else	if (t.hasClass('delete')) {		var x = [];		execEventBinded('%(woid)s', "delete", {"guids": x}, true);	} else	if (t.hasClass('group')) {		var x = [], n = '';		execEventBinded('%(woid)s', "group", {"groupname": n, "guids": x}, true);	} else	if (t.hasClass('ungroup')) {		execEventBinded('%(woid)s', "ungroup", {}, true);	}	return false;});*/$j("#%(id)s .controls div.control").click(function(){	var t = $j(this), sf = $j("#%(id)s");	if (t.hasClass('add')) {		if (sf.data('sf_selectmode') == 0) {			var n = prompt("Please enter name for new folder:","New Folder");			if (n) {				n = $j.trim(n);				if (n == '') {					alert('Folder name is empty');				} else {					execEventBinded('%(woid)s', "newsmartfolder", {"name": n}, true);				}			}		} else {			alert('Not allowed in select mode');		}	} else	if (t.hasClass('edit')) {		if (sf.data('sf_selectmode') == 0) {			var o = sf.data('sf_current_item') || false;			if (!o) {				alert('No folder selected');			} else {				var n = prompt("Please enter new name:",o.data('sf').name);				if (n) {					n = $j.trim(n);					if (n == '') {						alert('Folder name is empty');					} else {						execEventBinded('%(woid)s', "rename", {"guid": o.data('sf').guid, "name": n}, true);					}				}			}		} else {			alert('Not allowed in select mode');		}	} else	if (t.hasClass('delete')) {		var x = sf.data('sf_items_selected') || [];		if (x.length) {			execEventBinded('%(woid)s', "delete", {"guidlist": x}, true);		} else {			var o = sf.data('sf_current_item') || false;			if (o) {				execEventBinded('%(woid)s', "delete", {"guidlist": [o.data('sf').guid]}, true);			}		}	} else	if (t.hasClass('group')) {		var gs = sf.data('sf_items_selected') || [];		if (gs.length) {			var n = prompt("Please enter name for new group:","New Group");			if (n) {				n = $j.trim(n);				if (n == '') {					alert('Group name is empty');				} else {					var x = sf.data('sf_items_selected') || [];					if (x.length) {						execEventBinded('%(woid)s', "group", {"name": n, "guidlist": x}, true);					}				}			}		} else {			alert('No items selected');		}	} else	if (t.hasClass('ungroup')) {		if (sf.data('sf_selectmode') == 0) {			var x = sf.data('sf_current_item') || [];			if (x.length) {				execEventBinded('%(woid)s', "ungroup", {"guid": x.data('sf').guid}, true);			} else {				alert('Group is not specified');			}		} else {			alert('Not allowed in select mode');		}	}	return false;});$j("#%(id)s .controls .selectmode").click(function(){	var t = $j(this), s = 'selectmode-selected', sf = $j("#%(id)s");	if (t.hasClass(s)) {		$j(sf).data({			'sf_selectmode': 0,			'sf_items_selected': []		});		$j(".items .%(class)s",sf).removeClass('selected').droppable('enable').draggable('enable');		t.removeClass(s);		$j(".items",sf).removeClass('selectmode');	} else {		$j(sf).data('sf_selectmode', 1);		$j(".items .%(class)s",sf).droppable('disable').draggable('disable');		var x = $j(".items .selected:first",sf).data('sf');		if (typeof x !== 'undefined' && typeof x.guid !== 'undefined') vdom_sf_selected_add(sf, x.guid);		t.addClass(s);		$j(".items",sf).addClass('selectmode');	}	return false;});function vdom_sf_set_drag(sfid) {	$j(".items .%(class)s",sfid).draggable({		containment: 'document',		revert: 'invalid',		revertDuration: 200,		zIndex: 99999,		opacity: 0.6,		helper: 'original',		cursor: 'default',		start: function(e,u){			console.info(u.helper.data());			//var x = $j(sfid).data("guid"), i = $j(this).attr('index');			//execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);		}	});	$j(".items .%(class)s",sfid).droppable({		accept: ".%(class)s",		//activeClass: "%(class)s-hover",		hoverClass: "%(class)s-hover",		drop: function(e,u) {			$j(u.draggable).fadeOut(100);			//var x = $j(sfid).data("guid"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);		}	});}function vdom_sf_set_handlers(sfid){	vdom_sf_set_drag(sfid);/*	$j(".items .%(class)s",sfid).live('click',function(){		var t = $j(this), s = 'selected', sc = 'current', sa;		var x = t.data("sf");		if (sfid.data('sf_selectmode') == 0) {			sfid.data('sf_current_item', t);			t.parents('.items').find('.sf-item').removeClass(sc);			t.addClass(sc);		} else {			if (x.noselect !== '1') {				if (t.hasClass(s)) {					t.removeClass(s);					vdom_sf_selected_remove(sfid, x.guid);				} else {					t.addClass(s);					vdom_sf_selected_add(sfid, x.guid);				}			}		}		return false;	});*/	%(id)s_doo = false;	$j(".items .%(class)s",sfid).live('click dblclick', function(e){		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;		var t = $j(this);		var x = t.data("sf");		if (e.type == 'dblclick') {			%(id)s_doo = false;			execEventBinded('%(woid)s', "itemdblclick", {"guid":x.guid});		} else {			setTimeout(function() {				if (%(id)s_doo == true) {					// click					//execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});					var s = 'selected', sc = 'current', sa;					if (sfid.data('sf_selectmode') == 0) {						sfid.data('sf_current_item', t);						t.parents('.items').find('.sf-item').removeClass(sc);						t.addClass(sc);					} else {						if (x.noselect !== '1') {							if (t.hasClass(s)) {								t.removeClass(s);								vdom_sf_selected_remove(sfid, x.guid);							} else {								t.addClass(s);								vdom_sf_selected_add(sfid, x.guid);							}						}					}				}			}, 250);			%(id)s_doo = true;		}		return false;	});	$j(".pathway a",sfid).live('click',function(){		execEventBinded('%(woid)s', "itemclick", {"guid": $j(this).attr('guid')}, true);		return false;	});	$j(".pages a",sfid).live('click',function(){		var page = 	parseInt($j(this).attr('rel'),10);		if (page <= 0) page = 1;		sfid.data('sf_current_page', page);		var pa = sfid.data('sf_path');		var p = (pa.length > 0) ? pa[pa.length-1] : '';		execEventBinded('%(woid)s', "requestdata", {"guid": p.guid, 'offset': sfid.data('sf_items_per_page')*(page-1), 'limit': sfid.data('sf_items_per_page') }, true);		return false;	});}function vdom_sf_selected_add(sfid, guid){	var sa = sfid.data('sf_items_selected');	var x = $j.inArray(guid, sa);	if (x < 0) {		sa.push(guid);		sfid.data('sf_items_selected', sa);	}}function vdom_sf_selected_remove(sfid, guid){	var sa = sfid.data('sf_items_selected');	var x = $j.inArray(guid, sa);	if (x >= 0) {		sa.splice(x,1);		sfid.data('sf_items_selected', sa);	}}function vdom_sf_refresh(sfid){	var sf = $j('#'+sfid);	var p = sf.data('sf_path') || [], guid = '', ofs = 0;	if (p.length) {		guid = p[p.length-1];	}	sf.data('sf_current_item', null);	var page = parseInt(sf.data('sf_current_page'),10) - 1;	var per = parseInt(sf.data('sf_items_per_page'),10);	if (page < 0) page = 0;	if (per <= 0) per = 1;	ofs = page * per;	execEventBinded('%(woid)s', "requestdata", {"guid": guid, "offset": ofs, "limit": per}, true);}function vdom_sf_goto(path){	execEventBinded('%(woid)s', "requestdata", {"guid": '', "offset": '', "limit": ''}, true);}function vdom_sf_disable(id){	$j('#'+id+' .sf-disabled').fadeIn('fast');}function vdom_sf_enable(id){	$j('#'+id+' .sf-disabled').fadeOut('fast');}function vdom_sf_load(id,path,total,data){	var sf = $j('#'+id);	sf.data('sf_path', path);	sf.data('sf_items_count', total);	sf.data('sf_current_item', null);	if (typeof data === 'array' || typeof data === 'object') {		var d = $j('<div></div>');		$j.each(data, function(i,e){			var a = {				guid:      e['guid'] || 'no-guid',				type:      e['type'] || 'no-type',				name:      e['name'] || 'no-name',				icon:      e['icon'] || '',				nodelete:  e['nodelete'] || '',				noedit:    e['noedit'] || '',				nomove:    e['nomove'] || '',				noselect:  e['noselect'] || ''			};			var s = $j( '<div class="sf-item"><div class="img"><div></div></div><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );			if (a['nomove'] == '1') s.append('<div class="sf-item"><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );			if (a['nomove'] == '1') s.addClass('nomove');			if (a['nodelete'] == '1') s.addClass('nodelete');			if (a['noedit'] == '1') s.addClass('noedit');			if (a['noselect'] == '1') s.addClass('noselect');			if (a['type'] == 'group') s.addClass('group');			if (sf.data('sf_items_selected').indexOf(e['guid']) >= 0) s.addClass('selected');			s.appendTo(d).data('sf', a);		});	}	$j('.items',sf).html('').append($j('>div',d));	d = [];	if (typeof path === 'array' || typeof path === 'object') {		$.each(path, function(i,e){			if (i < path.length - 1) {				d.push("<a href='#' guid='"+e['guid']+"'>"+e['name']+"</a>");			} else {				d.push("<span guid='"+e['guid']+"'>"+e['name']+"</span>");			}		});	}	$j('.pathway',sf).html(d.join(' / '));	// pages	d = [];	var ii, tot = parseInt(total, 10), ipp = parseInt(sf.data('sf_items_per_page'),10), curp = parseInt(sf.data('sf_current_page'),10);	if (tot <= 0) tot = 1;	if (ipp <= 0) ipp = 1;	if (curp <= 0) curp = 1;	var pages = parseInt(tot / ipp, 10);	if (tot %% ipp > 0) pages++;	for (ii = 1; ii <= pages; ii++) {		if (curp == ii) {			d.push("<span>"+ii+"</span>");		} else {			d.push("<a href='#' rel='"+ii+"'>"+ii+"</a>");		}	}	$j('.pages',sf).html(d.join(' '));	//vdom_sf_set_handlers(sf);	//vdom_sf_set_drag(sf);}function vdom_sf_init(id,page,per,sel){	var sf=$j('#'+id);	sf.data({		'sf_selectmode': 0,		'sf_current_item': null,		'sf_current_page': parseInt(page,10) || 1,		'sf_items_count': 0,		'sf_items_per_page': parseInt(per,10) || 6,		'sf_items_selected': sel || []	}).find('.items').html('');	$j('.sf-disabled',sf).css({		opacity: 0.7,		width: '100%%',		height: '100%%'	});	vdom_sf_set_handlers(sf);}vdom_sf_init('%(id)s', 1, 4);""" % { "id": id, "woid": woid, "class": classname_item }		### pages		currentpage = int(self.currentpage)		if currentpage <= 0: currentpage = 1		itemsperpage = int(self.itemsperpage)		if itemsperpage <= 0: itemsperpage = 1		### consolidate javascript		js = u"""<script type="text/javascript">%(id)s_doo = false;%(id)s_current_item = null;$j(function(){	%(js_base)s	%(js_drag)s	%(js_add)s	execEventBinded('%(woid)s', "requestdata", {guid:'', limit:'%(limit)s', offset:'%(offset)s'}, true);});</script>""" % { "id": id, "woid": woid, "js_drag": js_drag, "class": classname_item, "js_base": js_base, "js_add": js_add,			"offset": str(itemsperpage*(currentpage-1)), "limit": str(itemsperpage) }		### styles		css = u"""<style type='text/css'>#%(id)s {}#%(id)s .items {width: %(width)spx;height: %(height)spx;overflow: hidden;}#%(id)s .items .%(class)s {overflow: hidden; width: %(itemwidth)spx;height: %(itemheight)spx;float: left;}#%(id)s .items .%(class)s-hover {}#%(id)s .controls {}	#%(id)s .controls .control {	float: left;	white-space: nowrap;	cursor: pointer;	}	#%(id)s .controls .control {	}	#%(id)s .controls .control:hover {	}	#%(id)s .controls .control:active {	}#%(id)s {background: #999;border: 1px solid #888;border-left: 1px solid #ddd;border-top: 1px solid #ddd;padding: 1px;}#%(id)s .items {overflow: hidden;border: 1px solid silver;border-left: 1px solid gray;border-top: 1px solid gray;background: #fff;}	#%(id)s .items .%(class)s {	margin: 8px 0 0 8px;	border: 1px solid #ccc;	background: #fff;	text-align: center;	word-wrap: break-word;	}		#%(id)s .items .%(class)s .img {		width: 82px;		height: 63px;		overflow: hidden;		margin: 0 auto 5px auto;		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left top no-repeat;		position: relative;		}		#%(id)s .items .%(class)s .img  div {		position: absolute;		left: 0;		top: 0;		width: 82px;		height: 63px;		overflow: hidden;		margin: 0;		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -63px no-repeat;		}		#%(id)s .items .selected .img  div {		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -126px no-repeat;		}#%(id)s .items .selected {border: 1px solid red;}#%(id)s .items .current {-webkit-box-shadow: 0 0 3px #000;-moz-box-shadow: 0 0 3px #000;box-shadow: 0 0 3px #000;}#%(id)s .items .%(class)s-hover {background: #fcc;}#%(id)s .pathway {padding: 4px 2px 6px 4px;color: #fff;}	#%(id)s .pathway a {	color: #eee;	}	#%(id)s .pathway a:hover {	color: #fff;	}#%(id)s .controls {padding: 1px;}	#%(id)s .controls .control {	background: #eee;	border: 1px solid #666;	border-left: 1px solid #ccc;	border-top: 1px solid #ccc;	padding: 4px 8px;	margin: 0 3px 0 0;	color: #555;	box-shadow: 1px 1px 2px #333;	}	#%(id)s .controls .control:hover {	background: #fff;	color: #000;	}	#%(id)s .controls .control:active {	background: #fcc;	box-shadow: none;	margin: 1px 2px -1px 1px;	}	#%(id)s .controls .selectmode {	}	#%(id)s .controls .selectmode-selected {	background: red;	color: yellow;	border: 1px solid #666;	border-right: 1px solid #ccc;	border-bottom: 1px solid #ccc;	box-shadow: none;	margin: 1px 2px -1px 1px;	}	#%(id)s .controls .selectmode-selected:hover {	background: #f44 !important;	color: yellow;	}	#%(id)s .controls .selectmode-selected:active {	background: #fcc !important;	}#%(id)s .selectmode .noselect {opacity: 0.5;filter: alpha(opacity = 50);}#%(id)s .sf-disabled {background: #fff;position: absolute;left: 0;top: 0;}#%(id)s .ui-state-disabled {opacity: 1;}#%(id)s .pages {}	#%(id)s .pages a {	color: #eee;	}	#%(id)s .pages a:hover {	color: #fff;	text-decoration: none;	}	#%(id)s .pages a,	#%(id)s .pages span {	padding: 2px 4px;	margin: 1px;	display: block;	float: left;	}	#%(id)s .pages span {	background: #eee;	}</style>""" % {			"id": id, "class": classname_item,			"itemwidth": self.itemwidth, "itemheight": self.itemheight,			"width": self.width, "height": self.height		}		### parse toolbar's options		try:			tb_opt = json.loads(self.toolbar)		except Exception as e:			tb_opt = {				"show": 1,				"buttons": {					"edit": {						"show": 1,						"title": "Edit"					},					"add": {						"show": 1,						"title": "Add Smart Folder"					},					"delete": {						"show": 1,						"title": "Delete"					},					"group": {						"show": 1,						"title": "Group"					},					"ungroup": {						"show": 1,						"title": "Ungroup"					},					"selectmode": {						"show": 1,						"title": "Select mode"					}				}			}			debug("Error [json.loads(toolbar) in smartfolder type]: %s" % str(e))		if 'buttons' in tb_opt:			b = tb_opt['buttons']			tb_opt_b_edit          = int(b['edit']['show']) if 'edit' in b else 1			tb_opt_b_add           = int(b['add']['show']) if 'add' in b else 1			tb_opt_b_delete        = int(b['delete']['show']) if 'delete' in b else 1			tb_opt_b_group         = int(b['group']['show']) if 'group' in b else 1			tb_opt_b_ungroup       = int(b['ungroup']['show']) if 'ungroup' in b else 1			tb_opt_b_selectmode    = int(b['selectmode']['show']) if 'selectmode' in b else 1			tb_opt_b_edit_title    = b['edit']['title'] if 'edit' in b else 'Edit'			tb_opt_b_add_title     = b['add']['title'] if 'add' in b else 'Add Smart Folder'			tb_opt_b_delete_title  = b['delete']['title'] if 'delete' in b else 'Delete'			tb_opt_b_group_title   = b['group']['title'] if 'group' in b else 'Group'			tb_opt_b_ungroup_title = b['ungroup']['title'] if 'ungroup' in b else 'Ungroup'			tb_opt_b_selectmode_title = b['selectmode']['title'] if 'selectmode' in b else 'Select Mode'		else:			tb_opt_b_edit = 1			tb_opt_b_add = 1			tb_opt_b_delete = 1			tb_opt_b_group = 1			tb_opt_b_ungroup = 1			tb_opt_b_selectmode = 1			tb_opt_b_edit_title = u'Edit'			tb_opt_b_add_title = u'Add Smart Folder'			tb_opt_b_delete_title = u'Delete'			tb_opt_b_group_title = u'Group'			tb_opt_b_ungroup_title = u'Ungroup'			tb_opt_b_selectmode_title = u'Select Mode'		tb_opt_show = int(tb_opt['show']) if "show" in tb_opt else 1		shide = u"style='display:none'"		toolbar = u"""<div class='controls' %(chide)s><div class='control selectmode' %(b0hide)s>%(b0name)s</div><div class='control add' %(b1hide)s>%(b1name)s</div><div class='control edit' %(b2hide)s>%(b2name)s</div><div class='control delete' %(b3hide)s>%(b3name)s</div><div class='control group' %(b4hide)s>%(b4name)s</div><div class='control ungroup' %(b5hide)s>%(b5name)s</div><div style='clear:both'></div>		</div>""" % {			"chide":  "" if tb_opt_show == 1 else shide,			"b0hide": "" if tb_opt_b_selectmode == 1 else shide,			"b1hide": "" if tb_opt_b_add == 1 else shide,			"b2hide": "" if tb_opt_b_edit == 1 else shide,			"b3hide": "" if tb_opt_b_delete == 1 else shide,			"b4hide": "" if tb_opt_b_group == 1 else shide,			"b5hide": "" if tb_opt_b_ungroup == 1 else shide,			"b0name": tb_opt_b_selectmode_title,			"b1name": tb_opt_b_add_title,			"b2name": tb_opt_b_edit_title,			"b3name": tb_opt_b_delete_title,			"b4name": tb_opt_b_group_title,			"b5name": tb_opt_b_ungroup_title,			"id":     id,			"class":  classname_item		}		### pathway		pathway_visible = u"style='display:none'" if self.pathway == "0" else u""		pathway = u"<div class='pathway' " + pathway_visible + "></div>"		### debug info		if VDOM_CONFIG_1["DEBUG"] == "1":			debug_info = u"objtype='smartfolder' objname='%s' ver='2012-02-07'" % self.name		else:			debug_info = u""		### out		result = u"""{css}<div {debug_info} id="{id}" style="{style}">{toolbar}{pathway}<div class='items'>{items}</div><div class='pages'></div><div class='sf-disabled' style='display:none'></div></div>{js}{testhtml}"""\			.format( debug_info = debug_info, id = id, style = style, items = html_items, js = js, css = css, testhtml = testhtml, toolbar = toolbar, pathway = pathway )		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		import utils.wysiwyg				image_id = "d206e770-fb21-9e33-e53a-e4c09abb7ab4"		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)				return VDOM_object.wysiwyg(self, parent, contents=result)def set_attr(app_id, object_id, param):	css = """#%(id)s {}#%(id)s .items {}#%(id)s .items .%(class)s {}#%(id)s .items .%(class)s-hover {}#%(id)s .controls {}	#%(id)s .controls .control {	}	#%(id)s .controls .control {	}	#%(id)s .controls .control:hover {	}	#%(id)s .controls .control:active {	}"""	o = application.objects.search(object_id)	if "skin" in param:		if param["skin"]["value"] == "1":			o.set_attributes({"style": css})		#elif param["skin"]["value"] == "2":		#	o.set_attributes({"style": eof_style})	if "style" in param and param["style"]["value"] and o.attributes.style != css:		o.set_attributes({"skin": 0})	return ""		]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<script type='text/javascript'>
 /*
