@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.24.6720</Version>
+    <Version>1.25.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, form</Containers>
@@ -209,7 +209,7 @@
       <Name>testhtml</Name>
       <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue/>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
@@ -1158,21 +1158,11 @@ position: relative;
 
 
 	def wysiwyg(self, parent, contents = ""):
-
-		result = \
-			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-					top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff" stroke="#cccccc" stroke-width="3" />
-					</svg>
-					{contents}
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, zind = self.zindex, 
-					hierarchy = self.hierarchy, order = self.order,
-					top = self.top, left = self.left, width = self.width, height = self.height,
-					contents = contents)
-
+		import utils.wysiwyg
+		
+		image_id = "a7fa4ad8-8654-69e0-59d3-29f87020e039"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 
