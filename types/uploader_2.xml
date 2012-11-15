@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.20.8400</Version>
+    <Version>2.22.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -1926,27 +1926,12 @@ $j(function(){
 
 
 	def wysiwyg(self, parent, contents=""):
-
-		result = \
-			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-						top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect x="{r1_left}" y="{r1_top}" width="{width}" height="{height}" fill="#FFFFFF" stroke="#000000"/>
-					</svg>
-					<text top="{txt_top}" left="{txt_left}" width="{txt_wid}" color="#000000" textalign="center">{value}</text>
-					{contents}
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, zind = self.zindex,
-					hierarchy = self.hierarchy, order = self.order,
-					top = self.top, left = self.left, width = self.width, height = self.height,
-					r1_left = 0, r1_top = 0, r1_wid = int(self.width) - 87, r1_hei = int(self.height) - 1,
-					r2_left = int(self.width) - 80 , r2_top = 0, r2_wid = 79, r2_hei = int(self.height) - 1,
-					txt_top = int(self.height)/2 - 9, txt_left = 10, txt_wid = int(self.width) - 20,
-					value = "Multi uploader", contents = contents)
-
+		import utils.wysiwyg
+		
+		image_id = "da5906ec-fbaa-1a4f-9060-b6a12a668582"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
-
 ]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<script type='text/javascript' src='/b4993ec8-6d66-8240-22a7-48fbbedfe371.res'></script>]]></Library>
