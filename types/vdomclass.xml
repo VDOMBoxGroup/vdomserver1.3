@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.4.6720</Version>
+    <Version>2.7.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>vdompackage, objectview</Containers>
@@ -149,7 +149,7 @@
       <Name>data</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>3</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
@@ -463,18 +463,15 @@ def on_compile(application_object, object, action_name, context, objects):
 class VDOM_vdomclass(VDOM_object):
 
 	def render(self, parent, contents = ""):
-		#e2vdom.process(self, parent)
-		#libraries, declarations, registrations = e2vdom.generate(self)
-		#clean_id = (application.id).replace('-', '_')
-		
+
 		if self.classname == "":
 			#classname = ""
 			classname = " class='%s' " % (self.classauto)
 		else:
 			classname = " class='%s %s' " % (self.classauto, self.classname)
-		
+
 		style = "position:relative;width:{width}px;height:{height}px;".format(
-			width  = self.width, 
+			width  = self.width,
 			height = self.height
 		)
 
@@ -491,31 +488,43 @@ class VDOM_vdomclass(VDOM_object):
 			style = " style='%s' " % style
 		#result = u"<div {classname} {style}>{contents} DATA: {data}</div>".format(
 		result = u"<div objtype='vdomclass' objname='{name}' {classname} {style} {dataid}>{contents}</div>".format(
-			#data      = self.data,
-			name      = self.name,
-			dataid    = dataid,
-			classname = classname,
-			style     = style,
-			contents  = contents
-		)
+				#data      = self.data,
+				name      = self.name,
+				dataid    = dataid,
+				classname = classname,
+				style     = style,
+				contents  = contents
+			)
 
 		return VDOM_object.render(self, parent, contents = result)
 
+
 	def wysiwyg(self, parent, contents = ""):
-		result =u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+		if len(contents) == 0:
+			import utils.wysiwyg
+
+			image_id = "c2802593-47f3-a5a2-4cff-61549caa7a0c"
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+
+			return VDOM_object.wysiwyg(self, parent, contents=result)
+
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
 						top="{top}" left="{left}" width="{width}" height="{height}">
-<svg>
-	<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE" />
-</svg>
-<text textalign="right" fontweight="bold" top="{ttop}" left="{tleft}" color="#aaaaaa">VDOMClass</text>
-						{contents}
-					</container>
-				""".format(	id = self.id, vis = self.visible, zind = self.zindex, hierarchy = self.hierarchy, order = self.order,
-							top = self.top, left = self.left, width = self.width, height = self.height, 
-							tleft = int(self.width) - 130, ttop = int(self.height) - 24, 
-							contents = contents)
+					<svg>
+						<rect x="0" y="0" width="{width}" height="{height}" fill="#EEEEEE" />
+					</svg>
+					{contents}
+				</container>
+			""".format(
+					id = self.id, vis = self.visible,
+					zind = self.zindex, hierarchy = self.hierarchy, order = self.order,
+					top = self.top, left = self.left,
+					width = self.width, height = self.height,
+					contents = contents)
 
 		return VDOM_object.wysiwyg(self, parent, contents = result)
+
 
 #def set_attr(app_id, object_id, param):
 #	if "pattern" in param:
@@ -529,7 +538,6 @@ class VDOM_vdomclass(VDOM_object):
 #		if obj_new:
 #			obj_new.copy_objects.append(object_id)
 #	return ""
-
 
 		]]></SourceCode>
   <Libraries/>
