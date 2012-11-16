@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.60.6720</Version>
+    <Version>1.63.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -359,7 +359,7 @@ class VDOM_xmldialog(VDOM_object):
 							htm += u"<option value=\"%s\" %s %s />%s</option>" % ( ik.replace('"', '&quot;'), sel, dis, iv );
 						lmult = int("0%s" % self.the_prop(res, 'multiple'))
 						lsize = int("0%s" % self.the_prop(res, 'rows'))
-						lines = u"size='%s'" % lsize if lsize > 0 else ""
+						lines = (u"size='%s'" % lsize) if lsize > 0 else ""
 						multi = ""
 						if len(sa) > 1 or lmult == 1:
 							multi = "multiple='multiple'"
@@ -632,17 +632,31 @@ function vdom_xd_load(id,xd){
 		else if (t0.tagName == 'DropDown') {
 			var disa = parseInt(t.attr('disabled') || '0', 10);
 			disa = (disa == 1) ? "disabled='disabled'" : "";
+			var sorting = parseInt(t.attr('sort') || '0', 10);
+			sorting = (sorting == 1) ? true : false;
 			var lsize = parseInt(t.find("Property[name=rows]").text(), 10);
 			lines = (lsize > 0) ? 'size="'+lsize+'"' : '';
 			var mult = parseInt(t.attr('multiple') || '0', 10);
 			mult = (mult == 1) ? "multiple='multiple'" : "";
 			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
 			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
+			var optid, opti = 0, optarr1 = [], optarr2 = {}, optarr3 = {};
 			t.find("Property[name=options]>option").each(function(){
-				sel = ($.inArray($(this).attr('id').trim(), sa) >= 0) ? "selected='selected'" : "";
-				dis = ($.inArray($(this).attr('id').trim(), da) >= 0) ? "disabled='disabled'" : "";
+				optid = $(this).attr('id').trim();
+				sel = ($.inArray(optid, sa) >= 0) ? "selected='selected'" : "";
+				dis = ($.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
 				s = $(this).text().trim();
-				if (s !== '') opts.push('<option value="'+$(this).attr('id').replace('"','&quot;')+'" '+dis+' '+sel+'>'+s+'</option>');
+				if (s !== '') {
+					optarr1.push(optid);
+					optarr2[optid] = $(this).text().trim();
+					optarr3[optid] = sel + ' ' + dis;
+					opti++;
+				}
+				//if (s !== '') opts.push('<option value="'+optid.replace('"','&quot;')+'" '+dis+' '+sel+'>'+s+'</option>');
+			});
+			if (sorting) optarr1.sort();
+			$j.each(optarr1, function(i){
+				opts.push('<option value="'+optarr1[i].replace('"','&quot;')+'" '+optarr3[optarr1[i]]+'>'+optarr2[optarr1[i]]+'</option>');
 			});
 			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+" "+disa+">"+opts.join(' ')+"</select>", t));
 		}
