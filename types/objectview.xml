@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.77.8388</Version>
+    <Version>1.78.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -1595,9 +1595,11 @@ var ovtmp = $j('#%(tmp_id)s:last');
 if ($j.trim(ovtmp.html()) != '') {
 	var x = $j('#%(id)s>div.ov-content');
 	$j('>div[dataid]',ovtmp).each(function(){
-		var i = $j(">div[dataid="+$j(this).attr('dataid')+"]", x);
+		var t = $j(this);
+		var i = $j(">div[dataid="+t.attr('dataid')+"]", x);
 		if (i.size() > 0) {
-			i.before($j(this));
+			if (i.hasClass('selected')) t.addClass('selected');
+			i.before(t);
 			i.remove();
 			//} else {
 			//	$j(">span.ov-eoi", x).before($j(this));
