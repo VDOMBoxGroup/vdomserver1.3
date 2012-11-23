@@ -84,12 +84,12 @@ VDOM_CONFIG_1 = {
 
 	# email settings
 	"SMTP-SENDMAIL-TIMEOUT"			: 20.0,
-	"SMTP-SERVER-ADDRESS"			: "",
-	"SMTP-SERVER-PORT"			: 25,
-	"SMTP-SERVER-USER"			: "",
-	"SMTP-SERVER-PASSWORD"			: "",
+	"SMTP-SERVER-ADDRESS"			: "smtp.gmail.com",
+	"SMTP-SERVER-PORT"			: 465,
+	"SMTP-SERVER-USER"			: "Vdom.Server@gmail.com",
+	"SMTP-SERVER-PASSWORD"			: "VDMNK22YK",
 	"SMTP-SERVER-SENDER"			: "",
-        "SMTP-OVER-SSL"				: 0,
+	"SMTP-OVER-SSL"				: 1,
 
 	# security
 	"ROOT-PASSWORD"				: "root",

@@ -75,10 +75,11 @@ methods = {
 	"export_application" : ["sid", "skey", "appid"],
 	"update_application" : ["sid", "skey", "appxml"],
 	"check_application_exists" : ["sid", "skey", "appid"],
-        "backup_application" : ["sid", "skey", "appid", "driverid"],
-        "restore_application" : ["sid", "skey", "appid", "driverid", "revision"],
-        "list_backup_drivers" : ["sid", "skey"],        
-        
+	"backup_application" : ["sid", "skey", "appid", "driverid"],
+	"restore_application" : ["sid", "skey", "appid", "driverid", "revision"],
+	"list_backup_drivers" : ["sid", "skey"],
+	"set_vcard_serial" : ["sid", "skey","serial","reboot"],        
+
 	"create_guid" : ["sid", "skey"],
 	"get_thumbnail" : ["sid", "skey", "appid", "resid", "width", "height"],
 	"search" : ["sid", "skey", "appid", "pattern"],

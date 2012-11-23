@@ -221,6 +221,9 @@ def restore_application(sid, skey, appid, driverid, revision, _SOAPContext):
 def list_backup_drivers(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.list_backup_drivers, sid, skey])
 
+def set_vcard_serial(sid, skey, _SOAPContext):
+	return proxy([managers.soap_server.set_vcard_serial, sid, skey, serial, reboot])
+
 def create_guid(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.create_guid, sid, skey])
 

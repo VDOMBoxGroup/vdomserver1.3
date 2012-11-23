@@ -85,10 +85,10 @@ def run(request):
 	smtpsender = ""
 	smtpoverssl = 0
 
-	if "smtpaddr" in args and "smtpport" in args and "" != args["smtpport"][0] and "smtplogin" in args:
+	if "smtpaddr" in args and "smtpport" in args and "smtplogin" in args:
 		try:
 			smtpaddr = args["smtpaddr"][0]
-			smtpport = args["smtpport"][0]
+			smtpport = args["smtpport"][0] or 0
 			smtplogin = args["smtplogin"][0]
 			cf = VDOM_config()
 			cf.set_opt_sync("SMTP-SERVER-ADDRESS", smtpaddr)

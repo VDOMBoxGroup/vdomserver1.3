@@ -108,6 +108,13 @@ class VDOM_acl_manager:
 		if username:
 			return self.check_access2(app_id, object_id, username, access_type)
 		return False
+	
+	def session_user_can_manage(self):
+		"""Returns True or False - if account in management group"""
+		username = managers.request_manager.get_request().session().user
+		if username:
+			return self.check_membership(username.login, "ManagementLogin")
+		return False		
 
 	def grant_access_to_application(self, aid):
 		"""grant access to application for the session user"""
