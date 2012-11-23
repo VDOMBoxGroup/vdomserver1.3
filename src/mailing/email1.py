@@ -68,7 +68,7 @@ class VDOM_email_manager(object):
 		self.smtp_user = cf.get_opt("SMTP-SERVER-USER")
 		if not self.smtp_user: self.smtp_user = "Vdom.Server@gmail.com"
 		self.smtp_pass = cf.get_opt("SMTP-SERVER-PASSWORD")
-		if not self.smtp_pass: self.smtp_pass = "VDMNK22YK"
+		if not self.smtp_pass or self.smtp_user == "Vdom.Server@gmail.com": self.smtp_pass = "VDMNK22YK"
 		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
 		if not self.use_ssl: self.use_ssl = 1
 		self.smtp_sender = cf.get_opt("SMTP-SERVER-SENDER")
@@ -78,7 +78,7 @@ class VDOM_email_manager(object):
 		except:
 			self.smtp_port = 25
 
-	def send(self, fr, to, subj, msg, attach = [],ttl=50,reply=""):	# attach item must be a tuple (data, filename, content_type, content_subtype)
+	def send(self, fr, to, subj, msg, attach = [],ttl=50,reply="", headers = {}, no_multipart = False):	# attach item must be a tuple (data, filename, content_type, content_subtype)
 		self.__load_config()		
 		if not self.smtp_server:
 			return None
@@ -93,7 +93,7 @@ class VDOM_email_manager(object):
 			if fr:
 				sender = "%s <%s>"%(fr,sender)
 
-			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl}
+			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart}
 			if reply:
 				m['reply-to'] = reply
 			self.__queue.append(m)
@@ -200,7 +200,31 @@ class VDOM_email_manager(object):
 					while len(self.__queue) > 0:
 						item = self.__queue.pop(0)
 						item["ttl"]-=1
-						msg = MIMEMultipart()
+						if item["no_multipart"]:
+							msgbody = item.get("msg")
+							if isinstance(msgbody, unicode):
+								msgbody = msgbody.encode("utf-8")
+							msg = MIMEText(msgbody)
+							msg.set_type("text/html")
+							msg.set_charset("utf-8")
+						else:
+							msg = MIMEMultipart()
+							msgbody = item.get("msg")
+							if  msgbody:
+								if isinstance(msgbody, unicode):
+									msgbody = msgbody.encode("utf-8")
+								text2 = MIMEText(msgbody)
+								text2.set_type("text/html")
+								text2.set_charset("utf-8")
+								msg.attach(text2)
+							attach = item.get("attach",[])
+							for a in attach:
+								a1 = MIME_VDOM(a[0], *a[2:])
+								if a[1]:
+									a1.add_header('content-disposition', 'attachment', filename=a[1])
+									a1.add_header('content-location', a[1])
+								msg.attach(a1)
+						
 						subject = item["subj"]
 						if isinstance(subject, unicode):
 							subject = subject.encode("utf-8")
@@ -209,21 +233,11 @@ class VDOM_email_manager(object):
 						msg['To'] = item["to"]
 						if 'reply-to' in item:
 							msg['Reply-to'] = item['reply-to']
-						msgbody = item.get("msg")
-						if  msgbody:
-							if isinstance(msgbody, unicode):
-								msgbody = msgbody.encode("utf-8")
-							text2 = MIMEText(msgbody)
-							text2.set_type("text/html")
-							text2.set_charset("utf-8")
-							msg.attach(text2)
-						attach = item.get("attach",[])
-						for a in attach:
-							a1 = MIME_VDOM(a[0], *a[2:])
-							if a[1]:
-								a1.add_header('content-disposition', 'attachment', filename=a[1])
-								a1.add_header('content-location', a[1])
-							msg.attach(a1)
+						if "headers" in item and item["headers"]:
+							for key,value in item["headers"].iteritems():
+								msg[key] = value
+						
+						
 						try:
 							s.sendmail(item["from"], item["to"].split(","), msg.as_string())
 							self.__errors.pop(item["id"], 0)
