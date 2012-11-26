@@ -78,7 +78,7 @@ class VDOM_email_manager(object):
 		except:
 			self.smtp_port = 25
 
-	def send(self, fr, to, subj, msg, attach = [],ttl=50,reply="", headers = {}, no_multipart = False):	# attach item must be a tuple (data, filename, content_type, content_subtype)
+	def send(self, fr, to, subj, msg, attach = [],ttl=50,reply="", headers = {}, no_multipart = False, content_type=[]):	# attach item must be a tuple (data, filename, content_type, content_subtype)
 		self.__load_config()		
 		if not self.smtp_server:
 			return None
@@ -93,7 +93,7 @@ class VDOM_email_manager(object):
 			if fr:
 				sender = "%s <%s>"%(fr,sender)
 
-			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart}
+			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
 			if reply:
 				m['reply-to'] = reply
 			self.__queue.append(m)
@@ -205,8 +205,15 @@ class VDOM_email_manager(object):
 							if isinstance(msgbody, unicode):
 								msgbody = msgbody.encode("utf-8")
 							msg = MIMEText(msgbody)
-							msg.set_type("text/html")
-							msg.set_charset("utf-8")
+							if item["content_type"] and len(item["content_type"])>1: #item["content_type"] == (type, charset, params={})
+								msg.set_type(item["content_type"][0])
+								msg.set_charset(item["content_type"][1])								
+								if len(item["content_type"])>2 and item["content_type"][2]:
+									for key,value in item["content_type"][2]:
+										msg.set_param(key,value)
+							else:
+								msg.set_type("text/html")
+								msg.set_charset("utf-8")
 						else:
 							msg = MIMEMultipart()
 							msgbody = item.get("msg")
