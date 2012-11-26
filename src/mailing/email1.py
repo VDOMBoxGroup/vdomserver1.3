@@ -209,7 +209,7 @@ class VDOM_email_manager(object):
 								msg.set_type(item["content_type"][0])
 								msg.set_charset(item["content_type"][1])								
 								if len(item["content_type"])>2 and item["content_type"][2]:
-									for key,value in item["content_type"][2]:
+									for key,value in item["content_type"][2].iteritems():
 										msg.set_param(key,value)
 							else:
 								msg.set_type("text/html")
@@ -236,7 +236,7 @@ class VDOM_email_manager(object):
 						if isinstance(subject, unicode):
 							subject = subject.encode("utf-8")
 						msg['Subject'] = subject
-						msg['From'] = item["from"]# +" <vdom.server@gmail.com>" if self.smtp_user.lower() == "vdom.server@gmail.com" and item["from"].lower().find("vdom.server@gmail.com")==-1 else item["from"]
+						msg['From'] = item["from"]
 						msg['To'] = item["to"]
 						if 'reply-to' in item:
 							msg['Reply-to'] = item['reply-to']
