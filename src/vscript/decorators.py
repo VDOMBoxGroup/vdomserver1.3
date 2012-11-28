@@ -71,12 +71,11 @@ def get_property_wrapper(arguments, result, getter, letter, setter):
 	letter=get_function_wrapper(arguments+(result,), None, letter) if letter else None
 	setter=get_function_wrapper(arguments+(result,), None, setter) if setter else None
 	def wrapper(*arguments, **keywords):
-		let, set=keywords.get("let"), keywords.get("set")
-		if let is not None:
-			if letter: letter(*(arguments+(let,)))
+		if "let" in keywords:
+			if letter: letter(*(arguments+(keywords["let"],)))
 			else: raise errors.object_has_no_property
-		elif set is not None:
-			if setter: setter(*(arguments+(set,)))
+		elif "set" in keywords:
+			if setter: setter(*(arguments+(keywords["set"],)))
 			else: raise errors.object_has_no_property
 		else:
 			if getter: return getter(*arguments)
