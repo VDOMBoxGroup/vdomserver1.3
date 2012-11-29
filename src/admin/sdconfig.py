@@ -94,14 +94,22 @@ def run(request):
 				passwd = args["passwd"][0]
 				if driver.type == "smb_drive":
 					location = args["location"][0]
-					if not driver.authentificate(user, passwd, server, location):
-						raise Exception("Incorrect login or password for host %s" % server)
+					auth = driver.authentificate(user, passwd, server, location)
+					if auth != True:
+						if isinstance(auth, unicode):
+							raise Exception(auth)
+						else:
+							raise Exception("Incorrect login or password for host %s" % server)
 				elif driver.type == "sshfs_drive":
 					if "port" in args and "remote_path" in args:
 						port = args["port"][0]
 						remote_path = args["remote_path"][0]
-						if not driver.authentificate(user, passwd, server, port, remote_path):
-							raise Exception("Incorrect login or password for host %s" % server)
+						auth = driver.authentificate(user, passwd, server, location)
+						if auth != True:
+							if isinstance(auth, unicode):
+								raise Exception(auth)
+							else:
+								raise Exception("Incorrect login or password for host %s" % server)
 			except Exception as e:
 				request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(e))
 				ok = False
@@ -204,6 +212,7 @@ def run(request):
 	else:
 		(size, used, free, percent) = ("0", "0", "0", "0%")
 	if "backupNow" in args:
+		ok = True
 		if "devid" in args:
 			try:
 				if hasattr(driver, "authentificate"):
@@ -222,8 +231,13 @@ def run(request):
 								raise Exception("Incorrect login or password")
 				if "backup_app[]" in args:
 					for appid in args["backup_app[]"]:
-						managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
-					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Backup passed good.";</script>')
+						ret = managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
+						if isinstance(ret, tuple):
+							request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(ret[1]))
+							ok = False
+							break
+					if ok:
+						request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="Backup passed good.";</script>')
 				else:
 					request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="There are no applications to backup";</script>')
 			except Exception as e:
