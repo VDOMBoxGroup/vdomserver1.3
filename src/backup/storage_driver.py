@@ -644,7 +644,7 @@ class VDOM_sshfs_drive(VDOM_storage_driver):
 					return True
 				else:
 					debug("SSHFS test connection to %s under %s %s FAILED!"%(hostname, login, password))
-					return False
+					return "%s" % unicode(out.stdout)
 			except Exception as e :
 				debug("SSHFS connection failed: %s" % str(e))
 
