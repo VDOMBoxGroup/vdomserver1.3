@@ -8,10 +8,11 @@ def run(request):
 	request.render_type = "e2vdom"
 	auth = request.headers().headers().get("Authorization")
 	if not auth:
-		request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
-		request.send_htmlcode(401)
+		#request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
+		#request.send_htmlcode(401)
 		
-		return
+		#return
+		pass
 	else:
 		if auth[:len("Basic ")]=="Basic ":
 			user,login = base64.b64decode(auth[len("Basic "):]).split(":")
@@ -24,14 +25,18 @@ def run(request):
 					return
 			finally:
 				sem.unlock()			
-	appid = args.get("appid")
-	container = args.get("objid")
-	action =args.get("action_name")
-	xml_param = args.get("xml_param")
-	xml_data = args.get("xml_data")
-	sid = args.get("sid")
-	if not (appid and container and action and xml_param and xml_data):
+	appid = args.get("appid")[0] if args.get("appid") else ""
+	container = args.get("objid")[0] if args.get("objid") else ""
+	action =args.get("action_name")[0] if args.get("action_name") else ""
+	xml_param = args.get("xml_param")[0] if args.get("xml_param") else ""
+	xml_data = args.get("xml_data")[0] if args.get("xml_data") else ""
+	callback = args.get("callback")[0] if args.get("callback") else ""
+	if not (appid and container and action and callback):
 		request.write("<ERROR>Invalid params</ERROR>")
 	else:
-		ret = managers.dispatcher.dispatch_action(appid, container, action, xml_param,xml_data)
-		request.write("<RESULT><![CDATA[%s]]></RESULT>" % ret)
+		try:
+			ret = managers.dispatcher.dispatch_action(appid, container, action, xml_param,xml_data)
+		except Exception as e:
+			request.write("<ERROR>%s</ERROR>"%e)
+		else:
+			request.write("/**/ %s(%s);" % (callback,ret))
