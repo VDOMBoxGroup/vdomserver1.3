@@ -1389,7 +1389,7 @@ class VDOM_web_services_server(object):
 			for _name in app.global_actions[objid]:
 				x = app.global_actions[objid][_name]
 				result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
-				        x.id, x.name, x.top, x.left, x.state,x.code)
+				        x.id, x.name, x.top, x.left, x.state,x.code.replace("]]>","]]]]><![CDATA[>"))
 			result += "</Container>\n"
 		result += "</ServerActions>\n"
 		return result
@@ -1480,24 +1480,25 @@ class VDOM_web_services_server(object):
 			else:
 				action = obj.actions["id"][actionid]
 				return """<Action ID="%s" Name="%s" ObjectID="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
-				        action.id, action.name, objid, action.top, action.left, action.state, action.code)
+				        action.id, action.name, objid, action.top, action.left, action.state, action.code.replace("]]>","]]]]><![CDATA[>"))
 		elif objid in app.global_actions:
 			if actionid not in app.global_actions[objid]:
 				raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
 			else:
 				action = app.global_actions[objid][actionid]
 				return """<Action ID="%s" Name="%s" ObjectID="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n"""%( \
-				        action.id, action.name, objid, action.top, action.left, action.state, action.code)
+				        action.id, action.name, objid, action.top, action.left, action.state, action.code.replace("]]>","]]]]><![CDATA[>"))
 		else:
 			raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
 
 	def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
 		"""set server action"""
-
+		
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
+		actionvalue = actionvalue.replace("]]]]><![CDATA[>","]]>") #to escape inside CDATA
 		obj = app.search_object(objid)
 		if obj:
 			obj.set_action(actionid, actionvalue)
@@ -1713,6 +1714,22 @@ class VDOM_web_services_server(object):
 
 		return "<Result>%s</Result>"%ret
 
+
+	def set_vcard_serial(self, sid, skey, serial, reboot):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		if not managers.acl_manager.session_user_can_manage():
+			raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))		
+		
+		from utils.system import set_virtual_card_key		
+		ret = set_virtual_card_key(system_key)
+
+		if reboot and str(reboot).lower()=="true":
+			import os
+			f = os.popen("reboot")
+			outp = f.read()
+			f.close()			
+		return "<Result>%s</Result>"%ret
+
 ### ==================================================================================================================
 
 	def create_guid(self, sid, skey):
@@ -1892,7 +1909,7 @@ class VDOM_web_services_server(object):
 		(app, errmsg) = self.__find_application(appid)
 		if not app:
 			return errmsg
-		app.set_library(libname, data)
+		app.set_library(libname, data.replace("]]]]><![CDATA[>","]]>"))
 		app.sync()
 		return '<Library Name="%s"/>' % libname
 
