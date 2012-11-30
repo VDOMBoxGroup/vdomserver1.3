@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.64.6720</Version>
+    <Version>1.67.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -509,9 +509,11 @@ margin-top: 10px;
 		open: function(e,u) {
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "show", {});
 
-			$j.datepicker.setDefaults($j.datepicker.regional['fr']);
-			$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
-				dateFormat: 'dd/mm/yy', showButtonPanel: true
+			$q(function(){
+				$j.datepicker.setDefaults($j.datepicker.regional['fr']);
+				$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
+					dateFormat: 'dd/mm/yy', showButtonPanel: true
+				});
 			});
 		},
 		close: function(e,u) {
@@ -598,7 +600,8 @@ String.prototype.fmt=function(){
 };
 function vdom_xd_load(id,xd){
 	xd = $q.trim(xd).split('<!--[CDATA[').join('<![CDATA[').split(']]-->').join(']'+']>');
-	var p = $q.parseXML(xd), x = $q(p), w = $q(id), data = [],
+	var p = $q.parseXML(xd),
+		x = $q(p), w = $q(id), data = [],
 		dodiv = function(cn,lbl,htm,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
@@ -663,10 +666,33 @@ function vdom_xd_load(id,xd){
 		else if (t0.tagName == 'RadioButton') {
 			var dis = parseInt(t.attr('disabled') || '0', 10);
 			dis = (dis == 1) ? "disabled='disabled'" : "";
-			opts = [], sel = t.attr('selected');
+			var sorting = parseInt(t.attr('sort') || '0', 10);
+			sorting = (sorting == 1) ? true : false;
+			opts = [], sel = t.attr('selected') || '';
+
+//			t.find("Property[name=options]>option").each(function(){
+//				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
+//				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" "+dis+" /> "+$(this).text().trim()+"</label>");
+//			});
+//			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
+
+			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
+			var optid, opti = 0, optarr1 = [], optarr2 = {}, optarr3 = {};
 			t.find("Property[name=options]>option").each(function(){
-				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
-				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" "+dis+" /> "+$(this).text().trim()+"</label>");
+				optid = $(this).attr('id').trim();
+				selx = (sel == $(this).attr('id')) ? "checked='checked'" : "";
+				dis = ($.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
+				s = $(this).text().trim();
+				if (s !== '') {
+					optarr1.push(optid);
+					optarr2[optid] = $(this).text().trim();
+					optarr3[optid] = selx + ' ' + dis;
+					opti++;
+				}
+			});
+			if (sorting) optarr1.sort();
+			$j.each(optarr1, function(i){
+				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+optarr1[i].replace('"','&quot;')+"\" "+optarr3[optarr1[i]]+" /> "+optarr2[optarr1[i]]+"</label>");
 			});
 			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
 		}
@@ -721,6 +747,7 @@ function vdom_xd_load(id,xd){
 	w.html("<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>"+data.join(' ')+"</form>").dialog('close').dialog('open');
 	w.dialog('option', 'title', x.find("VDOMFormContainer>Properties>Property[name=label]").text() );
 	w.data('ev','1');
+
 }
 
 </script>]]></Library>
