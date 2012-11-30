@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.712.8388</Version>
+    <Version>1.713.8388</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -320,7 +320,7 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(416)|italic)|(#Lang(417)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(414)|italic)|(#Lang(415)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^(italic|normal)$</RegularExpressionValidation>
@@ -332,7 +332,7 @@
       <Visible>1</Visible>
       <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(418)|bold)|(#Lang(419)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(416)|bold)|(#Lang(417)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>^(bold|normal)$</RegularExpressionValidation>
@@ -344,7 +344,7 @@
       <Visible>1</Visible>
       <Help>#Lang(229)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(421)|left)|(#Lang(422)|center)|(#Lang(423)|right))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(418)|left)|(#Lang(419)|center)|(#Lang(421)|right))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
@@ -463,15 +463,13 @@
       <Sentence ID="411">Visible</Sentence>
       <Sentence ID="412">Invisible</Sentence>
       <Sentence ID="413">Visible</Sentence>
-      <Sentence ID="414">Tahoma</Sentence>
-      <Sentence ID="415">Verdana</Sentence>
-      <Sentence ID="416">italic</Sentence>
+      <Sentence ID="414">italic</Sentence>
+      <Sentence ID="415">normal</Sentence>
+      <Sentence ID="416">bold</Sentence>
       <Sentence ID="417">normal</Sentence>
-      <Sentence ID="418">bold</Sentence>
-      <Sentence ID="419">normal</Sentence>
-      <Sentence ID="421">left</Sentence>
-      <Sentence ID="422">center</Sentence>
-      <Sentence ID="423">right</Sentence>
+      <Sentence ID="418">left</Sentence>
+      <Sentence ID="419">center</Sentence>
+      <Sentence ID="421">right</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="503">Show the object</Sentence>
@@ -627,15 +625,13 @@
       <Sentence ID="411">Отображать</Sentence>
       <Sentence ID="412">Не отображать</Sentence>
       <Sentence ID="413">Отображать</Sentence>
-      <Sentence ID="414">Tahoma</Sentence>
-      <Sentence ID="415">Verdana</Sentence>
-      <Sentence ID="416">Курсив</Sentence>
+      <Sentence ID="414">Курсив</Sentence>
+      <Sentence ID="415">Обычный</Sentence>
+      <Sentence ID="416">Полужирный</Sentence>
       <Sentence ID="417">Обычный</Sentence>
-      <Sentence ID="418">Полужирный</Sentence>
-      <Sentence ID="419">Обычный</Sentence>
-      <Sentence ID="421">По левому краю</Sentence>
-      <Sentence ID="422">По центру</Sentence>
-      <Sentence ID="423">По правому краю</Sentence>
+      <Sentence ID="418">По левому краю</Sentence>
+      <Sentence ID="419">По центру</Sentence>
+      <Sentence ID="421">По правому краю</Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Переместить объект</Sentence>
       <Sentence ID="503">Отображение</Sentence>
@@ -791,15 +787,13 @@
       <Sentence ID="411">Visible</Sentence>
       <Sentence ID="412">Invisible</Sentence>
       <Sentence ID="413">Visible</Sentence>
-      <Sentence ID="414">Tahoma</Sentence>
-      <Sentence ID="415">Verdana</Sentence>
-      <Sentence ID="416">italic</Sentence>
+      <Sentence ID="414">italic</Sentence>
+      <Sentence ID="415">normal</Sentence>
+      <Sentence ID="416">gras</Sentence>
       <Sentence ID="417">normal</Sentence>
-      <Sentence ID="418">gras</Sentence>
-      <Sentence ID="419">normal</Sentence>
-      <Sentence ID="421">gauche</Sentence>
-      <Sentence ID="422">centrer</Sentence>
-      <Sentence ID="423">droite</Sentence>
+      <Sentence ID="418">gauche</Sentence>
+      <Sentence ID="419">centrer</Sentence>
+      <Sentence ID="421">droite</Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -1433,12 +1427,12 @@ class VDOM_menu(VDOM_object):
 		else:
 			text_content = self.wysiwyg_text_content()
 
-			c_data = u"""<div style="top: 0px;left: 0px;">{text_content}</div>""".format(text_content = text_content)
-
 			result = \
 				u"""<container id="{id}" zindex="{zindex}" width="{width}" height="{height}" top="{top}" left="{left}" >
-						<htmltext width="{width}" locked="true" >
-							{c_data}
+						<htmltext width="{width}"  height="{height}" overflow="visible" locked="true" >
+							<div style="podition:{position}; top:0px; left:0px; width:{width}px; height:{height}px;">
+								{text_content}
+							</div>
 						</htmltext>
 					</container>
 				""".format(
@@ -1448,7 +1442,8 @@ class VDOM_menu(VDOM_object):
 						height = self.height,
 						top = self.top,
 						left = self.left,
-						c_data = "<![CD"+"ATA["+ c_data+ "]"+"]>")
+						position = self.position,
+						text_content = text_content)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 	]]></SourceCode>
@@ -1456,49 +1451,49 @@ class VDOM_menu(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(504)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -1508,7 +1503,7 @@ class VDOM_menu(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="toparent" Help="#Lang(802)" RegularExpressionValidation=".*"/>
@@ -1518,7 +1513,7 @@ class VDOM_menu(VDOM_object):
 vdom_ui_hide(this.domCont, fade, zindex, toparent);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
@@ -1528,7 +1523,7 @@ vdom_ui_hide(this.domCont, fade, zindex, toparent);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
                     ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="timeout" Help="#Lang(808)" RegularExpressionValidation=".*"/>
