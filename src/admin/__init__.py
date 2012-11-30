@@ -30,6 +30,7 @@ from admin.objects_delete import run
 from admin.objects_update import run
 from admin.objects import run
 from admin.reboot import run
+from admin.restapi import run
 from admin.scrupg import run
 from admin.shutdown import run
 from admin.ssh import run
