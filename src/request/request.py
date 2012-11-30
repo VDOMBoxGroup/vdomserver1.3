@@ -151,6 +151,15 @@ class VDOM_request:
 		self.__nocache = True
 		self.nokeepalive = True
 
+	def send_htmlcode(self, code=200):
+		if not self.__nocache:
+			self.__handler.send_response(code)
+			self.__handler.send_headers()
+			self.__handler.end_headers() 
+			self.wfile.write(self.output())
+		self.__nocache = True
+		self.nokeepalive = True
+
 	def set_application_id(self, application_id):
 		self.__app_id=application_id
 		self.application_id=application_id
