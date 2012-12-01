@@ -31,7 +31,7 @@ def run(request):
 	xml_param = args.get("xml_param")[0] if args.get("xml_param") else ""
 	xml_data = args.get("xml_data")[0] if args.get("xml_data") else ""
 	callback = args.get("callback")[0] if args.get("callback") else ""
-	if not (appid and container and action and callback):
+	if not (appid !='' and container !='' and action !='' and callback!=''):
 		request.write("<ERROR>Invalid params</ERROR>")
 	else:
 		try:
