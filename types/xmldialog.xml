@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.67.6720</Version>
+    <Version>1.68.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -509,12 +509,10 @@ margin-top: 10px;
 		open: function(e,u) {
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "show", {});
 
-			$q(function(){
-				$j.datepicker.setDefaults($j.datepicker.regional['fr']);
-				$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
-					dateFormat: 'dd/mm/yy', showButtonPanel: true
-				});
-			});
+			$j.datepicker.setDefaults($j.datepicker.regional['fr']);
+			$j('#%(id)s input.date, #%(id)s .date input').datepicker('destroy').datepicker({
+				dateFormat: 'dd/mm/yy', showButtonPanel: true
+			}).blur();
 		},
 		close: function(e,u) {
 			$j('#ui-datepicker-div,#ColorDropdown_selector').fadeOut();
