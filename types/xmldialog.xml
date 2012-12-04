@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.68.6720</Version>
+    <Version>1.70.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -634,14 +634,14 @@ function vdom_xd_load(id,xd){
 			var disa = parseInt(t.attr('disabled') || '0', 10);
 			disa = (disa == 1) ? "disabled='disabled'" : "";
 			var sorting = parseInt(t.attr('sort') || '0', 10);
-			sorting = (sorting == 1) ? true : false;
+			//sorting = (sorting == 1) ? true : false;
 			var lsize = parseInt(t.find("Property[name=rows]").text(), 10);
 			lines = (lsize > 0) ? 'size="'+lsize+'"' : '';
 			var mult = parseInt(t.attr('multiple') || '0', 10);
 			mult = (mult == 1) ? "multiple='multiple'" : "";
 			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
 			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
-			var optid, opti = 0, optarr1 = [], optarr2 = {}, optarr3 = {};
+			var optid, opti = 0, optarr1 = [], optarr1val = [], optarr2 = {}, optarr3 = {};
 			t.find("Property[name=options]>option").each(function(){
 				optid = $(this).attr('id').trim();
 				sel = ($.inArray(optid, sa) >= 0) ? "selected='selected'" : "";
@@ -649,17 +649,28 @@ function vdom_xd_load(id,xd){
 				s = $(this).text().trim();
 				if (s !== '') {
 					optarr1.push(optid);
-					optarr2[optid] = $(this).text().trim();
+					optarr1val.push(s);
+					optarr2[optid] = s;
 					optarr3[optid] = sel + ' ' + dis;
 					opti++;
 				}
 				//if (s !== '') opts.push('<option value="'+optid.replace('"','&quot;')+'" '+dis+' '+sel+'>'+s+'</option>');
 			});
-			if (sorting) optarr1.sort();
+			//if (sorting) optarr1.sort();
+			if (sorting == 1) {
+				optarr1.sort();
+			} 
 			$j.each(optarr1, function(i){
 				opts.push('<option value="'+optarr1[i].replace('"','&quot;')+'" '+optarr3[optarr1[i]]+'>'+optarr2[optarr1[i]]+'</option>');
 			});
-			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+" "+disa+">"+opts.join(' ')+"</select>", t));
+			var oj = opts.join(' ');
+			if (sorting == 2) {
+				var x = $j('<select>'+oj+'</select>');
+				oj = x.html($j('option', x).sort(function(a, b){
+					return a.text == b.text ? 0 : a.text.toLowerCase() < b.text.toLowerCase() ? -1 : 1
+				})).html();
+			}
+			data.push(dodiv('dropdown', t.find('Property[name=label]').text(), "<select name=\""+t.attr('id').replace('"','&quot;')+"\" "+mult+" "+lines+" "+disa+">"+oj+"</select>", t));
 		}
 		else if (t0.tagName == 'RadioButton') {
 			var dis = parseInt(t.attr('disabled') || '0', 10);
