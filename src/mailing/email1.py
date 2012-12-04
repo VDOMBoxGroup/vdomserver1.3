@@ -7,6 +7,7 @@ from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 from collections import namedtuple
+from message import Message
 from utils.semaphore import VDOM_semaphore
 from storage.storage import VDOM_config
 import managers
@@ -36,16 +37,6 @@ class VDOM_SMTP(SMTP):
 			new_socket = wrap_socket(new_socket, ssl_version=ssl_version)
 			self.file = SSLFakeFile(new_socket)
 		return new_socket
-
-
-
-class MIME_VDOM(MIMENonMultipart):
-
-	def __init__(self, _data, _type, _subtype, _encoder=encoders.encode_base64, **_params):
-		MIMENonMultipart.__init__(self, _type, _subtype, **_params)
-		self.set_payload(_data)
-		_encoder(self)
-
 
 class VDOM_email_manager(object):
 
@@ -78,7 +69,8 @@ class VDOM_email_manager(object):
 		except:
 			self.smtp_port = 25
 
-	def send(self, fr, to, subj, msg, attach = [],ttl=50,reply="", headers = {}, no_multipart = False, content_type=[]):	# attach item must be a tuple (data, filename, content_type, content_subtype)
+	def send(self, fr, to=[], subj="", msg="", attach = [],ttl=50,reply="", headers = {}, no_multipart = False, content_type=[]):
+	#def send(self, *args, **kwargs):# attach item must be a tuple (data, filename, content_type, content_subtype)
 		self.__load_config()		
 		if not self.smtp_server:
 			return None
@@ -90,12 +82,16 @@ class VDOM_email_manager(object):
 				sender = self.smtp_sender
 			else:
 				sender = self.smtp_user
-			if fr:
+			if isinstance(fr, Message):
+				m = fr
+				m.from_email = "%s <%s>"%(m.from_email,sender)
+
+			else:
 				sender = "%s <%s>"%(fr,sender)
 
-			m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
-			if reply:
-				m['reply-to'] = reply
+				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
+				if reply:
+					m['reply-to'] = reply
 			self.__queue.append(m)
 			self.__id += 1
 			return x
@@ -199,68 +195,79 @@ class VDOM_email_manager(object):
 					ts = 0.1
 					while len(self.__queue) > 0:
 						item = self.__queue.pop(0)
-						item["ttl"]-=1
-						if item["no_multipart"]:
-							msgbody = item.get("msg")
-							if isinstance(msgbody, unicode):
-								msgbody = msgbody.encode("utf-8")
-							msg = MIMEText(msgbody)
-							if item["content_type"] and len(item["content_type"])>1: #item["content_type"] == (type, charset, params={})
-								msg.set_type(item["content_type"][0])
-								msg.set_charset(item["content_type"][1])								
-								if len(item["content_type"])>2 and item["content_type"][2]:
-									for key,value in item["content_type"][2].iteritems():
-										msg.set_param(key,value)
-							else:
-								msg.set_type("text/html")
-								msg.set_charset("utf-8")
+						if not isinstance(item, Message):
+							mes = Message(item)
 						else:
-							msg = MIMEMultipart()
-							msgbody = item.get("msg")
-							if  msgbody:
-								if isinstance(msgbody, unicode):
-									msgbody = msgbody.encode("utf-8")
-								text2 = MIMEText(msgbody)
-								text2.set_type("text/html")
-								text2.set_charset("utf-8")
-								msg.attach(text2)
-							attach = item.get("attach",[])
-							for a in attach:
-								a1 = MIME_VDOM(a[0], *a[2:])
-								if a[1]:
-									a1.add_header('content-disposition', 'attachment', filename=a[1])
-									a1.add_header('content-location', a[1])
-								msg.attach(a1)
-						
-						subject = item["subj"]
-						if isinstance(subject, unicode):
-							subject = subject.encode("utf-8")
-						msg['Subject'] = subject
-						msg['From'] = item["from"]
-						msg['To'] = item["to"]
-						if 'reply-to' in item:
-							msg['Reply-to'] = item['reply-to']
-						if "headers" in item and item["headers"]:
-							for key,value in item["headers"].iteritems():
-								msg[key] = value
+							mes = item
+						mes.ttl -= 1
+						#item["from"] = mes.from_email
+						#item["to"] = mes.to_email
+						#msg = mes.as_mime()
+						#else:
+						#	item = mes
+						#	item["ttl"]-=1
+						#	
+						#	if item["no_multipart"]:
+						#		msgbody = item.get("msg")
+						#		if isinstance(msgbody, unicode):
+						#			msgbody = msgbody.encode("utf-8")
+						#		msg = MIMEText(msgbody)
+						#		if item["content_type"] and len(item["content_type"])>1: #item["content_type"] == (type, charset, params={})
+						#			msg.set_type(item["content_type"][0])
+						#			msg.set_charset(item["content_type"][1])								
+						#			if len(item["content_type"])>2 and item["content_type"][2]:
+						#				for key,value in item["content_type"][2].iteritems():
+						#					msg.set_param(key,value)
+						#		else:
+						#			msg.set_type("text/html")
+						#			msg.set_charset("utf-8")
+						#	else:
+						#		msg = MIMEMultipart()
+						#		msgbody = item.get("msg")
+						#		if  msgbody:
+						#			if isinstance(msgbody, unicode):
+						#				msgbody = msgbody.encode("utf-8")
+						#			text2 = MIMEText(msgbody)
+						#			text2.set_type("text/html")
+						#			text2.set_charset("utf-8")
+						#			msg.attach(text2)
+						#		attach = item.get("attach",[])
+						#		for a in attach:
+						#			a1 = MIME_VDOM(a[0], *a[2:])
+						#			if a[1]:
+						#				a1.add_header('content-disposition', 'attachment', filename=a[1])
+						#				a1.add_header('content-location', a[1])
+						#			msg.attach(a1)
+						#	
+						#	subject = item["subj"]
+						#	if isinstance(subject, unicode):
+						#		subject = subject.encode("utf-8")
+						#	msg['Subject'] = subject
+						#	msg['From'] = item["from"]
+						#	msg['To'] = item["to"]
+						#	if 'reply-to' in item:
+						#		msg['Reply-to'] = item['reply-to']
+						#	if "headers" in item and item["headers"]:
+						#		for key,value in item["headers"].iteritems():
+						#			msg[key] = value
 						
 						
 						try:
-							s.sendmail(item["from"], item["to"].split(","), msg.as_string())
+							s.sendmail(mes.from_email, mes.to_email, mes.as_mime())
 							self.__errors.pop(item["id"], 0)
 						except (SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError) as e:
 							debug("SMTP send to %s error: %s" % (item["to"], str(e)))
 							managers.log_manager.error_server("SMTP send to %s error: %s" % (item["to"], str(e)), "email")
-							self.__errors[item["id"]] = str(e)
+							self.__errors[mes.id] = str(e)
 							# move this mail to the temp queue
-							if item["ttl"] >0:
-								self.__queue_tmp.append(item)
+							if mes.ttl >0:
+								self.__queue_tmp.append(mes)
 						except Exception as e:
-							self.__errors[item["id"]] = str(e)
+							self.__errors[mes.id] = str(e)
 							# move this mail to the temp queue
-							if item["ttl"] >0:
-								self.__queue_tmp.append(item)
-							self.__queue_tmp.append(item)
+							if mes.ttl >0:
+								self.__queue_tmp.append(mes)
+							self.__queue_tmp.append(mes)
 							raise
 					if len(self.__queue_tmp) > 0:
 						self.__queue = self.__queue_tmp #[item for item in self.__queue_tmp if item["attempt"]<50]
