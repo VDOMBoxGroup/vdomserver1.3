@@ -15,11 +15,12 @@ class MIME_VDOM(MIMENonMultipart):
 		
 class Message():
 	def __init__(self,**kw):
-		
+		self.id = 0
 		self.subject 	= None
+		self.sender = None
 		self.from_email = None
 		self.reply_to = None
-		self.to_email 	= []
+		self.to_email 	= ""
 		self.attach	= []
 		self.body	= None
 		self.date 	= None
@@ -27,10 +28,12 @@ class Message():
 		self.headers = {}
 		self.content_type = []
 		self.ttl = 50
-		convertmap = {"fr":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type"}
+		convertmap = {"id":"id","sender":"sender","from":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type"}
 		for key,value in kw.iteritems():
 			if key in convertmap:
 				setattr(self,convertmap[key],value)
+		if isinstance(self.to_email, list) and len(self.to_email)>0:
+			self.to_email = ", ".join(self.to_email)
 				
 	def append(self, attachment):
 		if isinstance(attachment,MailAttachment):

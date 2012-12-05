@@ -84,14 +84,19 @@ class VDOM_email_manager(object):
 				sender = self.smtp_user
 			if isinstance(fr, Message):
 				m = fr
+				
 				m.from_email = "%s <%s>"%(m.from_email,sender)
 
 			else:
+				#if isinstance(to, str) or isinstance(to, unicode):
+				#	to = to.split(",")
 				sender = "%s <%s>"%(fr,sender)
 
-				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "id": x, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
+				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
 				if reply:
 					m['reply-to'] = reply
+				m = Message(m)
+			m.id = x
 			self.__queue.append(m)
 			self.__id += 1
 			return x
@@ -194,11 +199,8 @@ class VDOM_email_manager(object):
 					self.__queue_tmp = []
 					ts = 0.1
 					while len(self.__queue) > 0:
-						item = self.__queue.pop(0)
-						if not isinstance(item, Message):
-							mes = Message(item)
-						else:
-							mes = item
+						mes = self.__queue.pop(0)
+						
 						mes.ttl -= 1
 						#item["from"] = mes.from_email
 						#item["to"] = mes.to_email
@@ -254,10 +256,10 @@ class VDOM_email_manager(object):
 						
 						try:
 							s.sendmail(mes.from_email, mes.to_email, mes.as_mime())
-							self.__errors.pop(item["id"], 0)
+							self.__errors.pop(mes.id, 0)
 						except (SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError) as e:
-							debug("SMTP send to %s error: %s" % (item["to"], str(e)))
-							managers.log_manager.error_server("SMTP send to %s error: %s" % (item["to"], str(e)), "email")
+							debug("SMTP send to %s error: %s" % (mes.to_email, str(e)))
+							managers.log_manager.error_server("SMTP send to %s error: %s" % (mes.to_email, str(e)), "email")
 							self.__errors[mes.id] = str(e)
 							# move this mail to the temp queue
 							if mes.ttl >0:
