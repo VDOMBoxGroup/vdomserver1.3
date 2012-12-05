@@ -1721,13 +1721,13 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))		
 		
 		from utils.system import set_virtual_card_key		
-		ret = set_virtual_card_key(system_key)
+		ret = set_virtual_card_key(serial)
 
 		if reboot and str(reboot).lower()=="true":
 			import os
 			f = os.popen("reboot")
 			outp = f.read()
-			f.close()			
+			f.close()
 		return "<Result>%s</Result>"%ret
 
 ### ==================================================================================================================
