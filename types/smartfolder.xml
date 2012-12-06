@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.13.8388</Version>
+    <Version>1.14.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1917,7 +1917,7 @@ function vdom_sf_set_dnd(sfid, sfwoid, sfclass) {
 			//var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
 			//execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
 			var x = $j(this).data("sf");
-			execEventBinded(sfwoid, "dragstart", {item: x}, true);
+			execEventBinded(sfwoid, "dragstart", {item: x['guid']}, true);
 		}
 	});
 	$j("#"+sfid+" .items ."+sfclass).droppable({
@@ -1928,7 +1928,7 @@ function vdom_sf_set_dnd(sfid, sfwoid, sfclass) {
 			//var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
 			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
 			var x1 = $j(u.draggable).data("sf"), x2 = $j(this).data("sf");
-			execEventBinded(sfwoid, "drop", {"itemsource": x1, "itemtarget": x2}, true);
+			execEventBinded(sfwoid, "drop", {"itemsource": x1['guid'], "itemtarget": x2['guid']}, true);
 		}
 	});
 }
