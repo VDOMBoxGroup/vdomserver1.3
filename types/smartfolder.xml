@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.10.8388</Version>
+    <Version>1.13.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1146,30 +1146,8 @@ class VDOM_smartfolder(VDOM_object):
 
 		if self.draggable == '1':
 			js_drag = u"""
-$j("#%(id)s .items .%(class)s").draggable({
-	containment: 'document',
-	revert: 'invalid',
-	revertDuration: 200,
-	zIndex: 99999,
-	opacity: 0.6,
-	helper: 'original',
-	cursor: 'default',
-	start: function(e,u){
-		var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
-		execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
-	}
-});
-$j("#%(id)s .items .%(class)s").droppable({
-	accept: ".%(class)s",
-	//activeClass: "%(class)s-hover",
-	hoverClass: "%(class)s-hover",
-	drop: function(e,u) {
-		$j(u.draggable).fadeOut(100);
-		var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
-		execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
-	}
-});
-""" % { "id": id, "woid": woid, "class": classname_item }
+				vdom_sf_set_dnd('%(id)s', '%(woid)s', '%(class)s');
+				""" % { "id": id, "woid": woid, "class": classname_item }
 		else:
 			js_drag = ""
 
@@ -1370,31 +1348,7 @@ vdom_sf_init('%(id)s', 1, 4);
 %(id)s_current_item = null;
 
 function vdom_sf_set_drag(sfid) {
-	$j(".items .%(class)s",sfid).draggable({
-		containment: 'document',
-		revert: 'invalid',
-		revertDuration: 200,
-		zIndex: 99999,
-		opacity: 0.6,
-		helper: 'original',
-		cursor: 'default',
-		start: function(e,u){
-			//console.info(u.helper.data());
-
-			//var x = $j(sfid).data("guid"), i = $j(this).attr('index');
-			//execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
-		}
-	});
-	$j(".items .%(class)s",sfid).droppable({
-		accept: ".%(class)s",
-		//activeClass: "%(class)s-hover",
-		hoverClass: "%(class)s-hover",
-		drop: function(e,u) {
-			$j(u.draggable).fadeOut(100);
-			//var x = $j(sfid).data("guid"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
-			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
-		}
-	});
+	vdom_sf_set_dnd(sfid.attr('id'), '%(woid)s', '%(class)s');
 }
 
 function vdom_sf_set_handlers(sfid){
@@ -1539,7 +1493,7 @@ function vdom_sf_load(id,path,total,data){
 				nomove:    e['nomove'] || '',
 				noselect:  e['noselect'] || ''
 			};
-			var s = $j( '<div class="sf-item"><div class="img"><div></div></div><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
+			var s = $j( '<div class="sf-item" index="'+a['guid']+'"><div class="img"><div></div></div><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
 			if (a['nomove'] == '1') s.append('<div class="sf-item"><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
 			if (a['nomove'] == '1') s.addClass('nomove');
 			if (a['nodelete'] == '1') s.addClass('nodelete');
@@ -1581,7 +1535,7 @@ function vdom_sf_load(id,path,total,data){
 	}
 	$j('.pages',sf).html(d.join(' '));
 
-	//vdom_sf_set_handlers(sf);
+	vdom_sf_set_handlers(sf);
 	//vdom_sf_set_drag(sf);
 }
 
@@ -1618,24 +1572,24 @@ $j(function(){
 #%(id)s {
 }
 #%(id)s .items {
-width: %(width)spx;
-height: %(height)spx;
-overflow: hidden;
+	width: %(width)spx;
+	height: %(height)spx;
+	overflow: hidden;
 }
 #%(id)s .items .%(class)s {
-overflow: hidden; 
-width: %(itemwidth)spx;
-height: %(itemheight)spx;
-float: left;
+	overflow: hidden; 
+	width: %(itemwidth)spx;
+	height: %(itemheight)spx;
+	float: left;
 }
 #%(id)s .items .%(class)s-hover {
 }
 #%(id)s .controls {
 }
 	#%(id)s .controls .control {
-	float: left;
-	white-space: nowrap;
-	cursor: pointer;
+		float: left;
+		white-space: nowrap;
+		cursor: pointer;
 	}
 	#%(id)s .controls .control {
 	}
@@ -1646,139 +1600,140 @@ float: left;
 
 
 #%(id)s {
-background: #999;
-border: 1px solid #888;
-border-left: 1px solid #ddd;
-border-top: 1px solid #ddd;
-padding: 1px;
+	background: #999;
+	border: 1px solid #888;
+	border-left: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	padding: 1px;
 }
 #%(id)s .items {
-overflow: hidden;
-border: 1px solid silver;
-border-left: 1px solid gray;
-border-top: 1px solid gray;
-background: #fff;
+	overflow: hidden;
+	border: 1px solid silver;
+	border-left: 1px solid gray;
+	border-top: 1px solid gray;
+	background: #fff;
 }
 	#%(id)s .items .%(class)s {
-	margin: 8px 0 0 8px;
-	border: 1px solid #ccc;
-	background: #fff;
-	text-align: center;
-	word-wrap: break-word;
+		margin: 8px 0 0 8px;
+		border: 1px solid #ccc;
+		background: #fff;
+		text-align: center;
+		word-wrap: break-word;
 	}
 		#%(id)s .items .%(class)s .img {
-		width: 82px;
-		height: 63px;
-		overflow: hidden;
-		margin: 0 auto 5px auto;
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left top no-repeat;
-		position: relative;
+			width: 82px;
+			height: 63px;
+			overflow: hidden;
+			margin: 0 auto 5px auto;
+			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left top no-repeat;
+			position: relative;
 		}
 		#%(id)s .items .%(class)s .img  div {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 82px;
-		height: 63px;
-		overflow: hidden;
-		margin: 0;
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -63px no-repeat;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 82px;
+			height: 63px;
+			overflow: hidden;
+			margin: 0;
+			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -63px no-repeat;
 		}
 		#%(id)s .items .selected .img  div {
-		background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -126px no-repeat;
+			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -126px no-repeat;
 		}
 #%(id)s .items .selected {
-border: 1px solid red;
+	border: 1px solid red;
 }
 #%(id)s .items .current {
--webkit-box-shadow: 0 0 3px #000;
--moz-box-shadow: 0 0 3px #000;
-box-shadow: 0 0 3px #000;
+	-webkit-box-shadow: 0 0 3px #000;
+	-moz-box-shadow: 0 0 3px #000;
+	box-shadow: 0 0 3px #000;
 }
 #%(id)s .items .%(class)s-hover {
-background: #fcc;
+	border-color: lime;
+	box-shadow: 0 0 4px green;
 }
 #%(id)s .pathway {
-padding: 4px 2px 6px 4px;
-color: #fff;
+	padding: 4px 2px 6px 4px;
+	color: #fff;
 }
 	#%(id)s .pathway a {
-	color: #eee;
+		color: #eee;
 	}
 	#%(id)s .pathway a:hover {
-	color: #fff;
+		color: #fff;
 	}
 #%(id)s .controls {
-padding: 1px;
+	padding: 1px;
 }
 	#%(id)s .controls .control {
-	background: #eee;
-	border: 1px solid #666;
-	border-left: 1px solid #ccc;
-	border-top: 1px solid #ccc;
-	padding: 4px 8px;
-	margin: 0 3px 0 0;
-	color: #555;
-	box-shadow: 1px 1px 2px #333;
+		background: #eee;
+		border: 1px solid #666;
+		border-left: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		padding: 4px 8px;
+		margin: 0 3px 0 0;
+		color: #555;
+		box-shadow: 1px 1px 2px #333;
 	}
 	#%(id)s .controls .control:hover {
-	background: #fff;
-	color: #000;
+		background: #fff;
+		color: #000;
 	}
 	#%(id)s .controls .control:active {
-	background: #fcc;
-	box-shadow: none;
-	margin: 1px 2px -1px 1px;
+		background: #fcc;
+		box-shadow: none;
+		margin: 1px 2px -1px 1px;
 	}
 	#%(id)s .controls .selectmode {
 	}
 	#%(id)s .controls .selectmode-selected {
-	background: red;
-	color: yellow;
-	border: 1px solid #666;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	box-shadow: none;
-	margin: 1px 2px -1px 1px;
+		background: red;
+		color: yellow;
+		border: 1px solid #666;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		box-shadow: none;
+		margin: 1px 2px -1px 1px;
 	}
 	#%(id)s .controls .selectmode-selected:hover {
-	background: #f44 !important;
-	color: yellow;
+		background: #f44 !important;
+		color: yellow;
 	}
 	#%(id)s .controls .selectmode-selected:active {
-	background: #fcc !important;
+		background: #fcc !important;
 	}
 #%(id)s .selectmode .noselect {
-opacity: 0.5;
-filter: alpha(opacity = 50);
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
 }
 #%(id)s .sf-disabled {
-background: #fff;
-position: absolute;
-left: 0;
-top: 0;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 #%(id)s .ui-state-disabled {
-opacity: 1;
+	opacity: 1;
 }
 #%(id)s .pages {
 }
 	#%(id)s .pages a {
-	color: #eee;
+		color: #eee;
 	}
 	#%(id)s .pages a:hover {
-	color: #fff;
-	text-decoration: none;
+		color: #fff;
+		text-decoration: none;
 	}
 	#%(id)s .pages a,
 	#%(id)s .pages span {
-	padding: 2px 4px;
-	margin: 1px;
-	display: block;
-	float: left;
+		padding: 2px 4px;
+		margin: 1px;
+		display: block;
+		float: left;
 	}
 	#%(id)s .pages span {
-	background: #eee;
+		background: #eee;
 	}
 
 </style>""" % {
@@ -1948,6 +1903,36 @@ def set_attr(app_id, object_id, param):
 		]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[<script type='text/javascript'>
+
+function vdom_sf_set_dnd(sfid, sfwoid, sfclass) {
+	$j("#"+sfid+" .items ."+sfclass).draggable({
+		containment: 'document',
+		revert: 'invalid',
+		revertDuration: 200,
+		zIndex: 99999,
+		opacity: 0.6,
+		helper: 'original',
+		cursor: 'default',
+		start: function(e,u){
+			//var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
+			//execEventBinded('%(woid)s', "dragstart", {item: x[i]}, true);
+			var x = $j(this).data("sf");
+			execEventBinded(sfwoid, "dragstart", {item: x}, true);
+		}
+	});
+	$j("#"+sfid+" .items ."+sfclass).droppable({
+		accept: "."+sfclass,
+		hoverClass: sfclass+"-hover",
+		drop: function(e,u) {
+			$j(u.draggable).fadeOut(100);
+			//var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
+			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
+			var x1 = $j(u.draggable).data("sf"), x2 = $j(this).data("sf");
+			execEventBinded(sfwoid, "drop", {"itemsource": x1, "itemtarget": x2}, true);
+		}
+	});
+}
+
 /*
 function vdom_sf_activate(id){
 }
