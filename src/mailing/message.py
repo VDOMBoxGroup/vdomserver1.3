@@ -6,6 +6,7 @@ from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 from utils.uuid import uuid4
+import base64, quopri
 #MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 MailContentType = namedtuple("MailContentType","type, charset, params")
 
@@ -217,7 +218,6 @@ class Message(object):
 									except Exception, ex:
 										pass
 								elif "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
-									import quopri
 									try:
 										body += quopri.decodestring(subpart.get_payload())
 									except Exception, ex:
@@ -235,7 +235,6 @@ class Message(object):
 				except Exception, ex:
 					pass
 			elif "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "quoted-printable":
-				import quopri
 				try:
 					body += quopri.decodestring(mail.get_payload())
 				except Exception, ex:
