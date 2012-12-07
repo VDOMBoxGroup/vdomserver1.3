@@ -3,7 +3,7 @@ import re
 import managers, utils.uuid
 from mailing.message import Message, MailAttachment
 from ... import errors
-from ...subtypes import binary, generic, string, integer, boolean, array, v_mismatch, v_nothing, integer
+from ...subtypes import binary, generic, string, integer, boolean, array, v_mismatch, v_nothing, integer, v_empty
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 
 
@@ -207,6 +207,16 @@ class v_mailer(generic):
 		messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
 		p.quit()
 		return array(items=[v_message(item) for item in messages])	
+
+	def v_countmessages(self, server, port, login, password, secure=None):
+		from mailing.pop import VDOM_Pop3_client
+		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
+		p.user(login.as_string, password.as_string)
+		if not p.connected:
+			raise errors.mailserver_closed_connection()
+		count = len(p)
+		p.quit()
+		return integer(count)
 
 	def v_status(self, msg_id):
 		ret = managers.email_manager.check(msg_id.as_integer)

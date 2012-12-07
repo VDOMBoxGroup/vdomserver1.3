@@ -44,12 +44,12 @@ class VDOM_Pop3_client(object):
 			self.connection.dele(id+1)
 		return msg
 	
-	def fetch_all_messages(self,offset=0,limit=None, delete=False):
+	def fetch_all_messages(self,offset=0,limit=0, delete=False):
 		if not self.connected:
 			return []
 		emails = []
 		mail_number = -1
-		for i in xrange(offset, limit or self.message_count):
+		for i in xrange(offset, min(limit,self.message_count)):
 			mail_number = i+1
 			emails.append(self.fetch_message(i,delete))
 		self.read_mails_count = mail_number
