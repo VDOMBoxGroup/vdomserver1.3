@@ -5,6 +5,7 @@ from email import encoders
 from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
+from utils.uuid import uuid4
 #MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 MailContentType = namedtuple("MailContentType","type, charset, params")
 
@@ -187,7 +188,7 @@ class Message(object):
 						for subpart in part.get_payload(p).walk():
 							if ("content-disposition" in subpart and "attachment" in subpart["content-disposition"]):
 								oAttach = subpart.get_payload()
-								guid = str(uuid.uuid4())
+								guid = str(uuid4())
 		
 								#application.storage.write(guid, base64.b64decode(oAttach))
 		
@@ -201,7 +202,7 @@ class Message(object):
 								except:
 									attachment_object.filename = subpart.get_filename()
 		
-								attachment_object.mail_id = email_id
+								attachment_object.mail_id = ""
 								attachment_object.location = "inbox"
 								
 								self.attach.append(attachment_object)
