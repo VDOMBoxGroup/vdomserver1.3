@@ -346,3 +346,12 @@ class database_not_found(generic):
 		generic.__init__(self,
 			message=u"Database %s not fount"%name,
 			line=line)
+		
+class mailserver_closed_connection(generic):
+
+	number=5001
+
+	def __init__(self, line=None):
+		generic.__init__(self,
+			message=u"Mailserver closed connection",
+			line=line)

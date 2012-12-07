@@ -9,7 +9,7 @@ from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
 from .subtypes import v_nothing
-from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session, v_application
+from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session, v_application, v_attachment, v_message
 
 
 vscript_source_string=u"<vscript>"
@@ -43,7 +43,9 @@ vscript_default_environment={
 	u"v_wholeremotecallerror": vscript_wrappers_name,
 	u"v_wholeincorrectresponse": vscript_wrappers_name,
 	u"v_wholenoapierror": vscript_wrappers_name,
-	u"v_wholenoapplication": vscript_wrappers_name}
+	u"v_wholenoapplication": vscript_wrappers_name,
+        u"v_attachment": vscript_wrappers_name,
+        u"v_message": vscript_wrappers_name}
 
 weakuses=WeakKeyDictionary()
 	
