@@ -6,7 +6,7 @@ from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 from utils.uuid import uuid4
-import base64, quopri
+import base64, quopri,re
 #MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 MailContentType = namedtuple("MailContentType","type, charset, params")
 
@@ -195,7 +195,19 @@ class Message(object):
 		
 								attachment_object = MailAttachment()
 								attachment_object.guid = guid
-								attachment_object.data = base64.b64decode(oAttach)
+								
+								if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
+									try:
+										attachment_object.data = quopri.decodestring(oAttach)
+									except Exception, ex:
+										pass								
+								else:
+									try:
+										attachment_object.data= base64.b64decode(oAttach)
+									except Exception, ex:
+										pass
+															
+								#attachment_object.data = base64.b64decode(oAttach)
 		
 								try:
 									filename = email.Header.decode_header(subpart.get_filename())
