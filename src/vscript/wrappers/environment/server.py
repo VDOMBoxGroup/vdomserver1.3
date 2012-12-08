@@ -5,7 +5,7 @@ from mailing.message import Message, MailAttachment
 from ... import errors
 from ...subtypes import binary, generic, string, integer, boolean, array, v_mismatch, v_nothing, integer, v_empty
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
-
+from ...variables import variant
 
 class v_attachment(generic):
 	
@@ -169,7 +169,7 @@ class v_message(generic):
 			return integer(self._value.ttl)
 		
 	def v_attachments(self, index=None, **keywords):
-		if index is None:
+		if index is not None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("attachments")
 			else:

@@ -49,7 +49,7 @@ class VDOM_Pop3_client(object):
 			return []
 		emails = []
 		mail_number = -1
-		for i in xrange(offset, min(limit,self.message_count)):
+		for i in xrange(offset, min(limit or self.message_count,self.message_count)):
 			mail_number = i+1
 			emails.append(self.fetch_message(i,delete))
 		self.read_mails_count = mail_number
