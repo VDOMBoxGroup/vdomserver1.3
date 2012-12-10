@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.16.8388</Version>
+    <Version>1.17.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1142,6 +1142,14 @@ class VDOM_smartfolder(VDOM_object):
 		html_items = u""
 		js_items_data = u""
 
+		### pages
+
+		currentpage = int(self.currentpage)
+		if currentpage <= 0: currentpage = 1
+
+		itemsperpage = int(self.itemsperpage)
+		if itemsperpage <= 0: itemsperpage = 6
+
 		### javascript
 
 		#if self.draggable == '1':
@@ -1329,17 +1337,10 @@ $j("#%(id)s .controls .selectmode").click(function(){
 	return false;
 });
 
-vdom_sf_init('%(id)s', 1, 4);
+vdom_sf_init('%(id)s', 1, '%(itemsperpage)s');
 
-""" % { "id": id, "woid": woid, "class": classname_item }
+""" % { "id": id, "woid": woid, "class": classname_item, "itemsperpage": itemsperpage }
 
-		### pages
-
-		currentpage = int(self.currentpage)
-		if currentpage <= 0: currentpage = 1
-
-		itemsperpage = int(self.itemsperpage)
-		if itemsperpage <= 0: itemsperpage = 1
 
 		### consolidate javascript
 
@@ -1564,8 +1565,12 @@ $j(function(){
 	%(js_add)s
 	execEventBinded('%(woid)s', "requestdata", {guid:'', limit:'%(limit)s', offset:'%(offset)s'}, true);
 });
-</script>""" % { "id": id, "woid": woid, "js_drag": js_drag, "class": classname_item, "js_base": js_base, "js_add": js_add,
-			"offset": str(itemsperpage*(currentpage-1)), "limit": str(itemsperpage) }
+</script>""" % { 
+				"id": id, "woid": woid, 
+				"js_drag": js_drag, "class": classname_item, 
+				"js_base": js_base, "js_add": js_add,
+				"offset": str(itemsperpage*(currentpage-1)), "limit": str(itemsperpage)
+			}
 
 		### styles
 
