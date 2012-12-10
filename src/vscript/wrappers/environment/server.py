@@ -7,7 +7,7 @@ from ...subtypes import binary, generic, string, integer, boolean, array, v_mism
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from ...variables import variant
 
-class v_attachment(generic):
+class v_mailattachment(generic):
 	
 	def __init__(self, attachment=None):
 		generic.__init__(self)
@@ -50,7 +50,7 @@ class v_attachment(generic):
 		else:
 			return string(self._value.content_subtype)	
 
-class v_attachmentcollection(generic):
+class v_mailattachmentcollection(generic):
 	
 	def __init__(self, value):
 		generic.__init__(self)
@@ -63,14 +63,14 @@ class v_attachmentcollection(generic):
 			raise errors.object_has_no_property
 		else:
 			try:
-				return v_attachment(self._value.attach[index.as_integer])
+				return v_mailattachment(self._value.attach[index.as_integer])
 			except KeyError:
 				return errors.subscript_out_of_range
 	def __iter__(self):
 		for attachment in self._value:
-			yield variant(v_attachment(attachment))
+			yield variant(v_mailattachment(attachment))
 
-class v_message(generic):
+class v_mailmessage(generic):
 
 	def __init__(self, message=None):
 		generic.__init__(self)
@@ -168,25 +168,25 @@ class v_message(generic):
 		else:
 			return integer(self._value.ttl)
 		
-	def v_attachments(self, index=None, **keywords):
+	def v_mailattachments(self, index=None, **keywords):
 		if index is not None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("attachments")
 			else:
-				return v_attachment(self._value.attach[index.as_integer])
+				return v_mailattachment(self._value.attach[index.as_integer])
 		else:
-			return v_attachmentcollection(self._value.attach)
+			return v_mailattachmentcollection(self._value.attach)
 
 
 	def v_addattachment(self, attachment):
-		self._value.attach.append(attachment.is_specific(v_attachment).value)
+		self._value.attach.append(attachment.is_specific(v_mailattachment).value)
 		return v_mismatch
 		
 
 class v_mailer(generic):
 	
 	def v_send(self, message):
-		return integer(managers.email_manager.send(message.is_specific(v_message).value))
+		return integer(managers.email_manager.send(message.is_specific(v_mailmessage).value))
 		        
 	def v_receive(self, server, port, login, password, secure=None, index=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
@@ -196,7 +196,7 @@ class v_mailer(generic):
 			raise errors.mailserver_closed_connection()		
 		message=p.fetch_message(0 if index is None else index.as_integer, False if delete is None else delete.as_boolean)
 		p.quit()
-		return v_message(message)
+		return v_mailmessage(message)
 	
 	def v_receiveall(self, server, port, login, password, secure=None, offset=None, limit=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
@@ -206,7 +206,7 @@ class v_mailer(generic):
 			raise errors.mailserver_closed_connection()
 		messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
 		p.quit()
-		return array(items=[v_message(item) for item in messages])	
+		return array(items=[v_mailmessage(item) for item in messages])	
 
 	def v_countmessages(self, server, port, login, password, secure=None):
 		from mailing.pop import VDOM_Pop3_client
