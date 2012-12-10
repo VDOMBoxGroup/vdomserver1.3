@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.14.8388</Version>
+    <Version>1.16.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1144,12 +1144,12 @@ class VDOM_smartfolder(VDOM_object):
 
 		### javascript
 
-		if self.draggable == '1':
-			js_drag = u"""
-				vdom_sf_set_dnd('%(id)s', '%(woid)s', '%(class)s');
-				""" % { "id": id, "woid": woid, "class": classname_item }
-		else:
-			js_drag = ""
+		#if self.draggable == '1':
+		#	js_drag = u"""
+		#		vdom_sf_set_dnd('%(id)s', '%(woid)s', '%(class)s');
+		#		""" % { "id": id, "woid": woid, "class": classname_item }
+		#else:
+		js_drag = ""
 
 		js_base = u"""
 $j('#%(id)s')
@@ -1507,6 +1507,7 @@ function vdom_sf_load(id,path,total,data){
 	$j('.items',sf).html('').append($j('>div',d));
 
 	d = [];
+	if (typeof path === 'string') path = JSON.parse(path);
 	if (typeof path === 'array' || typeof path === 'object') {
 		$.each(path, function(i,e){
 			if (i < path.length - 1) {
