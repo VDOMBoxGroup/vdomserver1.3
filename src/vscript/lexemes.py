@@ -17,6 +17,7 @@ reserved=(u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE
 tokens=reserved+(u"PYTHON",
 	u"VCR", u"VCRLF", u"VFORMFEED", u"VLF", u"VNEWLINE", u"VNULLCHAR", u"VNULLSTRING",
 	u"VTAB", u"VVERTICALTAB", u"VBINARYCOMPARE", u"VTEXTCOMPARE", u"VDATABASECOMPARE",
+	u"VGENERALDATE", u"VLONGDATE", u"VSHORTDATE", u"VLONGTIME", u"VSHORTTIME", u"VUSEDEFAULT", u"VTRUE", u"VFALSE",
 	u"REM", u"NE", u"LE", u"GE", u"NUMBER", u"DOUBLE", u"DATE", u"STRING", u"NAME", u"NEWLINE")
 literals=[u'&', u'(', u')', u'*', u'+', u',', u'-', u'.', u'/', u':', u'<', u'=', u'>', u'\\', u'^']
 
@@ -99,6 +100,54 @@ def t_vdatabasecompare(t):
 	r'[Vv][Bb]?[Dd][Aa][Tt][Aa][Bb][Aa][Ss][Ee][Cc][Oo][Mm][Pp][Aa][Rr][Ee]'
 	t.type=u"VDATABASECOMPARE"
 	t.value=(t.lexer.lineno, "integer(2)")
+	return t
+
+def t_vgeneraldate(t):
+	r'[Vv][Bb]?[Gg][Ee][Nn][Ee][Rr][Aa][Ll][Dd][Aa][Tt][Ee]'
+	t.type=u"VGENERALDATE"
+	t.value=(t.lexer.lineno, "integer(0)")
+	return t
+
+def t_vlongdate(t):
+	r'[Vv][Bb]?[Ll][Oo][Nn][Gg][Dd][Aa][Tt][Ee]'
+	t.type=u"VLONGDATE"
+	t.value=(t.lexer.lineno, "integer(1)")
+	return t
+
+def t_vshortdate(t):
+	r'[Vv][Bb]?[Ss][Hh][Oo][Rr][Tt][Dd][Aa][Tt][Ee]'
+	t.type=u"VSHORTDATE"
+	t.value=(t.lexer.lineno, "integer(2)")
+	return t
+
+def t_vlongtime(t):
+	r'[Vv][Bb]?[Ll][Oo][Nn][Gg][Tt][Ii][Mm][Ee]'
+	t.type=u"VLONGTIME"
+	t.value=(t.lexer.lineno, "integer(3)")
+	return t
+
+def t_vshorttime(t):
+	r'[Vv][Bb]?[Ss][Hh][Oo][Rr][Tt][Tt][Ii][Mm][Ee]'
+	t.type=u"VSHORTTIME"
+	t.value=(t.lexer.lineno, "integer(4)")
+	return t
+
+def t_vusedefault(t):
+	r'[Vv][Bb]?[Uu][Ss][Ee][Dd][Ee][Ff][Aa][Uu][Ll][Tt]'
+	t.type=u"VUSEDEFAULT"
+	t.value=(t.lexer.lineno, "integer(-2)")
+	return t
+
+def t_vtrue(t):
+	r'[Vv][Bb]?[Tt][Rr][Uu][Ee]'
+	t.type=u"VTRUE"
+	t.value=(t.lexer.lineno, "integer(-1)")
+	return t
+
+def t_vfalse(t):
+	r'[Vv][Bb]?[Ff][Aa][Ll][Ss][Ee]'
+	t.type=u"VFALSE"
+	t.value=(t.lexer.lineno, "integer(0)")
 	return t
 
 def t_ne(t):

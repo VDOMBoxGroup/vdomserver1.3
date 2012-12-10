@@ -225,3 +225,9 @@ from .library import *
 #		Print X="123" ' True
 #		Print Y=123 ' True
 #		Print X=Y ' False
+
+#	Miss optional arguments
+#
+#		Call function or sub with optional argumenth without specifiyng value
+#
+#		FormatNumber (123.567, 3, , , vbFalse)

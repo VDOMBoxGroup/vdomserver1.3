@@ -398,7 +398,15 @@ def p_value_constants(p):
              | VVERTICALTAB
              | VBINARYCOMPARE
              | VTEXTCOMPARE
-			 | VDATABASECOMPARE"""
+			 | VDATABASECOMPARE
+			 | VGENERALDATE
+			 | VLONGDATE
+			 | VSHORTDATE
+			 | VLONGTIME
+			 | VSHORTTIME
+			 | VUSEDEFAULT
+			 | VTRUE
+			 | VFALSE"""
 	p[0]=vexpression(p[1][1], line=p[1][0])
 
 

@@ -33,7 +33,6 @@ class v_mailattachment(generic):
 		else:
 			return string(self._value.filename)	
 		
-		
 	def v_contenttype(self, **keywords):
 		if "let" in keywords:
 			self._value.content_type=keywords["let"].as_string
