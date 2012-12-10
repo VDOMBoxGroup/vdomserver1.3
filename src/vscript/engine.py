@@ -44,6 +44,8 @@ vscript_default_environment={
 	u"v_wholeincorrectresponse": vscript_wrappers_name,
 	u"v_wholenoapierror": vscript_wrappers_name,
 	u"v_wholenoapplication": vscript_wrappers_name,
+	u"v_attachment": vscript_wrappers_name,
+	u"v_message": vscript_wrappers_name,
 	u"v_mailattachment": vscript_wrappers_name,
 	u"v_mailmessage": vscript_wrappers_name}
 
