@@ -13,7 +13,7 @@ class TestThrowStatement(VScriptTestCase):
 			assert self.execute("""
 				throw divisionbyzero""")
 
-	def test_throw_statement_when_rethrow(self):
+	def test_throw_statement_in_catch(self):
 		with raises(errors.division_by_zero):
 			assert self.execute("""
 				try

@@ -44,8 +44,8 @@ class date(subtype):
 				second=match.group("second") or 0
 				ampm=match.group("ampm")
 				if len(year)==2: year="20"+year if year<"30" else "19"+year
-				if day: day, month, year=int(day), int(month), int(year)
-				else: day, month, year=1, 1, 1
+				if day: year, month, day=int(year), int(month), int(day)
+				else: year, month, day=1899, 12, 30
 				if hour: hour, minute, second=int(hour), int(minute), int(second)
 				else: hour, minute, second=0, 0, 0
 				if ampm is not None:
@@ -59,7 +59,6 @@ class date(subtype):
 		else:
 			raise errors.type_mismatch
 		if self._value<-657434 or self._value>=2958466:
-			#print "->", self._value
 			self.__class__=double
 
 
@@ -85,6 +84,10 @@ class date(subtype):
 
 
 	separate=property(lambda self: decode_date(self._value))
+
+	has_both=property(lambda self: all(modf(self._value)))
+	has_date=property(lambda self: modf(self._value)[1]!=0)
+	has_time=property(lambda self: modf(self._value)[0]!=0)
 
 		
 	def __invert__(self):

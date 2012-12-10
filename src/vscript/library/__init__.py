@@ -14,4 +14,5 @@ from .chronology import v_date, v_time, v_now, v_timer, v_dateserial, v_datevalu
 	v_hour, v_minute, v_second, v_dateadd, v_datediff, v_monthname, v_weekdayname
 from .auxiliary import v_vartype, v_typename, v_scriptengine, v_scriptenginebuildversion, \
 	v_scriptenginemajorversion, v_scriptengineminorversion
+from .formatting import v_formatdatetime, v_formatcurrency, v_formatnumber, v_formatpercent
 from .automation import v_createobject
