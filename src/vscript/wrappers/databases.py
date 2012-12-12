@@ -3,9 +3,44 @@ import re
 import managers
 from database.dbobject import VDOM_sql_query as sql_query
 from .. import errors
-from ..subtypes import integer, generic, string, v_empty, v_nothing, v_mismatch
+from ..subtypes import integer, generic, string, error, v_empty, v_nothing, v_mismatch
 from ..variables import variant
 from ..conversions import pack, unpack
+
+
+class database_error(errors.generic):
+
+	def __init__(self, message, line=None):
+		errors.generic.__init__(self,
+			message=u"Database error: %s"%message,
+			line=line)
+
+class database_not_connected(database_error):
+
+	def __init__(self, line=None):
+		database_error.__init__(self,
+			message=u"Not connected",
+			line=line)
+
+class database_already_connected(database_error):
+
+	def __init__(self, line=None):
+		database_error.__init__(self,
+			message=u"Already connected",
+			line=line)
+
+class database_not_found(database_error):
+
+	def __init__(self, name=None, line=None):
+		database_error.__init__(self,
+			message=u"Database %s not fount"%name,
+			line=line)
+
+
+v_databaseerror=error(database_error)
+v_databasenotconnectederror=error(database_not_connected)
+v_databasealreadyconnectederror=error(database_already_connected)
+v_databasenotfounderror=error(database_not_found)
 
 
 class v_vdomdbrow(generic):
@@ -85,7 +120,7 @@ class v_vdomdbconnection(generic):
 
 	def v_open(self, connection_string):
 		if self._database_id is not None:
-			raise errors.database_already_connected()
+			raise database_already_connected()
 		connection_string=connection_string.as_string.lower()
 		if self.check_regex.search(connection_string):
 			self._database_id=connection_string.lower()
@@ -94,19 +129,19 @@ class v_vdomdbconnection(generic):
 			self._database_id=managers.database_manager.get_database_by_name(self._application_id, connection_string)
 			self._database_name=connection_string
 		if not self._database_id:
-			raise errors.database_not_found(connection_string)
+			raise database_not_found(connection_string)
 		return v_mismatch
 
 	def v_close(self):
 		if self._database_id is None:
-			raise errors.database_not_connected()
+			raise database_not_connected()
 		self._database_id=None
 		self._database_name=None
 		return v_mismatch
 
 	def v_execute(self, query, parameters=None):
 		if self._database_id is None:
-			raise errors.database_not_connected()
+			raise database_not_connected()
 		query=query.as_string
 		if parameters is not None:
 			parameters=[unpack(parameter.as_simple) for parameter in parameters.as_array]
@@ -116,7 +151,7 @@ class v_vdomdbconnection(generic):
 
 	def v_query(self, query, parameters=None):
 		if self._database_id is None:
-			raise errors.database_not_connected()
+			raise database_not_connected()
 		query=query.as_string
 		if parameters is not None:
 			parameters=[unpack(parameter.as_simple) for parameter in parameters.as_array]

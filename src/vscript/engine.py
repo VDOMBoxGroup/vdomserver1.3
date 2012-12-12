@@ -9,7 +9,9 @@ from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
 from .subtypes import v_nothing
-from .wrappers import v_vdomobject,	v_server, v_request, v_response, v_session, v_application, v_mailattachment, v_mailmessage
+from .wrappers.environment import v_server, v_request, v_response, v_session, v_application
+from .wrappers.scripting import v_vdomobject
+from . import wrappers
 
 
 vscript_source_string=u"<vscript>"
@@ -30,30 +32,15 @@ vscript_default_environment={
 	u"v_request": None,
 	u"v_response": None,
 	u"v_session": None,
-	u"v_application": None,
-	u"v_vdomdbconnection": vscript_wrappers_name,
-	u"v_vdomdbrecordset": vscript_wrappers_name,
-	u"v_vdomimaging": vscript_wrappers_name,
-	u"v_vdombox": vscript_wrappers_name,
-	u"v_wholeconnection": vscript_wrappers_name,
-	u"v_wholeapplication": vscript_wrappers_name,
-	u"v_wholeerror": vscript_wrappers_name,
-	u"v_wholeconnectionerror": vscript_wrappers_name,
-	u"v_wholenoconnectionerror": vscript_wrappers_name,
-	u"v_wholeremotecallerror": vscript_wrappers_name,
-	u"v_wholeincorrectresponse": vscript_wrappers_name,
-	u"v_wholenoapierror": vscript_wrappers_name,
-	u"v_wholenoapplication": vscript_wrappers_name,
-	u"v_attachment": vscript_wrappers_name,
-	u"v_message": vscript_wrappers_name,
-	u"v_mailattachment": vscript_wrappers_name,
-	u"v_mailmessage": vscript_wrappers_name,
-	u"v_mailservererror": vscript_wrappers_name,
-	u"v_mailserverclosedconnection": vscript_wrappers_name,
-	u"v_mailservernomessageindex": vscript_wrappers_name,}
+	u"v_application": None}
 
 weakuses=WeakKeyDictionary()
-	
+
+
+for name in dir(wrappers):
+	if name.startswith("v_"):
+		vscript_default_environment.setdefault(name, vscript_wrappers_name)
+
 	
 def check_exception(source, error, error_type=errors.generic.runtime, quiet=None):
 	exclass, exexception, extraceback=sys.exc_info()
