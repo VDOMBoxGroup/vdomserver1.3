@@ -47,7 +47,10 @@ vscript_default_environment={
 	u"v_attachment": vscript_wrappers_name,
 	u"v_message": vscript_wrappers_name,
 	u"v_mailattachment": vscript_wrappers_name,
-	u"v_mailmessage": vscript_wrappers_name}
+	u"v_mailmessage": vscript_wrappers_name,
+	u"v_mailservererror": vscript_wrappers_name,
+	u"v_mailserverclosedconnection": vscript_wrappers_name,
+	u"v_mailservernomessageindex": vscript_wrappers_name,}
 
 weakuses=WeakKeyDictionary()
 	
