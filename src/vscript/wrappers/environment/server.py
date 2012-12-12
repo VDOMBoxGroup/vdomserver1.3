@@ -7,6 +7,7 @@ from ...subtypes import binary, generic, string, integer, boolean, array, v_mism
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from ...variables import variant
 from utils.exception import VDOM_mailserver_invalid_index
+from vscript.subtypes.error import error
 class v_mailattachment(generic):
 	
 	def __init__(self, attachment=None):
@@ -193,10 +194,10 @@ class v_mailer(generic):
 		try:
 			p.user(login.as_string, password.as_string)
 			if not p.connected:
-				raise errors.mailserver_closed_connection()		
+				raise mailserver_closed_connection()		
 			message=p.fetch_message(0 if index is None else index.as_integer, False if delete is None else delete.as_boolean)
 		except VDOM_mailserver_invalid_index:
-			raise errors.mailserver_no_message_index(index.as_integer)
+			raise mailserver_no_message_index(index.as_integer)
 		finally:
 			p.quit()
 		return v_mailmessage(message)
@@ -207,7 +208,7 @@ class v_mailer(generic):
 		try:
 			p.user(login.as_string, password.as_string)
 			if not p.connected:
-				raise errors.mailserver_closed_connection()
+				raise mailserver_closed_connection()
 			messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
 		finally:
 			p.quit()
@@ -326,3 +327,28 @@ class v_server(generic):
 			raise errors.object_has_no_property("mailer")
 		else:
 			return self._mailer
+
+class mailserver_error(errors.generic):
+
+	def __init__(self, message, line=None):
+		errors.generic.__init__(self,
+			message=u"WHOLE error: %s"%message,
+			line=line)
+		
+class mailserver_closed_connection(mailserver_error):
+
+	def __init__(self, line=None):
+		mailserver_error.__init__(self,
+			message=u"Mailserver closed connection",
+			line=line)
+		
+class mailserver_no_message_index(mailserver_error):
+
+	def __init__(self, index=None, line=None):
+		mailserver_error.__init__(self,
+			message=u"Messege with index %s does not exist"%index if index else "'invalid'",
+			line=line)
+		
+v_mailservererror=error(mailserver_error)
+v_mailserverclosedconnection = error(mailserver_closed_connection)
+v_mailservernomessageindex = error(mailserver_no_message_index)
