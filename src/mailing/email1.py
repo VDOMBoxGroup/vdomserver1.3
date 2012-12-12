@@ -95,7 +95,7 @@ class VDOM_email_manager(object):
 				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
 				if reply:
 					m['reply-to'] = reply
-				m = Message(m)
+				m = Message(**m)
 			m.id = x
 			self.__queue.append(m)
 			self.__id += 1
