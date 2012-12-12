@@ -332,21 +332,21 @@ class mailserver_error(errors.generic):
 
 	def __init__(self, message, line=None):
 		errors.generic.__init__(self,
-			message=u"WHOLE error: %s"%message,
+			message=u"Mailserver error: %s"%message,
 			line=line)
 		
 class mailserver_closed_connection(mailserver_error):
 
 	def __init__(self, line=None):
 		mailserver_error.__init__(self,
-			message=u"Mailserver closed connection",
+			message=u"connection closed",
 			line=line)
 		
 class mailserver_no_message_index(mailserver_error):
 
 	def __init__(self, index=None, line=None):
 		mailserver_error.__init__(self,
-			message=u"Messege with index %s does not exist"%index if index else "'invalid'",
+			message=u"no messege with index %s"%(index if index else "'invalid'",),
 			line=line)
 		
 v_mailservererror=error(mailserver_error)
