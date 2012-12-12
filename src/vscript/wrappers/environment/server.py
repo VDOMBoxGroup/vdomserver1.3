@@ -1,22 +1,50 @@
 
 import re
 import managers, utils.uuid
+from utils.exception import VDOM_mailserver_invalid_index
 from mailing.message import Message, MailAttachment
 from ... import errors
-from ...subtypes import binary, generic, string, integer, boolean, array, v_mismatch, v_nothing, integer, v_empty
+from ...subtypes import binary, generic, string, integer, boolean, array, integer, error, v_mismatch, v_nothing, v_empty
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from ...variables import variant
-from utils.exception import VDOM_mailserver_invalid_index
-from vscript.subtypes.error import error
+
+
+class mailserver_error(errors.generic):
+
+	def __init__(self, message, line=None):
+		errors.generic.__init__(self,
+			message=u"Mailserver error: %s"%message,
+			line=line)
+		
+class mailserver_closed_connection(mailserver_error):
+
+	def __init__(self, line=None):
+		mailserver_error.__init__(self,
+			message=u"Connection closed",
+			line=line)
+		
+class mailserver_no_message_index(mailserver_error):
+
+	def __init__(self, index=None, line=None):
+		mailserver_error.__init__(self,
+			message=u"No messege with index %s"%(index if index else "'invalid'",),
+			line=line)
+
+		
+v_mailservererror=error(mailserver_error)
+v_mailserverclosedconnectionerror=error(mailserver_closed_connection)
+v_mailservernomessageindexerror=error(mailserver_no_message_index)
+
+
 class v_mailattachment(generic):
 	
 	def __init__(self, attachment=None):
 		generic.__init__(self)
 		self._value=attachment or MailAttachment()
-		
+
 	
 	value=property(lambda self: self._value)
-	
+
 
 	def v_data(self, **keywords):
 		if "let" in keywords:
@@ -50,6 +78,7 @@ class v_mailattachment(generic):
 		else:
 			return string(self._value.content_subtype)	
 
+
 class v_mailattachmentcollection(generic):
 	
 	def __init__(self, value):
@@ -66,9 +95,14 @@ class v_mailattachmentcollection(generic):
 				return v_mailattachment(self._value.attach[index.as_integer])
 			except KeyError:
 				return errors.subscript_out_of_range
+
 	def __iter__(self):
 		for attachment in self._value:
 			yield variant(v_mailattachment(attachment))
+
+	def __len__(self):
+		return integer(len(self._value))
+
 
 class v_mailmessage(generic):
 
@@ -96,7 +130,7 @@ class v_mailmessage(generic):
 		else:
 			return v_empty if self._value.subject is None else string(self._value.subject)
 
-	def v_sender(self, **keywords): # FromEmail -> Mail / MailBox / Origin
+	def v_sender(self, **keywords):
 		if "let" in keywords:
 			self._value.from_email=keywords["let"].as_string
 		elif "set" in keywords:
@@ -112,7 +146,7 @@ class v_mailmessage(generic):
 		else:
 			return v_empty if self._value.reply_to is None else string(self._value.reply_to)
 		
-	def v_recipients(self, **keywords): # ToEmail -> Recipients
+	def v_recipients(self, **keywords):
 		if "let" in keywords:
 			self._value.to_email=keywords["let"].as_string
 		elif "set" in keywords:
@@ -327,28 +361,3 @@ class v_server(generic):
 			raise errors.object_has_no_property("mailer")
 		else:
 			return self._mailer
-
-class mailserver_error(errors.generic):
-
-	def __init__(self, message, line=None):
-		errors.generic.__init__(self,
-			message=u"Mailserver error: %s"%message,
-			line=line)
-		
-class mailserver_closed_connection(mailserver_error):
-
-	def __init__(self, line=None):
-		mailserver_error.__init__(self,
-			message=u"connection closed",
-			line=line)
-		
-class mailserver_no_message_index(mailserver_error):
-
-	def __init__(self, index=None, line=None):
-		mailserver_error.__init__(self,
-			message=u"no messege with index %s"%(index if index else "'invalid'",),
-			line=line)
-		
-v_mailservererror=error(mailserver_error)
-v_mailserverclosedconnection = error(mailserver_closed_connection)
-v_mailservernomessageindex = error(mailserver_no_message_index)

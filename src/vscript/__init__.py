@@ -9,7 +9,10 @@ from .conversions import as_is, as_value, as_specific, as_array, as_binary, \
 	as_boolean, as_date, as_double, as_generic, as_integer, as_string, pack, unpack
 from .decorators import auto, native, vclass, vfunction, vsub, vproperty, vcollection
 from .exceptions import v_genericerror, v_servererror, v_scripterror, \
-	v_subscriptoutofrange, v_divisionbyzero, v_overflow
+	v_notimplementederror, v_variableisundefinederror, v_nameredefinederror, \
+	v_divisionbyzero, v_overflow, v_objecthasnopropertyerror, v_subscriptoutofrange, \
+	v_typemismatcherror, v_objectrequirederror, v_illegalassigmenterror, \
+	v_wrongnumberofargumentserror, v_invalidprocedurecallerror
 from .library import *
 
 

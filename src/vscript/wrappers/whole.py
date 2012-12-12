@@ -3,7 +3,7 @@ import sys, hashlib, xml.dom.minidom
 import managers
 from utils.remote_api import VDOM_service
 from .. import errors
-from ..subtypes import array, boolean, generic, string, true, false, v_empty
+from ..subtypes import array, boolean, generic, string, true, false, error, v_empty
 
 
 class whole_error(errors.generic):
@@ -34,7 +34,7 @@ class whole_remote_call_error(whole_error):
 			message=u"Unable to make remote call to %s (%s)"%(url, message),
 			line=line)
 
-class whole_incorrect_response(whole_error):
+class whole_incorrect_response_error(whole_error):
 
 	def __init__(self, line=None):
 		whole_error.__init__(self,
@@ -48,7 +48,7 @@ class whole_no_api_error(whole_error):
 			message=u"Application has no API support",
 			line=line)
 
-class whole_no_application(whole_error):
+class whole_no_application_error(whole_error):
 
 	def __init__(self, line=None):
 		whole_error.__init__(self,
@@ -56,13 +56,13 @@ class whole_no_application(whole_error):
 			line=line)
 
 
-v_wholeerror=whole_error
-v_wholeconnectionerror=whole_connection_error
-v_wholenoconnectionerror=whole_no_connection_error
-v_wholeremotecallerror=whole_remote_call_error
-v_wholeincorrectresponse=whole_incorrect_response
-v_wholenoapierror=whole_no_api_error
-v_wholenoapplication=whole_no_application
+v_wholeerror=error(whole_error)
+v_wholeconnectionerror=error(whole_connection_error)
+v_wholenoconnectionerror=error(whole_no_connection_error)
+v_wholeremotecallerror=error(whole_remote_call_error)
+v_wholeincorrectresponse=error(whole_incorrect_response_error)
+v_wholenoapierror=error(whole_no_api_error)
+v_wholenoapplicationerror=error(whole_no_application_error)
 
 
 def search_for_application_id(name, string):
@@ -74,7 +74,7 @@ def search_for_application_id(name, string):
 					if node.nodeType==node.TEXT_NODE)
 		return None
 	except KeyError:
-		raise whole_incorrect_response
+		raise whole_incorrect_response_error
 
 def search_for_api_container(string):
 	document=xml.dom.minidom.parseString(string.encode("utf-8"))
@@ -84,7 +84,7 @@ def search_for_api_container(string):
 				return object_node.attributes["ID"].nodeValue
 		return None
 	except KeyError:
-		raise whole_incorrect_response
+		raise whole_incorrect_response_error
 
 def search_for_action_names(string):
 	document=xml.dom.minidom.parseString(string.encode("utf-8"))
@@ -92,7 +92,7 @@ def search_for_action_names(string):
 		return [action_node.attributes["Name"].nodeValue \
 			for action_node in document.getElementsByTagName("ServerActions")[0].getElementsByTagName("Action")]
 	except KeyError:
-		raise whole_incorrect_response
+		raise whole_incorrect_response_error
 
 
 class v_wholeapplication(generic):
@@ -194,7 +194,7 @@ class v_wholeconnection(generic):
 			except Exception as error:
 				raise whole_remote_call_error(self._url, error)
 			application=search_for_application_id(name.as_string, result)
-			if not application: raise whole_no_application
+			if not application: raise whole_no_application_error_error
 			try:
 				service=VDOM_service.connect(self._url, self._login, self._password, application)
 			except Exception as error:
