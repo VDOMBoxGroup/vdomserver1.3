@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.17.8388</Version>
+    <Version>1.19.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1414,7 +1414,7 @@ function vdom_sf_set_handlers(sfid){
 
 
 	$j(".pathway a",sfid).live('click',function(){
-		execEventBinded('%(woid)s', "itemclick", {"guid": $j(this).attr('guid')}, true);
+		execEventBinded('%(woid)s', "pathclick", {"guid": $j(this).attr('guid')}, true);
 		return false;
 	});
 
@@ -2010,6 +2010,11 @@ function vdom_sf_load(id,path,total,data){
         <Event Name="itemmouseover" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="guid" Order="" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="pathclick" Help="#Lang(518)">
+          <Parameters>
+            <Parameter Name="guid" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
         <Event Name="rename" Help="#Lang(523)">
