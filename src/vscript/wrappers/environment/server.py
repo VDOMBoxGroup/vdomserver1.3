@@ -6,7 +6,7 @@ from ... import errors
 from ...subtypes import binary, generic, string, integer, boolean, array, v_mismatch, v_nothing, integer, v_empty
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from ...variables import variant
-
+from utils.exception import VDOM_mailserver_invalid_index
 class v_mailattachment(generic):
 	
 	def __init__(self, attachment=None):
@@ -167,7 +167,7 @@ class v_mailmessage(generic):
 		else:
 			return integer(self._value.ttl)
 		
-	def v_mailattachments(self, index=None, **keywords):
+	def v_attachments(self, index=None, **keywords):
 		if index is not None:
 			if "let" in keywords or "set" in keywords:
 				raise errors.object_has_no_property("attachments")
@@ -185,26 +185,32 @@ class v_mailmessage(generic):
 class v_mailer(generic):
 	
 	def v_send(self, message):
-		return integer(managers.email_manager.send(message.is_specific(v_mailmessage).value))
+		return integer(managers.email_manager.send(message.as_specific(v_mailmessage).value))
 		        
 	def v_receive(self, server, port, login, password, secure=None, index=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
 		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
-		p.user(login.as_string, password.as_string)
-		if not p.connected:
-			raise errors.mailserver_closed_connection()		
-		message=p.fetch_message(0 if index is None else index.as_integer, False if delete is None else delete.as_boolean)
-		p.quit()
+		try:
+			p.user(login.as_string, password.as_string)
+			if not p.connected:
+				raise errors.mailserver_closed_connection()		
+			message=p.fetch_message(0 if index is None else index.as_integer, False if delete is None else delete.as_boolean)
+		except VDOM_mailserver_invalid_index:
+			raise errors.mailserver_no_message_index(index.as_integer)
+		finally:
+			p.quit()
 		return v_mailmessage(message)
 	
 	def v_receiveall(self, server, port, login, password, secure=None, offset=None, limit=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
 		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
-		p.user(login.as_string, password.as_string)
-		if not p.connected:
-			raise errors.mailserver_closed_connection()
-		messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
-		p.quit()
+		try:
+			p.user(login.as_string, password.as_string)
+			if not p.connected:
+				raise errors.mailserver_closed_connection()
+			messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
+		finally:
+			p.quit()
 		return array(items=[v_mailmessage(item) for item in messages])	
 
 	def v_countmessages(self, server, port, login, password, secure=None):
