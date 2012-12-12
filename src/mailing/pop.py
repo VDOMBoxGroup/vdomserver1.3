@@ -1,6 +1,7 @@
 import poplib
 import time
 from .message import MailAttachment, Message
+from utils.exception import VDOM_mailserver_invalid_index
 class VDOM_Pop3_client(object):
 	def __init__(self, server,port=110, secure=False):
 		self.server = server
@@ -35,6 +36,8 @@ class VDOM_Pop3_client(object):
 	def fetch_message(self,id,delete=False):
 		if not self.connected:
 			return None
+		if id > self.message_count:
+			raise VDOM_mailserver_invalid_index(id)
 		email_id = str(self.connection.uidl(id+1).split()[2])
 		email_size = str(self.connection.list(id+1).split(" ")[2])
 		email_content_decode = ""

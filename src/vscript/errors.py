@@ -355,3 +355,12 @@ class mailserver_closed_connection(generic):
 		generic.__init__(self,
 			message=u"Mailserver closed connection",
 			line=line)
+		
+class mailserver_no_message_index(generic):
+
+	number=5001
+
+	def __init__(self, index=None, line=None):
+		generic.__init__(self,
+			message=u"Messege with index %s does not exist"%index if index else "'invalid'",
+			line=line)
