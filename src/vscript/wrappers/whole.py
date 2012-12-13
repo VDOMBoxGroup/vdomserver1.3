@@ -60,7 +60,7 @@ v_wholeerror=error(whole_error)
 v_wholeconnectionerror=error(whole_connection_error)
 v_wholenoconnectionerror=error(whole_no_connection_error)
 v_wholeremotecallerror=error(whole_remote_call_error)
-v_wholeincorrectresponse=error(whole_incorrect_response_error)
+v_wholeincorrectresponseerror=error(whole_incorrect_response_error)
 v_wholenoapierror=error(whole_no_api_error)
 v_wholenoapplicationerror=error(whole_no_application_error)
 
