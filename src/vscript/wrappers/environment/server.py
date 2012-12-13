@@ -213,7 +213,7 @@ class v_mailmessage(generic):
 
 
 	def v_addattachment(self, attachment):
-		self._value.attach.append(attachment.is_specific(v_mailattachment).value)
+		self._value.attach.append(attachment.as_specific(v_mailattachment).value)
 		return v_mismatch
 		
 
