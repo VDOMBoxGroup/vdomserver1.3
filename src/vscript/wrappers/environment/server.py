@@ -27,7 +27,7 @@ class mailserver_no_message_index(mailserver_error):
 
 	def __init__(self, index=None, line=None):
 		mailserver_error.__init__(self,
-			message=u"No messege with index %s"%(index if index else "'invalid'",),
+			message=u"No messege with index %s"%(index if index is not None else "'invalid'",),
 			line=line)
 
 		
@@ -251,16 +251,18 @@ class v_mailer(generic):
 	def v_countmessages(self, server, port, login, password, secure=None):
 		from mailing.pop import VDOM_Pop3_client
 		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
-		p.user(login.as_string, password.as_string)
-		if not p.connected:
-			raise errors.mailserver_closed_connection()
-		count = len(p)
-		p.quit()
+		try:
+			p.user(login.as_string, password.as_string)
+			if not p.connected:
+				raise errors.mailserver_closed_connection()
+			count = len(p)
+		finally:
+			p.quit()
 		return integer(count)
 
 	def v_status(self, msg_id):
 		ret = managers.email_manager.check(msg_id.as_integer)
-		return string(ret) if ret else v_nothing		
+		return string(ret) if ret else v_empty		
 		
 		
 class v_server(generic):
