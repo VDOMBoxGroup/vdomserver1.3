@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.19.8388</Version>
+    <Version>1.20.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1377,7 +1377,8 @@ function vdom_sf_set_handlers(sfid){
 	});
 */
 	%(id)s_doo = false;
-	$j(".items .%(class)s",sfid).live('click dblclick', function(e){
+	//$j(".items .%(class)s",sfid).live('click dblclick', function(e){
+	$j(".items .%(class)s",sfid).bind('click dblclick', function(e){
 		if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
 		var t = $j(this);
 		var x = t.data("sf");
@@ -1413,12 +1414,14 @@ function vdom_sf_set_handlers(sfid){
 	});
 
 
-	$j(".pathway a",sfid).live('click',function(){
+	//$j(".pathway a",sfid).live('click',function(){
+	$j(".pathway a",sfid).bind('click',function(){
 		execEventBinded('%(woid)s', "pathclick", {"guid": $j(this).attr('guid')}, true);
 		return false;
 	});
 
-	$j(".pages a",sfid).live('click',function(){
+	//$j(".pages a",sfid).live('click',function(){
+	$j(".pages a",sfid).bind('click',function(){
 		var page = 	parseInt($j(this).attr('rel'),10);
 		if (page <= 0) page = 1;
 		sfid.data('sf_current_page', page);
