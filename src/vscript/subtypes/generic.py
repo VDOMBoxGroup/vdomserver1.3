@@ -1,5 +1,6 @@
 
 from .. import errors
+from ..lexemes import prefix
 from ..primitives import subtype
 
 
@@ -14,7 +15,7 @@ class generic(subtype):
 	
 
 	code=property(lambda self: 9)
-	name=property(lambda self: "Object")
+	name=property(lambda self: self.__class__.__name__[2:] if self.__class__.__name__.startswith(prefix) else "Object")
 
 
 	as_simple=property(lambda self: self().as_simple)
