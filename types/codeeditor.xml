@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.367.8400</Version>
+    <Version>1.370.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -4676,7 +4676,7 @@ class VDOM_codeeditor(VDOM_object):
 
 		display = u"display:none;" if self.visible == "0" else u"display:block;"
 
-		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: hidden; position: absolute;
+		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: visible; position: absolute;
 			width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
 			""".format(zind = self.zindex, top = self.top, left = self.left,
 					width = self.width, height = self.height, display = display)
@@ -4791,9 +4791,17 @@ class VDOM_codeeditor(VDOM_object):
 <script type="text/javascript" src="/95be4415-7ccb-b87b-f50f-77c8485f6bd9.res?syntaxes"></script>
 
 <style type="text/css">
-.CodeMirror { line-height: 1em; font-family: monospace; border: 1px solid silver; }
+.CodeMirror {
+	line-height: 1em;
+	font-family: monospace;
+	border: 1px solid silver;
+	overflow: visible;
+}
 
-.CodeMirror-scroll { overflow: auto; /*height: 300px;*/ position: relative; }
+.CodeMirror-scroll { 
+	overflow: auto;
+	position: relative;
+}
 
 .CodeMirror-gutter { position: absolute; left: 0; top: 0; z-index: 10; background-color: #f7f7f7; border-right: 1px solid #eee; min-width: 2em; height: 100%; }
 .CodeMirror-gutter-text { color: #aaa; text-align: right; padding: .4em .2em .4em .4em; white-space: pre !important; }
@@ -4806,7 +4814,9 @@ class VDOM_codeeditor(VDOM_object):
 font-family: inherit; font-size: inherit; padding: 0; margin: 0; white-space: pre; word-wrap: normal; }
 
 .CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; }
-.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-wrap .CodeMirror-scroll { 
+	/*overflow-x: auto;*/
+}
 
 .CodeMirror textarea { outline: none !important; }
 
@@ -4896,6 +4906,18 @@ vdom_ui_hide(this.domCont, fade);
           </Parameters>
           <SourceCode><![CDATA[
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="width" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="height" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var w = parseInt(width,10), h = parseInt(height,10), o = $q(this.domCont);
+o.width(w).height(h);
+$q('.CodeMirror-scroll', o).width(w).height(h);
+eval(this.domCont.id+"_codeeditor.refresh();");
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setFocus">
