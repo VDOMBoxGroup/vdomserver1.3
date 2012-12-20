@@ -15,6 +15,13 @@ class mailserver_error(errors.generic):
 		errors.generic.__init__(self,
 			message=u"Mailserver error: %s"%message,
 			line=line)
+
+class mailserver_already_connected(mailserver_error):
+
+	def __init__(self, line=None):
+		mailserver_error.__init__(self,
+			message=u"Already connected",
+			line=line)
 		
 class mailserver_closed_connection(mailserver_error):
 
@@ -32,6 +39,7 @@ class mailserver_no_message_index(mailserver_error):
 
 		
 v_mailservererror=error(mailserver_error)
+v_mailserveralreadyconnectederror=error(mailserver_already_connected)
 v_mailserverclosedconnectionerror=error(mailserver_closed_connection)
 v_mailservernomessageindexerror=error(mailserver_no_message_index)
 
@@ -154,7 +162,7 @@ class v_mailmessage(generic):
 		else:
 			return v_empty if self._value.to_email is None else string(self._value.to_email)
 		
-	def v_body(self, **keywords): # Body -> Text / Contents
+	def v_body(self, **keywords):
 		if "let" in keywords:
 			self._value.body=keywords["let"].as_string
 		elif "set" in keywords:
@@ -215,54 +223,123 @@ class v_mailmessage(generic):
 	def v_addattachment(self, attachment):
 		self._value.attach.append(attachment.as_specific(v_mailattachment).value)
 		return v_mismatch
+
+
+class v_mailconnection(generic):
+
+	def __init__(self, client=None):
+		generic.__init__(self)
+		self._client=client
+
 		
+	def v_isconnected(self, **keywords):
+		if "let" in keywords or "set" in keywords:
+			raise errors.object_has_no_property("isconnected")
+		else:
+			return boolean(self._client.connected)
+
+
+	def v_connect(self, server, port, secure=None):
+		from mailing.pop import VDOM_Pop3_client
+		if self._client:
+			raise mailserver_already_connected
+		self._client=VDOM_Pop3_client(server.as_string, port.as_integer,
+			secure=False if secure is None else secure.as_boolean)
+
+	def v_user(self, login, password):
+		if not self._client:
+			raise mailserver_closed_connection
+		self._client.user(login.as_string, password.as_string)
+		        
+	def v_receive(self, index=None, delete=None):
+		if not self._client:
+			raise errors.mailserver_closed_connection
+		message=self._client.fetch_message(0 if index is None else index.as_integer,
+			False if delete is None else delete.as_boolean)
+		return v_nothing if message is None else v_mailmessage(message)
+	
+	def v_receiveall(self, offset=None, limit=None, delete=None):
+		if not self._client:
+			raise errors.mailserver_closed_connection
+		messages=self._client.fetch_all_messages(0 if offset is None else offset.as_integer,
+			None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
+		return array(items=[v_mailmessage(message) for message in messages])	
+
+	def v_countmessages(self):
+		if not (self._client and self._client.connected):
+			raise errors.mailserver_closed_connection
+		return integer(len(self._client))
+
+	def v_delete(self, index):
+		if not (self._client and self._client.connected):
+			raise errors.mailserver_closed_connection
+		self._client.fetch_message(index.as_integer, True)
+		return v_mismatch
+
+	def v_quit(self, force=False):
+		if not (self._client and self._client.connected):
+			raise errors.mailserver_closed_connection
+		self._client.quit()
+		return v_mismatch
+
 
 class v_mailer(generic):
+
+	def v_connect(self, server, port, secure=None):
+		from mailing.pop import VDOM_Pop3_client
+		client=VDOM_Pop3_client(server.as_string, port.as_integer,
+			secure=False if secure is None else secure.as_boolean)
+		return v_mailconnection(client)
 	
 	def v_send(self, message):
 		return integer(managers.email_manager.send(message.as_specific(v_mailmessage).value))
 		        
 	def v_receive(self, server, port, login, password, secure=None, index=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
-		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
+		client=VDOM_Pop3_client(server.as_string, port.as_integer,
+			secure=False if secure is None else secure.as_boolean)
 		try:
-			p.user(login.as_string, password.as_string)
-			if not p.connected:
+			client.user(login.as_string, password.as_string)
+			if not client.connected:
 				raise mailserver_closed_connection()		
-			message=p.fetch_message(0 if index is None else index.as_integer, False if delete is None else delete.as_boolean)
+			message=client.fetch_message(0 if index is None else index.as_integer,
+				False if delete is None else delete.as_boolean)
 		except VDOM_mailserver_invalid_index:
 			raise mailserver_no_message_index(index.as_integer)
 		finally:
-			p.quit()
+			client.quit()
 		return v_mailmessage(message)
 	
 	def v_receiveall(self, server, port, login, password, secure=None, offset=None, limit=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
-		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
+		client=VDOM_Pop3_client(server.as_string, port.as_integer,
+			secure=False if secure is None else secure.as_boolean)
 		try:
-			p.user(login.as_string, password.as_string)
-			if not p.connected:
+			client.user(login.as_string, password.as_string)
+			if not client.connected:
 				raise mailserver_closed_connection()
-			messages=p.fetch_all_messages(0 if offset is None else offset.as_integer,None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
+			messages=client.fetch_all_messages(0 if offset is None else offset.as_integer,
+				None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
 		finally:
-			p.quit()
-		return array(items=[v_mailmessage(item) for item in messages])	
+			client.quit()
+		return array(items=[v_mailmessage(message) for message in messages])	
 
 	def v_countmessages(self, server, port, login, password, secure=None):
 		from mailing.pop import VDOM_Pop3_client
-		p = VDOM_Pop3_client(server.as_string, port.as_integer, secure=False if secure is None else secure.as_boolean)
+		client=VDOM_Pop3_client(server.as_string, port.as_integer,
+			secure=False if secure is None else secure.as_boolean)
 		try:
-			p.user(login.as_string, password.as_string)
-			if not p.connected:
+			client.user(login.as_string, password.as_string)
+			if not client.connected:
 				raise errors.mailserver_closed_connection()
-			count = len(p)
+			count=len(client)
 		finally:
-			p.quit()
+			client.quit()
 		return integer(count)
 
 	def v_status(self, msg_id):
-		ret = managers.email_manager.check(msg_id.as_integer)
-		return string(ret) if ret else v_empty		
+		result=managers.email_manager.check(msg_id.as_integer)
+		return string(result) if result else v_empty		
 		
 		
 class v_server(generic):
