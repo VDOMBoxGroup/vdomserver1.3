@@ -53,17 +53,25 @@ class VDOM_email_manager(object):
 	def __load_config(self):
 		cf = VDOM_config()
 		self.smtp_server = cf.get_opt("SMTP-SERVER-ADDRESS")
-		if not self.smtp_server: self.smtp_server = "smtp.gmail.com"
 		self.smtp_port = cf.get_opt("SMTP-SERVER-PORT")
-		if not self.smtp_port: self.smtp_port = 465
 		self.smtp_user = cf.get_opt("SMTP-SERVER-USER")
-		if not self.smtp_user: self.smtp_user = "Vdom.Server@gmail.com"
 		self.smtp_pass = cf.get_opt("SMTP-SERVER-PASSWORD")
-		if not self.smtp_pass or self.smtp_user == "Vdom.Server@gmail.com": self.smtp_pass = "VDMNK22YK"
 		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
-		if not self.use_ssl: self.use_ssl = 1
 		self.smtp_sender = cf.get_opt("SMTP-SERVER-SENDER")
+		if not self.smtp_server: 
+			self.smtp_server = "smtp.gmail.com"
+			if not self.smtp_port: self.smtp_port = 465
+			if not self.smtp_user: self.smtp_user = "Vdom.Server@gmail.com"
+			if not self.smtp_pass or self.smtp_user == "Vdom.Server@gmail.com": self.smtp_pass = "VDMNK22YK"
+			if not self.use_ssl: self.use_ssl = 1
+		else:
+			if not self.smtp_port: self.smtp_port = 25
+			if not self.smtp_user: self.smtp_user = ""
+			if not self.smtp_pass: self.smtp_pass = ""
+			if not self.use_ssl: self.use_ssl = 0
+			
 		if not self.smtp_sender: self.smtp_sender = ""
+		
 		try:
 			self.smtp_port = int(self.smtp_port)
 		except:
