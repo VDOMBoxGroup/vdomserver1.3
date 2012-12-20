@@ -113,9 +113,9 @@ def run(request):
 			error += "Error: " + str(e) + "<br>\n"
 		
 
-	if "smtppassword" in args:
+	if "setsmtppassword" in args:
 		try:
-			smtppassword = args["smtppassword"][0]
+			smtppassword = args["smtppassword"][0] if "smtppassword" in args else ""
 			cf = VDOM_config()
 			cf.set_opt_sync("SMTP-SERVER-PASSWORD", smtppassword)
 		except Exception, e:
@@ -294,7 +294,7 @@ a:visited {
       <table border="0"><tr>
     <TD class="Style2"><div align="right">SMTP Password :&nbsp;</div></TD>
     <TD><INPUT value="" type="password" maxLength="20" name="smtppassword"></TD>
-    <TD align="right"><input style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" type="submit" name="button4" id="button4" value="Set password"/></td>
+    <TD align="right"><input style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" type="submit" name="setsmtppassword" id="button4" value="Set password"/></td>
   </tr></table>""")
 	request.write("""<form method="post" action="" enctype="multipart/form-data">
       <table border="0">
