@@ -23,11 +23,11 @@ class VDOM_database_object:
 		self.tables_index = {}
 		self.data = None
 
-	def open(self, simple_rows = False):
+	def open(self, simple_rows = False, timeout = 20.0):
 		"""open database"""
 		#if self.__conn: return True		
 		try:
-			conn = sqlite3.connect(managers.file_manager.get_path(file_access.database,self.owner_id,None,self.filename), timeout=20.0)
+			conn = sqlite3.connect(managers.file_manager.get_path(file_access.database,self.owner_id,None,self.filename), timeout=timeout)
 			if not simple_rows:
 				conn.row_factory = sqlite3.Row
 		except Exception, e:
