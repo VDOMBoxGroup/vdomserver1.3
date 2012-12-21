@@ -180,13 +180,20 @@ class VDOM_database(object):
 		self.__cur.execute(sql, params)
 		return self.__cur.fetchall()
 			
-	def commit(self, sql=None, params={}):
+	def commit(self, sql=None, params=()):
 		if sql is not None:
 			self.__cur.execute(sql, params)
 		if self.__conn:
 			self.__conn.commit()
 		return (self.__cur.lastrowid, self.__cur.rowcount)
-		
+	
+	def commit_isolated(self, sql, params=()):
+		conn = self.database.open(timeout = 25.0)
+		cur = conn.cursor()
+		cur.execute(sql, params)
+		conn.commit()
+		return (cur.lastrowid, cur.rowcount)		
+
 	def create(self, table_name, table_diffinition=""):
 		from scripting.wrappers import application
 		application_memmory = managers.xml_manager.get_application(application.id)
