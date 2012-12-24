@@ -5,6 +5,8 @@
 from .environment import v_mailconnection, v_mailattachment, v_mailmessage, \
 	v_mailservererror, v_mailserveralreadyconnectederror, \
 	v_mailserverclosedconnectionerror, v_mailservernomessageindexerror, \
+	v_mailserverclosedconnectionerror as v_mailserverclosedconnection,\
+	v_mailservernomessageindexerror as v_mailservernomessageindex, \
 	v_mailattachment as v_attachment, v_mailmessage as v_message
 from .databases import v_vdomdbconnection, v_vdomdbrecordset, \
 	v_databaseerror, v_databasenotconnectederror, v_databasealreadyconnectederror, \
@@ -15,6 +17,6 @@ from .whole import v_wholeconnection, v_wholeapplication, \
 	v_wholeerror, v_wholeconnectionerror, v_wholenoconnectionerror, \
 	v_wholeremotecallerror, v_wholeincorrectresponseerror, \
 	v_wholenoapierror, v_wholenoapplicationerror,\
-        v_wholeincorrectresponseerror as v_wholeincorrectresponse, \
+	v_wholeincorrectresponseerror as v_wholeincorrectresponse, \
 	v_wholenoapplicationerror as v_wholenoapplication
 
