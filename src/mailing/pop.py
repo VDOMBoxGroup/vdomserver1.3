@@ -1,7 +1,37 @@
-import poplib
+from poplib import POP3, POP3_SSL, POP3_SSL_PORT
+from ssl import wrap_socket, PROTOCOL_SSLv23, PROTOCOL_TLSv1
 import time
-from .message import MailAttachment, Message
+from .message import MailAttachment, MailHeader, Message
 from utils.exception import VDOM_mailserver_invalid_index
+
+class VDOM_POP3_SSL(POP3_SSL):
+
+	def __init__(self, host, port = POP3_SSL_PORT, keyfile = None, certfile = None, ssl_version = 2):
+		self.host = host
+		self.port = port
+		self.keyfile = keyfile
+		self.certfile = certfile
+		self.buffer = ""
+		msg = "getaddrinfo returns an empty list"
+		self.sock = None
+		for res in socket.getaddrinfo(self.host, self.port, 0, socket.SOCK_STREAM):
+			af, socktype, proto, canonname, sa = res
+			try:
+				self.sock = socket.socket(af, socktype, proto)
+				self.sock.connect(sa)
+			except socket.error, msg:
+				if self.sock:
+					self.sock.close()
+				self.sock = None
+				continue
+			break
+		if not self.sock:
+			raise socket.error, msg
+		self.file = self.sock.makefile('rb')
+		self.sslobj = wrap_socket(self.sock, self.keyfile, self.certfile, ssl_version=ssl_version)
+		self._debugging = 0
+		self.welcome = self._getresp()		
+
 class VDOM_Pop3_client(object):
 	def __init__(self, server,port=110, secure=False):
 		self.server = server
@@ -9,12 +39,14 @@ class VDOM_Pop3_client(object):
 		self.secure = secure
 		self.message_count=0
 		self.read_mails_count = 0
-		if self.secure:
-			self.connection = poplib.POP3_SSL(self.server, self.port)
-		else:
-			self.connection = poplib.POP3(self.server, self.port)		
-		self.connected = True
+		if self.secure != False:
+			ssl_version = PROTOCOL_SSLv23 if self.secure == 1 or self.secure == True else PROTOCOL_TLSv1
+			self.connection = VDOM_POP3_SSL(self.server, self.port, ssl_version=ssl_version)
 		
+		else:
+			self.connection = POP3(self.server, self.port)		
+		self.connected = True
+
 	def user(self, login, passw):
 		self.connection.user(login.encode('utf8'))
 		self.connection.pass_(passw.encode('utf8'))	
@@ -22,17 +54,17 @@ class VDOM_Pop3_client(object):
 			self.message_count = self.connection.stat()[0]
 		except:
 			self.connected = False
-		
+
 	def __len__(self) :
 		"Return the number of messages at POP-server"
 		try:
 			self.message_count = self.connection.stat()[0]
 		except:
 			self.connected = False
-	
+
 	def quit(self):
 		self.connection.quit()	
-		
+
 	def fetch_message(self,id,delete=False):
 		if not self.connected:
 			return None
@@ -46,7 +78,7 @@ class VDOM_Pop3_client(object):
 		if delete:
 			self.connection.dele(id+1)
 		return msg
-	
+
 	def fetch_all_messages(self,offset=0,limit=0, delete=False):
 		if not self.connected:
 			return []
@@ -57,3 +89,18 @@ class VDOM_Pop3_client(object):
 			emails.append(self.fetch_message(i,delete))
 		self.read_mails_count = mail_number
 		return emails
+	
+	def list(self):
+		if not self.connected:
+			return None
+		result = []
+		_headers = self.connection.list()
+		for h in _headers[1]:
+			result.append(MailHeader.fromstring(h))
+		return result
+	
+	def delete(self, which):
+		if not self.connected:
+			return None
+		self.connection.dele(which)
+	

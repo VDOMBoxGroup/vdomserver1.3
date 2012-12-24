@@ -19,10 +19,10 @@ class MIME_VDOM(MIMENonMultipart):
 		
 class MailAttachment(object):
 	def __init__(self, data=None, filename="", content_type="application", content_subtype="octet-stream"):
-		self.data = None
-		self.filename = ""
-		self.content_type = None
-		self.content_subtype = None
+		self.data = data
+		self.filename = filename
+		self.content_type = content_type
+		self.content_subtype = content_subtype
 		
 	@classmethod
 	def fromtuple(self, t):
@@ -38,6 +38,31 @@ class MailAttachment(object):
 			attach.add_header('content-location', self.filename)
 		return attach
 	
+class MailHeader(object):
+	def __init__(self):
+		self.id = None
+		self.size = None
+		self.__from = None
+		self.__to = None
+		self.__date = None
+		
+	@classmethod
+	def fromstring(self, s):
+		header = MailHeader()
+		header.id, header.size = s.split(' ')
+		return header
+	
+	def subject(self):
+		pass
+	
+	def _from(self):
+		pass
+	
+	def _to(self):
+		pass
+	
+	def date(self):
+		pass
 	
 class Message(object):
 	def __init__(self,**kw):
@@ -52,7 +77,9 @@ class Message(object):
 		self.date 	= None
 		self.nomultipart = False
 		self.headers = {}
-		self.content_type = tuple()
+		self.content_type = "text/html"
+		self.content_charset = "utf-8"
+		self.content_params = {}
 		self.ttl = 50
 		self.priority = "normal"
 		convertmap = {"id":"id","sender":"sender","from":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type"}
@@ -60,6 +87,13 @@ class Message(object):
 			if key in convertmap:
 				if key=="attach":
 					value = [msg if isinstance(msg,MailAttachment) else MailAttachment.fromtuple(msg) for msg in value]
+				if key == "content_type":
+					if isinstance(value, tuple):
+						if len(value)>1:
+							self.content_charset = value[1]
+						if len(value)>2 and value[2]:
+							self.content_params = value[2]
+						value = value[0]						
 				setattr(self,convertmap[key],value)
 		if isinstance(self.to_email, list) and len(self.to_email)>0:
 			self.to_email = ", ".join(self.to_email)
@@ -81,15 +115,15 @@ class Message(object):
 			if isinstance(msgbody, unicode):
 				msgbody = msgbody.encode("utf-8")
 			msg = MIMEText(msgbody)
-			if len(self.content_type)>1: #item["content_type"] == (type, charset, params={})
-				msg.set_type(self.content_type[0])
-				msg.set_charset(self.content_type[1])								
-				if len(self.content_type)>2 and self.content_type[2]:
-					for key,value in self.content_type[2].iteritems():
-						msg.set_param(key,value)
-			else:
-				msg.set_type("text/html")
-				msg.set_charset("utf-8")
+			#if len(self.content_type)>1: #item["content_type"] == (type, charset, params={})
+			msg.set_type(self.content_type)
+			msg.set_charset(self.content_charset)								
+			if self.content_params:
+				for key,value in self.content_params.iteritems():
+					msg.set_param(key,value)
+			#else:
+			#	msg.set_type("text/html")
+			#	msg.set_charset("utf-8")
 		else:
 			msg = MIMEMultipart()
 			msgbody = self.body
@@ -171,7 +205,7 @@ class Message(object):
 	
 	def parse_body(self,mail):
 		body = ""
-		self.content_type = MailContentType("text/html","utf8",{})
+		#self.content_type = MailContentType("text/html","utf8",{})
 		body_charset = "utf8"
 		#TODO: check this code for multipart messages with different attachments
 		if mail.is_multipart():
@@ -224,6 +258,9 @@ class Message(object):
 									body = ""
 								if "Content-Type" in subpart and "charset" in subpart["Content-Type"]:
 									body_charset = subpart["Content-Type"].split('=')[1]
+									self.content_charset = body_charset.strip('"')
+									body_content_type = subpart["Content-Type"].split(';')[0]
+									self.content_type = body_content_type
 								if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "base64":
 									try:
 										body += base64.b64decode(subpart.get_payload())
@@ -241,6 +278,9 @@ class Message(object):
 		else:
 			if "Content-Type" in mail and "charset" in mail["Content-Type"]:
 				body_charset = mail["Content-Type"].split('=')[1]
+				self.content_charset = body_charset.strip('"')
+				body_content_type = mail["Content-Type"].split(';')[0]
+				self.content_type = body_content_type				
 			if "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "base64":
 				try:
 					body += base64.b64decode(mail.get_payload())

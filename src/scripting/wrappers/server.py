@@ -1,6 +1,8 @@
 
 import managers, version, utils
 from vscript.engine import vcompile, vexecute, vevaluate
+from mailing.message import Message, MailAttachment as Attachment
+from mailing.pop import VDOM_Pop3_client
 
 
 class VDOM_vscript(object):
@@ -15,11 +17,40 @@ class VDOM_vscript(object):
 		code, vsource=vcompile(let=let, set=set, environment=environment, use=use)
 		return vevaluate(code, vsource, environment=environment, use=use, result=result)
 
-
+class VDOM_mailer(object):
+	
+	def send(self, *args, **kw):
+		return managers.email_manager.send(*args, **kw)
+		
+	def check(self, _id):
+		return managers.email_manager.check(_id)
+	
+	def check_connection(self):
+		return managers.email_manager.check_connection()
+	
+	def cancel(self, _id):
+		return managers.email_manager.cancel(_id)
+	
+	def status(self):
+		return managers.email_manager.status()
+		
+	def clear_queue(self):
+		managers.email_manager.clear_queue()
+			
+	def get_queue(self):
+		return managers.email_manager.get_queue()
+	
+	def pop3_connect(self, server, port=110, secure=False):
+		return VDOM_Pop3_client(server, port, secure)
+	
+	Message=Message
+	Attachment=Attachment		
+		
 class VDOM_server(object):
 
 	def __init__(self):
 		self._vscript=VDOM_vscript()
+		self._mailer = VDOM_mailer()
 
 	def _get_version(self):
 		return version.VDOM_server_version
@@ -28,6 +59,8 @@ class VDOM_server(object):
 		return utils.uuid.uuid4()
 	
 	version=property(_get_version)
-	mailer=property(lambda self: managers.email_manager)
+	#mailer=property(lambda self: managers.email_manager)
+	mailer=property(lambda self: self._mailer)
 	guid=property(_get_guid)
 	vscript=property(lambda self: self._vscript)
+	
