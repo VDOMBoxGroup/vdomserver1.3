@@ -10,6 +10,51 @@ import base64, quopri,re
 #MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 MailContentType = namedtuple("MailContentType","type, charset, params")
 
+def mail_to_dict(mail, codecs = ['utf8', 'cp1252', 'latin1' ]):
+	result = {}
+	try:
+		subject = email.Header.decode_header(mail.get('Subject'))
+		result["subject"] = subject[0][0].decode(subject[0][1]) if subject[0][1] else decode_strings(subject[0][0], codecs)
+	except Exception, ex:
+		result["subject"] = ""
+		
+
+	try:
+		from_email = email.Header.decode_header(mail.get('From'))
+		result["from_email"] = from_email[0][0].decode(from_email[0][1]) if from_email[0][1] else decode_strings(from_email[0][0], codecs)
+	except Exception, ex:
+		result["from_email"] = ""
+		
+
+	try:
+		to_email = email.Header.decode_header(mail.get('To'))
+		result["to_email"] = to_email[0][0].decode(to_email[0][1]) if to_email[0][1] else decode_strings(to_email[0][0], codecs)
+	except Exception, ex:
+		result["to_email"] = ""
+		
+	if mail.get('Date'):
+		date = mail.get('Date')
+		result["date"] = time.strftime("%d %b %Y",email.utils.parsedate(date))
+		result["date_in_sec"] = str(time.mktime(email.utils.parsedate(date)))
+	else:
+		result["date"] = time.strftime("%d %b %Y")
+		result["date_in_sec"] = str(time.mktime(time.localtime()))
+		
+	#try:
+	#	mail_type = email.Header.decode_header(mail.get('Content-Type'))
+	#	if mail_type and "plain" in mail_type[0][0]:
+	#		mail_type = "plain"
+	#	else:
+	#		mail_type = "html"
+	#except Exception, ex:		
+	#	mail_type = "html"
+		
+	if "X-Priority" in mail:
+		priority = re.search('\d', mail["X-Priority"])
+		if priority:
+			result["priority"] = "high" if priority.group(0) == "1" else "normal"		
+		
+	return result
 class MIME_VDOM(MIMENonMultipart):
 
 	def __init__(self, _data, _type, _subtype, _encoder=encoders.encode_base64, **_params):
@@ -44,25 +89,33 @@ class MailHeader(object):
 		self.size = None
 		self.__from = None
 		self.__to = None
+		self.__subject = None
 		self.__date = None
 		
 	@classmethod
-	def fromstring(self, s):
+	def fromstring(self, id, size, mimestring):
 		header = MailHeader()
-		header.id, header.size = s.split(' ')
+		header.id = id
+		header.size = size
+		mail = email.message_from_string(mimestring)
+		parts = mail_to_dict(mail)
+		header.__from = parts.get('from_email', "")
+		header.__to = parts.get('to_email', "")
+		header.__subject = parts.get('subject', "")
+		header.__date = parts.get('date', "")
 		return header
 	
 	def subject(self):
-		pass
+		return self.__subject
 	
-	def _from(self):
-		pass
+	def from_email(self):
+		return self.__from
 	
-	def _to(self):
-		pass
+	def to_email(self):
+		return self.__to
 	
 	def date(self):
-		pass
+		return self.__date
 	
 class Message(object):
 	def __init__(self,**kw):
@@ -82,7 +135,7 @@ class Message(object):
 		self.content_params = {}
 		self.ttl = 50
 		self.priority = "normal"
-		convertmap = {"id":"id","sender":"sender","from":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type"}
+		convertmap = {"id":"id","sender":"sender","from":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type", "content_charset":"content_charset", "content_params":"content_params"}
 		for key,value in kw.iteritems():
 			if key in convertmap:
 				if key=="attach":
@@ -157,49 +210,53 @@ class Message(object):
 		msg.id = email_id
 		mail = email.message_from_string(mimestring)
 		msg.parse_body(mail)
-		codecs = [msg.content_type[1], 'utf8', 'cp1252', 'latin1' ]
+		codecs = [msg.content_charset, 'utf8', 'cp1252', 'latin1' ]
+		kw = mail_to_dict(mail, codecs)
+		for k,v in kw.iteritems():
+			if hasattr(msg, k):
+				setattr(msg, k, v)
 		
-		try:
-			subject = email.Header.decode_header(mail.get('Subject'))
-			msg.subject		= subject[0][0].decode(subject[0][1]) if subject[0][1] else decode_strings(subject[0][0], codecs)
-		except Exception, ex:
-			msg.subject = ""
+#		try:
+#			subject = email.Header.decode_header(mail.get('Subject'))
+#			msg.subject		= subject[0][0].decode(subject[0][1]) if subject[0][1] else decode_strings(subject[0][0], codecs)
+#		except Exception, ex:
+#			msg.subject = ""
 			
 	
-		try:
-			from_email = email.Header.decode_header(mail.get('From'))
-			msg.from_email	= from_email[0][0].decode(from_email[0][1]) if from_email[0][1] else decode_strings(from_email[0][0], codecs)
-		except Exception, ex:
-			msg.from_email = ""
+#		try:
+#			from_email = email.Header.decode_header(mail.get('From'))
+#			msg.from_email	= from_email[0][0].decode(from_email[0][1]) if from_email[0][1] else decode_strings(from_email[0][0], codecs)
+#		except Exception, ex:
+#			msg.from_email = ""
 			
 	
-		try:
-			to_email = email.Header.decode_header(mail.get('To'))
-			msg.to_email	= to_email[0][0].decode(to_email[0][1]) if to_email[0][1] else decode_strings(to_email[0][0], codecs)
-		except Exception, ex:
-			msg.to_email = ""
+#		try:
+#			to_email = email.Header.decode_header(mail.get('To'))
+#			msg.to_email	= to_email[0][0].decode(to_email[0][1]) if to_email[0][1] else decode_strings(to_email[0][0], codecs)
+#		except Exception, ex:
+#			msg.to_email = ""
 			
-		if mail.get('Date'):
-			date = mail.get('Date')
-			msg.date = time.strftime("%d %b %Y",email.utils.parsedate(date))
-			msg.date_in_sec	= str(time.mktime(email.utils.parsedate(date)))
-		else:
-			msg.date = time.strftime("%d %b %Y")
-			msg.date_in_sec	= str(time.mktime(time.localtime()))
+#		if mail.get('Date'):
+#			date = mail.get('Date')
+#			msg.date = time.strftime("%d %b %Y",email.utils.parsedate(date))
+#			msg.date_in_sec	= str(time.mktime(email.utils.parsedate(date)))
+#		else:
+#			msg.date = time.strftime("%d %b %Y")
+#			msg.date_in_sec	= str(time.mktime(time.localtime()))
 			
-		try:
-			mail_type = email.Header.decode_header(mail.get('Content-Type'))
-			if mail_type and "plain" in mail_type[0][0]:
-				msg.mail_type = "plain"
-			else:
-				msg.mail_type = "html"
-		except Exception, ex:		
-			msg.mail_type = "html"
+		#try:
+		#	mail_type = email.Header.decode_header(mail.get('Content-Type'))
+		#	if mail_type and "plain" in mail_type[0][0]:
+		#		msg.mail_type = "plain"
+		#	else:
+		#		msg.mail_type = "html"
+		#except Exception, ex:		
+		#	msg.mail_type = "html"
 			
-		if "X-Priority" in mail:
-			priority = re.search('\d', mail["X-Priority"])
-			if priority:
-				msg.priority = "high" if priority.group(0) == "1" else "normal"		
+#		if "X-Priority" in mail:
+#			priority = re.search('\d', mail["X-Priority"])
+#			if priority:
+#				msg.priority = "high" if priority.group(0) == "1" else "normal"		
 			
 		return msg
 	

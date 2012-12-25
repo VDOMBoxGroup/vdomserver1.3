@@ -96,7 +96,9 @@ class VDOM_Pop3_client(object):
 		result = []
 		_headers = self.connection.list()
 		for h in _headers[1]:
-			result.append(MailHeader.fromstring(h))
+			id, size = h.split(' ')
+			t = self.connection.top(id, 0)
+			result.append(MailHeader.fromstring(id, size, "\n".join(t[1])))
 		return result
 	
 	def delete(self, which):
