@@ -1,4 +1,5 @@
 from collections import namedtuple
+import threading
 import time
 import email
 from email import encoders
@@ -7,6 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart  import MIMEMultipart
 from utils.uuid import uuid4
 import base64, quopri,re
+
 #MailAttachment = namedtuple("MailAttachment","data, filename, content_type, content_subtype")
 MailContentType = namedtuple("MailContentType","type, charset, params")
 
@@ -82,40 +84,50 @@ class MailAttachment(object):
 			attach.add_header('content-disposition', 'attachment', filename=self.filename)
 			attach.add_header('content-location', self.filename)
 		return attach
-	
+
+conn = threading.local()
+
 class MailHeader(object):
-	def __init__(self):
-		self.id = None
-		self.size = None
-		self.__from = None
-		self.__to = None
-		self.__subject = None
-		self.__date = None
+	def __init__(self, mail_id = "", octets_number = "", client = None):
+		self.id = mail_id
+		self.size = octets_number
+#		self.__client = client		
+#		self.__attr = ["from_email", "to_email", "subject", "date"]
+#		if self.__client is not None:
+#			self.__pop3_config = {"user":client.user,
+#			                      "passwd":client.password,
+#			                      "host":client.server,
+#			                      "port":client.port,
+#			                      "secure":client.secure}
 		
-	@classmethod
-	def fromstring(self, id, size, mimestring):
-		header = MailHeader()
-		header.id = id
-		header.size = size
-		mail = email.message_from_string(mimestring)
-		parts = mail_to_dict(mail)
-		header.__from = parts.get('from_email', "")
-		header.__to = parts.get('to_email', "")
-		header.__subject = parts.get('subject', "")
-		header.__date = parts.get('date', "")
-		return header
-	
-	def subject(self):
-		return self.__subject
-	
-	def from_email(self):
-		return self.__from
-	
-	def to_email(self):
-		return self.__to
-	
-	def date(self):
-		return self.__date
+#	def __getattribute__(self, name):
+#		try:
+#			return object.__getattribute__(self, name)
+#		except:
+#			if name in self.__attr:
+#				parts = self.__lazyLoad()
+#				for item in self.__attr:
+#					value = parts[item]
+#					setattr(self, item, value)
+#				return object.__getattribute__(self, name)
+#			else:
+#				raise AttributeError
+#	
+#	def __lazyLoad(self):
+#		from .pop import VDOM_Pop3_client
+#		if getattr(conn, "current_conn", None) is None:
+#			if not self.__client.connected:
+#				self.__client = VDOM_Pop3_client(self.__pop3_config["host"], self.__pop3_config["port"], 
+#				                                            self.__pop3_config["secure"])
+#				self.__client.user(self.__pop3_config["user"], self.__pop3_config["passwd"])
+#			if self.__client.connected:
+#				conn.current_conn = self.__client.connection
+#			else: return None
+#								
+#		headers = conn.current_conn.top(self.id, 0)[1]
+#		mimestring = "\n".join(headers)
+#		mail = email.message_from_string(mimestring)
+#		return mail_to_dict(mail)
 	
 class Message(object):
 	def __init__(self,**kw):
@@ -369,3 +381,4 @@ def decode_strings(text, codecs_list):
 			continue
 
 	return result
+
