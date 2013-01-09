@@ -24,7 +24,7 @@ class VDOM_vhosting:
 	def set_site(self, site, app_id):
 		"""add/remove new site in virtual hosting or change it's id"""
 		if app_id:
-			self.__vhosting_data[site] = app_id
+			self.__vhosting_data[site.lower()] = app_id
 		elif site in self.__vhosting_data:
 			del self.__vhosting_data[site]
 		self.sync()
@@ -35,8 +35,10 @@ class VDOM_vhosting:
 
 	def get_site(self, site):
 		"""get site identifier by name"""
-		if site and site in self.__vhosting_data:
-			return self.__vhosting_data[site]
+		if site:
+			for vh in self.__vhosting_data:
+				if str(vh).lower() == site.lower():
+					return self.__vhosting_data[site]
 		return None
 
 	def set_def_site(self, app_id):
