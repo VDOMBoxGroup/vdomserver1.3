@@ -1,12 +1,13 @@
 from poplib import POP3, POP3_SSL, POP3_SSL_PORT
 from ssl import wrap_socket, PROTOCOL_SSLv23, PROTOCOL_TLSv1
 import time
+import socket
 from .message import MailAttachment, MailHeader, Message
 from utils.exception import VDOM_mailserver_invalid_index
 
 class VDOM_POP3_SSL(POP3_SSL):
 
-	def __init__(self, host, port = POP3_SSL_PORT, keyfile = None, certfile = None, ssl_version = 2):
+	def __init__(self, host, port = POP3_SSL_PORT, keyfile = None, certfile = None, ssl_version = 2,timeout = 30.0):
 		self.host = host
 		self.port = port
 		self.keyfile = keyfile
@@ -18,6 +19,7 @@ class VDOM_POP3_SSL(POP3_SSL):
 			af, socktype, proto, canonname, sa = res
 			try:
 				self.sock = socket.socket(af, socktype, proto)
+				self.sock.settimeout(timeout)
 				self.sock.connect(sa)
 			except socket.error, msg:
 				if self.sock:
@@ -42,10 +44,10 @@ class VDOM_Pop3_client(object):
 		
 		if self.secure != False:
 			ssl_version = PROTOCOL_SSLv23 if self.secure == 1 or self.secure == True else PROTOCOL_TLSv1
-			self.connection = VDOM_POP3_SSL(self.server, self.port, ssl_version=ssl_version)
+			self.connection = VDOM_POP3_SSL(self.server, self.port, ssl_version=ssl_version,timeout=30.0)
 		
 		else:
-			self.connection = POP3(self.server, self.port)		
+			self.connection = POP3(self.server, self.port,30.0)		
 		self.connected = False
 
 	def user(self, login, passw):
