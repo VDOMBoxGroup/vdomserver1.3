@@ -126,7 +126,7 @@ class v_vdomdbconnection(generic):
 			self._database_id=connection_string.lower()
 			self._database_name=None
 		else:
-			self._database_id=managers.database_manager.get_database_by_name(self._application_id, connection_string)
+			self._database_id=managers.database_manager.get_database_by_name(self._application_id, connection_string).id
 			self._database_name=connection_string
 		if not self._database_id:
 			raise database_not_found(connection_string)
