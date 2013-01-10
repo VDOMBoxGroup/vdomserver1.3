@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.713.8388</Version>
+    <Version>1.718.8388</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -1260,7 +1260,7 @@ class VDOM_menu(VDOM_object):
 					onmouse = ""
 
 				image = \
-					u"""<IMG src={source} {onmouse} title="{title}" style="border:none" width="{width}" height="{height}">
+					u"""<img src={source} {onmouse} title="{title}" style="border:none" width="{width}" height="{height}" />
 					""".format(
 							source = utils.id.id2link1(self.imagefiles[i]),
 							onmouse = onmouse,
@@ -1286,7 +1286,22 @@ class VDOM_menu(VDOM_object):
 					width_style = width_style,
 					height_style = height_style)
 
-				menu_content +=  u"""<div style="{style}"> {image} </div>""".format(style = style, image = image)
+				#menu_content +=  u"""<div style="{style}"> {image} </div>""".format(style = style, image = image) # old
+
+				if self.pages[i][0] == "":
+					link2 = u"%s" % image
+					style2 = ""
+				else:
+					style2 = ""
+					if self.linkcolor:
+						style2 = u""" color: #{linkcolor}; """.format(linkcolor = self.linkcolor)
+
+					link2 = u"""<a href="/{page}.vdom">{image}</a>""".format(
+						image = image,
+						page  = self.pages[i][2])
+
+				menu_content +=  u"""<div style="{style} {style2}">{link2}</div>""".format(style = style, style2 = style2, link2 = link2)
+
 			else: # text/links
 				if not self.layout or self.layout == "" or self.layout == "0":
 					separator = "<br/>"
@@ -1302,7 +1317,7 @@ class VDOM_menu(VDOM_object):
 					if self.linkcolor:
 						style = u""" style="color: #{linkcolor};" """.format(linkcolor = self.linkcolor)
 
-					link = u"""<a href="{page}.vdom" {style} >{text}</a>""".format(
+					link = u"""<a href="/{page}.vdom" {style} >{text}</a>""".format(
 						style = style,
 						text = self.pages[i][1],
 						page = self.pages[i][2])
@@ -1368,7 +1383,7 @@ class VDOM_menu(VDOM_object):
 		if not self.layout or self.layout == "" or self.layout == "0":
 			separator = "<br/>"
 		else:
-			separator = "&nbsp; &nbsp;"
+			separator = "  "
 
 		for i in xrange(0,(len(self.pages))):
 			fontstyle = self.get_fontstyle()
