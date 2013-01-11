@@ -44,7 +44,13 @@ class VDOM_mailer(object):
 		return VDOM_Pop3_client(server, port, secure)
 	
 	Message=Message
-	Attachment=Attachment		
+	Attachment=Attachment
+	smtp_server=property(lambda self: managers.email_manager.smtp_server)
+	smtp_port=property(lambda self: managers.email_manager.smtp_port)
+	smtp_user=property(lambda self: managers.email_manager.smtp_user)
+	smtp_pass=property(lambda self: managers.email_manager.smtp_pass)
+	smtp_sender=property(lambda self: managers.email_manager.smtp_sender)
+	use_ssl=property(lambda self: managers.email_manager.use_ssl)
 		
 class VDOM_server(object):
 
