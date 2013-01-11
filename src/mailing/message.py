@@ -133,7 +133,7 @@ class Message(object):
 	def __init__(self,**kw):
 		self.id = 0
 		self.subject 	= None
-		self.sender = None
+		self.sender = None #seems not used
 		self.from_email = None
 		self.reply_to = None
 		self.to_email 	= ""
@@ -212,7 +212,7 @@ class Message(object):
 		if self.reply_to:
 			msg['Reply-to'] = self.reply_to
 		if self.headers:
-			for key,value in item["headers"].iteritems():
+			for key,value in self.headers.iteritems():
 				msg[key] = value
 		
 		return msg.as_string()

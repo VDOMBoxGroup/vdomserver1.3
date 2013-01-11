@@ -100,9 +100,15 @@ class VDOM_email_manager(object):
 				#	to = to.split(",")
 				sender = "%s <%s>"%(fr,sender)
 
-				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart,"content_type":content_type}
+				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart}
 				if reply:
 					m['reply-to'] = reply
+				if len(content_type) > 0:
+					m['content_type'] = content_type[0]
+					if len(content_type) > 1:
+						m['content_charset'] = content_type[1]
+						if len(content_type) > 2:
+							m['content_params'] = content_type[2]
 				m = Message(**m)
 			m.id = x
 			self.__queue.append(m)
