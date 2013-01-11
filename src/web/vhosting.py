@@ -24,7 +24,8 @@ class VDOM_vhosting:
 	def set_site(self, site, app_id):
 		"""add/remove new site in virtual hosting or change it's id"""
 		if app_id:
-			self.__vhosting_data[site.lower()] = app_id
+			if site != 0 and isinstance(site, basestring): site = site.lower()
+			self.__vhosting_data[site] = app_id
 		elif site in self.__vhosting_data:
 			del self.__vhosting_data[site]
 		self.sync()
