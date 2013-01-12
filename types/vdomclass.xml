@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.8.8388</Version>
+    <Version>2.9.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>vdompackage, objectview</Containers>
@@ -470,9 +470,11 @@ class VDOM_vdomclass(VDOM_object):
 		else:
 			classname = " class='%s %s' " % (self.classauto, self.classname)
 
-		style = "position:relative;width:{width}px;height:{height}px;".format(
+		style = "position:relative;width:{width}px;height:{height}px;left:{left}px;top:{top}px;".format(
 			width  = self.width,
-			height = self.height
+			height = self.height,
+			left   = self.left,
+			top    = self.top
 		)
 
 		if self.visible == '1':
