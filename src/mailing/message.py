@@ -65,21 +65,26 @@ class MIME_VDOM(MIMENonMultipart):
 		_encoder(self)
 		
 class MailAttachment(object):
-	def __init__(self, data=None, filename="", content_type="application", content_subtype="octet-stream"):
+	def __init__(self, data=None, filename="", content_type="application", content_subtype="octet-stream", _encoder=encoders.encode_base64, **_params):
 		self.data = data
 		self.filename = filename
 		self.content_type = content_type
 		self.content_subtype = content_subtype
+		self.encoder = _encoder
+		self.__params = _params
 		
 	@classmethod
 	def fromtuple(self, t):
-		attach = self()
-		if len(t)==4:
-			attach.data, attach.filename, attach.content_type, attach.content_subtype = t		
+		attach = None
+		#attach = self()
+		#if len(t)==4:
+			#attach.data, attach.filename, attach.content_type, attach.content_subtype = t
+		if isinstance(t, tuple):
+			attach = self(*t)
 		return attach
 	
 	def as_mime(self):
-		attach = MIME_VDOM(self.data, self.content_type,self.content_subtype)
+		attach = MIME_VDOM(self.data, self.content_type,self.content_subtype,self.encoder,**self.__params)
 		if self.filename:
 			attach.add_header('content-disposition', 'attachment', filename=self.filename)
 			attach.add_header('content-location', self.filename)
