@@ -102,7 +102,7 @@ class VDOM_email_manager(object):
 
 				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart}
 				if reply:
-					m['reply-to'] = reply
+					m['reply'] = reply
 				if len(content_type) > 0:
 					m['content_type'] = content_type[0]
 					if len(content_type) > 1:
