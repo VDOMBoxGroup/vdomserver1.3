@@ -62,42 +62,6 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>title</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>classauto</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue/>
-      <Visible>0</Visible>
-      <Help>#Lang(206)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -146,6 +110,18 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>title</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>data</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
@@ -169,6 +145,42 @@
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classauto</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(314)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -187,6 +199,7 @@
       <Sentence ID="111">Height</Sentence>
       <Sentence ID="112">Data</Sentence>
       <Sentence ID="113"></Sentence>
+      <Sentence ID="114">positioning</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -199,6 +212,7 @@
       <Sentence ID="211">Height of the object in pixels.</Sentence>
       <Sentence ID="212">The data from the Data attribute of the Object view are passed here. You should not write anything here.</Sentence>
       <Sentence ID="213"></Sentence>
+      <Sentence ID="214">incorrect value</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
@@ -211,8 +225,11 @@
       <Sentence ID="311">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="312">Incorrect, must be multiline.</Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="314">absolute or relative items positioning</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">Relative</Sentence>
+      <Sentence ID="404">Absolute</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Контейнер VDOM</Sentence>
@@ -230,6 +247,7 @@
       <Sentence ID="111">Высота</Sentence>
       <Sentence ID="112">Данные</Sentence>
       <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Позиция в визуальной иерархии объектов</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -242,6 +260,7 @@
       <Sentence ID="211">Высота объекта в пикселях</Sentence>
       <Sentence ID="212">Данные</Sentence>
       <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303">Неправильное значение, должна быть строка</Sentence>
@@ -254,8 +273,11 @@
       <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="312">Неправильное значение</Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Conteneur HTML</Sentence>
@@ -273,6 +295,7 @@
       <Sentence ID="111">Height</Sentence>
       <Sentence ID="112">Data</Sentence>
       <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
       <Sentence ID="201">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="202">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
@@ -285,6 +308,7 @@
       <Sentence ID="211">Container height</Sentence>
       <Sentence ID="212">The data</Sentence>
       <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
@@ -297,8 +321,11 @@
       <Sentence ID="311">Incorrect value, must be integer</Sentence>
       <Sentence ID="312">Valeur Incorrecte</Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -466,12 +493,18 @@ class VDOM_vdomclass(VDOM_object):
 
 		if self.classname == "":
 			#classname = ""
-			classname = " class='%s' " % (self.classauto)
+			classname = u" class='%s' " % (self.classauto)
 		else:
-			classname = " class='%s %s' " % (self.classauto, self.classname)
+			classname = u" class='%s %s' " % (self.classauto, self.classname)
 
-		#style = "position:relative;width:{width}px;height:{height}px;left:{left}px;top:{top}px;".format(
-		style = "position:relative;width:{width}px;height:{height}px;".format(
+		if self.positioning == "0":
+			style_pattern = u"position:relative;width:{width}px;height:{height}px;"
+		else:
+			style_pattern = u"position:absolute;width:{width}px;height:{height}px;left:{left}px;top:{top}px;"
+
+		##style = "position:relative;width:{width}px;height:{height}px;left:{left}px;top:{top}px;".format(
+		#style = "position:relative;width:{width}px;height:{height}px;".format(
+		style = style_pattern.format(
 			width  = self.width,
 			height = self.height,
 			left   = self.left,
@@ -485,10 +518,10 @@ class VDOM_vdomclass(VDOM_object):
 
 		dataid = ""
 		if self.dataid != '':
-			dataid = "dataid=\"%s\"" % (self.dataid).replace("\"", "")
+			dataid = u"dataid=\"%s\"" % (self.dataid).replace("\"", "")
 
 		if style != "":
-			style = " style='%s' " % style
+			style = u" style='%s' " % style
 		#result = u"<div {classname} {style}>{contents} DATA: {data}</div>".format(
 		result = u"<div objtype='vdomclass' objname='{name}' {classname} {style} {dataid}>{contents}</div>".format(
 				#data      = self.data,
