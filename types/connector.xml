@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.32.8477</Version>
+    <Version>1.33.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,container</Containers>
@@ -707,6 +707,7 @@ class VDOM_connector(VDOM_object):
 				obj.set_attribute_ex("height", source_object_attr['height'].value, False)
 				obj.set_attribute_ex("data", item_data, False)
 				obj.set_attribute_ex("dataid", item_data_id, False)
+				obj.set_attribute_ex("positioning", "1", False)
 				obj.set_attribute_ex("left", item_x, False)
 				obj.set_attribute_ex("top", item_y, False)
 				obj.set_attribute_ex("classauto", "%(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s" % {
