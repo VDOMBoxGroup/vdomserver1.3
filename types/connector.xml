@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.33.8477</Version>
+    <Version>1.35.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,container</Containers>
@@ -850,11 +850,18 @@ $j("#%(id)s .%(connectorclass)s").each(function(i,e) {
 				if lbl_tmp <> "":
 					#lbl = u""",overlays:[["Label",{label:"%s"}]]""" % lbl_tmp
 					lbl = u',label:"%s"' % lbl_tmp
+
+				clr_tmp = u"%s" % x.get('color', '').replace('"', '').strip()
+				clr = ''
+				if clr_tmp <> "":
+					clr = u',paintStyle:{strokeStyle:"%s"}' % clr_tmp
+
 				#connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(label)s },ourConnector /*,%(skin)s*/); """ % {
-				connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(label)s },ourConnector); """ % {
+				connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(clr)s %(label)s },ourConnector); """ % {
 						"source": x.get('source', '').replace('"', '&quot;'),
 						"target": x.get('target', '').replace('"', '&quot;'),
 						"label":  lbl,
+						"clr":    clr,
 						"skin":   ''
 					}
 
@@ -953,6 +960,25 @@ console.info('connectionDragStop');
 		x.makeTarget(x.getSelector(".%(class)s-item"), {
 			dropOptions: { hoverClass: "dragHover" },
 			anchor: "Continuous"
+		});
+
+		$j("#%(id)s div[dataid]").bind('click dblclick', function(e){
+			if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
+			var t = $j(this);
+			if (e.type == 'dblclick') {
+				t.data('doo', false);
+				execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
+				return false;
+			} else {
+				setTimeout(function() {
+					if (t.data('doo') == true) {
+						execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
+						return false;
+					}
+				}, 220);
+				t.data('doo', true);
+			}
+			return false;
 		});
 
 	});
@@ -1124,11 +1150,15 @@ console.info('connectionDragStop');
             <Parameter Name="target" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(509)">
-          <Parameters/>
+        <Event Name="itemclick" Help="#Lang(519)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(511)">
-          <Parameters/>
+        <Event Name="itemdblclick" Help="#Lang(521)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
