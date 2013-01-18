@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.149.8388</Version>
+    <Version>3.150.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
@@ -282,11 +282,11 @@
       <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(324)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(414)|1)|(#Lang(415)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -338,7 +338,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
+      <Sentence ID="224">Use 3 states for checkboxes in multiselect mode</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -378,8 +378,8 @@
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -391,14 +391,18 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -469,7 +473,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
+      <Sentence ID="224">Use 3 states for checkboxes in multiselect mode</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -509,8 +513,8 @@
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -522,14 +526,18 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -600,7 +608,7 @@
       <Sentence ID="221">Skin of the object</Sentence>
       <Sentence ID="222">Names of CSS classes</Sentence>
       <Sentence ID="223">List (comma separated) of columns, which haven't cellclick.</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
+      <Sentence ID="224">Use 3 states for checkboxes in multiselect mode</Sentence>
       <Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -640,8 +648,8 @@
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -653,14 +661,18 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -771,8 +783,8 @@
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Выделить все строки</Sentence>
       <Sentence ID="503">Снять выделение всех строк</Sentence>
-      <Sentence ID="504">Отобразить объект</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="504">Снять выделение всех строк</Sentence>
+      <Sentence ID="505">Отобразить объект</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -784,14 +796,18 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -902,8 +918,8 @@
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Select all the rows</Sentence>
       <Sentence ID="503">Deselect all the rows</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -915,14 +931,18 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">keyField</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -1893,71 +1913,71 @@ $j(function(){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="cellclick" Help="#Lang(505)">
+        <Event Name="cellclick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="keyField" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="cellData" Order="" VbType="" Help="#Lang(902)"/>
             <Parameter Name="headerData" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="celldblclick" Help="#Lang(506)">
+        <Event Name="celldblclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="keyField" Order="" VbType="" Help="#Lang(904)"/>
             <Parameter Name="cellData" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="headerData" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="custom" Help="#Lang(507)">
+        <Event Name="custom" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="headerselected" Help="#Lang(508)">
+        <Event Name="headerselected" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="headername" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(509)">
+        <Event Name="mousedown" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(511)">
+        <Event Name="mousemove" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(512)">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(513)">
+        <Event Name="mouseover" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(514)">
+        <Event Name="mouseup" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(918)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(919)"/>
           </Parameters>
         </Event>
-        <Event Name="rowsselected" Help="#Lang(515)">
+        <Event Name="rowsselected" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart" Help="#Lang(516)">
+        <Event Name="dragstart" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="load" Help="#Lang(517)">
+        <Event Name="load" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="width" Order="" VbType="" Help="#Lang(923)"/>
             <Parameter Name="height" Order="" VbType="" Help="#Lang(924)"/>
@@ -2019,7 +2039,7 @@ if (selectionmode == 'multi') {
 }
 		  ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectItems">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="selectItems">
           <Parameters>
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(702)" ScriptName="idlist" Help="#Lang(802)" RegularExpressionValidation="^.*$"/>
           </Parameters>
@@ -2027,9 +2047,9 @@ if (selectionmode == 'multi') {
 /* todo */
 		  ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
