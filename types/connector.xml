@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.35.8477</Version>
+    <Version>1.37.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,container</Containers>
@@ -601,7 +601,10 @@ class DummyObject(object):
 		return self.attributes
 
 	def set_attribute_ex(self, name, value, x = 0):
-		old_value = self.attributes[name].value
+		if self.attributes[name]:
+			old_value = self.attributes[name].value
+		else:
+			old_value = value
 		self.attributes[name].value = value
 		return { "value": value, "old_value": old_value }
 
@@ -993,7 +996,7 @@ console.info('connectionDragStop');
 				,"lines_color":       lines_color
 				,"lines_color_hover": lines_color_hover
 				,"lines_width":       lines_width
-				,"draggable":         u'x.draggable(x.getSelector("div[dataid]"));' if self.draggable == "1" else ""
+				,"draggable":         u'x.draggable(x.getSelector("#' + id + ' div[dataid]"));' if self.draggable == "1" else ""
 			}
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
