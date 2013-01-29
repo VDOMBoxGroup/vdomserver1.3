@@ -505,6 +505,13 @@ class VDOM_xml_manager(object):
 			query = VDOM_sql_query(app.id, db_id, "VACUUM")
 			query.commit()
 			query.close()
+
+			# switch wal mode
+			query = VDOM_sql_query( app.id, db_id, "PRAGMA journal_mode=WAL;")
+			query.commit()
+			query.close()
+
+			# backup data to temp database
 			temp_db = managers.database_manager.backup_database( app.id, db_id )
 			data = managers.file_manager.read( file_access.database, app.id, None, temp_db.filename )
 			if temp_db.name != "" and len(data) > 0:
