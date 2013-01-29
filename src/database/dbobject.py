@@ -9,6 +9,8 @@ from utils.exception import VDOM_exception,VDOMDatabaseAccessError
 from utils.semaphore import VDOM_semaphore
 import utils.uuid
 
+import sqlitebck
+
 class VDOM_database_object:
 	"""database object class"""
 
@@ -70,6 +72,10 @@ class VDOM_database_object:
 			tables.append(row["name"])
 		return tables
 	
+	def backup_data( self, src_connection ):	
+		sqlitebck.copy( src_connection, self.get_connection() )
+
+
 class VDOM_database_table:
 	"""Object representation of database table"""
 	def __init__(self,owner_id,db_id,id,name):

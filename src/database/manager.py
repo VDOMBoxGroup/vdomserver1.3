@@ -238,6 +238,16 @@ class VDOM_database_manager(object):
 		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 
 
+	def backup_database( self, owner_id, db_id ):
+		if db_id not in self.__index:
+			return None
+		id = "id"
+		tempdb_name = "temp"
+		src_connection = self.__index[db_id].get_connection()
+		temp_database = self.create_database( owner_id, id, tempdb_name )
+		temp_database.backup_data( src_connection )
+		return temp_database
+
 def un_quote(param):
 	"""Delete all quotes from param"""
 	return param.replace("\'","").replace("\"","").replace("\\","")
