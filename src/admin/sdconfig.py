@@ -104,7 +104,7 @@ def run(request):
 					if "port" in args and "remote_path" in args:
 						port = args["port"][0]
 						remote_path = args["remote_path"][0]
-						auth = driver.authentificate(user, passwd, server, location)
+						auth = driver.authentificate(user, passwd, server, port, remote_path)
 						if auth != True:
 							if isinstance(auth, unicode):
 								raise Exception(auth)
