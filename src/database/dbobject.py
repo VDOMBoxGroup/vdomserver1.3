@@ -25,6 +25,13 @@ class VDOM_database_object:
 		self.tables_index = {}
 		self.data = None
 
+	def set_wal_mode( self ):
+		sql_string = "PRAGMA journal_mode=WAL;"
+		query = VDOM_sql_query( self.owner_id, self.id, sql_string )
+		query.execute()
+		query.close()
+
+		
 	def open(self, simple_rows = False, timeout = 20.0):
 		"""open database"""
 		#if self.__conn: return True		
