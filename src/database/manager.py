@@ -25,6 +25,7 @@ class VDOM_database_manager(object):
 			is_dirty_index = False
 			for id in self.__index: #check for not existing or temporary resources
 				database = self.__index[id]
+				database.set_wal_mode()
 				if managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
 					self.__database_by_name[(database.owner_id,database.name)] = database
 				else:
@@ -45,6 +46,7 @@ class VDOM_database_manager(object):
 			pass
 		else:
 			database = VDOM_database_object(owner_id,attributes["id"])
+			database.set_wal_mode()
 			try:
 				for key in attributes:
 					if key not in ("id", "type"):
