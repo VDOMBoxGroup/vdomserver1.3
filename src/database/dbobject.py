@@ -28,7 +28,7 @@ class VDOM_database_object:
 	def set_wal_mode( self ):
 		sql_string = "PRAGMA journal_mode=WAL;"
 		query = VDOM_sql_query( self.owner_id, self.id, sql_string )
-		query.execute()
+		query.commit()
 		query.close()
 
 		
