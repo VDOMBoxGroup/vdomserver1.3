@@ -406,7 +406,20 @@ def p_value_constants(p):
 			 | VSHORTTIME
 			 | VUSEDEFAULT
 			 | VTRUE
-			 | VFALSE"""
+			 | VFALSE
+			 | VUSESYSTEMDAYOFWEEK
+			 | VSUNDAY
+			 | VMONDAY
+			 | VTUESDAY
+			 | VWEDNESDAY
+			 | VTHURSDAY
+			 | VFRIDAY
+			 | VSATURDAY
+			 | VUSESYSTEM
+			 | VFIRSTJAN1
+			 | VFIRSTFOURDAYS
+			 | VFIRSTFULLWEEK
+			 """
 	p[0]=vexpression(p[1][1], line=p[1][0])
 
 

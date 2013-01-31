@@ -55,7 +55,7 @@ class date(subtype):
 						if hour==24: hour=0
 				self._value=encode_date(year, month, day, hour, minute, second)
 			else:
-				raise errors.invalid_date_format
+				raise errors.type_mismatch
 		else:
 			raise errors.type_mismatch
 		if self._value<-657434 or self._value>=2958466:
@@ -78,9 +78,11 @@ class date(subtype):
 	as_number=property(lambda self: float(self))
 
 
-	def is_date(self, *arguments):
-		return decode_date(self._value)==arguments if len(arguments)>1 \
-			else decode_date(self._value)==decode_date(arguments[0])
+	def is_date(self, year=None, month=None, day=None, hour=None, minute=None, second=None):
+		return all(x is None or x==y for x, y \
+			in zip((year, month, day, hour, minute, second), decode_date(self._value))) \
+			if any(x is not None for x in (month, day, hour, minute, second)) \
+			else year is None or decode_date(self._value)==decode_date(year)
 
 
 	separate=property(lambda self: decode_date(self._value))

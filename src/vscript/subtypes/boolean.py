@@ -34,8 +34,8 @@ class boolean(subtype):
 	as_number=property(lambda self: int(self))
 	
 
-	def is_boolean(self, value):
-		return self._value==value
+	def is_boolean(self, value=None):
+		return True if value is None else self._value==value
 
 
 	def __invert__(self):

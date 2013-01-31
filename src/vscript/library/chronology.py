@@ -7,6 +7,10 @@ from ..subtypes import date, integer, string, double, boolean, empty
 from ..subtypes.date import encode_date, encode_time, decode_date
 
 
+default_system_first_day_of_week=2 # Monday
+default_system_first_week_of_year=2 # FirstFourDays
+
+
 def get_week_count(firstdayofweek, firstweekofyear, year, month, day):
 	cl = Calendar(firstdayofweek)
 	data = cl.monthdayscalendar(year, 1)
@@ -137,17 +141,30 @@ def v_dateserial(year, month, day):
 	if day<1 or day>max_dayin_month(year, month): year, month, day=inc_day(year, month, day, 0)
 	return date(encode_date(year, month, day))
 
+def v_timeserial(hour, minute, second):
+	hour, minute, second=hour.as_integer, minute.as_integer, second.as_integer
+	if hour<0 or hour>23: raise errors.invalid_procedure_call(name=u"timeserial")
+	if minute<0 or minute>59: raise errors.invalid_procedure_call(name=u"timeserial")
+	if second<0 or second>59: raise errors.invalid_procedure_call(name=u"timeserial")
+	return date(encode_time(hour, minute, second))
+
 def v_datevalue(value):
-	year, month, day, hour, minute, second=decode_date(value.as_date)
-	return date(encode_date(year, month, day))
+	return date(value.as_string)
+
+def v_timevalue(value):
+	return date(value.as_string)
 
 def v_datepart(interval, value, firstdayofweek=None, firstweekofyear=None):
 	interval, value=interval.as_string, value.as_date
 	firstdayofweek=1 if firstdayofweek is None else firstdayofweek.as_integer
 	firstweekofyear=1 if firstweekofyear is None else firstweekofyear.as_integer
 	year, month, day, hour, minute, second=decode_date(value)
+	if firstdayofweek==0:
+		firstdayofweek=default_system_first_day_of_week
 	if firstdayofweek<1 or firstdayofweek>7:
 		raise errors.invalid_procedure_call(name=u"datepart")
+	if firstweekofyear==0:
+		firstweekofyear=default_system_first_week_of_year
 	if firstweekofyear<1 or firstweekofyear>3:
 		raise errors.invalid_procedure_call(name=u"datepart")
 	if interval==u"yyyy":
@@ -157,19 +174,18 @@ def v_datepart(interval, value, firstdayofweek=None, firstweekofyear=None):
 	elif interval==u"m":
 		return integer(month)
 	elif interval==u"y":
-		for i in range(1, month): days+=max_dayin_month(year, i)
-		return integer(day+days)
+		return integer(day+sum(max_dayin_month(year, i) for i in range(1, month)))
 	elif interval==u"d":
 		return integer(day)
 	elif interval==u"w":
-		value=weekday(year, month, day)+2
-		return integer(1 if value==8 else value)
+		value=weekday(year, month, day)+3-firstdayofweek
+		return integer(value+7 if value<1 else value-7 if value>7 else value)
 	elif interval==u"ww":
 		value=firstdayofweek-2
 		value=6 if value==-1 else value
 		count=get_week_count(value, firstweekofyear, year, month, day)
 		if count==0: count=get_week_count(wd, firstweekofyear, year-1, 12, 31)
-		return integer(week_cnt)
+		return integer(count)
 	elif interval==u"h":
 		return integer(hour)
 	elif interval==u"n":
@@ -178,25 +194,6 @@ def v_datepart(interval, value, firstdayofweek=None, firstweekofyear=None):
 		return integer(second)
 	else:
 		raise errors.invalid_procedure_call(name=u"datepart")
-
-def v_timeserial(hour, minute, second):
-	hour, minute, second=hour.as_integer, minute.as_integer, second.as_integer
-	if hour<0 or hour>23: raise errors.invalid_procedure_call(name=u"timeserial")
-	if minute<0 or minute>59: raise errors.invalid_procedure_call(name=u"timeserial")
-	if second<0 or second>59: raise errors.invalid_procedure_call(name=u"timeserial")
-	return date(encode_time(hour, minute, second))
-
-def v_timevalue(value):
-	value=value.as_simple
-	if isinstance(value, string): value=value.as_string
-	elif isinstance(value, (integer, boolean, empty)): value=value.as_integer
-	elif isinstance(value, (date, double)): value=date.as_double
-	else: errors.invalid_procedure_call(name=u"timevalue")
-	date_value=date(value).value
-	if date_value>0: result=date_value-floor(date_value)
-	else: result=fabs(date_value-ceil(date_value))
-	return date(result)
-
 
 def v_year(value):
 	return integer(decode_date(value.as_date)[0])
@@ -265,8 +262,8 @@ def v_datediff(interval, value1, value2, firstdayofweek=None, firstweekofyear=No
 	firstdayofweek=1 if firstdayofweek is None else firstdayofweek.as_integer
 	firstweekofyear=1 if firstweekofyear is None else firstweekofyear.as_integer
 	year1, month1, day1, hour1, minute1, second1=decode_date(value1)
-	year2, month2, day2, hour2, minute2, second2=decode_date(value1)
-	sign=1 if value1>=value2 else -1
+	year2, month2, day2, hour2, minute2, second2=decode_date(value2)
+	sign=1 if value1<value2 else -1
 	if firstdayofweek<1 or firstdayofweek>7:
 		raise errors.invalid_procedure_call(name=u"datediff")
 	if interval==u"yyyy":
@@ -282,14 +279,10 @@ def v_datediff(interval, value1, value2, firstdayofweek=None, firstweekofyear=No
 	elif interval==u"d":
 		return integer(int(value2)-int(value1))
 	elif interval==u"w":
-		days=fabs(int(value2)-int(value1))
-		return integer((days//7)*sign)
+		return integer(fabs(int(value2)-int(value1))//7*sign)
 	elif interval==u"ww":
-		days=fabs(int(value2)-int(value1))
-		wd=weekday(year1, month1, day1)+2 if sign==1 else weekday(year2, month2, day2)+2
-		wd=1 if wd==8 else wd
-		days+=wd-firstdayofweek
-		return integer(days)//7*sign
+		delta=sign*(weekday(year1, month1, day1)-weekday(year2, month2, day2))
+		return integer((fabs(int(value2)-int(value1))//7+1 if delta>0 else 0)*sign)
 	elif interval==u"h":
 		s2=1 if value2>=0 else -1
 		s1=1 if value1>=0 else -1

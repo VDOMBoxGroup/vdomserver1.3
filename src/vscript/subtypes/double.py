@@ -32,8 +32,9 @@ class double(subtype):
 	as_number=property(lambda self: float(self))
 
 
-	def is_double(self, value):
-		return self._value is nan if value is nan \
+	def is_double(self, value=None):
+		return True if value is None \
+			else self._value is nan if value is nan \
 			else self._value is infinity if value is infinity \
 			else abs(self._value-value)<=1E-12*fabs(max(self._value, value))
 

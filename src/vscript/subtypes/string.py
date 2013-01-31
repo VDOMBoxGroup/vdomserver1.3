@@ -28,8 +28,8 @@ class string(subtype):
 	as_number=property(lambda self: float(self))
 
 
-	def is_string(self, value):
-		return self._value==value
+	def is_string(self, value=None):
+		return True if value is None else self._value==value
 
 
 	def __iter__(self):

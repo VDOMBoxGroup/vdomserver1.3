@@ -18,6 +18,8 @@ tokens=reserved+(u"PYTHON",
 	u"VCR", u"VCRLF", u"VFORMFEED", u"VLF", u"VNEWLINE", u"VNULLCHAR", u"VNULLSTRING",
 	u"VTAB", u"VVERTICALTAB", u"VBINARYCOMPARE", u"VTEXTCOMPARE", u"VDATABASECOMPARE",
 	u"VGENERALDATE", u"VLONGDATE", u"VSHORTDATE", u"VLONGTIME", u"VSHORTTIME", u"VUSEDEFAULT", u"VTRUE", u"VFALSE",
+	u"VUSESYSTEMDAYOFWEEK", u"VSUNDAY", u"VMONDAY", u"VTUESDAY", u"VWEDNESDAY", u"VTHURSDAY", u"VFRIDAY", u"VSATURDAY",
+	u"VUSESYSTEM", u"VFIRSTJAN1", u"VFIRSTFOURDAYS", u"VFIRSTFULLWEEK",
 	u"REM", u"NE", u"LE", u"GE", u"NUMBER", u"DOUBLE", u"DATE", u"STRING", u"NAME", u"NEWLINE")
 literals=[u'&', u'(', u')', u'*', u'+', u',', u'-', u'.', u'/', u':', u'<', u'=', u'>', u'\\', u'^']
 
@@ -149,6 +151,79 @@ def t_vfalse(t):
 	t.type=u"VFALSE"
 	t.value=(t.lexer.lineno, "integer(0)")
 	return t
+
+def t_vusesystemdayofweek(t):
+	r'[Vv][Bb]?[Uu][Ss][Ee][Ss][Yy][Ss][Tt][Ee][Mm][Dd][Aa][Yy][Oo][Ff][Ww][Ee][Ee][Kk]'
+	t.type=u"VUSESYSTEMDAYOFWEEK"
+	t.value=(t.lexer.lineno, "integer(0)")
+	return t
+
+def t_vsunday(t):
+	r'[Vv][Bb]?[Ss][Uu][Nn][Dd][Aa][Yy]'
+	t.type=u"VSUNDAY"
+	t.value=(t.lexer.lineno, "integer(1)")
+	return t
+
+def t_vmonday(t):
+	r'[Vv][Bb]?[Mm][Oo][Nn][Dd][Aa][Yy]'
+	t.type=u"VMONDAY"
+	t.value=(t.lexer.lineno, "integer(2)")
+	return t
+
+def t_vtuesday(t):
+	r'[Vv][Bb]?[Tt][Uu][Ee][Ss][Dd][Aa][Yy]'
+	t.type=u"VTUESDAY"
+	t.value=(t.lexer.lineno, "integer(3)")
+	return t
+
+def t_vwednesday(t):
+	r'[Vv][Bb]?[Ww][Ee][Dd][Nn][Ee][Ss][Dd][Aa][Yy]'
+	t.type=u"VWEDNESDAY"
+	t.value=(t.lexer.lineno, "integer(4)")
+	return t
+
+def t_vthursday(t):
+	r'[Vv][Bb]?[Tt][Hh][Uu][Rr][Ss][Dd][Aa][Yy]'
+	t.type=u"VTHURSDAY"
+	t.value=(t.lexer.lineno, "integer(5)")
+	return t
+
+def t_vfriday(t):
+	r'[Vv][Bb]?[Ff][Rr][Ii][Dd][Aa][Yy]'
+	t.type=u"VFRIDAY"
+	t.value=(t.lexer.lineno, "integer(6)")
+	return t
+
+def t_vsaturday(t):
+	r'[Vv][Bb]?[Ss][Aa][Tt][Uu][Rr][Dd][Aa][Yy]'
+	t.type=u"VSATURDAY"
+	t.value=(t.lexer.lineno, "integer(7)")
+	return t
+
+def t_vusesystem(t):
+	r'[Vv][Bb]?[Uu][Ss][Ee][Ss][Yy][Ss][Tt][Ee][Mm]'
+	t.type=u"VUSESYSTEM"
+	t.value=(t.lexer.lineno, "integer(0)")
+	return t
+
+def t_vfirstjan1(t):
+	r'[Vv][Bb]?[Ff][Ii][Rr][Ss][Tt][Jj][Aa][Nn]1'
+	t.type=u"VFIRSTJAN1"
+	t.value=(t.lexer.lineno, "integer(1)")
+	return t
+
+def t_vfirstfourdays(t):
+	r'[Vv][Bb]?[Ff][Ii][Rr][Ss][Tt][Ff][Oo][Uu][Rr][Dd][Aa][Yy][Ss]'
+	t.type=u"VFIRSTFOURDAYS"
+	t.value=(t.lexer.lineno, "integer(2)")
+	return t
+
+def t_vfirstfullweek(t):
+	r'[Vv][Bb]?[Ff][Ii][Rr][Ss][Tt][Ff][Uu][Ll][Ll][Ww][Ee][Ee][Kk]'
+	t.type=u"VFIRSTFULLWEEK"
+	t.value=(t.lexer.lineno, "integer(3)")
+	return t
+
 
 def t_ne(t):
 	r'<>'

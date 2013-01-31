@@ -45,8 +45,9 @@ class dictionary(subtype):
 	as_dictionary=property(lambda self: self)
 
 
-	def is_dictionary(self, function):
-		return all((function(key, value) for ket, value in self._items.iteritems()))
+	def is_dictionary(self, function=None):
+		return all((function(key, value) for ket, value in self._items.iteritems())) if function \
+			else True
 
 
 	items=property(lambda self: self._items)

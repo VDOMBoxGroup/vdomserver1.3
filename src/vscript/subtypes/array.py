@@ -76,26 +76,32 @@ class array(subtype):
 
 	def __call__(self, *arguments, **keywords):
 		if "let" in keywords:
-			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			if len(arguments)!=len(self._subscripts):
+				raise errors.wrong_number_of_arguments
 			simple, items=keywords["let"].as_simple, self._items
 			try:
-				for index in arguments[-1:0:-1]: items=items[index.as_integer]
+				for index in arguments[-1:0:-1]:
+					items=items[index.as_integer]
 				items[arguments[0].as_integer]=simple
 			except IndexError:
 				raise errors.subscript_out_of_range
 		elif "set" in keywords:
-			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			if len(arguments)!=len(self._subscripts):
+				raise errors.wrong_number_of_arguments
 			complex, items=keywords["set"].as_complex, self._items
 			try:
-				for index in arguments[-1:0:-1]: items=items[index.as_integer]
+				for index in arguments[-1:0:-1]:
+					items=items[index.as_integer]
 				items[arguments[0].as_integer]=complex
 			except IndexError:
 				raise errors.subscript_out_of_range
 		else:
-			if len(arguments)!=len(self._subscripts): raise errors.wrong_number_of_arguments
+			if len(arguments)!=len(self._subscripts):
+				raise errors.wrong_number_of_arguments
 			result=self._items
 			try:
-				for index in reversed(arguments): result=result[index.as_integer]
+				for index in reversed(arguments):
+					result=result[index.as_integer]
 				return result
 			except IndexError:
 				raise errors.subscript_out_of_range
@@ -156,15 +162,26 @@ class array(subtype):
 	as_array=property(lambda self: self)
 
 
-	def is_array(self, function=None, length=None, more=None):
-		if function is not None:
-			return all((function(index, item) for index, item in enumerate(self._items)))
-		elif length is not None:
-			return len(self._items)==length
-		elif more is not None:
-			return more(self._items)
-		else:
-			return True
+	def is_array(self, *arguments, **keywords):
+		if keywords:
+			if "length" in keywords:
+				if len(self._items)!=keywords.pop("length"):
+					return False
+			if keywords:
+				raise TypeError("is_array got an unexpected keyword argument %r"%iter(keywords).next())
+		if arguments:
+			if len(arguments)>1:
+				return len(self._items)==len(arguments) and \
+					all(function(item) for function, item in zip(arguments, self._items))
+			elif isinstance(arguments[0], tuple):
+				return len(self._items)==len(arguments[0]) and \
+					all(function(item) for function, item in zip(arguments[0], self._items))
+			else:
+				if arguments[0].__code__.co_argcount>1:
+					return all((arguments[0](index, item) for index, item in enumerate(self._items)))
+				else:
+					return arguments[0](self._items)
+		return True
 
 	dimension=property(lambda self: len(self._subscripts))
 	items=property(lambda self: self._items)
