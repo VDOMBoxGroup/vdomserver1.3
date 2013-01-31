@@ -55,3 +55,83 @@ class TestConstants(VScriptTestCase):
 	def test_vdatabasecompare_constant(self):
 		assert self.evaluate("vdatabasecompare").is_integer(2)
 		assert self.evaluate("vbdatabasecompare").is_integer(2)
+
+	def test_vgeneraldate_constant(self):
+		assert self.evaluate("vgeneraldate").is_integer(0)
+		assert self.evaluate("vbgeneraldate").is_integer(0)
+
+	def test_vlongdate_constant(self):
+		assert self.evaluate("vlongdate").is_integer(1)
+		assert self.evaluate("vblongdate").is_integer(1)
+
+	def test_vshortdate_constant(self):
+		assert self.evaluate("vshortdate").is_integer(2)
+		assert self.evaluate("vbshortdate").is_integer(2)
+
+	def test_vlongtime_constant(self):
+		assert self.evaluate("vlongtime").is_integer(3)
+		assert self.evaluate("vblongtime").is_integer(3)
+
+	def test_vshorttime_constant(self):
+		assert self.evaluate("vshorttime").is_integer(4)
+		assert self.evaluate("vbshorttime").is_integer(4)
+
+	def test_vusedefault_constant(self):
+		assert self.evaluate("vusedefault").is_integer(-2)
+		assert self.evaluate("vbusedefault").is_integer(-2)
+
+	def test_vtrue_constant(self):
+		assert self.evaluate("vtrue").is_integer(-1)
+		assert self.evaluate("vbtrue").is_integer(-1)
+
+	def test_vfalse_constant(self):
+		assert self.evaluate("vfalse").is_integer(0)
+		assert self.evaluate("vbfalse").is_integer(0)
+
+	def test_vusesystemdayofweek_constant(self):
+		assert self.evaluate("vusesystemdayofweek").is_integer(0)
+		assert self.evaluate("vbusesystemdayofweek").is_integer(0)
+
+	def test_vsunday_constant(self):
+		assert self.evaluate("vsunday").is_integer(1)
+		assert self.evaluate("vbsunday").is_integer(1)
+
+	def test_vmonday_constant(self):
+		assert self.evaluate("vmonday").is_integer(2)
+		assert self.evaluate("vbmonday").is_integer(2)
+
+	def test_vtuesday_constant(self):
+		assert self.evaluate("vtuesday").is_integer(3)
+		assert self.evaluate("vbtuesday").is_integer(3)
+
+	def test_vwednesday_constant(self):
+		assert self.evaluate("vwednesday").is_integer(4)
+		assert self.evaluate("vbwednesday").is_integer(4)
+
+	def test_vthursday_constant(self):
+		assert self.evaluate("vthursday").is_integer(5)
+		assert self.evaluate("vbthursday").is_integer(5)
+
+	def test_vfriday_constant(self):
+		assert self.evaluate("vfriday").is_integer(6)
+		assert self.evaluate("vbfriday").is_integer(6)
+
+	def test_vsaturday_constant(self):
+		assert self.evaluate("vsaturday").is_integer(7)
+		assert self.evaluate("vbsaturday").is_integer(7)
+
+	def test_vusesystem_constant(self):
+		assert self.evaluate("vusesystem").is_integer(0)
+		assert self.evaluate("vbusesystem").is_integer(0)
+
+	def test_vfirstjan1_constant(self):
+		assert self.evaluate("vfirstjan1").is_integer(1)
+		assert self.evaluate("vbfirstjan1").is_integer(1)
+
+	def test_vfirstfourdays_constant(self):
+		assert self.evaluate("vfirstfourdays").is_integer(2)
+		assert self.evaluate("vbfirstfourdays").is_integer(2)
+
+	def test_vfirstfullweek_constant(self):
+		assert self.evaluate("vfirstfullweek").is_integer(3)
+		assert self.evaluate("vbfirstfullweek").is_integer(3)

@@ -6,7 +6,7 @@ from ...subtypes import mismatch, empty, null, integer, string, double, \
 	nan, infinity, true, false, v_mismatch, v_empty, v_null, v_nothing
 
 
-class TestLibraryMathematicsRoutines(VScriptTestCase):
+class TestMathematicsRoutines(VScriptTestCase):
 
 	def test_abs_function(self):
 		assert self.evaluate("abs(empty)").is_integer(0)

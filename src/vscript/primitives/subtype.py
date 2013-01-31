@@ -122,25 +122,25 @@ class subtype(primitive):
 	is_generic=property(lambda self: False)
 	is_nothing=property(lambda self: False)
 
-	def is_integer(self, value):
+	def is_integer(self, value=None):
 		return False
 
-	def is_double(self, value):
+	def is_double(self, value=None):
 		return False
 
-	def is_date(self, *arguments):
+	def is_date(self, year=None, month=None, day=None, hour=None, minute=None, second=None):
 		return False
 
-	def is_string(self, value):
+	def is_string(self, value=None):
 		return False
 
-	def is_boolean(self, value):
+	def is_boolean(self, value=None):
 		return False
 
-	def is_array(self, function):
+	def is_array(self, function=None, length=None, more=None):
 		return False
 
-	def is_dictionary(self, function):
+	def is_dictionary(self, function=None):
 		return False
 	
 
