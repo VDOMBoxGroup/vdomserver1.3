@@ -46,7 +46,7 @@ class VDOM_database_manager(object):
 			pass
 		else:
 			database = VDOM_database_object(owner_id,attributes["id"])
-			database.set_wal_mode()
+			
 			try:
 				for key in attributes:
 					if key not in ("id", "type"):
@@ -63,6 +63,7 @@ class VDOM_database_manager(object):
 				self.create_from_xml(database, data)
 			elif attributes["type"] == "multifile":
 				self.create_from_tar(database, data)
+			database.set_wal_mode()
 			managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
 		return attributes["id"]
 		
