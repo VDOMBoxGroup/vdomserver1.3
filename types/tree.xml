@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.17.6720</Version>
+    <Version>2.18.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>150</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue>250</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -2262,13 +2262,19 @@ class VDOM_tree(VDOM_object):
 
 		style=u"%s z-index: %s;position: %s;top: %spx;left: %spx;width: %spx;height: %spx; overflow: visible;"%(vis, self.zindex, self.position, self.top, self.left, self.width, self.height)
 
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='tree' objname='%s' ver='%s'" % (self.name, self.type.version)
+		else:
+			debug_info = u""
+
 		resultIO.write(u"""
-			<div objtype="tree" objname="%(oname)s" ver="2011.10.12" class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
-			"oname":    self.name,
-			"style":    style,
-			"id":       id,
-			"contents": contents,
-			"data" :    self.data
+			<div %(debug_info)s class='dynatreetype' style='%(style)s' id='%(id)s'> %(contents)s %(data)s""" % {
+				"oname":      self.name,
+				"style":      style,
+				"id":         id,
+				"contents":   contents,
+				"debug_info": debug_info,
+				"data" :      self.data
 			}
 		)
 
@@ -2426,6 +2432,9 @@ jQuery(document).ready(function($){
   <Libraries>
     <Library Target="Html"><![CDATA[
 <link rel="stylesheet" media="screen" type="text/css" href='/874e5ad0-7a30-2eab-e2e4-6296c661f3a6.css'/>
+<style>
+.dynatreetype span.dynatree-node { display: block; }
+</style>
 <script src="/19671807-a23c-6556-c975-954574516160.js" type="text/javascript" charset="UTF-8"></script>
 ]]></Library>
   </Libraries>
