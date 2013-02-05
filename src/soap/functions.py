@@ -203,6 +203,9 @@ def remote_call(sid, skey, appid, objid, func_name, xml_param, xml_data, _SOAPCo
 def install_application(sid, skey, vhname, appxml, _SOAPContext):
 	return proxy([managers.soap_server.install_application, sid, skey, vhname, appxml])
 
+def uninstall_application(sid, skey, appid, _SOAPContext):
+	return proxy([managers.soap_server.uninstall_application, sid, skey, appid])
+
 def export_application(sid, skey, appid, _SOAPContext):
 	return proxy([managers.soap_server.export_application, sid, skey, appid])
 

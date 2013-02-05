@@ -14,7 +14,7 @@ import soaputils
 from utils.uuid import uuid4
 from memory.xml_object import xml_object # memory.
 from database.dbobject import VDOM_sql_query
-from utils.app_management import import_application, update_application
+from utils.app_management import import_application, update_application, uninstall_application
 from version import VDOM_server_version
 
 sessions = {}	# opened sessions
@@ -1635,6 +1635,22 @@ class VDOM_web_services_server(object):
 		else:
 			raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
 #			return self.__format_error(_("Installation error: %s" % msg))
+
+	def uninstall_application(self, sid, skey, appid):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		ret = self.__find_application(appid)	# returns (app, error_message)
+		if not ret[0]:
+			return ret[1]
+		outp, msg = uninstall_application(appid)
+		# remove vhosts
+		vh = managers.virtual_hosts
+		for s in vh.get_sites():
+			if vh.get_site(s) == appid:
+				vh.set_site(s, None)
+		if "" != outp and None != outp:
+			return "<Result>OK</Result>";
+		else:
+			raise SOAPpy.faultType(app_uninstall_error, _("Uninstall application error"), msg)
 
 	def export_application(self, sid, skey, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()

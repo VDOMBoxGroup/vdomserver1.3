@@ -7,6 +7,7 @@ app_installed_error = "105"
 app_install_error = "106"
 session_id_error = "107"
 server_manage_error = "108"
+app_uninstall_error = "109"
 
 app_attr_error = "201"
 struct_check_error = "202"
