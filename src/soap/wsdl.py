@@ -72,6 +72,7 @@ methods = {
 	"remote_method_call" : ["sid", "skey", "appid", "objid", "func_name", "xml_param", "session_id"],
 	"remote_call" : ["sid", "skey", "appid", "objid", "func_name", "xml_param", "xml_data"],
 	"install_application" : ["sid", "skey", "vhname", "appxml"],
+	"uninstall_application" : ["sid", "skey", "appid"],
 	"export_application" : ["sid", "skey", "appid"],
 	"update_application" : ["sid", "skey", "appxml"],
 	"check_application_exists" : ["sid", "skey", "appid"],
