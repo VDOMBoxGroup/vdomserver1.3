@@ -79,8 +79,8 @@ class VDOM_database_object:
 			tables.append(row["name"])
 		return tables
 	
-	def backup_data( self, src_connection ):	
-		sqlitebck.copy( src_connection, self.get_connection() )
+	def backup_data( self, tgt_connection ):	
+		sqlitebck.copy( self.get_connection(),tgt_connection )
 
 
 class VDOM_database_table:

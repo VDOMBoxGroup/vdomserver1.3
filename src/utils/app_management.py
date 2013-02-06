@@ -4,7 +4,7 @@ import sys, os, tempfile, zipfile, shutil, re
 import managers
 from utils.exception import VDOM_exception
 from file_access.manager import databases_path, resources_path
-
+import sqlite3
 rexp = re.compile(r"\<id\>(.+)\<\/id\>", re.IGNORECASE)
 
 def import_application(path, ext = "xml"):
@@ -107,7 +107,9 @@ def update_application(path, vh):
 		for item in r:
 			try:
 				obj = managers.database_manager.get_database(appid, item)
-				shutil.copy2(dbpath + "/" + obj.filename, tmpdbdir)
+				con = sqlite3.connect(tmpdbdir+ "/" + obj.filename)
+				obj.backup_data(con)
+				con.close()
 				dbs[tmpdbdir + "/" + obj.filename] = {"id" : obj.id, "name" : obj.name, "owner_id": obj.owner_id, "type": "sqlite"}
 				debug("Database %s saved" % obj.name)
 			except: pass
