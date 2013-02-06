@@ -487,19 +487,9 @@ class VDOM_xml_manager(object):
 			self.__export_zip(app, path)
 		return True
 
-	def __export_db( self, app, file ):
-		# 1. copy db
-		# 2. read copy
-		# 3. delete copy
-
-		# test. random data. check time
-		# check, if vacuum work.
-		# compare new and old method.
-		# switch db to wal
-		# amount of files maybe will change.
-		# test one more time.
-
-		file.write( "<Databases>" )
+	def __export_db( self, app, buf ):
+		"""praparing database data for app export"""
+		buf.write( "<Databases>" )
 		lst = managers.database_manager.list_databases(app.id)
 		for db_id in lst:
 			query = VDOM_sql_query(app.id, db_id, "VACUUM")
@@ -512,36 +502,17 @@ class VDOM_xml_manager(object):
 			query.close()
 
 			# backup data to temp database
-			temp_db = managers.database_manager.backup_database( app.id, db_id )
-			data = managers.file_manager.read( file_access.database, app.id, None, temp_db.filename )
-			if temp_db.name != "" and len(data) > 0:
+			do = managers.database_manager.get_database(app.id, db_id)
+			data = managers.database_manager.backup_database( app.id, db_id )
+			if do.name != "" and len(data) > 0:
 				data = base64.b64encode(data)
-				args = { "id": temp_db.id, "name": temp_db.name }
+				args = { "id": do.id, "name": do.name }
 				x = """\t\t<Database ID="%(id)s" Name="%(name)s" Type="sqlite">""" % args
-				file.write( x.encode( "utf-8" ) )
-				file.write( data )
-				file.write( "</Database>\n" )
-			managers.database_manager.delete_database( app.id, temp_db.id )
-		file.write( "</Databases>\n" )
+				buf.write( x.encode( "utf-8" ) )
+				buf.write( data )
+				buf.write( "</Database>\n" )
+		buf.write( "</Databases>\n" )
 
-		
-	# def __export_db(self, app, file):
-	# 	"""praparing database data for app export"""
-	# 	file.write("\t<Databases>\n")
-	# 	lst = managers.database_manager.list_databases(app.id)
-	# 	for ll in lst:
-	# 		query = VDOM_sql_query(app.id, ll, "VACUUM")
-	# 		query.commit()
-	# 		query.close()
-	# 		do = managers.database_manager.get_database(app.id, ll)
-	# 		data = managers.file_manager.read(file_access.database, app.id, None, do.filename)
-	# 		if "" != do.name and len(data) > 0:
-	# 			data = base64.b64encode(data)
-	# 			x = """\t\t<Database ID="%s" Name="%s" Type="sqlite">""" % (do.id, do.name)
-	# 			file.write(x.encode("utf-8"))
-	# 			file.write(data)
-	# 			file.write("</Database>\n")
-	# 	file.write("\t</Databases>\n")
 
 	def __export_sec(self, app):
 		"""praparing security data for app export"""

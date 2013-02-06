@@ -182,7 +182,7 @@ class VDOM_file_manager(object):
 			traceback.print_exc(file=sys.stderr)
 			return []
 		
-	def read_file(self, fname):#Not used! Remove?
+	def read_file(self, fname):#Used for export
 		"""general file read"""
 		file = open(fname, "rb")
 		fdata = file.read()
@@ -231,6 +231,19 @@ class VDOM_file_manager(object):
 		from tempfile import TemporaryFile
 		return TemporaryFile(mode=mode, prefix=prefix, dir=os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]))
 		
+	def create_tmp_dir(self,prefix=""):
+		"""Create directory in temp and give full path"""
+		from tempfile import mkdtemp
+		return mkdtemp("tmp",prefix,dir=os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]))
+	
+	def delete_tmp_dir(self,name):
+		"""Delete directory by given path if it's in temp"""
+		norm_name = os.path.normpath(name)
+		rel_path = os.path.relpath(norm_name, os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]))
+		if rel_path.find('/')>=0 or rel_path.find('\\')>=0:
+			raise VDOM_exception_file_access("Provided file name is invalid")	
+		shutil.rmtree(name)
+	
 	def compute_crc(self, restype, application_id, object_id, file_name):
 		"""Returns CRC of file"""
 		"""STUB"""
