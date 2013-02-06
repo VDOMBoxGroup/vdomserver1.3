@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.13.1</Version>
+    <Version>2.14.1</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, dialog_2, vdomclass</Containers>
@@ -481,7 +481,7 @@ class VDOM_breadcrumbs(VDOM_object):
 		color_number = self.linkcolor if self.linkcolor else u"000000"
 		style = u""" style="color: #{color_number}" """.format( color_number = color_number )
 
-		return """<a href="/{oid}.vdom" {style}>{text}</a> """.format( oid = oid, style = style, text = txt )
+		return u"""<a href="/{oid}.vdom" {style}>{text}</a> """.format( oid = oid, style = style, text = txt )
 
 	def get_value (self) :
 		top = application.objects.search(self.id)
