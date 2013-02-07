@@ -9,6 +9,9 @@ from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
 from ...variables import variant
 
 
+default_text_encoding="utf-16"
+
+
 class mailserver_error(errors.generic):
 
 	def __init__(self, message, line=None):
@@ -245,11 +248,13 @@ class v_mailconnection(generic):
 			raise mailserver_already_connected
 		self._client=VDOM_Pop3_client(server.as_string, port.as_integer,
 			secure=False if secure is None else secure.as_boolean)
+		return v_mismatch
 
 	def v_user(self, login, password):
 		if not self._client:
 			raise mailserver_closed_connection
 		self._client.user(login.as_string, password.as_string)
+		return v_mismatch
 		        
 	def v_receive(self, index=None, delete=None):
 		if not self._client:
@@ -422,19 +427,36 @@ class v_server(generic):
 
 	def v_createresource(self, type, name, data):
 		application=managers.request_manager.current.application()
-		data=data.as_simple
-		resid=unicode(utils.uuid.uuid4())
+		data, id=data.as_simple, unicode(utils.uuid.uuid4())
 		if isinstance(data, binary):
-			application.create_resource(resid,
-				type.as_string, name.as_string, data.as_binary)
+			data=data.as_binary
+		elif isinstance(data, string):
+			data=data.as_string
+			try:
+				data=data.encode(default_text_encoding)
+			except UnicodeError:
+				pass
 		else:
-			application.create_resource(resid,
-				type.as_string, name.as_string, data.as_string)
-		return string(resid)
+			raise errors.invalid_procedure_call("createresource")
+		application.create_resource(id, type.as_string, name.as_string, data)
+		return string(id)
+
+	def v_getresource(self, resource):
+		object=managers.resource_manager.get_resource(managers.request_manager.current.application(),
+			resource.as_string)
+		if object is None:
+			return v_empty
+		else:
+			data=object.get_data()
+			try:
+				return string(data.decode(default_text_encoding))
+			except UnicodeError:
+				return binary(data)
 		
 	def v_deleteresource(self, resource):
 		managers.resource_manager.delete_resource(managers.request_manager.current.application(),
-			resource.as_string)
+			resource.as_string, remove=True)
+		return v_mismatch
 
 	def v_htmlencode(self, string2encode):
 		return string(unicode(string2encode.as_string.encode("html")))
