@@ -194,7 +194,7 @@ class v_wholeconnection(generic):
 			except Exception as error:
 				raise whole_remote_call_error(self._url, error)
 			application=search_for_application_id(name.as_string, result)
-			if not application: raise whole_no_application_error_error
+			if not application: raise whole_no_application_error
 			try:
 				service=VDOM_service.connect(self._url, self._login, self._password, application)
 			except Exception as error:
