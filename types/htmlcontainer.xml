@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.62.6720</Version>
+    <Version>2.63.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -70,7 +70,7 @@
       <Visible>1</Visible>
       <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
+      <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -82,7 +82,7 @@
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100)</CodeInterface>
+      <CodeInterface>MultiLine(150)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -118,7 +118,7 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <CodeInterface>MultiLine(250)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -142,7 +142,7 @@
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <CodeInterface>MultiLine(150)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -8377,9 +8377,9 @@ class VDOM_htmlcontainer(VDOM_object):
 				style2 += " vlink=\"#" + self.visitedlinkcolor + "\""
 			metas = ""
 			if self.metadescription:
-				metas += '<meta name="description" content="%s" />\n' % self.metadescription
+				metas += '<meta name="description" content="%s" />\n' % (self.metadescription).replace('"', '&quot;')
 			if self.metakeywords:
-				metas += '<meta name="keywords" content="%s" />\n' % self.metakeywords
+				metas += '<meta name="keywords" content="%s" />\n' % (self.metakeywords).replace('"', '&quot;')
 
 			#jqui = ""
 			#if self.jqui == "1":
@@ -8484,7 +8484,7 @@ class VDOM_htmlcontainer(VDOM_object):
 				"style2":       style2,
 				"testClasses":  testClasses,
 				"testFunc":     testFunc,
-				"title":        self.title,
+				"title":        (self.title).replace('<', '&lt;'),
 				"type_ver":     self.type.version
 			}
 		else:
