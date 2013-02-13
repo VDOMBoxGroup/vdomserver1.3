@@ -78,7 +78,7 @@ class VDOM_backup(object):
 				exit_error = "Some parts of application (id = %s) has not backuped\nReturn code: %s\nMessage: %s" % (app_id, errorcode[0], errorcode[1])
 				return (rc, exit_error)
 			else:
-				return current_rev
+				return (rc, current_rev)
 		else:
 			errorcode = (rc, unicode(out.stdout))
 			exit_error = "Return code: %s\nMessage: %s" % errorcode

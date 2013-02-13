@@ -232,7 +232,7 @@ def run(request):
 				if "backup_app[]" in args:
 					for appid in args["backup_app[]"]:
 						ret = managers.backup_manager.backup(appid, args["devid"][0], args["rotation"][0])
-						if isinstance(ret, tuple):
+						if ret[0] != 0:
 							request.write('<script language="javascript">parent.server.document.getElementById("MsgSvrInfo").innerHTML="%s";</script>' % unicode(ret[1]))
 							ok = False
 							break
