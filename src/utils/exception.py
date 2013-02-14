@@ -90,3 +90,6 @@ class VDOM_mailserver_invalid_index(VDOM_exception):
 
 	def __init__(self, index):
 		VDOM_exception.__init__(self, "Mailserver have no messaeg with index: \"%s\"" % index)
+
+class VDOM_timeout_exception(VDOM_exception):
+	pass

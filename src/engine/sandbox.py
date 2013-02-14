@@ -5,7 +5,7 @@ Sandbox
 import sys
 import thread
 import time
-from utils.exception import VDOM_exception
+from utils.exception import VDOM_timeout_exception
 
 class VDOM_sandbox:
 	""" Sandbox class"""
@@ -39,5 +39,5 @@ class VDOM_sandbox:
 		""" Local trace routine """
 		if event=='line' and time.time()>self.deadline:
 			sys.settrace(None)
-			raise VDOM_exception("Routine not responding in given timeout")
+			raise VDOM_timeout_exception("Routine not responding in given timeout")
 		return self.localtrace
