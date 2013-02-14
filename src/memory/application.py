@@ -2,7 +2,7 @@
 
 import re, sys, os, SOAPpy, thread, threading, traceback
 from threading import Condition
-from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH,ON_UNINSTALL
+from names import APPLICATION_SECTION, REQUEST_SECTION, SESSION_SECTION, ON_START, ON_FINISH,ON_UNINSTALL,ON_TIMEOUT
 from parser import VDOM_parser
 
 
@@ -535,6 +535,9 @@ class VDOM_application(VDOM_parser):
 		
 		request_actions.setdefault(REQUEST_SECTION+ON_START,
 				VDOM_server_action("", REQUEST_SECTION+ON_START, "", "", "", ON_START))
+		
+		request_actions.setdefault(REQUEST_SECTION+ON_TIMEOUT,
+				VDOM_server_action("", REQUEST_SECTION+ON_TIMEOUT, "", "", "", ON_TIMEOUT))		
 		
 		application_actions.setdefault(APPLICATION_SECTION+ON_START,
 				VDOM_server_action("", APPLICATION_SECTION+ON_START, "", "", "", ON_START))

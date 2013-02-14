@@ -13,6 +13,7 @@ import scripting # from object import request
 #import profile
 
 from exceptions import RenderTermination
+from utils.exception import VDOM_timeout_exception
 
 
 class VDOM_engine:
@@ -41,6 +42,10 @@ class VDOM_engine:
 			source=managers.source_cache.get_source(application, object, action_render, global_context)
 			try:
 				result=source.render(parent.id if parent else "")
+			except VDOM_timeout_exception:
+				if application.global_actions["request"]["request"+"ontimeout"].code:
+					self.special(application, application.global_actions["request"]["requestontimeout"])
+				raise			
 			except RenderTermination:
 				result=""
 

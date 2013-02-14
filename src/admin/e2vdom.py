@@ -90,26 +90,19 @@ def run(request):
 				debug("Error: %s" % str(e))
 				traceback.print_exc(file=err)
 
-
-			if request.action_result:
-				request.write(request.action_result.encode("utf-8"))
-				
-				rr = ""
-				for key in r:
-					rr += """<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"),r[key][2],r[key][3],r[key][0])
-				request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
-			
-			else:
-				rr = ""
-				for key in r:
-					rr += """<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"),r[key][2],r[key][3],r[key][0])
-				#debug(rr)
-				#request.write("<ACTIONS><![CDATA[\n%s]]></ACTIONS>" % rr.encode("utf-8")) # no way - in %s CDATA already!
-				request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
 			if err:
 				if VDOM_CONFIG_1["DEBUG"] == "1":
 					request.write("<ERROR><![CDATA[%s]]></ERROR>"%err.getvalue())
 				else:
-					request.write('<ERROR/>')			
+					request.write('<ERROR/>')				
+			else:
+				if request.action_result:
+					request.write(request.action_result.encode("utf-8"))
+				
+				rr = StringIO()
+				for key in r:
+					rr.write("""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"),r[key][2],r[key][3],r[key][0]))
+				request.write("<ACTIONS>%s</ACTIONS>" % rr.getvalue().encode("utf-8"))
+				request.write("<SV><![CDATA[%s]]></SV>" % json.dumps(request.shared_variables))				
 			request.write("<STATE value=\"%s\" />"%0)
-			request.write("<SV><![CDATA[%s]]></SV>" % json.dumps(request.shared_variables))
+			
