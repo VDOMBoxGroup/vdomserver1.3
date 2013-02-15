@@ -30,7 +30,8 @@ class VDOM_resource_descriptor(object):
 		#Cleaning fields
 		if  getattr(self,"object_id",None):
 			self.__loaded = True
-		else:
+		
+		if not self.__loaded:
 			self.object_id = None
 			self.use_counting = False
 			#self.dependences = {}
@@ -56,6 +57,7 @@ class VDOM_resource_descriptor(object):
 		if not getattr(self,"res_type",None):#Means it's new 
 			self.res_type = "permanent"
 			self.label = ""
+		self.__loaded = True
 		# storage.save_resource_record(self)
 		managers.storage.save_resource_record(self) # ?????
 	
@@ -125,43 +127,5 @@ class VDOM_resource_object:
 		self.filename = str(utils.uuid.uuid4())
 		self.showtimes = None
 		
-		#if object_id:
-		#	self.dependences[object_id] = None
-		
-	#def get_data(self):
-		#"""Reading resource data from HDD"""
-		#temp_object = None
-		#if len (self.dependences) == 1 and self.label:
-			#temp_object = self.dependences[self.dependences.keys()[0]]
-		#data  =  managers.file_manager.read(file_access.resource,self.application_id,temp_object,self.filename)
-		#if self.showtimes:
-			#self.showtimes -= 1
-			#if self.showtimes <= 0:
-				#self.decrease(None, True)
-		#return data
-		##else:
-			##raise VDOM_exception(_("Wrong attempt to read not existing or not linked resource"))
-	#def get_fd(self):
-		#"""Reading resource data from HDD"""
-		#temp_object = None
-		#if len (self.dependences) == 1 and self.label:
-			#temp_object = self.dependences[self.dependences.keys()[0]]
-		#fd  =  managers.file_manager.get_fd(file_access.resource,self.application_id,temp_object,self.filename)
-		#if self.showtimes:
-			#self.showtimes -= 1
-			#if self.showtimes <= 0:
-				#self.decrease(None, True)
-		#return fd
-	#def decrease(self, object_id, remove=False):
-		#self.dependences.pop(object_id, None)
-		#if remove:# or not self.use_counting or 0 == len(self.dependences):
-			#managers.file_manager.delete(file_access.resource,self.application_id,None,self.filename)
-			#self.dependences = {}
-		#return len(self.dependences)
-	
-	#def increase(self, object_id):
-		#self.dependences[object_id] = None
-		#self.use_counting = True
-		#return len(self.dependences)
 	
 	
