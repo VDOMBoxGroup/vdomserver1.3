@@ -316,10 +316,12 @@ class VDOM_application(object):
 			return managers.request_manager.current.app_id()
 
 	def _get_name(self):
-		return managers.request_manager.current.application().name
+		app_id = self._get_id()
+		return managers.xml_manager.get_application(app_id).name
 		
 	def _get_structure(self):
-		return managers.request_manager.current.application().app_map
+		app_id = self._get_id()
+		return managers.xml_manager.get_application(app_id).app_map
 	
 	def set_app_id(self, app_id):
 		VDOM_application.__app.app_id = app_id
