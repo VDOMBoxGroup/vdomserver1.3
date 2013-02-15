@@ -647,7 +647,7 @@ class VDOM_sql_query:
 				data = row[column]
 				if data == None or data == "None":
 					data = "NULL"
-				result.write("\t\t\t\t<cell><![CDATA[%s]]></cell>\n"%unicode(data).encode("xml"))
+				result.write("\t\t\t\t<cell>%s</cell>\n"%unicode(data).encode("xml"))
 			result.write("\t\t\t</row>\n")
 		result.write("\t\t</data>\n")
 		result.write("\t</table>\n")
