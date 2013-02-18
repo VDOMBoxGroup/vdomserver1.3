@@ -2,6 +2,7 @@
 import managers
 from memory.event import VDOM_client_server_events
 import json
+from StringIO import StringIO
 
 def run(request):
 	args = request.arguments().arguments()
@@ -85,7 +86,6 @@ def run(request):
 								r[key] = (result[key],k_ob_parent_id,k_ob.type.container,k_ob.type.id)
 			except Exception as e:
 				import traceback
-				from StringIO import StringIO
 				err = StringIO()
 				debug("Error: %s" % str(e))
 				traceback.print_exc(file=err)
