@@ -137,7 +137,7 @@ function zzzz(e) {
 	<td class="Style2"><select name="device">%s</select></td></tr>
 	
 	<tr><td>&nbsp;</td><td><div align="right" class="Style2">Embed types in xml&nbsp;:</div></td>
-	<td class="Style2"><input name="embedtypes" checked type="checkbox" value="1"></input></td></tr>
+	<td class="Style2"><input name="embedtypes" type="checkbox" value="1"></input></td></tr>
 	
 	<tr><td>&nbsp;</td><td>&nbsp;</td><td><input type=submit value="Export" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td></tr>
 	</table></span></form></div>""" % (cont, devs))
