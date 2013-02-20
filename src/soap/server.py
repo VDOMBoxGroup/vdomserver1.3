@@ -1700,23 +1700,40 @@ class VDOM_web_services_server(object):
 		return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
 
 
-	def backup_application(self, sid, skey, appid, driverid ):
+	def backup_application(self, sid, skey, appid, driverid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		result = managers.backup_manager.backup(appid, driverid, 30)
+		backupid = skey
+		result = managers.backup_manager.backup(appid, driverid, 30, backupid)
 		if result[0] != 0:
 			raise SOAPpy.faultType(application_backup_error, _("Backup error"), _("Application was not backuped"))
 
 		return """<Result> <Revision>%s</Revision></Result>"""%str(result[1])
 
 
+	def get_task_status(self, sid, skey, taskid):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		status = managers.task_manager.get_status(taskid)
+		if status and status.progress == 100:
+			managers.task_manager.del_task(taskid)
+			if not status.message.startswith("Error"):
+				result = """<Result>%s</Result>"""%status.message
+				return result
+			else:
+				return self.__format_error(_(status.message))
+		elif status and status.progress < 100:
+			return """<Result> <Progress>%s</Progress></Result>"""%str(status.progress)
+		else:
+			return self.__format_error(_("Proccess with tid %s does not exists" % taskid))
+		
 	def restore_application(self,sid, skey, appid, driverid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		try:
-			result = managers.backup_manager.restore(driverid, appid, revision)
+			taskid = skey
+			result = managers.backup_manager.restore(driverid, appid, revision, taskid)
 			if result[0]:
-				return "<Result>OK</Result> "	
+				return "<Result>OK</Result>"	
 			else:
-				return "<Result>FAILED</Result> "
+				return "<Result>FAILED</Result>"
 		except Exception as e:
 			return self.__format_error(_("Update error: %s" % str(e)))		
 
