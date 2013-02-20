@@ -77,6 +77,7 @@ methods = {
 	"update_application" : ["sid", "skey", "appxml"],
 	"check_application_exists" : ["sid", "skey", "appid"],
 	"backup_application" : ["sid", "skey", "appid", "driverid"],
+        "get_task_status"  : ["sid", "skey", "taskid"],
 	"restore_application" : ["sid", "skey", "appid", "driverid", "revision"],
 	"list_backup_drivers" : ["sid", "skey"],
 	"set_vcard_serial" : ["sid", "skey","serial","reboot"],        

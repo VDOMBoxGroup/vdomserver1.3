@@ -3,6 +3,7 @@ from scheduler.task import VDOM_backup_task
 from storage_driver import backup_storage_manager
 from backup import backup
 from restore import VDOM_restore
+from task import VDOM_backup_task, VDOM_restore_task
 
 
 class VDOM_backup_manager(object):
@@ -10,16 +11,32 @@ class VDOM_backup_manager(object):
 	def __init__(self):
 		backup_storage_manager.restore()
 
-	def backup(self, app_id, drv_id, rotation):
-		sd = backup_storage_manager.get_driver(drv_id)
-		path = sd.mount()
-		if not path:
-			debug("Storage driver is not mounted")
-			return
-		no_encryption = 1 if sd.type == "local_folder" else 0
-		result = backup.backup(app_id, path, rotation, no_encryption)
-		sd.umount()
-		return result
+	def backup(self, app_id, drv_id, rotation, taskid=None):
+		task = VDOM_backup_task()
+		task.id = taskid
+		if taskid: managers.task_manager.add_task(task)
+		task.start()
+		try:
+			sd = backup_storage_manager.get_driver(drv_id)
+			path = sd.mount()
+			if not path:
+				debug("Storage driver is not mounted")
+				return
+			no_encryption = 1 if sd.type == "local_folder" else 0
+			result = backup.backup(app_id, path, rotation, no_encryption)
+			sd.umount()
+			task.stop()
+			stat = task.get_status()		
+			if result[0] != 0:
+				stat.message = "Error: %s" % result[1]
+			else:
+				stat.message = "<Revision>%s</Revision>"%str(result[1])
+			return result
+		except Exception, e:
+			task.stop()
+			stat = task.get_status()
+			stat.message = "Error: %s"%unicode(e)
+			return (1, unicode(e))
 
 	def get_schedule(self, driver_id):
 		schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
@@ -111,7 +128,24 @@ class VDOM_backup_manager(object):
 		driver.umount()
 		return revision_info
 
-	def restore(self, driver_id, app_id, revision_number):
-		driver = backup_storage_manager.get_driver(driver_id)
-		no_encryption = 1 if driver.type == "local_folder" else 0
-		return VDOM_restore().restore(driver, app_id, revision_number, no_encryption)
+	def restore(self, driver_id, app_id, revision_number, taskid=None):
+		task = VDOM_restore_task()
+		task.id = taskid
+		if taskid: managers.task_manager.add_task(task)
+		task.start()
+		try:
+			driver = backup_storage_manager.get_driver(driver_id)
+			no_encryption = 1 if driver.type == "local_folder" else 0
+			ret = VDOM_restore().restore(driver, app_id, revision_number, no_encryption)
+			task.stop()
+			stat = task.get_status()		
+			if ret[0]:
+				stat.message = "OK"
+			else:
+				stat.message = "Error: %s" % ret[1]
+			return ret
+		except Exception, e:
+			task.stop()
+			stat = task.get_status()
+			stat.message = "Error: %s"%unicode(e)
+			return (False, unicode(e))			
