@@ -28,14 +28,14 @@ class VDOM_backup_manager(object):
 			task.stop()
 			stat = task.get_status()		
 			if result[0] != 0:
-				stat.message = "Error: %s" % result[1]
-			else:
-				stat.message = "<Revision>%s</Revision>"%str(result[1])
+				stat.progress = -1
+			stat.message = str(result[1])
 			return result
 		except Exception, e:
 			task.stop()
 			stat = task.get_status()
-			stat.message = "Error: %s"%unicode(e)
+			stat.progress = -1
+			stat.message = unicode(e)
 			return (1, unicode(e))
 
 	def get_schedule(self, driver_id):
@@ -140,12 +140,14 @@ class VDOM_backup_manager(object):
 			task.stop()
 			stat = task.get_status()		
 			if ret[0]:
-				stat.message = "OK"
+				stat.message = str(revision_number)
 			else:
-				stat.message = "Error: %s" % ret[1]
+				stat.progress = -1
+				stat.message = ret[1]
 			return ret
 		except Exception, e:
 			task.stop()
 			stat = task.get_status()
-			stat.message = "Error: %s"%unicode(e)
+			stat.progress = -1
+			stat.message = unicode(e)
 			return (False, unicode(e))			
