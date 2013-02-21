@@ -1713,29 +1713,19 @@ class VDOM_web_services_server(object):
 	def get_task_status(self, sid, skey, taskid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		status = managers.task_manager.get_status(taskid)
-		if status and status.progress == 100:
-			managers.task_manager.del_task(taskid)
-			if not status.message.startswith("Error"):
-				result = """<Result>%s</Result>"""%status.message
-				return result
-			else:
-				return self.__format_error(_(status.message))
-		elif status and status.progress < 100:
-			return """<Result> <Progress>%s</Progress></Result>"""%str(status.progress)
+		if status:
+			result = """<Result>\n <Progress>%s</Progress>\n <Message>\n  %s\n </Message>\n</Result>"""%(status.progress, status.message)
+			return result				
 		else:
 			return self.__format_error(_("Proccess with tid %s does not exists" % taskid))
 		
 	def restore_application(self,sid, skey, appid, driverid, revision):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		try:
-			taskid = skey
-			result = managers.backup_manager.restore(driverid, appid, revision, taskid)
-			if result[0]:
-				return "<Result>OK</Result>"	
-			else:
-				return "<Result>FAILED</Result>"
-		except Exception as e:
-			return self.__format_error(_("Update error: %s" % str(e)))		
+		taskid = skey
+		result = managers.backup_manager.restore(driverid, appid, revision, taskid)
+		if not result[0]:
+			raise SOAPpy.faultType(application_restore_error, _("Restore error"), _("Application was not restored"))
+		return """<Result><Revision>%s</Revision></Result>"""%str(revision)
 
 
 	def list_backup_drivers(self, sid, skey):
