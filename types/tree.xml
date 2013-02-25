@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.18.6720</Version>
+    <Version>2.19.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -125,7 +125,7 @@
       <Name>showtitle</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
@@ -137,7 +137,7 @@
       <Name>title</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue>tree</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
@@ -231,7 +231,7 @@
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="107">Height</Sentence>
       <Sentence ID="108">Fx</Sentence>
-      <Sentence ID="109">Show title</Sentence>
+      <Sentence ID="109">Title appearance</Sentence>
       <Sentence ID="111">Title</Sentence>
       <Sentence ID="112">Data</Sentence>
       <Sentence ID="113">Init Ajax</Sentence>
@@ -247,8 +247,9 @@
       <Sentence ID="206">Width of the object in pixels</Sentence>
       <Sentence ID="207">Height of the object in pixels</Sentence>
       <Sentence ID="208">Define the animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
-      <Sentence ID="209">Define if the title is shown (as a tree root) or not</Sentence>
-      <Sentence ID="211">Title of the object to display</Sentence>
+      <Sentence ID="209">Define if the title is shown (as a tree root) or not. Attribute marked as not visible because it doesn't work.</Sentence>
+      <Sentence ID="211">Title of the object to display.
+Attribute marked as not visible because it doesn't work.</Sentence>
       <Sentence ID="212">The data to display (html ul, li)</Sentence>
       <Sentence ID="213">Define the way of uploading data</Sentence>
       <Sentence ID="214">Define if the checkbox is used or not</Sentence>
@@ -2235,7 +2236,7 @@ fQ0KaWYoc291cmNlTm9kZSl7c291cmNlTm9kZS50cmVlLl9vbkRyYWdFdmVudCgic3RvcCIsc291
 cmNlTm9kZSxudWxsLGV2ZW50LHVpLGRyYWdnYWJsZSk7fX19KTtkaWRSZWdpc3RlckRuZD10cnVl
 O307fSkoalF1ZXJ5KTs=]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
+  <SourceCode><![CDATA[from xml.dom.minidom import parse, parseString
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -2414,16 +2415,122 @@ jQuery(document).ready(function($){
 		result += result_s
 		return VDOM_object.render(self, parent, contents=result)
 
+	
+	def __errorString (self, error) :	
+		return """<p style="color:#ff0000;"><b>Error:</b> {err}</p>""".format(err=error)
+		
+	
+	def __get_checkbox_node (self, doc, label="", checked=False) :
+		if not doc :
+			return None
+			
+		node = doc.createElement("input")
+		node.setAttribute("type", "checkbox")
+		node.appendChild(doc.createTextNode(label))
+		if checked == True :
+			node.setAttribute("checked", "checked")
+			
+		return node
+		
+	def __parse_tree_data (self) :
+		if not self.data :
+			return ""
+		
+		tree_data=u""
+		try:
+			tree_data = (self.data).encode('utf8')
+			tree_data = u"<htm style='font-size:12;'>{tree_data}</htm>".format(tree_data=tree_data)
+			dom = parseString(tree_data)
+		except Exception as err:
+			return self.__errorString(str(err))
+		
+		# remove not expanded tags
+		for element in dom.getElementsByTagName('li'):
+			if not element :
+				continue
+			
+			classes = element.getAttribute("class").split(' ')	
+			if 'expanded' not in classes :
+				for chld in element.childNodes:
+					if chld.nodeType == chld.ELEMENT_NODE :
+						chld.parentNode.removeChild(chld)
+		
+		# mark selected tags
+		if self.checkbox == "1" :
+			for element in dom.getElementsByTagName('li'):
+				text_node = element.childNodes[0] if len(element.childNodes)>0 else None
+				
+				classes = element.getAttribute("class").split(' ')
+				checked = "selected" in classes 
+				label = text_node.nodeValue if text_node else ""
+				checkbox_node = self.__get_checkbox_node(dom, label, checked)
+				
+				if not checkbox_node :
+					continue
+				
+				if text_node :
+					element.replaceChild(checkbox_node, text_node)
+				else :
+					element.appendChild(checkbox_node)
+				
+				
+		return dom.toxml()
+		
+		
 	def wysiwyg(self, parent, contents=""):
+		import utils.wysiwyg
+			
+		image_id = "cbd47a55-cfad-bba6-e2a5-16f2a90371de"
+		
+		if len(self.initAjax) > 0 :
+			image_width = image_height = 50
+			image_x = image_y = 0
+			image_x, image_y, image_width, image_height = utils.wysiwyg.get_centered_image_metrics( image_width, image_height, int(self.width), int(self.height) )
+			
+			text_tag = u""
+			if int(self.height) > 20 :
+				text_tag = u"""<text top="{top}" left="0" width="{width}" textalign="right" color="#777777">initAjax</text>""".format(
+					top = int(self.height)-20, width=self.width)
+			
+			result = \
+				u"""<container id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}"
+						width="{width}" height="{height}" backgroundcolor="#f0f0f0">
+						<svg>
+							<image x="{image_x}" y="{image_y}" href="#Res({image_id})" width="{image_width}" height="{image_height}"/>
+						</svg>
+						{text_tag}
+					</container>
+				""".format(
+						id = self.id, zindex = self.zindex, hierarchy = self.hierarchy,
+						top = self.top, left = self.left, width = self.width, height = self.height,
+						image_x = image_x, image_y = image_y,
+						image_id = image_id,
+						image_width = image_width, image_height = image_height,
+						text_tag = text_tag )
+						
+			return VDOM_object.wysiwyg(self, parent, contents = result)
+		
+		if not self.data :
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+			return VDOM_object.wysiwyg(self, parent, contents = result)
 
-		result="<container id=\"%s\" zindex=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<svg>"\
-						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" fill=\"#EEEEEE\" fill-opacity=\".4\" />"\
-					"</svg>%s"\
-				"</container>"%(
-					self.id, self.zindex, self.hierarchy, self.order, self.top, self.left, self.width, self.height,
-					0, 0, self.width, self.height,
-					contents)
+			
+		html_data = self.__parse_tree_data()
+
+		result = \
+			u"""<container id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" 
+						order="{order}" top="{top}" left="{left}" width="{width}" height="{height}">
+					<htmltext left="2" top="2" width="{html_width}" height="{html_height}">
+						{html_data}
+					</htmltext>
+				</container>
+			""".format(
+					id = self.id, zindex = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order, 
+					top = self.top, left = self.left, 
+					width = self.width, height = self.height,
+					html_width = int(self.width)-4, html_height = int(self.height)-4,
+					html_data = html_data)
 		
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 	
