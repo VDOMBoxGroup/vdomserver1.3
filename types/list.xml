@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.128.8388</Version>
+    <Version>1.131.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata</Containers>
@@ -688,10 +688,21 @@ class VDOM_list(VDOM_object):
 		css = self.style % {"id": id}
 		res_buffer.write(css)
 		res_buffer.write(u"</style>")
-		rslt = u"<div objtype='list' objname='%(name)s' ver='2011-10-25' id=\"%(id)s\" style=\"%(style)s\" %(cssclass)s><ul>" % {
-			"name": self.name, "id": id, "style": style, "cssclass": cssclass
-		}
+
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='list' objname='%s' ver='%s'" % (self.name, self.type.version)
+		else:
+			debug_info = u""
+
+		rslt = u"""<div {debug_info} id="{id}" style="{style}" {cssclass}><ul>""".format(
+				debug_info = debug_info,
+				name = self.name,
+				id = id,
+				style = style,
+				cssclass = cssclass )
+		
 		res_buffer.write(rslt)
+
 		for key, value in data.items():
 			active = u'class="list-item-%s %s %s"' % ( key, "active" if key == self.selecteditem else "", "selected" if key in selectedRows else "")
 			if isinstance(value, list):
@@ -773,42 +784,53 @@ $q(function(){
 		res_buffer.close()
 		return VDOM_object.render(self, parent, contents=result)
 
+		
+	def __get_error_wysiwyg_obj (self, parent, error_text) :
+		result = \
+			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
+							top="{top}" left="{left}" width="{width}" height="{height}">
+					<text top="0" left="5" color="#ff0000" textalign="left">{value}</text>
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, 
+					zind = self.zindex, hierarchy = self.hierarchy, 
+					top = self.top, left = self.left,
+					width = self.width, height = self.height,
+					value = error_text)
+				
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+			
+			
 	def wysiwyg(self, parent, contents=""):
-		import utils.wysiwyg
+		incorrect_data_text = u"Incorrect value in data:\n{data}".format(data = self.data)
 
 		if self.data:
 			try:
 				data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
 				if isinstance(data, int):
-					raise Exception (u"Incorrect value in data %s" % self.data)
+					return self.__get_error_wysiwyg_obj( parent, incorrect_data_text )
 			except:
-				raise Exception (u"Incorrect value in data %s" % self.data)
+				return self.__get_error_wysiwyg_obj( parent, incorrect_data_text )
 		else:
 			data = {}
 
+		if not data :
+			import utils.wysiwyg
 
-		empty_list_value = ""
-		if len(data)==0:
 			image_id = "4a582b3d-09ee-8ac1-1451-08a964bbb510"
-			image_width = image_height = 58
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+			return VDOM_object.wysiwyg(self, parent, contents=result)
 
-			image_x, image_y, image_width, image_height = utils.wysiwyg.get_centered_image_metrics( image_width, image_height, int(self.width), int(self.height) )
+		try:
+			items = data.items()
 
-			empty_list_value = \
-				u"""<svg>
-					<image x="{image_x}" y="{image_y}" href="#Res({image_id})" width="{image_width}" height="{image_height}"/>
-				</svg>""".format(
-					image_x = image_x,
-					image_y = image_y,
-					image_id = image_id,
-					image_width = image_width,
-					image_height = image_height
-				)
+		except:
+			return self.__get_error_wysiwyg_obj( parent, incorrect_data_text )
 
 		res_buffer = StringIO.StringIO(u"")
 		if self.layout == "1":
 			res_buffer.write(u"""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0">""")
-			for key, value in data.items():
+			for key, value in items:
 				if isinstance(value, list):
 					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % unicode(value[0])
 					res_buffer.write(li)
@@ -817,7 +839,7 @@ $q(function(){
 					res_buffer.write(li)
 			res_buffer.write(u"</row>")
 		else:
-			for key, value in data.items():
+			for key, value in items:
 				if isinstance(value, list):
 					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % unicode(value[0])
 					res_buffer.write(li)
@@ -831,14 +853,13 @@ $q(function(){
 					<table zindex="{zind}" top="0" left="0" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0" >
 						{res_buffer}
 					</table>
-					{empty_list_value}
 				</container>
 			""".format(
 				id = self.id, vis = self.visible, zind = self.zindex,
-				hierarchy = self.hierarchy, res_buffer = res_buffer.getvalue(),
-				top = self.top, left = self.left, width = self.width, height = self.height,
-				empty_list_value = empty_list_value
-			)
+				hierarchy = self.hierarchy,
+				top = self.top, left = self.left, 
+				width = self.width, height = self.height,
+				res_buffer = res_buffer.getvalue())
 
 		res_buffer.close()
 		return VDOM_object.wysiwyg(self, parent, contents=result)
