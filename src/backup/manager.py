@@ -1,5 +1,5 @@
 import managers, os, utils.uuid
-from scheduler.task import VDOM_backup_task
+from scheduler.task import VDOM_scheduled_backup
 from storage_driver import backup_storage_manager
 from backup import backup
 from restore import VDOM_restore
@@ -39,7 +39,7 @@ class VDOM_backup_manager(object):
 			return (1, unicode(e))
 
 	def get_schedule(self, driver_id):
-		schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+		schedule_list = managers.scheduler_manager.fetch(VDOM_scheduled_backup)
 		schedule = []
 		for key in schedule_list:
 			if schedule_list[key][0].driver == driver_id:
@@ -50,14 +50,14 @@ class VDOM_backup_manager(object):
 			return None
 
 	def get_schedule_list(self):
-		return managers.scheduler_manager.fetch(VDOM_backup_task)
+		return managers.scheduler_manager.fetch(VDOM_scheduled_backup)
 
 	def add_schedule(self, driver_id, app_list, interval, rotation):
-		schedule = VDOM_backup_task(driver_id, app_list, rotation)
+		schedule = VDOM_scheduled_backup(driver_id, app_list, rotation)
 		return managers.scheduler_manager.add_task(schedule, interval)
 
 	def update_schedule(self, driver_id, app_list, interval, rotation):
-		schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+		schedule_list = managers.scheduler_manager.fetch(VDOM_scheduled_backup)
 		schedule = []
 		for key in schedule_list:
 			if driver_id == schedule_list[key][0].driver:
@@ -70,7 +70,7 @@ class VDOM_backup_manager(object):
 
 
 	def del_schedule(self, driver_id):
-		schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+		schedule_list = managers.scheduler_manager.fetch(VDOM_scheduled_backup)
 		schedule = []
 		is_dirty_index = False
 		for key in schedule_list:
@@ -95,7 +95,7 @@ class VDOM_backup_manager(object):
 
 	def del_storage(self, driver):
 		backup_storage_manager.del_driver(driver)
-		schedule_list = managers.scheduler_manager.fetch(VDOM_backup_task)
+		schedule_list = managers.scheduler_manager.fetch(VDOM_scheduled_backup)
 		remove_list = []
 		is_dirty_index = False
 		for key in schedule_list:
