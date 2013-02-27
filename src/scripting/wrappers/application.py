@@ -326,6 +326,14 @@ class VDOM_application(object):
 	def set_app_id(self, app_id):
 		VDOM_application.__app.app_id = app_id
 	
+	def _get_version(self):
+		if getattr( VDOM_application.__app, "version", None ):
+			return VDOM_application.__app.version
+		else:
+			return managers.xml_manager.get_application(self.id).version
+
+
+	version=property(_get_version)
 	id=property(_get_id)
 	name=property(_get_name)
 	structure=property(_get_structure)
