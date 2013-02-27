@@ -5,7 +5,7 @@ class VDOM_scheduler_task(object):
     def run(self):
         pass
     
-class VDOM_backup_task(VDOM_scheduler_task):
+class VDOM_scheduled_backup(VDOM_scheduler_task):
     
     def __init__(self, drv_id, apps, rot):
         self.__driver_id = drv_id
