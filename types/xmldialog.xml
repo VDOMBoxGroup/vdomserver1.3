@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.71.6720</Version>
+    <Version>1.73.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -267,6 +267,7 @@ fwCDLsCecWjaaQAAAABJRU5ErkJggg==]]></Resource>
 
 from xml.dom.minidom import parse, parseString
 import base64
+from collections import OrderedDict
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -276,179 +277,402 @@ def on_compile(application, object, action_name, context, objects):
 
 class VDOM_xmldialog(VDOM_object):
 
-	def get_prop(self, e):
-		res = {}
-		for p in e.getElementsByTagName("Properties")[0].childNodes:
-			if p.nodeType == p.ELEMENT_NODE:
-				if p.childNodes:
-					res[p.getAttribute("name")] = p.childNodes[0].nodeValue.strip()
-		return res
+	def __get_element_attr(self, e, attr, default_value) :
+		if not e or not attr :
+			return default_value
+		
+		attr_val = e.getAttribute(attr)
+		if not attr_val :
+			return default_value
+
+		attr_val = attr_val.strip()
+		if isinstance(default_value, bool) :
+			if attr_val.strip() == "1" or attr_val.strip().lower() == "true" :
+				return True
+			elif attr_val.strip() == "0" or attr_val.strip().lower() == "false" :
+				return False
+			else:
+				return default_value
+			
+		return attr_val
+		
+	def __is_property_node (self, node) :
+		if not node :
+			return False
+			
+		return node.nodeType == node.ELEMENT_NODE and node.localName == 'Property' and node.childNodes 
+	
+	
+	def get_props(self, e):
+		props_dict = {}
+		if not e:
+			return props_dict
+		
+		props_list = e.getElementsByTagName("Properties")
+		if not props_list:
+			return props_dict
+		
+		for p in props_list[0].childNodes:
+			if self.__is_property_node(p) :
+				prop = p.childNodes[0]
+				prop_name = self.__get_element_attr(p, "name", "")
+				if prop and prop_name!="" :
+					props_dict[prop_name] = prop.nodeValue.strip()
+				
+		return props_dict
+
 
 	def get_options(self, e):
-		res = {}
-		if e.getElementsByTagName("option"):
-			for p in e.getElementsByTagName("option"):
-				if p.childNodes:
-					res[p.getAttribute("id")] = p.childNodes[0].nodeValue.strip()
-		return res
+		options_dict = OrderedDict()
+		if not e:
+			return options_dict
+		
+		options_list = e.getElementsByTagName("option")
+		if not options_list:
+			return options_dict
+		
+		for p in options_list:
+			if p.childNodes:
+				option = p.childNodes[0]
+				parent_name = self.__get_element_attr(p.parentNode, "name", "")
+				if parent_name.strip() != "options" :
+					continue
 
-	def the_prop(self, arr, x):
-		return arr[x] if x in arr else ''
+				option_id = self.__get_element_attr(p, "id", "")
+				if option and option_id!="" :
+					options_dict[option_id] = option.nodeValue.strip()
 
-	def the_item(self, css_class, lbl, html, e):
-		attr_required = e.getAttribute("required")
-		visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
-		fw = u"fullsize" if int("0%s" % e.getAttribute("fullsize").strip()) == 1 else ""
-		classes = u"%s" % e.getAttribute("class").strip()
-		return u"<div class='row %s %s' %s><label class='title'>%s</label><div class='item %s'>%s</div><br style='clear:both' /></div>" % (fw, classes, visible, lbl, css_class, html)
+		return options_dict
 
-	def render(self, parent, contents=""):
 
-		idn = (self.id).replace('-', '_')
-		id = u'o_' + idn
+	def the_item(self, css_class, label, html, e):
+		visible = "" if self.__get_element_attr(e, "visible", True) else "style='display:none'"
+		fullsize = u"fullsize" if self.__get_element_attr(e, "fullsize", False) else ""
+		classes = self.__get_element_attr(e, "class", False)
 
-		show = "false" if self.show == "0" else "true"
-		modal = "false" if self.modal == "0" else "true"
-		data = u""
-		data_out = u""
-		dialog_title = self.title
+		item = \
+			u"""<div class='row {fullsize} {classes}' {visible}>
+					<label class='title'>{label}</label>
+					<div class='item {css_class}'>{html}</div>
+					<br style='clear:both' />
+				</div>
+			""".format(fullsize=fullsize, classes=classes, 
+				visible=visible, label=label, 
+				css_class=css_class, html=html)
 
-		xd = (self.xmldata).encode('utf8').replace('<!--[CDATA[', '<![CDATA[')
+		return item
+		
+
+	def __disabledString (self, e) :
+		return u"disabled='disabled'" if self.__get_element_attr(e, "disabled", False) else u""
+
+		
+	def __readOnlyString (self, e) :
+		return u"readonly='readonly'" if self.__get_element_attr(e, "readonly", False) else u""
+		
+		
+	def __errorString (self, error, isWysiwyg=False) :
+		errorStr = u""
+		
+		if isWysiwyg==True or VDOM_CONFIG_1["ENABLE-PAGE-DEBUG"]=="1" : 
+			errorStr = """<p style="color:#ff0000;"><b>Error:</b> {err}</p>""".format(err=error)
+		else :
+			if VDOM_CONFIG_1["DEBUG"]=="1" :
+				errorStr = """<!--<p>Error: {err}</p>-->""".format(err=error)
+				
+		return errorStr	
+		
+		
+	def __headingValue (self, e) :
+		props = self.get_props(e)
+		text_prop = props.get("text", "")
+		
+		return u"<h3>{txt}&nbsp;</h3>".format(txt = text_prop)
+			
+			
+	def __textboxValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')			
+		props = self.get_props(e)
+		
+		htm = u"""<input type='text' name="{attr_id}" value="{val}" {disabled} {readonly} />""".format(
+			attr_id = attr_id, 
+			val = props.get("defaultValue", "").replace('"', '&quot;'), 
+			disabled = self.__disabledString(e), 
+			readonly = self.__readOnlyString(e) )
+		
+		return self.the_item('textbox', props.get("label", ""), htm, e)
+	
+	def __passwordValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		props = self.get_props(e)
+		
+		htm = u"""<input type='password' name="{attr_id}" value="{val}" {disabled} {readonly} />""".format(
+			attr_id = attr_id, 
+			val = props.get("defaultValue", "").replace('"', '&quot;'), 
+			disabled = self.__disabledString(e), 
+			readonly = self.__readOnlyString(e) )
+				
+		return self.the_item('password', props.get("label", ""), htm, e)
+
+
+	def __dropdownValue (self, e) :
+		props = self.get_props(e)
+		
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		
+		#multiple
+		is_multiple = self.__get_element_attr(e, "multiple", False)
+		multiple = u"multiple='multiple'" if is_multiple else u""
+		
+		#number of lines to show 
+		try:
+			rows_num = int(props.get("rows", "0"))
+		except:
+			rows_num = 0
+		size = u"size='{rows_num}'".format(rows_num=rows_num) if rows_num>0 else u""
+		
+		# sort options ...
+		options_dict = self.get_options(e)
+		sort = self.__get_element_attr(e, "sort", "0")
+		if sort=="1" : # sort by key
+			options_dict = OrderedDict(sorted(options_dict.items(), key=lambda t: t[0]))
+		elif sort=="2" : # sort by value
+			options_dict = OrderedDict(sorted(options_dict.items(), key=lambda t: t[1]))
+		# ... sort options
+		
+		#options
+		sel_keys = props.get("selected", "").split(',')
+		sel_keys = [ s.strip() for s in sel_keys ]
+		if is_multiple == False and len(sel_keys)>0:
+			sel_keys = [sel_keys.pop()]
+		
+		disabled_keys = props.get("disabled", "").split(',')
+		disabled_keys = [ s.strip() for s in disabled_keys ]
+		
+		options_html = u""
+		for key, val in options_dict.items():
+			selected = 'selected="selected"' if key in sel_keys and not key in disabled_keys else ''
+			disabled = 'disabled="disabled"' if key in disabled_keys else ''
+			
+			options_html += u"""<option value="{key}" {selected} {disabled}>{val}</option>""".format(
+				key = key.replace('"', '&quot;'), val = val,
+				selected = selected, disabled = disabled )
+			
+		#result html
+		htm = u"""<select name="{attr_id}" {size} {multiple} {disabled}>{options}</select>""".format( 
+			attr_id = attr_id, 
+			size = size, multiple = multiple, 
+			disabled = self.__disabledString(e), 
+			options = options_html )
+		
+		return self.the_item('dropdown', props.get("label", ""), htm, e)
+	
+	
+	def __radiobuttonValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		props = self.get_props(e)
+		
+		selected_key = props.get("selected", "").strip()
+		htm = u""
+		for key, val in self.get_options(e).items():
+			selected = u"checked='checked'" if key == selected_key else ""
+			htm += \
+				u"""<label><input autocomplete="off" type="radio" name="{attr_id}" {selected} {disabled} />&nbsp;{val}</label>
+				""".format( attr_id = attr_id, val = val,
+					selected = selected, 
+					disabled = self.__disabledString(e) )
+			
+		return self.the_item('radio', props.get("label", ""), htm, e)
+
+
+	def __checkboxValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		props = self.get_props(e)
+		
+		sel_keys = props.get("selected", "").split(',')
+		sel_keys = [ s.strip() for s in sel_keys ]
+		
+		disabled_keys = props.get("disabled", "").split(',')
+		disabled_keys = [ s.strip() for s in disabled_keys ]
+		
+		dasable_all = self.__get_element_attr(e, "disabled", False)
+		
+		htm = u"";
+		for key, val in self.get_options(e).items():
+			selected = u'checked="checked"' if key in sel_keys else u""
+			disabled = u'disabled="disabled"' if dasable_all or key in disabled_keys else u""
+			
+			htm += \
+				u"""<label><input autocomplete="off" type="checkbox" name="{attr_id}[{key}]" {selected} {disabled} />&nbsp;{val}</label>
+				""".format ( attr_id = attr_id, 
+					key = key, val = val, 
+					selected = selected, 
+					disabled=disabled );
+			
+		return self.the_item('checkbox', props.get("label", ""), htm, e)
+	
+	
+	def __uploadValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		props = self.get_props(e)
+		
+		htm = u"""<input type="file" name="{attr_id}" {disabled} />""".format( 
+			attr_id = attr_id, disabled = self.__disabledString(e) )
+			
+		return self.the_item('upload', props.get("label", ""), htm, e)
+
+
+	def __textareaValue (self, e) :
+		attr_id = self.__get_element_attr(e, "id", "").replace('"', '&quot;')
+		props = self.get_props(e)
+		
+		try:
+			w = int(props.get("width", "0"))
+		except:
+			w = 0
+			
+		try:
+			h = int(props.get("height", "0"))
+		except:
+			h = 0
+		
+		style = u"""style="{width}{height}" """.format( 
+			width = "width:{w}px;".format(w=w) if w>0 else u"", 
+			height = "height:{h}px;".format(h=h) if h>0 else u"" )
+		
+		htm = u"""<textarea name="{attr_id}" {disabled} {readonly} {style}>&nbsp;{val}</textarea>""".format(
+			attr_id = attr_id, 
+			disabled = self.__disabledString(e), 
+			readonly = self.__readOnlyString(e),
+			style = style, 
+			val = props.get("defaultValue", "") )
+			
+		return self.the_item('textarea', props.get("label", ""), htm, e)
+
+
+	def __hypertextValue (self, e) :
+		props = self.get_props(e)
+		
+		htm = u"{val}".format(val = props.get("value", ""))
+			
+		return self.the_item('hypertext', props.get("label", ""), htm, e)
+
+
+	def __buttonValue (self, e) :
+		props = self.get_props(e)
+		
+		visible = "" if self.__get_element_attr(e, "visible", True) else "style='display:none'"
+		
+		label = props.get("label", "");
+		align = props.get("buttonAlign", "").strip().replace("'",'&acute;')
+		img = props.get("buttonImage", "").strip().replace("'",'&acute;')
+		
+		if not img :
+			btn = u"""<input type="submit" value="{label}" {disabled} />""".format( label = label, disabled = self.__disabledString(e) ) 
+		else :
+			btn = u"""<input type="image" alt="{label}" title="{label}" src="{img}" {disabled} />""".format( 
+				label = label, img = img, disabled = self.__disabledString(e) )
+			
+		htm = \
+			u"""<div class="row" {visible}>
+					<div class="submit" style="text-align:{align}">
+						{btn}
+					</div>
+				</div>
+			""".format(visible = visible, align = align, btn = btn)
+		
+		return htm
+
+
+	def __defaultButtonValue (self) :		
+		return u"<div class='submit'><input type='submit' /></div>"
+
+	
+	def __is_dialog_title_property (self, prop, properties_node) :
+		if not prop or not properties_node :
+			return False
+		
+		if not properties_node.parentNode or properties_node.parentNode.localName!='VDOMFormContainer' :
+			return False
+			
+		return prop.nodeType == prop.ELEMENT_NODE and prop.localName == 'Property' and prop.getAttribute("name") == 'label'
+
+	def __parse_dialog_title (self, xml) :
+		if not xml:
+			return
+			
+		props_list = xml.getElementsByTagName('Properties')
+		if props_list :
+			props = props_list[0]
+			for e in props.childNodes:
+				if self.__is_dialog_title_property(e, props) :
+					temp_title = e.childNodes[0].nodeValue.strip() if e.childNodes and len(e.childNodes)>0 else ""
+					if temp_title != "":
+						self.dialog_title = temp_title
+					break;
+	
+
+	def __getXMLData (self, isWysiwyg=False) :
+		
+		self.dialog_title = self.title		
+		if not self.xmldata:
+			return u""
+		import re
+			
+		xd=u""
+		try:
+			xd = (self.xmldata).encode('utf8')
+		except Exception as err:
+			return self.__errorString(str(err), isWysiwyg)
+			
+		xd = xd.replace('<!--[CDATA[', '<![CDATA[')
 		xd = xd.replace(']]-->', ']'+']>')
+		if isWysiwyg == True:
+			xd = re.sub(r"(?si)<(script)[^<>]*>.*?</\1>", "", xd)
 
 		try:
-			#dom = parseString(u"%s" % (self.xmldata).encode('utf8'))
 			dom = parseString(xd)
-			props = dom.getElementsByTagName('Properties')[0]
-			comps = dom.getElementsByTagName('Components')[0]
-			nobtn = True
-			for e in comps.childNodes:
-				if e.nodeType == e.ELEMENT_NODE:
-					#print "tagName  : %s" % e.localName
+		except Exception as err:
+			return self.__errorString(str(err), isWysiwyg)
 
-					attr_id = e.getAttribute("id").replace('"', '&quot;')
-					disa = u"disabled='disabled'" if int("0%s" % e.getAttribute("disabled").strip()) == 1 else u""
-					ro = u"readonly='readonly'" if int("0%s" % e.getAttribute("readonly").strip()) == 1 else u""
+		self.__parse_dialog_title(dom)	
 
-					if e.localName == 'Heading':
-						res = self.get_prop(e)
-						data += u"<h3>%s</h3>" % self.the_prop(res, 'text');
+		data_out = u""
+		comps_list = dom.getElementsByTagName('Components')
+		if not comps_list :
+			return data_out
+		
+		comps = comps_list[0]
+		nobtn = True
+		data = u""
+		for e in comps.childNodes:
+			if e.nodeType == e.ELEMENT_NODE:
+				components = {
+					"Heading" : self.__headingValue(e),
+					"TextBox" : self.__textboxValue(e),
+					"Password" : self.__passwordValue(e),
+					"DropDown" : self.__dropdownValue(e),
+					"RadioButton" : self.__radiobuttonValue(e),
+					"CheckBox" : self.__checkboxValue(e),
+					"Upload" : self.__uploadValue(e),
+					"TextArea" : self.__textareaValue(e),
+					"Hypertext" : self.__hypertextValue(e),
+					"Button" : self.__buttonValue(e) }
+				
+				data += components.get(e.localName, "")
+				if e.localName == 'Button':
+					nobtn = False
+		
+		if nobtn:
+			data += self.__defaultButtonValue()
 
-					elif e.localName == 'TextBox':
-						res = self.get_prop(e)
-						htm = u"<input type='text' name=\"%s\" value=\"%s\" %s %s />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;'), disa, ro );
-						data += self.the_item('textbox', self.the_prop(res, 'label'), htm, e)
+		data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>{data}</form>".format(data=data);
 
-					elif e.localName == 'Password':
-						res = self.get_prop(e)
-						htm = u"<input type='password' name=\"%s\" value=\"%s\" %s %s />" % ( attr_id, (self.the_prop(res, 'defaultValue')).replace('"', '&quot;'), disa, ro );
-						data += self.the_item('password', self.the_prop(res, 'label'), htm, e)
+		return data_out
 
-					elif e.localName == 'DropDown':
-						res = self.get_prop(e)
-						#htm = u"<select name=\"%s\"></select>" % ( attr_id );
-						#data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
-						htm = u""
-						sa = self.the_prop(res, 'selected').split(',')
-						sa = [ s.strip() for s in sa ]
-						da = self.the_prop(res, 'disabled').split(',')
-						da = [ s.strip() for s in da ]
-						for ik, iv in self.get_options(e).items():
-							sel = 'selected="selected"' if ik in sa else ''
-							dis = 'disabled="disabled"' if ik in da else ''
-							htm += u"<option value=\"%s\" %s %s />%s</option>" % ( ik.replace('"', '&quot;'), sel, dis, iv );
-						lmult = int("0%s" % self.the_prop(res, 'multiple'))
-						lsize = int("0%s" % self.the_prop(res, 'rows'))
-						lines = (u"size='%s'" % lsize) if lsize > 0 else ""
-						multi = ""
-						if len(sa) > 1 or lmult == 1:
-							multi = "multiple='multiple'"
-						htm = u"<select name=\"%s\" %s %s %s>%s</select>" % ( attr_id, lines, multi, disa, htm );
-						data += self.the_item('dropdown', self.the_prop(res, 'label'), htm, e)
 
-					elif e.localName == 'RadioButton':
-						res = self.get_prop(e)
-						#p = e.getAttribute("selected").strip().lower()
-						#sel = 'checked="checked"' if p == 'true' or p == '1' else ''
-						#htm = u"<input autocomplete='off' type='radio' name=\"%s\" />" % ( attr_id );
-						htm = u"";
-						sa = self.the_prop(res, 'selected').strip()
-						for ik, iv in self.get_options(e).items():
-							sel = 'checked="checked"' if ik == sa else ''
-							#htm += u"<label><input autocomplete='off' type='radio' name=\"%s[%s]\" %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, iv );
-							htm += u"<label><input autocomplete='off' type='radio' name=\"%s\" %s %s />&nbsp;%s</label>" % ( e.getAttribute("id"), sel, disa, iv );
-						data += self.the_item('radio', self.the_prop(res, 'label'), htm, e)
-
-					elif e.localName == 'CheckBox':
-						res = self.get_prop(e)
-						#p = e.getAttribute("selected").strip().lower()
-						#sel = 'checked="checked"' if p == 'true' or p == '1' else ''
-						#htm = u"<input type='checkbox' name=\"%s\" %s />" % ( attr_id, sel );
-						#data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
-						htm = u"";
-						sa = self.the_prop(res, 'selected').split(',')
-						sa = [ s.strip() for s in sa ]
-						for ik, iv in self.get_options(e).items():
-							sel = 'checked="checked"' if ik in sa else ''
-							htm += u"<label><input autocomplete='off' type='checkbox' name=\"%s[%s]\" %s %s />&nbsp;%s</label>" % ( e.getAttribute("id"), ik, sel, disa, iv );
-						data += self.the_item('checkbox', self.the_prop(res, 'label'), htm, e)
-
-					elif e.localName == 'Upload':
-						res = self.get_prop(e)
-						htm = u"<input type='file' name=\"%s\" %s />" % ( attr_id, disa );
-						data += self.the_item('upload', self.the_prop(res, 'label'), htm, e)
-
-					elif e.localName == 'TextArea':
-						res = self.get_prop(e)
-						w = int("0%s" % self.the_prop(res, 'width'));
-						h = int("0%s" % self.the_prop(res, 'height'));
-						style = ''
-						if w > 0 or h > 0:
-							style = u"style='%s%s'" % (
-									"width:%spx;" % w if w > 0 else "",
-									"height:%spx;" % h if h > 0 else ""
-								)
-						htm = u"<textarea name=\"%s\" %s %s>%s</textarea>" % ( attr_id, disa, style, self.the_prop(res, 'defaultValue') );
-						data += self.the_item('textarea', self.the_prop(res, 'label'), htm, e)
-
-					elif e.localName == 'Hypertext':
-						res = self.get_prop(e)
-						htm = u"%s" % self.the_prop(res, 'value');
-						data += self.the_item('hypertext', self.the_prop(res, 'label'), htm, e)
-
-					elif e.localName == 'Button':
-						nobtn = False
-						res = self.get_prop(e)
-						label = self.the_prop(res, 'label');
-						required = e.getAttribute("required")
-						visible = "" if int("0%s" % e.getAttribute("visible").strip()) == 1 else "style='display:none'"
-						align = self.the_prop(res, 'buttonAlign').strip().replace("'",'&acute;')
-						img = self.the_prop(res, 'buttonImage').strip().replace("'",'&acute;')
-						btn = u"<input type='submit' value='%s' %s />" % ( label, disa ) if img == '' else u"<input type='image' alt='%s' title='%s' src='%s' %s />" % (label, label, img, disa)
-						data += u"<div class='row' %s><div class='submit' style='text-align:%s'>%s</div></div>" % (visible, align, btn)
-
-			#data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s<div class='submit'><input type='submit' /></div></form>" % data;
-			if nobtn:
-				data += u"<div class='submit'><input type='submit' /></div>"
-			data_out = u"<form action='' method='post' enctype='multipart/form-data' class='xml-dialog-form'>%s</form>" % data;
-
-			for e in props.childNodes:
-				if e.nodeType == e.ELEMENT_NODE and e.localName == 'Property':
-					if e.getAttribute("name") == 'label':
-						temp_title = e.childNodes[0].nodeValue.strip()
-						if temp_title != "":
-							dialog_title = temp_title
-
-		except Exception as e:
-			debug("[XMLDialog] Error: XML data is not valid")
-			debug(e)
-
-		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='xmldialog' objname='%s' ver='%s'" % (self.name, self.type.version)
-		else:
-			debug_info = u""
-
-		result = """
+	def __get_style (self) :
+		style = u"""
 <style>
 .xml-dialog-form div.row {
 text-align: left;
@@ -493,7 +717,26 @@ margin-top: 10px;
 	border: none;
 	cursor: pointer;
 	}
-</style>
+</style>"""
+		return style
+	
+	
+	def render(self, parent, contents=""):
+
+		idn = (self.id).replace('-', '_')
+		id = u'o_' + idn
+
+		show = "false" if self.show == "0" else "true"
+		modal = "false" if self.modal == "0" else "true"
+		data_out = self.__getXMLData()
+		
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='xmldialog' objname='%s' ver='%s'" % (self.name, self.type.version)
+		else:
+			debug_info = u""
+
+		result = """
+%(style)s
 <div style='display:none' %(debug_info)s><div id='%(id)s'>%(data)s</div></div>
 <script type='text/javascript'>$q(function(){
 	$q("#%(id)s").data('ev','1');
@@ -532,57 +775,56 @@ margin-top: 10px;
 			"idn":    idn,
 			"width":  self.width,
 			"height": self.height,
-			"title":  dialog_title.replace('"','&quot;'),
+			"title":  self.dialog_title.replace('"','&quot;'),
 			"show":   show,
 			"modal":  modal,
-			"debug_info": debug_info }
+			"debug_info": debug_info,
+			"style" : self.__get_style() }
 
 		return VDOM_object.render(self, parent, contents=result)
 
 	def wysiwyg(self, parent, contents=""):
+		dialog_width = int(self.width) if int(self.width) >= 150 else 150
+		dialog_height = int(self.height) if int(self.height) >= 50 else 50
+		
+		xmldata = self.__getXMLData(True)
+		dlg_title = self.dialog_title.replace('"','&quot;') if self.dialog_title else ""
 
-		xd = (self.xmldata).encode('utf8').replace('<!--[CDATA[', '<![CDATA[').replace(']]-->', ']'+']>').strip()
-		xmldata = u''
-		if xd <> "":
-			try:
-				dom = parseString(xd)
-				props = dom.getElementsByTagName('Properties')[0]
-				comps = dom.getElementsByTagName('Components')[0]
-				for e in comps.childNodes:
-					if e.nodeType == e.ELEMENT_NODE:
-						xmldata += u"%s [%s]<br />" % (e.localName, e.getAttribute("id").replace('"', '&quot;'))
-			except Exception as e:
-				xmldata = u"<p style='color:red'>Error: XML data is not valid</p>"
-				debug("[XMLDialog] Error: XML data is not valid")
-				debug(e)
-
-		result= "<container id=\"%s\" hierarchy=\"%s\" order=\"%s\" top=\"%s\" left=\"%s\" width=\"%s\" height=\"%s\">"\
-					"<svg>"\
-						"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" stroke=\"#cccccc\" stroke-width=\"3\" fill=\"#ffffff\">"\
-							"<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"40\" fill=\"#e9e9e9\"/>"\
-						"</rect>"\
-					"</svg>"\
-					"<text top=\"12\" width=\"%s\" fontsize=\"14\" color=\"black\" textalign=\"center\">%s</text>"\
-					"<text textalign='right' fontweight='bold' top='%s' left='%s' color='#aaaaaa'>XML Dialog</text>"\
-					"<htmltext top=\"50\" left=\"10\" width=\"%s\" height=\"%s\"><div style=\"font-size:12px\">%s</div></htmltext>"\
-				"%s</container>"%(
-					self.id, self.hierarchy, self.order, self.top, self.left, int(self.width) + 3, int(self.height) + 3,
-					0, 0, self.width, self.height,
-					0, 0, self.width,
-					self.width, self.title,
-					int(self.height) - 24,
-					int(self.width) - 140,
-					int(self.width) - 20,
-					int(self.height) - 60,
-					xmldata,
-					contents)
+		result= \
+			u"""<container id="{id}" hierarchy="{hierarchy}" order="{order}" 
+							top="{top}" left="{left}" width="{width}" height="{height}" overflow="visible">
+					<svg>
+						<rect x="0" y="0" rx="7" ry="5" width="{width}" height="{height}" fill="#eeeeee"/>
+						<rect x="3" y="3" rx="7" ry="5" width="{rect_width}" height="30" fill="#333333"/>
+						<line x1="{line_x1}"  y1="14" x2="{line_x2}"   y2="22" style="stroke:#eeeeee; stroke-width:3;"/>
+						<line x1="{line_x1}"  y1="22" x2="{line_x2}"   y2="14" style="stroke:#eeeeee; stroke-width:3;"/>
+						<text x="13" y="22" width="{title_width}" fill="#eeeeee" font-size="14">{dlg_title}</text>
+					</svg>
+					
+					<htmltext top="35" left="10" width="{content_width}" height="{content_height}">
+						{style}
+						<div>{xmldata}</div>
+					</htmltext>
+				</container>
+			""".format( 
+				id=self.id, hierarchy=self.hierarchy, order=self.order, 
+				top=self.top, left=self.left, 
+				width=self.width, height=self.height,
+				rect_width=dialog_width-6,
+				line_x1=dialog_width-20, line_x2=dialog_width-12,
+				title_width=dialog_width-25,
+				content_height = dialog_height-40,
+				content_width = dialog_width-20,
+				xmldata = xmldata,
+				dlg_title = dlg_title,
+				style = self.__get_style() )
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 
 def set_attr(app_id, object_id, param):
 	if "xmldata" in param:
 		o = application.objects.search(object_id)
-		#o.attributes.xmldata = base64.b64encode(param["xmldata"]["value"])
+		
 		a = (param["xmldata"]["value"]).replace('<![CDATA[', '<!--[CDATA[')
 		o.attributes.xmldata = a.replace(']'+']>', ']]-->')
 	return ""
