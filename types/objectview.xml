@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.79.8388</Version>
+    <Version>1.80.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -200,7 +200,7 @@
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(50)</CodeInterface>
+      <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -282,11 +282,11 @@
       <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(324)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(420)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -350,7 +350,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="221">Use dynamic loading of items. See WIKI for details.</Sentence>
       <Sentence ID="222">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="223">Number of items to load for each request in infinite scroll mode</Sentence>
-      <Sentence ID="224">Invalid value</Sentence>
+      <Sentence ID="224">as a replacement for dynamicloading. now dynamicloading is not use.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -372,7 +372,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="321">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="322">Incorrect value</Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
-      <Sentence ID="324">as a replacement for dynamicloading. now dynamicloading is not use.</Sentence>
+      <Sentence ID="324">Invalid value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -391,7 +391,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="417">No</Sentence>
       <Sentence ID="418">Yes</Sentence>
       <Sentence ID="419">No</Sentence>
-      <Sentence ID="420">Yes</Sentence>
+      <Sentence ID="421">Yes</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -566,7 +566,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
       <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -741,7 +741,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="417"></Sentence>
       <Sentence ID="418"></Sentence>
       <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
