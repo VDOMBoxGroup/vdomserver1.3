@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.64.6720</Version>
+    <Version>2.65.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -124,18 +124,6 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>testFunc</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>0</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>metadescription</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
@@ -196,6 +184,42 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>customheaders</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(327)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(227)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>testFunc</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>testClasses</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>position</Name>
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>left</DefaultValue>
@@ -218,18 +242,6 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.+</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>testClasses</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue/>
-      <Visible>0</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textcolor</Name>
@@ -345,6 +357,7 @@
       <Sentence ID="124">Background color</Sentence>
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="127">Custom headers</Sentence>
       <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the Z-Index indicates the order of their displaying. The larger Z-Index is, the upper the object is situated.</Sentence>
@@ -369,6 +382,7 @@
       <Sentence ID="224">The background color of the object.</Sentence>
       <Sentence ID="225">The necessary CSS code applied to all objects within the container.</Sentence>
       <Sentence ID="226">The names of CSS classes. The names can consist only of Latin characters, may include hyphen (-) and underscore (_).</Sentence>
+      <Sentence ID="227">Incorrect value</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be string.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer.</Sentence>
@@ -393,6 +407,7 @@
       <Sentence ID="324">Incorrect value.</Sentence>
       <Sentence ID="325">Incorrect value.</Sentence>
       <Sentence ID="326">Incorrect value.</Sentence>
+      <Sentence ID="327">Custom tags (meta, style, script) to place in  HEAD tag of document</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Repeat</Sentence>
@@ -429,6 +444,7 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -505,6 +521,7 @@
       <Sentence ID="931">Title</Sentence>
       <Sentence ID="932"></Sentence>
       <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Description</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Контейнер</Sentence>
@@ -534,6 +551,7 @@
       <Sentence ID="124">Цвет фона</Sentence>
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="127"></Sentence>
       <Sentence ID="201">Отображается объект или нет</Sentence>
       <Sentence ID="202">Заголовок контейнера</Sentence>
       <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
@@ -558,6 +576,7 @@
       <Sentence ID="224">Цвет фона</Sentence>
       <Sentence ID="225">Таблицы стилей для страницы</Sentence>
       <Sentence ID="226">CSS classes for body</Sentence>
+      <Sentence ID="227"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
@@ -582,6 +601,7 @@
       <Sentence ID="324">Неправильное значение</Sentence>
       <Sentence ID="325">Неправильное значение</Sentence>
       <Sentence ID="326">Неправильное значение</Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="401">Не отображается</Sentence>
       <Sentence ID="402">Отображается</Sentence>
       <Sentence ID="403">Повторять</Sentence>
@@ -618,6 +638,7 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
       <Sentence ID="601">Z-Индекс</Sentence>
       <Sentence ID="602">Z-Индекс</Sentence>
       <Sentence ID="603">Z-Индекс</Sentence>
@@ -694,6 +715,7 @@
       <Sentence ID="931">Заголовок</Sentence>
       <Sentence ID="932"></Sentence>
       <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Описание</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Conteneur HTML</Sentence>
@@ -723,6 +745,7 @@
       <Sentence ID="124">Couleur de fond</Sentence>
       <Sentence ID="125">CSS</Sentence>
       <Sentence ID="126">Class CSS</Sentence>
+      <Sentence ID="127"></Sentence>
       <Sentence ID="201">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="202">Titre du conteneur</Sentence>
       <Sentence ID="203">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
@@ -747,6 +770,7 @@
       <Sentence ID="224">Couleur d'arrière plan de la page</Sentence>
       <Sentence ID="225">Style sheet of the page</Sentence>
       <Sentence ID="226">CSS classes for body</Sentence>
+      <Sentence ID="227"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -771,6 +795,7 @@
       <Sentence ID="324">Valeur Incorrecte</Sentence>
       <Sentence ID="325">Incorrect value</Sentence>
       <Sentence ID="326">Valeur Incorrecte</Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Répéter</Sentence>
@@ -807,6 +832,7 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -883,6 +909,7 @@
       <Sentence ID="931">Titre</Sentence>
       <Sentence ID="932"></Sentence>
       <Sentence ID="933"></Sentence>
+      <Sentence ID="934">Description</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -8375,11 +8402,14 @@ class VDOM_htmlcontainer(VDOM_object):
 				style2 += " alink=\"#" + self.activelinkcolor + "\""
 			if self.visitedlinkcolor:
 				style2 += " vlink=\"#" + self.visitedlinkcolor + "\""
-			metas = ""
+
+			metas = u""
 			if self.metadescription:
-				metas += '<meta name="description" content="%s" />\n' % (self.metadescription).replace('"', '&quot;')
+				metas += u'<meta name="description" content="%s" />\n' % (self.metadescription).replace('"', '&quot;')
 			if self.metakeywords:
-				metas += '<meta name="keywords" content="%s" />\n' % (self.metakeywords).replace('"', '&quot;')
+				metas += u'<meta name="keywords" content="%s" />\n' % (self.metakeywords).replace('"', '&quot;')
+			if self.customheaders:
+				metas += u'%s' % self.customheaders
 
 			#jqui = ""
 			#if self.jqui == "1":
@@ -8581,9 +8611,9 @@ class VDOM_htmlcontainer(VDOM_object):
             <Parameter Name="height" Order="" VbType="" Help="#Lang(933)"/>
           </Parameters>
         </Event>
-        <Event Name="custom">
+        <Event Name="custom" Help="#Lang(529)">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(934)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
