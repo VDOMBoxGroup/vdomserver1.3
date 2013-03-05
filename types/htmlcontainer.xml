@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.63.6720</Version>
+    <Version>2.64.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -8579,6 +8579,11 @@ class VDOM_htmlcontainer(VDOM_object):
           <Parameters>
             <Parameter Name="width" Order="" VbType="" Help="#Lang(932)"/>
             <Parameter Name="height" Order="" VbType="" Help="#Lang(933)"/>
+          </Parameters>
+        </Event>
+        <Event Name="custom">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
