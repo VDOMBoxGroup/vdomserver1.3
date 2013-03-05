@@ -306,7 +306,6 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				<allow-http-request-headers-from domain="*" headers="*"/>
 				<allow-http-request-headers-from domain="*.vdom-box-international.com" headers="*"/>
 				<allow-http-request-headers-from domain="*.cybertronique.com" headers="*"/>
-				<site-control permitted-cross-domain-policies="none"/>
 				
 </cross-domain-policy>"""
 			self.send_response(200)
