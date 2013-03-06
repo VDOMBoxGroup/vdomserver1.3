@@ -121,10 +121,10 @@ class VDOM_client_server_events:
 							param_name = child2.attributes["name"]
 							if not param_name:
 								raise VDOM_exception_element("parameter")
-							params[param_name] = [child2.value.encode("utf8")]
+							params[param_name] = [child2.value.replace('&quot;', '"').replace('&gt;', '>').replace('&lt;', '<').replace('&amp;', '&').encode("utf8")]
 					self.events[(source_obj_id, event_name)] = params
 				elif child.lname == "sv":
-					managers.request_manager.current.shared_variables = json.loads(child.value)
+					managers.request_manager.current.shared_variables = json.loads(child.value.replace('&quot;', '"').replace('&gt;', '>').replace('&lt;', '<').replace('&amp;', '&'))
 					
 		except VDOM_exception:
 			raise
