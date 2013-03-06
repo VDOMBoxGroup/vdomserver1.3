@@ -92,7 +92,7 @@ def run(request):
 
 			if err:
 				if VDOM_CONFIG_1["DEBUG"] == "1":
-					request.write("<ERROR><![CDATA[%s]]></ERROR>"%err.getvalue())
+					request.write("<ERROR>%s</ERROR>"%err.getvalue().replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'))
 				else:
 					request.write('<ERROR/>')				
 			else:
