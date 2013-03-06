@@ -254,7 +254,7 @@ def t_rem(t):
 	return t
 
 def t_multiline(t):
-	r'_\n'
+	r'_\r?\n'
 	pass
 
 def t_double(t):
@@ -283,6 +283,7 @@ def t_string(t):
 
 def t_character(t):
 	r'\&[Hh][0-9A-Fa-f]+'
+	print "STRING!!!"
 	t.type=u"STRING"
 	t.value=(t.lexer.lineno, unichr(int(t.value[2:], 16)))
 	return t
@@ -303,7 +304,7 @@ def t_name(t):
 	return t
 
 def t_newline(t):
-	r'(\n|\r\n)+'
+	r'(\r?\n)+'
 	t.lexer.lineno+=t.value.count(u"\n")
 	t.type=u"NEWLINE"
 	t.value=(t.lexer.lineno, unicode(t.value))
