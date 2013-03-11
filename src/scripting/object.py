@@ -267,7 +267,9 @@ class VDOM_object(object):
 			else:
 				xtype = 'obj'
 				xval = unicode(json.dumps(val))
-			params += "<PARAM type=\"%s\"><![CDATA[%s]]></PARAM>" % ( xtype, xval )
+			#params += "<PARAM type=\"%s\"><![CDATA[%s]]></PARAM>" % ( xtype, xval )
+			params += "<PARAM type=\"%s\">%s</PARAM>" % ( xtype, xval.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;') )
+			
 
 		self.write("<EXECUTE %sDST_ID=\"%s\" ACT_NAME=\"%s\">%s</EXECUTE>" % (src_id, self.__id.replace('-', '_'), action_name, params))
 
