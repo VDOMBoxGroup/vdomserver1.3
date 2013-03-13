@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.112.8388</Version>
+    <Version>1.113.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password,dialog_2, vdomclass</Containers>
@@ -145,6 +145,18 @@
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(312)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(212)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -161,6 +173,7 @@
       <Sentence ID="108">Html code</Sentence>
       <Sentence ID="109">No style</Sentence>
       <Sentence ID="111">Overflow</Sentence>
+      <Sentence ID="112">CSS Class</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -171,6 +184,7 @@
       <Sentence ID="208">Multiline attribute with HTML code</Sentence>
       <Sentence ID="209">Define the using of styles of the object elements (if used, clients actions will not work for this object)</Sentence>
       <Sentence ID="211">Overflow control mode</Sentence>
+      <Sentence ID="212">Incorrect value</Sentence>
       <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value</Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
@@ -181,6 +195,7 @@
       <Sentence ID="308">Incorrect value</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="312">The name of the CSS class.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -195,6 +210,15 @@
       <Sentence ID="503">Move the object to a new position</Sentence>
       <Sentence ID="504">Set code attribute in HTML format</Sentence>
       <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -246,6 +270,7 @@
       <Sentence ID="108">Код HTML</Sentence>
       <Sentence ID="109">Без стиля</Sentence>
       <Sentence ID="111">Переполнение</Sentence>
+      <Sentence ID="112"></Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -256,6 +281,7 @@
       <Sentence ID="208">Многострочный атрибут с кодом HTML</Sentence>
       <Sentence ID="209">Не применять стили к элементам объекту</Sentence>
       <Sentence ID="211">Режим переполнения</Sentence>
+      <Sentence ID="212"></Sentence>
       <Sentence ID="301">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -266,6 +292,7 @@
       <Sentence ID="308">Неправильное значение</Sentence>
       <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="401">Не отображается</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Нет</Sentence>
@@ -280,6 +307,15 @@
       <Sentence ID="503">Переместить объект</Sentence>
       <Sentence ID="504">Установить код в формате HTML</Sentence>
       <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
@@ -331,6 +367,7 @@
       <Sentence ID="108">Code Html</Sentence>
       <Sentence ID="109">No style</Sentence>
       <Sentence ID="111">Overflow</Sentence>
+      <Sentence ID="112"></Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
@@ -341,6 +378,7 @@
       <Sentence ID="208">Code Html à insérer</Sentence>
       <Sentence ID="209">Do not apply styles to element</Sentence>
       <Sentence ID="211">Overflow mode</Sentence>
+      <Sentence ID="212"></Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
@@ -351,6 +389,7 @@
       <Sentence ID="308">Valeur Incorrecte</Sentence>
       <Sentence ID="309">Valeur Incorrecte</Sentence>
       <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">No</Sentence>
@@ -365,6 +404,15 @@
       <Sentence ID="503">Move the object to a new position</Sentence>
       <Sentence ID="504">Set code attribute in HTML format</Sentence>
       <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -581,7 +629,14 @@ class VDOM_hypertext(VDOM_object):
 
 			style = u"overflow:"+ov+"; position: absolute; z-index: "+self.zindex+"; top: "+self.top+"px; left: "+self.left+"px; width: "+self.width+"px; "+height
 
-			return "<div id=\"%s\" style=\"%s%s\">%s</div>" % (id, style, display, self.htmlcode)
+			classname = u'class="%s"' % self.classname if self.classname else u""
+
+			if VDOM_CONFIG_1["DEBUG"] == "1":
+				debug_info = u"objtype='bar' objname='%s' ver='%s'" % (self.name, self.type.version)
+			else:
+				debug_info = u""
+
+			return "<div %s id=\"%s\" %s style=\"%s%s\">%s</div>" % (debug_info, id, classname, style, display, self.htmlcode)
 
 
 	def wysiwyg(self, parent, contents=""):
@@ -631,54 +686,54 @@ class VDOM_hypertext(VDOM_object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click">
+        <Event Name="click" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick">
+        <Event Name="ctrlclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="custom">
+        <Event Name="custom" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="Parameters" Order="" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick">
+        <Event Name="dblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(906)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown">
+        <Event Name="mousedown" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(908)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove">
+        <Event Name="mousemove" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(911)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(913)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover">
+        <Event Name="mouseover" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup">
+        <Event Name="mouseup" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(917)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(918)"/>
@@ -688,7 +743,7 @@ class VDOM_hypertext(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Description="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addHTML">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addHTML">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="value" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -696,7 +751,7 @@ class VDOM_hypertext(VDOM_object):
 $j(this.domCont).append(value);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -704,7 +759,7 @@ $j(this.domCont).append(value);
 vdom_ui_hide(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
@@ -714,7 +769,7 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 					]]></SourceCode>
         </Action>
-        <Action Description="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setHTML">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setHTML">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="HTML" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
@@ -723,7 +778,7 @@ vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 jQuery(this.domCont).html(HTML);
 ]]></SourceCode>
         </Action>
-        <Action Description="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
