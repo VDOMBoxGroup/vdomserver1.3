@@ -297,16 +297,12 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			return StringIO(wsdl)
 		if self.__request.environment().environment()["REQUEST_URI"] == "/crossdomain.xml":
 			data = """<?xml version="1.0"?>
-<!DOCTYPE cross-domain-policy SYSTEM "http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd">
+<!DOCTYPE cross-domain-policy SYSTEM
+"http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
 <cross-domain-policy>
-
-			     <allow-access-from domain="*" secure="true"/>
-				 <!--site-control permitted-cross-domain-policies="all"/-->
-				<allow-http-request-headers-from domain="*.vdombox.ru" headers="*"/>
-				<allow-http-request-headers-from domain="*" headers="*"/>
-				<allow-http-request-headers-from domain="*.vdom-box-international.com" headers="*"/>
-				<allow-http-request-headers-from domain="*.cybertronique.com" headers="*"/>
-				
+ <site-control permitted-cross-domain-policies="all"/>
+ <allow-access-from domain="*" secure="false"/>
+ <allow-http-request-headers-from domain="*" headers="*" secure="false"/>
 </cross-domain-policy>"""
 			self.send_response(200)
 			self.send_header("Content-type", "text/xml")
