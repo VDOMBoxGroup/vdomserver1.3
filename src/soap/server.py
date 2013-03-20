@@ -104,9 +104,9 @@ class VDOM_web_services_server(object):
 		finally:
 			self.__sem.unlock()
 
-	def __format_error(self, msg):
+	def __format_error(self, msg,*msgs):
 		"""prepare error xml message"""
-		return "<Error><![CDATA[%s]]></Error>" % str(msg)
+		return "<Error><![CDATA[%s%s]]></Error>" % (msg, "".join(msgs))
 
 	def __session_key_error(self):
 		"""prepare session key error xml message"""
@@ -1630,11 +1630,12 @@ class VDOM_web_services_server(object):
 				vh.set_site(vhname, outp)	# outp contains the application ID
 			return "<ApplicationID>%s</ApplicationID>" % outp
 		elif "" == outp:
-			raise SOAPpy.faultType(app_installed_error, _("Install application error"), _("Application already installed"))
-#			return self.__format_error(_("This application seems to be already installed"))
+			return self.__format_error(_("Install application error."), _("Application already installed"))
+			#raise SOAPpy.faultType(app_installed_error, _("Install application error"), _("Application already installed"))
 		else:
-			raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
-#			return self.__format_error(_("Installation error: %s" % msg))
+			return self.__format_error(_("Install application error."), msg)
+			#raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
+
 
 	def uninstall_application(self, sid, skey, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
@@ -1650,7 +1651,8 @@ class VDOM_web_services_server(object):
 		if "" != outp and None != outp:
 			return "<Result>OK</Result>";
 		else:
-			raise SOAPpy.faultType(app_uninstall_error, _("Uninstall application error"), msg)
+			return self.__format_error(_("Uninstall application error"),msg)
+			#raise SOAPpy.faultType(app_uninstall_error, _("Uninstall application error"), msg)
 
 	def export_application(self, sid, skey, appid):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
