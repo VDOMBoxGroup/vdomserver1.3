@@ -255,6 +255,7 @@ def t_rem(t):
 
 def t_multiline(t):
 	r'_\r?\n'
+	t.lexer.lineno+=1
 	pass
 
 def t_double(t):
