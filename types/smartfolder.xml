@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.20.8388</Version>
+    <Version>1.37.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -117,7 +117,7 @@
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(5)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,5}$</RegularExpressionValidation>
     </Attribute>
@@ -129,7 +129,7 @@
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(5)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,5}$</RegularExpressionValidation>
     </Attribute>
@@ -153,49 +153,21 @@
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(30000)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>toolbar</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>{
-	"show": 1,
-	"buttons": {
-		"edit": {
-			"show": 1,
-			"title": "Edit"
-		},
-		"add": {
-			"show": 1,
-			"title": "Add Smart Folder"
-		},
-		"delete": {
-			"show": 1,
-			"title": "Delete"
-		},
-		"group": {
-			"show": 1,
-			"title": "Group"
-		},
-		"ungroup": {
-			"show": 1,
-			"title": "Ungroup"
-		},
-		"selectmode": {
-			"show": 1,
-			"title": "Select mode"
-		}
-	}
-}</DefaultValue>
-      <Visible>1</Visible>
+      <DefaultValue>1</DefaultValue>
+      <Visible>0</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(30000)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|1)|(#Lang(404)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>pathway</Name>
@@ -204,7 +176,7 @@
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|1)|(#Lang(404)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|1)|(#Lang(406)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -222,87 +194,97 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>currentpage</Name>
+      <Name>draggable</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>itemsperpage</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue>6</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>draggable</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^\{0,1}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>localization</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>{
+	"button_edit":       "Edit",
+	"button_add":        "Add Smart Folder",
+	"button_delete":     "Delete",
+	"button_group":      "Group",
+	"button_ungroup":    "Ungroup",
+	"button_selectmode": "Select mode",
+	"button_select":     "Select",
+	"button_selectall":  "Select All",
+	"button_selectnone": "Select None",
+	"button_rules":      "Rules",
+	"msg_1":             "Please enter name for new folder:",
+	"msg_2":             "New Folder",
+	"msg_3":             "Folder name is empty",
+	"msg_4":             "Not allowed in select mode",
+	"msg_5":             "No folder selected",
+	"msg_6":             "Please enter new name:",
+	"msg_7":             "Please enter name for new group:",
+	"msg_8":             "New Group",
+	"msg_9":             "Group name is empty",
+	"msg_10":            "No items selected",
+	"msg_11":            "Group is not specified"
+}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>classname</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>style</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;}</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>testhtml</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -324,13 +306,12 @@
       <Sentence ID="112">Toolbar</Sentence>
       <Sentence ID="113">Folder path</Sentence>
       <Sentence ID="114">Current folder</Sentence>
-      <Sentence ID="115">Current page</Sentence>
-      <Sentence ID="116">Items per page</Sentence>
-      <Sentence ID="117">Drag-n-drop</Sentence>
-      <Sentence ID="118">CSS Class</Sentence>
-      <Sentence ID="119">Style</Sentence>
-      <Sentence ID="121">Skin</Sentence>
-      <Sentence ID="122">testHTML</Sentence>
+      <Sentence ID="115">Drag-n-drop</Sentence>
+      <Sentence ID="116">Localization</Sentence>
+      <Sentence ID="117">CSS Class</Sentence>
+      <Sentence ID="118">Style</Sentence>
+      <Sentence ID="119">Skin</Sentence>
+      <Sentence ID="121">testHTML</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203"></Sentence>
@@ -341,16 +322,15 @@
       <Sentence ID="208"></Sentence>
       <Sentence ID="209"></Sentence>
       <Sentence ID="211">Folders data (JSON)</Sentence>
-      <Sentence ID="212">Toolbar parameters</Sentence>
+      <Sentence ID="212">Show or hide buttons on top</Sentence>
       <Sentence ID="213">Show folder path</Sentence>
       <Sentence ID="214">Define if drag-and-drop is used or not</Sentence>
       <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Items on page</Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">CSS class name(s)</Sentence>
-      <Sentence ID="219">CSS styles for elements</Sentence>
-      <Sentence ID="221">Set of CSS styles</Sentence>
-      <Sentence ID="222"></Sentence>
+      <Sentence ID="216">Localization strings (JSON)</Sentence>
+      <Sentence ID="217">CSS class name(s)</Sentence>
+      <Sentence ID="218">CSS styles for elements</Sentence>
+      <Sentence ID="219">Set of CSS styles</Sentence>
+      <Sentence ID="221"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303"></Sentence>
@@ -365,20 +345,21 @@
       <Sentence ID="313"></Sentence>
       <Sentence ID="314"></Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Numer items per page</Sentence>
+      <Sentence ID="316">Incorrect value, must be in JSON format</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="403">Yes</Sentence>
-      <Sentence ID="404">No</Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">User defined</Sentence>
-      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="403">Show</Sentence>
+      <Sentence ID="404">Hide</Sentence>
+      <Sentence ID="405">Yes</Sentence>
+      <Sentence ID="406">No</Sentence>
+      <Sentence ID="407">No</Sentence>
+      <Sentence ID="408">Yes</Sentence>
+      <Sentence ID="409">User defined</Sentence>
+      <Sentence ID="411">Default</Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -406,6 +387,8 @@
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="532"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -467,6 +450,8 @@
       <Sentence ID="918"></Sentence>
       <Sentence ID="919"></Sentence>
       <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Умный фолдер</Sentence>
@@ -490,8 +475,7 @@
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122">testHTML</Sentence>
+      <Sentence ID="121">testHTML</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203"></Sentence>
@@ -511,7 +495,6 @@
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303"></Sentence>
@@ -531,15 +514,16 @@
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
       <Sentence ID="404"></Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">User defined</Sentence>
-      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407">No</Sentence>
+      <Sentence ID="408">Yes</Sentence>
+      <Sentence ID="409">User defined</Sentence>
+      <Sentence ID="411">Default</Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -567,6 +551,8 @@
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="532"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -628,6 +614,8 @@
       <Sentence ID="918"></Sentence>
       <Sentence ID="919"></Sentence>
       <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Smart Folder</Sentence>
@@ -651,8 +639,7 @@
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122">testHTML</Sentence>
+      <Sentence ID="121">testHTML</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203"></Sentence>
@@ -672,7 +659,6 @@
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303"></Sentence>
@@ -692,15 +678,16 @@
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
       <Sentence ID="404"></Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">User defined</Sentence>
-      <Sentence ID="408">Default</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407">No</Sentence>
+      <Sentence ID="408">Yes</Sentence>
+      <Sentence ID="409">User defined</Sentence>
+      <Sentence ID="411">Default</Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -728,6 +715,8 @@
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="532"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -789,6 +778,8 @@
       <Sentence ID="918"></Sentence>
       <Sentence ID="919"></Sentence>
       <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1113,6 +1104,8 @@ fRScvuod8G9XroVhbV/a9hDzK+/SG+58+AbY/Oh34J+ffgye2/YMFL0O/Y6ycCKYQsuWLocVL3kl
 vO6kd4W/D52zP/vatocfAE4VxPbkz7bAo0/eA1u3/yv54qiZDznwN+FlR54Miyf2n3c/9sVtDzFn
 gLmWN8/z0T/o9Xr353l+3rCL9uVtDzGn/Wb5PLX2iJ+H4w5gK+ZLnU7nw+NtD2vfB217eOKJJ+53
 9NFHH3zLLbdQ5nS87eECtf8PF6vcaTllb+UAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="7ebd172d-824a-55c9-9b88-15e4cf2328a4" Name="sprite-group.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAFIAAAC9CAYAAAAgPirMAAAU5klEQVR42u2cB3hUVdrH//dOSUiBhAAhoSqshhpgqSG0hF5tgLIroDRFHvu3n4rouuCK2PZTwBVEFEFFSqRIYkihGBBcWRRDW0HFRUGDkJA6mZn7veeWZDKZlMkcHiBz/s9zc2duy72/83/f95w7c0dSSOAoh8MBk8mkvj537hzY4SVJgq//hh2Dyel0omHDhggJCVHfl5aWwmKx8LyEup0fT5AGtDVr1mD1O6vw03/PVljn04nqINlxAgIC0KtXTzz22OPo2rVr2f+9muIGkjlFlmUsWLAAixYtunInTJNxwqGhoUhKSkJiYuJVh8kFpBHOX+zfj35xcQgwm/Hs/cCYW5wwsWsz6ZPsMjcmg4wxOat/z1j99ruEN94wYdNOG6Kjo3Hs2DE13K+muIBkecpM8ObNm4s333wL/3OPBS+uKiXCOghXefPfZA/L2P4WCfYcBXGJJnz5jZ1cuQnjxk0oiwreMnL+FQFp7OYaTgkJQ7Br124c2GFGr5FEMQ+aA70/umY9pwJ7EfGUNeMastOhLU0l/O+DJry0zI43l7+OOffN4w7QVTU1ks+OzMnJwcWLF9VWmzhxIg4dOoTNq82I7e5AaYEGwXtpVb4RRWtkW0JoV+Ao1I6lRjuBNIcDLy6S8eQLTsT374MxYyaokSHJvudJo5fBwLVp0xYjRoxARERE9fvUFeTp06cxf/5TSEtLR35+vrqMXQjLl2rL0WG9OrBU8SU7q2ZNJCTGK3jmUeDmmyQ4ihXVqGydbKVzOAkMvE3Czxec3vwnrxUVFYXFixdj6tSpVTrTK5BGZfzll18QHx+vwmRqRs5RJOYY9ocBpBZVw9MFkGu5Vdxee5qTcnI1ZzSLkJD+IdC5g4TSIkV1JnOlJVjCqUMK1m0y0baaXSXXQlXd5Ok8pIrnwMh8cQr48oxNfZ+amophw4Z59oE3II3WmDv3fioq/0R810AsXVKKNu0VjZmJ1RYnzFaZ/irlVdlowNpeJE0K7XPyhIInF0jIOAiMHqhg+2oZNjK/JGsw2WsLOdN8g3GCqLr6ewuVOYPNqaj9ZaEFryTb0b9/HPbs2esbSAaRubGwsBAxMTH49dzP+NenQJfhtDKfQdMtZy8vFOVWdnFlpTPwsNxwbyiF7TdATD+twBxNAlpFSSgppYYjULYSIDiWNjV72L8qeVhnEDCZK65ml2AOkHBhH9AuQYEpOBw//PA99V8rd7WqBclWGUnX0Nmz/0W7du3RopkN331FB2ggad0c4yQdTmYZ2rl2eUuhfW2lWjuw3VxDm9ItAgIppONkZJ9w4sg6GZ270Qqq5CimKZKm9qgYlnWSfgAbFbUi1t3RT4NdCjm+iHofMbEKLhaE4mj2EbRs1cY7kIYKCgpw6dIlta/IWiQ+fgDatnIgc7NEyxQ1X6knQglKcdZ+bM02YZU5tJkGprSkYpVnLrSGAsPGUo7MUjCwm4S2BM9mh9p4UjA5pqHWGHUFyc4hkFzXpZOCOydKiKQ0oVxWyoJKJpcWFkiI6eHEpdxQ6vxno0WLVrUDaeTC8+fP47nnnkNKSgry8vJ0lziQm5urvg4J8tS2ilp0nM5qQErllTmyCTAqAXiCuoEtoglmke5MaI60EKiM7cAkWn+xoG6wapLR8FHNJbz7FjB8LDGgQieRMSQXkBfzQlSQLVu2rj3I33//HYMHD0Z2dra6LMi4wSJpKVAyUeIvdZYtMxyhdk+c2txTJXZfVqKnhRupkXeuA9rQ3FGi76/LQunj+D4FWYckFBerHQMtc7B0XFVRcaJyIXG7UkVP55epW7XloIT9ZyhCKAL+nQW0vYFGT7TcTKFdmE8gexHIXC9BMj300IN4/fU3ENs+AP9YZEf7m7TujKyOmxW1qEmu42YdphratJLNq6zI+oWyY5w4Tm78K/DVUXLdSGD9coryvPIQZ4ct/J0usC29iIbnagzUrhJXNTdRBJ1UcNsDMrYccuLpRyUsfEmC7TcF1kDdkb3rAJKFdN9+fXH2zBl88QnQg6yOYpfK7NCbUlFqHjtL1SxnUCg9nD4AdB2ihXT2BqB5U3KqTctP9su0nMI/kIqK3Va+qyLV/v8ZwcFOmRUS95tErD4GhkhIoUYcTSlkBKWa5G3kyDxyZIDuyL51ALl1yyeYOm06woNzcZwsb21gFGEtbzgcfG7WMlEWgZVOtmMf4Nh/aKKOd0xnWsHyIUsnLDX3oInXzR3qe9pLXSoztGIlNwL2fiZh0GgFQ+Kp77qDRlIF1OWx6o7sVweQGzasx8yZsxHVNA/f7pG1yuwsb1tvKnNNYua2UPUdRP3RvV8CE/pTvozWukRq5aS5mSq1HOCSe70UO80AAtKFGmj8GGoTcrwjX0tTbB27NjOB3JUiYcgYBYkDJKRtJ0cWuOTIuDoUm40bP8aMGbMQGZGH7IyKIJkjnTxBsi5OGJD0AXDXwwTQ4fMhq1WnGGDVm0AfajB7nuZMdg7mMB3kWAJJjkzb5ubI/nUAaTgysjE5MoVAWvS+olSFI33pDOt9YTbUO5AG7KF8WWzTx8y1HeYBlauyy3iZpfbL1BPYfohy8HnKwdRvPUSVOZLmSqm2TZkjx+sgt7qAZI4c4APIZuEEcmvNjqzrHf6ydqD9iy5SyLF+bnMvAFY5Tq4I02isgm8pdTwEpB8Dnn8KeOpvFAE5Wg+hDOQEHeQnbo4c6Isjw/LwzQa3HOk6evHuRplHN7IuVCm7EREONLhJKwTlZ1fFfjU1nIf1amWmXLzlFeCWxylXUlfrk81aeLPNVZCpOsj+HkAO8gVkwzwcXksgTZ4d6d3nBh446iBt1MUJ7ELh3ZiW2X0cNntur7LKvOtTIGE8MHQQDQC2Qr1hrLiCvIVAxnkAObguID8mkLMIZGgeDq2UYTEcaeRIpdyRZX20Ol4g26+YRpwh/cvHzVfis0CHXpnTdxDEcTR+J5CpW8iR+rCzDORtuiM3uYEcQiAv1xFks2ACuVSGiS7ZXgKtF6w7Uva1arNdZa17Y6LcGNoL5XeRrjRIcuSwgVWAvF13pDvIBF9ABuXhwEIZ1mDaJJRx1O+Aq4N5DWqFm7eur13vNlcxTGS7mymcA1vpSYJDJ6AmkBnJQOIEHWSSG8idBPIOAtmPQG50AznUB5BNLXn4+n0Zwb1pEyvK70QYfYrquj9ut+2rFBtz2zjcUqwtSHJk4q0EckAVICfqIDe4gRxWF5BGsaEceewghXaIol5stSMbb6NcqvjaGLpfKZgVHHmbDnKzB5CTdJDrXUAWEsjhPoBsTkPEo1kE0qxowzP9Qy3XL0a51m7319eSKoC8nUDGE8hNbiDTCORkHeRHbo4c6SvIvQSSRjZqNdUrtasjrzuQKQTyDh3kBgJZ6AbyTgLZl0B+SCAL3UDm1xVkEx1kfXIkAzlRB7neBSR1vXalE8gpBLKPDtLVkaN9Bblbd6QrSGflfuQ1D9Khg/yMQE7SQX7kBjJDB8kcuc4tR/oMclc9cyQDOZlA9tdBGjmSgcwkkH/SHbnWDeRYX0Fm1kOQdxLIOAL5oZsjGcg/E8jeBPJ9lxzJQI7zBWQEgcyoZ6GdSiDv0kGu8wByqg5yjQ7SooOc4CvI9HrmSAZyig5yrQeQ0whkLwL5npsjGcgCX0DurEfdH/YZeRqB/BOB7Ecg33cDuYtATtcd+Y4byFt9BZlajxzJQO4kkHfrINd4AHmP7kh3kLf5CjKlHuVIw5FTCWRfAvmeG8jdBPJeAtmTQK4ikEUuOfIOX0A21kHWJ0cykNN0kO96ADlDd+RKN0dO9BVksgeQtXDktSan4ch0AjmdQPapAuRMBQnkyPQVEuzkSLPhyMm+gvzUDaR0nRcbBvIe3ZHvaCDVJ1ho3W4COXiWHtory0O7iEDezBxZ6AvI7fXMkRkE8l5gKDly5yoPjpyjYEh3CRn/J6GEQLKn8/KLJHSa7kRusZdf66sAcpsO0svuz7Ump+HITA3ksN7kSFeQoQRyD4G8j0K7G4X2axJsOsiCYgkdZzhxqSgUR49+WwdHhhPIrfWs2DBHztRBrnQDuZdA3k8gexDIN7UcqVbtAgl/uEtBQWkoTp48jsjIKC9BhtVTkLMIZK9ykGqOJJC7P6ccSSCHUY5MXSlpX+Si0dAeGvEkPgq0bNESp06frv3jIRUcmVQ9yOtFRminU2gPmyNhaE8FqW9J6ufa0EFmEsiEB5zo00HG209QjiwBvvlBwl/fMeHMuRI8PX8+FlbxwGrNjkyqmyOvNbHzNxk5co4e2m9B/fK9+gUBAplBxSZxnuLxWoYPH47NmzcjMDDQ47OJNYPcVA8dOZec103BzldYZdbWB4YQ2P0SRjzhRFBQEOXBSHU5e+qLPRo4d+5cWK3WKh9nrh5ko3oGUnfd0LkE84/AZ69RjmSPmbDP1wnkrgMmDHnEjoSEBOzYsUN98IBBrY1qduQGAmmqCNKQa2hfa8XFXQ4DJHVxhj5A/UgGcil7vlH7GNgSRu8zTBj1uB2jRo7EpwSybF+Xn5eoO8iPK4P0lCOvdZDMkWpBoS5OIoEcTTlyO6vMhfqXHWQF9zxjxXvJNjz++KNYsuRl2O129dmi2qhmkB+Vg9R3wbVbUqoB6dBApu+hsH4QiG0n4dl7TerXCNnzT0m7ZGzYZVPBHT58GB07dvTqQfoac+QxcqRsUrQvf5bZTv+hDueVfbyXp4x+ZCr1I0c9IquQ3BUcHIwVK1ZgypQpXv8aQfXfIW+YhyNvyzCT7Ss8yCXpf66jYqM9AkJ5MEvCqCcVhIeHo3u3bnRdbBhoRmzXrpg2/R506tSpTj804hHk+vUfYtasOYgOu4zsd8iRkh7alY59rWfGcqk3LQhkOlXmoY+VYiQVlOTk5Erb1fXXWjyCTElJxl13TUGIJRfffSQhIFC7aeG2K66nXKkWGxrupe4yY+SjdrWDzUAaIWzM6/qTNx5Bsp9W6NO7N46fOIEtf5cwdoyiP5N9tXH4IgJkVfDAc1Ys/6QEjzzyEF599R9eVeZqj17Vs4iLX3gBTz71FCIbW/H0NCc6t9G+/nyVf/DJaxlf5SyiiErKpDH0Drsavqwyx8bGcvuJG48gWQeU/dDH5MmTsXXr1qvNgquY+5YtW4bZs2dz/Z0gjyCNhMuALl++HElJm5GTc6Fs3fUkY+BgtVjQpUtnzJ5zH+Li4rj/BNh1FqjXrgRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CQBkpMESE4SIDlJgOQkAZKTBEhOEiA5SYDkJAGSkwRIThIgOUmA5CS/B6koShrN2tAUTVMQTT/RlEvTMUmSJtX2OH4LkgD+RrMmtdj0CAHtWtNGfgeSAP5Is9bGe5u9ABfyv8PFwu9Rai9Co6DWCAtqSVMb9133EtCBVR3Xr0ASRMV4fT43G0d/3oKcy/9BQUkOSuyXab0DFlMQAi2N0LBBNFpG9EJsq8mQJbOxGwv3jp6O7TcgXSHuO7kUp37NRH7xr3A4S6vcJ8AciqYNY/DHG6eiVeNexuLDBLO7+7Z+AZIYFjMuiuLEzm//hu9/zVIdWBvJkonCvSX6tJuJm6KGGYszCWaC63b+AlJ1Y9qRF3Dyl51qXvRGkiSjccgNGNZlPpqHddKXSRXY1XuQBsRjZ1Ow5+jrlA8v1HrfVhE90b75EOw8vAQWiwU3RPbDLb1eLlvvCtNvQG7c/xB++O0gWHjXRjEthmNU9wX4/NvVyPz6LQQ2MCE0pDEGdZqHLq3Hqdv4DUhieJZm0afOZSH50PMoKK6dGzu3HosxPRcg68g6bM58EQEEMbihBWaLjJiWiZjQ+/mybQ2Y9R2k6sbMI8tw4MRaOKl7U5OGdJmHfjFT8fk3H2DjzsUwB0gE0QxroAkMWVR4B0wZtAwBlhD/A7n94CIcPr21xu0HdJqFQV1mISf3JyxccQskcylCGlkIogxZ1lCFBUfhjvgX0Tw8Rn3vVyA3Zy3AkR9Sypa3bNIVf4juj6zstSguzVMhxbQcjMmDXkKJrQBL3puGX3KOI7SxBYFBpjKITCENmuD2/gvRNrKnP4J8FodPfVq2vHPr4Zg0+O+UMy/hveTHYA0wYeboFeq6D3Y8j4wv1yI0zIqgUDNM5oqIGgVHYtLAxWjVtIv/gdxx8FXsP/pRWcV2OhWM6PEwBnW/W11WbCtEg4AQZJ/ah5dXz1ABhoRZqMsjVyLUvPFNmD58KTmzsf+BPHwqGdv2LUFhSZ6+nIY5ckPcN+FtRDVppy4rtdvw5GvjcanwDELDrWqlljzQ6dB6IKYOf63svV+ANGAySCu334cfz39dvpxcGWyJwhNTNyLA2gDrtr2Ez7JWUV6kkA4xQzZVRhNoDUZCjxkYFDutAkS/Acnmuw+vQdpXq1Gku5LJYVdw+8D56NA2Dg8uSkRgiFxlSMs0TGzTPBazxy2FxRzofyBdYb674y84/mMWjbWL9RVAkDUCEcHt8PWJPaoTA4LMHkM6PDQK4+MfRmz7oRo4fxtrq7x0kJcLL2Bd6jM4ffbfZTBZ4bHbnGB1yGyVK1VpdsOiUUhTDOw6GQk9p7ss90OQTAbMgqJcbMpcghNnDiC/6BIBdELRNoDKxoWIxRxAVfoGDOh+J/p2Gl8OTarsWb8ByeR6c/eL7G04fDINP+d8h7yCC7A7bOpylgsDqSvUuGE02rXohsSed9PrqHJgkuSRmV+BZHKFyXTm/FGcPPMv5BdeVMfirDI3j7gRN7fpheDAsAr7VgVRXXe1L+xqyR1oNTpO/DrUtJHfgjREPL+gWR+3xb/StI8A3lrb4/g9SF4SIDnp/wHE0Fp6KpycAwAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="fe305baa-4007-8454-be19-15f53fd82d22" Name="edit-icon.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAAwAAAANCAYAAACdKY9CAAAAs0lEQVR42mNkIADOXbv7/8D5uwyBdjoMirJSjIyEFC/fcwHMVpISZvAwV2PAqWHx1mP/tRXFGU5ee8xw79lbuCZGXIov3X0OZuspSzJ8+f4LrokRn2IYiHQxANuEoQGbYmRNRlrKCE/jUwxyVqy3FSPcBmIVgzWAgg7EgAUfPsVgDYfOXv+/+eg1sBuRNWFTDNaA7ByYJlyKwRqmrznwHxbGyKGBK0LhfgDFIggICAjgTS4AGJRmbOS+YcYAAAAASUVORK5CYII=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -1142,13 +1135,38 @@ class VDOM_smartfolder(VDOM_object):
 		html_items = u""
 		js_items_data = u""
 
-		### pages
+		### parse localization
 
-		currentpage = int(self.currentpage)
-		if currentpage <= 0: currentpage = 1
+		localization_default = {
+			"button_edit":       "<img src='/fe305baa-4007-8454-be19-15f53fd82d22.res'>",
+			"button_add":        "Add Smart Folder",
+			"button_delete":     "Delete",
+			"button_group":      "Group",
+			"button_ungroup":    "Ungroup",
+			"button_selectmode": "Select mode",
+			"button_select":     "Select",
+			"button_selectall":  "Select All",
+			"button_selectnone": "Select None",
+			"button_rules":      "Rules",
+			"msg_1":             "Please enter name for new folder:",
+			"msg_2":             "New Folder",
+			"msg_3":             "Folder name is empty",
+			"msg_4":             "Not allowed in select mode",
+			"msg_5":             "No folder selected",
+			"msg_6":             "Please enter new name:",
+			"msg_7":             "Please enter name for new group:",
+			"msg_8":             "New Group",
+			"msg_9":             "Group name is empty",
+			"msg_10":            "No items selected",
+			"msg_11":            "Group is not specified"
+		}
 
-		itemsperpage = int(self.itemsperpage)
-		if itemsperpage <= 0: itemsperpage = 6
+		try:
+			localization_user = json.loads(self.localization)
+			localization = dict(localization_default, **localization_user)
+		except Exception as e:
+			localization = localization_default
+			debug("Error [json.loads(localization) in smartfolder type]: %s" % str(e))
 
 		### javascript
 
@@ -1173,14 +1191,14 @@ $j("#%(id)s .items .%(class)s").bind('click dblclick', function(e){
 		setTimeout(function() {
 			if (%(id)s_doo == true) {
 
-var x = $j('#%(id)s').data("sf"), i = $j(this).attr('index');
+var sfo = $j('#%(id)s'), x = sfo.data("sf"), i = $j(this).attr('index');
 %(id)s_current_item = x[i];
-$j('#%(id)s>.%(class)s').removeClass('selected');
+$j('>.%(class)s', sfo).removeClass('selected');
 $j(this).addClass('selected');
 
 				execEventBinded('%(woid)s', "itemclick", {"id":t.attr("index")});
 			}
-		}, 300);
+		}, 250);
 		%(id)s_doo = true;
 	}
 	return false;
@@ -1234,41 +1252,41 @@ $j("#%(id)s>.controls div.control").click(function(){
 });
 */
 
-$j("#%(id)s .controls div.control").click(function(){
+$j("#%(id)s .controls .control, #%(id)s .item-panel .control, #%(id)s .item-panel a.edit").click(function(){
 	var t = $j(this), sf = $j("#%(id)s");
 	if (t.hasClass('add')) {
 		if (sf.data('sf_selectmode') == 0) {
-			var n = prompt("Please enter name for new folder:","New Folder");
+			var n = prompt("%(msg_1)s","%(msg_2)s");
 			if (n) {
 				n = $j.trim(n);
 				if (n == '') {
-					alert('Folder name is empty');
+					alert("%(msg_3)s");
 				} else {
 					execEventBinded('%(woid)s', "newsmartfolder", {"name": n}, true);
 				}
 			}
 		} else {
-			alert('Not allowed in select mode');
+			alert("%(msg_4)s");
 		}
 	} else
 	if (t.hasClass('edit')) {
 		if (sf.data('sf_selectmode') == 0) {
 			var o = sf.data('sf_current_item') || false;
 			if (!o) {
-				alert('No folder selected');
+				alert("%(msg_5)s");
 			} else {
-				var n = prompt("Please enter new name:",o.data('sf').name);
+				var n = prompt("%(msg_6)s",o.data('sf').name);
 				if (n) {
 					n = $j.trim(n);
 					if (n == '') {
-						alert('Folder name is empty');
+						alert("%(msg_3)s");
 					} else {
 						execEventBinded('%(woid)s', "rename", {"guid": o.data('sf').guid, "name": n}, true);
 					}
 				}
 			}
 		} else {
-			alert('Not allowed in select mode');
+			alert("%(msg_4)s");
 		}
 	} else
 	if (t.hasClass('delete')) {
@@ -1285,11 +1303,11 @@ $j("#%(id)s .controls div.control").click(function(){
 	if (t.hasClass('group')) {
 		var gs = sf.data('sf_items_selected') || [];
 		if (gs.length) {
-			var n = prompt("Please enter name for new group:","New Group");
+			var n = prompt("%(msg_7)s","%(msg_8)s");
 			if (n) {
 				n = $j.trim(n);
 				if (n == '') {
-					alert('Group name is empty');
+					alert("%(msg_9)s");
 				} else {
 					var x = sf.data('sf_items_selected') || [];
 					if (x.length) {
@@ -1298,7 +1316,7 @@ $j("#%(id)s .controls div.control").click(function(){
 				}
 			}
 		} else {
-			alert('No items selected');
+			alert("%(msg_10)s");
 		}
 	} else
 	if (t.hasClass('ungroup')) {
@@ -1307,13 +1325,50 @@ $j("#%(id)s .controls div.control").click(function(){
 			if (x.length) {
 				execEventBinded('%(woid)s', "ungroup", {"guid": x.data('sf').guid}, true);
 			} else {
-				alert('Group is not specified');
+				alert("%(msg_11)s");
 			}
 		} else {
-			alert('Not allowed in select mode');
+			alert("%(msg_4)s");
 		}
+	} else
+	if (t.hasClass('rules')) {
+		var x = sf.data('sf_items_selected') || [];
+		if (x.length) {
+			execEventBinded('%(woid)s', "rules", {"guidlist": x}, true);
+		} else {
+			var o = sf.data('sf_current_item') || false;
+			if (o) {
+				execEventBinded('%(woid)s', "rules", {"guidlist": [o.data('sf').guid]}, true);
+			}
+		}
+	} else
+	if (t.hasClass('select')) {
+		$j('.sub', this).show(0);
+	} else
+	if (t.hasClass('selectall')) {
+		var ss = $j("#%(id)s .items .%(class)s:not(.noselect)");
+		ss.addClass('selected');
+		$j('.sub', $(this).parents('.controls:first')).hide(0);
+		$j.each(ss, function(i,x){
+			vdom_sf_selected_add(sf, $(x).attr('index'));
+		});
+	} else
+	if (t.hasClass('selectnone')) {
+		$j("#%(id)s .items .%(class)s").removeClass('selected');
+		$j('.sub', $(this).parents('.controls:first')).hide(0);
+		vdom_sf_selected_remove_all(sf);
 	}
 	return false;
+});
+
+$j("#%(id)s .controls .select .sub").mouseleave(function(){
+	$(this).hide(0);
+});
+
+$j("#%(id)s .controls .select .sub div").hover(function(){
+	$(this).addClass('hovered');
+},function(){
+	$(this).removeClass('hovered');
 });
 
 $j("#%(id)s .controls .selectmode").click(function(){
@@ -1337,9 +1392,22 @@ $j("#%(id)s .controls .selectmode").click(function(){
 	return false;
 });
 
-vdom_sf_init('%(id)s', 1, '%(itemsperpage)s');
+vdom_sf_init('%(id)s');
 
-""" % { "id": id, "woid": woid, "class": classname_item, "itemsperpage": itemsperpage }
+""" % {		"msg_1":  localization['msg_1'],
+			"msg_2":  localization['msg_2'],
+			"msg_3":  localization['msg_3'],
+			"msg_4":  localization['msg_4'],
+			"msg_5":  localization['msg_5'],
+			"msg_6":  localization['msg_6'],
+			"msg_7":  localization['msg_7'],
+			"msg_8":  localization['msg_8'],
+			"msg_9":  localization['msg_9'],
+			"msg_10": localization['msg_10'],
+			"msg_11": localization['msg_11'],
+			"id":     id,
+			"woid":   woid,
+			"class":  classname_item }
 
 
 		### consolidate javascript
@@ -1391,10 +1459,100 @@ function vdom_sf_set_handlers(sfid){
 					// click
 					//execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
 					var s = 'selected', sc = 'current', sa;
+
+					var prev = $j(sfid.data('sf_current_item'));
+					var x_prev = prev.data("sf");
+					prev.data('first_selected', false);
+
+					if (e.ctrlKey) {
+
+						if (x.noselect !== '1') {
+							if (t.hasClass(s)) {
+								t.removeClass(s);
+								vdom_sf_selected_remove(sfid, x.guid);
+							} else {
+								t.addClass(s);
+								vdom_sf_selected_add(sfid, x.guid);
+								//$j(sfid.data('sf_current_item')).addClass(s);
+								//vdom_sf_selected_add(sfid, $j(sfid.data('sf_current_item')).data('sf').guid);
+							}
+						} else {
+t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
+						}
+
+						if (!prev.data('first_selected')) {
+							if (x_prev.noselect !== '1') {
+								prev.addClass(s);
+								vdom_sf_selected_add(sfid, x_prev.guid);
+							}
+						}
+						x_prev.first_selected = true;
+
+						//sfid.data('sf_current_item', t);
+						//t.parents('.items').find('.sf-item').removeClass(sc);
+						//t.addClass(sc);
+					} /*else */
+					else {
+						vdom_sf_selected_remove_all(sfid);
+						t.parents('.items').find('.sf-item').removeClass(s);
+					}
+
+					sfid.data('sf_current_item', t);
+
+					t.parents('.items').find('.sf-item').removeClass(sc);
+					t.addClass(sc);
+
+					if ($j('.%(class)s.'+sc, sfid).size() > 0) {
+						sfid.addClass('has-current');
+
+						// set info for current item
+						var d = t.data('sf');
+						var pan = $j('.item-panel', sfid);
+
+						pan.removeClass('group folder');
+						if (t.hasClass('group')) pan.addClass('group'); else pan.addClass('folder');
+
+						$j('.title-wrap>.title', pan).text(d['name']);
+						$j('>.info', pan).text(d['info']);
+						var s = '';
+						$j.each(d['metas'], function(z,x){
+							s = s + '<span><b>'+z+'</b> '+x+'</span>';
+						});
+						$j('>.metas', pan).html(s);
+
+					} else {
+						sfid.removeClass('has-current');
+					}
+
+/*
 					if (sfid.data('sf_selectmode') == 0) {
 						sfid.data('sf_current_item', t);
+
 						t.parents('.items').find('.sf-item').removeClass(sc);
 						t.addClass(sc);
+
+						if ($j('.%(class)s.'+sc, sfid).size() > 0) {
+							sfid.addClass('has-current');
+
+							// set info for current item
+							var d = t.data('sf');
+							var pan = $j('.item-panel', sfid);
+
+							pan.removeClass('group folder');
+							if (t.hasClass('group')) pan.addClass('group'); else pan.addClass('folder');
+
+							$j('.title-wrap>.title', pan).text(d['name']);
+							$j('>.info', pan).text(d['info']);
+							var s = '';
+							$j.each(d['metas'], function(z,x){
+								s = s + '<span><b>'+z+'</b> '+x+'</span>';
+							});
+							$j('>.metas', pan).html(s);
+
+						} else {
+							sfid.removeClass('has-current');
+						}
+
 					} else {
 						if (x.noselect !== '1') {
 							if (t.hasClass(s)) {
@@ -1406,6 +1564,17 @@ function vdom_sf_set_handlers(sfid){
 							}
 						}
 					}
+*/
+					if (vdom_sf_selected_count(sfid) > 0 ) {
+						$j('.item-panel .buttons .group', sfid).show(0);
+						$j('.item-panel .buttons .ungroup', sfid).hide(0);
+					} else {
+						$j('.item-panel .buttons .group', sfid).hide(0);
+						if (t.hasClass('group')) {
+							$j('.item-panel .buttons .ungroup', sfid).show(0);
+						}
+					}
+
 				}
 			}, 250);
 			%(id)s_doo = true;
@@ -1420,17 +1589,8 @@ function vdom_sf_set_handlers(sfid){
 		return false;
 	});
 
-	//$j(".pages a",sfid).live('click',function(){
-	$j(".pages a",sfid).bind('click',function(){
-		var page = 	parseInt($j(this).attr('rel'),10);
-		if (page <= 0) page = 1;
-		sfid.data('sf_current_page', page);
-		var pa = sfid.data('sf_path');
-		var p = (pa.length > 0) ? pa[pa.length-1] : '';
-		execEventBinded('%(woid)s', "requestdata", {"guid": p.guid, 'offset': sfid.data('sf_items_per_page')*(page-1), 'limit': sfid.data('sf_items_per_page') }, true);
-		return false;
-	});
 }
+
 
 function vdom_sf_selected_add(sfid, guid){
 	var sa = sfid.data('sf_items_selected');
@@ -1450,6 +1610,14 @@ function vdom_sf_selected_remove(sfid, guid){
 	}
 }
 
+function vdom_sf_selected_remove_all(sfid){
+	sfid.data('sf_items_selected', []);
+}
+
+function vdom_sf_selected_count(sfid){
+	return $j(sfid.data('sf_items_selected')).size();
+}
+
 function vdom_sf_refresh(sfid){
 	var sf = $j('#'+sfid);
 	var p = sf.data('sf_path') || [], guid = '', ofs = 0;
@@ -1457,16 +1625,12 @@ function vdom_sf_refresh(sfid){
 		guid = p[p.length-1];
 	}
 	sf.data('sf_current_item', null);
-	var page = parseInt(sf.data('sf_current_page'),10) - 1;
-	var per = parseInt(sf.data('sf_items_per_page'),10);
-	if (page < 0) page = 0;
-	if (per <= 0) per = 1;
-	ofs = page * per;
-	execEventBinded('%(woid)s', "requestdata", {"guid": guid, "offset": ofs, "limit": per}, true);
+	execEventBinded('%(woid)s', "requestdata", {"guid": guid}, true);
 }
 
+
 function vdom_sf_goto(path){
-	execEventBinded('%(woid)s', "requestdata", {"guid": '', "offset": '', "limit": ''}, true);
+	execEventBinded('%(woid)s', "requestdata", {"guid": ''}, true);
 }
 
 function vdom_sf_disable(id){
@@ -1495,8 +1659,12 @@ function vdom_sf_load(id,path,total,data){
 				nodelete:  e['nodelete'] || '',
 				noedit:    e['noedit'] || '',
 				nomove:    e['nomove'] || '',
-				noselect:  e['noselect'] || ''
+				noselect:  e['noselect'] || '',
+				info:      e['info'] || '',
+				metas:     e['metas'] || {}
 			};
+			if (typeof a['metas'] === 'string') a['metas'] = JSON.parse(a['metas']);
+
 			var s = $j( '<div class="sf-item" index="'+a['guid']+'"><div class="img"><div></div></div><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
 			if (a['nomove'] == '1') s.append('<div class="sf-item"><div class="name">'+a['name']+'</div><div class="type-'+a['type']+'"></div></div>' );
 			if (a['nomove'] == '1') s.addClass('nomove');
@@ -1521,37 +1689,18 @@ function vdom_sf_load(id,path,total,data){
 			}
 		});
 	}
-	$j('.pathway',sf).html(d.join(' / '));
-
-	// pages
-	d = [];
-	var ii, tot = parseInt(total, 10), ipp = parseInt(sf.data('sf_items_per_page'),10), curp = parseInt(sf.data('sf_current_page'),10);
-	if (tot <= 0) tot = 1;
-	if (ipp <= 0) ipp = 1;
-	if (curp <= 0) curp = 1;
-	var pages = parseInt(tot / ipp, 10);
-	if (tot %% ipp > 0) pages++;
-	for (ii = 1; ii <= pages; ii++) {
-		if (curp == ii) {
-			d.push("<span>"+ii+"</span>");
-		} else {
-			d.push("<a href='#' rel='"+ii+"'>"+ii+"</a>");
-		}
-	}
-	$j('.pages',sf).html(d.join(' '));
+	$j('.pathway',sf).html(d.join(' &rsaquo; '));
 
 	vdom_sf_set_handlers(sf);
 	//vdom_sf_set_drag(sf);
 }
 
-function vdom_sf_init(id,page,per,sel){
+function vdom_sf_init(id,sel){
 	var sf=$j('#'+id);
 	sf.data({
 		'sf_selectmode': 0,
 		'sf_current_item': null,
-		'sf_current_page': parseInt(page,10) || 1,
 		'sf_items_count': 0,
-		'sf_items_per_page': parseInt(per,10) || 6,
 		'sf_items_selected': sel || []
 	}).find('.items').html('');
 	$j('.sf-disabled',sf).css({
@@ -1566,68 +1715,110 @@ $j(function(){
 	%(js_base)s
 	%(js_drag)s
 	%(js_add)s
-	execEventBinded('%(woid)s', "requestdata", {guid:'', limit:'%(limit)s', offset:'%(offset)s'}, true);
+	execEventBinded('%(woid)s', "requestdata", {guid:''}, true);
 });
 </script>""" % { 
-				"id": id, "woid": woid, 
-				"js_drag": js_drag, "class": classname_item, 
-				"js_base": js_base, "js_add": js_add,
-				"offset": str(itemsperpage*(currentpage-1)), "limit": str(itemsperpage)
+				"id":      id,
+				"woid":    woid, 
+				"js_drag": js_drag,
+				"class":   classname_item, 
+				"js_base": js_base, 
+				"js_add":  js_add
 			}
 
 		### styles
 
 		css = u"""<style type='text/css'>
 #%(id)s {
-}
-#%(id)s .items {
-	width: %(width)spx;
-	height: %(height)spx;
-	overflow: hidden;
-}
-#%(id)s .items .%(class)s {
-	overflow: hidden; 
-	width: %(itemwidth)spx;
-	height: %(itemheight)spx;
-	float: left;
-}
-#%(id)s .items .%(class)s-hover {
-}
-#%(id)s .controls {
-}
-	#%(id)s .controls .control {
-		float: left;
-		white-space: nowrap;
-		cursor: pointer;
-	}
-	#%(id)s .controls .control {
-	}
-	#%(id)s .controls .control:hover {
-	}
-	#%(id)s .controls .control:active {
-	}
-
-
-#%(id)s {
 	background: #999;
 	border: 1px solid #888;
 	border-left: 1px solid #ddd;
 	border-top: 1px solid #ddd;
 	padding: 1px;
+	width: %(width)spx;
 }
-#%(id)s .items {
-	overflow: hidden;
-	border: 1px solid silver;
-	border-left: 1px solid gray;
-	border-top: 1px solid gray;
+
+#%(id)s .items-wrap {
+	overflow: auto;
 	background: #fff;
 }
+#%(id)s.has-current .items,
+#%(id)s.has-current .items-wrap {
+	height: %(height2)spx;
+}
+
+#%(id)s .item-panel {
+	display: none;
+	width: %(width)spx;
+	height: 100px;
+	overflow: hidden;
+	background: #eee;
+}
+#%(id)s.has-current .item-panel {
+	display: block;
+	overflow: auto;
+}
+	#%(id)s .item-panel .title-wrap {
+		padding: 4px;
+		float: left;
+	}
+	#%(id)s .item-panel .title-wrap .title {
+		font-size: 16px;
+	}
+	#%(id)s .item-panel .edit {
+		margin: 2px;
+		cursor: pointer;
+	}
+	#%(id)s .item-panel .buttons {
+		float: right;
+		padding: 2px;
+	}
+
+	#%(id)s .item-panel.folder .control.group,
+	#%(id)s .item-panel.folder .control.ungroup,
+	#%(id)s .item-panel.group .control.group {
+		display: none;
+	}
+
+	#%(id)s .item-panel .info {
+		clear: both;
+		padding: 4px 4px 6px 4px;
+	}
+
+	#%(id)s .item-panel .metas span {
+		background: #fff;
+    border: 1px solid #BBBBBB;
+    border-radius: 2px 2px 2px 2px;
+    color: #000000;
+    float: left;
+    margin: 0 0 2px 2px;
+    padding: 1px 4px 2px;
+		font-size: 90%%;
+	}
+	#%(id)s .item-panel .metas b {
+		color: #777;
+		font-weight: normal;
+	}
+
+#%(id)s .items {
+	height: %(height)spx;
+	overflow: visible;
+	/*border: 1px solid silver;
+	border-left: 1px solid gray;
+	border-top: 1px solid gray;*/
+}
 	#%(id)s .items .%(class)s {
-		margin: 8px 0 0 8px;
+		overflow: hidden; 
+		width: %(itemwidth)spx;
+		height: %(itemheight)spx;
+		float: left;
+		margin: 5px;
 		border: 1px solid #ccc;
 		background: #fff;
 		text-align: center;
 		word-wrap: break-word;
+	}
+	#%(id)s .items .%(class)s-hover {
 	}
 		#%(id)s .items .%(class)s .img {
 			width: 82px;
@@ -1637,7 +1828,7 @@ $j(function(){
 			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left top no-repeat;
 			position: relative;
 		}
-		#%(id)s .items .%(class)s .img  div {
+		#%(id)s .items .%(class)s .img div {
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -1647,9 +1838,14 @@ $j(function(){
 			margin: 0;
 			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -63px no-repeat;
 		}
-		#%(id)s .items .selected .img  div {
-			background: url('/4d2612a4-ff65-e333-5421-5c5c5843d1bb.res') left -126px no-repeat;
+		#%(id)s .items .selected .img div {
+			background-position: left -126px;
 		}
+		#%(id)s .items .%(class)s.group .img,
+		#%(id)s .items .%(class)s.group .img div {
+			background-image: url('/7ebd172d-824a-55c9-9b88-15e4cf2328a4.res');
+		}
+
 #%(id)s .items .selected {
 	border: 1px solid red;
 }
@@ -1672,10 +1868,15 @@ $j(function(){
 	#%(id)s .pathway a:hover {
 		color: #fff;
 	}
+
 #%(id)s .controls {
 	padding: 1px;
 }
+	#%(id)s .item-panel .control,
 	#%(id)s .controls .control {
+		float: left;
+		white-space: nowrap;
+		cursor: pointer;
 		background: #eee;
 		border: 1px solid #666;
 		border-left: 1px solid #ccc;
@@ -1685,15 +1886,18 @@ $j(function(){
 		color: #555;
 		box-shadow: 1px 1px 2px #333;
 	}
+	#%(id)s .item-panel .control:hover,
 	#%(id)s .controls .control:hover {
 		background: #fff;
 		color: #000;
 	}
+	#%(id)s .item-panel .control:active,
 	#%(id)s .controls .control:active {
 		background: #fcc;
 		box-shadow: none;
 		margin: 1px 2px -1px 1px;
 	}
+
 	#%(id)s .controls .selectmode {
 	}
 	#%(id)s .controls .selectmode-selected {
@@ -1716,6 +1920,36 @@ $j(function(){
 	opacity: 0.5;
 	filter: alpha(opacity = 50);
 }
+
+#%(id)s .select {
+	position: relative;
+	overflow: visible;
+	z-index: 999;
+}
+	#%(id)s .select .sub {
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 6px;
+		border: 1px solid #ddd;
+		overflow: hidden;
+		background: #fff;
+		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+	}
+	#%(id)s .select .sub:active {
+		margin: 0;
+	}
+		#%(id)s .select .sub div {
+			background: #fff;
+			border: none;
+			cursor: pointer;
+			box-shadow: none;
+		}
+		#%(id)s .select .sub .hovered {
+			background: #eee;
+		}
+
 #%(id)s .sf-disabled {
 	background: #fff;
 	position: absolute;
@@ -1725,68 +1959,42 @@ $j(function(){
 #%(id)s .ui-state-disabled {
 	opacity: 1;
 }
-#%(id)s .pages {
-}
-	#%(id)s .pages a {
-		color: #eee;
-	}
-	#%(id)s .pages a:hover {
-		color: #fff;
-		text-decoration: none;
-	}
-	#%(id)s .pages a,
-	#%(id)s .pages span {
-		padding: 2px 4px;
-		margin: 1px;
-		display: block;
-		float: left;
-	}
-	#%(id)s .pages span {
-		background: #eee;
-	}
 
 </style>""" % {
 			"id": id, "class": classname_item,
 			"itemwidth": self.itemwidth, "itemheight": self.itemheight,
-			"width": self.width, "height": self.height
+			"width": self.width,
+			"height": self.height,
+			"height2": int(self.height) - 100
 		}
 
-		### parse toolbar's options
+		### parse settings
 
-		try:
-			tb_opt = json.loads(self.toolbar)
-		except Exception as e:
-			tb_opt = {
+		tb_opt = {
 				"show": 1,
 				"buttons": {
 					"edit": {
-						"show": 1,
-						"title": "Edit"
+						"show": 1
 					},
 					"add": {
-						"show": 1,
-						"title": "Add Smart Folder"
+						"show": 1
 					},
 					"delete": {
-						"show": 1,
-						"title": "Delete"
+						"show": 1
 					},
 					"group": {
-						"show": 1,
-						"title": "Group"
+						"show": 1
 					},
 					"ungroup": {
-						"show": 1,
-						"title": "Ungroup"
+						"show": 1
 					},
 					"selectmode": {
-						"show": 1,
-						"title": "Select mode"
+						"show": 1
 					}
 				}
 			}
-			debug("Error [json.loads(toolbar) in smartfolder type]: %s" % str(e))
 
+		"""
 		if 'buttons' in tb_opt:
 			b = tb_opt['buttons']
 			tb_opt_b_edit          = int(b['edit']['show']) if 'edit' in b else 1
@@ -1802,45 +2010,47 @@ $j(function(){
 			tb_opt_b_ungroup_title = b['ungroup']['title'] if 'ungroup' in b else 'Ungroup'
 			tb_opt_b_selectmode_title = b['selectmode']['title'] if 'selectmode' in b else 'Select Mode'
 		else:
-			tb_opt_b_edit = 1
-			tb_opt_b_add = 1
-			tb_opt_b_delete = 1
-			tb_opt_b_group = 1
-			tb_opt_b_ungroup = 1
-			tb_opt_b_selectmode = 1
-			tb_opt_b_edit_title = u'Edit'
-			tb_opt_b_add_title = u'Add Smart Folder'
-			tb_opt_b_delete_title = u'Delete'
-			tb_opt_b_group_title = u'Group'
-			tb_opt_b_ungroup_title = u'Ungroup'
-			tb_opt_b_selectmode_title = u'Select Mode'
+		"""
+		tb_opt_b_edit = 1
+		tb_opt_b_add = 1
+		tb_opt_b_delete = 1
+		tb_opt_b_group = 1
+		tb_opt_b_ungroup = 1
+		tb_opt_b_selectmode = 1
+		tb_opt_b_edit_title = u'Edit'
+		tb_opt_b_add_title = u'Add Smart Folder'
+		tb_opt_b_delete_title = u'Delete'
+		tb_opt_b_group_title = u'Group'
+		tb_opt_b_ungroup_title = u'Ungroup'
+		tb_opt_b_selectmode_title = u'Select Mode'
 
 		tb_opt_show = int(tb_opt['show']) if "show" in tb_opt else 1
 
 		shide = u"style='display:none'"
 
-		toolbar = u"""<div class='controls' %(chide)s>
-<div class='control selectmode' %(b0hide)s>%(b0name)s</div>
-<div class='control add' %(b1hide)s>%(b1name)s</div>
-<div class='control edit' %(b2hide)s>%(b2name)s</div>
-<div class='control delete' %(b3hide)s>%(b3name)s</div>
-<div class='control group' %(b4hide)s>%(b4name)s</div>
-<div class='control ungroup' %(b5hide)s>%(b5name)s</div>
-<div style='clear:both'></div>
-		</div>""" % {
-			"chide":  "" if tb_opt_show == 1 else shide,
-			"b0hide": "" if tb_opt_b_selectmode == 1 else shide,
-			"b1hide": "" if tb_opt_b_add == 1 else shide,
-			"b2hide": "" if tb_opt_b_edit == 1 else shide,
-			"b3hide": "" if tb_opt_b_delete == 1 else shide,
-			"b4hide": "" if tb_opt_b_group == 1 else shide,
-			"b5hide": "" if tb_opt_b_ungroup == 1 else shide,
-			"b0name": tb_opt_b_selectmode_title,
-			"b1name": tb_opt_b_add_title,
-			"b2name": tb_opt_b_edit_title,
-			"b3name": tb_opt_b_delete_title,
-			"b4name": tb_opt_b_group_title,
-			"b5name": tb_opt_b_ungroup_title,
+		toolbar = u"""
+			<div class='controls' %(chide)s>
+				<div class='control add'>%(button_add)s</div>
+				<!--div class='control selectmode' %(button_selectmode_hide)s>%(button_selectmode)s</div-->
+				<div class='control select'>
+					<span></span>
+					%(button_select)s
+					<div class='sub'>
+						<div class='control selectall'>%(button_selectall)s</div>
+						<div class='control selectnone'>%(button_selectnone)s</div>
+					</div>
+				</div>
+				<div style='clear:both'></div>
+		</div>
+		""" % {
+			"chide":                  "",# if self.toolbar == "1" else shide,
+			"button_selectmode_hide": "" if tb_opt_b_selectmode == 1 else shide,
+			"button_add_hide":        "" if tb_opt_b_add == 1 else shide,
+			"button_add":             localization['button_add'],
+			"button_selectmode":      localization['button_selectmode'],
+			"button_select":          localization['button_select'],
+			"button_selectall":       localization['button_selectall'],
+			"button_selectnone":      localization['button_selectnone'],
 			"id":     id,
 			"class":  classname_item
 		}
@@ -1859,8 +2069,50 @@ $j(function(){
 
 		### out
 
-		result = u"""{css}<div {debug_info} id="{id}" style="{style}">{toolbar}{pathway}<div class='items'>{items}</div><div class='pages'></div><div class='sf-disabled' style='display:none'></div></div>{js}{testhtml}"""\
-			.format( debug_info = debug_info, id = id, style = style, items = html_items, js = js, css = css, testhtml = testhtml, toolbar = toolbar, pathway = pathway )
+		result = u"""
+			{css}
+			<div {debug_info} id="{id}" style="{style}">
+				{toolbar}
+				{pathway}
+				<div class='items-wrap'>
+					<div class='items'>{items}</div>
+					<div class='sf-disabled' style='display:none'></div>
+				</div>
+				<div class='item-panel'>
+					<div class='buttons'>
+						<a class='control group'>{button_group}</a>
+						<a class='control ungroup'>{button_ungroup}</a>
+						<a class='control rules'>{button_rules}</a>
+						<a class='control delete'>{button_delete}</a>
+					</div>
+					<span class='title-wrap'>
+						<span class='title'></span>
+						<a class='edit'>{button_edit}</a>
+					</span>
+					<div class='info'></div>
+					<div class='metas'></div>
+				</div>
+			</div>
+			{js}
+			{testhtml}
+			""".format(
+
+					button_edit = localization['button_edit'],
+					button_delete = localization['button_delete'],
+					button_group = localization['button_group'],
+					button_ungroup = localization['button_ungroup'],
+					button_selectmode = localization['button_selectmode'],
+					button_rules = localization['button_rules'],
+
+					debug_info = debug_info, 
+					id = id, 
+					style = style, 
+					items = html_items, 
+					js = js, 
+					css = css, 
+					testhtml = testhtml, 
+					toolbar = toolbar, 
+					pathway = pathway )
 
 		return VDOM_object.render(self, parent, contents=result)
 
@@ -1976,7 +2228,7 @@ function vdom_sf_load(id,path,total,data){
 			d.push("<a href='#' guid='"+e['guid']+"'>"+e['name']+"</a>");
 		});
 	}
-	$j('.pathway',sf).html(d.join(' / '));
+	$j('.pathway',sf).html(d.join(' &rsaquo; '));
 }
 */
 </script>]]></Library>
@@ -2015,49 +2267,54 @@ function vdom_sf_load(id,path,total,data){
             <Parameter Name="guid" Order="" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="pathclick" Help="#Lang(518)">
-          <Parameters>
-            <Parameter Name="guid" Order="" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
-        <Event Name="rename" Help="#Lang(523)">
+        <Event Name="pathclick" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="guid" Order="" VbType="" Help="#Lang(908)"/>
-            <Parameter Name="name" Order="" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="iconchange" Help="#Lang(524)">
+        <Event Name="rename" Help="#Lang(524)">
           <Parameters>
-            <Parameter Name="guid" Order="" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="icon" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="guid" Order="" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="name" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="delete" Help="#Lang(525)">
+        <Event Name="iconchange" Help="#Lang(525)">
           <Parameters>
-            <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="guid" Order="" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="icon" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="group" Help="#Lang(526)">
+        <Event Name="delete" Help="#Lang(526)">
           <Parameters>
-            <Parameter Name="name" Order="" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="ungroup" Help="#Lang(527)">
+        <Event Name="group" Help="#Lang(527)">
           <Parameters>
-            <Parameter Name="guid" Order="" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="name" Order="" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="newsmartfolder" Help="#Lang(528)">
+        <Event Name="ungroup" Help="#Lang(528)">
           <Parameters>
-            <Parameter Name="name" Order="" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="guid" Order="" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="requestdata" Help="#Lang(529)">
+        <Event Name="rules" Help="#Lang(529)">
           <Parameters>
-            <Parameter Name="guid" Order="" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="offset" Order="" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="limit" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(918)"/>
+          </Parameters>
+        </Event>
+        <Event Name="newsmartfolder" Help="#Lang(531)">
+          <Parameters>
+            <Parameter Name="name" Order="" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="requestdata" Help="#Lang(532)">
+          <Parameters>
+            <Parameter Name="guid" Order="" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="offset" Order="" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="limit" Order="" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
