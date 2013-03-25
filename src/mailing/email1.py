@@ -120,11 +120,13 @@ class VDOM_email_manager(object):
 	def check(self, _id):	# check if there was error when sending message, pass here the value returned by .send
 		"""return string if there was error, return None if no error"""
 		self.__sem.lock()
-		x = None
-		if _id in self.__errors:
-			x = self.__errors[_id]
-		self.__sem.unlock()
-		return x
+		try:
+			x = None
+			if _id in self.__errors:
+				x = self.__errors[_id]
+			return x
+		finally:
+			self.__sem.unlock()
 
 	def check_connection(self):
 		self.__sem.lock()
@@ -160,24 +162,27 @@ class VDOM_email_manager(object):
 		"""cancel email if it has not been sent, return True if email has been successfully cancelled"""
 		x = False
 		self.__sem.lock()
-		i = -1
-		for q in self.__queue:
-			if _id == q["id"]:
-				i = self.__queue.index(q)
-				break
-		if i >= 0:
-			self.__queue.pop(i)
-			self.__errors.pop(_id, 0)
-			x = True
-		self.__sem.unlock()
-		return x
+		try:
+			i = -1
+			for q in self.__queue:
+				if _id == q["id"]:
+					i = self.__queue.index(q)
+					break
+			if i >= 0:
+				self.__queue.pop(i)
+				self.__errors.pop(_id, 0)
+				x = True
+			return x
+		finally:
+			self.__sem.unlock()
 
 	def status(self):
 		"""check is there was smtp connect or authentication error"""
 		self.__sem.lock()
-		x = copy.deepcopy(self.__error)
-		self.__sem.unlock()
-		return x
+		try:
+			return copy.deepcopy(self.__error)
+		finally:
+			self.__sem.unlock()
 	
 	def clear_queue(self):
 		self.__sem.lock()
@@ -189,9 +194,10 @@ class VDOM_email_manager(object):
 		
 	def get_queue(self):
 		self.__sem.lock()
-		x = copy.deepcopy(self.__queue)
-		self.__sem.unlock()
-		return x
+		try:
+			return copy.deepcopy(self.__queue)
+		finally:
+			self.__sem.unlock()
 	
 	def work(self):
 			ts=0.1
