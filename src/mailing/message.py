@@ -165,8 +165,9 @@ class Message(object):
 							self.content_params = value[2]
 						value = value[0]						
 				setattr(self,convertmap[key],value)
-		if isinstance(self.to_email, list) and len(self.to_email)>0:
-			self.to_email = ", ".join(self.to_email)
+		#Not needed as library do it itself		
+		#if isinstance(self.to_email, list) and len(self.to_email)>0:
+		#	self.to_email = ", ".join(self.to_email)
 				
 	def append(self, attachment):
 		if self.nomultipart:
