@@ -278,7 +278,7 @@ class VDOM_web_services_server(object):
 	def list_applications(self, sid, skey):
 		"""get the list of installed applications"""
 		if not self.__check_session(sid, skey): return self.__session_key_error()
-		return self.__do_list_applications(security.modify_application)
+		return self.__do_list_applications(security.list_application)
 
 	def get_resource(self, sid, skey, owner_id, resource_id):
 		"""get resource"""
@@ -1597,8 +1597,10 @@ class VDOM_web_services_server(object):
 			if policy and  "rmc_allow" in policy and func_name in policy["rmc_allow"]:
 				ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_data,p["HTTPSessionID"])
 			else:
-				raise SOAPpy.faultType(remote_method_call_error, _("Remote  call is not allowed"), _(""))
+				raise SOAPpy.faultType(remote_method_call_error, _("Remote call is not allowed"), _(""))
 		elif rctype == "server_action":
+			if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
+				raise SOAPpy.faultType(remote_method_call_error, _("Remote call is not allowed"), _(""))			
 			ret = managers.dispatcher.dispatch_action(appid, objid, func_name, xml_param,xml_data)
 		else:
 			raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not alowed"), _(""))
