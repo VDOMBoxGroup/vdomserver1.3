@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.37.8388</Version>
+    <Version>1.38.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1462,7 +1462,6 @@ function vdom_sf_set_handlers(sfid){
 
 					var prev = $j(sfid.data('sf_current_item'));
 					var x_prev = prev.data("sf");
-					prev.data('first_selected', false);
 
 					if (e.ctrlKey) {
 
@@ -1486,13 +1485,17 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 								vdom_sf_selected_add(sfid, x_prev.guid);
 							}
 						}
-						x_prev.first_selected = true;
+						//x_prev.first_selected = true;
+						prev.data('first_selected', true)
 
 						//sfid.data('sf_current_item', t);
 						//t.parents('.items').find('.sf-item').removeClass(sc);
 						//t.addClass(sc);
 					} /*else */
+
 					else {
+						prev.data('first_selected', false);
+
 						vdom_sf_selected_remove_all(sfid);
 						t.parents('.items').find('.sf-item').removeClass(s);
 					}
