@@ -6,7 +6,7 @@ from file_access.manager import application_path, application_file_name
 from utils.exception import VDOM_exception
 
 re_id = re.compile(r"\s*id\s*=\s*\"(.+?)\"", re.IGNORECASE)
-re_type = re.compile(r"\s+type\s*=\s*\"(.+?)\"", re.IGNORECASE)
+re_type = re.compile(r"\s+type\s*=\s*\"(.*?)\"", re.IGNORECASE)
 re_name = re.compile(r"\s+name\s*=\s*\"(.+?)\"", re.IGNORECASE)
 re_tstamp = re.compile(r"\s+timestamp\s*=\s*\"(.+?)\"", re.IGNORECASE)
 
