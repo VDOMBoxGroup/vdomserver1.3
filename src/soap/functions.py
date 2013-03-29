@@ -12,7 +12,7 @@ def format_error(msg):
 
 def proxy(args):
 	try:
-		return args[0](*args[1:]) + ("\n<Key>%s</Key>" % args[2])
+		return args[0](*args[1:])# + ("\n<Key>%s</Key>" % args[2])
 	except SOAPpy.faultType, f:
 		raise
 	except VDOM_exception, v:
@@ -36,11 +36,11 @@ def proxy1(args):
 
 # open session with the server
 def open_session(name, pwd_md5, _SOAPContext):
-	return proxy1([managers.soap_server.open_session, name, pwd_md5])
+	return proxy([managers.soap_server.open_session, name, pwd_md5])
 
 # close session
 def close_session(sid, _SOAPContext):
-	return proxy1([managers.soap_server.close_session, sid])
+	return proxy([managers.soap_server.close_session, sid])
 
 # create new application
 def create_application(sid, skey, attr, _SOAPContext):
