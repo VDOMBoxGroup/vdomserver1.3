@@ -294,3 +294,9 @@ def get_libraries(sid, skey, appid, _SOAPContext):
 
 def server_information(sid, skey, _SOAPContext):
 	return proxy([managers.soap_server.server_information, sid, skey])
+
+def set_application_vhost(sid, skey, appid, hostname, _SOAPContext):
+	return proxy([managers.soap_server.set_application_vhost, sid, skey, appid, hostname])
+
+def delete_application_vhost(sid, skey, hostname, _SOAPContext):
+	return proxy([managers.soap_server.delete_application_vhost, sid, skey, hostname])

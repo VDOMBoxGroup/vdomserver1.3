@@ -1757,7 +1757,23 @@ class VDOM_web_services_server(object):
 			outp = f.read()
 			f.close()
 		return "<Result>%s</Result>"%ret
-
+	
+	def set_application_vhost(sid, skey, appid, hostname):
+		
+		if not hostname or hostname.lower() == "default" or hostname == 0:
+			managers.virtual_hosts.set_def_site(appid)
+		else:
+			managers.virtual_hosts.set_site(hostname, appid)
+		return "<Result>OK</Result>"
+	
+	def delete_application_vhost(sid, skey, hostname):
+		
+		if not hostname or hostname.lower() == "default" or hostname == 0:
+			managers.virtual_hosts.set_def_site(None)
+		else:
+			managers.virtual_hosts.set_site(hostname, None)
+		return "<Result>OK</Result>"
+	
 ### ==================================================================================================================
 
 	def create_guid(self, sid, skey):
