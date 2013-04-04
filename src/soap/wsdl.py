@@ -86,7 +86,9 @@ methods = {
 	"get_thumbnail" : ["sid", "skey", "appid", "resid", "width", "height"],
 	"search" : ["sid", "skey", "appid", "pattern"],
 	"keep_alive" : ["sid", "skey"],
-	"server_information" : ["sid", "skey"]
+	"server_information" : ["sid", "skey"],
+        "set_application_vhost" : ["sid", "skey", "appid", "hostname"],
+        "delete_application_vhost" : ["sid", "skey", "hostname"]        
 }
 
 def gen_wsdl():
