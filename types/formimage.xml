@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.36.8388</Version>
+    <Version>1.37.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password</Containers>
@@ -605,7 +605,123 @@ oWIXg6+xVCp1OE7L9oVvM4dlGLophNAnJydz4+MTfQMDheF0Ol2MxWIF0zQLKkYF1uv1TCKROPor
 wACLBhsn+wNC3gAAAABJRU5ErkJggg==]]></Resource>
     <Resource ID="2ca0f428-ffc2-ca5b-3337-610d2384821f" Name="Image1px" Type="gif"><![CDATA[R0lGODlhAQABAAAAACH5BAEAAAEALAAAAAABAAEAgAAAAAAAAAICTAEAOw==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[		import utils		class VDOM_formimage(VDOM_object):	def render(self, parent, contents=""):				link = utils.id.id2link1(self.value)		id_out = u"o_" + (self.id).replace('-', '_')		styleblock = u""		scriptblock = u""		display = u"display:none;" if self.visible == "0" else u""						style = u"""border:0px; z-index:{zind}; position:{pos}; top:{top}px; left:{left}px;					width:{width}px; height:{height}px; cursor:pointer; {display}				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 					width = self.width, height = self.height, display = display)				if self.ishover == "1":			src_classname = self.classname if self.classname else u"imagebutton" 			src_id = id_out[2:]			classtut = u"{src_cname}_{src_id}".format(src_cname = src_classname, src_id = src_id)			if self.ispressed == "1":				self.classname = u"{classtut} {classtut}_sel".format(classtut = classtut)			else:				self.classname = classtut						styleblock = u"""<style>.%(class)s,.%(class)s_sel{background:url("%(link)s") left top no-repeat;}								.%(class)s_sel{background-position:left -%(height)spx!important}</style>						""" % {"class": classtut, "link": link, "height": self.height}			scriptblock = u"""<script type="text/javascript">									jQuery("#%(id)s").hover(function(){jQuery(this).addClass("%(class)s_sel");},										function(){jQuery(this).removeClass("%(class)s_sel");});									jQuery("#%(id)s").click(function(){jQuery(this).toggleClass("%(class)s_sel");});							</script>						""" % {"id": id_out, "class": self.classname}			link = u"/2ca0f428-ffc2-ca5b-3337-610d2384821f.gif"		linkclass = u""" class="%s" """ % self.classname if self.classname else u""		result = u"""<input value=" " id="{id}" name="{name}" style="{style}" tabindex="{tabind}" 					src="{link}" border="0" type="image" {lclass} />{styleblk} {scriptblk}			""".format(id = id_out, name = self.name, style = style, tabind = self.tabindex, 						link = link, lclass = linkclass, styleblk = styleblock, scriptblk = scriptblock)		return VDOM_object.render(self, parent, contents=result)	def wysiwyg(self, parent, contents=""):		image_id = self.value				if not image_id:			import utils.wysiwyg						image_id = "ba54cd2d-ade1-c3c0-35b2-170f9a00b033"			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)						return VDOM_object.wysiwyg(self, parent, contents=result)					image_width = u""" width="{width}" """.format(width = self.width)		image_height = u""" height="{height}" """.format(height = self.height)				if self.ishover == "1" :			image_width = image_height = u""			if self.ispressed == "1" :				image_id = "2ca0f428-ffc2-ca5b-3337-610d2384821f"					result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 							top="{top}" left="{left}" width="{width}" height="{height}">						<svg>							<image x="0" y="0" {image_width} {image_height} href="#Res({img_id})" editable="value"/>						</svg>						{contents}					</container>				""".format(id = self.id, vis = self.visible, zind = self.zindex, 							hierarchy = self.hierarchy, order = self.order, 							top = self.top, left = self.left, 							width = self.width, height = self.height,							image_width = image_width, image_height = image_height,							img_id = image_id,							contents = contents)				return VDOM_object.wysiwyg(self, parent, contents=result)def set_attr(app_id, object_id, param):	import managers	o = managers.xml_manager.search_object(app_id, object_id)			if "value" in param and not "width" in param and not "height" in param:		attr = param["value"]		res_id = attr["value"]		ro = managers.resource_manager.get_resource(app_id, res_id)		if not ro:			return "Resource not found"		# get image resource, obtain width and height and set width and height of the object		from PIL import Image		import cStringIO		s = cStringIO.StringIO()		s.write(ro.get_data())		s.seek(0, 0)		im = Image.open(s)			width, height = im.size		# set attributes		if o.attributes.width != width or o.attributes.height != height:			o.set_attributes({"width": width, "height": height})	else:		if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:			o.set_attributes({"width": 2500})		if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:			o.set_attributes({"height": 2500})	return ""			]]></SourceCode>
+  <SourceCode><![CDATA[
+		
+import utils
+		
+class VDOM_formimage(VDOM_object):
+
+	def render(self, parent, contents=""):
+		
+		link = utils.id.id2link1(self.value)
+		id_out = u"o_" + (self.id).replace('-', '_')
+		styleblock = u""
+		scriptblock = u""
+		display = u"display:none;" if self.visible == "0" else u""
+				
+		style = u"""border:0px; z-index:{zind}; position:{pos}; top:{top}px; left:{left}px;
+					width:{width}px; height:{height}px; cursor:pointer; {display}
+				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
+					width = self.width, height = self.height, display = display)
+		
+		if self.ishover == "1":
+			src_classname = self.classname if self.classname else u"imagebutton" 
+			src_id = id_out[2:]
+			classtut = u"{src_cname}_{src_id}".format(src_cname = src_classname, src_id = src_id)
+			if self.ispressed == "1":
+				self.classname = u"{classtut} {classtut}_sel".format(classtut = classtut)
+			else:
+				self.classname = classtut
+			
+			styleblock = u"""<style>.%(class)s,.%(class)s_sel{background:url("%(link)s") left top no-repeat;}
+								.%(class)s_sel{background-position:left -%(height)spx!important}</style>
+						""" % {"class": classtut, "link": link, "height": self.height}
+
+			scriptblock = u"""<script type="text/javascript">
+									jQuery("#%(id)s").hover(function(){jQuery(this).addClass("%(class)s_sel");},
+										function(){jQuery(this).removeClass("%(class)s_sel");});
+									jQuery("#%(id)s").click(function(){jQuery(this).toggleClass("%(class)s_sel");});
+							</script>
+						""" % {"id": id_out, "class": self.classname}
+			link = u"/2ca0f428-ffc2-ca5b-3337-610d2384821f.gif"
+
+		linkclass = u""" class="%s" """ % self.classname if self.classname else u""
+
+		result = u"""<input value=" " id="{id}" name="{name}" style="{style}" tabindex="{tabind}" 
+					src="{link}" border="0" type="image" {lclass} />{styleblk} {scriptblk}
+			""".format(id = id_out, name = self.name, style = style, tabind = self.tabindex, 
+						link = link, lclass = linkclass, styleblk = styleblock, scriptblk = scriptblock)
+
+		return VDOM_object.render(self, parent, contents=result)
+
+	def wysiwyg(self, parent, contents=""):
+		image_id = self.value
+		
+		if not image_id:
+			import utils.wysiwyg
+			
+			image_id = "ba54cd2d-ade1-c3c0-35b2-170f9a00b033"
+			result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+			
+			return VDOM_object.wysiwyg(self, parent, contents=result)
+			
+		image_width = u""" width="{width}" """.format(width = self.width)
+		image_height = u""" height="{height}" """.format(height = self.height)
+		
+		if self.ishover == "1" :
+			image_width = image_height = u""
+			if self.ispressed == "1" :
+				image_id = "2ca0f428-ffc2-ca5b-3337-610d2384821f"
+			
+		result = u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+							top="{top}" left="{left}" width="{width}" height="{height}">
+						<svg>
+							<image x="0" y="0" {image_width} {image_height} href="#Res({img_id})" editable="value"/>
+						</svg>
+						{contents}
+					</container>
+				""".format(id = self.id, vis = self.visible, zind = self.zindex, 
+							hierarchy = self.hierarchy, order = self.order, 
+							top = self.top, left = self.left, 
+							width = self.width, height = self.height,
+							image_width = image_width, image_height = image_height,
+							img_id = image_id,
+							contents = contents)
+		
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+def set_attr(app_id, object_id, param):
+	import managers
+	o = managers.xml_manager.search_object(app_id, object_id)
+		
+	if "value" in param and not "width" in param and not "height" in param:
+		attr = param["value"]
+		res_id = attr["value"]
+
+		ro = managers.resource_manager.get_resource(app_id, res_id)
+		if not ro:
+			return "Resource not found"
+
+		# get image resource, obtain width and height and set width and height of the object
+		from PIL import Image
+		import cStringIO
+		s = cStringIO.StringIO()
+		s.write(ro.get_data())
+		s.seek(0, 0)
+		im = Image.open(s)	
+		width, height = im.size
+
+		# set attributes
+		if o.attributes.width != width or o.attributes.height != height:
+			o.set_attributes({"width": width, "height": height})
+	else:
+		if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:
+			o.set_attributes({"width": 2500})
+		if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:
+			o.set_attributes({"height": 2500})
+	return ""
+	
+		]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
@@ -695,6 +811,30 @@ this.domCont.style.zindex = parseInt(newZindex,10);
           <SourceCode><![CDATA[ 
 vdom_ui_show(this.domCont, fade);
                     ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="className" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[ 
+$q(this.domCont).attr('class',className);
+		  ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$q(this.domCont).addClass(className);
+		  ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$q(this.domCont).removeClass(className);
+		  ]]></SourceCode>
         </Action>
       </Container>
     </Actions>
