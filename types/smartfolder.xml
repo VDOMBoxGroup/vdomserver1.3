@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.38.8388</Version>
+    <Version>1.39.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1480,9 +1480,11 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 						}
 
 						if (!prev.data('first_selected')) {
-							if (x_prev.noselect !== '1') {
-								prev.addClass(s);
-								vdom_sf_selected_add(sfid, x_prev.guid);
+							if (!!x_prev) {
+								if (x_prev.noselect !== '1') {
+									prev.addClass(s);
+									vdom_sf_selected_add(sfid, x_prev.guid);
+								}
 							}
 						}
 						//x_prev.first_selected = true;
@@ -1491,8 +1493,7 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 						//sfid.data('sf_current_item', t);
 						//t.parents('.items').find('.sf-item').removeClass(sc);
 						//t.addClass(sc);
-					} /*else */
-
+					}
 					else {
 						prev.data('first_selected', false);
 
@@ -1568,7 +1569,7 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 						}
 					}
 */
-					if (vdom_sf_selected_count(sfid) > 0 ) {
+					if (vdom_sf_selected_count(sfid) > 0 || t.parents('.items').find('.has-current').size() > 0) {
 						$j('.item-panel .buttons .group', sfid).show(0);
 						$j('.item-panel .buttons .ungroup', sfid).hide(0);
 					} else {
@@ -1649,6 +1650,11 @@ function vdom_sf_load(id,path,total,data){
 	sf.data('sf_path', path);
 	sf.data('sf_items_count', total);
 	sf.data('sf_current_item', null);
+
+	vdom_sf_selected_remove_all(sf);
+	sf.removeClass('has-current');
+	$j(' .items .current', sf).removeClass('current');
+	$j('.item-panel', sf).removeClass('group folder');
 
 	if (typeof data === 'string') data = JSON.parse(data);
 	if (typeof data === 'array' || typeof data === 'object') {
@@ -1777,6 +1783,11 @@ $j(function(){
 		padding: 2px;
 	}
 
+	#%(id)s .item-panel.folder,
+	#%(id)s .item-panel.group {
+		display: block;
+	}
+
 	#%(id)s .item-panel.folder .control.group,
 	#%(id)s .item-panel.folder .control.ungroup,
 	#%(id)s .item-panel.group .control.group {
@@ -1859,6 +1870,8 @@ $j(function(){
 }
 #%(id)s .items .%(class)s-hover {
 	border-color: lime;
+	-webkit-box-shadow: 0 0 4px green;
+	-moz-box-shadow: 0 0 4px green;
 	box-shadow: 0 0 4px green;
 }
 #%(id)s .pathway {
@@ -1887,7 +1900,10 @@ $j(function(){
 		padding: 4px 8px;
 		margin: 0 3px 0 0;
 		color: #555;
-		box-shadow: 1px 1px 2px #333;
+		/*box-shadow: 1px 1px 2px #333;*/
+		-webkit-box-shadow: 1px 1px 5px -2px #333333
+		-moz-box-shadow: 1px 1px 5px -2px #333333
+		box-shadow: 1px 1px 5px -2px #333333
 	}
 	#%(id)s .item-panel .control:hover,
 	#%(id)s .controls .control:hover {
@@ -1897,6 +1913,8 @@ $j(function(){
 	#%(id)s .item-panel .control:active,
 	#%(id)s .controls .control:active {
 		background: #fcc;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
 		box-shadow: none;
 		margin: 1px 2px -1px 1px;
 	}
@@ -1909,6 +1927,8 @@ $j(function(){
 		border: 1px solid #666;
 		border-right: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
 		box-shadow: none;
 		margin: 1px 2px -1px 1px;
 	}
@@ -1938,6 +1958,8 @@ $j(function(){
 		border: 1px solid #ddd;
 		overflow: hidden;
 		background: #fff;
+		-webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+		-moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 		box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
 	}
 	#%(id)s .select .sub:active {
@@ -1947,6 +1969,8 @@ $j(function(){
 			background: #fff;
 			border: none;
 			cursor: pointer;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
 			box-shadow: none;
 		}
 		#%(id)s .select .sub .hovered {
@@ -2192,6 +2216,10 @@ function vdom_sf_set_dnd(sfid, sfwoid, sfclass) {
 			//var x = $j('#%(id)s').data("sf"), i1 = $j(u.draggable).attr('index'), i2 = $j(this).attr('index');
 			//execEventBinded('%(woid)s', "drop", {"itemsource": x[i1], "itemtarget": x[i2]}, true);
 			var x1 = $j(u.draggable).data("sf"), x2 = $j(this).data("sf");
+			$j("#"+sfid+' .item-panel').removeClass('group folder');
+			$j("#"+sfid).removeClass('has-current');
+			$j("#"+sfid+' .items .current').removeClass('current');
+			vdom_sf_selected_remove_all($j("#"+sfid));
 			execEventBinded(sfwoid, "drop", {"itemsource": x1['guid'], "itemtarget": x2['guid']}, true);
 		}
 	});
