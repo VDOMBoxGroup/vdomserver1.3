@@ -1,10 +1,13 @@
 import __builtin__
-
-
+import os
+import time
+from types import FileType
 class File_argument(object):
 	def __init__(self,fileobj, name):
+		"""File argument wrapper for uploaded files"""
 		self.fileobj = fileobj
 		self.name = self.__try_decode(name)
+		self.autoremove = True
 	def __getitem__(self, key):
 		if not isinstance(key, int):
 			raise TypeError
@@ -24,14 +27,31 @@ class File_argument(object):
 		else:
 			return item
 		
+	def remove(self):
+		"""Remove uploaded file from HDD"""
+		filepath = getattr(self.fileobj,"name",None)
+		if not self.fileobj.closed:
+			self.fileobj.close()
+		if filepath:
+			os.remove(filepath)
+		
+	def close(self):
+		"""Close file object and give name"""
+		self.fileobj.close()
+		return getattr(self.fileobj,"name")
+
+	
 class Attachment(object):
 	def __init__(self, file_argument):
 		self.__filearg = file_argument
+		
 	def __get_filename(self):
 		return self.__filearg.name
 	def __get_handler(self):
 		return self.__filearg.fileobj
-	
+	def _get_realpath(self):
+		return getattr(self.__filearg.fileobj,"name",None)
+
 	name = property(__get_filename)
 	handler = property(__get_handler)
 

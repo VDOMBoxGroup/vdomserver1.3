@@ -325,6 +325,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				      traceback.format_exc(), '-'*40])
 			self.send_error(500, excinfo=fe)
 			return None
+		finally:
+			self.__request.collect_files()
 			
 		# check redirect
 		if self.__request.redirect_to:
@@ -390,13 +392,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		SimpleHTTPServer.SimpleHTTPRequestHandler.finish(self)
 		"""tell the server that processing is finished"""
 		self.server.notify_finish(self.client_address)
-		
 		# remove request
-		try:
-			managers.request_manager.current.collect_files()
-		except VDOM_exception as error:
-			#print "WARNING: %s"%error
-			pass
 		del managers.request_manager.current
 		try:
 			del(self.__request.vdom)

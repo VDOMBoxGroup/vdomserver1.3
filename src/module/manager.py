@@ -137,12 +137,7 @@ class VDOM_module_manager(object):
 			except VDOM_exception, e:
 				debug("Render exception: " + str(e))
 				return (None, str(e))
-			finally:
-				for key in request_object.files:
-					if getattr(request_object.files[key][0],"name", None):
-						if not request_object.files[key][0].closed:
-							request_object.files[key][0].close()
-						os.remove(request_object.files[key][0].name)
+			
 			if request_object.fh:
 				shutil.copyfileobj(request_object.fh, request_object.wfile)
 				return (None, "")
@@ -173,12 +168,7 @@ class VDOM_module_manager(object):
 				debug(_("Module manager: python module error: %s") % str(e))
 				#traceback.print_exc(file=debugfile)
 				return (500, None)
-			finally:
-				for key in request_object.files:
-					if not request_object.files[key][0].closed:
-						request_object.files[key][0].close()
-					if request_object.files[key][0] is types.FileType:
-						os.remove(request_object.files[key][0].name)
+			
 
 		elif request_type:# pass to resource module
 			module = VDOM_module_resource()

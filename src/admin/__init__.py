@@ -37,6 +37,7 @@ from admin.ssh import run
 from admin.track import run
 from admin.uninstall import run
 from admin.update import run
+from admin.upload import run
 from admin.users_ajout import run
 from admin.users_modif_rights_form import run
 from admin.users_modif_rights import run

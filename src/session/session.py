@@ -17,6 +17,7 @@ class VDOM_session(dict):
 		self.context = {}
 		self.on_start_executed = False
 		self.__user = ""
+		self.files = {}
 		self.update()
 
 	def id(self):
@@ -91,3 +92,7 @@ class VDOM_session(dict):
 		return self.__user
 
 	user = property(__get_user)
+
+	def clean_files(self):
+		for uploaded_file in self.files.itervalues():
+			uploaded_file.remove()

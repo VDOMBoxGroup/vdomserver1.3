@@ -30,10 +30,9 @@ def run(request):
 		else:
 			try:
 				# #request.write(tmpfilename + "<br>")
-				request.files["appfile"][0].delete = False
-				request.files["appfile"][0].close()
+				filepath = request.files["appfile"].close()
 				# call import function
-				outp = import_application(request.files["appfile"][0].name,args["format"][0])
+				outp = import_application(filepath,args["format"][0])
 				if None != outp[0] and "" != outp[0]:
 					#request.write("OK, application id = %s" % outp)
 					if "" == outp[1]:
