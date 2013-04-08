@@ -43,7 +43,11 @@ class VDOM_acl_manager:
 			app = request.application()
 			if app and (app.id == object_id or app.search_object(object_id)):
 				return True
-
+			
+	def __deny_protected(self,appid, access_type):
+		if (access_type == security.access_to_application or access_type == security.modify_application) and managers.xml_manager.get_application(appid).protected == "1":
+			return True	
+		
 ### PUBLIC INTERFACE ###
 	def check_access(self, object_id, username, access_type):
 		"""Returns True or False - have account "rule"-access to this object, also checks groups"""
@@ -104,6 +108,11 @@ class VDOM_acl_manager:
 		"""Returns True or False - have account "rule"-access to this object, including inheritance"""
 		if self.__allow(object_id):
 			return True
+		
+		if self.__deny_protected(app_id,access_type):
+			return False
+		
+		
 		username = managers.request_manager.get_request().session().user
 		if username:
 			return self.check_access2(app_id, object_id, username, access_type)

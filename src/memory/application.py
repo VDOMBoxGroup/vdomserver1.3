@@ -20,7 +20,7 @@ class VDOM_application(VDOM_parser):
 			"id":		["id", "str(%s)", "Id"],
 			"name":		["name", "%s", "Name"],
 			"description":	["description", "%s", "Description"],
-		        "version":      ["version", "%s", "Version"],
+			"version":	["version", "%s", "Version"],
 			"owner":	["owner", "%s", "Owner"],
 			"password":	["password", "%s", "Password"],
 			"active":	["active", "%s", "Active"],
@@ -28,9 +28,9 @@ class VDOM_application(VDOM_parser):
 			"icon":		["icon", "%s", "Icon"],
 			"serverversion":["server_version", "%s", "ServerVersion"],
 			"scriptinglanguage":["scripting_language", "%s", "ScriptingLanguage"],
-			
+			"protected":	["protected", "%s", "Protected"],
 			"defaultlanguage":["default_language", "%s", "DefaultLanguage"],
-		    "currentlanguage":["current_language", "%s", "CurrentLanguage"],
+			"currentlanguage":["current_language", "%s", "CurrentLanguage"],
 		}
 		self.object_map = {
 			"name":	["name", "%s"],
