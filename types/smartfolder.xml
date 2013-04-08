@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.39.8388</Version>
+    <Version>1.41.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -229,7 +229,8 @@
 	"msg_8":             "New Group",
 	"msg_9":             "Group name is empty",
 	"msg_10":            "No items selected",
-	"msg_11":            "Group is not specified"
+	"msg_11":            "Group is not specified",
+	"msg_12":            "Sure delete?"
 }</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
@@ -1158,7 +1159,8 @@ class VDOM_smartfolder(VDOM_object):
 			"msg_8":             "New Group",
 			"msg_9":             "Group name is empty",
 			"msg_10":            "No items selected",
-			"msg_11":            "Group is not specified"
+			"msg_11":            "Group is not specified",
+			"msg_12":            "Sure delete?"
 		}
 
 		try:
@@ -1290,13 +1292,15 @@ $j("#%(id)s .controls .control, #%(id)s .item-panel .control, #%(id)s .item-pane
 		}
 	} else
 	if (t.hasClass('delete')) {
-		var x = sf.data('sf_items_selected') || [];
-		if (x.length) {
-			execEventBinded('%(woid)s', "delete", {"guidlist": x}, true);
-		} else {
-			var o = sf.data('sf_current_item') || false;
-			if (o) {
-				execEventBinded('%(woid)s', "delete", {"guidlist": [o.data('sf').guid]}, true);
+		if (confirm("%(msg_12)s")) {
+			var x = sf.data('sf_items_selected') || [];
+			if (x.length) {
+				execEventBinded('%(woid)s', "delete", {"guidlist": x}, true);
+			} else {
+				var o = sf.data('sf_current_item') || false;
+				if (o) {
+					execEventBinded('%(woid)s', "delete", {"guidlist": [o.data('sf').guid]}, true);
+				}
 			}
 		}
 	} else
@@ -1394,7 +1398,8 @@ $j("#%(id)s .controls .selectmode").click(function(){
 
 vdom_sf_init('%(id)s');
 
-""" % {		"msg_1":  localization['msg_1'],
+""" % {
+			"msg_1":  localization['msg_1'],
 			"msg_2":  localization['msg_2'],
 			"msg_3":  localization['msg_3'],
 			"msg_4":  localization['msg_4'],
@@ -1405,6 +1410,7 @@ vdom_sf_init('%(id)s');
 			"msg_9":  localization['msg_9'],
 			"msg_10": localization['msg_10'],
 			"msg_11": localization['msg_11'],
+			"msg_12": localization['msg_12'],
 			"id":     id,
 			"woid":   woid,
 			"class":  classname_item }
@@ -1576,6 +1582,8 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 						$j('.item-panel .buttons .group', sfid).hide(0);
 						if (t.hasClass('group')) {
 							$j('.item-panel .buttons .ungroup', sfid).show(0);
+						} else {
+							$j('.item-panel .buttons .ungroup', sfid).hide(0);
 						}
 					}
 
