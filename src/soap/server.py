@@ -323,6 +323,8 @@ class VDOM_web_services_server(object):
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to structure of this application", _("<Error/>"))				
 		return ret[0].structure_element.toxml()
 
 	def set_application_structure(self, sid, skey, appid, struct):
@@ -631,6 +633,8 @@ class VDOM_web_services_server(object):
 		ret = self.__find_object(appid, objid)	# returns (app, obj, error_message)
 		if not ret[0]:
 			return ret[2]
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to this application", _("<Error><ObjectID>%s</ObjectID><ParentID>%s</ParentID></Error>") % (objid, parentid))
 		_p = ret[0].search_object(parentid)
 		managers.request_manager.get_request().container_id = ret[1].toplevel.id
 		try:
@@ -1059,6 +1063,8 @@ class VDOM_web_services_server(object):
 		(app, obj, errmsg) = self.__find_object(appid, objid)
 		if not app:
 			return errmsg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to this application", _("<Error/>"))						
 		return "<Objects>\n" + self.__get_object(obj) + "</Objects>"
 
 	def set_attribute(self, sid, skey, appid, objid, attr, value):
@@ -1136,6 +1142,8 @@ class VDOM_web_services_server(object):
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to events of this application", _("<Error/>"))				
 		obj = app.search_object(objid)
 		result =  self.__do_get_events(app, obj)
 		result +=  self.__do_get_client_actions(app, obj)
@@ -1380,6 +1388,9 @@ class VDOM_web_services_server(object):
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))		
+		
 		obj = app.search_object(objid)
 		result = "<ServerActions>\n"
 		if obj:
@@ -1418,6 +1429,8 @@ class VDOM_web_services_server(object):
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))		
 		obj = app.search_object(objid)
 		result = "<ServerActions>\n"
 		if obj:
@@ -1473,6 +1486,9 @@ class VDOM_web_services_server(object):
 		(app, msg) = self.__find_application(appid)
 		if not app:
 			return msg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))		
+		
 		obj = app.search_object(objid)
 		if obj:
 			if actionid not in obj.actions["id"]:
@@ -1974,6 +1990,9 @@ class VDOM_web_services_server(object):
 		(app, errmsg) = self.__find_application(appid)
 		if not app:
 			return errmsg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))		
+		
 		return app.get_library(libname)
 
 	def get_libs(self, sid, skey, appid):
@@ -1982,6 +2001,9 @@ class VDOM_web_services_server(object):
 		(app, errmsg) = self.__find_application(appid)
 		if not app:
 			return errmsg
+		if not managers.acl_manager.session_user_has_access2(appid, appid,security.access_to_application):
+			raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))		
+		
 		return app.libraries_element.toxml(encode = False)
 
 	def server_information(self, sid, skey):
