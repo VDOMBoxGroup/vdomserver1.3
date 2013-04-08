@@ -1677,12 +1677,17 @@ class VDOM_web_services_server(object):
 		ret = self.__find_application(appid)	# returns (app, error_message)
 		if not ret[0]:
 			return ret[1]
+		if ret[0].protected == "1":
+			return "<Error>This application could not be exported</Error>"
+		
 		path = tempfile.mkdtemp("", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+		
 		managers.xml_manager.export_application(appid, "xml", path)
 		toread = os.path.join(path, appid) + ".xml"
 		f = open(toread, "rb")
 		data = f.read()
 		f.close()
+
 		try: shutil.rmtree(path)
 		except: pass
 		return data.decode("utf-8")
