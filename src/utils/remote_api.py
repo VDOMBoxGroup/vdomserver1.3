@@ -54,9 +54,16 @@ class VDOMService:
 	def call(self, container_id, action_name, xml_data):
 		xml_param = "<Arguments><CallType>server_action</CallType></Arguments>"
 		ret = self._server.remote_call(self._sid,"%s_%i"%(self._skey,self._request_num),self._application_id, container_id,action_name, xml_param, xml_data)
+		try:
+			server_skey = str(key_re.search(ret, 1).group(1))
+		except:
+			raise VDOMServiceCallError(str(ret))
+
+		#assert (server_skey == self._skey)
+
 		self._skey = self._protector.next_session_key(self._skey)
 		self._request_num+=1
-		return ret
+		return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
 
 	def remote(self, method, params = [], no_app_id = False):
 		if params:
@@ -65,10 +72,16 @@ class VDOMService:
 			ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num))
 		else:
 			ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num),self._application_id)
-		
+		try:
+			server_skey = str(key_re.search(ret, 1).group(1))
+		except:
+			raise VDOMServiceCallError(str(ret))
+
+		#assert (server_skey == self._skey)
+
 		self._skey = self._protector.next_session_key(self._skey)
 		self._request_num+=1
-		return ret
+		return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
 
 VDOM_service = VDOMService
 
