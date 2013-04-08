@@ -26,6 +26,9 @@ def run(request):
 				managers.xml_manager.export_application(appl, format, path, embedtypes)
 				toread = os.path.join(path, appl)
 				a = managers.xml_manager.get_application(appl)
+				if a.protected =="1":
+					request.write("This application could not be exported")
+					raise Exception("This application could not be exported")				
 				name = a.name
 				ver = ""
 				if a.version: ver = "_ver_%s" % re.sub('\D', '_', a.version)
@@ -124,6 +127,8 @@ function zzzz(e) {
 		cont = ""
 		for a in applist:
 			obj = managers.xml_manager.get_application(a)
+			if obj.protected == "1":
+				continue
 			cont += "<option value=%s>%s</option>" % (a, "%s (%s)" % (obj.name.encode("utf-8"), a))
 		drives = get_external_drives()
 		devs = """<option value="none">None</option>"""
