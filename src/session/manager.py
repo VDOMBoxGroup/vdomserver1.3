@@ -61,6 +61,7 @@ class VDOM_session_manager(dict):
 				s = dict.__getitem__(self, key)
 				if s.is_expired(self.__timeout):
 					s.context = {}
+					s.clean_files()
 					dict.__delitem__(self, key)
 				else:
 					return s

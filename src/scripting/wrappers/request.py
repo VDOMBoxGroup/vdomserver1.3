@@ -144,6 +144,10 @@ class VDOM_request(object):
 	def _get_dyn_libraries(self):
 		return managers.request_manager.current.dyn_libraries	
 	
+	def uploaded_file(self,guid):
+		u_file = managers.session_manager.current.files.pop(guid, None)
+		return Attachment(u_file) if u_file else None
+	
 	arguments=property(lambda self: self._arguments)
 	container=property(_get_container)
 	environment=property(_get_environment)
@@ -155,4 +159,5 @@ class VDOM_request(object):
 	shared_variables = property(lambda self: self._shared_vars)
 	render_type=property(_get_render_type)
 	dyn_libraries=property(_get_dyn_libraries)
+	
 	

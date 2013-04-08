@@ -52,7 +52,7 @@ class VDOM_request:
 						filename = getattr(storage[key],"filename","")
 						if filename and storage[key].file:
 							args[key] = File_argument(storage[key].file,filename)
-							self.files[key] = [storage[key].file,filename]
+							self.files[key] = args[key]
 						else:
 							args[key] = storage.getlist(key)
 						if filename:
@@ -130,8 +130,9 @@ class VDOM_request:
 	
 	def collect_files(self):
 		"""Replacement for destructor needed for temp files cleanup"""
-		for key in self.files:
-			self.files[key][0].close()
+		for file_attach in self.files.itervalues():
+			if file_attach.autoremove:
+				file_attach.remove()		
 			
 	def add_client_action(self, obj_id, data):
 		self.action_result += data

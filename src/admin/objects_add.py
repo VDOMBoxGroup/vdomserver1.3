@@ -14,7 +14,7 @@ def run(request):
 	if "typefile" in args and "" != args["typefile"][0]:
 		# perform installation
 		try:
-			tmpfilename = request.files["typefile"][0].name
+			tmpfilename = request.files["typefile"].close()
 			# test
 			ret = managers.xml_manager.test_type(tmpfilename)
 			if None == ret:

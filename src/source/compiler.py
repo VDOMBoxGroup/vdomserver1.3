@@ -50,7 +50,7 @@ class VDOM_compiler(object):
 			auxilary.enable_dynamic(object, action_name, context, names)
 
 		module_name=utils.id.guid2mod(object.type.id)
-		print module_name
+		#print module_name
 		if module_name in self.__modules:
 			module=self.__modules[module_name]
 		else:

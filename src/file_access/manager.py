@@ -12,7 +12,7 @@ from utils.system import *
 import utils.mutex as mutex
 import base64
 from daemon import VDOM_file_manager_writer
-
+from utils.file_argument import Attachment
 
 application_path = "applications"
 global_types_path = "types"
@@ -28,6 +28,7 @@ class VDOM_file_manager(object):
 
 	def __init__(self):
 		self.__queue = []
+		self.file_upload={}
 		self.__sem = VDOM_semaphore()
 		self.__daemon=VDOM_file_manager_writer(self)
 		self.__daemon.start()
@@ -43,19 +44,24 @@ class VDOM_file_manager(object):
 		
 
 	def work(self):
-		if len(self.__queue) > 0:
-			self.__sem.lock()
-			while len(self.__queue) > 0:
+		self.__sem.lock()
+		try:
+			if len(self.__queue) > 0:
 				item = self.__queue.pop(0)
 				fname = item[0]
 				data = item[1]
-#				self.write(fname, data)
 				target_file = open(fname, "wb")
-				if  type(data) == types.FileType or hasattr(data, "read"):
+				if type(data) == types.FileType or hasattr(data, "read"):
 					shutil.copyfileobj(data, target_file)
 				else:
 					target_file.write(data)
 				target_file.close()
+		except Exception as e:
+			from utils.tracing import show_exception_trace
+			debug("Error on async file save:%s"%e)
+			debug(show_exception_trace())
+				
+		finally:
 			self.__sem.unlock()
 
 
@@ -64,9 +70,9 @@ class VDOM_file_manager(object):
 		try:
 			self.__queue.append((fname, data))
 		except:
-			self.__sem.unlock()
 			return False
-		self.__sem.unlock()
+		finally:
+			self.__sem.unlock()
 		return True
 
 	### Public ###
@@ -87,7 +93,7 @@ class VDOM_file_manager(object):
 		return os.path.getsize( dirpath )
 
 	
-	def write(self, restype, application_id, object_id, file_name, content, encode = False, async = False):
+	def write(self, restype, application_id, object_id, file_name, content, encode = False, async = False,rename=False):
 		"""Writes <content> to object file"""
 		if object_id:
 			dirpath = self.__get_path( restype, object_id,"")
@@ -110,12 +116,21 @@ class VDOM_file_manager(object):
 			if async:
 				ret = self.write_async(path, content)
 			else:
-				fh = open(path, "wb")
-				if  type(content) == types.FileType or hasattr(content, "read"):
-					shutil.copyfileobj(content, fh)
+				if isinstance(content,Attachment) and content._get_realpath():
+					if not content.handler.closed:
+						content.handler.close()
+					try:
+						os.rename(content._get_realpath(),path)
+					except OSError:#on windows if path is already exist
+						os.remove(path)
+						os.rename(content._get_realpath(),path)
 				else:
-					fh.write(content)
-				fh.close()
+					fh = open(path, "wb")
+					if  type(content) == types.FileType or hasattr(content, "read"):
+						shutil.copyfileobj(content, fh)
+					else:
+						fh.write(content)
+					fh.close()
 		except:
 			raise
 			#raise VDOM_exception(_("Can't write file %s") % path)
