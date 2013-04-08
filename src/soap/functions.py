@@ -12,7 +12,7 @@ def format_error(msg):
 
 def proxy(args):
 	try:
-		return args[0](*args[1:])# + ("\n<Key>%s</Key>" % args[2])
+		return args[0](*args[1:])
 	except SOAPpy.faultType, f:
 		raise
 	except VDOM_exception, v:
@@ -22,9 +22,9 @@ def proxy(args):
 		traceback.print_exc(file=debugfile)
 		return format_error(str(e))
 
-def proxy1(args):
+def proxy_key(args):
 	try:
-		return args[0](*args[1:])
+		return args[0](*args[1:]) + ("\n<Key>%s</Key>" % args[2])
 	except SOAPpy.faultType, f:
 		raise
 	except VDOM_exception, v:
@@ -195,10 +195,10 @@ def set_application_events(sid, skey, appid, objid, events, _SOAPContext):
 
 # execute object method
 def remote_method_call(sid, skey, appid, objid, func_name, xml_param, session_id, _SOAPContext):
-	return proxy([managers.soap_server.remote_method_call, sid, skey, appid, objid, func_name, xml_param, session_id])
+	return proxy_key([managers.soap_server.remote_method_call, sid, skey, appid, objid, func_name, xml_param, session_id])
 
 def remote_call(sid, skey, appid, objid, func_name, xml_param, xml_data, _SOAPContext):
-	return proxy([managers.soap_server.remote_call, sid, skey, appid, objid, func_name, xml_param, xml_data])
+	return proxy_key([managers.soap_server.remote_call, sid, skey, appid, objid, func_name, xml_param, xml_data])
 
 def install_application(sid, skey, vhname, appxml, _SOAPContext):
 	return proxy([managers.soap_server.install_application, sid, skey, vhname, appxml])
