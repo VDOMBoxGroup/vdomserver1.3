@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.551.8388</Version>
+    <Version>1.552.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass,desktopapplication,desktopshared,smartfolderdata</Containers>
@@ -1075,7 +1075,7 @@ def set_attr(app_id, object_id, param):
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="newClass" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery(this.domCont).addClass(newClass);
+$q(this.domCont).addClass(newClass);
 		  ]]></SourceCode>
         </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeClass">
@@ -1084,9 +1084,9 @@ jQuery(this.domCont).addClass(newClass);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="oldClass" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (jQuery(this.domCont).hasClass(oldClass)){
-	jQuery(this.domCont).removeClass(oldClass);
-	jQuery(this.domCont).addClass(newClass);
+if ($j(this.domCont).hasClass(oldClass)){
+	$j(this.domCont).removeClass(oldClass);
+	$j(this.domCont).addClass(newClass);
 }else{
 	console.info("Object " + this.domCont.id + " hasn't class " + oldClass);
 }
@@ -1144,7 +1144,15 @@ $j(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="cssClass" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery(this.domCont).attr('class', cssClass);
+$j(this.domCont).attr('class', cssClass);
+		  ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$j(this.domCont).removeClass(className);
 		  ]]></SourceCode>
         </Action>
         <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setTransparency">
@@ -1153,7 +1161,7 @@ jQuery(this.domCont).attr('class', cssClass);
           </Parameters>
           <SourceCode><![CDATA[
 var nn = parseInt(value,10) / 100;
-jQuery(this.domCont).css('opacity', nn);
+$j(this.domCont).css('opacity', nn);
                     ]]></SourceCode>
         </Action>
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="show">
