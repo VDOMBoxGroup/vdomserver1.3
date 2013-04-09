@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.374.8400</Version>
+    <Version>1.375.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -186,6 +186,7 @@
       <Sentence ID="511">Show the object</Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514">Set cursor to line</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">Show</Sentence>
@@ -196,6 +197,7 @@
       <Sentence ID="608">Show</Sentence>
       <Sentence ID="609">Show</Sentence>
       <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612">setCursor</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">newX</Sentence>
       <Sentence ID="703">newY</Sentence>
@@ -206,6 +208,7 @@
       <Sentence ID="708">Fade</Sentence>
       <Sentence ID="709">Fade</Sentence>
       <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712">Line number</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -216,6 +219,7 @@
       <Sentence ID="808">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="812">line</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -271,6 +275,7 @@
       <Sentence ID="511">Показать объект</Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
       <Sentence ID="603">Показать</Sentence>
@@ -281,6 +286,7 @@
       <Sentence ID="608">Показать</Sentence>
       <Sentence ID="609">Показать</Sentence>
       <Sentence ID="611">Показать</Sentence>
+      <Sentence ID="612"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Координата по оси X</Sentence>
       <Sentence ID="703">Координата по оси X</Sentence>
@@ -291,6 +297,7 @@
       <Sentence ID="708">Появление</Sentence>
       <Sentence ID="709">Появление</Sentence>
       <Sentence ID="711">Появление</Sentence>
+      <Sentence ID="712"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Координата новой точки по оси X</Sentence>
       <Sentence ID="803">Координата новой точки по оси Y</Sentence>
@@ -301,6 +308,7 @@
       <Sentence ID="808">Время появления в миллисекундах</Sentence>
       <Sentence ID="809">Время появления в миллисекундах</Sentence>
       <Sentence ID="811">Время появления в миллисекундах</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -356,6 +364,7 @@
       <Sentence ID="511">Show the object</Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">Show</Sentence>
@@ -366,6 +375,7 @@
       <Sentence ID="608">Show</Sentence>
       <Sentence ID="609">Show</Sentence>
       <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">newX</Sentence>
       <Sentence ID="703">newY</Sentence>
@@ -376,6 +386,7 @@
       <Sentence ID="708">Fade</Sentence>
       <Sentence ID="709">Fade</Sentence>
       <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="802">X-coordinate of new point</Sentence>
       <Sentence ID="803">Y-coordinate of new point</Sentence>
@@ -386,6 +397,7 @@
       <Sentence ID="808">Time of appearance</Sentence>
       <Sentence ID="809">Time of appearance</Sentence>
       <Sentence ID="811">Time of appearance</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -4697,6 +4709,7 @@ class VDOM_codeeditor(VDOM_object):
 	window.%(id)s_codeeditor = CodeMirror.fromTextArea($q('#%(id)s>textarea').get(0), {
 		mode: '%(mode)s',
 		lineNumbers: true,
+		styleActiveLine: true,
 		onCursorActivity: function() { window.%(id)s_codeeditor.matchHighlight("CodeMirror-matchhighlight"); }
 	});
 	$q('#%(id)s').parents('form:first').submit(function(){
@@ -4884,6 +4897,13 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="getValue">
+          <Parameters/>
+          <SourceCode><![CDATA[
+eval('var x='+this.domCont.id+"_codeeditor.getValue(value);");
+execEventBinded(id.substring(2, id.length), "getvalue", {value:x});
+]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -4902,6 +4922,12 @@ vdom_ui_hide(this.domCont, fade);
 vdom_ui_moveTo(this.domCont, newX, newY, Effect);
 ]]></SourceCode>
         </Action>
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="refresh">
+          <Parameters/>
+          <SourceCode><![CDATA[
+eval(this.domCont.id+"_codeeditor.refresh();");
+]]></SourceCode>
+        </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="width" Help="#Lang(805)" RegularExpressionValidation=".*"/>
@@ -4914,10 +4940,32 @@ $q('.CodeMirror-scroll', o).width(w).height(h);
 eval(this.domCont.id+"_codeeditor.refresh();");
 ]]></SourceCode>
         </Action>
+        <Action Help="#Lang(514)" InterfaceName="#Lang(612)" MethodName="setCursor">
+          <Parameters>
+            <Parameter DefaultValue="1" Interface="" InterfaceName="#Lang(812)" ScriptName="line" Help="#Lang(712)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+eval('window.'+this.domCont.id+'_codeeditor.focus(); window.'+this.domCont.id+'_codeeditor.setCursor('+parseInt(line,10)+');');
+]]></SourceCode>
+        </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setFocus">
           <Parameters/>
           <SourceCode><![CDATA[ 
-eval("#"+this.domCont.id+'_codeeditor.focus();');
+eval('window.'+this.domCont.id+'_codeeditor.focus();');
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setSyntax">
+          <Parameters>
+            <Parameter DefaultValue="'xml'" Interface="" InterfaceName="#Lang(709)" ScriptName="syntax" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setTheme">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="theme" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setValue">
@@ -4928,39 +4976,12 @@ eval("#"+this.domCont.id+'_codeeditor.focus();');
 eval(this.domCont.id+"_codeeditor.setValue(value);");
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="getValue">
-          <Parameters/>
-          <SourceCode><![CDATA[
-eval('var x='+this.domCont.id+"_codeeditor.getValue(value);");
-execEventBinded(id.substring(2, id.length), "getvalue", {value:x});
-]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setTheme">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="theme" Help="#Lang(808)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setSyntax">
-          <Parameters>
-            <Parameter DefaultValue="'xml'" Interface="" InterfaceName="#Lang(709)" ScriptName="syntax" Help="#Lang(809)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-]]></SourceCode>
-        </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="fade" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
-]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="refresh">
-          <Parameters/>
-          <SourceCode><![CDATA[
-eval(this.domCont.id+"_codeeditor.refresh();");
 ]]></SourceCode>
         </Action>
       </Container>
