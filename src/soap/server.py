@@ -1604,7 +1604,7 @@ class VDOM_web_services_server(object):
 			raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not defined"), _(""))
 		rctype = p["CallType"]
 		if rctype == "rmc":
-			if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
+			if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
 				raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
 			ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_data)
 		elif rctype == "rmc_over_session" and "HTTPSessionID" in p:
