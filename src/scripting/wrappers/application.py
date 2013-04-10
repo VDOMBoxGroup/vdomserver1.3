@@ -294,7 +294,7 @@ class VDOM_resources(object):
 	def get_list(self):
 		"""Geting resource list"""
 		from scripting.wrappers import application
-		return managers.resource_manager.list_resource(application.id)		
+		return managers.resource_manager.list_resources(application.id)
 		
 	def get_by_label(self, object_id, label):
 		return managers.resource_manager.get_resource_by_label(object_id, label)	
