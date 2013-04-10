@@ -99,10 +99,6 @@ template_login = u"""<form method="post" action="" enctype="multipart/form-data"
           <td>&nbsp;</td>
           <td align="left"><input type="submit" value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;"></td>
         </tr>
-         <tr>
-          <td height="82" class="Texte">Reinitialize Virtcard</td>
-          <td height="82" class="Texte"><input type="button" value="Proceed" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" onclick="if(confirm('Do you want to reinitialize Virtcard process? ')){document.location='/vcard.py?init';}"/></td>
-        </tr>
     </table>
 </form>
 
@@ -110,7 +106,7 @@ template_login = u"""<form method="post" action="" enctype="multipart/form-data"
       <table border="0">
          <tr>
           <td height="82" class="Texte">Reinitialize Virtcard</td>
-          <td height="82" class="Texte"><input type="button" value="Proceed" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" onclick="if(confirm('Do you want to reinitialize Virtcard process? ')){document.location='/vcard.py?init';}"/></td>
+          <td height="82" class="Texte"><input type="button" value="Proceed" name="init" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;" onclick="if(confirm('Do you want to reinitialize Virtcard process? ')){document.location='/vcard.py?init';}"/></td>
         </tr>
     </table>
 </form>
