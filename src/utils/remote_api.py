@@ -57,13 +57,17 @@ class VDOMService:
 		try:
 			server_skey = str(key_re.search(ret, 1).group(1))
 		except:
-			raise VDOMServiceCallError(str(ret))
+			server_skey = None
+			#raise VDOMServiceCallError(str(ret))
 
 		#assert (server_skey == self._skey)
 
 		self._skey = self._protector.next_session_key(self._skey)
 		self._request_num+=1
-		return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
+		if server_skey:
+			return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
+		else:
+			return ret
 
 	def remote(self, method, params = [], no_app_id = False):
 		if params:
@@ -75,13 +79,17 @@ class VDOMService:
 		try:
 			server_skey = str(key_re.search(ret, 1).group(1))
 		except:
-			raise VDOMServiceCallError(str(ret))
+			server_skey = None
+			#raise VDOMServiceCallError(str(ret))
 
 		#assert (server_skey == self._skey)
 
 		self._skey = self._protector.next_session_key(self._skey)
 		self._request_num+=1
-		return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
+		if server_skey:
+			return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
+		else:
+			return ret
 
 VDOM_service = VDOMService
 
