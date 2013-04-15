@@ -70,12 +70,12 @@ class VDOMService:
 			return ret
 
 	def remote(self, method, params = [], no_app_id = False):
-		if params:
-			ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num),self._application_id, *params)
-		elif no_app_id:
-			ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num))
-		else:
-			ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num),self._application_id)
+		if params == None:
+			params = []
+		if not no_app_id:
+			params.insert(0,self._application_id)
+		ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num), *params)
+	
 		try:
 			server_skey = str(key_re.search(ret, 1).group(1))
 		except:

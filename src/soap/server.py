@@ -1779,16 +1779,20 @@ class VDOM_web_services_server(object):
 			f.close()
 		return "<Result>%s</Result>"%ret
 	
-	def set_application_vhost(sid, skey, appid, hostname):
-		
+	def set_application_vhost(self, sid, skey, appid, hostname):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		if not managers.acl_manager.session_user_can_manage():
+			raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))				
 		if not hostname or hostname.lower() == "default" or hostname == 0:
 			managers.virtual_hosts.set_def_site(appid)
 		else:
 			managers.virtual_hosts.set_site(hostname, appid)
 		return "<Result>OK</Result>"
 	
-	def delete_application_vhost(sid, skey, hostname):
-		
+	def delete_application_vhost(self,sid, skey, hostname):
+		if not self.__check_session(sid, skey): return self.__session_key_error()
+		if not managers.acl_manager.session_user_can_manage():
+			raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))				
 		if not hostname or hostname.lower() == "default" or hostname == 0:
 			managers.virtual_hosts.set_def_site(None)
 		else:
