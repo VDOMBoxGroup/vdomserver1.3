@@ -1764,7 +1764,7 @@ class VDOM_web_services_server(object):
 		return "<Result>%s</Result>"%ret
 
 
-	def set_vcard_serial(self, sid, skey, serial, reboot):
+	def set_vcard_license(self, sid, skey, serial, reboot):
 		if not self.__check_session(sid, skey): return self.__session_key_error()
 		if not managers.acl_manager.session_user_can_manage():
 			raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))		

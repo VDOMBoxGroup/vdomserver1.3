@@ -80,7 +80,7 @@ methods = {
         "get_task_status"  : ["sid", "skey", "taskid"],
 	"restore_application" : ["sid", "skey", "appid", "driverid", "revision"],
 	"list_backup_drivers" : ["sid", "skey"],
-	"set_vcard_serial" : ["sid", "skey","serial","reboot"],        
+	"set_vcard_license" : ["sid", "skey","serial","reboot"],        
 
 	"create_guid" : ["sid", "skey"],
 	"get_thumbnail" : ["sid", "skey", "appid", "resid", "width", "height"],
