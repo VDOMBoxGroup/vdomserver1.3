@@ -116,21 +116,24 @@ class VDOM_file_manager(object):
 			if async:
 				ret = self.write_async(path, content)
 			else:
-				if isinstance(content,Attachment) and content._get_realpath():
-					if not content.handler.closed:
-						content.handler.close()
-					try:
-						os.rename(content._get_realpath(),path)
-					except OSError:#on windows if path is already exist
-						os.remove(path)
-						os.rename(content._get_realpath(),path)
-				else:
-					fh = open(path, "wb")
-					if  type(content) == types.FileType or hasattr(content, "read"):
-						shutil.copyfileobj(content, fh)
+				if isinstance(content,Attachment):
+					if content._get_realpath():
+						if not content.handler.closed:
+							content.handler.close()
+						try:
+							os.rename(content._get_realpath(),path)
+						except OSError:#on windows if path is already exist
+							os.remove(path)
+							os.rename(content._get_realpath(),path)
+						return
 					else:
-						fh.write(content)
-					fh.close()
+						content = content.handler
+				fh = open(path, "wb")
+				if  type(content) == types.FileType or hasattr(content, "read"):
+					shutil.copyfileobj(content, fh)
+				else:
+					fh.write(content)
+				fh.close()
 		except:
 			raise
 			#raise VDOM_exception(_("Can't write file %s") % path)
