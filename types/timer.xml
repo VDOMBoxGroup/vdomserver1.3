@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.38.8507</Version>
+    <Version>1.39.8507</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>2</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -454,7 +454,7 @@ class VDOM_time(VDOM_object):
 				jstartscript = """vdom_ui_timerStartOnce("%s", %s);""" % ( oid, self.interval )
 			else:
 				jstartscript = """vdom_ui_timerStart2("%s", %s);""" % ( oid, self.interval )
-			jstart = """<script language='javascript' type='text/javascript'> $j(function(){ $j(function(){ %s }); }); </script>""" % ( jstartscript )
+			jstart = """<script type='text/javascript'> $j(function(){ $j(function(){ %s }); }); </script>""" % ( jstartscript )
 		else:
 			jstart = ''
 		result += """<div id="%s" style="display:none">%s</div>""" % ( oid, jstart )
@@ -473,7 +473,7 @@ class VDOM_time(VDOM_object):
 		return VDOM_object.wysiwyg(self, parent, contents=result)]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[
-<script language='javascript' type='text/javascript'>
+<script type='text/javascript'>
 function vdom_ui_timerStartOnce(ob, interval)
 {
 	eval("var obj = Obj_" + ob.substring(2, ob.length) + ";");
