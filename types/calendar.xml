@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.356.6720</Version>
+    <Version>1.357.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,form</Containers>
@@ -1144,7 +1144,7 @@ class VDOM_calendar(VDOM_object):
 
 		result += u"""<div style='""" + style + """' id="calendar-container_%s"></div>
 		<input id="input_%s" name="%s" type="hidden">
-		<script language='javascript' type='text/javascript' src='%s'></script>
+		<script type='text/javascript' src='%s'></script>
 		<style>"""%(self.id, self.id, self.name, self.language) + styles_bodies + """</style>
 		<script type="text/javascript">
 		var SPECIAL_DAYS = '""" + self.specialdates + """'.split(',');
@@ -1344,8 +1344,8 @@ class VDOM_calendar(VDOM_object):
 
 ]]></SourceCode>
   <Libraries>
-    <Library Target="Html"><![CDATA[<script language='javascript' type='text/javascript' src='/e3dd01f6-5d9b-4c0f-994c-9bb476a16b41.res'></script>]]></Library>
-    <Library Target="Html"><![CDATA[<script language='javascript' type='text/javascript' src='/4418c799-4a94-493a-869e-bd1102079649.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/e3dd01f6-5d9b-4c0f-994c-9bb476a16b41.res'></script>]]></Library>
+    <Library Target="Html"><![CDATA[<script type='text/javascript' src='/4418c799-4a94-493a-869e-bd1102079649.res'></script>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
