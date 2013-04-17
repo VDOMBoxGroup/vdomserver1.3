@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.113.8388</Version>
+    <Version>1.114.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,password,dialog_2, vdomclass</Containers>
@@ -632,7 +632,7 @@ class VDOM_hypertext(VDOM_object):
 			classname = u'class="%s"' % self.classname if self.classname else u""
 
 			if VDOM_CONFIG_1["DEBUG"] == "1":
-				debug_info = u"objtype='bar' objname='%s' ver='%s'" % (self.name, self.type.version)
+				debug_info = u"objtype='hypertext' objname='%s' ver='%s'" % (self.name, self.type.version)
 			else:
 				debug_info = u""
 
@@ -676,7 +676,7 @@ class VDOM_hypertext(VDOM_object):
 						left = self.left,
 						width = self.width,
 						height = self.height,
-						html_data = u"<![CD"+"ATA["+ html_wys +"]"+"]>",
+						html_data = "<![CDATA"+"["+ html_wys +"]"+"]>",
 						overflow = overflow)
 
 		return VDOM_object.wysiwyg(self, parent, contents=result)
