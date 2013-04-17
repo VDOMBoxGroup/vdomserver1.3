@@ -328,7 +328,9 @@ class VDOM_application(object):
 	
 	def _get_version(self):
 		return managers.xml_manager.get_application(self.id).version
-
+	
+	def _get_variables(self):
+		return managers.xml_manager.get_application(self.id).variables
 
 	version=property(_get_version)
 	id=property(_get_id)
@@ -339,5 +341,5 @@ class VDOM_application(object):
 	resources=property(lambda self: self._resources)
 	storage=property(lambda self: self._storage)
 	itself=property(lambda self: managers.request_manager.current.application()) # temporary, for objectview
-
+	version=property(_get_variables)
 	

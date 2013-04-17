@@ -59,6 +59,7 @@ class VDOM_application(VDOM_parser):
 		self.events_by_object = {}	# map source_object_id : {ev_name : VDOM_application_event()}
 		self.actions = {}	# map ID : VDOM_action_info()
 		self.global_actions = {}# map ID : {name : VDOM_server_action()}
+		self.variables = {} #application-level dictionary for user-defined data
 		self.o_tmp = []
 		self.libs = {}
 		self.scripting_language = "vscript"
