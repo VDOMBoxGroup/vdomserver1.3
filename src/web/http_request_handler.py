@@ -315,6 +315,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		# process requested URI, call module manager
 		try:
 			(code, ret) = managers.module_manager.process_request(self.__request)
+			self.__request.collect_files()
 		except Exception as e:
 			requestline = "<br>"
 			if hasattr(self, "requestline"):
@@ -323,10 +324,10 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				self.request_version = "HTTP/1.1"
 			fe = "".join(["<br><br>", '-'*80, requestline, "<br>Exception happened during processing of request:", 
 				      traceback.format_exc(), '-'*40])
+			self.__request.collect_files()
 			self.send_error(500, excinfo=fe)
 			return None
-		finally:
-			self.__request.collect_files()
+		
 			
 		# check redirect
 		if self.__request.redirect_to:
