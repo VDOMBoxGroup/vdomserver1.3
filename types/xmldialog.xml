@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.74.6720</Version>
+    <Version>1.75.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -840,8 +840,11 @@ String.prototype.fmt=function(){
 };
 function vdom_xd_load(id,xd){
 	xd = $q.trim(xd).split('<!--[CDATA[').join('<![CDATA[').split(']]-->').join(']'+']>');
+	var w = $q(id);
+	w.html('');
+	if (xd === '') return;
 	var p = $q.parseXML(xd),
-		x = $q(p), w = $q(id), data = [],
+		x = $q(p), data = [],
 		dodiv = function(cn,lbl,htm,a){
 			var vis = parseInt(a.attr('visible') || '0', 10);
 			if (vis !== 1) vis = 'style="display:none"'; else vis = '';
@@ -850,7 +853,6 @@ function vdom_xd_load(id,xd){
 			var classes = a.attr('class') || '';
 			return "<div class='row {4} {5}' {0}><label class='title'>{2}</label><div class='item {1}'>{3}</div><br style='clear:both' /></div>".fmt(vis, cn, lbl, htm, fw, classes);
 		}
-	w.html('');
 	var nobtn = true;
 	x.find("VDOMFormContainer>Components>*").each(function(){
 		var t = $q(this), t0 = this, opts, s, sa, da, dis, sel, ro, disa;
@@ -881,14 +883,14 @@ function vdom_xd_load(id,xd){
 			lines = (lsize > 0) ? 'size="'+lsize+'"' : '';
 			var mult = parseInt(t.attr('multiple') || '0', 10);
 			mult = (mult == 1) ? "multiple='multiple'" : "";
-			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
-			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
+			opts = [], sa = $j.map(t.find("Property[name=selected]").text().split(','), $j.trim);
+			da = $j.map(t.find("Property[name=disabled]").text().split(','), $j.trim);
 			var optid, opti = 0, optarr1 = [], optarr1val = [], optarr2 = {}, optarr3 = {};
 			t.find("Property[name=options]>option").each(function(){
-				optid = $(this).attr('id').trim();
-				sel = ($.inArray(optid, sa) >= 0) ? "selected='selected'" : "";
-				dis = ($.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
-				s = $(this).text().trim();
+				optid = $j.trim($j(this).attr('id'));
+				sel = ($j.inArray(optid, sa) >= 0) ? "selected='selected'" : "";
+				dis = ($j.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
+				s = $j.trim($j(this).text());
 				if (s !== '') {
 					optarr1.push(optid);
 					optarr1val.push(s);
@@ -922,21 +924,21 @@ function vdom_xd_load(id,xd){
 			opts = [], sel = t.attr('selected') || '';
 
 //			t.find("Property[name=options]>option").each(function(){
-//				s = (sel == $(this).attr('id')) ? "checked='checked'" : "";
-//				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$(this).attr('id').replace('"','&quot;')+"\" "+s+" "+dis+" /> "+$(this).text().trim()+"</label>");
+//				s = (sel == $j(this).attr('id')) ? "checked='checked'" : "";
+//				opts.push("<label><input type='radio' name=\""+t.attr('id').replace('"','&quot;')+"\" value=\""+$j(this).attr('id').replace('"','&quot;')+"\" "+s+" "+dis+" /> "+$j.trim($j(this).text())+"</label>");
 //			});
 //			data.push(dodiv('radio', t.find('Property[name=label]').text(), opts.join(' '), t));
 
-			da = $.map(t.find("Property[name=disabled]").text().split(','), $.trim);
+			da = $j.map(t.find("Property[name=disabled]").text().split(','), $j.trim);
 			var optid, opti = 0, optarr1 = [], optarr2 = {}, optarr3 = {};
 			t.find("Property[name=options]>option").each(function(){
-				optid = $(this).attr('id').trim();
-				selx = (sel == $(this).attr('id')) ? "checked='checked'" : "";
-				dis = ($.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
-				s = $(this).text().trim();
+				optid = $j.trim($j(this).attr('id'));
+				selx = (sel == $j(this).attr('id')) ? "checked='checked'" : "";
+				dis = ($j.inArray(optid, da) >= 0) ? "disabled='disabled'" : "";
+				s = $j.trim($j(this).text());
 				if (s !== '') {
 					optarr1.push(optid);
-					optarr2[optid] = $(this).text().trim();
+					optarr2[optid] = $j.trim($j(this).text());
 					optarr3[optid] = selx + ' ' + dis;
 					opti++;
 				}
@@ -950,10 +952,10 @@ function vdom_xd_load(id,xd){
 		else if (t0.tagName == 'CheckBox') {
 			var dis = parseInt(t.attr('disabled') || '0', 10);
 			dis = (dis == 1) ? "disabled='disabled'" : "";
-			opts = [], sa = $.map(t.find("Property[name=selected]").text().split(','), $.trim);
+			opts = [], sa = $j.map(t.find("Property[name=selected]").text().split(','), $j.trim);
 			t.find("Property[name=options]>option").each(function(){
-				s = ($.inArray($(this).attr('id').trim(), sa) >= 0) ? "checked='checked'" : "";
-				opts.push("<label><input type='checkbox' name=\""+t.attr('id').replace('"','&quot;')+"["+$(this).attr('id')+"]\" "+s+" "+dis+" />&nbsp;"+$(this).text().trim()+"</label>");
+				s = ($j.inArray($j.trim($j(this).attr('id')), sa) >= 0) ? "checked='checked'" : "";
+				opts.push("<label><input type='checkbox' name=\""+t.attr('id').replace('"','&quot;')+"["+$j(this).attr('id')+"]\" "+s+" "+dis+" />&nbsp;"+$j.trim($j(this).text())+"</label>");
 			});
 			data.push(dodiv('checkbox', t.find('Property[name=label]').text(), opts.join('<br />'), t));
 		}
