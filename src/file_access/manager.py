@@ -90,7 +90,10 @@ class VDOM_file_manager(object):
 			dirpath = self.__get_path( restype, object_id,file_name)
 		else:
 			dirpath = self.__get_path( restype, application_id, file_name)
-		return os.path.getsize( dirpath )
+		try:
+			return os.path.getsize( dirpath )
+		except os.error:
+			return None
 
 	
 	def write(self, restype, application_id, object_id, file_name, content, encode = False, async = False,rename=False):
