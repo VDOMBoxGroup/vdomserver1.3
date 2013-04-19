@@ -55,14 +55,22 @@ class VDOM_response(object):
 
 	def _set_binary(self, value):
 		managers.request_manager.current.binary(b=value)
-
+	
+	def _get_whole_answer(self):
+		return managers.request_manager.current.wholeAnswer
+	
+	def _set_whole_answer(self, value):
+		managers.request_manager.current.wholeAnswer = value
+		
 	def _set_nocache(self, value):
 		if value: managers.request_manager.current.set_nocache()
+	
 	
 	headers=property(lambda self: self._headers)
 	cookies=property(_get_cookies)
 	binary=property(_get_binary, _set_binary)
 	nocache=property(fset=_set_nocache)
+	result = property(_get_whole_answer,_set_whole_answer)
 	shared_variables = property(lambda self: self._shared_vars)
 
 	def write(self, value, continue_render=False):
@@ -71,12 +79,15 @@ class VDOM_response(object):
 		else: raise ValueError
 		if not continue_render: managers.engine.terminate()
 
-	def send_file(self, filename, length, handler, content_type=None, cache_control=True):
-		return managers.request_manager.current.send_file(filename, length, handler, content_type,cache_control)
+	def send_file(self, filename, length, handler, content_type=None, cache_control=True, continue_render=False):
+		managers.request_manager.current.send_file(filename, length, handler, content_type,cache_control)
+		if not continue_render: managers.engine.terminate()
 
-	def redirect(self, target):
+	def redirect(self, target, continue_render=False):
 		managers.request_manager.current.redirect(target)
-		managers.engine.terminate()
+		if not continue_render: managers.engine.terminate()
 
 	def terminate(self):
 		managers.engine.terminate()
+		
+		
