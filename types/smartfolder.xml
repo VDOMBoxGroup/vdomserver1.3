@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.41.8388</Version>
+    <Version>1.42.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1292,7 +1292,7 @@ $j("#%(id)s .controls .control, #%(id)s .item-panel .control, #%(id)s .item-pane
 		}
 	} else
 	if (t.hasClass('delete')) {
-		if (confirm("%(msg_12)s")) {
+		//if (confirm("%(msg_12)s")) {
 			var x = sf.data('sf_items_selected') || [];
 			if (x.length) {
 				execEventBinded('%(woid)s', "delete", {"guidlist": x}, true);
@@ -1302,7 +1302,7 @@ $j("#%(id)s .controls .control, #%(id)s .item-panel .control, #%(id)s .item-pane
 					execEventBinded('%(woid)s', "delete", {"guidlist": [o.data('sf').guid]}, true);
 				}
 			}
-		}
+		//}
 	} else
 	if (t.hasClass('group')) {
 		var gs = sf.data('sf_items_selected') || [];
