@@ -1,6 +1,6 @@
 """server request handler module"""
 
-import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, threading, time, SOAPpy, traceback, select
+import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, threading, time, SOAPpy, traceback, select, cgi
 
 if sys.platform.startswith("freebsd"):
 	import vdomlib
@@ -71,10 +71,15 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				# do stuff w/exc_info here
 			finally:
 				exc_info = None    # Avoid circular ref.
-		self.send_response(int(status.split(' ')[0]))
+		self.send_response(int(status.split(' ')[0]), status.split(' ')[1])
 		for header in response_headers:
-			self.send_header(header[0], header[1])
+			if header[0] != 'Date':
+				self.send_header(header[0], header[1])
 		self.end_headers()
+		#print response_headers
+		#_str = '\n'.join( traceback.format_stack() )
+		#print _str
+		#cgi.escape( str )		
 		return self.wfile.write
 
 	def get_environ(self):
@@ -145,30 +150,38 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			mname = 'do_' + self.command
 			host = self.headers.get("host")
    
+			vh = managers.virtual_hosts
+			
+			app_id = (vh.get_site(host.lower()) if host else None) or vh.get_def_site()
+			self.wsgidav_app = None
+			if app_id:
+				try:
+					appl = managers.xml_manager.get_application(app_id)
+					self.wsgidav_app = getattr(appl, 'wsgidav_app', None)
+				except VDOM_exception_missing_app as e:
+					debug(e)			
+				else:
+					#dav_map = getattr(appl,"dav_map",None)
+					#if not dav_map:
+					#	appl.dav_map = set()
+					#	dav_map = appl.dav_map
+					#	for obj in appl.get_objects_list():
+					#		if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
+					#			dav_map.add("/" + obj.name)
+					#for realm in dav_map:    
+					#	if self.path.startswith(realm):
+					#		mname = 'do_WebDAV'
+					realm = self.path.strip("/").split("/").pop(0)
+					objects_list = appl.search_objects_by_name(realm)
+					for o in objects_list:
+						if managers.webdav_manager.get_webdav_share_path(appl.id, o.id) != None:
+							self.wsgidav_app = appl.wsgidav_app
+							mname = 'do_WebDAV'
+							break
+						
 			if self.command not in ("GET", "POST"):
 				mname = 'do_WebDAV'
-			else:
-				vh = managers.virtual_hosts
-
-				app_id = (vh.get_site(host.lower()) if host else None) or vh.get_def_site()
-				realm = ""    
-				if app_id:
-					try:
-						appl = managers.xml_manager.get_application(app_id)
-					except VDOM_exception_missing_app as e:
-						debug(e)
-					else:
-						dav_map = getattr(appl,"dav_map",None)
-						if not dav_map:
-							appl.dav_map = set()
-							dav_map = appl.dav_map
-							for obj in appl.get_objects_list():
-								if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
-									dav_map.add("/" + obj.name)
-						for realm in dav_map:    
-							if self.path.startswith(realm):
-								mname = 'do_WebDAV'
-
+			
 			if not hasattr(self, mname):
 				self.send_error(501, "Unsupported method (%r)" % self.command)
 				return
@@ -193,7 +206,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 	def do_WebDAV(self):
 		self.create_request(self.command.lower())
 		environ = self.get_environ()
-		application = webdav_server.server.wsgi_app
+		application = self.wsgidav_app
+		if not application: self.send_error(404, self.responses[404][0])
 		for v in application(environ, self.start_response):
 			shutil.copyfileobj(StringIO(v), self.wfile)
 			
