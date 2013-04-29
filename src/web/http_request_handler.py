@@ -71,7 +71,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				# do stuff w/exc_info here
 			finally:
 				exc_info = None    # Avoid circular ref.
-		self.send_response(int(status.split(' ')[0]), status.split(' ')[1])
+		status_code = int(status.split(' ')[0])
+		status_message = status[status.find(' ')+1:]
+		self.send_response(status_code, status_message)
 		for header in response_headers:
 			if header[0] != 'Date':
 				self.send_header(header[0], header[1])
