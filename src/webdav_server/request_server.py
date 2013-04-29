@@ -142,7 +142,7 @@ class VDOM_webdav_request_server(RequestServer):
 			handled = True
 		if handled:
 			return self._sendResponse(environ, start_response, 
-				                  srcRes, HTTP_NO_CONTENT, errorList)
+				                  srcRes, successCode, errorList)
 	
 		# --- Cleanup destination before copy/move ----------------------------- 
 	

@@ -207,9 +207,15 @@ class VDOM_resource(_DAVResource):
 #===============================================================================
 class VDOM_Provider(DAVProvider):
 
-	def __init__(self, rootFolderPath="", readonly=False):
+	def __init__(self, appid, objid, readonly=False):
 		super(VDOM_Provider, self).__init__()
-		self.rootFolderPath = rootFolderPath
+		try:
+			self.application = managers.xml_manager.get_application(appid)
+			self.obj = self.application.search_object(objid)
+		except:
+			self.application = None
+			self.obj = None
+		
 		self.readonly = readonly
 
 
@@ -219,27 +225,27 @@ class VDOM_Provider(DAVProvider):
 			rw = "Read-Only"
 		return "%s for WebDAV (%s)" % (self.__class__.__name__, rw)
 
-	def _setApplication(self, host):
+#	def _setApplication(self, host):
+#
+#		vh = managers.virtual_hosts
+#		app_id = vh.get_site(host.lower())
+#		if not app_id:
+#			app_id = vh.get_def_site()
+#		self.__app = managers.xml_manager.get_application(app_id)
 
-		vh = managers.virtual_hosts
-		app_id = vh.get_site(host.lower())
-		if not app_id:
-			app_id = vh.get_def_site()
-		self.__app = managers.xml_manager.get_application(app_id)
 
+#	def _getObjectId(self, path):
+#		pathInfoParts = path.strip("/").split("/")
+#		name = pathInfoParts[0]
+#		if not self.__app:
+#			return None
 
-	def _getObjectId(self, path):
-		pathInfoParts = path.strip("/").split("/")
-		name = pathInfoParts[0]
-		if not self.__app:
-			return None
-
-		try:        
-			obj = self.__app.get_objects_by_name()[name.lower()]
-			r  = util.toUnicode(obj.id) if obj else None
-		except:
-			r = ""
-		return r
+#		try:        
+#			obj = self.__app.get_objects_by_name()[name.lower()]
+#			r  = util.toUnicode(obj.id) if obj else None
+#		except:
+#			r = ""
+#		return r
 
 
 	def getResourceInst(self, path, environ):
@@ -248,48 +254,19 @@ class VDOM_Provider(DAVProvider):
 		See DAVProvider.getResourceInst()
 		"""
 		self._count_getResourceInst += 1
-		host = environ["HTTP_HOST"]
-		host = host.split(":")[0]
-		self._setApplication(host)
-		obj_id = self._getObjectId(path)
-		#request = VDOM_webdav_request(environ)
-		#managers.request_manager.current = request
 		path = os.path.normpath(path)
 		try:
-			if self.__app and obj_id:
+			if self.application and self.obj:
 				try:
-					res = get_properties(self.__app.id, obj_id, path)[0]
+					res = get_properties(self.application.id, self.obj.id, path)[0]
 				except:
 					res = None
 				if res:
 					isCollection = True if res["resourcetype"] == "Directory" else False
-					return VDOM_resource(path, isCollection, environ, self.__app.id, obj_id)
+					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id)
 				else:
 					return None
 		except:
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
-
-		
-class VDOM_webdav_manager(object):
 	
-	def add_to_cache(self, appid, objid, path):
-		if isinstance(path, unicode):
-			try:
-				utf8path = path.encode('utf8')
-				path = utf8path
-			except Exception, e:
-				debug("Error: " + unicode(e))
-		get_properties(appid, objid, path)
-		
-	def invalidate(self, appid, objid, path):
-		get_properties.invalidate(appid, objid, path)
-		
-	def clear(self):
-		get_properties.clear()
-		
-	def change_property_value(self, app_id, obj_id, path, propname, value):
-		get_properties.change_property_value(app_id, obj_id, path, propname, value)
-		
-	def change_parents_property(self, app_id, obj_id, path, propname, value):
-		get_properties.change_parents_property(self, app_id, obj_id, path, propname, value)

@@ -21,7 +21,7 @@
     <Languages>en_US</Languages>
     <RenderType/>
     <HTTPContentType/>
-    <Handlers/>
+    <Handlers>set_name, on_delete</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -147,20 +147,34 @@ g3UXeoe3HMQAAAAASUVORK5CYII=]]></Resource>
   <SourceCode><![CDATA[
   
 class VDOM_webdavcontainer(VDOM_object):
-
+	
 	def wysiwyg(self, parent, contents=""):
-		actions = {"authentication": ["path", "user", "password"],
-		           "getResourseProperties": ["path"],
-				   "isCollection": ["path"],
-				   "getMembers": ["path"],
-				   "getData": ["path"]
-				   }
-		for act in actions:
-			if act not in self.object.actions["name"]:
-				self.object.create_action(act, "")
 		result="<container id=\"%s\" visible=\"%s\" hierarchy=\"%s\" >%s</container>"%(self.id, self.visible, self.hierarchy, contents)
 		return VDOM_object.wysiwyg(self, parent, contents=result)
 		
+def set_name(application_id, object_id, param):
+	actions = {"authentication": ["path", "user", "password"],
+				"getResourseProperties": ["path"],
+				"isCollection": ["path"],
+				"getMembers": ["path"],
+				"getData": ["path"]
+				}
+	object = managers.xml_manager.search_object(application_id, object_id)
+	for act in actions:
+		if act not in object.actions["name"]:
+			object.create_action(act, "")
+	sharePath = "/"+object.name
+	oldSharePath = managers.webdav_manager.get_webdav_share_path(application_id, object_id)
+	if oldSharePath and oldSharePath != sharePath:
+		managers.webdav_manager.del_webdav(application_id, object_id, oldSharePath)
+	managers.webdav_manager.add_webdav(application_id, object_id, sharePath)
+	
+	
+	
+def on_delete(application_id, object_id, param):
+	SharePath = managers.webdav_manager.get_webdav_share_path(application_id, object_id)
+	if SharePath: managers.webdav_manager.del_webdav(application_id, object_id, SharePath)
+	
   ]]></SourceCode>
   <Libraries/>
   <E2vdom>

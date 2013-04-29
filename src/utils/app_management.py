@@ -38,6 +38,7 @@ def import_application(path, ext = "xml"):
 
 	try:
 		ret = managers.xml_manager.import_application(thepath)
+		managers.webdav_manager.load_webdav(ret[0])
 	except:
 		if "zip" == ext:
 			shutil.rmtree(direct)
@@ -52,6 +53,7 @@ def uninstall_application(appid, remove_db = True, remove_zero_res = True, remov
 		#TODO: find better way to change current application
 		request = managers.request_manager.get_request()
 		request.set_application_id(appid)
+		managers.webdav_manager.del_all_webdav(appid)
 		ret = managers.xml_manager.uninstall_application(appid, remove_db, remove_zero_res, remove_storage, remove_ldap)
 	except Exception, e:
 		import traceback
@@ -147,6 +149,7 @@ def update_application(path, vh):
 	debug("Uninstall current version...")
 	try:
 		managers.xml_manager.uninstall_application(appid, remove_db=False, remove_zero_res=False, remove_storage=False, remove_ldap=False)
+		managers.webdav_manager.del_all_webdav(appid)
 	except Exception, e:
 		# nothing deleted (no del rights) - temp folders to be removed
 		if tmpappdir:
