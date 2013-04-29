@@ -38,6 +38,7 @@ from mailing import VDOM_email_manager
 from soap import VDOM_soap_server
 from managment import VDOM_server_manager
 from scheduler import VDOM_scheduler_manager
+from task import VDOM_task_manager
 from backup import VDOM_backup_manager
 from webdav_server import VDOM_webdav_manager
 
@@ -66,8 +67,9 @@ try:
 	managers.register("email_manager", VDOM_email_manager)
 	managers.register("soap_server", VDOM_soap_server)
 	managers.register("server_manager", VDOM_server_manager)	
+	managers.register("task_manager", VDOM_task_manager)	
 	managers.register("backup_manager", VDOM_backup_manager)
-	managers.register("webdav", VDOM_webdav_manager)
+	managers.register("webdav_manager", VDOM_webdav_manager)
 
 	if sys.platform.startswith("linux") and VDOM_CONFIG_1["DEBUG"] == "1":
 		from utils.system_linux import open_debug_port
