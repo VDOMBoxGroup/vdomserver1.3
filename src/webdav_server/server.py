@@ -28,11 +28,10 @@ class VDOM_webdav_manager(object):
 		self.__index = {}
 		app_list = managers.xml_manager.get_applications()
 		for appid in app_list:
-			start_dav = False
-			
 			self.load_webdav(appid)
 			
 	def load_webdav(self, appid):
+		start_dav = False		
 		__conf = self.__config.copy()
 		__conf["domaincontroller"] = VDOM_domain_controller(appid)		
 		app = managers.xml_manager.get_application(appid)
