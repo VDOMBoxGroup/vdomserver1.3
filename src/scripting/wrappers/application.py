@@ -341,5 +341,5 @@ class VDOM_application(object):
 	resources=property(lambda self: self._resources)
 	storage=property(lambda self: self._storage)
 	itself=property(lambda self: managers.request_manager.current.application()) # temporary, for objectview
-	version=property(_get_variables)
+	variables=property(_get_variables)
 	
