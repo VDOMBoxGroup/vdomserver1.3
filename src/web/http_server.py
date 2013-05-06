@@ -65,6 +65,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		self.encoding           = encoding
 		self.log                = log
 		self.allow_reuse_address= 1
+		self.__maximum_connections=100
 		
 		#create semaphore
 		self.__sem = VDOM_semaphore()
@@ -82,12 +83,6 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 				ca_certs=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "ca.cert")
 			else:
 				ca_certs = None
-			#certfile=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "server.cert")
-			#keyfile=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "server.pem")
-			#ca_certs=os.path.join(VDOM_CONFIG["CERTIFICATE-DIRECTORY"], "ca.cert")
-			#certfile = "../app/cert/fb.cert"
-			#keyfile = "../app/cert/fb.key"
-			#ca_certs = None#"../app/cert"
 			SocketServer.BaseServer.__init__(self, server_address, request_handler_class)
 			self.socket = ssl.wrap_socket(socket.socket(self.address_family,self.socket_type),
 				                      server_side=True,do_handshake_on_connect=True,
@@ -182,12 +177,14 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			#	except: pass
 			#	if "1" != system_options["server_license_type"] and l < managers.xml_manager.obj_count:
 			#		limit = False
-			self.__reject = 0
-	#		if self.__current_connections >= self.__maximum_connections: self.__reject = 1
-	#		else:
+	
+			if self.__current_connections >= self.__maximum_connections: 
+				self.__reject = 1
+			else:
+				self.__reject = 0
 			self.__current_connections += 1
 			self.client_address = client_address
-			if "127.0.0.1" != client_address[0]:
+			if True or "127.0.0.1" != client_address[0]:
 				debug("Increase: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
 		finally:
 			self.__sem.unlock()
@@ -199,7 +196,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 				do_handle = False
 			if self.__current_connections > 0:
 				self.__current_connections -= 1
-				if "127.0.0.1" != client_address[0]:
+				if True or "127.0.0.1" != client_address[0]:
 					debug("Decrease: %d (exception, from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
 					#import gc
 					#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
@@ -215,7 +212,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			#debug("NOTIFY REQUEST")
 			if self.__current_connections > 0:
 				self.__current_connections -= 1
-				if "127.0.0.1" != client_address[0]:
+				if True or "127.0.0.1" != client_address[0]:
 					debug("Decrease: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
 					#import gc
 					#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")

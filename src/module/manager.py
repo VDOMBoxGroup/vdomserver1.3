@@ -115,7 +115,7 @@ class VDOM_module_manager(object):
 			if obj.parent != None:
 				return (404, None)# _("This is not a top level container")
 
-			if "1" == system_options["server_license_type"] and request_object.number_of_connections >= len(obj.get_all_children()):
+			if "1" == system_options["server_license_type"] and request_object.number_of_connections > 2:#= len(obj.get_all_children()):
 				return (503, None)
 
 			# set content type of container
