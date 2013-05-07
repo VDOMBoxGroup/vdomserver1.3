@@ -128,6 +128,7 @@ class VDOM_file_manager(object):
 						except OSError:#on windows if path is already exist
 							os.remove(path)
 							os.rename(content._get_realpath(),path)
+						content._del_fileobj()
 						return
 					else:
 						content = content.handler
