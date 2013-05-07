@@ -29,11 +29,13 @@ class File_argument(object):
 		
 	def remove(self):
 		"""Remove uploaded file from HDD"""
-		filepath = getattr(self.fileobj,"name",None)
-		if not self.fileobj.closed:
-			self.fileobj.close()
-		if filepath:
-			os.remove(filepath)
+		if self.fileobj:
+			filepath = getattr(self.fileobj,"name",None)
+			if not self.fileobj.closed:
+				self.fileobj.close()
+			if filepath:
+				os.remove(filepath)
+			self.fileobj = None#TODO: maybe not none bug StringIO()?
 		
 	def close(self):
 		"""Close file object and give name"""
@@ -51,6 +53,8 @@ class Attachment(object):
 		return self.__filearg.fileobj
 	def _get_realpath(self):
 		return getattr(self.__filearg.fileobj,"name",None)
+	def _del_fileobj(self):
+		self.__filearg.fileobj = None
 
 	name = property(__get_filename)
 	handler = property(__get_handler)
