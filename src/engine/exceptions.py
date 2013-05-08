@@ -1,5 +1,5 @@
 
-class RenderTermination(Exception):
+class RenderTermination(BaseException):
 	
 	def __str__(self):
 		return "Render termination"
