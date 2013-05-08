@@ -38,6 +38,10 @@ class VDOM_sandbox:
 		# debug("[Trace] Local %s/%s/%s"%(str(frame), str(event), str(arg)))
 		""" Local trace routine """
 		if event=='line' and time.time()>self.deadline:
+			c_byte = ord( frame.f_code.co_code[frame.f_lasti] )
+			#If next command is try - then let python register it before terminating. Used to avoid deadlocks
+			if c_byte in [ 121, 122 ]:
+				return self.localtrace			
 			sys.settrace(None)
 			raise VDOM_timeout_exception("Routine not responding in given timeout")
 		return self.localtrace
