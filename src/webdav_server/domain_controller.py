@@ -2,6 +2,17 @@ import managers
 import wsgidav.util as util
 from webdav_request import VDOM_webdav_request
 from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN
+from webdav_cache import lru_cache
+
+
+def authAppUser(app_id, obj_id, user, password):
+	xml_data = """{"user": "%s","password": "%s"}""" % (user, password)
+	try:
+		ret = managers.dispatcher.dispatch_action(app_id, obj_id, "authentication", "",xml_data)
+	except:
+		ret = False
+		#raise DAVError(HTTP_FORBIDDEN)
+	return ret
 
 class VDOM_domain_controller(object):
 	
@@ -41,17 +52,19 @@ class VDOM_domain_controller(object):
 		path = environ["PATH_INFO"]
 		obj_id = realmname
 		func_name = "authentication"
+		session = managers.request_manager.current.session()
+		if "dav_user" in session and session["dav_user"] == (self._application.id, obj_id,username, password):
+			return True
+		else:
+			ret = authAppUser(self._application.id, obj_id,username, password)
+			if ret:
+				session["dav_user"] = (self._application.id, obj_id,username, password)
+				return True
+			else:
+				return False
+		#raise DAVError(HTTP_FORBIDDEN)
+	
 
-		xml_data = """{"path": "%s",
-		            "user": "%s",
-		            "password": "%s"}""" % (path, username, password)
-		try:
-			ret = managers.dispatcher.dispatch_action(self._application.id, obj_id, func_name, "",xml_data)
-		except:
-			raise DAVError(HTTP_FORBIDDEN)
-		if ret:
-			return ret
-		return False
 
 #	def _get_app(self, host):
 #

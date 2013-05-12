@@ -2,7 +2,7 @@ import collections, os
 import functools
 import wsgidav.util as util
 import managers
-
+import posixpath
 def lru_cache(maxsize=100):
 	'''Least-recently-used cache decorator.
 
@@ -74,7 +74,7 @@ def lru_cache(maxsize=100):
 		def change_parents_property(app_id, obj_id, path, propname, value):
 			change_property_value(app_id, obj_id, path, propname, value)
 			for key in cache:
-				if (key[0], key[1]) == (app_id, obj_id) and os.path.normpath(util.getUriParent(path)) == os.path.normpath(key[2]):
+				if (key[0], key[1]) == (app_id, obj_id) and posixpath.normpath(util.getUriParent(path)) == os.path.normpath(key[2]):
 					change_parents_property(app_id, obj_id, key[2], propname, value)			
 
 		def clear():
