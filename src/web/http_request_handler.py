@@ -77,6 +77,11 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		for header in response_headers:
 			if header[0] != 'Date':
 				self.send_header(header[0], header[1])
+				
+		cookies = self.__request.cookies().output()
+		if len(cookies)>0:
+			self.wfile.write("%s\r\n" % cookies)
+			
 		self.end_headers()
 		#print response_headers
 		#_str = '\n'.join( traceback.format_stack() )
@@ -211,7 +216,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		application = self.wsgidav_app
 		if not application: self.send_error(404, self.responses[404][0])
 		for v in application(environ, self.start_response):
-			shutil.copyfileobj(StringIO(v), self.wfile)
+			self.wfile.write(v)
+			#shutil.copyfileobj(StringIO(v), self.wfile)
 			
 		
 		

@@ -67,7 +67,7 @@ class VDOM_object_actions(object):
 class VDOM_object(object):
 
 	def __init__(self, id):
-		debug("[Object] Initialize %s"%id)
+		#debug("[Object] Initialize %s"%id)
 		self.__id=id
 		self.__object=obsolete_request.vdom.search_object(id)
 		self.__type=self.__object.type
@@ -190,7 +190,7 @@ class VDOM_object(object):
 		if context is global_context or self.__id==context:
 			action=self.__object.actions["name"].get(action_name, None)
 			if action and action.code:
-				debug("[Object] Execute %s action \"%s\" in context %s:"%(self.__id, action_name, context))
+				#debug("[Object] Execute %s action \"%s\" in context %s:"%(self.__id, action_name, context))
 				if action.cache is None:
 					language=managers.request_manager.get_request().application().scripting_language
 					#if action.lang=="python":

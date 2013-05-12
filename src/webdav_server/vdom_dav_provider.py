@@ -16,7 +16,7 @@ See `Developers info`_ for more information about the WsgiDAV architecture.
 .. _`Developers info`: http://docs.wsgidav.googlecode.com/hg/html/develop.html  
 """
 from collections import OrderedDict
-from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN
+from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN,HTTP_REQUEST_TIMEOUT,HTTP_NOT_FOUND
 from wsgidav.dav_provider import DAVProvider, DAVCollection, DAVNonCollection, _DAVResource
 from wsgidav.property_manager import PropertyManager
 from StringIO import StringIO
@@ -29,6 +29,7 @@ import stat
 import managers
 from webdav_request import VDOM_webdav_request
 from webdav_cache import lru_cache
+import posixpath
 __docformat__ = "reStructuredText"
 
 _logger = util.getModuleLogger(__name__)
@@ -254,18 +255,22 @@ class VDOM_Provider(DAVProvider):
 		See DAVProvider.getResourceInst()
 		"""
 		self._count_getResourceInst += 1
-		path = os.path.normpath(path)
+		path = posixpath.normpath(path)
 		try:
 			if self.application and self.obj:
 				try:
-					res = get_properties(self.application.id, self.obj.id, path)[0]
-				except:
-					res = None
-				if res:
+					res = get_properties(self.application.id, self.obj.id, path)
+				except Exception as e:
+					debug("getResourceInst error: %s"%e)
+					raise DAVError(HTTP_REQUEST_TIMEOUT)
+			
+				if not res or res[0]==None:
+					return None
+				else:
+					res = res[0]
 					isCollection = True if res["resourcetype"] == "Directory" else False
 					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id)
-				else:
-					return None
+				
 		except:
 			raise DAVError(HTTP_FORBIDDEN)
 		return None

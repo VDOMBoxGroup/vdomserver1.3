@@ -220,7 +220,7 @@ class VDOM_source(object):
 			self.__compile_common()
 		if not self.__render_code:
 			self.__compile_render()
-		debug("[Source] Render %s"%(self.id))
+		#debug("[Source] Render %s"%(self.id))
 		sandbox=VDOM_sandbox(self.__execute_render)
 		return sandbox.execute(VDOM_CONFIG["RENDER-TIMEOUT"], arguments={"parent": parent, "override": override, "include": include})
 
@@ -230,7 +230,7 @@ class VDOM_source(object):
 			self.__compile_common()
 		if not self.__wysiwyg_code:
 			self.__compile_wysiwyg()
-		debug("[Source] Wysiwyg %s"%(self.id))
+		#debug("[Source] Wysiwyg %s"%(self.id))
 		sandbox=VDOM_sandbox(self.__execute_wysiwyg)
 		return sandbox.execute(VDOM_CONFIG["WYSIWYG-TIMEOUT"], arguments={"parent": parent, "override": override, "include": include})
 
@@ -240,7 +240,7 @@ class VDOM_source(object):
 			self.__compile_common()
 		if not self.__execute_code:
 			self.__compile_execute()
-		debug("[Source] Execute %s action \"%s\""%(self.id, self.action_name))
+		#debug("[Source] Execute %s action \"%s\""%(self.id, self.action_name))
 		sandbox=VDOM_sandbox(self.__execute_execute)
 		return sandbox.execute(VDOM_CONFIG["RENDER-TIMEOUT"], arguments={"parent": parent, "silent": silent, "override": override, "include": include})
 
