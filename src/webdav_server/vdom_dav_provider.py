@@ -255,7 +255,7 @@ class VDOM_Provider(DAVProvider):
 		See DAVProvider.getResourceInst()
 		"""
 		self._count_getResourceInst += 1
-		path = posixpath.normpath(path)
+		path = posixpath.normpath(path or "/")
 		try:
 			if self.application and self.obj:
 				try:
