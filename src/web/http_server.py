@@ -65,7 +65,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		self.encoding           = encoding
 		self.log                = log
 		self.allow_reuse_address= 1
-		self.__maximum_connections=100
+		self.__maximum_connections=200
 		
 		#create semaphore
 		self.__sem = VDOM_semaphore()

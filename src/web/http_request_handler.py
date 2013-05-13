@@ -78,9 +78,10 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			if header[0] != 'Date':
 				self.send_header(header[0], header[1])
 				
-		cookies = self.__request.cookies().output()
-		if len(cookies)>0:
-			self.wfile.write("%s\r\n" % cookies)
+		cookies = self.__request.cookies()
+		if "sid" in cookies:
+			cookies["sid"]["path"] = "/"
+			self.wfile.write("%s\r\n" % cookies.output())
 			
 		self.end_headers()
 		#print response_headers
@@ -211,6 +212,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			self.handle_one_request()
 
 	def do_WebDAV(self):
+		if self.__reject:
+			self.send_error(503, self.responses[503][0])
+			return None		
 		self.create_request(self.command.lower())
 		environ = self.get_environ()
 		application = self.wsgidav_app
