@@ -178,11 +178,15 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))			
 			return True
+		else:
+			if self.path == "/":
+				get_properties.invalidate( self._app_id, self._obj_id, "/" )
+			else:
+				get_properties.invalidate( self._app_id, self._obj_id, posixpath.normpath(util.getUriParent(self.path)))
 
-		raise DAVError(HTTP_FORBIDDEN)
-
+			raise DAVError(HTTP_FORBIDDEN)
+	
 	def handleCopy(self, destPath, depthInfinity):
 		func_name = "copy"
 		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self.path, destPath)
