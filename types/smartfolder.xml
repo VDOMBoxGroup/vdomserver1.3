@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.42.8388</Version>
+    <Version>1.48.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1353,9 +1353,15 @@ $j("#%(id)s .controls .control, #%(id)s .item-panel .control, #%(id)s .item-pane
 		var ss = $j("#%(id)s .items .%(class)s:not(.noselect)");
 		ss.addClass('selected');
 		$j('.sub', $(this).parents('.controls:first')).hide(0);
+		var z = null;
 		$j.each(ss, function(i,x){
 			vdom_sf_selected_add(sf, $(x).attr('index'));
+			//console.info(i, x, $(x))
+			if (i == 0) z == $(x);
 		});
+		sf.data('sf_current_item', z);
+		vdom_sf_check_panel(sf, z);
+		vdom_sf_check_selected(sf);
 	} else
 	if (t.hasClass('selectnone')) {
 		$j("#%(id)s .items .%(class)s").removeClass('selected');
@@ -1424,6 +1430,20 @@ vdom_sf_init('%(id)s');
 
 function vdom_sf_set_drag(sfid) {
 	vdom_sf_set_dnd(sfid.attr('id'), '%(woid)s', '%(class)s');
+}
+
+function vdom_sf_check_panel(sfid, t) {
+	if (vdom_sf_selected_count(sfid) > 0 || sfid.find('.has-current').size() > 0) {
+		$j('.item-panel .buttons .group', sfid).show(0);
+		$j('.item-panel .buttons .ungroup', sfid).hide(0);
+	} else {
+		$j('.item-panel .buttons .group', sfid).hide(0);
+		if (t.hasClass('group')) {
+			$j('.item-panel .buttons .ungroup', sfid).show(0);
+		} else {
+			$j('.item-panel .buttons .ungroup', sfid).hide(0);
+		}
+	}
 }
 
 function vdom_sf_set_handlers(sfid){
@@ -1575,17 +1595,7 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 						}
 					}
 */
-					if (vdom_sf_selected_count(sfid) > 0 || t.parents('.items').find('.has-current').size() > 0) {
-						$j('.item-panel .buttons .group', sfid).show(0);
-						$j('.item-panel .buttons .ungroup', sfid).hide(0);
-					} else {
-						$j('.item-panel .buttons .group', sfid).hide(0);
-						if (t.hasClass('group')) {
-							$j('.item-panel .buttons .ungroup', sfid).show(0);
-						} else {
-							$j('.item-panel .buttons .ungroup', sfid).hide(0);
-						}
-					}
+					vdom_sf_check_panel(sfid, t);
 
 				}
 			}, 250);
@@ -1603,31 +1613,37 @@ t.stop().css("opacity", 0).animate({ opacity: 1 }, 1000);
 
 }
 
+function vdom_sf_check_selected(sf) {
+	sf.find(".controls .control.select span.count").text( $j(sf.data('sf_items_selected')).size() );
+}
 
-function vdom_sf_selected_add(sfid, guid){
-	var sa = sfid.data('sf_items_selected');
+function vdom_sf_selected_add(sf, guid){
+	var sa = sf.data('sf_items_selected');
 	var x = $j.inArray(guid, sa);
 	if (x < 0) {
 		sa.push(guid);
-		sfid.data('sf_items_selected', sa);
+		sf.data('sf_items_selected', sa);
+		vdom_sf_check_selected(sf);
 	}
 }
 
-function vdom_sf_selected_remove(sfid, guid){
-	var sa = sfid.data('sf_items_selected');
+function vdom_sf_selected_remove(sf, guid){
+	var sa = sf.data('sf_items_selected');
 	var x = $j.inArray(guid, sa);
 	if (x >= 0) {
 		sa.splice(x,1);
-		sfid.data('sf_items_selected', sa);
+		sf.data('sf_items_selected', sa);
+		vdom_sf_check_selected(sf);
 	}
 }
 
-function vdom_sf_selected_remove_all(sfid){
-	sfid.data('sf_items_selected', []);
+function vdom_sf_selected_remove_all(sf){
+	sf.data('sf_items_selected', []);
+	vdom_sf_check_selected(sf);
 }
 
-function vdom_sf_selected_count(sfid){
-	return $j(sfid.data('sf_items_selected')).size();
+function vdom_sf_selected_count(sf){
+	return $j(sf.data('sf_items_selected')).size();
 }
 
 function vdom_sf_refresh(sfid){
@@ -1637,6 +1653,7 @@ function vdom_sf_refresh(sfid){
 		guid = p[p.length-1];
 	}
 	sf.data('sf_current_item', null);
+	vdom_sf_check_selected(sf);
 	execEventBinded('%(woid)s', "requestdata", {"guid": guid}, true);
 }
 
@@ -1707,6 +1724,8 @@ function vdom_sf_load(id,path,total,data){
 		});
 	}
 	$j('.pathway',sf).html(d.join(' &rsaquo; '));
+
+	vdom_sf_check_selected(sf);
 
 	vdom_sf_set_handlers(sf);
 	//vdom_sf_set_drag(sf);
@@ -2065,14 +2084,14 @@ $j(function(){
 
 		toolbar = u"""
 			<div class='controls' %(chide)s>
-				<div class='control add'>%(button_add)s</div>
+				<div class='control add'><span class='icon'></span><span class='label'>%(button_add)s</span></div>
 				<!--div class='control selectmode' %(button_selectmode_hide)s>%(button_selectmode)s</div-->
 				<div class='control select'>
-					<span></span>
-					%(button_select)s
+					<span class='count'></span>
+					<span class='title'>%(button_select)s</span>
 					<div class='sub'>
-						<div class='control selectall'>%(button_selectall)s</div>
-						<div class='control selectnone'>%(button_selectnone)s</div>
+						<div class='control selectall'><span class='icon'></span><span class='label'>%(button_selectall)s</span></div>
+						<div class='control selectnone'><span class='icon'></span><span class='label'>%(button_selectnone)s</span></div>
 					</div>
 				</div>
 				<div style='clear:both'></div>
@@ -2115,10 +2134,10 @@ $j(function(){
 				</div>
 				<div class='item-panel'>
 					<div class='buttons'>
-						<a class='control group'>{button_group}</a>
-						<a class='control ungroup'>{button_ungroup}</a>
-						<a class='control rules'>{button_rules}</a>
-						<a class='control delete'>{button_delete}</a>
+						<a class='control group'><span class='icon'></span><span class='label'>{button_group}</span></a>
+						<a class='control ungroup'><span class='icon'></span><span class='label'>{button_ungroup}</span></a>
+						<a class='control rules'><span class='icon'></span><span class='label'>{button_rules}</span></a>
+						<a class='control delete'><span class='icon'></span><span class='label'>{button_delete}</span></a>
 					</div>
 					<span class='title-wrap'>
 						<span class='title'></span>
