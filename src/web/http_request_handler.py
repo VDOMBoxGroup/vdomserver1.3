@@ -218,11 +218,11 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		self.create_request(self.command.lower())
 		environ = self.get_environ()
 		application = self.wsgidav_app
-		if not application: self.send_error(404, self.responses[404][0])
-		for v in application(environ, self.start_response):
-			self.wfile.write(v)
-			#shutil.copyfileobj(StringIO(v), self.wfile)
-			
+		if not application or environ["PATH_INFO"] == "/": 
+			self.send_error(404, self.responses[404][0])
+		else:
+			for v in application(environ, self.start_response):
+				self.wfile.write(v)
 		
 		
 	def do_GET(self):
