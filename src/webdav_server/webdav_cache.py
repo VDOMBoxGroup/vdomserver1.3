@@ -40,7 +40,7 @@ def lru_cache(maxsize=100):
 				pass
 			for key in cache:
 				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-					del cache[key]
+					cache.pop(key,None)
 
 
 		def get_children_names(app_id, obj_id, path):
