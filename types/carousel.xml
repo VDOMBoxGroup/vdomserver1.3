@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.8.8388</Version>
+    <Version>1.9.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -200,19 +200,19 @@
       <Sentence ID="112">Duration</Sentence>
       <Sentence ID="113">Custom Init</Sentence>
       <Sentence ID="114">Class CSS</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">newAttribute3</Sentence>
-      <Sentence ID="205">newAttribute4</Sentence>
-      <Sentence ID="206">newAttribute5</Sentence>
-      <Sentence ID="207">newAttribute6</Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="211"></Sentence>
-      <Sentence ID="212">Duration</Sentence>
-      <Sentence ID="213">Custom init parameters, no last comma. See docs on http://caroufredsel.frebsite.nl</Sentence>
-      <Sentence ID="214">newAttribute11</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The range of HTML elements.</Sentence>
+      <Sentence ID="209">The direction of scrolling the items; it determines whether the object scrolls the items and in what direction to scroll them.</Sentence>
+      <Sentence ID="211">The number of items to display.</Sentence>
+      <Sentence ID="212">The duration of displaying the items.</Sentence>
+      <Sentence ID="213">The JavaScript code initialization.</Sentence>
+      <Sentence ID="214">The names of CSS classes separated by spaces. The names can consist only of Latin characters, may include hyphen (-) and underscore (_). The CSS style must be placed in some other object, for example, in 'Hypertext' object.</Sentence>
       <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer from 0 to 99</Sentence>

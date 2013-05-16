@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.15.1</Version>
+    <Version>2.16.1</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, dialog_2, vdomclass</Containers>
@@ -187,18 +187,18 @@
       <Sentence ID="111">Link color</Sentence>
       <Sentence ID="112">FontFamily</Sentence>
       <Sentence ID="113">FontSize</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
-      <Sentence ID="207">Height in pixels</Sentence>
-      <Sentence ID="208">Application structure level</Sentence>
-      <Sentence ID="209">Text color</Sentence>
-      <Sentence ID="211">Link color</Sentence>
-      <Sentence ID="212">Font family</Sentence>
-      <Sentence ID="213">Font size</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The application structure level.</Sentence>
+      <Sentence ID="209">The color of the text.</Sentence>
+      <Sentence ID="211">The color of the link.</Sentence>
+      <Sentence ID="212">The font family of the text.</Sentence>
+      <Sentence ID="213">The font size of the object in points.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -213,9 +213,9 @@
       <Sentence ID="313">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502">Set new value of the 'Z-Index' attribute.</Sentence>
+      <Sentence ID="503">Show the object.</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveZindexTo</Sentence>
       <Sentence ID="603">Show</Sentence>

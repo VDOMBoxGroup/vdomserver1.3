@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.115.8477</Version>
+    <Version>1.116.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -187,16 +187,16 @@
       <Sentence ID="111">Show points</Sentence>
       <Sentence ID="112">Show bars</Sentence>
       <Sentence ID="113">Additional options</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208">The data in JSON (JavaScript Object Notation) format</Sentence>
-      <Sentence ID="209">Define if the lines are shown or not</Sentence>
-      <Sentence ID="211">Define if the points are shown or not</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The data in JSON (JavaScript Object Notation) format.</Sentence>
+      <Sentence ID="209">Displaying the lines.</Sentence>
+      <Sentence ID="211">Displaying the points.</Sentence>
       <Sentence ID="212">Show bars</Sentence>
       <Sentence ID="213">See Flot API: https://github.com/flot/flot/blob/master/API.md</Sentence>
       <Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
@@ -219,18 +219,18 @@
       <Sentence ID="406">No</Sentence>
       <Sentence ID="407">Yes</Sentence>
       <Sentence ID="408">No</Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Load Data</Sentence>
-      <Sentence ID="503">Resize the object width and height</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502">Load the data.</Sentence>
+      <Sentence ID="503">Resize the object's width and height.</Sentence>
+      <Sentence ID="504">Show the object.</Sentence>
+      <Sentence ID="505">Click the object.</Sentence>
+      <Sentence ID="506">Click the object with pressed Ctrl.</Sentence>
+      <Sentence ID="507">Double-click the object.</Sentence>
+      <Sentence ID="508">Left mouse button is keeping down on the object.</Sentence>
+      <Sentence ID="509">The cursor moves inside the object.</Sentence>
+      <Sentence ID="511">The cursor leaves the object's bounds.</Sentence>
+      <Sentence ID="512">The cursor points at the object.</Sentence>
+      <Sentence ID="513">Release the left mouse button.</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Load Data</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
