@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.23.8400</Version>
+    <Version>2.27.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>32</DefaultValue>
+      <DefaultValue>70</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -110,45 +110,57 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>pageurl</Name>
+      <Name>mode</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>ObjectList(6cd1ad90-ca33-4a08-a3d0-ed60309db88b)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>[01]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>formdata</Name>
+      <Name>pageurl</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(50000)</CodeInterface>
+      <CodeInterface>ObjectList(6cd1ad90-ca33-4a08-a3d0-ed60309db88b)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
+      <Name>formdata</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(50000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(50)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="001">Uploader v2</Sentence>
+      <Sentence ID="001">Async file uploader</Sentence>
       <Sentence ID="002">The Uploader v2 type produces an object that allows user to choose one or more files from file local computer to upload them. The files for uploading can be dragged and dropped onto the Uploader v2 object. It allows interrupting the process of uploading files.</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101">Hierarchy</Sentence>
@@ -158,9 +170,10 @@
       <Sentence ID="105">Left</Sentence>
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108">URL</Sentence>
-      <Sentence ID="109">Data</Sentence>
-      <Sentence ID="111">CSS Class</Sentence>
+      <Sentence ID="108">Mode</Sentence>
+      <Sentence ID="109">URL</Sentence>
+      <Sentence ID="111">Data</Sentence>
+      <Sentence ID="112">CSS Class</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -168,9 +181,10 @@
       <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
       <Sentence ID="206">Width of the object in pixels</Sentence>
       <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208">onload on this page must be catch the uploaded data</Sentence>
-      <Sentence ID="209">Additional data (JSON) to send with files</Sentence>
-      <Sentence ID="211">Names of CSS classes</Sentence>
+      <Sentence ID="208">Send file to custom XML page or use standard VDOM gateway upload.py (URL property will be ignored)</Sentence>
+      <Sentence ID="209">onload on this page must be catch the uploaded data (use in custom mode)</Sentence>
+      <Sentence ID="211">Additional data (JSON) to send with files (use in custom mode)</Sentence>
+      <Sentence ID="212">Names of CSS classes</Sentence>
       <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
@@ -178,11 +192,14 @@
       <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="308">Invalid value</Sentence>
-      <Sentence ID="309">Invalid value, must be JSON</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="308">incorrect value</Sentence>
+      <Sentence ID="309">Invalid value</Sentence>
+      <Sentence ID="311">Invalid value, must be JSON</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403">custom xml page</Sentence>
+      <Sentence ID="404">upload.py</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Move the object to a new position</Sentence>
       <Sentence ID="503">Set new CSS style of the object</Sentence>
@@ -230,7 +247,8 @@
       <Sentence ID="107">Высота</Sentence>
       <Sentence ID="108"></Sentence>
       <Sentence ID="109"></Sentence>
-      <Sentence ID="111">Класс CSS</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Класс CSS</Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -240,7 +258,8 @@
       <Sentence ID="207">Высота объекта в пикселях</Sentence>
       <Sentence ID="208"></Sentence>
       <Sentence ID="209"></Sentence>
-      <Sentence ID="211">Имя класса CSS</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">Имя класса CSS</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -250,9 +269,12 @@
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="308"></Sentence>
       <Sentence ID="309"></Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="503">Установить новый стиль CSS</Sentence>
@@ -300,7 +322,8 @@
       <Sentence ID="107">Hauteur</Sentence>
       <Sentence ID="108"></Sentence>
       <Sentence ID="109"></Sentence>
-      <Sentence ID="111">CSS Class</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">CSS Class</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
@@ -310,7 +333,8 @@
       <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
       <Sentence ID="208"></Sentence>
       <Sentence ID="209"></Sentence>
-      <Sentence ID="211">CSS class name</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">CSS class name</Sentence>
       <Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -320,9 +344,12 @@
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="308"></Sentence>
       <Sentence ID="309"></Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Move object to selected point</Sentence>
       <Sentence ID="503">Set new CSS style</Sentence>
@@ -1865,8 +1892,11 @@ $j(function(){
 		autoUpload: true,
 		replaceFileInput: false,
 		/*forceIframeUpload: true,*/
-		onCompleteAll: function (e, data) {
+		/*onCompleteAll: function (e, data) {
 			execEventBinded('%(woid)s', "done", {}, true);
+		},*/
+		onComplete: function (event, files, index, xhr, handler) {
+			execEventBinded('%(woid)s', "done", {data: $j.trim(xhr.responseText)}, true);
 		},
 		onSend: function (event, files, index, xhr, handler) {
 			if (!xhr.upload && handler.progressbar) {
@@ -1905,21 +1935,35 @@ $j(function(){
 </script>
 		""" % { "woid": woid, "id": id, "formdata": formdata }
 
-		result = \
-			u"""
-<form id="{id}" action="{pageurl}" method="post" enctype="multipart/form-data" style="{style}" {classname}>
-	<input type="file" name="files[]" multiple />
-	<table class="files"></table>
-</form>
-{js}
-""" \
-			.format(
+		v2 = u"""
+			<form id="{id}" action="{pageurl}" method="post" enctype="multipart/form-data" style="{style}" {classname}>
+				<input type="file" name="files[]" multiple />
+				<table class="files"></table>
+			</form>
+		""".format(
 				id        = id,
 				style     = style,
 				classname = classname,
-				pageurl   = pageurl,
-				formdata  = u'{"script": "true"}',
-				js        = js
+				pageurl   = pageurl
+			)
+
+		v3 = u"""
+			<form id="{id}" action="/upload.py" method="post" enctype="multipart/form-data" style="{style}" {classname}>
+				<input type="file" name="files" />
+				<table class="files"></table>
+			</form>
+		""".format(
+				id        = id,
+				style     = style,
+				classname = classname
+			)
+
+		result = u"""
+			{v}
+			{js}
+		""".format(
+				v  = v3 if self.mode == '1' else v2,
+				js = js
 			)
 
 		return VDOM_object.render(self, parent, contents=result)
@@ -2089,7 +2133,9 @@ form.file_upload button,
           </Parameters>
         </Event>
         <Event Name="done" Help="#Lang(509)">
-          <Parameters/>
+          <Parameters>
+            <Parameter Name="data" Order="" VbType="" Help="#Lang(901)"/>
+          </Parameters>
         </Event>
         <Event Name="error" Help="#Lang(511)">
           <Parameters>
