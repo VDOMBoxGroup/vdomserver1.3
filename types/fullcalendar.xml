@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.28.8388</Version>
+    <Version>2.29.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -330,29 +330,29 @@
       <Sentence ID="123">Selectable</Sentence>
       <Sentence ID="124">Slot minutes interval</Sentence>
       <Sentence ID="125">lazyLoading</Sentence>
-      <Sentence ID="201">Hierarchy of object</Sentence>
-      <Sentence ID="202">Show or not object</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="206">Weight of the object in pixels</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208">Hierarchy of object</Sentence>
-      <Sentence ID="209">The initial view when the calendar loads.</Sentence>
-      <Sentence ID="211">The initial date when the calendar loads.</Sentence>
-      <Sentence ID="212">Determines the time-text that will be displayed on each event.</Sentence>
-      <Sentence ID="213">The day that each week begins.</Sentence>
-      <Sentence ID="214">Full names of days-of-week.</Sentence>
-      <Sentence ID="215">Full names of days-of-week.</Sentence>
-      <Sentence ID="216">Full names of days-of-week.</Sentence>
-      <Sentence ID="217">Full names of days-of-week.</Sentence>
-      <Sentence ID="218">Determines whether the events on the calendar can be modified.</Sentence>
-      <Sentence ID="219">The text titling the "all-day" slot at the top of the calendar.</Sentence>
-      <Sentence ID="221">Determines if the "all-day" slot is displayed at the top of the calendar.</Sentence>
-      <Sentence ID="222">The text titling the "all-day" slot at the top of the calendar.</Sentence>
-      <Sentence ID="223">Allows a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
-      <Sentence ID="224">The frequency for displaying time slots, in minutes.</Sentence>
-      <Sentence ID="225">Lazy loading paramets</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The list of events, which are represented as \href{www.ietf.org/rfc/rfc2445.txt}{iCalendar} objects.</Sentence>
+      <Sentence ID="209">The way of displaying the object on loading.</Sentence>
+      <Sentence ID="211">The initial date in 'YYYY-MM-DD' format, which is used on loading the object.</Sentence>
+      <Sentence ID="212">The format of displaying the time. If it is set to 12, the time will be displayed as '11am' and '8.30pm'; if it is set to 24, the time will be displayed as '11.00' and '20.30'.</Sentence>
+      <Sentence ID="213">The day of the week that is displayed first.</Sentence>
+      <Sentence ID="214">The names of the days of the week, must be entered through commas without spaces.</Sentence>
+      <Sentence ID="215">The short names of the days of the week, must be entered through commas without spaces.</Sentence>
+      <Sentence ID="216">The short names of the months, must be entered through commas without spaces.</Sentence>
+      <Sentence ID="217">The names of the months, must be entered through commas without spaces.</Sentence>
+      <Sentence ID="218">The possibility of modifying the events. If it is set to 'Yes', the events can be modified, if 'No'---cannot.</Sentence>
+      <Sentence ID="219">The first hour that will be visible in the scroll pane. The values must be from 0-23, where 0=midnight, 1=1am and so on. The user will be able to scroll upwards to see events before this time.</Sentence>
+      <Sentence ID="221">Define whether the 'all-day' slot is displayed at the top of the calendar or not.</Sentence>
+      <Sentence ID="222">The title of the 'all-day' slot at the top of the calendar.</Sentence>
+      <Sentence ID="223">Allow a user to highlight multiple days or timeslots by clicking and dragging.</Sentence>
+      <Sentence ID="224">The frequency of displaying time slots, in minutes.</Sentence>
+      <Sentence ID="225">Loading data dynamically, defines in what case a request for a new list of events will be sent to the server. If it is set to 'No', a request is sent each time some change of date/view takes place; if to 'Yes'---a request is sent each time a transition to the next/previous month takes place.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value</Sentence>
       <Sentence ID="303">Incorrect value, must be integer from 0 to 99</Sentence>
@@ -404,32 +404,32 @@
       <Sentence ID="428">30</Sentence>
       <Sentence ID="429">Yes</Sentence>
       <Sentence ID="431">No</Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="502">Next</Sentence>
-      <Sentence ID="503">Visibility</Sentence>
-      <Sentence ID="504">Visibility</Sentence>
-      <Sentence ID="505">Visibility</Sentence>
-      <Sentence ID="506">Visibility</Sentence>
-      <Sentence ID="507">Next</Sentence>
-      <Sentence ID="508">Previous</Sentence>
-      <Sentence ID="509">Visibility</Sentence>
-      <Sentence ID="511">Visibility</Sentence>
-      <Sentence ID="512">Visibility</Sentence>
-      <Sentence ID="513">Visibility</Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
-      <Sentence ID="518"></Sentence>
-      <Sentence ID="519"></Sentence>
-      <Sentence ID="521"></Sentence>
-      <Sentence ID="522"></Sentence>
+      <Sentence ID="501">Change the value of the 'View' attribute.</Sentence>
+      <Sentence ID="502">Remove events from the calendar.</Sentence>
+      <Sentence ID="503">Go to the specified date.</Sentence>
+      <Sentence ID="504">Hide the object.</Sentence>
+      <Sentence ID="505">Move the object to a new position.</Sentence>
+      <Sentence ID="506">Set new value of the 'Z-Index' attribute.</Sentence>
+      <Sentence ID="507">Go to the next month, week, or year (depending on the value of the 'View' attribute).</Sentence>
+      <Sentence ID="508">Go to the previous month, week or year (depending on the value of the 'View' attribute).</Sentence>
+      <Sentence ID="509">Resize the object's width and height.</Sentence>
+      <Sentence ID="511">Add events source dynamically, except the events with the recurrence rule. Events will be immediately fetched from this source and placed on the calendar.</Sentence>
+      <Sentence ID="512">Add events source dynamically, including the events with the recurrence rule. Events will be immediately fetched from this source and placed on the calendar.</Sentence>
+      <Sentence ID="513">Show the object.</Sentence>
+      <Sentence ID="514">Click the object.</Sentence>
+      <Sentence ID="515">Click the object with pressed Ctrl.</Sentence>
+      <Sentence ID="516">Change the value of the 'Default date' attribute.</Sentence>
+      <Sentence ID="517">Select several cells at once. This event is temporary and is removed on reloading the page.</Sentence>
+      <Sentence ID="518">Double-click the object.</Sentence>
+      <Sentence ID="519">Click the event in order to edit it.</Sentence>
+      <Sentence ID="521">Move the event or stretch it.</Sentence>
+      <Sentence ID="522">Edit the limits of the event.</Sentence>
       <Sentence ID="523"></Sentence>
-      <Sentence ID="524"></Sentence>
-      <Sentence ID="525"></Sentence>
-      <Sentence ID="526"></Sentence>
-      <Sentence ID="527"></Sentence>
-      <Sentence ID="528"></Sentence>
+      <Sentence ID="524">The cursor moves inside the object.</Sentence>
+      <Sentence ID="525">The cursor leaves the object's bounds.</Sentence>
+      <Sentence ID="526">The cursor points at the object.</Sentence>
+      <Sentence ID="527">Release the left mouse button.</Sentence>
+      <Sentence ID="528">Change the value of the 'View' attribute.</Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Next</Sentence>
       <Sentence ID="603">Visibility</Sentence>

@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.19.8388</Version>
+    <Version>2.20.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form</Containers>
@@ -239,23 +239,22 @@
       <Sentence ID="115">Keyboard Active</Sentence>
       <Sentence ID="116">Auto Collapse</Sentence>
       <Sentence ID="117">Select Mode</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="202">Visibility of the object</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208">Define the animations, e.g. null or { height: "toggle", duration: 200 }</Sentence>
-      <Sentence ID="209">Define if the title is shown (as a tree root) or not. Attribute marked as not visible because it doesn't work.</Sentence>
-      <Sentence ID="211">Title of the object to display.
-Attribute marked as not visible because it doesn't work.</Sentence>
-      <Sentence ID="212">The data to display (html ul, li)</Sentence>
-      <Sentence ID="213">Define the way of uploading data</Sentence>
-      <Sentence ID="214">Define if the checkbox is used or not</Sentence>
-      <Sentence ID="215">Define if the keyboard navigation шы supported or not</Sentence>
-      <Sentence ID="216">Define if the automatic collapsing of all siblings, when a node is expanded, is used or not</Sentence>
-      <Sentence ID="217">Define the way of marking the checkboxes</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The animation effects.</Sentence>
+      <Sentence ID="209">The title appearance attribute. The title to display is set in the 'Title' attribute.</Sentence>
+      <Sentence ID="211">The title of the object to display, may be in the HTML format. In some objects the title is not displayed if the 'Title appearance' attribute is set to 'Title off'.</Sentence>
+      <Sentence ID="212">The data to display in the HTML format. For example:</Sentence>
+      <Sentence ID="213">The Ajax options used to initialize the tree structure, which define the way of uploading the data. If it is defined, the object will be created with the data specified here, and the 'Data' attribute will be ignored.</Sentence>
+      <Sentence ID="214">Using checkboxes in order to select several items. If it is set to 'Yes' - the checkboxes will be displayed at each item, if 'No' - there will be no checkboxes.</Sentence>
+      <Sentence ID="215">Supporting the keyboard navigation.</Sentence>
+      <Sentence ID="216">Using the automatic collapsing of all siblings, when a node is expanded.</Sentence>
+      <Sentence ID="217">The way of marking the checkboxes. It works only when the 'Checkbox' attribute is turned on. If it is set to 'Single', only one item will be selected, 'Multi'---several items regardless of the items nesting; 'Multi-hier'---several items depending on the items nesting.</Sentence>
       <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
@@ -285,26 +284,26 @@ Attribute marked as not visible because it doesn't work.</Sentence>
       <Sentence ID="412">Single</Sentence>
       <Sentence ID="413">Multi</Sentence>
       <Sentence ID="414">Multi-hier</Sentence>
-      <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Load data in HTML format to the server</Sentence>
-      <Sentence ID="503">Resize the object width and height</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502">Upload new value of the 'Data' attribute in the HTML format.</Sentence>
+      <Sentence ID="503">Resize the object's width and height.</Sentence>
+      <Sentence ID="504">Show the object.</Sentence>
+      <Sentence ID="505">Select the element. This event is deprecated, use 'itemclick' instead.</Sentence>
+      <Sentence ID="506">Click the item of the object.</Sentence>
+      <Sentence ID="507">The focus leaves the object.</Sentence>
+      <Sentence ID="508">Click the object.</Sentence>
+      <Sentence ID="509">Click the object with pressed Ctrl.</Sentence>
+      <Sentence ID="511">Double-click the object.</Sentence>
       <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="513">Drop the item.</Sentence>
       <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
-      <Sentence ID="518"></Sentence>
-      <Sentence ID="519"></Sentence>
-      <Sentence ID="521"></Sentence>
-      <Sentence ID="522"></Sentence>
+      <Sentence ID="515">Left mouse button is keeping down on the object.</Sentence>
+      <Sentence ID="516">The cursor moves inside the object.</Sentence>
+      <Sentence ID="517">The cursor leaves the object's bounds.</Sentence>
+      <Sentence ID="518">The cursor points at the object.</Sentence>
+      <Sentence ID="519">Release the left mouse button.</Sentence>
+      <Sentence ID="521">Select/deselect the checkbox of the item.</Sentence>
+      <Sentence ID="522">Expand/collapse the item of the object.</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">loadHTMLData</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
@@ -2555,13 +2554,6 @@ jQuery(document).ready(function($){
             <Parameter Name="title" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(506)">
-          <Parameters>
-            <Parameter Name="key" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="title" Order="" VbType="" Help="#Lang(906)"/>
-          </Parameters>
-        </Event>
         <Event Name="blur" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(907)"/>
@@ -2595,9 +2587,19 @@ jQuery(document).ready(function($){
             <Parameter Name="params" Order="" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
+        <Event Name="expand" Help="#Lang(522)">
+          <Parameters/>
+        </Event>
         <Event Name="focus" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemclick" Help="#Lang(506)">
+          <Parameters>
+            <Parameter Name="key" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="title" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown" Help="#Lang(515)">
@@ -2634,9 +2636,6 @@ jQuery(document).ready(function($){
           <Parameters>
             <Parameter Name="keyList" Order="" VbType="" Help="#Lang(929)"/>
           </Parameters>
-        </Event>
-        <Event Name="expand" Help="#Lang(522)">
-          <Parameters/>
         </Event>
       </Userinterfaceevents>
     </Events>

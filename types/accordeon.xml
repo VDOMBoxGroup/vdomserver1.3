@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.22.8388</Version>
+    <Version>1.23.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form,accordeon,tabview,dialog_2,vdomclass</Containers>
@@ -161,16 +161,16 @@
       <Sentence ID="108">Auto height</Sentence>
       <Sentence ID="109">Opened page</Sentence>
       <Sentence ID="111">CSS Class</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="203">Z-Index</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
-      <Sentence ID="207">Height in pixels</Sentence>
-      <Sentence ID="208">Height resizes by accordeon's content</Sentence>
-      <Sentence ID="209">Which page is open (all closed by default)</Sentence>
-      <Sentence ID="211">CSS class name(s)</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">Resize the height of the object adjusting it to the contents. It is used in order to exclude the possibility of scroll bar appearing. If it is on, the height is resized; if off---the height is not resized.</Sentence>
+      <Sentence ID="209">The ordinal number of the container that will be expanded after rendering the web page containing the object. The ordinal number of containers is taken from their sequence in the XML representation of a web page.</Sentence>
+      <Sentence ID="211">The names of CSS classes separated by spaces. The names can consist only of Latin characters, may include hyphen (-) and underscore (_). These classes will be attached to the &lt;body&gt; tag: &lt;body class="name1 name2" ...&gt;.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -185,21 +185,21 @@
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">On</Sentence>
       <Sentence ID="404">Off</Sentence>
-      <Sentence ID="501">Visibility</Sentence>
-      <Sentence ID="502">Visibility</Sentence>
-      <Sentence ID="503">Visibility</Sentence>
-      <Sentence ID="504">Visibility</Sentence>
-      <Sentence ID="505">Visibility</Sentence>
-      <Sentence ID="506">Visibility</Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502">Show the object.</Sentence>
+      <Sentence ID="503">Set new value of the 'Z-Index' attribute.</Sentence>
+      <Sentence ID="504">Move the object to a new position.</Sentence>
+      <Sentence ID="505">Resize the object's width and height.</Sentence>
+      <Sentence ID="506">Set transparency of the object.</Sentence>
+      <Sentence ID="507">The cursor moves inside the object.</Sentence>
+      <Sentence ID="508">Left mouse button is keeping down on the object.</Sentence>
+      <Sentence ID="509">Release the left mouse button.</Sentence>
+      <Sentence ID="511">The cursor points at the object.</Sentence>
+      <Sentence ID="512">The cursor leaves the object's bounds.</Sentence>
+      <Sentence ID="513">Click the object.</Sentence>
+      <Sentence ID="514">Double-click the object.</Sentence>
+      <Sentence ID="515">Click the object with pressed Ctrl.</Sentence>
+      <Sentence ID="516">The item is displayed.</Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>

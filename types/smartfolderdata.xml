@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.27.8388</Version>
+    <Version>1.28.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, form</Containers>
@@ -239,21 +239,21 @@
       <Sentence ID="115">Style</Sentence>
       <Sentence ID="116">Skin</Sentence>
       <Sentence ID="117">testHTML</Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202"></Sentence>
-      <Sentence ID="203"></Sentence>
-      <Sentence ID="204"></Sentence>
-      <Sentence ID="205"></Sentence>
-      <Sentence ID="206"></Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="211">Folder Meta Data (JSON)</Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213">Items on page</Sentence>
-      <Sentence ID="214">CSS class name</Sentence>
-      <Sentence ID="215">CSS styles for elements</Sentence>
-      <Sentence ID="216">Set of CSS styles</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The width of the item in pixels.</Sentence>
+      <Sentence ID="209">The height of the item in pixels.</Sentence>
+      <Sentence ID="211">The folder metadata in JSON format.</Sentence>
+      <Sentence ID="212">The number of the currently active pages.</Sentence>
+      <Sentence ID="213">The number of items per page.</Sentence>
+      <Sentence ID="214">The necessary CSS code applied to all objects within the container.</Sentence>
+      <Sentence ID="215">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
+      <Sentence ID="216">The skin of the object.</Sentence>
       <Sentence ID="217"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
@@ -275,21 +275,21 @@
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">User defined</Sentence>
       <Sentence ID="404">Default</Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
+      <Sentence ID="501">Make the object disabled.</Sentence>
+      <Sentence ID="502">Make the object enabled.</Sentence>
+      <Sentence ID="503">Hide the object.</Sentence>
+      <Sentence ID="504">Load the data.</Sentence>
+      <Sentence ID="505">Move the object to a new position.</Sentence>
+      <Sentence ID="506">Set new value of the 'Z-Index' attribute.</Sentence>
+      <Sentence ID="507">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="508">Resize the object's width and height.</Sentence>
+      <Sentence ID="509">Show the object.</Sentence>
+      <Sentence ID="511">Delete the specified items.</Sentence>
+      <Sentence ID="512">Group the items.</Sentence>
+      <Sentence ID="513">Click the item of the object.</Sentence>
+      <Sentence ID="514">Double-click the item of the object.</Sentence>
       <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
+      <Sentence ID="516">Rename the smart folder.</Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
@@ -1396,9 +1396,19 @@ function vdom_sfd_init(woid,page,per,sel){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
+        <Event Name="addmeta" Help="#Lang(519)">
+          <Parameters>
+            <Parameter Name="data" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
         <Event Name="delete" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="guidlist" Order="" VbType="" Help="#Lang(901)"/>
+          </Parameters>
+        </Event>
+        <Event Name="editmeta" Help="#Lang(518)">
+          <Parameters>
+            <Parameter Name="data" Order="" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
         <Event Name="group" Help="#Lang(512)">
@@ -1430,16 +1440,6 @@ function vdom_sfd_init(woid,page,per,sel){
         </Event>
         <Event Name="requestmeta" Help="#Lang(517)">
           <Parameters/>
-        </Event>
-        <Event Name="editmeta" Help="#Lang(518)">
-          <Parameters>
-            <Parameter Name="data" Order="" VbType="" Help="#Lang(909)"/>
-          </Parameters>
-        </Event>
-        <Event Name="addmeta" Help="#Lang(519)">
-          <Parameters>
-            <Parameter Name="data" Order="" VbType="" Help="#Lang(911)"/>
-          </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>

@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.39.8507</Version>
+    <Version>1.40.8507</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>2</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell</Containers>
@@ -135,14 +135,14 @@
       <Sentence ID="106">Interval</Sentence>
       <Sentence ID="107">Autostart</Sentence>
       <Sentence ID="108">Once</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page</Sentence>
-      <Sentence ID="202">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="203">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="204">Width of the object in pixels</Sentence>
-      <Sentence ID="205">Height in pixels</Sentence>
-      <Sentence ID="206">Event time, time is indicated in milliseconds</Sentence>
-      <Sentence ID="207">Define if the timer starts after loading the page or not</Sentence>
-      <Sentence ID="208">Define whether to start once or not</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="203">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="204">The width of the object in pixels.</Sentence>
+      <Sentence ID="205">The height of the object in pixels.</Sentence>
+      <Sentence ID="206">The event time in milliseconds.</Sentence>
+      <Sentence ID="207">Start the timer after loading the page.</Sentence>
+      <Sentence ID="208">The number of times of starting the timer.</Sentence>
       <Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="302">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
@@ -155,12 +155,12 @@
       <Sentence ID="402">Yes</Sentence>
       <Sentence ID="403">No</Sentence>
       <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="501">Pause time reading</Sentence>
-      <Sentence ID="502">Set new interval</Sentence>
-      <Sentence ID="503">Start time reading</Sentence>
-      <Sentence ID="504">Start new interval</Sentence>
-      <Sentence ID="505">Stop time reading</Sentence>
-      <Sentence ID="506"></Sentence>
+      <Sentence ID="501">Pause time reading.</Sentence>
+      <Sentence ID="502">Set new time interval.</Sentence>
+      <Sentence ID="503">Start time reading.</Sentence>
+      <Sentence ID="504">Start time reading.</Sentence>
+      <Sentence ID="505">Stop time reading.</Sentence>
+      <Sentence ID="506">The number of the time changes.</Sentence>
       <Sentence ID="601">freezeTime</Sentence>
       <Sentence ID="602">setInterval</Sentence>
       <Sentence ID="603">Start</Sentence>
