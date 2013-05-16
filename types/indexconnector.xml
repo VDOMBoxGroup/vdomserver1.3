@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>#Lang(003)</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.6720</Version>
+    <Version>1.1.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -135,14 +135,14 @@
       <Sentence ID="106">Width</Sentence>
       <Sentence ID="107">Height</Sentence>
       <Sentence ID="108">Index name</Sentence>
-      <Sentence ID="201">Hierarchy of the object</Sentence>
-      <Sentence ID="202">Show object or not</Sentence>
-      <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent in pixels</Sentence>
-      <Sentence ID="206">Weight in pixels</Sentence>
-      <Sentence ID="207">Height in pixels</Sentence>
-      <Sentence ID="208">The index name for searching</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="206">The width of the object in pixels.</Sentence>
+      <Sentence ID="207">The height of the object in pixels.</Sentence>
+      <Sentence ID="208">The index name for searching.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>

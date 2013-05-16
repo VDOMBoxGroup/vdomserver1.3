@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.28.8507</Version>
+    <Version>1.29.8507</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,container,tablecell,form</Containers>
@@ -161,16 +161,16 @@
       <Sentence ID="108">Active</Sentence>
       <Sentence ID="109">Style</Sentence>
       <Sentence ID="111">CSS class</Sentence>
-      <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="202">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="203">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
-      <Sentence ID="204">Width of the object in pixels.</Sentence>
-      <Sentence ID="205">Height of the object in pixels (in WYSIWYG mode).</Sentence>
-      <Sentence ID="206">Title of the object to display, HTML allowed.</Sentence>
-      <Sentence ID="207">Text of the object, HTML allowed.</Sentence>
-      <Sentence ID="208">Define if the object is displayed at rendering or not.</Sentence>
-      <Sentence ID="209">View style of the object.</Sentence>
-      <Sentence ID="211">Names of CSS classes.</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="203">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="204">The width of the object in pixels.</Sentence>
+      <Sentence ID="205">The height of the object in pixels.</Sentence>
+      <Sentence ID="206">The title of the object to display, may be in the HTML format. In some objects the title is not displayed if the 'Title appearance' attribute is set to 'Title off'.</Sentence>
+      <Sentence ID="207">The text content of the object, may be in the HTML format.</Sentence>
+      <Sentence ID="208">Display the object after rendering.</Sentence>
+      <Sentence ID="209">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
+      <Sentence ID="211">The names of CSS classes separated by spaces. The names can consist only of Latin characters, may include hyphen (-) and underscore (_). These classes will be attached to the &lt;body&gt; tag: &lt;body class="name1 name2" ...&gt;.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -187,11 +187,11 @@
       <Sentence ID="404">Information</Sentence>
       <Sentence ID="405">Warning</Sentence>
       <Sentence ID="406">Error</Sentence>
-      <Sentence ID="501">Hide all the opened growls</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Show the object</Sentence>
-      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="501">Hide all opened growls.</Sentence>
+      <Sentence ID="502">Show the object.</Sentence>
+      <Sentence ID="503">Show the warning message.</Sentence>
+      <Sentence ID="504">Show the error message.</Sentence>
+      <Sentence ID="505">Show the information message.</Sentence>
       <Sentence ID="601">Hide all</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">Show</Sentence>
