@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.27.8400</Version>
+    <Version>2.28.8400</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_2,container,tablecell,vdomclass, accordeon</Containers>
@@ -1879,7 +1879,7 @@ class VDOM_uploader_2(VDOM_object):
 			formdata = {}
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='uploader_2' objname='%s' ver='%s @ 2012-08-21'" % (self.name, self.type.version)
+			debug_info = u"objtype='uploader_2' objname='%s' ver='%s'" % (self.name, self.type.version)
 		else:
 			debug_info = u""
 
