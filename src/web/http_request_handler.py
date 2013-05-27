@@ -218,8 +218,17 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		self.create_request(self.command.lower())
 		environ = self.get_environ()
 		application = self.wsgidav_app
-		if not application or environ["PATH_INFO"] == "/": 
+		if not application:
 			self.send_error(404, self.responses[404][0])
+		elif environ["REQUEST_METHOD"] == "OPTIONS" and environ["PATH_INFO"] in ("/", "*"):
+			import wsgidav.util as util
+			self.start_response("200 OK", [("Content-Type", "text/html"),
+					                    ("Content-Length", "0"),
+					                    ("DAV", "1,2"),
+					                    ("Server", "DAV/2"),
+					                    ("Date", util.getRfc1123Time()),
+					                    ])		
+			
 		else:
 			for v in application(environ, self.start_response):
 				self.wfile.write(v)
