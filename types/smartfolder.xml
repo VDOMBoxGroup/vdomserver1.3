@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.52.8388</Version>
+    <Version>1.53.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass</Containers>
@@ -1696,7 +1696,8 @@ function vdom_sf_load(id,path,total,data){
 			if (a['noedit'] == '1') s.addClass('noedit');
 			if (a['noselect'] == '1') s.addClass('noselect');
 			if (a['type'] == 'group') s.addClass('group');
-			if (sf.data('sf_items_selected').indexOf(e['guid']) >= 0) s.addClass('selected');
+			//if (sf.data('sf_items_selected').indexOf(e['guid']) >= 0) s.addClass('selected');
+			if ( $j.inArray(e['guid'], sf.data('sf_items_selected')) >= 0 ) s.addClass('selected');
 			s.appendTo(d).data({
 				'sf': a,
 				'forselect': false
