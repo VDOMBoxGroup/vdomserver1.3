@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>shortcut</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_shortcut</ClassName>
+    <ID>78b5a1ea-dffc-1540-c5dd-7b4a8706d101</ID>
+    <Icon>#Res(e49c929a-a509-60ef-e77a-7b4a87061c33)</Icon>
+    <EditorIcon>#Res(d25ae7ab-365b-9cee-d0e8-7b4a870610ac)</EditorIcon>
+    <StructureIcon>#Res(cf161d90-e18b-a4ad-50fd-7b4a8706276d)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>0</Dynamic>
+    <Version>1.8.1</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>2</OptimizationPriority>
+    <Containers>htmlcontainer, container</Containers>
+    <Languages>en_US</Languages>
+    <Handlers/>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>Data</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">shortcut</Sentence>
+      <Sentence ID="002">The Shortcut type produces an object that allows catching and processing the shortcut key pressed by user, and then triggers the assigned event.</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">hierarchy</Sentence>
+      <Sentence ID="102">top</Sentence>
+      <Sentence ID="103">left</Sentence>
+      <Sentence ID="104">data</Sentence>
+      <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="202">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="203">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="301">newAttribute0</Sentence>
+      <Sentence ID="302">newAttribute0</Sentence>
+      <Sentence ID="303">newAttribute0</Sentence>
+      <Sentence ID="304"></Sentence>
+      <Sentence ID="501">The shortcut key is pressed.</Sentence>
+      <Sentence ID="901">newParameter0</Sentence>
+      <Sentence ID="902">newParameter1</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="e49c929a-a509-60ef-e77a-7b4a87061c33" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="d25ae7ab-365b-9cee-d0e8-7b4a870610ac" Name="Icon" Type="png"><![CDATA[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]]></Resource>
+    <Resource ID="cf161d90-e18b-a4ad-50fd-7b4a8706276d" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADiUlEQVR42jWSa2hcRRTH/2dm7r37
+			zD6SdZvYhKZdBRtaRUEobbT9KCqIxBZjQNGKYE0rDSIFUVso9kt9VSzS4AubitqQQlGwH0pBamuN
+			SonVKjahJsFNu9lkH/fevXtnxtmIB4bDnDNz5szv/ElrTadW94gLjQY7dHOhoQ+M4vWjr8BmGNqm
+			rSMVKXGJ1PDdIvLZg7Mz0IV7Qdd+cG4nW12VjZBg7M/eAgbm5zAjg/QDdvShqWYweBNq07OxtrbN
+			sRiihMp53//+jOeO5R379BKXS9+Uqhgu3AIayqbjMU0b7hD24G1CPGJpdJ+oVTDu1fFSMoM8F/jC
+			reK85yEtOEaS6b+JsQlX40Q3tyZbHUybtWajbWNfWxZxwcMzbg0Tvsv2xNMmr3GgWtaPR+NqWzSO
+			K2Eg+oSNPHFMCjlFeYv7xaa09+dy4SZmc5dAlzwX79creNEU8JTCEXdZ74q3oSwVjtUrOk0sPNaR
+			t7SgKTq9uvvyFdfrExJsXTyiIRW5TEMrrFigNbjxghF6mcDTpaJ2tVYf51axOaXeovXcPrg9mRz5
+			0qs6Kc7Vy+ksa2hg0Q+wv1KGNp94LZFBT8zBdBCgFITqzkSUvq3V6bu6+zC126LfBCf6Ik52FZja
+			ncqytGB4Z7mM8VptpYsdySTuj8bw/EIR2xMJ9ZPfYNM6dB2wbtLP9Sc+OPnHz14oC1nO5XvVZb43
+			kwE3LR9dWlop8ILZ/173cVU1cdytyn4rwoZT6euPisQaOllYi3PF0rk6sPnrRl2VpBRcAiPtWbrP
+			jkKAMGaAGoD6yXgSM2EzXBdxWA3qQkpjC/2HCh+1CfbUesvxzSHn01qFbiilD7fnyNTCwcWSnqeQ
+			mIR+IpZsGM1ENljOh6HGM7TVibIoqHNWhm8fynYMNIi0kbEshqFwONfKTKGNiM7W3fBs6PHLfoN2
+			ZTNfQek9XdwqktdZoE+ormuGvAO9O6fpDaEppgjNDDGhTNzIOswSWb/6vvvqcnlflxDv/tUMoM18
+			6Xq+Fz9WfVo2z3R6XKVs6x5th6MXXfeuizJQVSOerQbalkTsFxXwnTKQk7MRyQYX51oC0SsMPs/c
+			ilBodIRMjDVr4ZwMkimLHx6vVHe28gOp5Gg5kCM9wq7uEAnh2QgfW5iFYYD/IeJ4rgspxdBj2Xzj
+			P9da7MwE8GbLh8Delv+tcy2fbgRykSsM3ZhfufcvTYCh0NGkENoAAAAASUVORK5CYII=]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[import json
+import utils.wysiwyg
+
+class VDOM_shortcut( VDOM_object ):
+	def render(self, parent, contents=""):
+		# prepare id	
+		id = self.id.replace('-', '_')
+		oid = 'o_' + id
+		
+		# prepare data
+		value = self.data.strip()
+
+		if value and value[0] not in [ '"', '[', '{' ]:
+			value = '"%s"' % value
+
+		value = json.loads( value )
+		data = {}
+		
+		if type(value) in [ str, unicode ]:
+			data[ value ] = ''
+			
+		if isinstance( value, list ):
+			for key in value:
+				data[ key ] = ''
+				
+		if isinstance( value, dict ):
+			for key in value:
+				data[ key ] = value[ key ]
+
+
+		
+		# prepare javascript code
+		js = """new VdomShortcut( "%s", %s ).start()""" % ( id, json.dumps(data) )
+		js = """<script language='javascript' type='text/javascript'>%s</script>""" % ( js, )
+		
+		
+		# prepare result html
+		result = """<div id="%s" style="display:none">%s</div>""" % ( oid, js )
+		return VDOM_object.render(self, parent, contents=result)
+
+	
+	def wysiwyg(self, parent, contents=""):
+		
+		self.width = "42"
+		self.height = "42"
+		self.zindex = "0"
+
+		image_id = "e49c929a-a509-60ef-e77a-7b4a87061c33"
+		result = utils.wysiwyg.get_empty_wysiwyg_value(self, image_id)
+		return VDOM_object.wysiwyg(self, parent, contents=result)
+
+
+]]></SourceCode>
+  <Libraries>
+    <Library Target="Html"><![CDATA[<script language='javascript' type='text/javascript'>
+var SPECIAL_KEYS = {
+  27    : 'escape',
+  112   : 'f1',
+  113   : 'f2',
+  114   : 'f3',
+  115   : 'f4',
+  116   : 'f5',
+  117   : 'f6',
+  118   : 'f7',
+  119   : 'f8',
+  120   : 'f9',
+  121   : 'f10',
+  122   : 'f11',
+  123   : 'f12',
+  999   : 'sysrq',
+  145   : 'scroll',
+  19    : 'pause',
+
+
+  192   : '`',
+  189   : '-',
+  187   : '=',
+  8   : 'backspace',
+  45    : 'insert',
+  36    : 'home',
+  33    : 'pageup',
+  144   : 'num',
+  111   : '/',
+  106   : '*',
+  109   : '-',
+
+
+  9     : 'tab',
+  219   : '[',
+  221   : ']',
+  220   : '\\',
+  46    : 'delete',
+  35    : 'end',
+  34    : 'pagedown',
+  103   : '7',
+  104   : '8',
+  105   : '9',
+  107   : '+',
+
+  
+  20    : 'caps',
+  186   : ';',
+  222   : '\'',
+  13    : 'enter',
+  100   : '4',
+  101   : '5',
+  102   : '6',
+  
+
+  16    : 'shift',
+  188   : ',',
+  190   : '.',
+  191   : '/',
+  38    : 'up',
+  97    : '1',
+  98    : '2',
+  99    : '3',
+  
+
+  17    : 'ctrl',
+  91    : 'super',
+  18    : 'alt',
+  32    : 'space',
+  92    : 'super',
+  93    : '???',
+  37    : 'left',
+  40    : 'down',
+  39    : 'right',
+  96    : '0',    
+  110   : '.'
+}
+
+
+var SHIFT_SYNONYMS = {
+  '`'   : '~',
+  '1'   : '!',
+  '2'   : '@',
+  '3'   : '#',
+  '4'   : '$',
+  '5'   : '%',
+  '6'   : '^',
+  '7'   : '&',
+  '8'   : '*',
+  '9'   : '(',
+  '0'   : ')',
+  '-'   : '_',
+  '='   : '+',
+
+  '['   : '{',
+  ']'   : '}',
+  '\\'  : '|',
+
+  ';'   : ':',
+  '\''  : '"',
+
+  ','   : '<',
+  '.'   : '>',
+  '/'   : '?'
+}
+
+
+
+function utils() {}
+utils.type = function( obj ) {
+  if( !obj.constructor ) return typeof( obj )
+  
+  if( obj.constructor.name )
+    return obj.constructor.name
+
+  var type = obj.constructor.toString()
+  var i = type.indexOf( ' ' )
+  var j = type.indexOf( '(' )
+  return type.substring( i+1, j )
+}
+utils.strip = function( text ) {
+  if (!text) return ''
+  return text.replace(/^\s+|\s+$/g, '')
+}
+
+
+
+
+
+
+
+
+
+
+// -------------------------------------------------------
+//    Keydown Event Handler
+// -------------------------------------------------------
+
+function KeydownMultiHandler() {
+  if( arguments.callee.instance )
+    return arguments.callee.instance
+
+  this.handlers = []
+  this.initialized = false
+
+  this.init()
+
+  return arguments.callee.instance = this
+}
+
+KeydownMultiHandler.onkeydown = function( event ) {
+  var handlers = new KeydownMultiHandler().handlers
+  var result = true
+
+  // call handlers
+  for( var i in handlers ) {
+    try {
+      var retVal = handlers[i]( event )
+      result = result && retVal
+    }
+    catch( error ) {}
+  }
+
+  // stop this event if it was catched
+  if( !result ) event.preventDefault()
+  
+  return result
+}
+
+KeydownMultiHandler.prototype.init = function() {
+  if( this.initialized ) return
+  
+  function connect( object ) {
+    if( !object ) object = window
+
+    if( object.addEventListener ) {
+      object.addEventListener( 'keydown', KeydownMultiHandler.onkeydown, true )
+      return true
+    }
+
+    if( object.attachEvent ) {
+      object.attachEvent( 'onkeydown', KeydownMultiHandler.onkeydown )
+      return true
+    }
+
+    return false
+  }
+
+  // solution for IE
+  if( navigator.appName == 'Microsoft Internet Explorer' ) {
+    this.initialized = connect( document )
+    return
+  }
+
+  // solution for normal browsers
+  this.initialized = connect( window )
+
+}
+
+
+KeydownMultiHandler.add = function( handler, thisObj ) {
+  if( !handler ) return
+  
+  function Caller( handler, thisObj ) {
+    var wrapper = function( event ) {
+      // call in context
+      if( thisObj ) 
+        return handler.call( thisObj, event )
+
+      // simple call
+      return handler( event )
+    }
+
+    return wrapper
+  }
+    
+  new KeydownMultiHandler().handlers.push( new Caller(handler, thisObj) )
+}
+
+
+
+
+
+
+
+// -------------------------------------------------------
+//    Hot Key
+// -------------------------------------------------------
+
+function Hotkey( value, action ) {
+  this.ctrl   = false
+  this.alt  = false
+  this.shift  = false
+  
+  this.key  = ''
+  this.action = ''
+
+  if( !value ) return
+
+  // check for event
+  if( utils.type(value) == 'KeyboardEvent' )
+    this.fillFromHotkey( Hotkey.fromEvent(event) )
+
+  // check, maybe HotKey
+  if( utils.type(value) == 'Hotkey' ) 
+    this.fillFromHotkey( value )
+    
+  // check that input is String
+  if( utils.type(value) == 'String' ) 
+    this.fillFromHotkey( Hotkey.fromString(value) )
+  
+  this.action = action || ''
+}
+
+
+
+Hotkey.prototype.fillFromHotkey = function( other ) {
+  if( !other ) return
+  if( utils.type( other ) != 'Hotkey' ) return
+
+  this.ctrl   = other.ctrl
+  this.alt  = other.alt
+  this.shift  = other.shift
+
+  this.key  = other.key
+  this.action = other.action
+}
+
+
+Hotkey.prototype.toString = function() {
+  var array = []
+  
+  if( this.ctrl )   array.push( 'ctrl' )
+  if( this.alt )    array.push( 'alt' )
+  if( this.shift )  array.push( 'shift' )
+
+  if( this.key ) {
+    key = this.key.toLowerCase()
+    if( key != 'ctrl' && key != 'alt' && key != 'shift' )
+      array.push( key )
+  }
+
+  return array.join( '+' )
+}
+
+
+Hotkey.prototype.synonyms = function() {
+  if( !this.key ) return []
+  if( !this.shift ) return []
+  if( !SHIFT_SYNONYMS.hasOwnProperty( this.key ) ) return []
+
+  var key = SHIFT_SYNONYMS[ this.key ]
+
+  var a = new Hotkey( this )
+  a.key = key
+  
+  var b = new Hotkey( a )
+  b.shift = false
+
+  return [ a, b ]
+}
+
+
+Hotkey.prototype.isEqual = function( other ) {
+  if( !other ) return false
+
+  if( utils.type(other) != 'Hotkey' )
+    other = new Hotkey( other )
+
+  var other_str = other.toString()
+
+  if( this.toString() == other_str )
+    return true
+  
+  var synonyms = this.synonyms()
+  for( var i in synonyms )
+    if( other_str == synonyms[i].toString() ) return true
+  
+  return false
+}
+
+
+Hotkey.fromString = function( text ) {
+  var result = new Hotkey()
+
+  if( !text ) return result
+  if( utils.type(text) != 'String' ) return result
+
+  function set( value ) {
+    if( !value ) return
+    value = value.toLowerCase()
+
+    switch( value ) {
+      case 'ctrl':
+        result.ctrl = true
+        break
+
+      case 'alt':
+        result.alt = true
+        break
+
+      case 'shift':
+        result.shift = true
+        break
+
+      default:
+        result.key = value
+    }
+  }
+
+  var array = text.split( '+' )
+  if( text.indexOf( '++' ) > 0) array.push( '+' )
+
+  for( var i in array ) set( array[i] )
+  return result
+}
+
+
+Hotkey.fromEvent = function( event ) {
+  var result = new Hotkey()
+  if( !event ) return result
+
+  if( event.ctrlKey )
+    result.ctrl = true
+
+  if( event.altKey )
+    result.alt = true
+
+  if( event.shiftKey )
+    result.shift = true
+
+  var code = event.keyCode || event.which || event.charCode
+  var key = String.fromCharCode( code )
+
+  // this bug catched in Google Chrome
+  if( code == 229 ) {
+    key = 'u'
+  }
+  
+
+  if ( SPECIAL_KEYS.hasOwnProperty(code) )
+    key = SPECIAL_KEYS[ code ]
+
+  result.key = key.toLowerCase()
+  return result
+}
+
+
+
+
+
+
+
+
+
+
+function VdomShortcut( id, data ) {
+  this.id     = id || ''    // id of hotkey object
+  this.data     = data || {}  // data - hotkeys that need to catch
+  this.catchkeys  = []
+
+  this.debug    = false     // flag that enable debug mode
+}
+
+
+VdomShortcut.prototype.start = function() {
+  for( var key in this.data ) {
+    var action = this.data[key]
+    this.catchkeys.push( new Hotkey(key, action) )
+  }
+
+  KeydownMultiHandler.add( VdomShortcut.onkeydown, this )
+}
+
+
+VdomShortcut.prototype.startDebug = function() {
+  this.debug = true
+  KeydownMultiHandler.add( VdomShortcut.onkeydown, this ) 
+}
+
+
+VdomShortcut.onkeydown = function( event ) {
+  var hotkey = Hotkey.fromEvent( event )
+  
+  // debug putput
+  if( this.debug ) {
+    console.log( hotkey.toString() )
+    console.log( event )
+  }
+
+  for( var i in this.catchkeys ) {
+    var key = this.catchkeys[i]
+    
+    if( hotkey.isEqual(key) ) {
+      var args = {
+        'action'    : key.action,
+        'shortcut'  : key.toString()
+      }
+
+      // debug output
+      if( this.debug ) {
+        console.log( this.id, 'keydown', args )
+        return false
+      }
+      
+      // execute event
+      execEventBinded( this.id, 'keydown', args )
+      return false
+    }
+  }
+
+  return true
+}
+
+</script>
+]]></Library>
+  </Libraries>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="keydown" Help="#Lang(501)">
+          <Parameters>
+            <Parameter Name="action" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="shortcut" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions/>
+  </E2vdom>
+</Type>
