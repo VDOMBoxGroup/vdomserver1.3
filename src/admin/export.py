@@ -31,11 +31,15 @@ def run(request):
 					raise Exception("This application could not be exported")				
 				name = a.name
 				ver = ""
+				toread = ".".join([toread, format])
+				f = open(toread, "rb")				
 				if a.version: ver = "_ver_%s" % re.sub('\D', '_', a.version)
 				request.add_header("Content-Type", "application/octet-stream");
+				f.seek(0,2)
+				length = f.tell()
+				f.seek(0)
+				request.add_header("Content-Length", length);
 				request.add_header("Content-Disposition", "attachment; filename=%s%s.%s" % (name, ver, format));
-				toread = ".".join([toread, format])
-				f = open(toread, "rb")
 				request.set_nocache()
 				while True:
 					data = f.read(65536)
