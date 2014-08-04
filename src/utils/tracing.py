@@ -42,13 +42,18 @@ def get_threads_trace():
 	return result
 
 
-def show_trace(ident="", stack=None):
+def show_trace(ident="", stack=None,title=""):
 	if stack is None: stack=traceback.extract_stack()
+	title_width,title = 30,""
 	for path, line, function, statement in stack:
 		path=normalize_source_path(path)
 		statement=normalize_source_statement(statement)
-		print "%*s %6s %s:%s:%s"%(-title_width, title, ident, path, line, function)
+		debug( "%s %6s %s:%s:%s"%(title, ident, path, line, function))
 		title, ident="", ""
+
+def show_exception_trace():
+		type, val, tb = sys.exc_info()
+		return ''.join( traceback.format_exception( type, val, tb ))
 
 def show_threads_trace(ident="", title_width=30, details=1):
 	threads={thread.ident: thread for thread in threading.enumerate()}
