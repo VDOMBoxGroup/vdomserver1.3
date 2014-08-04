@@ -58,8 +58,16 @@ def check_exception(source, error, error_type=errors.generic.runtime, quiet=None
 		elif path.startswith(path_python):
 			path="<python>%s"%path[len(path_python):]
 		elif path==vscript_source_string:
-			st=source[line-1][2]
-			vbline=source[line-1][0] or None
+			try:
+				st=source[line-1][2]
+			except IndexError:
+				debug("st IndexError")
+				st = None
+			try:
+				vbline=source[line-1][0] or None
+			except IndexError:
+				debug("vbline IndexError")
+				vbline = None
 		if not quiet:
 			debug( (u"%s, line %s%s - %s"%(path, line, ": %s"%st if st else "", function)).encode("utf-8"))
 	if not quiet:
