@@ -45,16 +45,17 @@ def get_properties(app_id, obj_id, path):
 
 class VDOM_resource(_DAVResource):
 
-	def __init__(self, path, isCollection, environ, app_id, obj_id):
+	def __init__(self, path, isCollection, environ, app_id, obj_id, props=None):
 		super(VDOM_resource, self).__init__(path, isCollection, environ)
 		self._obj_id = obj_id
 		self._app_id = app_id
+		self._properties = props
 
 	def _get_info(self, prop):
-		try:
-			properties = get_properties(self._app_id, self._obj_id, self.path)[0]
-			if properties:
-				return properties.get(prop)
+		try:#TODO! make lazy load with prop saving(beside cache)
+			if not self._properties:
+				self._properties= get_properties(self._app_id, self._obj_id, self.path)[0]
+			return self._properties.get(prop)
 		except:
 			return None
 
@@ -138,14 +139,27 @@ class VDOM_resource(_DAVResource):
 	def getMember(self, name):
 		assert self.isCollection
 		return self.provider.getResourceInst(util.joinUri(self.path, name), 
-			                             self.environ)	
-	
+		                                     self.environ)	
+
 	def getMemberNames(self):
 		assert self.isCollection
 		memberNames = get_properties.get_children_names(self._app_id, self._obj_id, self.path)
 		return memberNames	
 
-			
+	def getMemberList(self):
+		"""Return a list of direct members (Overwritten for later performance tuning).
+
+		This default implementation calls self.getMemberNames() and 
+		self.getMember() for each of them.
+		"""
+		if not self.isCollection:
+			raise NotImplementedError()
+		memberList = [] 
+		for name in self.getMemberNames():
+			member = self.getMember(name) 
+			assert member is not None
+			memberList.append(member)
+		return memberList			
 
 	def beginWrite(self, contentType=None):
 
@@ -167,13 +181,13 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
-		
+
 	def handleDelete(self):
 		if self.provider.readonly:
 			raise DAVError(HTTP_FORBIDDEN)
 		self.provider.lockManager.checkWritePermission(self.path, self.environ["HTTP_DEPTH"], 
-                                     self.environ["wsgidav.ifLockTokenList"], 
-                                     self.environ["wsgidav.username"])
+		                                               self.environ["wsgidav.ifLockTokenList"], 
+		                                               self.environ["wsgidav.username"])
 		func_name = "delete"
 		xml_data = """{"path": "%s"}""" % self.path
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
@@ -186,7 +200,7 @@ class VDOM_resource(_DAVResource):
 				get_properties.invalidate( self._app_id, self._obj_id, posixpath.normpath(util.getUriParent(self.path)))
 
 			raise DAVError(HTTP_FORBIDDEN)
-	
+
 	def handleCopy(self, destPath, depthInfinity):
 		func_name = "copy"
 		xml_data = """{"srcPath": "%s", "destPath": "%s"}""" % (self.path, destPath)
@@ -220,7 +234,7 @@ class VDOM_Provider(DAVProvider):
 		except:
 			self.application = None
 			self.obj = None
-		
+
 		self.readonly = readonly
 
 
@@ -267,15 +281,13 @@ class VDOM_Provider(DAVProvider):
 				except Exception as e:
 					debug("getResourceInst error: %s"%e)
 					raise DAVError(HTTP_REQUEST_TIMEOUT)
-			
+
 				if not res or res[0]==None:
 					return None
 				else:
-					res = res[0]
-					isCollection = True if res["resourcetype"] == "Directory" else False
-					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id)
-				
+					isCollection = True if res[0]["resourcetype"] == "Directory" else False
+					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id,res)
+
 		except:
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
-	
