@@ -3,6 +3,7 @@ import functools
 import wsgidav.util as util
 import managers
 import posixpath
+from threading import RLock
 def lru_cache(maxsize=100):
 	'''Least-recently-used cache decorator.
 
@@ -13,34 +14,39 @@ def lru_cache(maxsize=100):
 	'''
 	def decorating_function(user_function):
 		cache = collections.OrderedDict()    # order: least recent to most recent
-
+		lock = RLock()
 		@functools.wraps(user_function)
 		def wrapper(*args, **kwds):
 			key = args
 			if kwds:
 				key += tuple(sorted(kwds.items()))
-			try:
-				result = cache.pop(key)
-				wrapper.hits += 1
-			except KeyError:
-				result = user_function(*args, **kwds)
-				wrapper.misses += 1
-				if len(cache) >= maxsize:
-					cache.popitem(0)    # purge least recently used cache entry
+			with lock:
+				try:
+					result = cache[key]
+					wrapper.hits += 1
+					return result
+				except KeyError:
+					wrapper.misses += 1
+					if len(cache) >= maxsize:
+						cache.popitem(False)    # purge least recently used cache entry
+			result = user_function(*args, **kwds)
 			if result:
-				cache[key] = result         # record recent use of this key
+				with lock:
+					cache[key] = result         # record recent use of this key
 			return result
 
 		def invalidate(app_id, obj_id, path):
 			key = (app_id, obj_id, path.encode("utf8"))
-			try:
-				result = cache.pop(key)
-				cache[key] = (result[0], 1)
-			except:
-				pass
-			for key in cache:
-				if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-					cache.pop(key,None)
+			with lock:
+				try:
+					
+					result = cache.pop(key)
+					cache[key] = (result[0], 1)
+				except:
+					pass
+				for key in cache:
+					if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
+						cache.pop(key,None)
 
 
 		def get_children_names(app_id, obj_id, path):
@@ -52,8 +58,9 @@ def lru_cache(maxsize=100):
 				cnames = list(ret.keys()) if isinstance(ret, dict) else ret
 			parent = cache.get((app_id, obj_id, path))
 			if parent and parent[1] == 1:
-				cache.pop((app_id, obj_id, path))
-				cache[(app_id, obj_id, path)] = (parent[0], 0)				
+				with lock:
+					cache.pop((app_id, obj_id, path))
+					cache[(app_id, obj_id, path)] = (parent[0], 0)				
 			#else:
 			#	for key in cache:
 			#		if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
@@ -66,7 +73,8 @@ def lru_cache(maxsize=100):
 			if props:
 				try:
 					props[propname] = value
-					cache[(app_id, obj_id, path)] = (props, 0)
+					with lock:
+						cache[(app_id, obj_id, path)] = (props, 0)
 				except:
 					pass
 			
