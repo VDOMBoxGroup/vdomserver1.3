@@ -11,11 +11,11 @@ from Cookie import BaseCookie
 from memory.interface import VDOM_memory_interface
 import managers
 from utils.file_argument import File_argument
+import tempfile
 
 class MFSt(FieldStorage):
 
 	def make_file(self, binary=None):
-		import tempfile
 		return tempfile.NamedTemporaryFile("w+b",prefix="vdomupload",dir=VDOM_CONFIG["TEMP-DIRECTORY"],delete=False)
 
 

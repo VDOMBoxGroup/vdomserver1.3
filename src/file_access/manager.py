@@ -13,7 +13,7 @@ import utils.mutex as mutex
 import base64
 from daemon import VDOM_file_manager_writer
 from utils.file_argument import Attachment
-
+from tempfile import _TemporaryFileWrapper
 application_path = "applications"
 global_types_path = "types"
 type_source_path = "objects"
@@ -132,6 +132,15 @@ class VDOM_file_manager(object):
 						return
 					else:
 						content = content.handler
+				elif isinstance(content, _TemporaryFileWrapper):
+					if not content.closed:
+						content.close()
+					try:
+						os.rename(content.name,path)
+					except OSError:#on windows if path is already exist
+						os.remove(path)
+						os.rename(content.name,path)
+					return
 				fh = open(path, "wb")
 				if  type(content) == types.FileType or hasattr(content, "read"):
 					shutil.copyfileobj(content, fh)

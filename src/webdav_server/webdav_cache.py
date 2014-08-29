@@ -4,6 +4,7 @@ import wsgidav.util as util
 import managers
 import posixpath
 from threading import RLock
+from datetime import datetime
 def lru_cache(maxsize=100):
 	'''Least-recently-used cache decorator.
 
@@ -15,8 +16,11 @@ def lru_cache(maxsize=100):
 	def decorating_function(user_function):
 		cache = collections.OrderedDict()    # order: least recent to most recent
 		lock = RLock()
+		cache.last_access = datetime.now()
+		
 		@functools.wraps(user_function)
 		def wrapper(*args, **kwds):
+			cache.last_access = datetime.now()
 			key = args
 			if kwds:
 				key += tuple(sorted(kwds.items()))
@@ -36,6 +40,7 @@ def lru_cache(maxsize=100):
 			return result
 
 		def invalidate(app_id, obj_id, path):
+			cache.last_access = datetime.now()
 			key = (app_id, obj_id, path.encode("utf8"))
 			with lock:
 				try:
@@ -50,6 +55,7 @@ def lru_cache(maxsize=100):
 
 
 		def get_children_names(app_id, obj_id, path):
+			cache.last_access = datetime.now()
 			cnames = []			
 			func_name = "getMembers"
 			xml_data = """{"path": "%s"}""" % path
@@ -67,6 +73,23 @@ def lru_cache(maxsize=100):
 			#		   os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
 			#			cnames.append(util.getUriName(key[2]))
 			return cnames
+		
+		def get_children(app_id, obj_id, path):
+			cache.last_access = datetime.now()
+			cnames = []			
+			func_name = "getMembers"
+			xml_data = """{"path": "%s"}""" % path
+			ret = managers.dispatcher.dispatch_action(app_id, obj_id, func_name, "",xml_data) or {}
+			#if ret:
+			#	cnames = list(ret.keys()) if isinstance(ret, dict) else ret
+			parent = cache.get((app_id, obj_id, path))
+			if parent and parent[1] == 1:
+				with lock:
+					cache.pop((app_id, obj_id, path))
+					for name,child in ret.iteritems():
+						cache[(app_id, obj_id, util.joinUri(path, name))] = (child,0)
+					cache[(app_id, obj_id, path)] = (parent[0], 0)
+			return ret
 		
 		def change_property_value(app_id, obj_id, path, propname, value):
 			props = cache.get((app_id, obj_id, path))[0]
@@ -89,11 +112,15 @@ def lru_cache(maxsize=100):
 			cache.clear()
 			wrapper.hits = wrapper.misses = 0
 			
+		def last_access():
+			return cache.last_access
 		wrapper.invalidate = invalidate
 		wrapper.get_children_names = get_children_names
+		wrapper.get_children = get_children
 		wrapper.change_property_value = change_property_value
 		wrapper.change_parents_property = change_parents_property
 		wrapper.hits = wrapper.misses = 0
 		wrapper.clear = clear
+		wrapper.last_access = last_access
 		return wrapper
 	return decorating_function

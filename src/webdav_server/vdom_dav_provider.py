@@ -30,6 +30,7 @@ import managers
 from webdav_request import VDOM_webdav_request
 from webdav_cache import lru_cache
 import posixpath
+import tempfile
 __docformat__ = "reStructuredText"
 
 _logger = util.getModuleLogger(__name__)
@@ -50,6 +51,7 @@ class VDOM_resource(_DAVResource):
 		self._obj_id = obj_id
 		self._app_id = app_id
 		self._properties = props
+		self._tmpfile = None #Needed for fast upload
 
 	def _get_info(self, prop):
 		try:#TODO! make lazy load with prop saving(beside cache)
@@ -108,20 +110,28 @@ class VDOM_resource(_DAVResource):
 		if ret:
 			return ret
 		return None
+	@property
+	def parent(self):
+		return util.getUriParent(self.path)
 
+	@property
+	def filename(self):
+		return util.getUriName(self.path)
+	
 	def createEmptyResource(self, name):
 		assert self.isCollection
-		func_name = "createResource"
+		#func_name = "createResource"
+		return self.provider.createResourceInst(self.path,name, self.environ)
+		
+		#xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
+		#ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		#if ret:
+		#	res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
+		#	if res:
+		#		#get_properties.invalidate(self._app_id, self._obj_id, self.path)
+		#		return res
 
-		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret:
-			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
-			if res:
-				#get_properties.invalidate(self._app_id, self._obj_id, self.path)
-				return res
-
-		raise DAVError(HTTP_FORBIDDEN)               
+		#raise DAVError(HTTP_FORBIDDEN)               
 
 	def createCollection(self, name):
 		assert self.isCollection
@@ -136,16 +146,20 @@ class VDOM_resource(_DAVResource):
 		raise DAVError(HTTP_FORBIDDEN)               
 
 
-	def getMember(self, name):
+	def getMember(self, name, preloaded = None):
 		assert self.isCollection
 		return self.provider.getResourceInst(util.joinUri(self.path, name), 
-		                                     self.environ)	
+		                                     self.environ,preloaded)	
 
 	def getMemberNames(self):
 		assert self.isCollection
 		memberNames = get_properties.get_children_names(self._app_id, self._obj_id, self.path)
 		return memberNames	
-
+	
+	def getMemberChildren(self):
+		assert self.isCollection
+		return get_properties.get_children(self._app_id, self._obj_id, self.path) or {}
+		
 	def getMemberList(self):
 		"""Return a list of direct members (Overwritten for later performance tuning).
 
@@ -155,8 +169,8 @@ class VDOM_resource(_DAVResource):
 		if not self.isCollection:
 			raise NotImplementedError()
 		memberList = [] 
-		for name in self.getMemberNames():
-			member = self.getMember(name) 
+		for name, child in self.getMemberChildren().iteritems():
+			member = self.getMember(name,child) 
 			assert member is not None
 			memberList.append(member)
 		return memberList			
@@ -164,12 +178,14 @@ class VDOM_resource(_DAVResource):
 	def beginWrite(self, contentType=None):
 
 		assert not self.isCollection
-		func_name = "open"
-		xml_data = """{"path": "%s", "mode": "wb"}""" % self.path
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
-		if ret:
-			return ret
-		raise DAVError(HTTP_FORBIDDEN)       
+		self._tmpfile = tempfile.NamedTemporaryFile("w+b",prefix="webdavupload",dir=VDOM_CONFIG["TEMP-DIRECTORY"],delete=False)
+		return self._tmpfile
+		#func_name = "open"
+		#xml_data = """{"path": "%s", "mode": "wb"}""" % self.path
+		#ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		#if ret:
+		#	return ret
+		#raise DAVError(HTTP_FORBIDDEN)       
 
 
 	def endWrite(self, withErrors):
@@ -177,9 +193,13 @@ class VDOM_resource(_DAVResource):
 
 		This is only a notification. that MAY be handled.
 		"""
-		func_name = "close"
-		xml_data = """{"path": "%s"}""" % self.path
-		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
+		func_name = "put"
+		#xml_data = """{"path": "%s"}""" % self.path
+		data = {'path':posixpath.normpath(self.parent), 'handler':self._tmpfile, 'name':self.filename}
+		data['overwrite'] = self._properties is not None
+		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",data)
+		if os.path.exists(self._tmpfile.name):
+			os.unlink(self._tmpfile.name)
 		#get_properties.invalidate(self._app_id, self._obj_id, os.path.normpath(util.getUriParent(self.path)))
 
 	def handleDelete(self):
@@ -267,7 +287,7 @@ class VDOM_Provider(DAVProvider):
 #		return r
 
 
-	def getResourceInst(self, path, environ):
+	def getResourceInst(self, path, environ,preloaded = None):
 		"""Return info dictionary for path.
 
 		See DAVProvider.getResourceInst()
@@ -276,18 +296,32 @@ class VDOM_Provider(DAVProvider):
 		path = posixpath.normpath(path or "/")
 		try:
 			if self.application and self.obj:
-				try:
-					res = get_properties(self.application.id, self.obj.id, path)
-				except Exception as e:
-					debug("getResourceInst error: %s"%e)
-					raise DAVError(HTTP_REQUEST_TIMEOUT)
+				if preloaded:
+					res = (preloaded,)
+				else:
+					try:
+						res = get_properties(self.application.id, self.obj.id, path)
+					except Exception as e:
+						debug("getResourceInst error: %s"%e)
+						raise DAVError(HTTP_REQUEST_TIMEOUT)
 
 				if not res or res[0]==None:
 					return None
 				else:
 					isCollection = True if res[0]["resourcetype"] == "Directory" else False
-					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id,res)
+					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id,res[0])
 
-		except:
+		except Exception as e:
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
+	
+	def createResourceInst(self, parent, name, environ):
+		self._count_getResourceInst += 1
+		try:
+			res = VDOM_resource(util.joinUri(parent, name), False, environ, self.application.id, self.obj.id,None)
+			res.name = name
+			#res.parent = parent
+			return res
+		except:
+			raise DAVError(HTTP_FORBIDDEN)	
+		
