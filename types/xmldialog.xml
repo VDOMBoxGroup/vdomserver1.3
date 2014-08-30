@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.75.6720</Version>
+    <Version>1.76.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -762,6 +762,20 @@ margin-top: 10px;
 			if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "hide", {});
 		}
 	});
+  jQuery.ui.dialog.prototype.customEvent = function(args){
+    var objID = this.element.context.id.substring(2);
+    execEventBinded(objID, 'customEvent', args);
+  };
+  jQuery.ui.dialog.prototype.registerCallbacks = function(callbacks){
+    this.callbacks = this.callbacks || {};
+    for (name in callbacks){
+      this.callbacks[name] = callbacks[name];
+    }
+  };
+  jQuery.ui.dialog.prototype.executeCallback = function(name, params){
+    this.callbacks = this.callbacks || {};
+    this.callbacks[name](params);
+  };
 	$q("#%(id)s form.xml-dialog-form").live('submit',function(e){
 		e.preventDefault;
 		var x=[], a=$q(this).serializeArray();
@@ -1019,6 +1033,11 @@ function vdom_xd_load(id,xd){
             <Parameter Name="params" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
+        <Event Name="customEvent" Help="#Lang(507)">
+          <Parameters>
+            <Parameter Name="macros_id" Order="" VbType="" Help="#Lang(901)"/>
+          </Parameters>
+        </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
@@ -1054,6 +1073,15 @@ $q("#"+this.domCont.id).dialog("option",{width:parseInt(width,10),height:parseIn
           </Parameters>
           <SourceCode><![CDATA[
 vdom_xd_load("#"+this.domCont.id,xmldata);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="executeCallback">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="callbackName" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="params" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$q("#"+this.domCont.id).dialog('executeCallback', callbackName, params);
 ]]></SourceCode>
         </Action>
       </Container>
