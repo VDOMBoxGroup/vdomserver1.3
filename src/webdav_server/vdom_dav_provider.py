@@ -312,6 +312,7 @@ class VDOM_Provider(DAVProvider):
 					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id,res[0])
 
 		except Exception as e:
+			debug("getResourceInst error: %s"%e)
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
 	
