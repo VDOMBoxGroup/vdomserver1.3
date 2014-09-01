@@ -5,7 +5,7 @@ import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, thread
 if sys.platform.startswith("freebsd"):
 	import vdomlib
 
-import SocketServer, BaseHTTPServer, SimpleHTTPServer
+import SocketServer, BaseHTTPServer, SimpleHTTPServer, socket
 from cStringIO import StringIO
 import xml.sax.saxutils
 import webdav_server
@@ -73,7 +73,10 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				exc_info = None    # Avoid circular ref.
 		status_code = int(status.split(' ')[0])
 		status_message = status[status.find(' ')+1:]
-		self.send_response(status_code, status_message)
+		try:
+			self.send_response(status_code, status_message)
+		except socket.error as e:#TODO: find why socket already closed when error in Webdav
+			return
 		for header in response_headers:
 			if header[0] != 'Date':
 				self.send_header(header[0], header[1])
