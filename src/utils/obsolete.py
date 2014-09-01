@@ -161,6 +161,8 @@ try: os.makedirs(VDOM_CONFIG["FILE-STORAGE-DIRECTORY"])
 except: pass
 try: os.makedirs(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"] + "/cert")
 except: pass
+try: os.makedirs(VDOM_CONFIG["TEMP-DIRECTORY"])
+except: pass
 
 # change directory access rights
 
