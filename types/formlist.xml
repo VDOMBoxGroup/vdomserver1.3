@@ -759,10 +759,10 @@ class VDOM_formlist(VDOM_object):
 			try:
 				selected_values = json.loads(self.selectedvalue)
 			except:
-				pass
+				selected_values = None
 
-		if not isinstance(selected_values, list):
-			selected_values = [self.selectedvalue]
+			if not isinstance(selected_values, list):
+				selected_values = [self.selectedvalue]
 
 		data = self.get_data()
 		if not isinstance(data, dict):
