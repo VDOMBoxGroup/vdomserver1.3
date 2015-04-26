@@ -729,17 +729,30 @@ class VDOM_form(VDOM_object):
 		if self.meth == "event":
 			submitjs = u"""<script type="text/javascript">
 $j(function(){
-	$j('#%(id)s').submit(function(e){
-		if ($j('body').data('%(id)s_submitted') == '1') return false;
-		$j('body').data('%(id)s_submitted', '1');
-		setTimeout(function() {
-			$j('body').data('%(id)s_submitted', '');
-		}, 1000);
-		var x=[], a=$j('#%(id)s').serializeArray();
-		for (k in a) if(typeof a[k].name !== 'undefined' && typeof a[k].value !== 'undefined') x[a[k].name]=a[k].value;
-		execEventBinded('%(woid)s', "submit", x);
-		return false;
-	});
+  $j('#%(id)s').submit(function(e){
+    if ($j('body').data('%(id)s_submitted') == '1') return false;
+    $j('body').data('%(id)s_submitted', '1');
+    setTimeout(function() {
+      $j('body').data('%(id)s_submitted', '');
+    }, 1000);
+    var formData={}, a=$j('#%(id)s').serializeArray();
+    for (k in a){
+      if(typeof a[k].name !== 'undefined' && typeof a[k].value !== 'undefined') {
+        if (formData.hasOwnProperty(a[k].name)){
+          if (jQuery.isArray(formData[a[k].name])){
+            formData[a[k].name].push(a[k].value);
+          } else {
+            v = formData[a[k].name];
+            formData[a[k].name] = new Array(v, a[k].value);
+          }
+        } else {
+          formData[a[k].name]=a[k].value;
+        }
+      }
+    }
+    execEventBinded('%(woid)s', "submit", formData);
+    return false;
+  });
 });
 </script>""" % { "id": id, "woid": woid }
 		else:
