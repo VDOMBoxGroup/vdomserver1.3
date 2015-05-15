@@ -1137,6 +1137,22 @@ import utils.wysiwyg as utils_wysiwyg
 from memory.xml_object import xml_object
 
 
+def _unicode(value):
+    if isinstance(value, unicode):
+        return value
+
+    if isinstance(value, str):
+        return value.decode('utf8')
+
+    return unicode(value)
+
+
+def xml_node_attrs(xml):
+    toplvl = xml.split('>', 1)[0]
+    attrs = [attr.split("=",1) for attr in toplvl.split(' ') if '=' in attr]
+    return {key.lower(): value[1: len(value)-1] for key, value in attrs}
+
+
 class xmlencoding(object):
     _re = None
 
@@ -1166,6 +1182,8 @@ class xmlencoding(object):
 
 class DummyAttribute(object):
 
+    __slots__ = ("name", "value")
+
     def __init__(self, name, value=0):
         self.name = name
         self.value = value
@@ -1173,8 +1191,10 @@ class DummyAttribute(object):
 
 class DummyAttributes(object):
 
+    __slots__ = ("map",)
+
     def __init__(self):
-        self.__attributes = {}
+        self.map = {}
 
     def __getitem__(self, key):
         if key == "name":
@@ -1183,13 +1203,13 @@ class DummyAttributes(object):
         elif key == "dynamic":
             return DummyAttribute("dynamic",1)
 
-        if key not in self.__attributes:
-            self.__attributes[key] = DummyAttribute(key)
+        if key not in self.map:
+            self.map[key] = DummyAttribute(key)
 
-        return self.__attributes[key]
+        return self.map[key]
 
     def values(self):
-        return self.__attributes.values()
+        return self.map.values()
 
 
 class DummyObject(object):
@@ -1215,7 +1235,6 @@ class DummyObject(object):
     def set_attribute_ex(self, name, value, x=0):
         old_value = self.attributes[name].value
         self.attributes[name].value = value
-
         return {
             "value": value,
             "old_value": old_value
@@ -1233,121 +1252,43 @@ class DummyObject(object):
         self.objects[child.id] = child
 
 
-def render(parent_id, xml_repr, data=None):
-    data = data or {}
-    root = None
-    xml_data = xml_object(srcdata=xml_repr.encode("utf-8"))
-    parent = application.objects.search(parent_id)
+class VDOMTemplate(object):
 
-    dummies = create_dummies(parent, xml_data, initial=True, data=data)
+    __slots__ = (
+        "attributes",
+        "vdomxml"
+    )
 
-    for child_id in dummies:
-        application.itself.all_dynamic_objects[child_id] = dummies[child_id]
+    def __init__(self, xml, attrs):
+        self.attributes = attrs
+        self.vdomxml = xml
 
-    result = managers.engine.render(application.itself, dummies["initial"], parent, "vdom")
+    def __getitem__(self, key):
+        return self.attributes.get(key.lower(), '')
 
-    # HACK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    obj = dummies["initial"]
-    name = 'Obj_%s' % obj.id.replace('-', '_')
-    result += """\
-<script>var %s = {
-    "eventEngine" : {
-        "eventDispatcher" : {
-            "eventArray" : []
-        }
-    }
-}</script>""" % name
+    def __setitem__(self, key, value):
+        self.attributes[key.lower()] = _unicode(value)
 
-    for child_id in dummies:
-        if child_id in application.itself.all_dynamic_objects:
-            del application.itself.all_dynamic_objects[child_id]
+    def __delitem__(self, key):
+        del self.attributes[key.lower()]
 
-    return result
-
-
-def create_dummies(parent, xml_data, initial=False, data=None):
-    new_objects = {}
-
-    # split data for this object and child objects data
-    this_data = {}
-
-    for key, value in data.iteritems():
-        key = key.lower()
-        if '.' in key:
-            continue
-        
-        this_data[key] = value
-
-    for key in this_data:
-        del data[key]
-
-    attr_map={}
-    type_obj = managers.xml_manager.get_type_by_name(xml_data.lname)
-    for aname in type_obj.get_attributes():
-        attr_map[aname.lower()] = type_obj.get_attributes()[aname].default_value
-
-    # parse attributes
-    for attr_name in xml_data.attributes:
-        if attr_name in attr_map or "name" == attr_name:
-            attr_map[attr_name] = xml_data.attributes[attr_name]
-        
-        else:
-            raise Exception("Incorrect attribute: %s" % attr_name)
-
-    for child in xml_data.children:
-        if "attribute" == child.lname:
-            attr_name = child.attributes["name"]
-
-            if not attr_name:
-                continue
-
-            if attr_name in attr_map:
-                attr_map[attr_name] = child.get_value_as_xml()
-            
-            else:
-                raise Exception("Incorrect attribute: %s" % attr_name)
-
-        source_object_attr = DummyAttributes()
-
-    # change value of attributes that was updated
-    for aname in attr_map:
-        if aname in this_data:
-            attr_map[aname] = this_data[aname]
-
-    obj = DummyObject(type_obj, attr_map["name"], e2vdom.virtual_context)
-    if initial:
-        new_objects["initial"] = obj
-
-    else:
-        parent.add_child(obj)
-
-    new_objects[obj.id] = obj
-    for a in attr_map:
-        obj.set_attribute_ex(a, attr_map[a])
-
-    # process all child objects
-    for child in xml_data.children:
-        if "attribute" == child.lname:
-            continue
-
-        name = child.attributes['name'] + '.' # include separator
-        n = len(name)
-        child_data = {}
-
-        for key,value in data.iteritems():
-            if key[:n] != name: continue # skip other objects
-            child_data[ key[n:] ] = value
-
-        new_objects.update(create_dummies(obj, child, False, child_data))
-
-    return new_objects
+    def tohtml(self, parent):
+        return render(parent, self.vdomxml, self.attributes)
 
 
 class VDOMLayout(object):
 
+    __slots__ = (
+        "objects",
+        "left",
+        "top",
+        "width",
+        "height",
+        "margin"
+    )
+
     def __init__(self):
         self.objects  = []
-        self.attributes = {}
         self.left = 0
         self.top = 0
         self.width = 0
@@ -1362,14 +1303,6 @@ class VDOMLayout(object):
     def bottom(self):
         return self.top + self.height
 
-    def __getitem__(self, key):
-        key = key.lower()
-        return self.attributes.get(key, '')
-
-    def __setitem__(self, key, value):
-        key = key.lower()
-        self.attributes[key] = value
-
     def arrange(self, element):
         pass
 
@@ -1383,17 +1316,12 @@ class VDOMLayout(object):
         obj['left'] = left + self.left
         obj['top'] = top + self.top
 
-    def tohtml( self ):
+    def tohtml(self, parent):
         # make absolute
         for obj in self.objects:
             self._abs(obj)
 
-        # get html code
-        result = ''
-        for obj in self.objects:
-            result += obj.tohtml()
-
-        return result
+        return ''.join([obj.tohtml(parent) for obj in self.objects])
 
 
 class VDOMVLayout(VDOMLayout):
@@ -1432,82 +1360,113 @@ class VDOMHLayout(VDOMLayout):
         self.height = max(self.height, height)
 
 
-class VDOMTemplate(object):
+def render(parent, vdomxml, data=None):
+    data = data or {}
+    dummies = create_dummies(parent, vdomxml, True, data)
 
-    def __init__(self, xml=None):
-        self.__attributes = {}  # changed attributes
-        self.__map = {}
-        self.vdom_xml = xml # VDOM XML
+    for child_id in dummies:
+        application.itself.all_dynamic_objects[child_id] = dummies[child_id]
 
-    @property
-    def vdom_xml(self):
-        return self.__xml
+    result = managers.engine.render(application.itself, dummies["initial"], parent, "vdom")
 
-    @vdom_xml.setter
-    def vdom_xml(self, value):
-        if not value:
-            return
+    # dummies["initial"].object = dummies["initial"]
+    # e2vdom.process(dummies["initial"], '')
 
-        self.__xml = value
-        self._load_attributes()
 
-    def _load_attributes(self):
-        cnt = self.vdom_xml.split('>')[0]
-        attrs = [s for s in cnt.split(' ') if '=' in s]
+    # HACK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    obj = dummies["initial"]
+    name = 'Obj_%s' % obj.id.replace('-', '_')
+    result += """\
+<script>var %s = {
+    "eventEngine" : {
+        "eventDispatcher" : {
+            "eventArray" : []
+        }
+    }
+}</script>""" % name
 
-        for attr in attrs:
-            attr = attr.split('=')
-            key = attr[0].lower()
-            value = attr[1].replace('"', '').replace("'", '')
-            self.__attributes[key] = value
+    for child_id in dummies:
+        if child_id in application.itself.all_dynamic_objects:
+            del application.itself.all_dynamic_objects[child_id]
 
-    def _unicode(self, value):
-        if isinstance(value, unicode):
-            return value
+    return result
 
-        if isinstance(value, str):
-            return value.decode('utf8')
 
-        return unicode(value)
+def create_dummies(parent, vdomxml, initial=False, data=None):
+    data = data or {}
+    objects = {}
+    root_props = {}
 
-    def __getitem__(self, key):
+    for key, value in data.iteritems():
         key = key.lower()
-        return self.__attributes.get(key, '')
+        if '.' in key:
+            continue
+        
+        root_props[key] = value
 
-    def __setitem__(self, key, value):
-        key = key.lower()
-        self.__attributes[key] = self._unicode(value)
+    for key in root_props:
+        del data[key]
 
-    def __delitem__(self, key):
-        key = key.lower()
-        del self.__attributes[key]
+    attr_map={}
+    type_obj = managers.xml_manager.get_type_by_name(vdomxml.lname)
+    for aname in type_obj.get_attributes():
+        attr_map[aname.lower()] = type_obj.get_attributes()[aname].default_value
 
-    def __getattribute__(self, name):
-        try:
-            return object.__getattribute__(self, name)
-        except:
-            pass
+    # parse attributes
+    for attr_name in vdomxml.attributes:
+        if attr_name in attr_map or "name" == attr_name:
+            attr_map[attr_name] = vdomxml.attributes[attr_name]
+        
+        else:
+            raise Exception("Incorrect attribute: %s" % attr_name)
 
-        if name not in self.__map:
-            raise AttributeError(name)
+    for child in vdomxml.children:
+        if "attribute" == child.lname:
+            attr_name = child.attributes["name"]
 
-        key = self.__map.get(name)
-        return self[key] if key else None
+            if not attr_name:
+                continue
 
-    def __setattr__(self, name, value):
-        if '_VDOMTemplate__map' not in self.__dict__:
-            object.__setattr__(self, name, value)
-            return
+            if attr_name in attr_map:
+                attr_map[attr_name] = child.get_value_as_xml()
+            
+            else:
+                raise Exception("Incorrect attribute: %s" % attr_name)
 
-        if name in self.__map:
-            key = self.__map.get(name)
-            self[key] = value
-            return
+        source_object_attr = DummyAttributes()
 
-        object.__setattr__(self, name, value)
+    # change value of attributes that was updated
+    for aname in attr_map:
+        if aname in root_props:
+            attr_map[aname] = root_props[aname]
 
-    def tohtml(self):
-        return render('', self.vdom_xml, self.__attributes)
+    obj = DummyObject(type_obj, attr_map["name"], e2vdom.virtual_context)
+    if initial:
+        objects["initial"] = obj
+
+    else:
+        parent.add_child(obj)
+
+    objects[obj.id] = obj
+    for a in attr_map:
+        obj.set_attribute_ex(a, attr_map[a])
+
+    # process all child objects
+    for child in vdomxml.children:
+        if "attribute" == child.lname:
+            continue
+
+        name = child.attributes['name'] + '.' # include separator
+        n = len(name)
+        child_data = {}
+
+        for key,value in data.iteritems():
+            if key[:n] != name: continue # skip other objects
+            child_data[ key[n:] ] = value
+
+        objects.update(create_dummies(obj, child, False, child_data))
+
+    return objects
 
 
 JS_DRAG = u"""\
@@ -1641,70 +1600,77 @@ class VDOM_dynobjectview(VDOM_object):
         result = utils_wysiwyg.get_empty_wysiwyg_value(self, image_id)
         return VDOM_object.wysiwyg(self, parent, contents=result)
 
-    def render(self, parent, contents=""):
+    def parse_properties(self):
 
         try:
           data = json.loads(self.data)
         except Exception:
-          raise Exception("Can't parse 'data'")
+          if self.data:
+            raise Exception("Can't parse 'data'")
+
+          data = []
 
         try:
           templates = json.loads(self.template)
         except Exception:
-          raise Exception("Can't parse 'template'")
+          if self.template:
+            raise Exception("Can't parse 'template'")
+
+          templates = {}
 
         try:
           bindings = json.loads(self.bindings)
         except Exception:
-          raise Exception("Can't parse 'bindings'")
+          if self.bindings:
+            raise Exception("Can't parse 'bindings'")
 
-        layouts = { "0": VDOMVLayout,
-                    "1": VDOMHLayout,
-                    "2": VDOMVLayout
+          bindings = {}
+
+
+        return data, templates, bindings
+
+    def generate_layout(self):
+
+        data, templates, bindings = self.parse_properties()
+        layouts = (VDOMVLayout, VDOMHLayout, VDOMVLayout) 
+        
+        xml_templates = {
+            name: xml_object(srcdata=xml.encode("utf-8"))
+            for name, xml in templates.items()
         }
 
-        dynlayout = layouts[self.layout]()
-        dynlayout.margin = 17
+        dynlayout = layouts[int(self.layout)]()
+        dynlayout.margin = 17                
 
         classname = u"dov" if self.classname == "" else self.classname
-        nn = 1
-        nn_first = 1
-        styleforitem = ''
-        # add items to layout
+        nn = nn_first = 1
 
         for item in data:
-            vdom_class = item['vdomclass']
-            template = VDOMTemplate()
-            template.vdom_xml = templates[vdom_class]
-            binding = bindings.get(vdom_class, {})
+            tname = item['vdomclass']
+            vtmp = VDOMTemplate(xml_templates[tname], xml_node_attrs(templates[tname]))
+            binding = bindings.get(tname, {})
 
             for key in item:
                 if key not in binding:
                     continue
 
-            attrs = binding[key]
-            if not isinstance(attrs, list):
-                attrs = [attrs]
+                attrs = binding[key]
+                if not isinstance(attrs, list):
+                    attrs = [attrs]
 
-            for a in attrs:
-                template[a] = xmlencoding.escape(item[key])
+                for a in attrs:
+                    vtmp[a] = xmlencoding.escape(item[key])
 
-            template["name"] = "vdomclass_%d" % nn
+            vtmp["name"] = "vdomclass_%d" % nn
 
-            if nn_first == 1:
-              classfirst = u"%s-item-first" % classname
-            else:
-              classfirst = ''
+            classfirst = '' if nn_first != 1 else \
+                         u"%s-item-first" % classname
+            
+            classlast = '' if nn != len(data) else \
+                        u"%s-item-last" % classname
 
-            if nn == len(data):
-              classlast = u"%s-item-last" % classname
-            else:
-              classlast = ''
-
-            if nn % 2:
-              classodd = ''
-            else:
-              classodd = u"%s-item-odd" % classname
+            classodd = '' if nn % 2 else \
+                       u"%s-item-odd" % classname
 
             classes = u" %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s %(notloaded)s" % {
               "class":      classname,
@@ -1712,17 +1678,25 @@ class VDOM_dynobjectview(VDOM_object):
               "classfirst": classfirst,
               "classlast":  classlast,
               "classodd":   classodd,
-              "notloaded":  "not-loaded"# if onlydiv else ""
+              "notloaded":  "" #"not-loaded"# if onlydiv else ""
             }
 
-            template["classname"] = template["classname"] + classes
-            dynlayout.append(template)
+            vtmp["classname"] = vtmp["classname"] + classes
+            dynlayout.append(vtmp)
+
+            nn += 1
+            nn_first = 0
+
+        return dynlayout
+
+    def render(self, parent, contents=""):
+
+        dynlayout = self.generate_layout()
 
         js = ""
         woid = (self.id).replace('-', '_')
         obj_id = u"o_" + woid
         onlydiv = False
-
 
         if request.render_type == "e2vdom":
           tmp_id = u"dov" + str(uuid.uuid4())
@@ -1790,7 +1764,7 @@ if ($j.trim(dovtmp.html()) != '') {
 
           contents += result % {
             "js":           js,
-            "inner_render": dynlayout.tohtml(),
+            "inner_render": dynlayout.tohtml(self),
             "id":           obj_id,
             "tmp_id":       tmp_id,
             "woid":         woid
@@ -1798,7 +1772,7 @@ if ($j.trim(dovtmp.html()) != '') {
 
         else:
 
-          e2vdom.process(self, parent)
+          # e2vdom.process(self, parent)
           
           display = u" display:none; " if self.visible == "0" else u""
           if self.overflow == "1":
@@ -1898,7 +1872,7 @@ if ($j.trim(dovtmp.html()) != '') {
             style=style.strip(),
             style_items=style_items.strip(),
             classname=classname.strip(),
-            contents=dynlayout.tohtml()
+            contents=dynlayout.tohtml(self)
           )
 
         return VDOM_object.render(self, parent, contents=contents)
