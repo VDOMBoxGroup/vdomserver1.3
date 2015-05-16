@@ -53,6 +53,11 @@ def compile_registations_render_params(parameters):
 	return ','.join(a)
 
 def compile_registations(container, parent):
+
+	application=managers.request_manager.get_request().application()
+	if container.id in application.all_dynamic_objects:
+		return ""
+
 	lines=[]
 
 	#lines.append(";jQuery(document).ready(function($){")
