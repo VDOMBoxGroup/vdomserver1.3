@@ -1008,6 +1008,63 @@ if (t.hasClass('multiselect')){
 	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});}
 		  ]]></SourceCode>
         </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectItems">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="items" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), id = this.domCont.id;
+var only1 = false;
+if (!t.hasClass('multiselect')){
+  t.find('li[itemid].selected').removeClass("selected");
+  only1 = true;
+}
+
+for (var i in items){
+  l = t.find('li[itemid="'+items[i]+'"]');
+  if (!l.hasClass('selected')){
+    l.addClass('selected');
+  }
+  if (only1) break;
+}
+
+var a = [];
+var k = t.find('li.selected[itemid]');
+k.each(function(i,e){ a.push($q(e).attr('itemid')); });
+execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="unselectItems">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="items" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), id = this.domCont.id;
+for (var i in items){
+  l = t.find('li[itemid="'+items[i]+'"]');
+  if (l.hasClass('selected')){
+    l.removeClass('selected');
+  }
+}
+var a = [];
+var k = t.find('li.selected[itemid]');
+k.each(function(i,e){ a.push($q(e).attr('itemid')); });
+execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="activateItem">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="item" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+var t = $(this.domCont), id = this.domCont.id;
+t.find('li[itemid].active').removeClass("active");
+
+if (item){
+  t.find('li[itemid="'+item+'"]').addClass("active");
+}
+]]></SourceCode>
+        </Action>
       </Container>
     </Actions>
   </E2vdom>
