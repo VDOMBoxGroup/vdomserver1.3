@@ -182,9 +182,26 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>draghelper</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue><![CDATA[<div class='dov-drag-helper' style='width:50px;height:20px;background:#555'></div>]]></DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>3</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>css</Name>
       <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>#%(id)s .loading-helper {
+    background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat;
+}
+#%(id)s .not-loaded {
+    background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat;
+}</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>3</InterfaceType>
@@ -277,6 +294,7 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="125">Template</Sentence>
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
+      <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -309,6 +327,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225">Template</Sentence>
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
+      <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -334,6 +353,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325">Invalid value</Sentence>
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
+      <Sentence ID="328">Invalid value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -468,6 +488,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125">Template</Sentence>
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
+      <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -493,6 +514,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225">Template</Sentence>
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
+      <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -518,6 +540,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325">Invalid value</Sentence>
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
+      <Sentence ID="328">Invalid value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -652,6 +675,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125">Template</Sentence>
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
+      <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -677,6 +701,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225">Template</Sentence>
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
+      <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -702,6 +727,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325">Invalid value</Sentence>
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
+      <Sentence ID="328">Invalid value</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Вертикальный</Sentence>
@@ -1124,6 +1150,8 @@ bj1sLmhhbmRsZXI7bC5oYW5kbGVyPW19fX07ZnVuY3Rpb24gZygpe2k9aFtrXShmdW5jdGlvbigp
 e2EuZWFjaChmdW5jdGlvbigpe3ZhciBuPSQodGhpcyksbT1uLndpZHRoKCksbD1uLmhlaWdodCgp
 LG89JC5kYXRhKHRoaXMsZCk7aWYobSE9PW8ud3x8bCE9PW8uaCl7bi50cmlnZ2VyKGosW28udz1t
 LG8uaD1sXSl9fSk7ZygpfSxlW2JdKX19KShqUXVlcnksdGhpcyk7DQo=]]></Resource>
+  <Resource ID="983d23d7-d98a-4552-b0cc-0b14122a14d1" Name="dynamicobjectview.js" Type="js"><![CDATA[dmFyIGRyYWdnYWJsZV9vbGRNb3VzZVN0YXJ0ID0gJC51aS5kcmFnZ2FibGUucHJvdG90eXBlLl9tb3VzZVN0YXJ0OwokLnVpLmRyYWdnYWJsZS5wcm90b3R5cGUuX21vdXNlU3RhcnQgPSBmdW5jdGlvbihldmVudCwgb3ZlcnJpZGVIYW5kbGUsIG5vQWN0aXZhdGlvbikgewogICB0aGlzLl90cmlnZ2VyKCJDdXN0b21CZWZvcmVTdGFydCIsIGV2ZW50LCB0aGlzLl91aUhhc2goKSk7CiAgIGRyYWdnYWJsZV9vbGRNb3VzZVN0YXJ0LmFwcGx5KHRoaXMsIFtldmVudCwgb3ZlcnJpZGVIYW5kbGUsIG5vQWN0aXZhdGlvbl0pOwp9OwoKCgooZnVuY3Rpb24oJCkgewoKICAgIGZ1bmN0aW9uIGdldERvbUNvbnRJRChvYmopewogICAgICB2YXIgaWQgPSBvYmouYXR0cigiaWQiKTsKICAgICAgcmV0dXJuIGlkLnN1YnN0cmluZygyLCBpZC5sZW5ndGgpOwogICAgfQoKICAgIGZ1bmN0aW9uIGZvcm1hdFVuaWNvcm4odGVtcGxhdGUsIGFyZ3VtZW50cykgewogICAgICB2YXIgc3RyID0gdGVtcGxhdGUudG9TdHJpbmcoKTsKICAgICAgZm9yIChhcmcgaW4gYXJndW1lbnRzKQogICAgICAgIHN0ciA9IHN0ci5yZXBsYWNlKFJlZ0V4cCgiXFx7IiArIGFyZyArICJcXH0iLCAiZ2kiKSwgYXJndW1lbnRzW2FyZ10pOwogICAgICByZXR1cm4gc3RyOwogICAgfQoKICAgIGZ1bmN0aW9uIG1hcmtFbGVtZW50QXNMb2FkaW5nKG9iail7CiAgICAgIHZhciBsb2FkaW5nX2hlbHBlciA9ICQoJz4ubG9hZGluZy1oZWxwZXInLG9iaik7CiAgICAgIGlmIChsb2FkaW5nX2hlbHBlci5zaXplKCkgPT0gMCkgewogICAgICAgIHZhciBsb2FkaW5nX2hlbHBlciA9ICQoJzxkaXYgY2xhc3M9ImxvYWRpbmctaGVscGVyIiBzdHlsZT0id2lkdGg6MTAwJSU7aGVpZ2h0OjEwMCUlIj48L2Rpdj4nKS5jc3MoewogICAgICAgICAgcG9zaXRpb246J2Fic29sdXRlJywKICAgICAgICAgIG9wYWNpdHk6MC45CiAgICAgICAgfSkuaGlkZSgpOwogICAgICAgIG9iai5hcHBlbmQobG9hZGluZ19oZWxwZXIpOwogICAgICB9CiAgICAgIG9iai5hZGRDbGFzcygibG9hZGluZyIpOwogICAgICBsb2FkaW5nX2hlbHBlci5mYWRlSW4oMTAwKTsKICAgIH0KCiAgICBmdW5jdGlvbiB1bm1hcmtFbGVtZW50QXNMb2FkaW5nKG9iail7CiAgICAgIHZhciBsb2FkaW5nX2hlbHBlciA9ICQoJz4ubG9hZGluZy1oZWxwZXInLG9iaik7CiAgICAgIGlmIChsb2FkaW5nX2hlbHBlci5zaXplKCkgPiAwKSB7CiAgICAgICAgICBsb2FkaW5nX2hlbHBlci5mYWRlT3V0KDEwMCk7CiAgICAgIH0KICAgICAgb2JqLnJlbW92ZUNsYXNzKCJsb2FkaW5nIik7CiAgICB9CgogICAgZnVuY3Rpb24gbWFrZUl0ZW1EaXYoaXRlbUlELCBvYmopIHsKICAgICAgdmFyIGl0ZW1TdHlsZSA9ICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF06Zmlyc3QnLCBvYmopLmF0dHIoJ3N0eWxlJyk7CiAgICAgIGlmIChpdGVtU3R5bGUgPT0gJycpewogICAgICAgIGl0ZW1TdHlsZSA9ICdoZWlnaHQ6MTBweDt3aWR0aDoxMHB4Oyc7CiAgICAgIH0KICAgICAgcmV0dXJuICc8ZGl2IGRhdGFpZD0iJytpdGVtSUQrJyIgY2xhc3M9IicrJChvYmopLmRhdGEoImRvdml0ZW1jbGFzcyIpKycgbm90LWxvYWRlZCIgc3R5bGU9IicraXRlbVN0eWxlKyciPjwvZGl2Pic7CiAgICB9CgogICAgZnVuY3Rpb24gZWxlbWVudHNJbkRpdihkb21faWQsIHNlbGVjdG9yKXsKICAgICAgdmFyICRkb2JqdmlldyA9ICQoZG9tX2lkKTsKICAgICAgdmFyIHJlc3VsdCA9IFtdCiAgICAgIHZhciBpdGVtcyA9ICQoc2VsZWN0b3IsICRkb2Jqdmlldyk7CiAgICAgIHZhciBvYmpQb3NpdGlvbiA9ICRkb2Jqdmlldy5wb3NpdGlvbigpOwogICAgICB2YXIgb2JqU2Nyb2xsVG9wID0gJGRvYmp2aWV3LnNjcm9sbFRvcCgpOwogICAgICB2YXIgb2JqVG9wID0gKG9ialBvc2l0aW9uID09IG51bGwpPyAwIDogb2JqUG9zaXRpb24udG9wOwoKICAgICAgaWYgKCRkb2Jqdmlldy5wYXJlbnQoKSkgewogICAgICAgIHZhciBwYXJlbnQgPSAkZG9ianZpZXcucGFyZW50KCk7CiAgICAgICAgdmFyIHBhcmVudFBvc2l0aW9uID0gcGFyZW50LnBvc2l0aW9uKCk7CiAgICAgICAgb2JqVG9wICs9IChwYXJlbnRQb3NpdGlvbiA9PSBudWxsKSA/IDAgOiBwYXJlbnRQb3NpdGlvbi50b3A7CiAgICAgIH0KCiAgICAgIHZhciBvYmpIZWlnaHQgPSAkZG9ianZpZXcub3V0ZXJIZWlnaHQodHJ1ZSkgKyBvYmpUb3A7CiAgICAgIHZhciBvYmpCb3R0b20gPSBvYmpIZWlnaHQgKyBvYmpTY3JvbGxUb3AgKyBvYmpUb3A7CgogICAgICBpdGVtcy5lYWNoKGZ1bmN0aW9uKCl7CiAgICAgICAgICB2YXIgJGVsZW1lbnQgPSAkKHRoaXMpOwogICAgICAgICAgaWYgKCRlbGVtZW50Lmhhc0NsYXNzKCdub3QtbG9hZGVkJykpewogICAgICAgICAgICAKICAgICAgICAgICAgdmFyIGVsT2Zmc2V0ID0gJGVsZW1lbnQub2Zmc2V0KCk7CiAgICAgICAgICAgIHZhciBlbFRvcCA9IGVsT2Zmc2V0LnRvcDsKICAgICAgICAgICAgdmFyIGVsQm90dG9tID0gZWxPZmZzZXQudG9wICsgJGVsZW1lbnQub3V0ZXJIZWlnaHQodHJ1ZSk7CgogICAgICAgICAgICBpZiAoKGVsVG9wID49IDAgJiYgZWxUb3AgPD0gb2JqSGVpZ2h0KSB8fCAoZWxCb3R0b20gPD0gb2JqSGVpZ2h0ICYmIGVsQm90dG9tID49IDApKXsKICAgICAgICAgICAgICByZXN1bHQucHVzaCh0aGlzKTsKICAgICAgICAgICAgfQogICAgICAgICAgfQogICAgICB9KTsKICAgICAgcmV0dXJuICQocmVzdWx0KTsKICAgIH0KCiAgICBmdW5jdGlvbiByZXF1ZXN0RWxlbWVudHMob2JqX2lkKSB7CiAgICAgIHZhciBkb21faWQgPSAiI29fIiArIG9ial9pZDsKICAgICAgdmFyIHNlbGVjdG9yID0gJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0nOwogICAgICB2YXIgaWRzID0gW10KICAgICAgdmFyIGVsZW1lbnRzID0gZWxlbWVudHNJbkRpdihkb21faWQsIHNlbGVjdG9yKTsKICAgICAgaWYgKGVsZW1lbnRzLnNpemUoKSA+IDApIHsKICAgICAgICBlbGVtZW50cy5lYWNoKGZ1bmN0aW9uKCl7CiAgICAgICAgICBpZHMucHVzaCgkKHRoaXMpLmF0dHIoJ2RhdGFpZCcpKTsKICAgICAgICB9KTsKICAgICAgICBleGVjRXZlbnRCaW5kZWQob2JqX2lkLCAiaXRlbXNyZXF1ZXN0Iiwge2lkbGlzdDogaWRzfSk7CiAgICAgIH0KICAgIH0KCiAgICBmdW5jdGlvbiB0b29nbGVTZWxlY3Rpb24oaXRlbSl7CiAgICAgIGlmIChpdGVtLmhhc0NsYXNzKCdzZWxlY3RlZCcpKXsKICAgICAgICBpdGVtLnJlbW92ZUNsYXNzKCdzZWxlY3RlZCcpOwogICAgICB9IGVsc2UgewogICAgICAgIGl0ZW0uYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7CiAgICAgIH0KICAgIH0KCiAgICBmdW5jdGlvbiByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KG9iail7CiAgICAgIGV4ZWNFdmVudEJpbmRlZChnZXREb21Db250SUQob2JqKSwgIml0ZW1zc2VsZWN0ZWQiLCB7aWRsaXN0OiBvYmouZHluYW1pY09iamVjdFZpZXcoImdldFNlbGVjdGVkSURzIil9KTsKICAgIH0KCiAgICB2YXIgbWV0aG9kcyA9IHsKCiAgICAgICAgbGl2ZURyYWdnYWJsZTogZnVuY3Rpb24ob2JqKXsKICAgICAgICAgIHRoaXMubGl2ZSgibW91c2VvdmVyIiwgZnVuY3Rpb24oKXsKICAgICAgICAgICAgaWYgKCEkKHRoaXMpLmRhdGEoImluaXRkcmFnIikpIHsKICAgICAgICAgICAgICAkKHRoaXMpLmRhdGEoImluaXRkcmFnIiwgdHJ1ZSkuZHJhZ2dhYmxlKG9iaik7CiAgICAgICAgICAgIH0KICAgICAgICAgIH0pOwogICAgICAgICAgcmV0dXJuIHRoaXM7CiAgICAgICAgfSwKCiAgICAgICAgbGl2ZVNvcnRhYmxlOiBmdW5jdGlvbihvYmopewogICAgICAgICAgdGhpcy5saXZlKCJtb3VzZW92ZXIiLCBmdW5jdGlvbigpIHsKICAgICAgICAgICAgaWYgKCEkKHRoaXMpLmRhdGEoImluaXRzb3J0IikpIHsKICAgICAgICAgICAgICAkKHRoaXMpLmRhdGEoImluaXRzb3J0IiwgdHJ1ZSkuc29ydGFibGUob2JqKTsKICAgICAgICAgICAgfQogICAgICAgICAgfSk7CiAgICAgICAgICByZXR1cm4gdGhpczsKICAgICAgICB9LAoKICAgICAgICBtYXJrQXNTZWxlY3RlZDogZnVuY3Rpb24oaWRzLCByYWlzZUV2ZW50KXsKICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7CiAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0nLCB0aGlzKS5hZGRDbGFzcygnc2VsZWN0ZWQnKTsKICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7CiAgICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSInK2lkc1t4XS5yZXBsYWNlKCciJywgJyZxdW90OycpKyciXScsIHRoaXMpLmFkZENsYXNzKCdzZWxlY3RlZCcpOwogICAgICAgICAgICB9ICAgICAgICAgICAKICAgICAgICAgIH0KICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7CiAgICAgICAgfSwKCiAgICAgICAgdW5tYXJrQXNTZWxlY3RlZDogZnVuY3Rpb24oaWRzLCByYWlzZUV2ZW50KXsKICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7CiAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0uc2VsZWN0ZWQnLCB0aGlzKS5yZW1vdmVDbGFzcygnc2VsZWN0ZWQnKTsKICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7CiAgICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSInK2lkc1t4XS5yZXBsYWNlKCciJywgJyZxdW90OycpKyciXS5zZWxlY3RlZCcsIHRoaXMpLnJlbW92ZUNsYXNzKCdzZWxlY3RlZCcpOwogICAgICAgICAgICB9ICAgICAgICAgICAKICAgICAgICAgIH0KICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7CiAgICAgICAgfSwKCiAgICAgICAgZ2V0U2VsZWN0ZWRJRHM6IGZ1bmN0aW9uKCl7CiAgICAgICAgICBpZHMgPSBbXTsKICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0uc2VsZWN0ZWQnLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7CiAgICAgICAgICAgIGlkcy5wdXNoKCQodGhpcykuYXR0cignZGF0YWlkJykpOwogICAgICAgICAgfSk7CiAgICAgICAgICByZXR1cm4gaWRzOwogICAgICAgIH0sCgogICAgICAgIGdldFNlbGVjdGVkSXRlbXM6IGZ1bmN0aW9uKCl7CiAgICAgICAgICByZXR1cm4gJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkXS5zZWxlY3RlZCcsIHRoaXMpCiAgICAgICAgfSwKCiAgICAgICAgdG9vZ2xlU2VsZWN0aW9uOiBmdW5jdGlvbihpZHMsIHJhaXNlRXZlbnQpewogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiKXsKICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkXScsIHRoaXMpLmVhY2goZnVuY3Rpb24oKXsKICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCh0aGlzKSk7CiAgICAgICAgICAgIH0pOwogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsKICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSInK2lkc1t4XS5yZXBsYWNlKCciJywgJyZxdW90OycpKyciXScsIHRoaXMpKTsKICAgICAgICAgICAgfSAgICAgICAgICAgCiAgICAgICAgICB9CiAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0sCgogICAgICAgIG1hcmtBc0xvYWRpbmc6IGZ1bmN0aW9uKGlkcywgcmFpc2VFdmVudCl7CiAgICAgICAgICBpZiAodHlwZW9mIGlkcyA9PT0gInVuZGVmaW5lZCIpewogICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWRdJywgdGhpcykuZWFjaChmdW5jdGlvbigpewogICAgICAgICAgICAgICAgbWFya0VsZW1lbnRBc0xvYWRpbmcoJCh0aGlzKSk7CiAgICAgICAgICAgIH0pOwogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsKICAgICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IicraWRzW3hdLnJlcGxhY2UoJyInLCAnJnF1b3Q7JykrJyJdJywgdGhpcykuZWFjaChmdW5jdGlvbigpewogICAgICAgICAgICAgICAgbWFya0VsZW1lbnRBc0xvYWRpbmcoJCh0aGlzKSk7CiAgICAgICAgICAgICAgfSk7CiAgICAgICAgICAgIH0gICAgICAgICAgIAogICAgICAgICAgfQogICAgICAgIH0sCgogICAgICAgIHVubWFya0FzTG9hZGluZzogZnVuY3Rpb24oaWRzLCByYWlzZUV2ZW50KXsKICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7CiAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0ubG9hZGluZycsIHRoaXMpLmVhY2goZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgIHVubWFya0VsZW1lbnRBc0xvYWRpbmcoJCh0aGlzKSk7CiAgICAgICAgICAgIH0pOwogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsKICAgICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IicraWRzW3hdLnJlcGxhY2UoJyInLCAnJnF1b3Q7JykrJyJdLmxvYWRpbmcnLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICB1bm1hcmtFbGVtZW50QXNMb2FkaW5nKCQodGhpcykpOwogICAgICAgICAgICAgIH0pOwogICAgICAgICAgICB9ICAgICAgICAgICAKICAgICAgICAgIH0KICAgICAgICB9LAoKICAgICAgICBnZXRMb2FkaW5nSURzOiBmdW5jdGlvbigpewogICAgICAgICAgICBpZHMgPSBbXTsKICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkXS5sb2FkaW5nJywgdGhpcykuZWFjaChmdW5jdGlvbigpewogICAgICAgICAgICAgICAgaWRzLnB1c2goJCh0aGlzKS5hdHRyKCdkYXRhaWQnKSk7CiAgICAgICAgICAgIH0pOwogICAgICAgICAgICByZXR1cm4gaWRzOwogICAgICAgIH0sCgogICAgICAgIGdldExvYWRpbmdJdGVtczogZnVuY3Rpb24oKXsKICAgICAgICAgICAgcmV0dXJuICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0ubG9hZGluZycsIHRoaXMpOwogICAgICAgIH0sCgogICAgICAgIHJlbG9hZDogZnVuY3Rpb24oaWRzKXsKICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7CiAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0nLCB0aGlzKS5yZW1vdmUoKTsKICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGdldERvbUNvbnRJRCh0aGlzKSwgIml0ZW1zcmVxdWVzdCIsIHtpZGxpc3Q6ICIifSk7CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICB0aGlzLmR5bmFtaWNPYmplY3RWaWV3KCJtYXJrQXNMb2FkaW5nIiwgaWRzKTsKICAgICAgICAgIH0KICAgICAgICB9LAoKICAgICAgICBpbnNlcnRIVE1MQXRFbmQ6IGZ1bmN0aW9uKGh0bWwpewogICAgICAgICAgJCgiPmRpdi5kb3YtY29udGVudD5zcGFuLmRvdi1lb2kiLCB0aGlzKS5iZWZvcmUoJCgnPmRpdltkYXRhaWRdJywgaHRtbCkpOwogICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKGdldERvbUNvbnRJRCh0aGlzKSk7CiAgICAgICAgfSwKCiAgICAgICAgaW5zZXJ0SFRNTEF0QmVnaW5pbmc6IGZ1bmN0aW9uKGh0bWwpewogICAgICAgICAgdmFyIGJlZ2luaW5nID0gJCgnPmRpdi5kb3YtY29udGVudD5kaXY6Zmlyc3QnLCB0aGlzKTsKICAgICAgICAgIGlmIChiZWdpbmluZy5zaXplKCkgPD0gMCl7CiAgICAgICAgICAgIGJlZ2luaW5nID0gJCgiPmRpdi5kb3YtY29udGVudD5zcGFuLmRvdi1lb2kiLCB0aGlzKTsKICAgICAgICAgIH0KICAgICAgICAgIGJlZ2luaW5nLmJlZm9yZSgkKCc+ZGl2W2RhdGFpZF0nLCBodG1sKSk7CiAgICAgICAgICByZXF1ZXN0RWxlbWVudHMoZ2V0RG9tQ29udElEKHRoaXMpKTsKICAgICAgICB9LAoKICAgICAgICBpbnNlcnRBdEJlZ2lubmluZzogZnVuY3Rpb24oaXRlbXMpewogICAgICAgICAgdmFyIGJlZ2luaW5nID0gJCgnPmRpdi5kb3YtY29udGVudD5kaXY6Zmlyc3QnLCB0aGlzKTsKICAgICAgICAgIGlmIChiZWdpbmluZy5zaXplKCkgPD0gMCl7CiAgICAgICAgICAgIGJlZ2luaW5nID0gJCgiPmRpdi5kb3YtY29udGVudD5zcGFuLmRvdi1lb2kiLCB0aGlzKTsKICAgICAgICAgIH0KICAgICAgICAgIGZvciAodmFyIGkgaW4gaXRlbXMpewogICAgICAgICAgICAkKG1ha2VJdGVtRGl2KGl0ZW1zW2ldLCB0aGlzKSkuaW5zZXJ0QmVmb3JlKGJlZ2luaW5nKTsKICAgICAgICAgIH0KICAgICAgICAgIHJlcXVlc3RFbGVtZW50cyhnZXREb21Db250SUQodGhpcykpOwogICAgICAgIH0sCgogICAgICAgIGluc2VydEF0RW5kOiBmdW5jdGlvbihpdGVtcyl7CiAgICAgICAgICB2YXIgZW5kbmluZyA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+c3Bhbi5kb3YtZW9pIiwgdGhpcyk7CiAgICAgICAgICBmb3IgKHZhciBpIGluIGl0ZW1zKXsKICAgICAgICAgICAgJChtYWtlSXRlbURpdihpdGVtc1tpXSwgdGhpcykpLmluc2VydEJlZm9yZShlbmRuaW5nKTsKICAgICAgICAgIH0KICAgICAgICAgIHJlcXVlc3RFbGVtZW50cyhnZXREb21Db250SUQodGhpcykpOwogICAgICAgIH0sCgogICAgICAgIGluc2VydEJlZm9yZTogZnVuY3Rpb24oZWxlbUlELCBpdGVtcyl7CiAgICAgICAgICB2YXIgZWxlbSA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZD0iK2VsZW1JRCsiXSIsIHRoaXMpOwogICAgICAgICAgaWYgKGVsZW0uc2l6ZSgpID4gMCl7CiAgICAgICAgICAgIGZvciAodmFyIGkgaW4gaXRlbXMpewogICAgICAgICAgICAgICQobWFrZUl0ZW1EaXYoaXRlbXNbaV0sIHRoaXMpKS5pbnNlcnRCZWZvcmUoZWxlbSk7CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKGdldERvbUNvbnRJRCh0aGlzKSk7ICAgICAgICAgCiAgICAgICAgICB9CiAgICAgICAgfSwKCiAgICAgICAgaW5zZXJ0QWZ0ZXI6IGZ1bmN0aW9uKGVsZW1JRCwgaXRlbXMpewogICAgICAgICAgdmFyIGVsZW0gPSAkKCI+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IitlbGVtSUQrIl0iLCB0aGlzKTsKICAgICAgICAgIGlmIChlbGVtLnNpemUoKSA+IDApewogICAgICAgICAgICBmb3IgKHZhciBpIGluIGl0ZW1zKXsKICAgICAgICAgICAgICAkKG1ha2VJdGVtRGl2KGl0ZW1zW2ldLCB0aGlzKSkuaW5zZXJ0QWZ0ZXIoZWxlbSk7CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKGdldERvbUNvbnRJRCh0aGlzKSk7ICAgICAgICAgCiAgICAgICAgICB9CiAgICAgICAgfSwKCiAgICAgICAgcmVtb3ZlSXRlbXM6IGZ1bmN0aW9uKGlkcyl7CiAgICAgICAgICBpZiAodHlwZW9mIGlkcyA9PT0gInVuZGVmaW5lZCIpewogICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWRdJywgdGhpcykucmVtb3ZlKCk7CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICBmb3IgKHZhciB4IGluIGlkcykgewogICAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZD0iJytpZHNbeF0ucmVwbGFjZSgnIicsICcmcXVvdDsnKSsnIl0nLCB0aGlzKS5yZW1vdmUoKTsKICAgICAgICAgICAgfSAgICAgICAgICAgCiAgICAgICAgICB9CiAgICAgICAgfSwKCiAgICAgICAgaW5pdDogZnVuY3Rpb24ob3B0aW9ucyl7CiAgICAgICAgICAgIHZhciBkb21faWQgPSAiI29fIiArIG9wdGlvbnNbImlkIl07CiAgICAgICAgICAgIHZhciBqcXVlcnlfc2VsZWN0b3IgPSBkb21faWQgKyAiIGRpdltkYXRhaWRdIjsKICAgICAgICAgICAgdmFyIG9ial9pZCA9IG9wdGlvbnNbImlkIl07CgogICAgICAgICAgICAkKGRvbV9pZCkuZGF0YSgiZG92aXRlbWNsYXNzIiwgb3B0aW9uc1siaXRlbUNsYXNzIl0gKyAiLWl0ZW0iKTsKCiAgICAgICAgICAgICQoanF1ZXJ5X3NlbGVjdG9yKS5saXZlKCdjbGljayBkYmxjbGljaycsIGZ1bmN0aW9uKGUpewogICAgICAgICAgICAgICAgaWYgKGUucHJldmVudERlZmF1bHQpewogICAgICAgICAgICAgICAgICAgIGUucHJldmVudERlZmF1bHQoKTsKICAgICAgICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgICAgICAgICAgZS5yZXR1cm5WYWx1ZSA9IGZhbHNlOwogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHZhciAkdGhpcyA9ICQodGhpcyk7CiAgICAgICAgICAgICAgICBpZiAoZS50eXBlID09ICdkYmxjbGljaycpIHsKICAgICAgICAgICAgICAgICAgICAkdGhpcy5kYXRhKCdpc1NpbmdsZUNsaWNrJywgZmFsc2UpOwoKICAgICAgICAgICAgICAgICAgICBpZiAoZS5jdHJsS2V5KXsKICAgICAgICAgICAgICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKG9ial9pZCwgIml0ZW1kYmxjdHJsY2xpY2siLCB7ImlkIjogJHRoaXMuYXR0cigiZGF0YWlkIil9KTsKICAgICAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQob2JqX2lkLCAiaXRlbWRibGNsaWNrIiwgeyJpZCI6ICR0aGlzLmF0dHIoImRhdGFpZCIpfSk7CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKCiAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgIHNldFRpbWVvdXQoZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgaWYgKCR0aGlzLmRhdGEoJ2lzU2luZ2xlQ2xpY2snKSA9PSB0cnVlKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChlLmN0cmxLZXkpewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpfaWQsICJpdGVtY3RybGNsaWNrIiwgeyJpZCI6ICR0aGlzLmF0dHIoImRhdGFpZCIpfSk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpfaWQsICJpdGVtY2xpY2siLCB7ImlkIjogJHRoaXMuYXR0cigiZGF0YWlkIil9KTsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgICAgICAgICAgfSwgMjAwKTsKICAgICAgICAgICAgICAgICAgICAkdGhpcy5kYXRhKCdpc1NpbmdsZUNsaWNrJywgdHJ1ZSk7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgIH0pOwoKICAgICAgICAgICAgJChqcXVlcnlfc2VsZWN0b3IpLmxpdmUoJ21vdXNlb3ZlcicsIGZ1bmN0aW9uKGUpewogICAgICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKG9ial9pZCwgIml0ZW1tb3VzZW92ZXIiLCB7ImlkIjokKHRoaXMpLmF0dHIoImRhdGFpZCIpLCAnWCc6ZS5wYWdlWCwgJ1knOmUucGFnZVl9KTsKICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICAgICAgfSkubGl2ZSgnbW91c2VvdXQnLCBmdW5jdGlvbihlKXsKICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpfaWQsICJpdGVtbW91c2VvdXQiLCB7ImlkIjokKHRoaXMpLmF0dHIoImRhdGFpZCIpfSk7CiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgICAgIH0pOwoKICAgICAgICAgICAgaWYgKG9wdGlvbnNbImRyYWduZHJvcCJdKXsKCiAgICAgICAgICAgICAgICAkKGpxdWVyeV9zZWxlY3RvcikuZHluYW1pY09iamVjdFZpZXcoImxpdmVEcmFnZ2FibGUiLCB7CiAgICAgICAgICAgICAgICAgICAgY29ubmVjdFRvRHluYXRyZWU6IHRydWUsCiAgICAgICAgICAgICAgICAgICAgYXBwZW5kVG86ICdib2R5JywKICAgICAgICAgICAgICAgICAgICBjb250YWlubWVudDogJ2RvY3VtZW50JywKICAgICAgICAgICAgICAgICAgICB6SW5kZXg6IDk5OTk5LCAgCiAgICAgICAgICAgICAgICAgICAgY3Vyc29yOiAnZGVmYXVsdCcsCiAgICAgICAgICAgICAgICAgICAgY3Vyc29yQXQ6IHsKICAgICAgICAgICAgICAgICAgICAgIGxlZnQ6IC0yLAogICAgICAgICAgICAgICAgICAgICAgdG9wOiA0CiAgICAgICAgICAgICAgICAgICAgfSwKICAgICAgICAgICAgICAgICAgICBzdGFydDogZnVuY3Rpb24oZSx1KXsKICAgICAgICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpfaWQsICJkcmFnc3RhcnQiLCB7aWQ6ICQodGhpcykuYXR0cignZGF0YWlkJyl9LCB0cnVlKTsKICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgIGNvbm5lY3RUb1NvcnRhYmxlOiBkb21faWQsCiAgICAgICAgICAgICAgICAgICAgcmV2ZXJ0OiAiaW52YWxpZCIsCiAgICAgICAgICAgICAgICAgICAgcmV2ZXJ0RHVyYXRpb246IDIwMCwKICAgICAgICAgICAgICAgICAgICBvcGFjaXR5OiAxLAogICAgICAgICAgICAgICAgICAgIGhlbHBlcjogZnVuY3Rpb24oZXYsIGVsKSB7CiAgICAgICAgICAgICAgICAgICAgICB2YXIgJHRhcmdldCA9ICQoZXYuY3VycmVudFRhcmdldCk7CiAgICAgICAgICAgICAgICAgICAgICBpZiAob3B0aW9uc1siZHJhZ25kcm9wSGVscGVyIl0gPT0gImNsb25lIiB8fCAhICR0YXJnZXQuaGFzQ2xhc3MoInNlbGVjdGVkIikpewogICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gJChldi5jdXJyZW50VGFyZ2V0KS5jbG9uZSgpOwogICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgcmV0dXJuICQoZm9ybWF0VW5pY29ybihvcHRpb25zWyJkcmFnbmRyb3BIZWxwZXIiXSwgeyJzZWxlY3RlZEl0ZW1zIjogJChkb21faWQpLmR5bmFtaWNPYmplY3RWaWV3KCJnZXRTZWxlY3RlZElEcyIpLmxlbmd0aH0pKTsKICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgIEN1c3RvbUJlZm9yZVN0YXJ0OiBmdW5jdGlvbihlLCB1KXsKICAgICAgICAgICAgICAgICAgICAgIGlmICgkKGRvbV9pZCkuZHluYW1pY09iamVjdFZpZXcoImdldFNlbGVjdGVkSURzIikubGVuZ3RoID4gMSl7CiAgICAgICAgICAgICAgICAgICAgICAgICQoZG9tX2lkKS5zb3J0YWJsZSgiZGlzYWJsZSIpOwogICAgICAgICAgICAgICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgICAgICAgICAgICAgJChkb21faWQpLnNvcnRhYmxlKCJlbmFibGUiKTsKICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9KTsKICAgICAgICAgICAgfQoKICAgICAgICAgICAgaWYgKG9wdGlvbnNbImRyYWduc29ydCJdKXsKICAgICAgICAgICAgICAgICQoZG9tX2lkKS5keW5hbWljT2JqZWN0VmlldygibGl2ZVNvcnRhYmxlIiwgewogICAgICAgICAgICAgICAgICAgIGl0ZW1zOiAnZGl2W2RhdGFpZF0nLAogICAgICAgICAgICAgICAgICAgIHN0b3A6IGZ1bmN0aW9uKGUsIHUpewogICAgICAgICAgICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKG9ial9pZCwgIml0ZW1zb3J0Iiwge3Bvc2l0aW9uOiB1Lml0ZW0uaW5kZXgoKSwgaWQ6IHUuaXRlbS5hdHRyKCdkYXRhaWQnKX0pOwogICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgcmVjZWl2ZTogZnVuY3Rpb24oZSwgdSkgewogICAgICAgICAgICAgICAgICAgICAgdS5pdGVtLnJlbW92ZSgpOwogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0pLmRpc2FibGVTZWxlY3Rpb24oKTsKICAgICAgICAgICAgfQoKICAgICAgICAgICAgaWYgKG9wdGlvbnNbImR5bmFtaWNMb2FkaW5nIl0pewogICAgICAgICAgICAgICAgJChkb21faWQpLmJpbmQoJ3Njcm9sbHN0b3AgcmVzaXplJywgZnVuY3Rpb24oKSB7CiAgICAgICAgICAgICAgICAgICAgdmFyIGpxdWVyeV9vYmogPSAkKGRvbV9pZCk7CiAgICAgICAgICAgICAgICAgICAgdmFyIGpxdWVyeV9jb250ZW50ID0gJCgnPmRpdi5kb3YtY29udGVudCcsIGpxdWVyeV9vYmopOwogICAgICAgICAgICAgICAgICAgIHZhciBjYW5fbG9hZCA9IGpxdWVyeV9jb250ZW50Lm91dGVySGVpZ2h0KCkgLSBqcXVlcnlfb2JqLmlubmVySGVpZ2h0KCkgLSBqcXVlcnlfb2JqLnNjcm9sbFRvcCgpIDw9IDMwOwogICAgICAgICAgICAgICAgICAgIGlmIChjYW5fbG9hZCkgewogICAgICAgICAgICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKG9ial9pZCwgJ2VuZHNjcm9sbCcsIHtwb3NpdGlvbjogImJvdHRvbSJ9KTsKICAgICAgICAgICAgICAgICAgICB9IGVsc2UgaWYgKGpxdWVyeV9vYmouc2Nyb2xsVG9wKCkgPT0gMCl7CiAgICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQob2JqX2lkLCAnZW5kc2Nyb2xsJywge3Bvc2l0aW9uOiAidG9wIn0pOwogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICByZXF1ZXN0RWxlbWVudHMob2JqX2lkKTsKICAgICAgICAgICAgICAgIH0pOwogICAgICAgICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKG9ial9pZCk7CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgJC5mbi5keW5hbWljT2JqZWN0VmlldyA9IGZ1bmN0aW9uKG1ldGhvZCl7CiAgICAgICAgaWYgKG1ldGhvZHNbbWV0aG9kXSl7CiAgICAgICAgICAgIHJldHVybiBtZXRob2RzW21ldGhvZF0uYXBwbHkodGhpcywgQXJyYXkucHJvdG90eXBlLnNsaWNlLmNhbGwoYXJndW1lbnRzLCAxKSk7CiAgICAgICAgfSBlbHNlIGlmICh0eXBlb2YgbWV0aG9kID09ICdvYmplY3QnIHx8ICEgbWV0aG9kICkgewogICAgICAgICAgICByZXR1cm4gbWV0aG9kcy5pbml0LmFwcGx5KHRoaXMsIGFyZ3VtZW50cyk7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgJC5lcnJvcigiRHluYW1pYyBvYmplY3QgdmlldzogdW5rbm93biBtZXRob2QgIiArIG1ldGhvZCk7CiAgICAgICAgfQogICAgfTsKfShqUXVlcnkpKTs=
+]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -1135,6 +1163,22 @@ import sys
 import utils.uuid as uuid
 import utils.wysiwyg as utils_wysiwyg
 from memory.xml_object import xml_object
+from collections import OrderedDict
+
+
+class CachedDict(dict):
+
+    def __init__(self, items, compute):
+        super(CachedDict, self).__init__()
+        self.initial_items = items
+        self.computed_items = {}
+        self.compute = compute
+
+    def __getitem__(self, key):
+        if key not in self.computed_items:
+            self.computed_items[key] = self.compute(self.initial_items[key])
+
+        return self.computed_items[key]
 
 
 def _unicode(value):
@@ -1308,7 +1352,8 @@ class VDOMLayout(object):
 
     def append(self, obj):
         self.objects.append(obj)
-        self.arrange( obj )
+        if not isinstance(obj, (str,unicode)):
+          self.arrange( obj )
 
     def _abs(self, obj):
         left = int(obj['left'] or 0)
@@ -1318,10 +1363,16 @@ class VDOMLayout(object):
 
     def tohtml(self, parent):
         # make absolute
+        r = []
         for obj in self.objects:
-            self._abs(obj)
+            if not isinstance(obj, (str,unicode)):
+              self._abs(obj)
+              r.append(obj.tohtml(parent))
 
-        return ''.join([obj.tohtml(parent) for obj in self.objects])
+            else:
+              r.append(obj)
+
+        return ''.join(r)
 
 
 class VDOMVLayout(VDOMLayout):
@@ -1368,10 +1419,6 @@ def render(parent, vdomxml, data=None):
         application.itself.all_dynamic_objects[child_id] = dummies[child_id]
 
     result = managers.engine.render(application.itself, dummies["initial"], parent, "vdom")
-
-    # dummies["initial"].object = dummies["initial"]
-    # e2vdom.process(dummies["initial"], '')
-
 
     # HACK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     obj = dummies["initial"]
@@ -1469,130 +1516,6 @@ def create_dummies(parent, vdomxml, initial=False, data=None):
     return objects
 
 
-JS_DRAG = u"""\
-$j("#%(id)s div[dataid]").liveDraggable({
-  connectToDynatree: true,
-  appendTo: 'body',
-  containment: 'document',
-  zIndex: 99999,
-  /*option: 'accept',*/
-  cursor: 'default',
-  cursorAt: { left: -2, top: 4 },
-  start: function(e,u){
-    execEventBinded('%(woid)s', "dragstart", {id: $j(this).attr('dataid')}, true);
-  },
-  connectToSortable: '#%(id)s',
-  revert: "invalid",
-  revertDuration: 200,
-  /*helper: 'clone'*/
-  opacity: 1,
-  helper: function(e) {
-    return $j("<div class='dov-drag-helper' style='width:50px;height:20px;background:#555'></div>");
-  }
-});"""
-
-
-JS_SORTABLE = u"""\
-$j('#%(id)s').liveSortable({
-  items: 'div[dataid]',
-  receive: function (event, ui){
-    ui.item.remove();
-    //ui.sender.remove();
-  },
-  stop: function(e, u) {
-    execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
-  }
-}).disableSelection();"""
-
-
-JS_LOADING = u"""\
-%(id)s_ld = function(t){
-  var z = $j('>.loading',t);
-  if (z.size() > 0) {
-    if (z.is(':visible')) return;
-    z.fadeIn(100);
-  } else {
-    var x = $j('<div class="loading" style="width:100%%;height:100%%"></div>').css({position:'absolute',opacity:0.9}).hide().fadeIn(100);
-    t.append(x);
-  }
-  e2vdomAfterResponse('$j("#%(id)s>div.dov-content>div[dataid='+t.attr('dataid')+']>.loading").fadeOut(100);');
-}"""
-
-
-JS_DYNAMIC = u"""\
-  $j("#%(id)s").bind('scrollstop resize', function() {
-    var obj = $j("#%(id)s");
-    var $content = $('>div.dov-content', obj);
-    var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
-    if (canLoadContent) {
-      execEventBinded("%(woid)s", 'endscroll', {});
-    }
-    vdom_dov_markShow("%(woid)s");
-  });
-  vdom_dov_markShow("%(woid)s");
-  window.setTimeout('vdom_dov_markShow("%(woid)s")', 2000);"""
-
-
-JS_DYNAMIC_E2 = u"""<script type="text/javascript">%s</script>""" % JS_DYNAMIC
-
-
-JS = u"""<style type='text/css'>
-#%(id)s .loading { background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; }
-#%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
-</style>
-<script type="text/javascript">
-%(js_loading)s
-
-$j(function(){
-  $j("#%(id)s").data("dovitemclass","%(class)s-item");
-
-  $j("#%(id)s div[dataid]").live('click dblclick', function(e){
-    if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
-    var t = $j(this);
-    if (e.type == 'dblclick') {
-      t.data('doo', false);
-      %(js_loading_call)s
-      execEventBinded('%(woid)s', "itemdblclick", {"id":t.attr("dataid")});
-      return false;
-    } else {
-      setTimeout(function() {
-        if (t.data('doo') == true) {
-          %(js_loading_call)s
-          execEventBinded('%(woid)s', "itemclick", {"id":t.attr("dataid")});
-          return false;
-        }
-      }, 220);
-      t.data('doo', true);
-    }
-    return false;
-  });
-
-  $j("#%(id)s div[dataid]").live('mouseover', function(e){
-    execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
-    return false;
-  }).live('mouseout', function(e){
-    execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
-    return false;
-  });
-
-  %(js_sortable)s
-  %(js_drag)s
-  %(js_dynamic)s
-
-});
-</script>"""
-
-  
-JS_INFINITE_SCROLL = u"""\
-$j('#%(id)s').infiniteScroll({
-  'dovid': '%(woid)s',
-  'cssc': '%(cssc)s'
-});"""
-
-
-
-
-
 class VDOM_dynobjectview(VDOM_object):
 
     def wysiwyg(self, parent, contents=""):
@@ -1603,7 +1526,7 @@ class VDOM_dynobjectview(VDOM_object):
     def parse_properties(self):
 
         try:
-          data = json.loads(self.data)
+          data = json.loads(self.data, object_pairs_hook=OrderedDict)
         except Exception:
           if self.data:
             raise Exception("Can't parse 'data'")
@@ -1626,7 +1549,6 @@ class VDOM_dynobjectview(VDOM_object):
 
           bindings = {}
 
-
         return data, templates, bindings
 
     def generate_layout(self):
@@ -1634,391 +1556,202 @@ class VDOM_dynobjectview(VDOM_object):
         data, templates, bindings = self.parse_properties()
         layouts = (VDOMVLayout, VDOMHLayout, VDOMVLayout) 
         
-        xml_templates = {
-            name: xml_object(srcdata=xml.encode("utf-8"))
-            for name, xml in templates.items()
-        }
+        xml_templates = CachedDict(templates, lambda xml: xml_object(srcdata=xml.encode("utf-8")))
+        template_attrs = CachedDict(templates, lambda template: xml_node_attrs(template))
 
         dynlayout = layouts[int(self.layout)]()
         dynlayout.margin = 17                
 
-        classname = u"dov" if self.classname == "" else self.classname
-        nn = nn_first = 1
+        # css classes
+        first_cls = u"dov-item-first "
+        last_cls = u"dov-item-last "
+        odd_cls = u"dov-item-odd "
 
-        for item in data:
-            tname = item['vdomclass']
-            vtmp = VDOMTemplate(xml_templates[tname], xml_node_attrs(templates[tname]))
-            binding = bindings.get(tname, {})
+        index = 1
+        is_first = True
 
-            for key in item:
-                if key not in binding:
-                    continue
+        only_div = isinstance(data, list)
+        vdomclass_width = ''
+        vdomclass_height = ''
 
-                attrs = binding[key]
-                if not isinstance(attrs, list):
-                    attrs = [attrs]
+        if only_div:
+            vdomclass_width = template_attrs["default"]["width"]
+            vdomclass_height = template_attrs["default"]["height"]
 
-                for a in attrs:
-                    vtmp[a] = xmlencoding.escape(item[key])
+        for item in data.iteritems():
 
-            vtmp["name"] = "vdomclass_%d" % nn
+            only_div_1 = False
+            obj_id = ''
 
-            classfirst = '' if nn_first != 1 else \
-                         u"%s-item-first" % classname
+            if not only_div:
+                if isinstance(item[1], (str, unicode)):
+                    only_div_1 = True
+
+                    obj_id, obj_template = item
+                    vdomclass_width = template_attrs[obj_template]["width"]
+                    vdomclass_height = template_attrs[obj_template]["height"]
+
+                else:
+                    only_div_1 = False
+
+            else:
+                obj_id = item
+
+            classes_str = first_cls if is_first else ''
+            classes_str += last_cls if index == len(data) else ''
+            classes_str += odd_cls  if index % 2 == 0 else ''
+
+            classes_str = " {classes}dov-item dov-item-{index} {notloaded}".format(
+                classes=classes_str,
+                index=index,
+                notloaded="not-loaded" if only_div or only_div_1 else ""
+            )
+
+            if only_div or only_div_1:
+
+                styleforitem = u"position: relative;width: %spx;height: %spx;display: block;" % (vdomclass_width, vdomclass_height)
+                dynlayout.append(u'<div class="%(classes)s" dataid="%(id)s" style="%(style)s"></div>' % {
+                    "id": obj_id,
+                    "classes": classes_str,
+                    "style": styleforitem
+                })
+
+            else:
+                obj_id, item = item
+
+                tname = item.get('vdomclass', 'default')
+                vtmp = VDOMTemplate(xml_templates[tname], template_attrs[tname].copy())
             
-            classlast = '' if nn != len(data) else \
-                        u"%s-item-last" % classname
+                binding = bindings.get(tname, {})
 
-            classodd = '' if nn % 2 else \
-                       u"%s-item-odd" % classname
+                for key in item:
+                    if key not in binding:
+                        continue
 
-            classes = u" %(class)s-item %(class)s-item-%(nn)s %(classfirst)s %(classlast)s %(classodd)s %(notloaded)s" % {
-              "class":      classname,
-              "nn":         str(nn),
-              "classfirst": classfirst,
-              "classlast":  classlast,
-              "classodd":   classodd,
-              "notloaded":  "" #"not-loaded"# if onlydiv else ""
-            }
+                    attrs = binding[key]
+                    if not isinstance(attrs, list):
+                        attrs = [attrs]
 
-            vtmp["classname"] = vtmp["classname"] + classes
-            dynlayout.append(vtmp)
+                    for a in attrs:
+                        vtmp[a] = xmlencoding.escape(item[key])
 
-            nn += 1
-            nn_first = 0
+                vtmp["name"] = "dovtemplate_%d" % index 
+
+                vtmp["classname"] = vtmp["classname"] + classes_str
+                vtmp["dataid"] = obj_id
+
+                dynlayout.append(vtmp)
+
+            index += 1
+            is_first = False
 
         return dynlayout
+
+    def compile_style(self):
+
+        overflow = {
+            "1": "hidden",
+            "2": "scroll",
+            "3": "visible",
+        }
+
+        layout = {
+            "0": "clear: both",
+            "1": "float: left;",
+            "default": "width: 100% !important; clear: both;",
+        }
+
+        obj_style = u"""{display}z-index: {zind};position: {pos};top: {top}px;left: {left}px;height: {height}px;width: {width}px;overflow: {overflow};""".format(
+            display=u"display:none;" if self.visible == "0" else u"",
+            zind=self.zindex,
+            pos=self.position,
+            top=self.top,
+            left=self.left,
+            width=self.width,
+            height=self.height,
+            overflow=overflow.get(self.overflow, "auto"),
+        )
+          
+        dom_id = "o_" + self.id.replace('-', '_')
+
+        items_style = u"""<style type="text/css">
+{user_css}
+#{dom_id} .dov-item {{
+    {layout}
+}}</style>""".format(
+            dom_id=dom_id,
+            user_css=self.css % {"id": dom_id},
+            layout=layout.get(self.layout, "default"),
+        )
+
+        return obj_style, items_style
 
     def render(self, parent, contents=""):
 
         dynlayout = self.generate_layout()
 
-        js = ""
-        woid = (self.id).replace('-', '_')
-        obj_id = u"o_" + woid
-        onlydiv = False
+        obj_id = self.id.replace('-', '_')
+        dom_id = u"o_" + obj_id
+        
+        if request.render_type == "e2vdom" and self.dynamicrender == "1":
 
-        if request.render_type == "e2vdom":
-          tmp_id = u"dov" + str(uuid.uuid4())
-
-          if self.dynamicrender == "0":
-            js = u"""var x = $j('#%(id)s>div.dov-content');
-$j('>div[dataid]', x).remove();
-var dovtmp = $j('#%(tmp_id)s:last');
-if ($j.trim(dovtmp.html()) != '') {
-  $j(">span.dov-eoi", x).before( $j('>div[dataid]', dovtmp) );
-}"""
-            js = js % {
-              "id":     obj_id,
-              "tmp_id": tmp_id,
-              "woid":   woid
-            }
-
-          else:
-            if onlydiv:   # [] - empty frames: rerender
-              js = u"""var x = $j('#%(id)s>div.dov-content');
-$j('>div[dataid]', x).remove();
-var dovtmp = $j('#%(tmp_id)s:last');
-if ($j.trim(dovtmp.html()) != '') {
-  $j(">span.dov-eoi", x).before( $j('>div[dataid]', dovtmp) );
-  /*$j('>div[dataid]',dovtmp).each(function(){
-    $j(">span.dov-eoi", x).before($j(this));
-  });*/
-  vdom_dov_markShow("%(woid)s");
-}"""          
-              js = js % {
-                "id":     obj_id,
-                "tmp_id": tmp_id,
-                "woid":   woid
-              }
-
-            else:         
-              # {} - items with content: render items in empty frames
-              js = u"""var dovtmp = $j('#%(tmp_id)s:last');
-if ($j.trim(dovtmp.html()) != '') {
-  var x = $j('#%(id)s>div.dov-content');
-  $j('>div[dataid]',dovtmp).each(function(){
-    var t = $j(this);
-    var i = $j(">div[dataid="+t.attr('dataid')+"]", x);
-    if (i.size() > 0) {
-      if (i.hasClass('selected')) t.addClass('selected');
-      i.before(t);
-      i.remove();
-      //} else {
-      //  $j(">span.dov-eoi", x).before($j(this));
-    }
-  });
-  vdom_dov_markShow("%(woid)s");
-}"""
-              js = js % {
-                "id":     obj_id,
-                "tmp_id": tmp_id,
-                "woid":   woid
-              }
-
-          result = u"""<noreplace/>
-<div id="%(tmp_id)s" style="display:none">%(inner_render)s</div>
+            result = u"""<noreplace/>
+<div id="{tmp_id}" style="display:none">{contents}</div>
 <script type='text/javascript'>
-  %(js)s
-</script>"""
+$(document).ready(function(){{
+  var x = $('#{dom_id}>div.dov-content');
+  var dovtmp = $('#{tmp_id}:last');
+  if ($.trim(dovtmp.html()) != '') {{
+      $("#{dom_id}").dynamicObjectView("insertHTMLAtEnd", dovtmp);
+  }}
+}});
 
-          contents += result % {
-            "js":           js,
-            "inner_render": dynlayout.tohtml(self),
-            "id":           obj_id,
-            "tmp_id":       tmp_id,
-            "woid":         woid
-          }
+</script>""".format(
+                dom_id=dom_id,
+                tmp_id=str(uuid.uuid4()),
+                contents=dynlayout.tohtml(self),
+            )
+
+            return VDOM_object.render(self, parent, contents=contents + result)
 
         else:
 
-          # e2vdom.process(self, parent)
-          
-          display = u" display:none; " if self.visible == "0" else u""
-          if self.overflow == "1":
-            overflow = u"hidden"
-          elif self.overflow == "2":
-            overflow = u"scroll"
-          elif self.overflow == "3":
-            overflow = u"visible"
-          else:
-            overflow = u"auto"
+            options = {
+                "id": obj_id,
+                "itemClickLoading": self.loading,
+                "dragndrop": self.draggable == "1",
+                "dragnsort": self.sortable == "1",
+                "dragndropHelper": self.draghelper if self.draghelper else "clone",
+                "dynamicLoading": True,
+            }
 
-          height = u"height: %spx;" % self.height
-          style = u"""{display} z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;\
-                      width: {width}px; overflow: {overflow}; {height}""".format(
-              display=display,
-              zind=self.zindex,
-              pos=self.position,
-              top=self.top,
-              left=self.left,
-              width=self.width,
-              overflow=overflow,
-              height=height
+            obj_style, items_style = self.compile_style()
+
+            result = u"""{style_items}<div id="{dom_id}" style="{obj_style}" class="{classes}">
+        <div class='dov-content'>
+            {contents}
+            <span class='dov-eoi' style='display:block;clear:both'></span>
+        </div>
+    </div>
+    <script>jQuery(document).ready(function(){{jQuery("#{dom_id}").dynamicObjectView({options});}});</script>"""
+            contents += result.format(
+                style_items=items_style,
+                dom_id=dom_id,
+                obj_style=obj_style,
+                classes=self.classname,
+                contents=dynlayout.tohtml(self),
+                options=json.dumps(options)
             )
-          
-          classname = u"""class="%s" """ % self.classname if self.classname else u""
-          classname_item = 'dov' if self.classname == '' else (self.classname).replace(' ', '')
-        
-          if self.layout == "1":
-            layout = u"float: left;"
-          elif self.layout == "0":
-            layout = u"clear: both;"
-          else:
-            layout = u"width: 100% !important; clear: both;"
-          
-          style_items = u"""<style type="text/css">
-#%(id)s .%(class)s-item {
-%(layout)s
-}
-%(css)s</style>"""
-          style_items = style_items % {
-            "id": obj_id,
-            "css": self.css,
-            "class": classname_item,
-            "layout": layout
-          }
-          
-          if self.loading == "0":
-            js_loading_call = u""
-            js_loading = u""
-          else:
-            js_loading_call = u"%s_ld(t);" % obj_id
-            js_loading = JS_LOADING % { "id": obj_id }
 
-          js_dynamic = JS_DYNAMIC % {
-            "id": obj_id,
-            "woid": woid,
-            "cssc": classname_item
-          }
-      
-          js_dynamic_e2 = JS_DYNAMIC_E2 % {
-            "id": obj_id,
-            "woid": woid,
-            "cssc": classname_item
-          }
+            return VDOM_object.render(self, parent, contents=contents)
 
-          js_drag = JS_DRAG % {
-            "id": obj_id,
-            "woid": woid,
-            "class": classname_item
-          } if self.draggable == "1" else ""
-
-          js_sortable = JS_SORTABLE % {
-            "id": obj_id,
-            "woid": woid
-          } if self.sortable == "1" else ""
-
-          js = JS % {
-            "js_drag":            js_drag,
-            "id":                obj_id,
-            "woid":              woid,
-            "class":             classname_item,
-            "js_loading":        js_loading,
-            "js_loading_call":   js_loading_call,
-            "js_dynamic":        js_dynamic,
-            "js_sortable":       js_sortable,
-          }
-
-          result = u"""<div id="{id}" style="{style}" {classname}>
-{style_items}
-<div class='dov-content'>{contents}<span class='dov-eoi' style='display:block;clear:both'></span>
-</div></div>
-{js}"""
-
-          contents += result.format(
-            js=js_dynamic_e2 if request.render_type == "e2vdom" else js,
-            id=obj_id,
-            style=style.strip(),
-            style_items=style_items.strip(),
-            classname=classname.strip(),
-            contents=dynlayout.tohtml(self)
-          )
-
-        return VDOM_object.render(self, parent, contents=contents)
 
 
 ]]></SourceCode>
   <Libraries>
     <Library Target="HTML"><![CDATA[
 <script type="text/javascript" src="/883d23d7-d98f-4552-b0cc-0b14122a14d1.res"></script>
-<script type='text/javascript'>
-
-(function($) {
-	$.fn.liveDraggable = function (o) {
-		this.live("mouseover", function() {
-			if (!$(this).data("initdrag")) {
-				$(this).data("initdrag", true).draggable(o);
-			}
-		});
-		return $();
-	};
-}(jQuery));
-
-(function($) {
-	$.fn.liveSortable = function (o) {
-		this.live("mouseover", function() {
-			if (!$(this).data("initsort")) {
-				$(this).data("initsort", true).sortable(o);
-			}
-		});
-		return $();
-	};
-}(jQuery));
-
-function vdom_dov_inDiv(w0, s){
-	var w = $j(w0), result = [], els = $j(s, w), pa, opa;
-	var o = w.position(), wTop = w.scrollTop();
-	var otop = (o == null) ? 0 : o.top;
-	if (w.parent()) {
-		p = w.parent();
-		opa = p.position();
-		otop += (opa == null) ? 0 : opa.top;
-	}
-	var wHeight = w.outerHeight(true) + otop;
-	var wBottom = wHeight + wTop + otop;
-	els.each(function(){
-		var el = $j(this);
-		if (el.hasClass('not-loaded')) {
-			var offset = el.offset();
-			var elTop = offset.top;
-			var elBottom = offset.top + el.outerHeight(true);
-			//if( (elTop >= wTop && elTop <= wBottom) || (elBottom <= wBottom && elBottom >= wTop) ) {
-			if( (elTop >= 0 && elTop <= wHeight) || (elBottom <= wHeight && elBottom >= 0) ) {
-				//el.removeClass('not-loaded');
-				result.push(this);
-			}
-			//if( wTop <= elTop && (el.height() + elTop) < (wTop + wHeight) ) result.push(this);
-		}
-	});
-	return $j(result);
-}
-
-function vdom_dov_markShow(i) {
-	var q = '>div.dov-content>div[dataid]';
-	var a = [], z = vdom_dov_inDiv('#o_'+i, q);
-	if (z.size() > 0) {
-		z.each(function(){
-			a.push($j(this).attr('dataid'));
-		});
-		//execEventBinded(i, "itemsrequest", {idlist: a});
-		var
-			d = $j('#o_'+i),
-			dx = parseInt(d.data('markshow'), 10);
-		if (dx > 2) {
-			d.data('markshow', 0);
-		} else {
-			execEventBinded(i, "itemsrequest", {idlist: a});
-			d.data('markshow', dx + 1);
-		}
-	}
-}
-
-function vdom_dov_makeDiv(i, o) {
-	var s = $j('>div.dov-content>div[dataid]:first', o).attr('style');
-	if (s == '') s = 'height:10px;width:10px;';
-	return '<div dataid="'+i+'" class="'+$j(o).data("dovitemclass")+' not-loaded" style="'+s+'"></div>';
-}
-
-function vdom_dov_getSelected(o) {
-	var a = [];
-	$j('#o_'+o+' .dov-content>div[dataid].selected').each(function(){ a.push($j(this).attr('dataid')); });
-	execEventBinded(o, "itemsselected", {idlist: a});
-}
-
-/**
- * Anderson Ferminiano
- * contato@andersonferminiano.com -- feel free to contact me for bugs or new implementations.
- * jQuery ScrollPagination
- * 28th/March/2011
- * http://andersonferminiano.com/jqueryscrollpagination/
- * You may use this script for free, but keep my credits.
- * Thank you.
- * # modified for VDOM Box Research by Leo @ 2012-08-14
- */
-
-(function($){
-	$.fn.infiniteScroll = function(options) {
-		var opts = $.extend($.fn.infiniteScroll.defaults, options);
-		return this.each(function() {
-		  $.fn.infiniteScroll.init($(this), opts);
-		});
-	};
-
-	$.fn.stopinfiniteScroll = function(){
-		return this.each(function() {
-			$(this).attr('infiniteScroll', 'disabled');
-		});
-	};
-
-	$.fn.infiniteScroll.loadContent = function(obj, opts){
-		var $content = $('>div.dov-content', obj);
-		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= opts.heightOffset;
-		if (canLoadContent) {
-			execEventBinded(opts.dovid, 'itemsbatchrequest', { loaded: $('>div.dov-content>div[dataid]',$(obj)).size() });
-		}
-	};
-
-	$.fn.infiniteScroll.init = function(obj, opts){
-		obj.attr('infiniteScroll', 'enabled');
-		obj.scroll(function(event){
-			if (obj.attr('infiniteScroll') == 'enabled'){
-				$.fn.infiniteScroll.loadContent(obj, opts);
-			} else {
-				event.stopPropagation();
-			}
-		});
-		$.fn.infiniteScroll.loadContent(obj, opts);
-	 };
-
-	$.fn.infiniteScroll.defaults = {
-		'dovid': '',
-		'cssc': '',
-		'heightOffset': 30
-	};
-})(jQuery);
-
-</script>
+<script type="text/javascript" src="/983d23d7-d98a-4552-b0cc-0b14122a14d1.res"></script>
 ]]></Library>
   </Libraries>
   <E2vdom>
@@ -2035,6 +1768,16 @@ function vdom_dov_getSelected(o) {
           </Parameters>
         </Event>
         <Event Name="itemdblclick" Help="#Lang(521)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemctrlclick" Help="#Lang(519)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemdblctrlclick" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -2061,7 +1804,9 @@ function vdom_dov_getSelected(o) {
           </Parameters>
         </Event>
         <Event Name="endscroll" Help="#Lang(526)">
-          <Parameters/>
+          <Parameters>
+            <Parameter Name="position" Order="" VbType="" Help="#Lang(908)"/>
+          </Parameters>
         </Event>
         <Event Name="itemsort" Help="#Lang(527)">
           <Parameters>
@@ -2077,7 +1822,7 @@ function vdom_dov_getSelected(o) {
       </Userinterfaceevents>
     </Events>
     <Actions>
-      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf5">
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -2086,19 +1831,13 @@ function vdom_dov_getSelected(o) {
 vdom_ui_hide(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hideLoading">
-          <Parameters/>
-          <SourceCode><![CDATA[
-$j('>div.dov-content>div>.loading',this.domCont).fadeOut(100);
-]]></SourceCode>
-        </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="width" Help="#Lang(802)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="height" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
+$j(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
@@ -2109,33 +1848,15 @@ $q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));
 vdom_ui_show(this.domCont, fade);
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="showItems">
-          <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(705)" ScriptName="items" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-$j('>div.dov-content>div[dataid]',this.domCont).hide(0);
-for (var x in items) {
-	$j('>div.dov-content>div[dataid="'+items[x]+'"]',this.domCont).fadeIn(100);
-}
-]]></SourceCode>
-        </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="refresh">
           <Parameters>
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="idlist" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-var o=this.domCont;
-$j('>div.dov-content>div[dataid]',o).remove();
-execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
-/*vdom_dov_markShow(o.id.substring(2, o.id.length));*/
-]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="sortItems">
-          <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(707)" ScriptName="idlist" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("reload", idlist);
+else
+  $("#" + this.domCont.id).dynamicObjectView("reload");
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="selectToggle">
@@ -2143,13 +1864,10 @@ execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(708)" ScriptName="idlist" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object') {
-	var o = this.domCont;
-	for (var x in idlist) {
-		$j('>div.dov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]', o).toggleClass('selected');
-	}
-	vdom_dov_getSelected(o.id.substring(2, o.id.length));
-}
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("toogleSelection", idlist);
+else
+  $("#" + this.domCont.id).dynamicObjectView("toogleSelection");
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="selectItems">
@@ -2157,13 +1875,8 @@ if (typeof idlist === 'object') {
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object') {
-	var o = this.domCont;
-	for (var x in idlist) {
-		$j('>div.dov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]',o).addClass('selected');
-	}
-	vdom_dov_getSelected(o.id.substring(2, o.id.length));
-}
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("markAsSelected", idlist);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="unselectItems">
@@ -2171,29 +1884,20 @@ if (typeof idlist === 'object') {
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(711)" ScriptName="idlist" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object') {
-	var o = this.domCont;
-	for (var x in idlist) {
-		$j('>div.dov-content>div[dataid="'+idlist[x].replace('"', '&quot;')+'"]',o).removeClass('selected');
-	}
-	vdom_dov_getSelected(o.id.substring(2, o.id.length));
-}
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected", idlist);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
-var o = this.domCont;
-$j('>div.dov-content>div[dataid]',o).addClass('selected');
-vdom_dov_getSelected(o.id.substring(2, o.id.length));
+$("#" + this.domCont.id).dynamicObjectView("markAsSelected");
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="unselectAll">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
-var o = this.domCont;
-$j('>div.dov-content>div[dataid]',o).removeClass('selected');
-vdom_dov_getSelected(o.id.substring(2, o.id.length));
+$("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected");
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="insertAtBeginning">
@@ -2201,14 +1905,7 @@ vdom_dov_getSelected(o.id.substring(2, o.id.length));
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(712)" ScriptName="items" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	var o = this.domCont, z = $j('>div.dov-content>div:first',o);
-	if (z.size() <= 0) z = $j('>div.dov-content>span.dov-eoi',o);
-	for (var x in items) {
-		$j(vdom_dov_makeDiv(items[x], o)).insertBefore(z);
-	}
-	vdom_dov_markShow(o.id.substring(2, o.id.length));
-}
+$("#" + this.domCont.id).dynamicObjectView("insertAtBeginning", items);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="insertAtEnd">
@@ -2216,13 +1913,7 @@ if (typeof items === 'object') {
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(713)" ScriptName="items" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	var o = this.domCont;
-	for (var x in items) {
-		$j(vdom_dov_makeDiv(items[x], o)).insertBefore($j('>div.dov-content>span.dov-eoi',o));
-	}
-	vdom_dov_markShow(o.id.substring(2, o.id.length));
-}
+$("#" + this.domCont.id).dynamicObjectView("insertAtEnd", items);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(516)" InterfaceName="#Lang(616)" MethodName="insertAfter">
@@ -2231,15 +1922,7 @@ if (typeof items === 'object') {
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(715)" ScriptName="items" Help="#Lang(815)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	var o = this.domCont, z = $j('>div.dov-content>div['+id+']',o);
-	if (z.size() > 0) {
-		for (var x in items) {
-			$j(vdom_dov_makeDiv(items[x], o)).insertAfter(z);
-		}
-		vdom_dov_markShow(o.id.substring(2, o.id.length));
-	}
-}
+$("#" + this.domCont.id).dynamicObjectView("insertAfter", id, items);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(517)" InterfaceName="#Lang(617)" MethodName="insertBefore">
@@ -2248,15 +1931,52 @@ if (typeof items === 'object') {
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(717)" ScriptName="items" Help="#Lang(817)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof items === 'object') {
-	var o = this.domCont, z = $j('>div.dov-content>div['+id+']',o);
-	if (z.size() > 0) {
-		for (var x in items) {
-			$j(vdom_dov_makeDiv(items[x], o)).insertBefore(z);
-		}
-		vdom_dov_markShow(o.id.substring(2, o.id.length));
-	}
-}
+$("#" + this.domCont.id).dynamicObjectView("insertBefore", id, items);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="markLoading">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("markAsLoading", idlist);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="umarkLoading">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("unmarkAsLoading", idlist);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="markLoadingAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+$("#" + this.domCont.id).dynamicObjectView("markAsLoading");
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="unmarkLoadingAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+$("#" + this.domCont.id).dynamicObjectView("unmarkAsLoading");
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).dynamicObjectView("removeItems", idlist);
+]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeAll">
+          <Parameters/>
+          <SourceCode><![CDATA[
+$("#" + this.domCont.id).dynamicObjectView("removeItems");
 ]]></SourceCode>
         </Action>
       </Container>
