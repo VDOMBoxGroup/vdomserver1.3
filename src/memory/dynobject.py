@@ -119,12 +119,16 @@ class DummyObject(object):
             
         return all_objects
     
-    def find_child_by_name(self, childname):
+    def find_child_by_name(self, path):
         """
         Find child element by name
         """
+        path = path.split(".")
+        if self.name != path[0]:
+            return None
+        
         child = self
-        for cname in childname.split("."):
+        for cname in path[1:]:
             child = child.objects_by_name.get(cname, None)
             if not child:
                 return None
