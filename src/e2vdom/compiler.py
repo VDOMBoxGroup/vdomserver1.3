@@ -46,7 +46,7 @@ def compile_declarations_n_libraries(container):
 	libraries="".join(["".join(library) for library in libraries.itervalues()])
 	libraries+="".join(["".join(library) for library in managers.request_manager.current.dyn_libraries.itervalues()])
 	
-	lines = ["EventQueue=new VDOM_EventQueue;"]
+	lines = ["if (typeof EventQueue === 'undefined') EventQueue=new VDOM_EventQueue;"]
 	append_lines = lines.append
 	
 	for type_id in containers.iterkeys():
@@ -207,7 +207,7 @@ def compile_dynamic_e2vdom(container, actions=None):
 	"""
 	application = managers.request_manager.get_request().application()
 	
-	lines = []
+	lines = ["if (typeof window.EventQueue === 'undefined') window.EventQueue=new VDOM_EventQueue;"]
 	append_lines = lines.append
 
 	for type_id, type_obj in container.all_types().iteritems():
