@@ -235,18 +235,6 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>loading</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|1)|(#Lang(416)|0))</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>dynamicrender</Name>
       <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -257,6 +245,42 @@
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>clickclass</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(318)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectonclick</Name>
+      <DisplayName>#Lang(120)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(220)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1)|(#Lang(424)|2)|(#Lang(425)|3)|(#Lang(426)|4))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(320)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[0-4]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectionmode</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(427)|0)|(#Lang(428)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -285,8 +309,9 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="115">Overflow</Sentence>
       <Sentence ID="116">CSS Class</Sentence>
       <Sentence ID="117">Loading</Sentence>
-      <Sentence ID="118"></Sentence>
+      <Sentence ID="118">Click class</Sentence>
       <Sentence ID="119"></Sentence>
+      <Sentence ID="120">Select on</Sentence>
       <Sentence ID="121">Dynamic Load</Sentence>
       <Sentence ID="122">Items count</Sentence>
       <Sentence ID="123">Items count</Sentence>
@@ -295,6 +320,7 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
+      <Sentence ID="129">Selection mode</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -320,6 +346,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="217">Show progress control over the item after left-click or double-click on it.</Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
+      <Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
       <Sentence ID="221">Use dynamic loading of items. See WIKI for details.</Sentence>
       <Sentence ID="222">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="223">Number of items to load for each request in infinite scroll mode</Sentence>
@@ -328,6 +355,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
+      <Sentence ID="229">The mode of selecting the rows.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -344,8 +372,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
       <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="317">Incorrect value.</Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
       <Sentence ID="319"></Sentence>
+      <Sentence ID="320">Incorrect value</Sentence>
       <Sentence ID="321">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="322">Incorrect value</Sentence>
       <Sentence ID="323">Incorrect value</Sentence>
@@ -354,6 +383,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
+      <Sentence ID="329">Invdali value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -373,6 +403,13 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="418">Yes</Sentence>
       <Sentence ID="419">No</Sentence>
       <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">Click</Sentence>
+      <Sentence ID="423">Ctrl + Click</Sentence>
+      <Sentence ID="424">Double Click</Sentence>
+      <Sentence ID="425">Ctrl + Double Click</Sentence>
+      <Sentence ID="426">Manual</Sentence>
+      <Sentence ID="427">Single</Sentence>
+      <Sentence ID="428">Multi</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -479,8 +516,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="115">Overflow</Sentence>
       <Sentence ID="116">CSS Class</Sentence>
       <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
+      <Sentence ID="118">Click class</Sentence>
       <Sentence ID="119"></Sentence>
+      <Sentence ID="120">Select on</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
@@ -489,6 +527,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
+      <Sentence ID="129">Selection mode</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -507,6 +546,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
+      <Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
@@ -515,6 +555,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
+      <Sentence ID="229">The mode of selecting the rows.</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -531,8 +572,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Incorrect value</Sentence>
       <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="319"></Sentence>
+      <Sentence ID="320">Incorrect value</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
@@ -541,6 +583,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
+      <Sentence ID="329">Invdali value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -560,6 +603,13 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="418"></Sentence>
       <Sentence ID="419"></Sentence>
       <Sentence ID="421"></Sentence>
+      <Sentence ID="422">Click</Sentence>
+      <Sentence ID="423">Ctrl + Click</Sentence>
+      <Sentence ID="424">Double Click</Sentence>
+      <Sentence ID="425">Ctrl + Double Click</Sentence>
+      <Sentence ID="426">Manual</Sentence>
+      <Sentence ID="427">Single</Sentence>
+      <Sentence ID="428">Multi</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -666,8 +716,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="115">Переполнение</Sentence>
       <Sentence ID="116">Класс CSS</Sentence>
       <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
+      <Sentence ID="118">Click class</Sentence>
       <Sentence ID="119"></Sentence>
+      <Sentence ID="120">Select on</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
@@ -676,6 +727,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="126">Bindings</Sentence>
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
+      <Sentence ID="129">Selection mode</Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -694,6 +746,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
+      <Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
@@ -702,6 +755,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="226">Bindings</Sentence>
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
+      <Sentence ID="229">The mode of selecting the rows.</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -718,8 +772,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Неправильное значение</Sentence>
       <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
       <Sentence ID="319"></Sentence>
+      <Sentence ID="320">Incorrect value</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
@@ -728,6 +783,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
+      <Sentence ID="329">Invdali value</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Вертикальный</Sentence>
@@ -747,6 +803,13 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="418"></Sentence>
       <Sentence ID="419"></Sentence>
       <Sentence ID="421"></Sentence>
+      <Sentence ID="422">Click</Sentence>
+      <Sentence ID="423">Ctrl + Click</Sentence>
+      <Sentence ID="424">Double Click</Sentence>
+      <Sentence ID="425">Ctrl + Double Click</Sentence>
+      <Sentence ID="426">Manual</Sentence>
+      <Sentence ID="427">Single</Sentence>
+      <Sentence ID="428">Multi</Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
@@ -1526,10 +1589,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
 (function($) {
 
-    function getDomContID(obj){
-      var id = obj.attr("id");
-      return id.substring(2, id.length);
-    }
+    var DATA_ITEMS_SELECTOR = ">div.dov-content>div[dataid]";
 
     function formatUnicorn(template, arguments) {
       var str = template.toString();
@@ -1541,7 +1601,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
     function markElementAsLoading(obj){
       var loading_helper = $('>.loading-helper',obj);
       if (loading_helper.size() == 0) {
-        var loading_helper = $('<div class="loading-helper" style="width:100%%;height:100%%"></div>').css({
+        var loading_helper = $('<div class="loading-helper" style="width:100%; height:100%"></div>').css({
           position:'absolute',
           opacity:0.9
         }).hide();
@@ -1559,32 +1619,31 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
       obj.removeClass("loading");
     }
 
-    function makeItemDiv(itemID, obj) {
-      var itemStyle = $('>div.dov-content>div[dataid]:first', obj).attr('style');
+    function makeItemDiv(itemID, vdomDOV) {
+      var itemStyle = $(DATA_ITEMS_SELECTOR + ':first', vdomDOV).attr('style');
       return '<div dataid="'+itemID+'" class="not-loaded" style="'+itemStyle+'"></div>';
     }
 
-    function elementsInDiv(dom_id, selector){
-      var $dobjview = $(dom_id);
+    function elementsInDiv(vdomDOV, selector){
       var result = []
-      var items = $(selector, $dobjview);
-      var objPosition = $dobjview.position();
-      var objScrollTop = $dobjview.scrollTop();
-      var objTop = (objPosition == null)? 0 : objPosition.top;
+      var items = $(selector, vdomDOV);
 
-      if ($dobjview.parent()) {
-        var parent = $dobjview.parent();
+      var objPosition = vdomDOV.position();
+      var objScrollTop = vdomDOV.scrollTop();
+      var objTop = (objPosition == null) ? 0 : objPosition.top;
+
+      if (vdomDOV.parent()) {
+        var parent = vdomDOV.parent();
         var parentPosition = parent.position();
         objTop += (parentPosition == null) ? 0 : parentPosition.top;
       }
 
-      var objHeight = $dobjview.outerHeight(true) + objTop;
+      var objHeight = vdomDOV.outerHeight(true) + objTop;
       var objBottom = objHeight + objScrollTop + objTop;
 
       items.each(function(){
           var $element = $(this);
           if ($element.hasClass('not-loaded')){
-            
             var elOffset = $element.offset();
             var elTop = elOffset.top;
             var elBottom = elOffset.top + $element.outerHeight(true);
@@ -1597,16 +1656,14 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
       return $(result);
     }
 
-    function requestElements(obj_id) {
-      var dom_id = "#o_" + obj_id;
-      var selector = '>div.dov-content>div[dataid]';
+    function requestElements(vdomDOV) {
+      var elements = elementsInDiv(vdomDOV, DATA_ITEMS_SELECTOR);
       var ids = []
-      var elements = elementsInDiv(dom_id, selector);
       if (elements.size() > 0) {
         elements.each(function(){
           ids.push($(this).attr('dataid'));
         });
-        execEventBinded(obj_id, "itemsrequest", {idlist: ids});
+        execEventBinded(vdomDOV.data("objID"), "itemsrequest", {idlist: ids});
       }
     }
 
@@ -1618,8 +1675,50 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
       }
     }
 
-    function raiseItemSelectedEvent(obj){
-      execEventBinded(getDomContID(obj), "itemsselected", {idlist: obj.dynamicObjectView("getSelectedIDs")});
+    function raiseItemSelectedEvent(vdomDOV){
+      execEventBinded(vdomDOV.data("objID"), "itemsselected", {idlist: vdomDOV.dynamicObjectView("getSelectedIDs")});
+    }
+
+    function raiseClickEvent(evt, vdomDOV, obj, is_dbl, is_ctrl){
+
+      var is_child = false;
+      var div_obj;
+
+      if (!(obj.get(0).nodeName.toLowerCase() == "div" && obj.attr("dataid"))){
+        is_child = true;
+        div_obj = obj.closest("div[dataid]");
+      } else {
+        div_obj = obj;
+      }
+
+      var item_id = div_obj.attr("dataid");
+      var evt_name = (is_child ? "child": "") + "item" + \
+                     (is_ctrl  ? "ctrl" : "") + \
+                     (is_dbl   ? "dbl"  : "") + "click";
+
+      if (!is_child){
+        var need_select = (vdomDOV.data("clickAndSelect") == "ctrldblclick" && is_dbl && is_ctrl) || \
+                          (vdomDOV.data("clickAndSelect") == "dblclick" && is_dbl) || \
+                          (vdomDOV.data("clickAndSelect") == "ctrlclick" && is_ctrl) || \
+                          (vdomDOV.data("clickAndSelect") == "click");
+        if (need_select){
+          if (vdomDOV.data("multiSelection"))
+            vdomDOV.dynamicObjectView("toogleSelection", [item_id]);
+          else
+            vdomDOV.dynamicObjectView("markAsSelected", [item_id]);
+        }
+      }
+
+      var params = {
+        "itemid":  item_id,
+        "selected": vdomDOV.dynamicObjectView("getSelectedIDs"),
+        "X": evt.pageX,
+        "Y": evt.pageY,
+        "child": is_child ? {class: obj.attr("class")} : ""
+      };
+
+      //vdomDOV.dynamicObjectView("markAsActive", item_id);
+      execEventBinded(vdomDOV.data("objID"), evt_name, params);
     }
 
     var methods = {
@@ -1644,7 +1743,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         markAsSelected: function(ids, raiseEvent){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid]', this).addClass('selected');
+            $(DATA_ITEMS_SELECTOR, this).addClass('selected');
           } else {
             for (var x in ids) {
               $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this).addClass('selected');
@@ -1655,7 +1754,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         unmarkAsSelected: function(ids, raiseEvent){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid].selected', this).removeClass('selected');
+            $(DATA_ITEMS_SELECTOR + '.selected', this).removeClass('selected');
           } else {
             for (var x in ids) {
               $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"].selected', this).removeClass('selected');
@@ -1666,19 +1765,19 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         getSelectedIDs: function(){
           ids = [];
-          $('>div.dov-content>div[dataid].selected', this).each(function(){
+          $(DATA_ITEMS_SELECTOR + '.selected', this).each(function(){
             ids.push($(this).attr('dataid'));
           });
           return ids;
         },
 
         getSelectedItems: function(){
-          return $('>div.dov-content>div[dataid].selected', this)
+          return $(DATA_ITEMS_SELECTOR + '.selected', this)
         },
 
         toogleSelection: function(ids, raiseEvent){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid]', this).each(function(){
+            $(DATA_ITEMS_SELECTOR, this).each(function(){
               toogleSelection($(this));
             });
           } else {
@@ -1691,7 +1790,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         markAsLoading: function(ids, raiseEvent){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid]', this).each(function(){
+            $(DATA_ITEMS_SELECTOR, this).each(function(){
                 markElementAsLoading($(this));
             });
           } else {
@@ -1705,7 +1804,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         unmarkAsLoading: function(ids, raiseEvent){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid].loading', this).each(function(){
+            $(DATA_ITEMS_SELECTOR + '.loading', this).each(function(){
                 unmarkElementAsLoading($(this));
             });
           } else {
@@ -1719,20 +1818,20 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         getLoadingIDs: function(){
             ids = [];
-            $('>div.dov-content>div[dataid].loading', this).each(function(){
+            $(DATA_ITEMS_SELECTOR + '.loading', this).each(function(){
                 ids.push($(this).attr('dataid'));
             });
             return ids;
         },
 
         getLoadingItems: function(){
-            return $('>div.dov-content>div[dataid].loading', this);
+            return $(DATA_ITEMS_SELECTOR + '.loading', this);
         },
 
         reload: function(ids){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid]', this).remove();
-            execEventBinded(getDomContID(this), "itemsrequest", {idlist: ""});
+            $(DATA_ITEMS_SELECTOR, this).remove();
+            execEventBinded(this.data("objID"), "itemsrequest", {idlist: ""});
           } else {
             this.dynamicObjectView("markAsLoading", ids);
           }
@@ -1740,7 +1839,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         insertHTMLAtEnd: function(html){
           $(">div.dov-content>span.dov-eoi", this).before($('>div[dataid]', html));
-          requestElements(getDomContID(this));
+          requestElements(this);
         },
 
         insertHTMLAtBegining: function(html){
@@ -1749,18 +1848,18 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
             begining = $(">div.dov-content>span.dov-eoi", this);
           }
           begining.before($('>div[dataid]', html));
-          requestElements(getDomContID(this));
+          requestElements(this);
         },
 
         insertAtBeginning: function(items){
-          var begining = $('>div.dov-content>div:first', this);
+          var begining = $(DATA_ITEMS_SELECTOR + ':first', this);
           if (begining.size() <= 0){
             begining = $(">div.dov-content>span.dov-eoi", this);
           }
           for (var i in items){
             $(makeItemDiv(items[i], this)).insertBefore(begining);
           }
-          requestElements(getDomContID(this));
+          requestElements(this);
         },
 
         insertAtEnd: function(items){
@@ -1768,7 +1867,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
           for (var i in items){
             $(makeItemDiv(items[i], this)).insertBefore(endning);
           }
-          requestElements(getDomContID(this));
+          requestElements(this);
         },
 
         insertBefore: function(elemID, items){
@@ -1777,7 +1876,7 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
             for (var i in items){
               $(makeItemDiv(items[i], this)).insertBefore(elem);
             }
-            requestElements(getDomContID(this));         
+          requestElements(this);         
           }
         },
 
@@ -1787,13 +1886,13 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
             for (var i in items){
               $(makeItemDiv(items[i], this)).insertAfter(elem);
             }
-            requestElements(getDomContID(this));         
+            requestElements(this);       
           }
         },
 
         removeItems: function(ids){
           if (typeof ids === "undefined"){
-            $('>div.dov-content>div[dataid]', this).remove();
+            $(DATA_ITEMS_SELECTOR, this).remove();
           } else {
             for (var x in ids) {
               $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this).remove();
@@ -1803,60 +1902,71 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
 
         init: function(options){
         
-            // Check is plugin initialized or not yet
-            // TODO: update options
-            
+            // Check is plugin initialized or not yet            
             var initialized = $("body").data(this.attr("id"));
             if (initialized){
                 return
             }
-
+            
             $("body").data(this.attr("id"), true);
-            var dom_id = "#o_" + options["id"];
-            var jquery_selector = dom_id + " div[dataid]";
-            var obj_id = options["id"];
 
-            $(jquery_selector).live('click dblclick', function(e){
-                console.log(e);
+            var vdomDOV = this;
+            var obj_id = vdomDOV.attr("id");
+
+            vdomDOV.data("multiSelection", options["multiSelection"]);
+            vdomDOV.data("clickAndSelect",  options["clickAndSelect"]);
+            vdomDOV.data("domID", "#" + obj_id);
+            vdomDOV.data("objID", obj_id.substring(2, obj_id.length));
+
+            click_function = function(e){
                 if (e.preventDefault){
                     e.preventDefault();
                 } else {
                     e.returnValue = false;
                 }
+
                 var $this = $(this);
                 if (e.type == 'dblclick') {
                     $this.data('isSingleClick', false);
                     if (e.ctrlKey){
-                        execEventBinded(obj_id, "itemdblctrlclick", {"id": $this.attr("dataid")});
+                        raiseClickEvent(e, vdomDOV, $this, true, true);
                     } else {
-                        execEventBinded(obj_id, "itemdblclick", {"id": $this.attr("dataid")});
+                        raiseClickEvent(e, vdomDOV, $this, true, false);
                     }
                 } else {
                     setTimeout(function(){
                         if ($this.data('isSingleClick') == true){
                             if (e.ctrlKey){
-                                execEventBinded(obj_id, "itemctrlclick", {"id": $this.attr("dataid")});
+                              raiseClickEvent(e, vdomDOV, $this, false, true);
                             } else {
-                                execEventBinded(obj_id, "itemclick", {"id": $this.attr("dataid")});
+                              raiseClickEvent(e, vdomDOV, $this, false, false);
                             }
                         }
-                    }, 200);
+                    }, 300);
                     $this.data('isSingleClick', true);
                 }
                 return false;
-            });
+            }
 
-            $(jquery_selector).live('mouseover', function(e){
-                execEventBinded(obj_id, "itemmouseover", {"id":$(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
+            if (options["clickClasses"]){
+                var classes = options["clickClasses"];
+                for (var i in classes){
+                    $(DATA_ITEMS_SELECTOR + " " + classes[i], vdomDOV).live('click dblclick', click_function);
+                }
+            }
+            $(DATA_ITEMS_SELECTOR, vdomDOV).live('click dblclick', click_function);
+            
+            $(DATA_ITEMS_SELECTOR, vdomDOV).live('mouseover', function(e){
+                execEventBinded(vdomDOV.data("objID"), "itemmouseover", {itemid: $(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
                 return false;
             }).live('mouseout', function(e){
-                execEventBinded(obj_id, "itemmouseout", {"id":$(this).attr("dataid")});
+                execEventBinded(vdomDOV.data("objID"), "itemmouseout", {itemid: $(this).attr("dataid")});
                 return false;
             });
 
             if (options["dragndrop"]){
 
-                $(jquery_selector).dynamicObjectView("liveDraggable", {
+                $(DATA_ITEMS_SELECTOR, vdomDOV).dynamicObjectView("liveDraggable", {
                     connectToDynatree: true,
                     appendTo: 'body',
                     containment: 'document',
@@ -1867,9 +1977,9 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
                       top: 4
                     },
                     start: function(e,u){
-                      execEventBinded(obj_id, "dragstart", {id: $(this).attr('dataid')}, true);
+                      execEventBinded(vdomDOV.data("objID"), "dragstart", {itemid: $(this).attr('dataid')}, true);
                     },
-                    connectToSortable: dom_id,
+                    connectToSortable: vdomDOV.data("domID"),
                     revert: "invalid",
                     revertDuration: 200,
                     opacity: 1,
@@ -1878,23 +1988,23 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
                       if (options["dragndropHelper"] == "clone" || ! $target.hasClass("selected")){
                         return $(ev.currentTarget).clone();
                       }
-                      return $(formatUnicorn(options["dragndropHelper"], {"selectedItems": $(dom_id).dynamicObjectView("getSelectedIDs").length}));
+                      return $(formatUnicorn(options["dragndropHelper"], {"selectedItems": vdomDOV.dynamicObjectView("getSelectedIDs").length}));
                     },
                     CustomBeforeStart: function(e, u){
-                      if ($(dom_id).dynamicObjectView("getSelectedIDs").length > 1){
-                        $(dom_id).sortable("disable");
+                      if (vdomDOV.dynamicObjectView("getSelectedIDs").length > 1){
+                        vdomDOV.sortable("disable");
                       } else {
-                        $(dom_id).sortable("enable");
+                        vdomDOV.sortable("enable");
                       }
                     }
                 });
             }
 
             if (options["dragnsort"]){
-                $(dom_id).dynamicObjectView("liveSortable", {
+                vdomDOV.dynamicObjectView("liveSortable", {
                     items: 'div[dataid]',
                     stop: function(e, u){
-                      execEventBinded(obj_id, "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
+                      execEventBinded(vdomDOV.data("objID"), "itemsort", {position: u.item.index(), itemid: u.item.attr('dataid')});
                     },
                     receive: function(e, u) {
                       u.item.remove();
@@ -1903,18 +2013,17 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
             }
 
             if (options["dynamicLoading"]){
-                $(dom_id).bind('scrollstop resize', function() {
-                    var jquery_obj = $(dom_id);
-                    var jquery_content = $('>div.dov-content', jquery_obj);
-                    var can_load = jquery_content.outerHeight() - jquery_obj.innerHeight() - jquery_obj.scrollTop() <= 30;
+                vdomDOV.bind('scrollstop resize', function() {
+                    var jquery_content = $('>div.dov-content', vdomDOV);
+                    var can_load = jquery_content.outerHeight() - vdomDOV.innerHeight() - vdomDOV.scrollTop() <= 30;
                     if (can_load) {
-                      execEventBinded(obj_id, 'endscroll', {position: "bottom"});
-                    } else if (jquery_obj.scrollTop() == 0){
-                      execEventBinded(obj_id, 'endscroll', {position: "top"});
+                      execEventBinded(vdomDOV.data("objID"), 'endscroll', {position: "bottom"});
+                    } else if (vdomDOV.scrollTop() == 0){
+                      execEventBinded(vdomDOV.data("objID"), 'endscroll', {position: "top"});
                     }
-                    requestElements(obj_id);
+                    requestElements(vdomDOV);
                 });
-                requestElements(obj_id);
+                requestElements(vdomDOV);
             }
         }
     }
@@ -1930,6 +2039,15 @@ if (typeof window.draggable_oldMouseStart !== 'undefined'){
     };
 }(jQuery));
 </script>"""
+
+
+CLICK_N_SELECT = (
+  "click",
+  "ctrlclick",
+  "dblclick",
+  "ctrldblclick",
+  "manual",
+)
 
 
 class VDOM_dynobjectview(VDOM_object):
@@ -2136,12 +2254,13 @@ $(document).ready(function(){{
         else:
 
             options = {
-                "id": obj_id,
-                "itemClickLoading": self.loading,
                 "dragndrop": self.draggable == "1",
                 "dragnsort": self.sortable == "1",
                 "dragndropHelper": self.draghelper if self.draghelper else "clone",
                 "dynamicLoading": True,
+                "clickClasses": self.clickclass.strip().split(),
+                "clickAndSelect": CLICK_N_SELECT[int(self.selectonclick)],
+                "multiSelection": True if self.selectionmode == "1" else False,
             }
 
             obj_style, items_style = self.compile_style()
@@ -2181,24 +2300,72 @@ $(document).ready(function(){{
             <Parameter Name="id" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(519)">
+        <Event Name="itemclick" Help="#Lang(508)">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblclick" Help="#Lang(521)">
+        <Event Name="itemdblclick" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemctrlclick" Help="#Lang(519)">
+        <Event Name="itemctrlclick" Help="#Lang(508)">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblctrlclick" Help="#Lang(521)">
+        <Event Name="itemctrldblclick" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="childitemclick" Help="#Lang(508)">
+          <Parameters>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="childitemdblclick" Help="#Lang(509)">
+          <Parameters>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="childitemctrlclick" Help="#Lang(508)">
+          <Parameters>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="childitemctrldblclick" Help="#Lang(509)">
+          <Parameters>
+            <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
         <Event Name="itemmouseout" Help="#Lang(522)">
