@@ -764,7 +764,7 @@ GLOB_JS = u"""<script type="text/javascript">
         "selected": vdomList_v2.vdomList_v2("getSelectedIDs"),
         "X": evt.pageX,
         "Y": evt.pageY,
-        "child": is_child ? {class: obj.attr("class")} : ""
+        "child": is_child ? JSON.stringify({class: obj.attr("class")}) : ""
       };
 
       vdomList_v2.vdomList_v2("markAsActive", item_id);
@@ -861,7 +861,10 @@ GLOB_JS = u"""<script type="text/javascript">
         },
 
         markAsInactive: function(itemid){
-          $('>ul>li[itemid="'+itemid.replace('"', '&quot;')+'"]', this).removeClass('active');
+          if (itemid)
+            $('>ul>li[itemid="'+itemid.replace('"', '&quot;')+'"]', this).removeClass('active');
+          else
+            $('>ul>li[itemid].active', this).removeClass('active');
         },
 
         init: function(options){
@@ -889,12 +892,11 @@ GLOB_JS = u"""<script type="text/javascript">
             if (options["clickClasses"]){
                 var classes = options["clickClasses"];
                 for (var i in classes){
-                    selectors.push(selectors[0] + " ." + classes[i]);
+                    selectors.push(selectors[0] + " " + classes[i]);
                 }
             }
 
             $(selectors.join(","), this).bind("click dblclick", function(e){
-                console.log(e);
                 if (e.preventDefault){
                     e.preventDefault();
                 } else {
@@ -945,7 +947,8 @@ CLICK_N_SELECT = (
   "click",
   "ctrlclick",
   "dblclick",
-  "ctrldblclick"
+  "ctrldblclick",
+  "manual",
 )
 
 
