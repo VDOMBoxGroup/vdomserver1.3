@@ -336,7 +336,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="504">Set font size</Sentence>
       <Sentence ID="505">Set new text inside the object</Sentence>
       <Sentence ID="506">Show the object</Sentence>
-      <Sentence ID="507"></Sentence>
+      <Sentence ID="507">Set new HTML inside the object</Sentence>
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
@@ -350,6 +350,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="604">Visibility</Sentence>
       <Sentence ID="605">Visibility</Sentence>
       <Sentence ID="606">Visibility</Sentence>
+      <Sentence ID="607">Visibility</Sentence>
       <Sentence ID="701">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="702">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="703">Incorrect value, must be either 0 or 1</Sentence>
@@ -358,6 +359,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="706">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="707">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="708">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="709">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -366,6 +368,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="806">Font size</Sentence>
       <Sentence ID="807">String to load into Value attribute</Sentence>
       <Sentence ID="808">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903"></Sentence>
@@ -497,6 +500,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="604">Отображение</Sentence>
       <Sentence ID="605">Отображение</Sentence>
       <Sentence ID="606">Отображение</Sentence>
+      <Sentence ID="607">Отображение</Sentence>
       <Sentence ID="701">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="702">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="703">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -505,6 +509,8 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="706">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="707">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="708">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="708">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="709">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Координата новой точки по оси X</Sentence>
       <Sentence ID="803">Координата новой точки по оси Y</Sentence>
@@ -513,6 +519,8 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="806">Установить размер шрифта</Sentence>
       <Sentence ID="807">Новый текст для поля "Значение"</Sentence>
       <Sentence ID="808">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="808">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="809">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Сверху</Sentence>
       <Sentence ID="903"></Sentence>
@@ -644,6 +652,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="604">Visibilité</Sentence>
       <Sentence ID="605">Visibilité</Sentence>
       <Sentence ID="606">Visibilité</Sentence>
+      <Sentence ID="607">Visibilité</Sentence>
       <Sentence ID="701">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="702">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="703">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -652,6 +661,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="706">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="707">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="708">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="709">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="801">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="802">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="803">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -660,6 +670,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="806">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="807">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="808">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="809">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903"></Sentence>
@@ -1071,6 +1082,14 @@ jQuery(this.domCont).text(text);
           <SourceCode><![CDATA[
 vdom_ui_show(this.domCont, fade);
 					]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setHTML">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="text" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+jQuery(this.domCont).html(text);
+          ]]></SourceCode>
         </Action>
       </Container>
     </Actions>
