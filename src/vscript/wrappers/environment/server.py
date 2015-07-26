@@ -222,10 +222,14 @@ class v_mailmessage(generic):
 		else:
 			return v_mailattachmentcollection(self._value.attach)
 
-
 	def v_addattachment(self, attachment):
 		self._value.attach.append(attachment.as_specific(v_mailattachment).value)
 		return v_mismatch
+
+	def v_addheader(self, key, value):
+		self._value.headers[key.as_string] = value.as_string
+		return v_mismatch
+
 
 
 class v_mailconnection(generic):
