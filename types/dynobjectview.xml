@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.0a</Version>
+    <Version>1.0.1a</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata</Containers>
@@ -282,6 +282,30 @@
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>dynamicloading</Name>
+      <DisplayName>#Lang(130)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(230)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(430)|0)|(#Lang(431)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(330)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>insertmethod</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(432)|0)|(#Lang(433)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -321,6 +345,8 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="129">Selection mode</Sentence>
+      <Sentence ID="130">Dynamic Loading</Sentence>
+      <Sentence ID="131">Insert method</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -356,6 +382,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="229">The mode of selecting the rows.</Sentence>
+      <Sentence ID="230">Dynamic Loading</Sentence>
+      <Sentence ID="231">Insert Method</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -383,7 +411,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
-      <Sentence ID="329">Invdali value</Sentence>
+      <Sentence ID="329">Invalid value</Sentence>
+      <Sentence ID="330">Invalid value</Sentence>
+      <Sentence ID="331">Invalid value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -410,6 +440,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="426">Manual</Sentence>
       <Sentence ID="427">Single</Sentence>
       <Sentence ID="428">Multi</Sentence>
+      <Sentence ID="430">No</Sentence>
+      <Sentence ID="431">Yes</Sentence>
+      <Sentence ID="432">Insert before the first element</Sentence>
+      <Sentence ID="433">Insert after the last element</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -528,6 +562,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="129">Selection mode</Sentence>
+      <Sentence ID="130">Dynamic Loading</Sentence>
+      <Sentence ID="131">Insert method</Sentence>
       <Sentence ID="201">Order of rendering the object on the page</Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -556,6 +592,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="229">The mode of selecting the rows.</Sentence>
+      <Sentence ID="230">Dynamic Loading</Sentence>
+      <Sentence ID="231">Insert Method</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="302">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -583,7 +621,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
-      <Sentence ID="329">Invdali value</Sentence>
+      <Sentence ID="329">Invalid value</Sentence>
+      <Sentence ID="330">Invalid value</Sentence>
+      <Sentence ID="331">Invalid value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
@@ -610,6 +650,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="426">Manual</Sentence>
       <Sentence ID="427">Single</Sentence>
       <Sentence ID="428">Multi</Sentence>
+      <Sentence ID="430">No</Sentence>
+      <Sentence ID="431">Yes</Sentence>
+      <Sentence ID="432">Insert before the first element</Sentence>
+      <Sentence ID="433">Insert after the last element</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
@@ -728,6 +772,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="127">CSS</Sentence>
       <Sentence ID="128">Drag Helper</Sentence>
       <Sentence ID="129">Selection mode</Sentence>
+      <Sentence ID="130">Dynamic Loading</Sentence>
+      <Sentence ID="131">Insert method</Sentence>
       <Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -756,6 +802,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="227">CSS</Sentence>
       <Sentence ID="228">Drag Helper</Sentence>
       <Sentence ID="229">The mode of selecting the rows.</Sentence>
+      <Sentence ID="230">Dynamic Loading</Sentence>
+      <Sentence ID="231">Insert Method</Sentence>
       <Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -783,7 +831,9 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="326">Invalid value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
       <Sentence ID="328">Invalid value</Sentence>
-      <Sentence ID="329">Invdali value</Sentence>
+      <Sentence ID="329">Invalid value</Sentence>
+      <Sentence ID="330">Invalid value</Sentence>
+      <Sentence ID="331">Invalid value</Sentence>
       <Sentence ID="401">Не отображать</Sentence>
       <Sentence ID="402">Отображать</Sentence>
       <Sentence ID="403">Вертикальный</Sentence>
@@ -810,6 +860,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="426">Manual</Sentence>
       <Sentence ID="427">Single</Sentence>
       <Sentence ID="428">Multi</Sentence>
+      <Sentence ID="430">No</Sentence>
+      <Sentence ID="431">Yes</Sentence>
+      <Sentence ID="432">Insert before the first element</Sentence>
+      <Sentence ID="433">Insert after the last element</Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Изменить ширину и высоту</Sentence>
@@ -1213,18 +1267,21 @@ bj1sLmhhbmRsZXI7bC5oYW5kbGVyPW19fX07ZnVuY3Rpb24gZygpe2k9aFtrXShmdW5jdGlvbigp
 e2EuZWFjaChmdW5jdGlvbigpe3ZhciBuPSQodGhpcyksbT1uLndpZHRoKCksbD1uLmhlaWdodCgp
 LG89JC5kYXRhKHRoaXMsZCk7aWYobSE9PW8ud3x8bCE9PW8uaCl7bi50cmlnZ2VyKGosW28udz1t
 LG8uaD1sXSl9fSk7ZygpfSxlW2JdKX19KShqUXVlcnksdGhpcyk7DQo=]]></Resource>
+    <Resource ID="4d2f9168-d9c9-45b4-8969-50732ba9fd80" Name="vdom_dynobjectview.js" Type="js"><![CDATA[aWYgKHR5cGVvZiB3aW5kb3cuZHJhZ2dhYmxlX29sZE1vdXNlU3RhcnQgIT09ICd1bmRlZmluZWQnKXsNCiAgICB3aW5kb3cuZHJhZ2dhYmxlX29sZE1vdXNlU3RhcnQgPSAkLnVpLmRyYWdnYWJsZS5wcm90b3R5cGUuX21vdXNlU3RhcnQ7DQogICAgJC51aS5kcmFnZ2FibGUucHJvdG90eXBlLl9tb3VzZVN0YXJ0ID0gZnVuY3Rpb24oZXZlbnQsIG92ZXJyaWRlSGFuZGxlLCBub0FjdGl2YXRpb24pIHsNCiAgICAgICAgdGhpcy5fdHJpZ2dlcigiQ3VzdG9tQmVmb3JlU3RhcnQiLCBldmVudCwgdGhpcy5fdWlIYXNoKCkpOw0KICAgICAgICBkcmFnZ2FibGVfb2xkTW91c2VTdGFydC5hcHBseSh0aGlzLCBbZXZlbnQsIG92ZXJyaWRlSGFuZGxlLCBub0FjdGl2YXRpb25dKTsNCiAgICB9Ow0KfQ0KDQoNCihmdW5jdGlvbigkKSB7DQoNCiAgICB2YXIgREFUQV9JVEVNU19TRUxFQ1RPUiA9ICI+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWRdIjsNCiAgICB2YXIgZW50aXR5TWFwID0gew0KICAgICAgIiYiOiAiJmFtcDsiLA0KICAgICAgIjwiOiAiJmx0OyIsDQogICAgICAiPiI6ICImZ3Q7IiwNCiAgICAgICciJzogJyZxdW90OycsDQogICAgICAiJyI6ICcmIzM5OycsDQogICAgICAiLyI6ICcmI3gyRjsnDQogICAgfTsNCg0KICAgIGZ1bmN0aW9uIGVzY2FwZUh0bWwoc3RyaW5nKSB7DQogICAgICByZXR1cm4gU3RyaW5nKHN0cmluZykucmVwbGFjZSgvWyY8PiInXC9dL2csIGZ1bmN0aW9uIChzKSB7DQogICAgICAgIHJldHVybiBlbnRpdHlNYXBbc107DQogICAgICB9KTsNCiAgICB9DQoNCiAgICBmdW5jdGlvbiBmb3JtYXRVbmljb3JuKHRlbXBsYXRlLCBhcmd1bWVudHMpIHsNCiAgICAgIHZhciBzdHIgPSB0ZW1wbGF0ZS50b1N0cmluZygpOw0KICAgICAgZm9yIChhcmcgaW4gYXJndW1lbnRzKSB7DQogICAgICAgIHN0ciA9IHN0ci5yZXBsYWNlKFJlZ0V4cCgiXFx7IiArIGFyZyArICJcXH0iLCAiZ2kiKSwgYXJndW1lbnRzW2FyZ10pOw0KICAgICAgfSAgICAgICAgDQogICAgICByZXR1cm4gc3RyOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIGdldE9iaklEKG9iail7DQogICAgICB2YXIgaWQgPSBvYmouYXR0cigiaWQiKTsNCiAgICAgIHJldHVybiBpZC5zdWJzdHJpbmcoMik7DQogICAgfQ0KDQogICAgZnVuY3Rpb24gbWFya0VsZW1lbnRBc0xvYWRpbmcob2JqKXsNCiAgICAgIHZhciBsb2FkaW5nX2hlbHBlciA9ICQoJz4ubG9hZGluZy1oZWxwZXInLG9iaik7DQogICAgICBpZiAobG9hZGluZ19oZWxwZXIuc2l6ZSgpID09PSAwKSB7DQogICAgICAgIGxvYWRpbmdfaGVscGVyID0gJCgnPGRpdiBjbGFzcz0ibG9hZGluZy1oZWxwZXIiIHN0eWxlPSJ3aWR0aDoxMDAlOyBoZWlnaHQ6MTAwJSI+PC9kaXY+JykuY3NzKHsNCiAgICAgICAgICBwb3NpdGlvbjonYWJzb2x1dGUnLA0KICAgICAgICAgIG9wYWNpdHk6MC45DQogICAgICAgIH0pLmhpZGUoKTsNCiAgICAgICAgb2JqLmFwcGVuZChsb2FkaW5nX2hlbHBlcik7DQogICAgICB9DQogICAgICBvYmouYWRkQ2xhc3MoImxvYWRpbmciKTsNCiAgICAgIGxvYWRpbmdfaGVscGVyLmZhZGVJbigxMDApOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIHVubWFya0VsZW1lbnRBc0xvYWRpbmcob2JqKXsNCiAgICAgIHZhciBsb2FkaW5nX2hlbHBlciA9ICQoJz4ubG9hZGluZy1oZWxwZXInLG9iaik7DQogICAgICBpZiAobG9hZGluZ19oZWxwZXIuc2l6ZSgpID4gMCkgew0KICAgICAgICAgIGxvYWRpbmdfaGVscGVyLmZhZGVPdXQoMTAwKTsNCiAgICAgIH0NCiAgICAgIG9iai5yZW1vdmVDbGFzcygibG9hZGluZyIpOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIG1ha2VJdGVtRGl2KGl0ZW1JRCwgdmRvbURPVikgew0KICAgICAgdmFyIGl0ZW1TdHlsZSA9ICQoREFUQV9JVEVNU19TRUxFQ1RPUiArICc6Zmlyc3QnLCB2ZG9tRE9WKS5hdHRyKCdzdHlsZScpOw0KICAgICAgcmV0dXJuICc8ZGl2IGRhdGFpZD0iJytlc2NhcGVIdG1sKGl0ZW1JRCkrJyIgY2xhc3M9Im5vdC1sb2FkZWQiIHN0eWxlPSInK2l0ZW1TdHlsZSsnIj48L2Rpdj4nOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIGVsZW1lbnRzSW5EaXYodmRvbURPViwgc2VsZWN0b3Ipew0KICAgICAgdmFyIHJlc3VsdCA9IFtdOw0KICAgICAgdmFyIGl0ZW1zID0gJChzZWxlY3RvciwgdmRvbURPVik7DQoNCiAgICAgIHZhciBvYmpQb3NpdGlvbiA9IHZkb21ET1YucG9zaXRpb24oKTsNCiAgICAgIHZhciBvYmpTY3JvbGxUb3AgPSB2ZG9tRE9WLnNjcm9sbFRvcCgpOw0KICAgICAgdmFyIG9ialRvcCA9IChvYmpQb3NpdGlvbiA9PSBudWxsKSA/IDAgOiBvYmpQb3NpdGlvbi50b3A7DQoNCiAgICAgIGlmICh2ZG9tRE9WLnBhcmVudCgpKSB7DQogICAgICAgIHZhciBwYXJlbnQgPSB2ZG9tRE9WLnBhcmVudCgpOw0KICAgICAgICB2YXIgcGFyZW50UG9zaXRpb24gPSBwYXJlbnQucG9zaXRpb24oKTsNCiAgICAgICAgb2JqVG9wICs9IChwYXJlbnRQb3NpdGlvbiA9PSBudWxsKSA/IDAgOiBwYXJlbnRQb3NpdGlvbi50b3A7DQogICAgICB9DQoNCiAgICAgIHZhciBvYmpIZWlnaHQgPSB2ZG9tRE9WLm91dGVySGVpZ2h0KHRydWUpICsgb2JqVG9wOw0KICAgICAgdmFyIG9iakJvdHRvbSA9IG9iakhlaWdodCArIG9ialNjcm9sbFRvcCArIG9ialRvcDsNCg0KICAgICAgaXRlbXMuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgIHZhciAkZWxlbWVudCA9ICQodGhpcyk7DQogICAgICAgICAgaWYgKCRlbGVtZW50Lmhhc0NsYXNzKCdub3QtbG9hZGVkJykpew0KICAgICAgICAgICAgdmFyIGVsT2Zmc2V0ID0gJGVsZW1lbnQub2Zmc2V0KCk7DQogICAgICAgICAgICB2YXIgZWxUb3AgPSBlbE9mZnNldC50b3A7DQogICAgICAgICAgICB2YXIgZWxCb3R0b20gPSBlbE9mZnNldC50b3AgKyAkZWxlbWVudC5vdXRlckhlaWdodCh0cnVlKTsNCg0KICAgICAgICAgICAgaWYgKChlbFRvcCA+PSAwICYmIGVsVG9wIDw9IG9iakhlaWdodCkgfHwgKGVsQm90dG9tIDw9IG9iakhlaWdodCAmJiBlbEJvdHRvbSA+PSAwKSl7DQogICAgICAgICAgICAgIHJlc3VsdC5wdXNoKHRoaXMpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgIH0NCiAgICAgIH0pOw0KICAgICAgcmV0dXJuICQocmVzdWx0KTsNCiAgICB9DQoNCiAgICBmdW5jdGlvbiByZXF1ZXN0RWxlbWVudHModmRvbURPVikgew0KICAgICAgdmFyIGVsZW1lbnRzID0gZWxlbWVudHNJbkRpdih2ZG9tRE9WLCBEQVRBX0lURU1TX1NFTEVDVE9SKTsNCiAgICAgIHZhciBpZHMgPSBbXTsNCiAgICAgIGlmIChlbGVtZW50cy5zaXplKCkgPiAwKSB7DQogICAgICAgIGVsZW1lbnRzLmVhY2goZnVuY3Rpb24oKXsNCiAgICAgICAgICBpZHMucHVzaCgkKHRoaXMpLmF0dHIoJ2RhdGFpZCcpKTsNCiAgICAgICAgfSk7DQogICAgICAgIGV4ZWNFdmVudEJpbmRlZChnZXRPYmpJRCh2ZG9tRE9WKSwgIml0ZW1zcmVxdWVzdCIsIHtpZGxpc3Q6IGlkc30pOw0KICAgICAgfQ0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIHRvb2dsZVNlbGVjdGlvbihpdGVtKXsNCiAgICAgIGlmIChpdGVtLmhhc0NsYXNzKCdzZWxlY3RlZCcpKXsNCiAgICAgICAgaXRlbS5yZW1vdmVDbGFzcygnc2VsZWN0ZWQnKTsNCiAgICAgIH0gZWxzZSB7DQogICAgICAgIGl0ZW0uYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICB9DQogICAgfQ0KDQogICAgZnVuY3Rpb24gcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh2ZG9tRE9WKXsNCiAgICAgIGV4ZWNFdmVudEJpbmRlZChnZXRPYmpJRCh2ZG9tRE9WKSwgIml0ZW1zc2VsZWN0ZWQiLCB7aWRsaXN0OiB2ZG9tRE9WLmR5bmFtaWNPYmplY3RWaWV3KCJnZXRTZWxlY3RlZElEcyIpfSk7DQogICAgfQ0KDQogICAgZnVuY3Rpb24gZ2V0RTJWRE9NQ2xpY2tFdmVudEhhbmRsZXIob2JqSUQsIG9wdGlvbnMpew0KDQogICAgICAgIHJldHVybiBmdW5jdGlvbihldnQsIG9iaiwgaXNfZGJsLCBpc19jdHJsKXsNCg0KICAgICAgICAgICAgdmFyIGlzX2NoaWxkID0gZmFsc2U7DQogICAgICAgICAgICB2YXIgZGl2X29iajsNCiAgICAgICAgICAgIHZhciB2ZG9tRE9WID0galF1ZXJ5KCIjb18iK29iaklEKTsNCg0KICAgICAgICAgICAgaWYgKCEob2JqLmdldCgwKS5ub2RlTmFtZS50b0xvd2VyQ2FzZSgpID09ICJkaXYiICYmIG9iai5hdHRyKCJkYXRhaWQiKSkpew0KICAgICAgICAgICAgICAgIGlzX2NoaWxkID0gdHJ1ZTsNCiAgICAgICAgICAgICAgICBkaXZfb2JqID0gb2JqLmNsb3Nlc3QoImRpdltkYXRhaWRdIik7DQogICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgIGRpdl9vYmogPSBvYmo7DQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIHZhciBpdGVtX2lkID0gZGl2X29iai5hdHRyKCJkYXRhaWQiKTsNCiAgICAgICAgICAgIHZhciBldnRfbmFtZSA9IChpc19jaGlsZCA/ICJjaGlsZCI6ICIiKSArICJpdGVtIiArDQogICAgICAgICAgICAgICAgICAgICAgICAgICAoaXNfY3RybCAgPyAiY3RybCIgOiAiIikgKw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgKGlzX2RibCAgID8gImRibCIgIDogIiIpICsgImNsaWNrIjsNCg0KICAgICAgICAgICAgaWYgKCFpc19jaGlsZCl7DQogICAgICAgICAgICAgICAgdmFyIHNlbGVjdE9uID0gb3B0aW9uc1snY2xpY2tBbmRTZWxlY3QnXTsNCiAgICAgICAgICAgICAgICB2YXIgbmVlZF9zZWxlY3QgPSAoc2VsZWN0T24gPT0gImN0cmxkYmxjbGljayIgJiYgaXNfZGJsICYmIGlzX2N0cmwpIHx8DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKHNlbGVjdE9uID09ICJkYmxjbGljayIgJiYgaXNfZGJsKSB8fA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChzZWxlY3RPbiA9PSAiY3RybGNsaWNrIiAmJiBpc19jdHJsKSB8fA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChzZWxlY3RPbiA9PSAiY2xpY2siKTsNCg0KICAgICAgICAgICAgICAgIGlmIChuZWVkX3NlbGVjdCl7DQogICAgICAgICAgICAgICAgICAgIGlmIChvcHRpb25zWydtdWx0aVNlbGVjdGlvbiddKXsNCiAgICAgICAgICAgICAgICAgICAgICAgIHZkb21ET1YuZHluYW1pY09iamVjdFZpZXcoInRvb2dsZVNlbGVjdGlvbiIsIFtpdGVtX2lkXSk7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgICB2ZG9tRE9WLmR5bmFtaWNPYmplY3RWaWV3KCJtYXJrQXNTZWxlY3RlZCIsIFtpdGVtX2lkXSk7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICB2YXIgcGFyYW1zID0gew0KICAgICAgICAgICAgICAgICJpdGVtaWQiOiAgaXRlbV9pZCwNCiAgICAgICAgICAgICAgICAiaWRsaXN0IjogdmRvbURPVi5keW5hbWljT2JqZWN0VmlldygiZ2V0U2VsZWN0ZWRJRHMiKSwNCiAgICAgICAgICAgICAgICAiWCI6IGV2dC5wYWdlWCwNCiAgICAgICAgICAgICAgICAiWSI6IGV2dC5wYWdlWSwNCiAgICAgICAgICAgICAgICAiY2hpbGQiOiBpc19jaGlsZCA/IEpTT04uc3RyaW5naWZ5KHsiY2xhc3MiOiBvYmouYXR0cigiY2xhc3MiKX0pIDogIiINCiAgICAgICAgICAgIH07DQoNCiAgICAgICAgICAgIC8vdmRvbURPVi5keW5hbWljT2JqZWN0VmlldygibWFya0FzQWN0aXZlIiwgaXRlbV9pZCk7DQogICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQob2JqSUQsIGV2dF9uYW1lLCBwYXJhbXMpOw0KICAgICAgICB9Ow0KICAgIH0NCg0KICAgIHZhciBtZXRob2RzID0gew0KDQogICAgICAgIG1hcmtBc1NlbGVjdGVkOiBmdW5jdGlvbihpZHMsIHN0YXJ0LCBsZW5ndGgsIHJhaXNlRXZlbnQpew0KICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIiAmJiB0eXBlb2Ygc3RhcnQgPT09ICJ1bmRlZmluZWQiKXsNCiAgICAgICAgICAgICQoREFUQV9JVEVNU19TRUxFQ1RPUiwgdGhpcykuYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgDQogICAgICAgICAgfSBlbHNlIGlmIChpZHMpIHsNCiAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7DQogICAgICAgICAgICAgICQoJz5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZD0iJyArIGVzY2FwZUh0bWwoaWRzW3hdKSArJyJdJywgdGhpcykuYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgICB9ICAgICAgICAgICANCiAgICAgICAgICANCiAgICAgICAgICB9IGVsc2UgaWYgKHN0YXJ0KSB7DQogICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWRdJywgdGhpcykuc2xpY2Uoc3RhcnQsIHN0YXJ0ICsgbGVuZ3RoKS5hZGRDbGFzcygnc2VsZWN0ZWQnKTsNCiAgICAgICAgICB9DQogICAgICAgICAgDQogICAgICAgICAgaWYgKHJhaXNlRXZlbnQpIHsNCiAgICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7DQogICAgICAgICAgfQ0KICAgICAgICB9LA0KDQogICAgICAgIHVubWFya0FzU2VsZWN0ZWQ6IGZ1bmN0aW9uKGlkcywgc3RhcnQsIGxlbmd0aCwgcmFpc2VFdmVudCl7DQogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiICYmIHR5cGVvZiBzdGFydCA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SICsgJy5zZWxlY3RlZCcsIHRoaXMpLnJlbW92ZUNsYXNzKCdzZWxlY3RlZCcpOw0KICAgICAgICAgIA0KICAgICAgICAgIH0gZWxzZSBpZiAoaWRzKSB7DQogICAgICAgICAgICBmb3IgKHZhciB4IGluIGlkcykgew0KICAgICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IicrIGVzY2FwZUh0bWwoaWRzW3hdKSArJyJdLnNlbGVjdGVkJywgdGhpcykucmVtb3ZlQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgICB9ICAgICAgICAgICANCiAgICAgICAgICANCiAgICAgICAgICB9IGVsc2UgaWYgKHN0YXJ0KSB7DQogICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWRdJywgdGhpcykuc2xpY2Uoc3RhcnQsIHN0YXJ0ICsgbGVuZ3RoKS5yZW1vdmVDbGFzcygnc2VsZWN0ZWQnKTsNCiAgICAgICAgICB9DQogICAgICAgICAgDQogICAgICAgICAgaWYgKHJhaXNlRXZlbnQpIHsNCiAgICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7DQogICAgICAgICAgfQ0KICAgICAgICB9LA0KDQogICAgICAgIGdldFNlbGVjdGVkSURzOiBmdW5jdGlvbigpew0KICAgICAgICAgIGlkcyA9IFtdOw0KICAgICAgICAgICQoREFUQV9JVEVNU19TRUxFQ1RPUiArICcuc2VsZWN0ZWQnLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7DQogICAgICAgICAgICBpZHMucHVzaCgkKHRoaXMpLmF0dHIoJ2RhdGFpZCcpKTsNCiAgICAgICAgICB9KTsNCiAgICAgICAgICByZXR1cm4gaWRzOw0KICAgICAgICB9LA0KDQogICAgICAgIGdldFNlbGVjdGVkSXRlbXM6IGZ1bmN0aW9uKCl7DQogICAgICAgICAgcmV0dXJuICQoREFUQV9JVEVNU19TRUxFQ1RPUiArICcuc2VsZWN0ZWQnLCB0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICB0b29nbGVTZWxlY3Rpb246IGZ1bmN0aW9uKGlkcywgc3RhcnQsIGxlbmd0aCwgcmFpc2VFdmVudCl7DQogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiICYmIHR5cGVvZiBzdGFydCA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7DQogICAgICAgICAgICAgIHRvb2dsZVNlbGVjdGlvbigkKHRoaXMpKTsNCiAgICAgICAgICAgIH0pOw0KDQogICAgICAgICAgfSBlbHNlIGlmIChpZHMpIHsNCiAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7DQogICAgICAgICAgICAgIHRvb2dsZVNlbGVjdGlvbigkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IicrIGVzY2FwZUh0bWwoaWRzW3hdKSArJyJdJywgdGhpcykpOw0KICAgICAgICAgICAgfSAgICAgICAgICAgDQogICAgICAgICAgDQogICAgICAgICAgfSBlbHNlIGlmIChzdGFydCkgew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SLCB0aGlzKS5zbGljZShzdGFydCwgc3RhcnQgKyBsZW5ndGgpLmVhY2goZnVuY3Rpb24oKXsNCiAgICAgICAgICAgICAgdG9vZ2xlU2VsZWN0aW9uKCQodGhpcykpOw0KICAgICAgICAgICAgfSk7DQogICAgICAgICAgfQ0KICAgICAgICAgIA0KICAgICAgICAgIGlmIChyYWlzZUV2ZW50KSB7DQogICAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOw0KICAgICAgICAgIH0NCiAgICAgICAgfSwNCg0KICAgICAgICBtYXJrQXNMb2FkaW5nOiBmdW5jdGlvbihpZHMsIHN0YXJ0LCBsZW5ndGgpew0KICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIiAmJiB0eXBlb2Ygc3RhcnQgPT09ICJ1bmRlZmluZWQiKXsNCiAgICAgICAgICAgICQoREFUQV9JVEVNU19TRUxFQ1RPUiwgdGhpcykuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgIG1hcmtFbGVtZW50QXNMb2FkaW5nKCQodGhpcykpOw0KICAgICAgICAgICAgfSk7DQoNCiAgICAgICAgICB9IGVsc2UgaWYgKGlkcykgew0KICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsNCiAgICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSInKyBlc2NhcGVIdG1sKGlkc1t4XSkgKyciXScsIHRoaXMpLmVhY2goZnVuY3Rpb24oKXsNCiAgICAgICAgICAgICAgICBtYXJrRWxlbWVudEFzTG9hZGluZygkKHRoaXMpKTsNCiAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICB9ICAgICAgICAgICANCiAgICAgICAgICANCiAgICAgICAgICB9IGVsc2UgaWYgKHN0YXJ0KSB7DQogICAgICAgICAgICAkKERBVEFfSVRFTVNfU0VMRUNUT1IsIHRoaXMpLnNsaWNlKHN0YXJ0LCBzdGFydCArIGxlbmd0aCkuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgIG1hcmtFbGVtZW50QXNMb2FkaW5nKCQodGhpcykpOw0KICAgICAgICAgICAgfSk7IA0KICAgICAgICAgIH0NCiAgICAgICAgfSwNCg0KICAgICAgICB1bm1hcmtBc0xvYWRpbmc6IGZ1bmN0aW9uKGlkcywgc3RhcnQsIGxlbmd0aCl7DQogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiICYmIHR5cGVvZiBzdGFydCA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SICsgJy5sb2FkaW5nJywgdGhpcykuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgIHVubWFya0VsZW1lbnRBc0xvYWRpbmcoJCh0aGlzKSk7DQogICAgICAgICAgICB9KTsNCg0KICAgICAgICAgIH0gZWxzZSBpZiAoaWRzKSB7DQogICAgICAgICAgICBmb3IgKHZhciB4IGluIGlkcykgew0KICAgICAgICAgICAgICAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IicrIGVzY2FwZUh0bWwoaWRzW3hdKSArJyJdLmxvYWRpbmcnLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7DQogICAgICAgICAgICAgICAgdW5tYXJrRWxlbWVudEFzTG9hZGluZygkKHRoaXMpKTsNCiAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICB9ICAgICAgICAgICANCg0KICAgICAgICAgIH0gZWxzZSBpZiAoc3RhcnQpIHsNCiAgICAgICAgICAgICQoREFUQV9JVEVNU19TRUxFQ1RPUiArICcubG9hZGluZycsIHRoaXMpLnNsaWNlKHN0YXJ0LCBzdGFydCArIGxlbmd0aCkuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgIHVubWFya0VsZW1lbnRBc0xvYWRpbmcoJCh0aGlzKSk7DQogICAgICAgICAgICB9KTsNCiAgICAgICAgICB9DQogICAgICAgIH0sDQoNCiAgICAgICAgZ2V0TG9hZGluZ0lEczogZnVuY3Rpb24oKXsNCiAgICAgICAgICAgIGlkcyA9IFtdOw0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SICsgJy5sb2FkaW5nJywgdGhpcykuZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgIGlkcy5wdXNoKCQodGhpcykuYXR0cignZGF0YWlkJykpOw0KICAgICAgICAgICAgfSk7DQogICAgICAgICAgICByZXR1cm4gaWRzOw0KICAgICAgICB9LA0KDQogICAgICAgIGdldExvYWRpbmdJdGVtczogZnVuY3Rpb24oKXsNCiAgICAgICAgICAgIHJldHVybiAkKERBVEFfSVRFTVNfU0VMRUNUT1IgKyAnLmxvYWRpbmcnLCB0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICByZWxvYWQ6IGZ1bmN0aW9uKGlkcyl7DQogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiICYmIHR5cGVvZiBzdGFydCA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SLCB0aGlzKS5yZW1vdmUoKTsNCiAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChnZXRPYmpJRCh0aGlzKSwgIml0ZW1zcmVxdWVzdCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgIHRoaXMuZHluYW1pY09iamVjdFZpZXcoIm1hcmtBc0xvYWRpbmciLCBpZHMpOw0KICAgICAgICAgIH0NCiAgICAgICAgfSwNCg0KICAgICAgICBpbnNlcnRIVE1MQXRFbmQ6IGZ1bmN0aW9uKGh0bWwpew0KICAgICAgICAgICQoIj5kaXYuZG92LWNvbnRlbnQ+c3Bhbi5kb3YtZW9pIiwgdGhpcykuYmVmb3JlKCQoJz5kaXZbZGF0YWlkXScsIGh0bWwpKTsNCiAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodGhpcyksICJpdGVtc2xvYWRlZCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKHRoaXMpOw0KICAgICAgICB9LA0KDQogICAgICAgIGluc2VydEhUTUxBdEJlZ2luaW5nOiBmdW5jdGlvbihodG1sKXsNCiAgICAgICAgICB2YXIgYmVnaW5pbmcgPSAkKCc+ZGl2LmRvdi1jb250ZW50PmRpdjpmaXJzdCcsIHRoaXMpOw0KICAgICAgICAgIGlmIChiZWdpbmluZy5zaXplKCkgPD0gMCl7DQogICAgICAgICAgICBiZWdpbmluZyA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+c3Bhbi5kb3YtZW9pIiwgdGhpcyk7DQogICAgICAgICAgfQ0KICAgICAgICAgIGJlZ2luaW5nLmJlZm9yZSgkKCc+ZGl2W2RhdGFpZF0nLCBodG1sKSk7DQogICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHRoaXMpLCAiaXRlbXNsb2FkZWQiLCB7aWRsaXN0OiAiIn0pOw0KICAgICAgICAgIHJlcXVlc3RFbGVtZW50cyh0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICBpbnNlcnRIVE1MQWZ0ZXI6IGZ1bmN0aW9uKGVsZW1JRCwgaHRtbCl7DQogICAgICAgICAgdmFyIGVsZW0gPSAkKCI+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IisgZXNjYXBlSHRtbChlbGVtSUQpICsiXSIsIHRoaXMpOw0KICAgICAgICAgICQoaHRtbCwgdGhpcykuaW5zZXJ0QWZ0ZXIoZWxlbSk7DQogICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHRoaXMpLCAiaXRlbXNsb2FkZWQiLCB7aWRsaXN0OiAiIn0pOw0KICAgICAgICAgIHJlcXVlc3RFbGVtZW50cyh0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICBpbnNlcnRIVE1MQmVmb3JlOiBmdW5jdGlvbihlbGVtSUQsIGh0bWwpew0KICAgICAgICAgIHZhciBlbGVtID0gJCgiPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSIrIGVzY2FwZUh0bWwoZWxlbUlEKSArIl0iLCB0aGlzKTsNCiAgICAgICAgICAkKGh0bWwsIHRoaXMpLmluc2VydEJlZm9yZShlbGVtKTsNCiAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodGhpcyksICJpdGVtc2xvYWRlZCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKHRoaXMpOw0KICAgICAgICB9LA0KDQogICAgICAgIGluc2VydEF0QmVnaW5uaW5nOiBmdW5jdGlvbihpdGVtcyl7DQogICAgICAgICAgdmFyIGJlZ2luaW5nID0gJChEQVRBX0lURU1TX1NFTEVDVE9SICsgJzpmaXJzdCcsIHRoaXMpOw0KICAgICAgICAgIGlmIChiZWdpbmluZy5zaXplKCkgPD0gMCl7DQogICAgICAgICAgICBiZWdpbmluZyA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+c3Bhbi5kb3YtZW9pIiwgdGhpcyk7DQogICAgICAgICAgfQ0KICAgICAgICAgIGZvciAodmFyIGkgaW4gaXRlbXMpew0KICAgICAgICAgICAgJChtYWtlSXRlbURpdihpdGVtc1tpXSwgdGhpcykpLmluc2VydEJlZm9yZShiZWdpbmluZyk7DQogICAgICAgICAgfQ0KICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChnZXRPYmpJRCh0aGlzKSwgIml0ZW1zbG9hZGVkIiwge2lkbGlzdDogIiJ9KTsNCiAgICAgICAgICByZXF1ZXN0RWxlbWVudHModGhpcyk7DQogICAgICAgIH0sDQoNCiAgICAgICAgaW5zZXJ0QXRFbmQ6IGZ1bmN0aW9uKGl0ZW1zKXsNCiAgICAgICAgICB2YXIgZW5kbmluZyA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+c3Bhbi5kb3YtZW9pIiwgdGhpcyk7DQogICAgICAgICAgZm9yICh2YXIgaSBpbiBpdGVtcyl7DQogICAgICAgICAgICAkKG1ha2VJdGVtRGl2KGl0ZW1zW2ldLCB0aGlzKSkuaW5zZXJ0QmVmb3JlKGVuZG5pbmcpOw0KICAgICAgICAgIH0NCiAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodGhpcyksICJpdGVtc2xvYWRlZCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKHRoaXMpOw0KICAgICAgICB9LA0KDQogICAgICAgIGluc2VydEJlZm9yZTogZnVuY3Rpb24oZWxlbUlELCBpdGVtcyl7DQogICAgICAgICAgdmFyIGVsZW0gPSAkKCI+ZGl2LmRvdi1jb250ZW50PmRpdltkYXRhaWQ9IisgZXNjYXBlSHRtbChlbGVtSUQpICsiXSIsIHRoaXMpOw0KICAgICAgICAgIGlmIChlbGVtLnNpemUoKSA+IDApew0KICAgICAgICAgICAgZm9yICh2YXIgaSBpbiBpdGVtcyl7DQogICAgICAgICAgICAgICQobWFrZUl0ZW1EaXYoaXRlbXNbaV0sIHRoaXMpKS5pbnNlcnRCZWZvcmUoZWxlbSk7DQogICAgICAgICAgICB9DQogICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodGhpcyksICJpdGVtc2xvYWRlZCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgICByZXF1ZXN0RWxlbWVudHModGhpcyk7ICAgICAgICAgDQogICAgICAgICAgfQ0KICAgICAgICB9LA0KDQogICAgICAgIGluc2VydEFmdGVyOiBmdW5jdGlvbihlbGVtSUQsIGl0ZW1zKXsNCiAgICAgICAgICB2YXIgZWxlbSA9ICQoIj5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZD0iKyBlc2NhcGVIdG1sKGVsZW1JRCkgKyJdIiwgdGhpcyk7DQogICAgICAgICAgaWYgKGVsZW0uc2l6ZSgpID4gMCl7DQogICAgICAgICAgICBmb3IgKHZhciBpIGluIGl0ZW1zKXsNCiAgICAgICAgICAgICAgJChtYWtlSXRlbURpdihpdGVtc1tpXSwgdGhpcykpLmluc2VydEFmdGVyKGVsZW0pOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHRoaXMpLCAiaXRlbXNsb2FkZWQiLCB7aWRsaXN0OiAiIn0pOw0KICAgICAgICAgICAgcmVxdWVzdEVsZW1lbnRzKHRoaXMpOyAgICAgICANCiAgICAgICAgICB9DQogICAgICAgIH0sDQoNCiAgICAgICAgcmVtb3ZlSXRlbXM6IGZ1bmN0aW9uKGlkcywgc3RhcnQsIGxlbmd0aCwgcmFpc2VFdmVudCl7DQogICAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiICYmIHR5cGVvZiBzdGFydCA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgJChEQVRBX0lURU1TX1NFTEVDVE9SLCB0aGlzKS5yZW1vdmUoKTsNCiAgICAgICAgICANCiAgICAgICAgICB9IGVsc2UgaWYgKGlkcykgew0KICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsNCiAgICAgICAgICAgICAgJCgnPmRpdi5kb3YtY29udGVudD5kaXZbZGF0YWlkPSInKyBlc2NhcGVIdG1sKGlkc1t4XSkgKyciXScsIHRoaXMpLnJlbW92ZSgpOw0KICAgICAgICAgICAgfSANCg0KICAgICAgICAgIH0gZWxzZSBpZiAoc3RhcnQpIHsNCiAgICAgICAgICAgICQoIj5kaXYuZG92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0iLCB0aGlzKS5zbGljZShzdGFydCwgc3RhcnQgKyBsZW5ndGgpLnJlbW92ZSgpOw0KICAgICAgICAgIH0NCiAgICAgICAgICANCiAgICAgICAgICBpZiAocmFpc2VFdmVudCkgew0KICAgICAgICAgICAgcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh0aGlzKTsNCiAgICAgICAgICB9DQogICAgICAgIH0sDQoNCiAgICAgICAgaW5pdDogZnVuY3Rpb24ob3B0aW9ucyl7DQogICAgICAgIA0KICAgICAgICAgICAgdmFyIGRvbUlEID0gdGhpcy5hdHRyKCJpZCIpOw0KICAgICAgICAgICAgdmFyIG9iaklEID0gZ2V0T2JqSUQodGhpcyk7DQogICAgICAgICAgICB2YXIgcmFpc2VDbGlja0V2ZW50ID0gZ2V0RTJWRE9NQ2xpY2tFdmVudEhhbmRsZXIob2JqSUQsIG9wdGlvbnMpOw0KDQogICAgICAgICAgICB2YXIgY2xpY2tfZnVuY3Rpb24gPSBmdW5jdGlvbihlKXsNCiAgICAgICAgICAgICAgICBpZiAoZS5wcmV2ZW50RGVmYXVsdCl7DQogICAgICAgICAgICAgICAgICAgIGUucHJldmVudERlZmF1bHQoKTsNCiAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICBlLnJldHVyblZhbHVlID0gZmFsc2U7DQogICAgICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAgICAgdmFyICR0aGlzID0gJCh0aGlzKTsNCiAgICAgICAgICAgICAgICBpZiAoZS50eXBlID09ICdkYmxjbGljaycpIHsNCiAgICAgICAgICAgICAgICAgICAgJHRoaXMuZGF0YSgnaXNTaW5nbGVDbGljaycsIGZhbHNlKTsNCiAgICAgICAgICAgICAgICAgICAgaWYgKGUuY3RybEtleSB8fCBlLm1ldGFLZXkpew0KICAgICAgICAgICAgICAgICAgICAgICAgcmFpc2VDbGlja0V2ZW50KGUsICR0aGlzLCB0cnVlLCB0cnVlKTsNCiAgICAgICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCAkdGhpcywgdHJ1ZSwgZmFsc2UpOw0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgc2V0VGltZW91dChmdW5jdGlvbigpew0KICAgICAgICAgICAgICAgICAgICAgICAgaWYgKCR0aGlzLmRhdGEoJ2lzU2luZ2xlQ2xpY2snKSA9PSB0cnVlKXsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoZS5jdHJsS2V5IHx8IGUubWV0YUtleSl7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgJHRoaXMsIGZhbHNlLCB0cnVlKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmFpc2VDbGlja0V2ZW50KGUsICR0aGlzLCBmYWxzZSwgZmFsc2UpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgfSwgMzAwKTsNCiAgICAgICAgICAgICAgICAgICAgJHRoaXMuZGF0YSgnaXNTaW5nbGVDbGljaycsIHRydWUpOw0KICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7DQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIHZhciBjbGlja19ldmVudHMgPSAnY2xpY2sgZGJsY2xpY2snOw0KICAgICAgICAgICAgdmFyIGJhc2Vfc2VsZWN0b3IgPSBEQVRBX0lURU1TX1NFTEVDVE9SLnN1YnN0cmluZygxKTsNCg0KICAgICAgICAgICAgaWYgKG9wdGlvbnNbImNsaWNrQ2xhc3NlcyJdKXsNCiAgICAgICAgICAgICAgICB2YXIgY2xhc3NlcyA9IG9wdGlvbnNbImNsaWNrQ2xhc3NlcyJdOw0KDQogICAgICAgICAgICAgICAgZm9yICh2YXIgaSBpbiBjbGFzc2VzKXsNCiAgICAgICAgICAgICAgICAgICAgdmFyIGVsZW0gPSBiYXNlX3NlbGVjdG9yICsgIiAiICsgY2xhc3Nlc1tpXTsNCiAgICAgICAgICAgICAgICAgICAgdGhpcy51bmRlbGVnYXRlKGVsZW0sIGNsaWNrX2V2ZW50cykuZGVsZWdhdGUoZWxlbSwgY2xpY2tfZXZlbnRzLCBjbGlja19mdW5jdGlvbik7DQogICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgdGhpcy51bmRlbGVnYXRlKGJhc2Vfc2VsZWN0b3IsIGNsaWNrX2V2ZW50cykuZGVsZWdhdGUoYmFzZV9zZWxlY3RvciwgY2xpY2tfZXZlbnRzLCBjbGlja19mdW5jdGlvbik7DQogICAgICAgICAgICANCiAgICAgICAgICAgIHRoaXMudW5kZWxlZ2F0ZShiYXNlX3NlbGVjdG9yLCAnbW91c2VvdmVyJykuZGVsZWdhdGUoYmFzZV9zZWxlY3RvciwgJ21vdXNlb3ZlcicsIGZ1bmN0aW9uKGUpew0KICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpJRCwgIml0ZW1tb3VzZW91dCIsIHtpdGVtaWQ6ICQodGhpcykuYXR0cigiZGF0YWlkIil9KTsNCiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7DQogICAgICAgICAgICB9KTsNCg0KICAgICAgICAgICAgdGhpcy51bmRlbGVnYXRlKGJhc2Vfc2VsZWN0b3IsICdtb3VzZW91dCcpLmRlbGVnYXRlKGJhc2Vfc2VsZWN0b3IsICdtb3VzZW91dCcsIGZ1bmN0aW9uKGUpew0KICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpJRCwgIml0ZW1tb3VzZW91dCIsIHtpdGVtaWQ6ICQodGhpcykuYXR0cigiZGF0YWlkIil9KTsNCiAgICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7DQogICAgICAgICAgICB9KTsNCg0KICAgICAgICAgICAgaWYgKG9wdGlvbnNbImRyYWduZHJvcCJdKXsNCiAgICAgICAgICAgICAgICB2YXIgZHJhZ25kcm9wT3B0aW9ucyA9IHsNCiAgICAgICAgICAgICAgICAgIGNvbm5lY3RUb0R5bmF0cmVlOiB0cnVlLA0KICAgICAgICAgICAgICAgICAgYXBwZW5kVG86ICdib2R5JywNCiAgICAgICAgICAgICAgICAgIGNvbnRhaW5tZW50OiAnZG9jdW1lbnQnLA0KICAgICAgICAgICAgICAgICAgekluZGV4OiA5OTk5OSwgIA0KICAgICAgICAgICAgICAgICAgY3Vyc29yOiAnZGVmYXVsdCcsDQogICAgICAgICAgICAgICAgICBjdXJzb3JBdDogew0KICAgICAgICAgICAgICAgICAgICBsZWZ0OiAtMiwNCiAgICAgICAgICAgICAgICAgICAgdG9wOiA0DQogICAgICAgICAgICAgICAgICB9LA0KICAgICAgICAgICAgICAgICAgc3RhcnQ6IGZ1bmN0aW9uKGUsdSkgew0KICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQob2JqSUQsICJkcmFnc3RhcnQiLCB7aWRsaXN0OiAkKHRoaXMpLmhhc0NsYXNzKCJzZWxlY3RlZCIpID8gIGpRdWVyeSgiIyIrZG9tSUQpLmR5bmFtaWNPYmplY3RWaWV3KCJnZXRTZWxlY3RlZElEcyIpIDogbmV3IEFycmF5KCQodGhpcykuYXR0cignZGF0YWlkJykpfSwgdHJ1ZSk7DQogICAgICAgICAgICAgICAgICB9LA0KICAgICAgICAgICAgICAgICAgY29ubmVjdFRvU29ydGFibGU6IGRvbUlELA0KICAgICAgICAgICAgICAgICAgcmV2ZXJ0OiAiaW52YWxpZCIsDQogICAgICAgICAgICAgICAgICByZXZlcnREdXJhdGlvbjogMjAwLA0KICAgICAgICAgICAgICAgICAgb3BhY2l0eTogMSwNCiAgICAgICAgICAgICAgICAgIGhlbHBlcjogZnVuY3Rpb24oZXYsIGVsKSB7DQogICAgICAgICAgICAgICAgICAgIHZhciAkdGFyZ2V0ID0gJChldi5jdXJyZW50VGFyZ2V0KTsNCiAgICAgICAgICAgICAgICAgICAgaWYgKG9wdGlvbnNbImRyYWduZHJvcEhlbHBlciJdID09ICJjbG9uZSIgfHwgISAkdGFyZ2V0Lmhhc0NsYXNzKCJzZWxlY3RlZCIpKSB7DQogICAgICAgICAgICAgICAgICAgICAgcmV0dXJuICQoZXYuY3VycmVudFRhcmdldCkuY2xvbmUoKTsNCiAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgICAgICByZXR1cm4gJChmb3JtYXRVbmljb3JuKG9wdGlvbnNbImRyYWduZHJvcEhlbHBlciJdLCB7InNlbGVjdGVkSXRlbXMiOiBqUXVlcnkoIiMiK2RvbUlEKS5keW5hbWljT2JqZWN0VmlldygiZ2V0U2VsZWN0ZWRJRHMiKS5sZW5ndGh9KSk7DQogICAgICAgICAgICAgICAgICB9LA0KICAgICAgICAgICAgICAgICAgQ3VzdG9tQmVmb3JlU3RhcnQ6IGZ1bmN0aW9uKGUsIHUpew0KICAgICAgICAgICAgICAgICAgICBpZiAoalF1ZXJ5KCIjIitkb21JRCkuZHluYW1pY09iamVjdFZpZXcoImdldFNlbGVjdGVkSURzIikubGVuZ3RoID4gMSkgew0KICAgICAgICAgICAgICAgICAgICAgIGpRdWVyeSgiIyIrZG9tSUQpLnNvcnRhYmxlKCJkaXNhYmxlIik7DQogICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgalF1ZXJ5KCIjIitkb21JRCkuc29ydGFibGUoImVuYWJsZSIpOw0KICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgfTsNCg0KICAgICAgICAgICAgICAgIHRoaXMudW5kZWxlZ2F0ZShiYXNlX3NlbGVjdG9yLCAibW91c2VvdmVyIikuZGVsZWdhdGUoYmFzZV9zZWxlY3RvciwgIm1vdXNlb3ZlciIsIGZ1bmN0aW9uKGUpew0KICAgICAgICAgICAgICAgICAgaWYgKCEkKHRoaXMpLmRhdGEoImluaXRkcmFnIikpIHsNCiAgICAgICAgICAgICAgICAgICAgJCh0aGlzKS5kYXRhKCJpbml0ZHJhZyIsIHRydWUpLmRyYWdnYWJsZShkcmFnbmRyb3BPcHRpb25zKTsNCiAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9KTsNCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICBpZiAob3B0aW9uc1siZHJhZ25zb3J0Il0pew0KICAgICAgICAgICAgICAgIHZhciBzb3J0T3B0aW9ucyA9IHsNCiAgICAgICAgICAgICAgICAgICAgaXRlbXM6ICdkaXZbZGF0YWlkXScsDQogICAgICAgICAgICAgICAgICAgIHN0b3A6IGZ1bmN0aW9uKGUsIHUpew0KICAgICAgICAgICAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvYmpJRCwgIml0ZW1zb3J0Iiwge3Bvc2l0aW9uOiB1Lml0ZW0uaW5kZXgoKSwgaXRlbWlkOiB1Lml0ZW0uYXR0cignZGF0YWlkJyl9KTsNCiAgICAgICAgICAgICAgICAgICAgfSwNCiAgICAgICAgICAgICAgICAgICAgcmVjZWl2ZTogZnVuY3Rpb24oZSwgdSkgew0KICAgICAgICAgICAgICAgICAgICAgIHUuaXRlbS5yZW1vdmUoKTsNCiAgICAgICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgICAgIH07DQoNCiAgICAgICAgICAgICAgICB0aGlzLnVuZGVsZWdhdGUoYmFzZV9zZWxlY3RvciwgIm1vdXNlb3ZlciIpLmRlbGVnYXRlKGJhc2Vfc2VsZWN0b3IsICJtb3VzZW92ZXIiLCBmdW5jdGlvbihlKXsNCiAgICAgICAgICAgICAgICAgIGlmICghJCh0aGlzKS5kYXRhKCJpbml0c29ydCIpKSB7DQogICAgICAgICAgICAgICAgICAgICQodGhpcykuZGF0YSgiaW5pdHNvcnQiLCB0cnVlKS5zb3J0YWJsZShzb3J0T3B0aW9ucyk7DQogICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIGlmIChvcHRpb25zWyJkeW5hbWljTG9hZGluZyJdKXsNCiAgICAgICAgICAgICAgICB0aGlzLnVuYmluZCgnc2Nyb2xsc3RvcCByZXNpemUnKS5iaW5kKCdzY3JvbGxzdG9wIHJlc2l6ZScsIGZ1bmN0aW9uKCkgew0KICAgICAgICAgICAgICAgICAgICB2YXIgdmRvbURPViA9IGpRdWVyeSgiIyIrZG9tSUQpOw0KICAgICAgICAgICAgICAgICAgICB2YXIganF1ZXJ5X2NvbnRlbnQgPSAkKCc+ZGl2LmRvdi1jb250ZW50JywgdmRvbURPVik7DQogICAgICAgICAgICAgICAgICAgIHZhciBjYW5fbG9hZCA9IGpxdWVyeV9jb250ZW50Lm91dGVySGVpZ2h0KCkgLSB2ZG9tRE9WLmlubmVySGVpZ2h0KCkgLSB2ZG9tRE9WLnNjcm9sbFRvcCgpIDw9IDMwOw0KICAgICAgICAgICAgICAgICAgICBpZiAoY2FuX2xvYWQpIHsNCiAgICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbURPViksICdlbmRzY3JvbGwnLCB7cG9zaXRpb246ICJib3R0b20ifSk7DQogICAgICAgICAgICAgICAgICAgIH0gZWxzZSBpZiAodmRvbURPVi5zY3JvbGxUb3AoKSA9PSAwKXsNCiAgICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbURPViksICdlbmRzY3JvbGwnLCB7cG9zaXRpb246ICJ0b3AifSk7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICAgICAgLy9yZXF1ZXN0RWxlbWVudHModmRvbURPVik7DQogICAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICAgICAgLy9yZXF1ZXN0RWxlbWVudHModGhpcyk7DQogICAgICAgICAgICB9DQoNCiAgICAgICAgICAgIGlmIChqUXVlcnkoREFUQV9JVEVNU19TRUxFQ1RPUiwgdGhpcykubGVuZ3RoKXsNCiAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodGhpcyksICJpdGVtc2xvYWRlZCIsIHtpZGxpc3Q6ICIifSk7DQogICAgICAgICAgICB9DQogICAgICAgIH0NCiAgICB9DQoNCiAgICAkLmZuLmR5bmFtaWNPYmplY3RWaWV3ID0gZnVuY3Rpb24obWV0aG9kKXsNCiAgICAgICAgaWYgKG1ldGhvZHNbbWV0aG9kXSl7DQogICAgICAgICAgICByZXR1cm4gbWV0aG9kc1ttZXRob2RdLmFwcGx5KHRoaXMsIEFycmF5LnByb3RvdHlwZS5zbGljZS5jYWxsKGFyZ3VtZW50cywgMSkpOw0KICAgICAgICB9IGVsc2UgaWYgKHR5cGVvZiBtZXRob2QgPT0gJ29iamVjdCcgfHwgISBtZXRob2QgKSB7DQogICAgICAgICAgICByZXR1cm4gbWV0aG9kcy5pbml0LmFwcGx5KHRoaXMsIGFyZ3VtZW50cyk7DQogICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAkLmVycm9yKCJEeW5hbWljIG9iamVjdCB2aWV3OiB1bmtub3duIG1ldGhvZCAiICsgbWV0aG9kKTsNCiAgICAgICAgfQ0KICAgIH07DQp9KGpRdWVyeSkpOw==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
-import e2vdom
 import json
-import managers
 import re
 import sys
+
+from collections import OrderedDict
+
 import utils.uuid as uuid
 import utils.wysiwyg as utils_wysiwyg
+
 from memory.xml_object import xml_object
-from collections import OrderedDict
+from memory import dynobject
 
 
 class CachedDict(dict):
@@ -1240,16 +1297,6 @@ class CachedDict(dict):
             self.computed_items[key] = self.compute(self.initial_items[key])
 
         return self.computed_items[key]
-
-
-def _unicode(value):
-    if isinstance(value, unicode):
-        return value
-
-    if isinstance(value, str):
-        return value.decode('utf8')
-
-    return unicode(value)
 
 
 def xml_node_attrs(xml):
@@ -1285,78 +1332,6 @@ class xmlencoding(object):
         return self.get_re().sub("", text)
 
 
-class DummyAttribute(object):
-
-    __slots__ = ("name", "value")
-
-    def __init__(self, name, value=0):
-        self.name = name
-        self.value = value
-
-
-class DummyAttributes(object):
-
-    __slots__ = ("map",)
-
-    def __init__(self):
-        self.map = {}
-
-    def __getitem__(self, key):
-        if key == "name":
-            return DummyAttribute("name", "")
-
-        elif key == "dynamic":
-            return DummyAttribute("dynamic",1)
-
-        if key not in self.map:
-            self.map[key] = DummyAttribute(key)
-
-        return self.map[key]
-
-    def values(self):
-        return self.map.values()
-
-
-class DummyObject(object):
-
-    def __init__(self, vdomtype, name, action_name):
-        self.name = name
-        self.actions = {"name": {}, "id": {}}
-        self.attributes = DummyAttributes()
-        self.containers = {}
-        self.dynamic = {(action_name, self.name): 1}
-        self.id = str(uuid.uuid4())
-        self.libraries = {}
-        self.objects = {}
-        self.objects_list = []
-        self.objects_by_name = {self.name: self}
-        self.order = 0
-        self.type = vdomtype
-        self.types = {self.type.id: self.type}
-
-    def get_attributes(self):
-        return self.attributes
-
-    def set_attribute_ex(self, name, value, x=0):
-        old_value = self.attributes[name].value
-        self.attributes[name].value = value
-        return {
-            "value": value,
-            "old_value": old_value
-        }
-
-    def get_objects_list(self):
-        return self.objects_list
-
-    def get_objects(self):
-        return self.objects
-
-    def add_child(self, child):
-        self.objects_by_name[child.name] = child
-        self.objects_list.append(child)
-        self.objects[child.id] = child
-
-
 class VDOMTemplate(object):
 
     __slots__ = (
@@ -1364,21 +1339,21 @@ class VDOMTemplate(object):
         "vdomxml"
     )
 
-    def __init__(self, xml, attrs):
-        self.attributes = attrs
+    def __init__(self, xml, attrs=None):
+        self.attributes = attrs or {}
         self.vdomxml = xml
 
     def __getitem__(self, key):
         return self.attributes.get(key.lower(), '')
 
     def __setitem__(self, key, value):
-        self.attributes[key.lower()] = _unicode(value)
+        self.attributes[key.lower()] = value
 
     def __delitem__(self, key):
         del self.attributes[key.lower()]
 
     def tohtml(self, parent):
-        return render(parent, self.vdomxml, self.attributes)
+        return render(self.vdomxml, self.attributes, parent)
 
 
 class VDOMLayout(object):
@@ -1414,13 +1389,13 @@ class VDOMLayout(object):
     def append(self, obj):
         self.objects.append(obj)
         if not isinstance(obj, (str,unicode)):
-          self.arrange( obj )
+          self.arrange(obj)
 
     def _abs(self, obj):
         left = int(obj['left'] or 0)
         top = int(obj['top'] or 0)
-        obj['left'] = left + self.left
-        obj['top'] = top + self.top
+        obj['left'] = str(left + self.left)
+        obj['top'] = str(top + self.top)
 
     def tohtml(self, parent):
         # make absolute
@@ -1445,8 +1420,8 @@ class VDOMVLayout(VDOMLayout):
     def arrange(self, obj):
         margin = self.margin if len(self.objects) == 0 else 0
 
-        obj['left'] = 0
-        obj['top'] = self.bottom + margin - self.top
+        obj['left'] = "0"
+        obj['top'] = str(self.bottom + margin - self.top)
 
         width = int(obj['width'] or 0)
         height = int(obj['height'] or 0)
@@ -1462,8 +1437,8 @@ class VDOMHLayout(VDOMLayout):
         self.width = container.height if container else 0
 
     def arrange(self, obj):
-        obj['left'] = self.right + self.margin
-        obj['top'] = self.top
+        obj['left'] = str(self.right + self.margin)
+        obj['top'] = str(self.top)
 
         width = int(obj['width'] or 0)
         height = int(obj['height'] or 0)
@@ -1472,573 +1447,29 @@ class VDOMHLayout(VDOMLayout):
         self.height = max(self.height, height)
 
 
-def render(parent, vdomxml, data=None):
-    data = data or {}
-    dummies = create_dummies(parent, vdomxml, True, data)
+def render(dummyobject, attrs=None, parent=None):
+    """
+    """
+    attrs = attrs or {}
 
-    for child_id in dummies:
-        application.itself.all_dynamic_objects[child_id] = dummies[child_id]
+    # create new UUIDs for all objects
+    child_objects = dummyobject.regenerate_uuid(True)
 
-    result = managers.engine.render(application.itself, dummies["initial"], parent, "vdom")
+    # if needed update attributes
+    if attrs:
+      old_values = dynobject.update_attributes(dummyobject, attrs)
 
-    # HACK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    obj = dummies["initial"]
-    name = 'Obj_%s' % obj.id.replace('-', '_')
-    result += """\
-<script>var %s = {
-    "eventEngine" : {
-        "eventDispatcher" : {
-            "eventArray" : []
-        }
-    }
-}</script>""" % name
+    content = dynobject.dynamic_render(dummyobject, child_objects, parent) + \
+              dynobject.dummy_e2vdom(child_objects)
+    
+    if attrs:
+      dynobject.update_attributes(dummyobject, old_values)
 
-    for child_id in dummies:
-        if child_id in application.itself.all_dynamic_objects:
-            del application.itself.all_dynamic_objects[child_id]
+    return content
 
-    return result
 
 
-def create_dummies(parent, vdomxml, initial=False, data=None):
-    data = data or {}
-    objects = {}
-    root_props = {}
-
-    for key, value in data.iteritems():
-        key = key.lower()
-        if '.' in key:
-            continue
-        
-        root_props[key] = value
-
-    for key in root_props:
-        del data[key]
-
-    attr_map={}
-    type_obj = managers.xml_manager.get_type_by_name(vdomxml.lname)
-    for aname in type_obj.get_attributes():
-        attr_map[aname.lower()] = type_obj.get_attributes()[aname].default_value
-
-    # parse attributes
-    for attr_name in vdomxml.attributes:
-        if attr_name in attr_map or "name" == attr_name:
-            attr_map[attr_name] = vdomxml.attributes[attr_name]
-        
-        else:
-            raise Exception("Incorrect attribute: %s" % attr_name)
-
-    for child in vdomxml.children:
-        if "attribute" == child.lname:
-            attr_name = child.attributes["name"]
-
-            if not attr_name:
-                continue
-
-            if attr_name in attr_map:
-                attr_map[attr_name] = child.get_value_as_xml()
-            
-            else:
-                raise Exception("Incorrect attribute: %s" % attr_name)
-
-        source_object_attr = DummyAttributes()
-
-    # change value of attributes that was updated
-    for aname in attr_map:
-        if aname in root_props:
-            attr_map[aname] = root_props[aname]
-
-    obj = DummyObject(type_obj, attr_map["name"], e2vdom.virtual_context)
-    if initial:
-        objects["initial"] = obj
-
-    else:
-        parent.add_child(obj)
-
-    objects[obj.id] = obj
-    for a in attr_map:
-        obj.set_attribute_ex(a, attr_map[a])
-
-    # process all child objects
-    for child in vdomxml.children:
-        if "attribute" == child.lname:
-            continue
-
-        name = child.attributes['name'] + '.' # include separator
-        n = len(name)
-        child_data = {}
-
-        for key,value in data.iteritems():
-            if key[:n] != name: continue # skip other objects
-            child_data[ key[n:] ] = value
-
-        objects.update(create_dummies(obj, child, False, child_data))
-
-    return objects
-
-
-GLOB_JS = u"""<script type="text/javascript">
-if (typeof window.draggable_oldMouseStart !== 'undefined'){
-    window.draggable_oldMouseStart = $.ui.draggable.prototype._mouseStart;
-    $.ui.draggable.prototype._mouseStart = function(event, overrideHandle, noActivation) {
-        this._trigger("CustomBeforeStart", event, this._uiHash());
-        draggable_oldMouseStart.apply(this, [event, overrideHandle, noActivation]);
-    };
-}
-
-
-(function($) {
-
-    var DATA_ITEMS_SELECTOR = ">div.dov-content>div[dataid]";
-
-    function formatUnicorn(template, arguments) {
-      var str = template.toString();
-      for (arg in arguments)
-        str = str.replace(RegExp("\\{" + arg + "\\}", "gi"), arguments[arg]);
-      return str;
-    }
-
-    function markElementAsLoading(obj){
-      var loading_helper = $('>.loading-helper',obj);
-      if (loading_helper.size() == 0) {
-        var loading_helper = $('<div class="loading-helper" style="width:100%; height:100%"></div>').css({
-          position:'absolute',
-          opacity:0.9
-        }).hide();
-        obj.append(loading_helper);
-      }
-      obj.addClass("loading");
-      loading_helper.fadeIn(100);
-    }
-
-    function unmarkElementAsLoading(obj){
-      var loading_helper = $('>.loading-helper',obj);
-      if (loading_helper.size() > 0) {
-          loading_helper.fadeOut(100);
-      }
-      obj.removeClass("loading");
-    }
-
-    function makeItemDiv(itemID, vdomDOV) {
-      var itemStyle = $(DATA_ITEMS_SELECTOR + ':first', vdomDOV).attr('style');
-      return '<div dataid="'+itemID+'" class="not-loaded" style="'+itemStyle+'"></div>';
-    }
-
-    function elementsInDiv(vdomDOV, selector){
-      var result = []
-      var items = $(selector, vdomDOV);
-
-      var objPosition = vdomDOV.position();
-      var objScrollTop = vdomDOV.scrollTop();
-      var objTop = (objPosition == null) ? 0 : objPosition.top;
-
-      if (vdomDOV.parent()) {
-        var parent = vdomDOV.parent();
-        var parentPosition = parent.position();
-        objTop += (parentPosition == null) ? 0 : parentPosition.top;
-      }
-
-      var objHeight = vdomDOV.outerHeight(true) + objTop;
-      var objBottom = objHeight + objScrollTop + objTop;
-
-      items.each(function(){
-          var $element = $(this);
-          if ($element.hasClass('not-loaded')){
-            var elOffset = $element.offset();
-            var elTop = elOffset.top;
-            var elBottom = elOffset.top + $element.outerHeight(true);
-
-            if ((elTop >= 0 && elTop <= objHeight) || (elBottom <= objHeight && elBottom >= 0)){
-              result.push(this);
-            }
-          }
-      });
-      return $(result);
-    }
-
-    function requestElements(vdomDOV) {
-      var elements = elementsInDiv(vdomDOV, DATA_ITEMS_SELECTOR);
-      var ids = []
-      if (elements.size() > 0) {
-        elements.each(function(){
-          ids.push($(this).attr('dataid'));
-        });
-        execEventBinded(vdomDOV.data("objID"), "itemsrequest", {idlist: ids});
-      }
-    }
-
-    function toogleSelection(item){
-      if (item.hasClass('selected')){
-        item.removeClass('selected');
-      } else {
-        item.addClass('selected');
-      }
-    }
-
-    function raiseItemSelectedEvent(vdomDOV){
-      execEventBinded(vdomDOV.data("objID"), "itemsselected", {idlist: vdomDOV.dynamicObjectView("getSelectedIDs")});
-    }
-
-    function raiseClickEvent(evt, vdomDOV, obj, is_dbl, is_ctrl){
-
-      var is_child = false;
-      var div_obj;
-
-      if (!(obj.get(0).nodeName.toLowerCase() == "div" && obj.attr("dataid"))){
-        is_child = true;
-        div_obj = obj.closest("div[dataid]");
-      } else {
-        div_obj = obj;
-      }
-
-      var item_id = div_obj.attr("dataid");
-      var evt_name = (is_child ? "child": "") + "item" + \
-                     (is_ctrl  ? "ctrl" : "") + \
-                     (is_dbl   ? "dbl"  : "") + "click";
-
-      if (!is_child){
-        var need_select = (vdomDOV.data("clickAndSelect") == "ctrldblclick" && is_dbl && is_ctrl) || \
-                          (vdomDOV.data("clickAndSelect") == "dblclick" && is_dbl) || \
-                          (vdomDOV.data("clickAndSelect") == "ctrlclick" && is_ctrl) || \
-                          (vdomDOV.data("clickAndSelect") == "click");
-        if (need_select){
-          if (vdomDOV.data("multiSelection"))
-            vdomDOV.dynamicObjectView("toogleSelection", [item_id]);
-          else
-            vdomDOV.dynamicObjectView("markAsSelected", [item_id]);
-        }
-      }
-
-      var params = {
-        "itemid":  item_id,
-        "selected": vdomDOV.dynamicObjectView("getSelectedIDs"),
-        "X": evt.pageX,
-        "Y": evt.pageY,
-        "child": is_child ? {class: obj.attr("class")} : ""
-      };
-
-      //vdomDOV.dynamicObjectView("markAsActive", item_id);
-      execEventBinded(vdomDOV.data("objID"), evt_name, params);
-    }
-
-    var methods = {
-
-        liveDraggable: function(obj){
-          this.live("mouseover", function(){
-            if (!$(this).data("initdrag")) {
-              $(this).data("initdrag", true).draggable(obj);
-            }
-          });
-          return this;
-        },
-
-        liveSortable: function(obj){
-          this.live("mouseover", function() {
-            if (!$(this).data("initsort")) {
-              $(this).data("initsort", true).sortable(obj);
-            }
-          });
-          return this;
-        },
-
-        markAsSelected: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR, this).addClass('selected');
-          } else {
-            for (var x in ids) {
-              $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this).addClass('selected');
-            }           
-          }
-          raiseItemSelectedEvent(this);
-        },
-
-        unmarkAsSelected: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR + '.selected', this).removeClass('selected');
-          } else {
-            for (var x in ids) {
-              $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"].selected', this).removeClass('selected');
-            }           
-          }
-          raiseItemSelectedEvent(this);
-        },
-
-        getSelectedIDs: function(){
-          ids = [];
-          $(DATA_ITEMS_SELECTOR + '.selected', this).each(function(){
-            ids.push($(this).attr('dataid'));
-          });
-          return ids;
-        },
-
-        getSelectedItems: function(){
-          return $(DATA_ITEMS_SELECTOR + '.selected', this)
-        },
-
-        toogleSelection: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR, this).each(function(){
-              toogleSelection($(this));
-            });
-          } else {
-            for (var x in ids) {
-              toogleSelection($('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this));
-            }           
-          }
-          raiseItemSelectedEvent(this);
-        },
-
-        markAsLoading: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR, this).each(function(){
-                markElementAsLoading($(this));
-            });
-          } else {
-            for (var x in ids) {
-              $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this).each(function(){
-                markElementAsLoading($(this));
-              });
-            }           
-          }
-        },
-
-        unmarkAsLoading: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR + '.loading', this).each(function(){
-                unmarkElementAsLoading($(this));
-            });
-          } else {
-            for (var x in ids) {
-              $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"].loading', this).each(function(){
-                unmarkElementAsLoading($(this));
-              });
-            }           
-          }
-        },
-
-        getLoadingIDs: function(){
-            ids = [];
-            $(DATA_ITEMS_SELECTOR + '.loading', this).each(function(){
-                ids.push($(this).attr('dataid'));
-            });
-            return ids;
-        },
-
-        getLoadingItems: function(){
-            return $(DATA_ITEMS_SELECTOR + '.loading', this);
-        },
-
-        reload: function(ids){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR, this).remove();
-            execEventBinded(this.data("objID"), "itemsrequest", {idlist: ""});
-          } else {
-            this.dynamicObjectView("markAsLoading", ids);
-          }
-        },
-
-        insertHTMLAtEnd: function(html){
-          $(">div.dov-content>span.dov-eoi", this).before($('>div[dataid]', html));
-          requestElements(this);
-        },
-
-        insertHTMLAtBegining: function(html){
-          var begining = $('>div.dov-content>div:first', this);
-          if (begining.size() <= 0){
-            begining = $(">div.dov-content>span.dov-eoi", this);
-          }
-          begining.before($('>div[dataid]', html));
-          requestElements(this);
-        },
-
-        insertAtBeginning: function(items){
-          var begining = $(DATA_ITEMS_SELECTOR + ':first', this);
-          if (begining.size() <= 0){
-            begining = $(">div.dov-content>span.dov-eoi", this);
-          }
-          for (var i in items){
-            $(makeItemDiv(items[i], this)).insertBefore(begining);
-          }
-          requestElements(this);
-        },
-
-        insertAtEnd: function(items){
-          var endning = $(">div.dov-content>span.dov-eoi", this);
-          for (var i in items){
-            $(makeItemDiv(items[i], this)).insertBefore(endning);
-          }
-          requestElements(this);
-        },
-
-        insertBefore: function(elemID, items){
-          var elem = $(">div.dov-content>div[dataid="+elemID+"]", this);
-          if (elem.size() > 0){
-            for (var i in items){
-              $(makeItemDiv(items[i], this)).insertBefore(elem);
-            }
-          requestElements(this);         
-          }
-        },
-
-        insertAfter: function(elemID, items){
-          var elem = $(">div.dov-content>div[dataid="+elemID+"]", this);
-          if (elem.size() > 0){
-            for (var i in items){
-              $(makeItemDiv(items[i], this)).insertAfter(elem);
-            }
-            requestElements(this);       
-          }
-        },
-
-        removeItems: function(ids){
-          if (typeof ids === "undefined"){
-            $(DATA_ITEMS_SELECTOR, this).remove();
-          } else {
-            for (var x in ids) {
-              $('>div.dov-content>div[dataid="'+ids[x].replace('"', '&quot;')+'"]', this).remove();
-            }           
-          }
-        },
-
-        init: function(options){
-        
-            // Check is plugin initialized or not yet            
-            var initialized = $("body").data(this.attr("id"));
-            if (initialized){
-                return
-            }
-            
-            $("body").data(this.attr("id"), true);
-
-            var vdomDOV = this;
-            var obj_id = vdomDOV.attr("id");
-
-            vdomDOV.data("multiSelection", options["multiSelection"]);
-            vdomDOV.data("clickAndSelect",  options["clickAndSelect"]);
-            vdomDOV.data("domID", "#" + obj_id);
-            vdomDOV.data("objID", obj_id.substring(2, obj_id.length));
-
-            click_function = function(e){
-                if (e.preventDefault){
-                    e.preventDefault();
-                } else {
-                    e.returnValue = false;
-                }
-
-                var $this = $(this);
-                if (e.type == 'dblclick') {
-                    $this.data('isSingleClick', false);
-                    if (e.ctrlKey){
-                        raiseClickEvent(e, vdomDOV, $this, true, true);
-                    } else {
-                        raiseClickEvent(e, vdomDOV, $this, true, false);
-                    }
-                } else {
-                    setTimeout(function(){
-                        if ($this.data('isSingleClick') == true){
-                            if (e.ctrlKey){
-                              raiseClickEvent(e, vdomDOV, $this, false, true);
-                            } else {
-                              raiseClickEvent(e, vdomDOV, $this, false, false);
-                            }
-                        }
-                    }, 300);
-                    $this.data('isSingleClick', true);
-                }
-                return false;
-            }
-
-            if (options["clickClasses"]){
-                var classes = options["clickClasses"];
-                for (var i in classes){
-                    $(DATA_ITEMS_SELECTOR + " " + classes[i], vdomDOV).live('click dblclick', click_function);
-                }
-            }
-            $(DATA_ITEMS_SELECTOR, vdomDOV).live('click dblclick', click_function);
-            
-            $(DATA_ITEMS_SELECTOR, vdomDOV).live('mouseover', function(e){
-                execEventBinded(vdomDOV.data("objID"), "itemmouseover", {itemid: $(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
-                return false;
-            }).live('mouseout', function(e){
-                execEventBinded(vdomDOV.data("objID"), "itemmouseout", {itemid: $(this).attr("dataid")});
-                return false;
-            });
-
-            if (options["dragndrop"]){
-
-                $(DATA_ITEMS_SELECTOR, vdomDOV).dynamicObjectView("liveDraggable", {
-                    connectToDynatree: true,
-                    appendTo: 'body',
-                    containment: 'document',
-                    zIndex: 99999,  
-                    cursor: 'default',
-                    cursorAt: {
-                      left: -2,
-                      top: 4
-                    },
-                    start: function(e,u){
-                      execEventBinded(vdomDOV.data("objID"), "dragstart", {itemid: $(this).attr('dataid')}, true);
-                    },
-                    connectToSortable: vdomDOV.data("domID"),
-                    revert: "invalid",
-                    revertDuration: 200,
-                    opacity: 1,
-                    helper: function(ev, el) {
-                      var $target = $(ev.currentTarget);
-                      if (options["dragndropHelper"] == "clone" || ! $target.hasClass("selected")){
-                        return $(ev.currentTarget).clone();
-                      }
-                      return $(formatUnicorn(options["dragndropHelper"], {"selectedItems": vdomDOV.dynamicObjectView("getSelectedIDs").length}));
-                    },
-                    CustomBeforeStart: function(e, u){
-                      if (vdomDOV.dynamicObjectView("getSelectedIDs").length > 1){
-                        vdomDOV.sortable("disable");
-                      } else {
-                        vdomDOV.sortable("enable");
-                      }
-                    }
-                });
-            }
-
-            if (options["dragnsort"]){
-                vdomDOV.dynamicObjectView("liveSortable", {
-                    items: 'div[dataid]',
-                    stop: function(e, u){
-                      execEventBinded(vdomDOV.data("objID"), "itemsort", {position: u.item.index(), itemid: u.item.attr('dataid')});
-                    },
-                    receive: function(e, u) {
-                      u.item.remove();
-                    }
-                }).disableSelection();
-            }
-
-            if (options["dynamicLoading"]){
-                vdomDOV.bind('scrollstop resize', function() {
-                    var jquery_content = $('>div.dov-content', vdomDOV);
-                    var can_load = jquery_content.outerHeight() - vdomDOV.innerHeight() - vdomDOV.scrollTop() <= 30;
-                    if (can_load) {
-                      execEventBinded(vdomDOV.data("objID"), 'endscroll', {position: "bottom"});
-                    } else if (vdomDOV.scrollTop() == 0){
-                      execEventBinded(vdomDOV.data("objID"), 'endscroll', {position: "top"});
-                    }
-                    requestElements(vdomDOV);
-                });
-                requestElements(vdomDOV);
-            }
-        }
-    }
-
-    $.fn.dynamicObjectView = function(method){
-        if (methods[method]){
-            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method == 'object' || ! method ) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error("Dynamic object view: unknown method " + method);
-        }
-    };
-}(jQuery));
-</script>"""
+GLOB_JS = u""
 
 
 CLICK_N_SELECT = (
@@ -2089,15 +1520,15 @@ class VDOM_dynobjectview(VDOM_object):
 
         data, templates, bindings = self.parse_properties()
         layouts = (VDOMVLayout, VDOMHLayout, VDOMVLayout) 
-        
-        xml_templates = CachedDict(templates, lambda xml: xml_object(srcdata=xml.encode("utf-8")))
-        template_attrs = CachedDict(templates, lambda template: xml_node_attrs(template))
 
         dynlayout = layouts[int(self.layout)]()
         dynlayout.margin = 17
 
         if not (data and templates and bindings):
             return dynlayout
+        
+        templates_vdom = CachedDict(templates, lambda xml: dynobject.create_dummy_objects(xml_object(srcdata=xml.encode("utf-8")))[0])
+        templates_attrs = CachedDict(templates, lambda template: xml_node_attrs(template))
 
         # css classes
         first_cls = u"dov-item-first "
@@ -2107,77 +1538,40 @@ class VDOM_dynobjectview(VDOM_object):
         index = 1
         is_first = True
 
-        only_div = isinstance(data, list)
-        vdomclass_width = ''
-        vdomclass_height = ''
-
-        if only_div:
-            vdomclass_width = template_attrs["default"]["width"]
-            vdomclass_height = template_attrs["default"]["height"]
-
         for item in data.iteritems():
-
-            only_div_1 = False
-            obj_id = ''
-
-            if not only_div:
-                if isinstance(item[1], (str, unicode)):
-                    only_div_1 = True
-
-                    obj_id, obj_template = item
-                    vdomclass_width = template_attrs[obj_template]["width"]
-                    vdomclass_height = template_attrs[obj_template]["height"]
-
-                else:
-                    only_div_1 = False
-
-            else:
-                obj_id = item
 
             classes_str = first_cls if is_first else ''
             classes_str += last_cls if index == len(data) else ''
             classes_str += odd_cls  if index % 2 == 0 else ''
 
-            classes_str = " {classes}dov-item dov-item-{index} {notloaded}".format(
+            classes_str = "{classes}dov-item dov-item-{index}".format(
                 classes=classes_str,
-                index=index,
-                notloaded="not-loaded" if only_div or only_div_1 else ""
+                index=index
             )
 
-            if only_div or only_div_1:
+            obj_id, item = item
 
-                styleforitem = u"position: relative;width: %spx;height: %spx;display: block;" % (vdomclass_width, vdomclass_height)
-                dynlayout.append(u'<div class="%(classes)s" dataid="%(id)s" style="%(style)s"></div>' % {
-                    "id": obj_id,
-                    "classes": classes_str,
-                    "style": styleforitem
-                })
+            template_name = item.get('vdomclass', 'default')
+            template_attrs = templates_attrs[template_name]
 
-            else:
-                obj_id, item = item
+            template_vdom = VDOMTemplate(templates_vdom[template_name])
 
-                tname = item.get('vdomclass', 'default')
-                vtmp = VDOMTemplate(xml_templates[tname], template_attrs[tname].copy())
-            
-                binding = bindings.get(tname, {})
+            binding = bindings.get(template_name, {})
+            for key, value in item.items():
+                if key not in binding:
+                    continue
 
-                for key in item:
-                    if key not in binding:
-                        continue
+                attrs = binding[key]
+                if not isinstance(attrs, list):
+                    attrs = [attrs]
 
-                    attrs = binding[key]
-                    if not isinstance(attrs, list):
-                        attrs = [attrs]
+                for attr in attrs:
+                    template_vdom[attr] = xmlencoding.escape(item[key])
 
-                    for a in attrs:
-                        vtmp[a] = xmlencoding.escape(item[key])
-
-                vtmp["name"] = "dovtemplate_%d" % index 
-
-                vtmp["classname"] = vtmp["classname"] + classes_str
-                vtmp["dataid"] = obj_id
-
-                dynlayout.append(vtmp)
+            template_vdom["name"] = "dovtemplate_%d" % index 
+            template_vdom["classname"] = u"{} {} {}".format(template_vdom["classname"], template_attrs["classname"], classes_str)
+            template_vdom["dataid"] = obj_id
+            dynlayout.append(template_vdom)
 
             index += 1
             is_first = False
@@ -2229,6 +1623,11 @@ class VDOM_dynobjectview(VDOM_object):
 
         obj_id = self.id.replace('-', '_')
         dom_id = u"o_" + obj_id
+
+        insertmethod = [
+            "insertHTMLAtBegining",
+            "insertHTMLAtEnd"
+        ][int(self.insertmethod)]
         
         if request.render_type == "e2vdom" and self.dynamicrender == "1":
 
@@ -2239,7 +1638,7 @@ $(document).ready(function(){{
   var x = $('#{dom_id}>div.dov-content');
   var dovtmp = $('#{tmp_id}:last');
   if ($.trim(dovtmp.html()) != '') {{
-      $("#{dom_id}").dynamicObjectView("insertHTMLAtEnd", dovtmp);
+      $("#{dom_id}").dynamicObjectView("{insertmethod}", dovtmp);
   }}
 }});
 
@@ -2247,6 +1646,7 @@ $(document).ready(function(){{
                 dom_id=dom_id,
                 tmp_id=str(uuid.uuid4()),
                 contents=dynlayout.tohtml(self),
+                insertmethod=insertmethod,
             )
 
             return VDOM_object.render(self, parent, contents=contents + result)
@@ -2257,10 +1657,10 @@ $(document).ready(function(){{
                 "dragndrop": self.draggable == "1",
                 "dragnsort": self.sortable == "1",
                 "dragndropHelper": self.draghelper if self.draghelper else "clone",
-                "dynamicLoading": True,
+                "dynamicLoading": self.dynamicloading == "1",
                 "clickClasses": self.clickclass.strip().split(),
                 "clickAndSelect": CLICK_N_SELECT[int(self.selectonclick)],
-                "multiSelection": True if self.selectionmode == "1" else False,
+                "multiSelection": self.selectionmode == "1",
             }
 
             obj_style, items_style = self.compile_style()
@@ -2290,6 +1690,7 @@ $(document).ready(function(){{
   <Libraries>
     <Library Target="HTML"><![CDATA[
 <script type="text/javascript" src="/883d23d7-d98f-4552-b0cc-0b14122a14d1.res"></script>
+<script type="text/javascript" src="/4d2f9168-d9c9-45b4-8969-50732ba9fd80.res"></script>
 ]]></Library>
   </Libraries>
   <E2vdom>
@@ -2297,13 +1698,13 @@ $(document).ready(function(){{
       <Userinterfaceevents>
         <Event Name="dragstart" Help="#Lang(518)">
           <Parameters>
-            <Parameter Name="id" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
         <Event Name="itemclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -2311,7 +1712,7 @@ $(document).ready(function(){{
         <Event Name="itemdblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -2319,7 +1720,7 @@ $(document).ready(function(){{
         <Event Name="itemctrlclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -2327,7 +1728,7 @@ $(document).ready(function(){{
         <Event Name="itemctrldblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
           </Parameters>
@@ -2335,7 +1736,7 @@ $(document).ready(function(){{
         <Event Name="childitemclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
@@ -2344,7 +1745,7 @@ $(document).ready(function(){{
         <Event Name="childitemdblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
@@ -2353,7 +1754,7 @@ $(document).ready(function(){{
         <Event Name="childitemctrlclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
@@ -2362,7 +1763,7 @@ $(document).ready(function(){{
         <Event Name="childitemctrldblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="itemid" Order="" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="selected" Order="" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="child" Order="" VbType="" Help="#Lang(903)"/>
@@ -2405,6 +1806,11 @@ $(document).ready(function(){{
             <Parameter Name="idlist" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
+        <Event Name="itemsloaded" Help="#Lang(528)">
+          <Parameters>
+            <Parameter Name="idlist" Order="" VbType="" Help="#Lang(912)"/>
+          </Parameters>
+        </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
@@ -2439,6 +1845,7 @@ vdom_ui_show(this.domCont, fade);
             <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(706)" ScriptName="idlist" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
+var idlist = eval(idlist);
 if (typeof idlist === 'object')
   $("#" + this.domCont.id).dynamicObjectView("reload", idlist);
 else
@@ -2447,31 +1854,38 @@ else
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="selectToggle">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(708)" ScriptName="idlist" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="idlist" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(708)" ScriptName="raiseEvent" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("toogleSelection", idlist);
-else
-  $("#" + this.domCont.id).dynamicObjectView("toogleSelection");
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("toogleSelection", idlist, start, length, raiseEvent);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="selectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(708)" ScriptName="raiseEvent" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("markAsSelected", idlist);
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("markAsSelected", idlist, start, length, raiseEvent);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="unselectItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(711)" ScriptName="idlist" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(708)" ScriptName="raiseEvent" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected", idlist);
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected", idlist, start, length, raiseEvent);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="selectAll">
@@ -2522,20 +1936,24 @@ $("#" + this.domCont.id).dynamicObjectView("insertBefore", id, items);
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="markLoading">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("markAsLoading", idlist);
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("markAsLoading", idlist, start, length);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="umarkLoading">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("unmarkAsLoading", idlist);
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("unmarkAsLoading", idlist, start, length);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="markLoadingAll">
@@ -2552,11 +1970,14 @@ $("#" + this.domCont.id).dynamicObjectView("unmarkAsLoading");
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeItems">
           <Parameters>
-            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="idlist" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="start" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="length" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(708)" ScriptName="raiseEvent" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).dynamicObjectView("removeItems", idlist);
+var idlist = eval(idlist);
+$("#" + this.domCont.id).dynamicObjectView("removeItems", idlist, start, length, raiseEvent);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeAll">
