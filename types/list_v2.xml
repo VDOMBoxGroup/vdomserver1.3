@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.0.0a</Version>
+    <Version>1.0.1a</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata</Containers>
@@ -719,6 +719,7 @@ dGE+IDw/eHBhY2tldCBlbmQ9InIiPz6vGdkMAAABBUlEQVR42pRTS25CMQz02OFzGvZIPdlbAOri
 VmdI0KKyaBIM6GEgLsFMRyucDBQjZ8hgER2NgBcrJRAniEgwAui5RrBWCeKuhiSIts/kASdlUkcn
 gpAEK2iFiwcK0BGEXkH6ZzQPjABxCdYHfxKMwLpxhoT6alMrp1W9vi7e3o90+XjzxGxfONucG84F
 U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
+    <Resource ID="92de1d12-fb07-41e5-a288-50f6fc80112a" Name="vdom_listv2.js" Type="js"><![CDATA[KGZ1bmN0aW9uKCQpIHsNCg0KDQogICAgZnVuY3Rpb24gZ2V0T2JqSUQob2JqKXsNCiAgICAgIHZhciBpZCA9IG9iai5hdHRyKCJpZCIpOw0KICAgICAgcmV0dXJuIGlkLnN1YnN0cmluZygyLCBpZC5sZW5ndGgpOw0KICAgIH0NCg0KICAgIGZ1bmN0aW9uIHJhaXNlQ2xpY2tFdmVudChldnQsIHZkb21MaXN0X3YyLCBvYmosIGlzX2RibCwgaXNfY3RybCl7DQoNCiAgICAgIHZhciBpc19jaGlsZCA9IGZhbHNlOw0KICAgICAgdmFyIGxpX29iajsNCg0KICAgICAgaWYgKCEob2JqLmdldCgwKS5ub2RlTmFtZS50b0xvd2VyQ2FzZSgpID09ICJsaSIgJiYgb2JqLmF0dHIoIml0ZW1pZCIpKSl7DQogICAgICAgIGlzX2NoaWxkID0gdHJ1ZTsNCiAgICAgICAgbGlfb2JqID0gb2JqLmNsb3Nlc3QoImxpW2l0ZW1pZF0iKTsNCiAgICAgIH0gZWxzZSB7DQogICAgICAgIGxpX29iaiA9IG9iajsNCiAgICAgIH0NCg0KICAgICAgdmFyIGl0ZW1faWQgPSBsaV9vYmouYXR0cigiaXRlbWlkIik7DQogICAgICB2YXIgZXZ0X25hbWUgPSAoaXNfY2hpbGQgPyAiY2hpbGQiOiAiIikgKyAiaXRlbSIgKyANCiAgICAgICAgICAgICAgICAgICAgIChpc19jdHJsICA/ICJjdHJsIiA6ICIiKSArIA0KICAgICAgICAgICAgICAgICAgICAgKGlzX2RibCAgID8gImRibCIgIDogIiIpICsgImNsaWNrIjsNCg0KICAgICAgaWYgKCFpc19jaGlsZCl7DQogICAgICAgIHZhciBuZWVkX3NlbGVjdCA9ICh2ZG9tTGlzdF92Mi5kYXRhKCJjbGlja0FuZFNlbGVjdCIpID09ICJjdHJsZGJsY2xpY2siICYmIGlzX2RibCAmJiBpc19jdHJsKSB8fCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgKHZkb21MaXN0X3YyLmRhdGEoImNsaWNrQW5kU2VsZWN0IikgPT0gImRibGNsaWNrIiAmJiBpc19kYmwpIHx8IA0KICAgICAgICAgICAgICAgICAgICAgICAgICAodmRvbUxpc3RfdjIuZGF0YSgiY2xpY2tBbmRTZWxlY3QiKSA9PSAiY3RybGNsaWNrIiAmJiBpc19jdHJsKSB8fCANCiAgICAgICAgICAgICAgICAgICAgICAgICAgKHZkb21MaXN0X3YyLmRhdGEoImNsaWNrQW5kU2VsZWN0IikgPT0gImNsaWNrIik7DQogICAgICAgIGlmIChuZWVkX3NlbGVjdCl7DQogICAgICAgICAgaWYgKHZkb21MaXN0X3YyLmRhdGEoIm11bHRpU2VsZWN0aW9uIikpDQogICAgICAgICAgICB2ZG9tTGlzdF92Mi52ZG9tTGlzdF92MigidG9vZ2xlU2VsZWN0aW9uIiwgW2l0ZW1faWRdKTsNCiAgICAgICAgICBlbHNlDQogICAgICAgICAgICB2ZG9tTGlzdF92Mi52ZG9tTGlzdF92MigibWFya0FzU2VsZWN0ZWQiLCBbaXRlbV9pZF0pOw0KICAgICAgICB9DQogICAgICB9DQoNCiAgICAgIHZhciBwYXJhbXMgPSB7DQogICAgICAgICJpdGVtaWQiOiAgaXRlbV9pZCwNCiAgICAgICAgInNlbGVjdGVkIjogdmRvbUxpc3RfdjIudmRvbUxpc3RfdjIoImdldFNlbGVjdGVkSURzIiksDQogICAgICAgICJYIjogZXZ0LnBhZ2VYLA0KICAgICAgICAiWSI6IGV2dC5wYWdlWSwNCiAgICAgICAgImNoaWxkIjogaXNfY2hpbGQgPyBKU09OLnN0cmluZ2lmeSh7Y2xhc3M6IG9iai5hdHRyKCJjbGFzcyIpfSkgOiAiIg0KICAgICAgfTsNCg0KICAgICAgdmRvbUxpc3RfdjIudmRvbUxpc3RfdjIoIm1hcmtBc0FjdGl2ZSIsIGl0ZW1faWQpOw0KICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHZkb21MaXN0X3YyKSwgZXZ0X25hbWUsIHBhcmFtcyk7DQogICAgfQ0KDQogICAgZnVuY3Rpb24gcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh2ZG9tTGlzdF92Mil7DQogICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbUxpc3RfdjIpLCAicm93c3NlbGVjdGVkIiwgeyJzZWxlY3RlZCI6IHZkb21MaXN0X3YyLnZkb21MaXN0X3YyKCJnZXRTZWxlY3RlZElEcyIpfSk7DQogICAgfQ0KDQogICAgZnVuY3Rpb24gdG9vZ2xlU2VsZWN0aW9uKGl0ZW0pew0KICAgICAgaWYgKGl0ZW0uaGFzQ2xhc3MoJ3NlbGVjdGFibGUnKSl7DQogICAgICAgIGlmIChpdGVtLmhhc0NsYXNzKCdzZWxlY3RlZCcpKXsNCiAgICAgICAgICBpdGVtLnJlbW92ZUNsYXNzKCdzZWxlY3RlZCcpOw0KICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgIGl0ZW0uYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgIH0NCiAgICAgIH0NCiAgICB9DQogICAgDQogICAgdmFyIG1ldGhvZHMgPSB7DQoNCiAgICAgICAgZ2V0U2VsZWN0ZWRJRHM6IGZ1bmN0aW9uKCl7DQogICAgICAgICAgaWRzID0gW107DQogICAgICAgICAgJCgnPnVsPmxpW2l0ZW1pZF0uc2VsZWN0ZWQnLCB0aGlzKS5lYWNoKGZ1bmN0aW9uKCl7DQogICAgICAgICAgICBpZHMucHVzaCgkKHRoaXMpLmF0dHIoJ2l0ZW1pZCcpKTsNCiAgICAgICAgICB9KTsNCiAgICAgICAgICByZXR1cm4gaWRzOw0KICAgICAgICB9LA0KDQogICAgICAgIGdldFNlbGVjdGVkSXRlbXM6IGZ1bmN0aW9uKCl7DQogICAgICAgICAgcmV0dXJuICQoJz51bD5saVtpdGVtaWRdLnNlbGVjdGVkJywgdGhpcyk7DQogICAgICAgIH0sDQoNCiAgICAgICAgdG9vZ2xlU2VsZWN0aW9uOiBmdW5jdGlvbihpZHMsIHJhaXNlRXZlbnQpew0KICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7DQogICAgICAgICAgICBpZiAodGhpcy5kYXRhKCJtdWx0aVNlbGVjdGlvbiIpKQ0KICAgICAgICAgICAgICAkKCc+dWw+bGlbaXRlbWlkXScsIHRoaXMpLmVhY2goZnVuY3Rpb24oKXsNCiAgICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCh0aGlzKSk7DQogICAgICAgICAgICAgIH0pOw0KICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICBpZiAodGhpcy5kYXRhKCJtdWx0aVNlbGVjdGlvbiIpKXsNCiAgICAgICAgICAgICAgZm9yICh2YXIgeCBpbiBpZHMpIHsNCiAgICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCgnPnVsPmxpW2l0ZW1pZD0iJytpZHNbeF0ucmVwbGFjZSgnIicsICcmcXVvdDsnKSsnIl0nLCB0aGlzKSk7DQogICAgICAgICAgICAgIH0gIA0KICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgdG9vZ2xlU2VsZWN0aW9uKCQoJz51bD5saVtpdGVtaWQ9IicraWRzWzBdLnJlcGxhY2UoJyInLCAnJnF1b3Q7JykrJyJdJywgdGhpcykpOw0KICAgICAgICAgICAgfSAgICAgDQogICAgICAgICAgfQ0KICAgICAgICAgIGlmIChyYWlzZUV2ZW50KQ0KICAgICAgICAgICAgcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICBtYXJrQXNTZWxlY3RlZDogZnVuY3Rpb24oaWRzLCByYWlzZUV2ZW50KXsNCiAgICAgICAgICBpZiAodHlwZW9mIGlkcyA9PT0gInVuZGVmaW5lZCIpew0KICAgICAgICAgICAgaWYgKHRoaXMuZGF0YSgibXVsdGlTZWxlY3Rpb24iKSl7DQogICAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWRdLnNlbGVjdGFibGUnLCB0aGlzKS5hZGRDbGFzcygnc2VsZWN0ZWQnKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgaWYgKHRoaXMuZGF0YSgibXVsdGlTZWxlY3Rpb24iKSl7DQogICAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7DQogICAgICAgICAgICAgICAgJCgnPnVsPmxpW2l0ZW1pZD0iJytpZHNbeF0ucmVwbGFjZSgnIicsICcmcXVvdDsnKSsnIl0uc2VsZWN0YWJsZScsIHRoaXMpLmFkZENsYXNzKCdzZWxlY3RlZCcpOw0KICAgICAgICAgICAgICB9ICANCiAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgIHZhciBvbGRfc2VsX2l0ZW0gPSAkKCc+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlLnNlbGVjdGVkJywgdGhpcyk7DQogICAgICAgICAgICAgIG9sZF9zZWxfaXRlbS5yZW1vdmVDbGFzcygnc2VsZWN0ZWQnKTsNCg0KICAgICAgICAgICAgICB2YXIgbmV3X3NlbF9pdGVtID0gJCgnPnVsPmxpW2l0ZW1pZD0iJytpZHNbMF0ucmVwbGFjZSgnIicsICcmcXVvdDsnKSsnIl0uc2VsZWN0YWJsZScsIHRoaXMpOw0KICAgICAgICAgICAgICBpZiAobmV3X3NlbF9pdGVtLmxlbmd0aCkNCiAgICAgICAgICAgICAgICBuZXdfc2VsX2l0ZW0uYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgICAgIGVsc2UNCiAgICAgICAgICAgICAgICBvbGRfc2VsX2l0ZW0uYWRkQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgICB9ICAgICAgIA0KICAgICAgICAgIH0NCiAgICAgICAgICBpZiAocmFpc2VFdmVudCAmJiAkKCc+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlJywgdGhpcykubGVuZ3RoKQ0KICAgICAgICAgICAgcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh0aGlzKTsNCiAgICAgICAgfSwNCg0KICAgICAgICB1bm1hcmtBc1NlbGVjdGVkOiBmdW5jdGlvbihpZHMsIHJhaXNlRXZlbnQpew0KICAgICAgICAgIGlmICh0eXBlb2YgaWRzID09PSAidW5kZWZpbmVkIil7DQogICAgICAgICAgICAkKCc+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlJywgdGhpcykucmVtb3ZlQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgIGZvciAodmFyIHggaW4gaWRzKSB7DQogICAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicraWRzW3hdLnJlcGxhY2UoJyInLCAnJnF1b3Q7JykrJyJdLnNlbGVjdGVkJywgdGhpcykucmVtb3ZlQ2xhc3MoJ3NlbGVjdGVkJyk7DQogICAgICAgICAgICB9ICAgICAgICAgICANCiAgICAgICAgICB9DQogICAgICAgICAgaWYgKHJhaXNlRXZlbnQpDQogICAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOw0KICAgICAgICB9LA0KDQogICAgICAgIG1hcmtBc0FjdGl2ZTogZnVuY3Rpb24oaXRlbWlkKXsNCiAgICAgICAgICAkKCc+dWw+bGlbaXRlbWlkXS5hY3RpdmUnLCB0aGlzKS5yZW1vdmVDbGFzcygnYWN0aXZlJyk7DQogICAgICAgICAgJCgnPnVsPmxpW2l0ZW1pZD0iJytpdGVtaWQucmVwbGFjZSgnIicsICcmcXVvdDsnKSsnIl0nLCB0aGlzKS5hZGRDbGFzcygnYWN0aXZlJyk7DQogICAgICAgIH0sDQoNCiAgICAgICAgbWFya0FzSW5hY3RpdmU6IGZ1bmN0aW9uKGl0ZW1pZCl7DQogICAgICAgICAgaWYgKGl0ZW1pZCkNCiAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicraXRlbWlkLnJlcGxhY2UoJyInLCAnJnF1b3Q7JykrJyJdJywgdGhpcykucmVtb3ZlQ2xhc3MoJ2FjdGl2ZScpOw0KICAgICAgICAgIGVsc2UNCiAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWRdLmFjdGl2ZScsIHRoaXMpLnJlbW92ZUNsYXNzKCdhY3RpdmUnKTsNCiAgICAgICAgfSwNCg0KICAgICAgICBpbml0OiBmdW5jdGlvbihvcHRpb25zKXsNCiAgICAgICAgICAgIA0KICAgICAgICAgICAgdmFyIHZkb21MaXN0X3YyID0gdGhpczsNCiAgICAgICAgICAgIHZhciBvYmpfaWQgPSB2ZG9tTGlzdF92Mi5hdHRyKCJpZCIpOw0KDQogICAgICAgICAgICB2ZG9tTGlzdF92Mi5kYXRhKCJtdWx0aVNlbGVjdGlvbiIsIG9wdGlvbnNbIm11bHRpU2VsZWN0aW9uIl0pOw0KICAgICAgICAgICAgdmRvbUxpc3RfdjIuZGF0YSgiY2xpY2tBbmRTZWxlY3QiLCAgb3B0aW9uc1siY2xpY2tBbmRTZWxlY3QiXSk7DQoNCiAgICAgICAgICAgIGlmIChvcHRpb25zWyJkcm9wcGFibGUiXSl7DQogICAgICAgICAgICAgICAgJCgiPnVsPmxpLmRyb3BwYWJsZSIsIHRoaXMpLmRyb3BwYWJsZSh7DQogICAgICAgICAgICAgICAgICAgIGFkZENsYXNzZXM6IGZhbHNlLA0KICAgICAgICAgICAgICAgICAgICBob3ZlckNsYXNzOiAidWktc3RhdGUtYWN0aXZlIiwNCiAgICAgICAgICAgICAgICAgICAgdG9sZXJhbmNlOiAicG9pbnRlciIsDQogICAgICAgICAgICAgICAgICAgIGRyb3A6IGZ1bmN0aW9uKGV2LCB1aSkgew0KICAgICAgICAgICAgICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHZkb21MaXN0X3YyKSwgImRyb3AiLCB7aXRlbWlkOiAkKHRoaXMpLmF0dHIoJ2l0ZW1pZCcpfSk7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9KTsNCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgdmFyIHNlbGVjdG9ycyA9IFsiPnVsPmxpIl07DQogICAgICAgICAgICBpZiAob3B0aW9uc1siY2xpY2tDbGFzc2VzIl0pew0KICAgICAgICAgICAgICAgIHZhciBjbGFzc2VzID0gb3B0aW9uc1siY2xpY2tDbGFzc2VzIl07DQogICAgICAgICAgICAgICAgZm9yICh2YXIgaSBpbiBjbGFzc2VzKXsNCiAgICAgICAgICAgICAgICAgICAgc2VsZWN0b3JzLnB1c2goc2VsZWN0b3JzWzBdICsgIiAiICsgY2xhc3Nlc1tpXSk7DQogICAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAkKHNlbGVjdG9ycy5qb2luKCIsIiksIHRoaXMpLmJpbmQoImNsaWNrIGRibGNsaWNrIiwgZnVuY3Rpb24oZSl7DQogICAgICAgICAgICAgICAgaWYgKGUucHJldmVudERlZmF1bHQpew0KICAgICAgICAgICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7DQogICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgZS5yZXR1cm5WYWx1ZSA9IGZhbHNlOw0KICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgIHZhciAkdGhpcyA9ICQodGhpcyk7DQoNCiAgICAgICAgICAgICAgICBpZiAoZS50eXBlID09ICdkYmxjbGljaycpIHsNCiAgICAgICAgICAgICAgICAgICAgJHRoaXMuZGF0YSgnaXNTaW5nbGVDbGljaycsIGZhbHNlKTsNCiAgICAgICAgICAgICAgICAgICAgaWYgKGUuY3RybEtleSB8fCBlLm1ldGFLZXkpew0KICAgICAgICAgICAgICAgICAgICAgICAgcmFpc2VDbGlja0V2ZW50KGUsIHZkb21MaXN0X3YyLCAkdGhpcywgdHJ1ZSwgdHJ1ZSk7DQogICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgdmRvbUxpc3RfdjIsICR0aGlzLCB0cnVlLCBmYWxzZSk7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uKCl7DQogICAgICAgICAgICAgICAgICAgICAgICBpZiAoJHRoaXMuZGF0YSgnaXNTaW5nbGVDbGljaycpID09IHRydWUpew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChlLmN0cmxLZXkgfHwgZS5tZXRhS2V5KXsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCB2ZG9tTGlzdF92MiwgJHRoaXMsIGZhbHNlLCB0cnVlKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmFpc2VDbGlja0V2ZW50KGUsIHZkb21MaXN0X3YyLCAkdGhpcywgZmFsc2UsIGZhbHNlKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICAgIH0sIDIwMCk7DQogICAgICAgICAgICAgICAgICAgICR0aGlzLmRhdGEoJ2lzU2luZ2xlQ2xpY2snLCB0cnVlKTsNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KICAgICAgICAgICAgfSk7DQogICAgICAgIH0NCiAgICB9DQoNCiAgICAkLmZuLnZkb21MaXN0X3YyID0gZnVuY3Rpb24obWV0aG9kKXsNCiAgICAgICAgaWYgKG1ldGhvZHNbbWV0aG9kXSl7DQogICAgICAgICAgICByZXR1cm4gbWV0aG9kc1ttZXRob2RdLmFwcGx5KHRoaXMsIEFycmF5LnByb3RvdHlwZS5zbGljZS5jYWxsKGFyZ3VtZW50cywgMSkpOw0KICAgICAgICB9IGVsc2UgaWYgKHR5cGVvZiBtZXRob2QgPT0gJ29iamVjdCcgfHwgISBtZXRob2QgKSB7DQogICAgICAgICAgICByZXR1cm4gbWV0aG9kcy5pbml0LmFwcGx5KHRoaXMsIGFyZ3VtZW50cyk7DQogICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAkLmVycm9yKCJWRE9NIExpc3QgVjI6IHVua25vd24gbWV0aG9kICIgKyBtZXRob2QpOw0KICAgICAgICB9DQogICAgfTsNCg0KfShqUXVlcnkpKTs=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
@@ -726,221 +727,7 @@ import collections
 import json
 
 
-GLOB_JS = u"""<script type="text/javascript">
-(function($) {
-
-    function raiseClickEvent(evt, vdomList_v2, obj, is_dbl, is_ctrl){
-
-      var is_child = false;
-      var li_obj;
-
-      if (!(obj.get(0).nodeName.toLowerCase() == "li" && obj.attr("itemid"))){
-        is_child = true;
-        li_obj = obj.closest("li[itemid]");
-      } else {
-        li_obj = obj;
-      }
-
-      var item_id = li_obj.attr("itemid");
-      var evt_name = (is_child ? "child": "") + "item" + \
-                     (is_ctrl  ? "ctrl" : "") + \
-                     (is_dbl   ? "dbl"  : "") + "click";
-
-      if (!is_child){
-        var need_select = (vdomList_v2.data("clickAndSelect") == "ctrldblclick" && is_dbl && is_ctrl) || \
-                          (vdomList_v2.data("clickAndSelect") == "dblclick" && is_dbl) || \
-                          (vdomList_v2.data("clickAndSelect") == "ctrlclick" && is_ctrl) || \
-                          (vdomList_v2.data("clickAndSelect") == "click");
-        if (need_select){
-          if (vdomList_v2.data("multiSelection"))
-            vdomList_v2.vdomList_v2("toogleSelection", [item_id]);
-          else
-            vdomList_v2.vdomList_v2("markAsSelected", [item_id]);
-        }
-      }
-
-      var params = {
-        "itemid":  item_id,
-        "selected": vdomList_v2.vdomList_v2("getSelectedIDs"),
-        "X": evt.pageX,
-        "Y": evt.pageY,
-        "child": is_child ? JSON.stringify({class: obj.attr("class")}) : ""
-      };
-
-      vdomList_v2.vdomList_v2("markAsActive", item_id);
-      execEventBinded(vdomList_v2.data("objID"), evt_name, params);
-    }
-
-    function raiseItemSelectedEvent(vdomList_v2){
-      execEventBinded(vdomList_v2.data("objID"), "rowsselected", {"selected": vdomList_v2.vdomList_v2("getSelectedIDs")});
-    }
-
-    function toogleSelection(item){
-      if (item.hasClass('selectable')){
-        if (item.hasClass('selected')){
-          item.removeClass('selected');
-        } else {
-          item.addClass('selected');
-        }
-      }
-    }
-    
-    var methods = {
-
-        getSelectedIDs: function(){
-          ids = [];
-          $('>ul>li[itemid].selected', this).each(function(){
-            ids.push($(this).attr('itemid'));
-          });
-          return ids;
-        },
-
-        getSelectedItems: function(){
-          return $('>ul>li[itemid].selected', this);
-        },
-
-        toogleSelection: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            if (this.data("multiSelection"))
-              $('>ul>li[itemid]', this).each(function(){
-                toogleSelection($(this));
-              });
-          } else {
-            if (this.data("multiSelection")){
-              for (var x in ids) {
-                toogleSelection($('>ul>li[itemid="'+ids[x].replace('"', '&quot;')+'"]', this));
-              }  
-            } else {
-              toogleSelection($('>ul>li[itemid="'+ids[0].replace('"', '&quot;')+'"]', this));
-            }     
-          }
-          if (raiseEvent)
-            raiseItemSelectedEvent(this);
-        },
-
-        markAsSelected: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            if (this.data("multiSelection")){
-              $('>ul>li[itemid].selectable', this).addClass('selected');
-            }
-          } else {
-            if (this.data("multiSelection")){
-              for (var x in ids) {
-                $('>ul>li[itemid="'+ids[x].replace('"', '&quot;')+'"].selectable', this).addClass('selected');
-              }  
-            } else {
-              var old_sel_item = $('>ul>li[itemid].selectable.selected', this);
-              old_sel_item.removeClass('selected');
-
-              var new_sel_item = $('>ul>li[itemid="'+ids[0].replace('"', '&quot;')+'"].selectable', this);
-              if (new_sel_item.length)
-                new_sel_item.addClass('selected');
-              else
-                old_sel_item.addClass('selected');
-            }       
-          }
-          if (raiseEvent && $('>ul>li[itemid].selectable', this).length)
-            raiseItemSelectedEvent(this);
-        },
-
-        unmarkAsSelected: function(ids, raiseEvent){
-          if (typeof ids === "undefined"){
-            $('>ul>li[itemid].selectable', this).removeClass('selected');
-          } else {
-            for (var x in ids) {
-              $('>ul>li[itemid="'+ids[x].replace('"', '&quot;')+'"].selected', this).removeClass('selected');
-            }           
-          }
-          if (raiseEvent)
-            raiseItemSelectedEvent(this);
-        },
-
-        markAsActive: function(itemid){
-          $('>ul>li[itemid].active', this).removeClass('active');
-          $('>ul>li[itemid="'+itemid.replace('"', '&quot;')+'"]', this).addClass('active');
-        },
-
-        markAsInactive: function(itemid){
-          if (itemid)
-            $('>ul>li[itemid="'+itemid.replace('"', '&quot;')+'"]', this).removeClass('active');
-          else
-            $('>ul>li[itemid].active', this).removeClass('active');
-        },
-
-        init: function(options){
-            
-            var vdomList_v2 = this;
-            var obj_id = vdomList_v2.attr("id");
-
-            vdomList_v2.data("multiSelection", options["multiSelection"]);
-            vdomList_v2.data("clickAndSelect",  options["clickAndSelect"]);
-            vdomList_v2.data("domID", "#" + obj_id);
-            vdomList_v2.data("objID", obj_id.substring(2, obj_id.length));
-
-            if (options["droppable"]){
-                $(">ul>li.droppable", this).droppable({
-                    addClasses: false,
-                    hoverClass: "ui-state-active",
-                    tolerance: "pointer",
-                    drop: function(ev, ui) {
-                        execEventBinded(vdomList_v2.data("objID"), "itemdropped", {itemid: $(this).attr('itemid')});
-                    }
-                });
-            }
-
-            var selectors = [">ul>li"];
-            if (options["clickClasses"]){
-                var classes = options["clickClasses"];
-                for (var i in classes){
-                    selectors.push(selectors[0] + " " + classes[i]);
-                }
-            }
-
-            $(selectors.join(","), this).bind("click dblclick", function(e){
-                if (e.preventDefault){
-                    e.preventDefault();
-                } else {
-                    e.returnValue = false;
-                }
-
-                var $this = $(this);
-
-                if (e.type == 'dblclick') {
-                    $this.data('isSingleClick', false);
-                    if (e.ctrlKey || e.metaKey){
-                        raiseClickEvent(e, vdomList_v2, $this, true, true);
-                    } else {
-                        raiseClickEvent(e, vdomList_v2, $this, true, false);
-                    }
-                } else {
-                    setTimeout(function(){
-                        if ($this.data('isSingleClick') == true){
-                            if (e.ctrlKey || e.metaKey){
-                              raiseClickEvent(e, vdomList_v2, $this, false, true);
-                            } else {
-                              raiseClickEvent(e, vdomList_v2, $this, false, false);
-                            }
-                        }
-                    }, 200);
-                    $this.data('isSingleClick', true);
-                }
-                return false;
-            });
-        }
-    }
-
-    $.fn.vdomList_v2 = function(method){
-        if (methods[method]){
-            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof method == 'object' || ! method ) {
-            return methods.init.apply(this, arguments);
-        } else {
-            $.error("VDOM List V2: unknown method " + method);
-        }
-    };
-
-}(jQuery));
-</script>"""
+GLOB_JS = u""
 
 
 CLICK_N_SELECT = (
@@ -1074,7 +861,11 @@ class VDOM_listv2(VDOM_object):
         return VDOM_object.wysiwyg(self, parent, contents=result)
 
   ]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="HTML"><![CDATA[
+<script type="text/javascript" src="/92de1d12-fb07-41e5-a288-50f6fc80112a.res"></script>
+]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
@@ -1211,6 +1002,7 @@ $("#" + this.domCont.id).vdomList_v2("toogleSelection", undefined, raiseEvent);
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="raiseEvent" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
+var idlist = eval(idlist);
 if (typeof idlist === 'object')
   $("#" + this.domCont.id).vdomList_v2("toogleSelection", idlist, raiseEvent);
 ]]></SourceCode>
@@ -1221,6 +1013,7 @@ if (typeof idlist === 'object')
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="raiseEvent" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
+var idlist = eval(idlist);
 if (typeof idlist === 'object')
   $("#" + this.domCont.id).vdomList_v2("markAsSelected", idlist, raiseEvent);
 ]]></SourceCode>
@@ -1231,6 +1024,7 @@ if (typeof idlist === 'object')
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="raiseEvent" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
+var idlist = eval(idlist);
 if (typeof idlist === 'object')
   $("#" + this.domCont.id).vdomList_v2("unmarkAsSelected", idlist, raiseEvent);
 ]]></SourceCode>
