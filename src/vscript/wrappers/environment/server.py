@@ -52,6 +52,7 @@ class v_mailattachment(generic):
 	def __init__(self, attachment=None):
 		generic.__init__(self)
 		self._value=attachment or MailAttachment()
+		self._data_type = binary
 
 	
 	value=property(lambda self: self._value)
@@ -59,11 +60,15 @@ class v_mailattachment(generic):
 
 	def v_data(self, **keywords):
 		if "let" in keywords:
-			self._value.data=keywords["let"].as_binary
+			var = keywords["let"]
+			self._data_type = type(var.subtype)
+			self._value.data = var.as_binary if isinstance(var.subtype, binary) else \
+							   var.as_string
+
 		elif "set" in keywords:
 			raise errors.object_has_no_property("data")
 		else:
-			return binary(self._value.data)	
+			return self._data_type(self._value.data)	
 		
 	def v_filename(self, **keywords):
 		if "let" in keywords:
