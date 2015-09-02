@@ -34,7 +34,10 @@ class File_argument(object):
 			if not self.fileobj.closed:
 				self.fileobj.close()
 			if filepath:
-				os.remove(filepath)
+				try:
+					os.remove(filepath)
+				except Exception as e:
+					print (str(e))
 			self.fileobj = None#TODO: maybe not none bug StringIO()?
 		
 	def close(self):
