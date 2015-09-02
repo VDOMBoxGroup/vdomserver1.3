@@ -594,7 +594,7 @@ class VDOM_DynamicObject(VDOM_object):
             e2vdom.compile_dynamic_e2vdom(rootobj, vdomactions)
         )
 
-    def render(self, parent, contents=""):
+    def render(self, parent, contents="", raw_content=False):
 
         try:
             vdomactions = json.loads(self.vdomactions)
@@ -621,6 +621,9 @@ class VDOM_DynamicObject(VDOM_object):
 
         if is_error:
             dynamic_contents = u"""<span class="render-error">{}</span>""".format(self.rendererrormsg)
+
+        if raw_content:
+            return dynamic_contents
 
         result = u"""<div name="{name}" id="{dom_id}" style="{obj_style}" class="{classes}">{contents}</div>"""
         contents += result.format(
