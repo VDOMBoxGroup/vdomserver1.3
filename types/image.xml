@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.5.8388</Version>
+    <Version>1.5.8391</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
@@ -88,7 +88,7 @@
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue></DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue></DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -146,6 +146,18 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>base64stream</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>hint</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
@@ -187,6 +199,7 @@
       <Sentence ID="111">External URL</Sentence>
       <Sentence ID="112">Hint</Sentence>
       <Sentence ID="113">Hierarchy</Sentence>
+      <Sentence ID="114">Base64 Stream</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. Must be positive integer from 0 to 99. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -304,6 +317,7 @@
       <Sentence ID="111">Ссылка</Sentence>
       <Sentence ID="112">Подсказка</Sentence>
       <Sentence ID="113">Иерархия</Sentence>
+      <Sentence ID="114">Base64 данные</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Отображается объект или нет</Sentence>
       <Sentence ID="203">Заголовок контейнера</Sentence>
@@ -421,6 +435,7 @@
       <Sentence ID="111">External URL</Sentence>
       <Sentence ID="112">Hint</Sentence>
       <Sentence ID="113">Hiérarchie</Sentence>
+      <Sentence ID="114">Base64 Stream</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
@@ -628,6 +643,11 @@ class VDOM_image(VDOM_object):
 			link = utils.id.id2link1(self.value)
 		elif self.externalurl:
 			link = self.externalurl
+		elif self.base64stream:
+			import base64
+			data = base64.b64decode(self.base64stream)
+			res_id = application.resources.create_temporary(self.id, "data", data, "png", "data")
+			link = "/%s.png"%res_id
 		else:
 			link = ""
 
@@ -692,8 +712,8 @@ class VDOM_image(VDOM_object):
 						hierarchy = self.hierarchy,
 						top = self.top,
 						left = self.left,
-						width = self.width,
-						height = self.height,
+						width = self.width or 50,
+						height = self.height or 50,
 						image_x = 0,
 						image_y = 0,
 						image_id = self.value,
@@ -719,8 +739,8 @@ class VDOM_image(VDOM_object):
 						order = self.order,
 						top = self.top,
 						left = self.left,
-						width = self.width,
-						height = self.height,
+						width = self.width or 50,
+						height = self.height or 50,
 						image_url = url)
 
 		else:

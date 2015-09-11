@@ -20,10 +20,10 @@ def get_empty_wysiwyg_value (type, image_id, alpha=1) :
 	image_x = image_y = 0
 	
 	if not type.width:
-		type.width = "0"
+		type.width = "50"
 	
 	if not type.height:
-		type.height = "0"
+		type.height = "50"
 		
 	image_x, image_y, image_width, image_height = get_centered_image_metrics( image_width, image_height, int(type.width), int(type.height) )
 											
