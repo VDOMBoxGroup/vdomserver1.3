@@ -5412,7 +5412,8 @@ class VDOM_htmlcontainer(VDOM_object):
 width:1100px;
 margin:0 auto !important;
 position: relative;
-}"""
+}
+.ui-widget-overlay{position:fixed;}"""
 			else:
 				centr = "0"
 
