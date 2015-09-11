@@ -9,11 +9,10 @@ def run(request):
 	request.render_type = "e2vdom"
 	auth = request.headers().headers().get("Authorization")
 	if not auth:
-		#request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
-		#request.send_htmlcode(401)
+		request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
+		request.send_htmlcode(401)
 		
-		#return
-		pass
+		return
 	else:
 		if auth[:len("Basic ")]=="Basic ":
 			user,login = base64.b64decode(auth[len("Basic "):]).split(":")

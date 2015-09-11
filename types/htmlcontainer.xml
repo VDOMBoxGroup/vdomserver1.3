@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.80.6722</Version>
+    <Version>2.80.6723</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -226,7 +226,7 @@
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|left)|(#Lang(411)|center))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|left)|(#Lang(411)|center)|(#Lang(412)|jscenter))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center)$</RegularExpressionValidation>
@@ -418,6 +418,7 @@
       <Sentence ID="408">No</Sentence>
       <Sentence ID="409">Left</Sentence>
       <Sentence ID="411">Center</Sentence>
+      <Sentence ID="412">JS Center</Sentence>
       <Sentence ID="501">Visibility</Sentence>
       <Sentence ID="502">Visibility</Sentence>
       <Sentence ID="503">Visibility</Sentence>
@@ -614,6 +615,7 @@
       <Sentence ID="408">No</Sentence>
       <Sentence ID="409">Left</Sentence>
       <Sentence ID="411">Center</Sentence>
+      <Sentence ID="412">JS Center</Sentence>
       <Sentence ID="501">Z-Индекс</Sentence>
       <Sentence ID="502">Z-Индекс</Sentence>
       <Sentence ID="503">Z-Индекс</Sentence>
@@ -810,6 +812,7 @@
       <Sentence ID="408">No</Sentence>
       <Sentence ID="409">Gauche</Sentence>
       <Sentence ID="411">Centrer</Sentence>
+      <Sentence ID="412">JS Centrer</Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -5395,9 +5398,21 @@ class VDOM_htmlcontainer(VDOM_object):
 				cssclass = ""
 			else:
 				cssclass = ' class="%s" ' % self.cssclass
-
-			if self.position == "center":
+			centercss = ""
+			if self.position == "jscenter":
 				centr = "1"
+			elif self.position == "center":
+				if not cssclass:
+					cssclass = ' class="center" '
+				else:
+					cssclass = ' class="%s center" ' % self.cssclass
+				centr = "0"
+				centercss = """.center
+{
+width:1100px;
+margin:0 auto !important;
+position: relative;
+}"""
 			else:
 				centr = "0"
 
@@ -5406,7 +5421,7 @@ class VDOM_htmlcontainer(VDOM_object):
 			else:
 				noscript=""
 
-			css = u'<style type="text/css">\n%s\n</style>' % self.css
+			css = u'<style type="text/css">\n%s\n%s</style>' % (self.css,centercss)
 			doctype = u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
 			doctypenew = u"""<!DOCTYPE html>"""
 
