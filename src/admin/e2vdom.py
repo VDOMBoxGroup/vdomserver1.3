@@ -78,6 +78,7 @@ def run(request):
 							params = ev.events[ob, nm]
 							params["sender"] = [ob]
 							request.arguments().arguments(params)
+							request.container_id = _obj.id
 							#result = managers.engine.execute(app, cont, cont.parent, cont.actions["id"][a_id].name)
 							result = managers.engine.execute(app, _obj, _obj.parent, _a.name)
 							for key in result:
