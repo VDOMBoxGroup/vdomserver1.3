@@ -126,7 +126,7 @@ class VDOM_request:
 		self.shared_variables = {}
 		self.render_type = "html"
 		self.dyn_libraries = {}
-	
+		self.container_id = None
 	
 	def collect_files(self):
 		"""Replacement for destructor needed for temp files cleanup"""
