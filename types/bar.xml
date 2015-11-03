@@ -681,8 +681,8 @@ class VDOM_bar(VDOM_object):
 
 		classname = u'class="%s"' % self.classname if self.classname else u""
 
-		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
-				width: {width}px; height: {height}px; background: #{color}"""\
+		style = (u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;"""
+             u"""width: {width}px; height: {height}px; background: #{color}""")\
 			.format(
 				display = display, zind = style_zindex, pos = self.position,
 				top = self.top, left = self.left,

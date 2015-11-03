@@ -145,6 +145,18 @@
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>sticky</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -161,6 +173,7 @@
       <Sentence ID="108">Active</Sentence>
       <Sentence ID="109">Style</Sentence>
       <Sentence ID="111">CSS class</Sentence>
+      <Sentence ID="112">Sticky</Sentence>
       <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
       <Sentence ID="203">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
@@ -236,6 +249,7 @@
       <Sentence ID="108">Активный</Sentence>
       <Sentence ID="109">Стиль</Sentence>
       <Sentence ID="111">Пользовательский класс CSS</Sentence>
+      <Sentence ID="112">Sticky</Sentence>
       <Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="202">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="203">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
@@ -311,6 +325,7 @@
       <Sentence ID="108">Active</Sentence>
       <Sentence ID="109">Style</Sentence>
       <Sentence ID="111">User class</Sentence>
+      <Sentence ID="112">Sticky</Sentence>
       <Sentence ID="201">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="202">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
       <Sentence ID="203">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
@@ -505,7 +520,12 @@ class VDOM_growl(VDOM_object):
 			text = unicode(self.text).strip().replace('"', '&quot;')
 			if title != '' and text != '':
 				res += "<span class='growls' style='display:none' vstyle='%s'><span>%s</span><div>%s</div></span>" % ( vstyle, title, text )
-				#res += u"""<script type="text/javascript">$j(function(){ $j.gritter.add({title:"%(title)s",text:"%(text)s",sticky:false,time:'',class_name:"%(vstyle)s"}); });</script>""" % { "vstyle": vstyle, "title": title , "text": text }
+				#res += u"""<script type="text/javascript">$j(function(){ $j.gritter.add({title:"%(title)s",text:"%(text)s",sticky:%(sticky)s,time:'',class_name:"%(vstyle)s"}); });</script>""" % {
+          "vstyle": vstyle,
+          "title": title ,
+          "text": text, 
+          "sticky": "true" if self.sticky == "1" else "false",
+        }
 
 		return res
 
@@ -572,27 +592,30 @@ jQuery.gritter.add({'title':title,'text':txt,'sticky':sticky,'time':t,'image':im
           <Parameters>
             <Parameter DefaultValue="'Warning'" Interface="" InterfaceName="#Lang(707)" ScriptName="title" Help="#Lang(807)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(708)" ScriptName="txt" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(705)" ScriptName="sticky" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow warning'});
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow warning', 'sticky':sticky});
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="showError">
           <Parameters>
             <Parameter DefaultValue="'Error'" Interface="" InterfaceName="#Lang(709)" ScriptName="title" Help="#Lang(809)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(711)" ScriptName="txt" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(705)" ScriptName="sticky" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery.gritter.add({'title':title,'text':txt,'class_name':'red error','sticky':true});
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'red error', 'sticky':sticky});
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="showInformation">
           <Parameters>
             <Parameter DefaultValue="'Information'" Interface="" InterfaceName="#Lang(712)" ScriptName="title" Help="#Lang(812)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="'Text'" Interface="" InterfaceName="#Lang(713)" ScriptName="txt" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(705)" ScriptName="sticky" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow information'});
+jQuery.gritter.add({'title':title,'text':txt,'class_name':'yellow information', 'sticky':sticky});
 ]]></SourceCode>
         </Action>
       </Container>
