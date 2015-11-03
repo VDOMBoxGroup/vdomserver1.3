@@ -730,12 +730,26 @@ class VDOM_form(VDOM_object):
 			submitjs = u"""<script type="text/javascript">
 $j(function(){
   $j('#%(id)s').submit(function(e){
-    if ($j('body').data('%(id)s_submitted') == '1') return false;
+    
+    var $form = $j(this);
+
+    if ($j('body').data('%(id)s_submitted') == '1')
+      return false;
+    
     $j('body').data('%(id)s_submitted', '1');
     setTimeout(function() {
       $j('body').data('%(id)s_submitted', '');
     }, 1000);
-    var formData={}, a=$j('#%(id)s').serializeArray();
+
+    var formData = {};
+
+    var submitTrigger = $form.children('input[name=__submit_trigger__]');
+    if (submitTrigger.length){
+      formData[submitTrigger.val()] = 1;
+      submitTrigger.remove();
+    }
+    
+    var a = $j('#%(id)s').serializeArray();
     for (k in a){
       if(typeof a[k].name !== 'undefined' && typeof a[k].value !== 'undefined') {
         if (formData.hasOwnProperty(a[k].name)){
@@ -752,6 +766,15 @@ $j(function(){
     }
     execEventBinded('%(woid)s', "submit", formData);
     return false;
+  });
+
+  $j('#%(id)s input[type=submit]').click(function(){
+    var form = $('#%(id)s');
+    if (!form.children('input[name=__submit_trigger__]').length){
+      form.append('<input type="hidden" name="__submit_trigger__" value="' + $(this).attr('name') + '" />');
+    } else {
+      form.children('input[name=__submit_trigger__]').val($(this).attr('name'));
+    }
   });
 });
 </script>""" % { "id": id, "woid": woid }
@@ -947,6 +970,12 @@ $q(this.domCont).addClass(className);
           <SourceCode><![CDATA[
 $q(this.domCont).removeClass(className);
 		  ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="reset">
+          <Parameters/>
+          <SourceCode><![CDATA[
+$q(this.domCont)[0].reset();
+      ]]></SourceCode>
         </Action>
       </Container>
     </Actions>
