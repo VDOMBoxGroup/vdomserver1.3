@@ -181,6 +181,18 @@
 			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
 		</Attribute>
+		<Attribute>
+			<Name>disabledvalue</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<DefaultValue/>
+			<Visible>1</Visible>
+			<Help>#Lang(213)</Help>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(100000)</CodeInterface>
+			<Colorgroup>2</Colorgroup>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+		</Attribute>
 	</Attributes>
 	<Languages>
 		<Language Code="en_US">
@@ -198,7 +210,7 @@
 			<Sentence ID="109">Selected value</Sentence>
 			<Sentence ID="111">TabIndex</Sentence>
 			<Sentence ID="112">Disabled</Sentence>
-			<Sentence ID="113">Num of lines</Sentence>
+			<Sentence ID="113">Disabled values</Sentence>
 			<Sentence ID="114">Selection mode</Sentence>
 			<Sentence ID="201">Visibility of the object</Sentence>
 			<Sentence ID="202">Position in visual hierarchy of objects</Sentence>
@@ -211,7 +223,7 @@
 			<Sentence ID="209">Index of selected value in list (from 0)</Sentence>
 			<Sentence ID="211">Index number of switching the elements on pressing the tab key</Sentence>
 			<Sentence ID="212">Define if the object is disabled or not</Sentence>
-			<Sentence ID="213">Number of items (set automatically)</Sentence>
+			<Sentence ID="213">List of disabled values keys or single key</Sentence>
 			<Sentence ID="214">Define the selection mode, that is the number of selected values</Sentence>
 			<Sentence ID="301">Incorrect value, must be either 0 or 1</Sentence>
 			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
@@ -224,7 +236,7 @@
 			<Sentence ID="309">Incorrect value</Sentence>
 			<Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="313">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
 			<Sentence ID="314">Incorrect value, must be either 0 or 1</Sentence>
 			<Sentence ID="401">Invisible</Sentence>
 			<Sentence ID="402">Visible</Sentence>
@@ -314,7 +326,7 @@
 			<Sentence ID="109">Текущий элемент</Sentence>
 			<Sentence ID="111">Индекс табуляции</Sentence>
 			<Sentence ID="112">Блокировать</Sentence>
-			<Sentence ID="113">Количество строк</Sentence>
+			<Sentence ID="113">Disabled values</Sentence>
 			<Sentence ID="114">Режим выборки</Sentence>
 			<Sentence ID="201">Режим отображения объекта</Sentence>
 			<Sentence ID="202">Положение в визуальной иерархии объектов</Sentence>
@@ -327,7 +339,7 @@
 			<Sentence ID="209">Номер текущего элемента в списке (от 0)</Sentence>
 			<Sentence ID="211">Индекс табуляции объекта на странице</Sentence>
 			<Sentence ID="212">Определяет, заблокирован объект или нет</Sentence>
-			<Sentence ID="213">Количество отображаемых строк (устанавливается автоматически)</Sentence>
+			<Sentence ID="213">List of disabled values keys or single key</Sentence>
 			<Sentence ID="214">Простой или групповой выбор значений</Sentence>
 			<Sentence ID="301">Неправильное значение, должен быть указан 0 или 1</Sentence>
 			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -340,7 +352,7 @@
 			<Sentence ID="309">Неправильное значение</Sentence>
 			<Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="312">Неправильное значение, должен быть указан 0 или 1</Sentence>
-			<Sentence ID="313">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
 			<Sentence ID="314">Неправильное значение, должен быть указан 0 или 1</Sentence>
 			<Sentence ID="401">Не отображать</Sentence>
 			<Sentence ID="402">Отображать</Sentence>
@@ -430,7 +442,7 @@
 			<Sentence ID="109">Valeur Selectionnée</Sentence>
 			<Sentence ID="111">TabIndex</Sentence>
 			<Sentence ID="112">Disabled</Sentence>
-			<Sentence ID="113">Num of lines</Sentence>
+			<Sentence ID="113">Disabled values or single key</Sentence>
 			<Sentence ID="114">Multiselect</Sentence>
 			<Sentence ID="201">Afficher ou cacher l'objet</Sentence>
 			<Sentence ID="202">Niveau de superposition de l'objet par rapport aux autres</Sentence>
@@ -443,7 +455,7 @@
 			<Sentence ID="209">Index of selected value in list (from 0)</Sentence>
 			<Sentence ID="211">Tab index</Sentence>
 			<Sentence ID="212">Define if the object is disabled or not</Sentence>
-			<Sentence ID="213">Number of items (set automatically)</Sentence>
+			<Sentence ID="213">List of disabled values keys</Sentence>
 			<Sentence ID="214">Single or multi-selection of values in list</Sentence>
 			<Sentence ID="301">Valeur Incorrecte</Sentence>
 			<Sentence ID="302">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
@@ -456,7 +468,7 @@
 			<Sentence ID="309">Valeur Incorrecte</Sentence>
 			<Sentence ID="311">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="312">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="313">Valeur Incorrecte</Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
 			<Sentence ID="314">Valeur Incorrecte</Sentence>
 			<Sentence ID="401">Invisible</Sentence>
 			<Sentence ID="402">Visible</Sentence>
@@ -702,154 +714,151 @@ gpAEK2iFiwcK0BGEXkH6ZzQPjABxCdYHfxKMwLpxhoT6alMrp1W9vi7e3o90+XjzxGxfONucG84F
 U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
 	</Resources>
 	<SourceCode><![CDATA[
-	
-import collections
 import json
 import StringIO
-from collections import OrderedDict
+
+from collections import OrderedDict, Iterable
+from itertools import izip
+
 
 class VDOM_formlist(VDOM_object):
 
-	def get_data (self) :
-		data = {}
-		if self.value:		
-			try:
-				data = json.loads(self.value, object_pairs_hook=collections.OrderedDict)
-				# debug(data)
-				if isinstance(data, int):
-					raise Exception("value: %s. Incorrect format of data" % self.value)
-			except:
-				raise Exception("value: %s. Incorrect format of data" % self.value)
-		
-		if isinstance(data, dict):
-			data = OrderedDict(data)
-			
-		return data
-			
-	def render(self, parent, contents=""):
-		display = u"display:none;" if self.visible == "0" else u""
+    def get_data(self):
+        # try to parse json
+        try:
+            value = json.loads(self.value, object_pairs_hook=OrderedDict)
 
-		style = u"""position: absolute; z-index: {zind}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; {display} font: 14px tahoma""".format(
-			zind = self.zindex,
-			top = self.top,
-			left = self.left, 
-			width = self.width,
-			height = self.height,
-			display = display
-		)
+        except Exception as ex:
+            if self.value:
+                raise Exception(u"value: %r. Incorrect format of JSON data" % self.value)
 
-		id = u"o_" + (self.id).replace('-', '_')
-		
-		disabled = u"disabled" if self.disabled == "1" else u""
-		multi = u"""multiple="multiple" """ if self.multiselect and self.multiselect == "1" else u""
-		size = u"""size="%s" """ % self.size if self.size else u""
+            value = []
 
-		select = u"""<select {disabled} id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" style="{style}" {size} {multi}>""".format(
-			disabled = disabled,
-			id = id,
-			name = self.name,
-			tabind = self.tabindex,
-			style = style,
-			size = size,
-			multi = multi,
-		)
+        if not isinstance(value, Iterable):
+            raise Exception(u"value: %r. Must be dict or list" % self.value)
 
-		selected_values = []
-		if self.selectedvalue:
-			try:
-				selected_values = json.loads(self.selectedvalue)
-			except:
-				selected_values = None
+        return value
+            
+    def render(self, parent, contents=""):
+        display = u"display:none; " if self.visible == "0" else u""
 
-			if not isinstance(selected_values, list):
-				selected_values = [self.selectedvalue]
+        style = u"""{display}position: absolute; z-index: {zind}; top: {top}px; left: {left}px; width: {width}px; height: {height}px; font: 14px tahoma""".format(
+            zind = self.zindex,
+            top = self.top,
+            left = self.left, 
+            width = self.width,
+            height = self.height,
+            display = display
+        )
 
-		data = self.get_data()
-		if not isinstance(data, dict):
-			data = zip(xrange(len(data)), data)
-		else:
-			data = data.iteritems()
+        id = u"o_" + (self.id).replace('-', '_')
+        
+        disabled = u""" disabled="disabled\"""" if self.disabled == "1" else u""
+        multi = u""" multiple="multiple\"""" if self.multiselect and self.multiselect == "1" else u""
+        size = u""" size="%s" """ % self.size if self.size else u""
 
-		res_buffer = StringIO.StringIO(u"")
-		res_buffer.write(select)
+        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" style="{style}" {size}{multi}{disabled}>""".format(
+            disabled = disabled,
+            id = id,
+            name = self.name,
+            tabind = self.tabindex,
+            style = style,
+            size = size,
+            multi = multi,
+        )
 
-		selected = u"""selected="selected" """
-		
-		for (value, title) in data:
-			res_buffer.write(
-				u"""<option value="{value}" {selected}>{title}</option>""".format(
-					value=value,
-					title=title,
-					selected=selected if value in selected_values else u""
-				)
-			)
+        try:
+            selected_values = json.loads(self.selectedvalue)
+        except:
+            selected_values = self.selectedvalue
 
-		res_buffer.write(u"</select>")
-		result = res_buffer.getvalue()
-		res_buffer.close()
-		
-		return VDOM_object.render(self, parent, contents=result)
-	
-	def wysiwyg(self, parent, contents=""):
-		
-		rect_width = int(self.width)-1 if int(self.width)>1 else int(self.width)
-		rect_height = int(self.height)-1 if int(self.height)>1 else int(self.height)
-		
-		btn_width = 15 if rect_width > 15 else rect_width
-		btn_height = rect_height
-		btn_y = 0
-		btn_x = rect_width - btn_width - 1 if rect_width > btn_width else 0
-		
-		triangle_width = 5 
-		if btn_width < triangle_width :
-			triangle_width = btn_width
-			triangle_x = btn_x
-		else :
-			triangle_x = btn_x + (btn_width - triangle_width) / 2 + 1
-			
-		triangle_height = 4 
-		if btn_height < triangle_height :
-			triangle_height = btn_height
-			triangle_y = 0
-		else :
-			triangle_y = (btn_height - triangle_height) / 2
-		
-		color = "#aaaaaa" if self.disabled=="1" else "#000000"
-		btn = \
-				u"""<svg>
-						<rect x="{btn_x}" y="{btn_y}" width="{btn_width}" height="{btn_height}" fill="#EEEEEE" stroke="{color}"/>
-						<polygon fill="{color}" stroke="{color}" points="{xa},{ya} {xb},{yb} {xc},{yc}"/>
-					</svg>
-				""".format(btn_x = btn_x, btn_y = btn_y,
-							btn_width = btn_width, btn_height = btn_height,
-							xa = triangle_x, ya = triangle_y,
-							xb = triangle_x+triangle_width, yb = triangle_y,
-							xc = triangle_x+triangle_width/2, yc = triangle_y+triangle_height,
-							color = color)
-		
-		result = \
-			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-						top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect y="0" x="0" width="{rect_width}" height="{rect_height}" fill="#FFFFFF" stroke="{color}"/>
-					</svg>
-					<svg>
-						<text x="{text_x}" y="{text_y}" width="{width}" height="{height}" fill="{color}" font-size="14" font-family="tahoma"></text>
-					</svg>
-					{btn}
-				</container>
-			""".format(id = self.id, vis = self.visible, zind = self.zindex, 
-					hierarchy = self.hierarchy, order = self.order, 
-					top = self.top, left = self.left, 
-					width = self.width, height = self.height,
-					rect_width = rect_width, rect_height = rect_height, 
-					btn = btn,
-					text_x = 7,
-					text_y = 15 if rect_height < 15 else (rect_height-15)/2+15,
-					color = color)
-		
+        if not isinstance(selected_values, list):
+            selected_values = [selected_values]
 
-		return VDOM_object.wysiwyg(self, parent, contents=result)
+        try:
+            disabled_values = json.loads(self.disabledvalue)
+        except:
+            disabled_values = self.disabledvalue
+
+        if not isinstance(disabled_values, list):
+            disabled_values = [disabled_values]
+
+        data = self.get_data()
+        try:
+            data = data.iteritems()
+        except:
+            data = izip(xrange(len(data)), data)
+
+        result = u"".join([u"""<option value="{value}"{selected}{disabled}>{title}</option>""".format(
+            value=value,
+            selected=u""" selected="selected\"""" if value in selected_values else u"",
+            disabled=u""" disabled="disabled\"""" if value in disabled_values else u"",
+            title=title
+        ) for value, title in data])
+
+        result = u"{}{}</select>".format(select, result)
+        return VDOM_object.render(self, parent, contents=result)
+    
+    def wysiwyg(self, parent, contents=""):
+        
+        rect_width = int(self.width)-1 if int(self.width)>1 else int(self.width)
+        rect_height = int(self.height)-1 if int(self.height)>1 else int(self.height)
+        
+        btn_width = 15 if rect_width > 15 else rect_width
+        btn_height = rect_height
+        btn_y = 0
+        btn_x = rect_width - btn_width - 1 if rect_width > btn_width else 0
+        
+        triangle_width = 5 
+        if btn_width < triangle_width :
+            triangle_width = btn_width
+            triangle_x = btn_x
+        else :
+            triangle_x = btn_x + (btn_width - triangle_width) / 2 + 1
+            
+        triangle_height = 4 
+        if btn_height < triangle_height :
+            triangle_height = btn_height
+            triangle_y = 0
+        else :
+            triangle_y = (btn_height - triangle_height) / 2
+        
+        color = "#aaaaaa" if self.disabled=="1" else "#000000"
+        btn = \
+                u"""<svg>
+                        <rect x="{btn_x}" y="{btn_y}" width="{btn_width}" height="{btn_height}" fill="#EEEEEE" stroke="{color}"/>
+                        <polygon fill="{color}" stroke="{color}" points="{xa},{ya} {xb},{yb} {xc},{yc}"/>
+                    </svg>
+                """.format(btn_x = btn_x, btn_y = btn_y,
+                            btn_width = btn_width, btn_height = btn_height,
+                            xa = triangle_x, ya = triangle_y,
+                            xb = triangle_x+triangle_width, yb = triangle_y,
+                            xc = triangle_x+triangle_width/2, yc = triangle_y+triangle_height,
+                            color = color)
+        
+        result = \
+            u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+                        top="{top}" left="{left}" width="{width}" height="{height}">
+                    <svg>
+                        <rect y="0" x="0" width="{rect_width}" height="{rect_height}" fill="#FFFFFF" stroke="{color}"/>
+                    </svg>
+                    <svg>
+                        <text x="{text_x}" y="{text_y}" width="{width}" height="{height}" fill="{color}" font-size="14" font-family="tahoma"></text>
+                    </svg>
+                    {btn}
+                </container>
+            """.format(id = self.id, vis = self.visible, zind = self.zindex, 
+                    hierarchy = self.hierarchy, order = self.order, 
+                    top = self.top, left = self.left, 
+                    width = self.width, height = self.height,
+                    rect_width = rect_width, rect_height = rect_height, 
+                    btn = btn,
+                    text_x = 7,
+                    text_y = 15 if rect_height < 15 else (rect_height-15)/2+15,
+                    color = color)
+        
+
+        return VDOM_object.wysiwyg(self, parent, contents=result)
 
 	]]></SourceCode>
 	<Libraries/>
