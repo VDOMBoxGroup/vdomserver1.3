@@ -536,6 +536,45 @@ class VDOM_DynamicObject(VDOM_object):
         result = utils_wysiwyg.get_empty_wysiwyg_value(self, image_id)
         return VDOM_object.wysiwyg(self, parent, contents=result)
 
+    def types_on_page(self):
+      if request.render_type == "e2vdom":
+        return []
+
+      page = application.objects.search(request.container.id)
+      if page:
+        return page.types.keys()
+
+      return []
+
+    def already_loaded_types(self):
+      # return request.shared_variables["vdom.server.types.loaded"] or self.types_on_page()
+      return self.types_on_page()
+
+    def set_loaded_types(self, types):
+      pass
+      # response.shared_variables["vdom.server.types.loaded"] = types
+
+    def load_new_types(self, types):
+      # list of types ids
+      existing_types = self.already_loaded_types()
+
+      # output data
+      result = []
+
+      # iterate over not loaded types
+      for tid in list(set(types.keys()) - set(existing_types)):
+        libs = types[tid].lib
+        if 'html' in libs:
+          result.extend(libs['html'])
+
+      # update information on client
+      # raise Exception(list(set(types.keys()) | set(existing_types)), types.keys(), existing_types)
+      # raise Exception(list(set(types.keys()) | set(existing_types)))
+      self.set_loaded_types(list(set(types.keys()) | set(existing_types)))
+
+      # return """<script type="text/javascript">$("head").append({});</script>""".format(json.dumps("\n".join(result)))
+      return "\n".join(result)
+
     def compile_style(self):
 
         overflow = {
@@ -589,9 +628,10 @@ class VDOM_DynamicObject(VDOM_object):
                         actions_list.append((self.id, "catchEvent", r'"' + action + r'"', "evt_param(\"evt_ref\")"))
 
 
-        return u"""%s<script>(function(window, $) {%s})(window, jQuery);</script>""" % (
+        return u"""%s<script>(function(window, $) {%s})(window, jQuery);</script>%s""" % (
+            self.load_new_types(rootobj.all_types()),
+            e2vdom.compile_dynamic_e2vdom(rootobj, vdomactions),
             dynobject.dynamic_render(rootobj, objects),
-            e2vdom.compile_dynamic_e2vdom(rootobj, vdomactions)
         )
 
     def render(self, parent, contents="", raw_content=False):
@@ -633,6 +673,9 @@ class VDOM_DynamicObject(VDOM_object):
             classes=self.classname,
             contents=dynamic_contents
         )
+
+        if request.render_type != "e2vdom":
+          self.set_loaded_types(self.types_on_page())
 
         return VDOM_object.render(self, parent, contents=contents)
 
