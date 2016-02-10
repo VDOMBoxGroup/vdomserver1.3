@@ -1,5 +1,6 @@
 import thread, time, email, email.generator, copy
-from smtplib import SMTP,SMTP_SSL,SMTPConnectError,SMTPHeloError,SMTPAuthenticationError,SMTPException,SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError,SSLFakeFile
+from smtplib import SMTP,SMTP_SSL,SMTPConnectError,SMTPHeloError,SMTPAuthenticationError,SMTPException,\
+	SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError,SSLFakeFile
 from socket import create_connection, error as socket_error
 from ssl import PROTOCOL_SSLv23, PROTOCOL_SSLv3, PROTOCOL_TLSv1, wrap_socket
 from email import encoders
@@ -17,12 +18,11 @@ MailAttachment = namedtuple("MailAttachment","data, filename, content_type, cont
 
 class VDOM_SMTP(SMTP):
 	
-	def __init__(self, host = '', port = 0, local_hostname = None):
-		cf = VDOM_config()
-		self.tout = cf.get_opt("SMTP-SENDMAIL-TIMEOUT")
+	def __init__(self, host='', port=0, local_hostname=None, config=VDOM_config()):
+		self.tout = config.get_opt("SMTP-SENDMAIL-TIMEOUT")
 		if None == self.tout: self.tout = 30.0
 		self.tout = float(self.tout)
-		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
+		self.use_ssl = config.get_opt("SMTP-OVER-SSL")
 		if None == self.use_ssl: self.use_ssl = 0
 		SMTP.__init__(self, host = '', port = 0, local_hostname = None)
 
@@ -38,27 +38,29 @@ class VDOM_SMTP(SMTP):
 			self.file = SSLFakeFile(new_socket)
 		return new_socket
 
+
 class VDOM_email_manager(object):
 
-	def __init__(self):
+	def __init__(self, config=VDOM_config(), daemon=True):
 		self.__sem = VDOM_semaphore()
 		self.__queue = []
 		self.__errors = {}
 		self.__error = ""
 		self.__id = 0
+		self.__config = config
 		self.__load_config()
-		self.__daemon=VDOM_mailer(self)
-		self.__daemon.start()
+		if daemon:
+			self.__daemon = VDOM_mailer(self)
+			self.__daemon.start()
 
 	def __load_config(self):
-		cf = VDOM_config()
-		self.smtp_server = cf.get_opt("SMTP-SERVER-ADDRESS")
-		self.smtp_port = cf.get_opt("SMTP-SERVER-PORT")
-		self.smtp_user = cf.get_opt("SMTP-SERVER-USER")
-		self.smtp_pass = cf.get_opt("SMTP-SERVER-PASSWORD")
-		self.use_ssl = cf.get_opt("SMTP-OVER-SSL")
-		self.smtp_sender = cf.get_opt("SMTP-SERVER-SENDER")
-		if not self.smtp_server: 
+		self.smtp_server = self.__config.get_opt("SMTP-SERVER-ADDRESS")
+		self.smtp_port = self.__config.get_opt("SMTP-SERVER-PORT")
+		self.smtp_user = self.__config.get_opt("SMTP-SERVER-USER")
+		self.smtp_pass = self.__config.get_opt("SMTP-SERVER-PASSWORD")
+		self.use_ssl = self.__config.get_opt("SMTP-OVER-SSL")
+		self.smtp_sender = self.__config.get_opt("SMTP-SERVER-SENDER")
+		if not self.smtp_server:
 			self.smtp_server = "smtp.gmail.com"
 			if not self.smtp_port: self.smtp_port = 465
 			if not self.smtp_user: self.smtp_user = "Vdom.Server@gmail.com"
@@ -77,9 +79,10 @@ class VDOM_email_manager(object):
 		except:
 			self.smtp_port = 25
 
-	def send(self, fr, to=[], subj="", msg="", attach = [],ttl=50,reply="", headers = {}, no_multipart = False, content_type=[]):
+	def send(self, fr, to=[], subj="", msg="", attach=[], ttl=50, reply="", headers={}, no_multipart=False,
+			 content_type=[]):
 	#def send(self, *args, **kwargs):# attach item must be a tuple (data, filename, content_type, content_subtype)
-		self.__load_config()		
+		self.__load_config()
 		if not self.smtp_server:
 			return None
 		self.__sem.lock()
@@ -100,7 +103,8 @@ class VDOM_email_manager(object):
 				#	to = to.split(",")
 				sender = "%s <%s>"%(fr,sender)
 
-				m = {"from": sender, "to": to, "subj": subj, "msg" : msg, "attach": attach,"ttl":ttl,"headers":headers,"no_multipart":no_multipart}
+				m = {"from": sender, "to": to, "subj": subj, "msg": msg, "attach": attach,
+					 "ttl": ttl, "headers": headers, "no_multipart": no_multipart}
 				if reply:
 					m['reply'] = reply
 				if len(content_type) > 0:
@@ -130,9 +134,9 @@ class VDOM_email_manager(object):
 
 	def check_connection(self):
 		self.__sem.lock()
-		try:		
+		try:
 			self.__load_config()
-			s = VDOM_SMTP()
+			s = VDOM_SMTP(config=self.__config)
 			#connecting
 			s.connect(self.smtp_server, self.smtp_port)
 			self.__error = ""
@@ -141,15 +145,16 @@ class VDOM_email_manager(object):
 				s.login(self.smtp_user, self.smtp_pass)
 				self.__error = ""
 			s.quit()
-			del s		
+			del s
 		except (SMTPConnectError,SMTPHeloError,socket_error) as e: #Connect error
 			debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
 			self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
-			managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (str(e),self.smtp_server, self.smtp_port), "email")
+			managers.log_manager.error_server("SMTP connect error: %s on %s:%d" %
+											  (str(e),self.smtp_server, self.smtp_port), "email")
 		except SMTPAuthenticationError as e:
 			#debug("Authentication error: %s" % str(e))
 			self.__error = "SMTP Authentication error: %s" % str(e)
-			managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")		
+			managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")
 		except SMTPException, e:
 			self.__error = "General SMTP error: %s" % str(e)
 		except Exception, e:
@@ -207,7 +212,7 @@ class VDOM_email_manager(object):
 					self.__load_config()
 					if not self.smtp_server:
 						raise SMTPConnectError(0,"No server adress in config")
-					s = VDOM_SMTP()
+					s = VDOM_SMTP(config=self.__config)
 					#connecting
 					s.connect(self.smtp_server, self.smtp_port)
 					self.__error = ""
@@ -220,7 +225,7 @@ class VDOM_email_manager(object):
 					ts = 0.1
 					while len(self.__queue) > 0:
 						mes = self.__queue.pop(0)
-						
+
 						mes.ttl -= 1
 						#item["from"] = mes.from_email
 						#item["to"] = mes.to_email
@@ -279,7 +284,8 @@ class VDOM_email_manager(object):
 							self.__errors.pop(mes.id, 0)
 						except (SMTPRecipientsRefused,SMTPSenderRefused,SMTPDataError) as e:
 							debug("SMTP send to %s error: %s" % (mes.to_email, str(e)))
-							managers.log_manager.error_server("SMTP send to %s error: %s" % (mes.to_email, str(e)), "email")
+							managers.log_manager.error_server("SMTP send to %s error: %s" %
+															  (mes.to_email, str(e)), "email")
 							self.__errors[mes.id] = str(e)
 							# move this mail to the temp queue
 							if mes.ttl >0:
@@ -298,11 +304,11 @@ class VDOM_email_manager(object):
 					s.quit()
 					del s
 
-					
 				except (SMTPConnectError,SMTPHeloError,socket_error) as e: #Connect error
 					debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
 					self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
-					managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (str(e),self.smtp_server, self.smtp_port), "email")
+					managers.log_manager.error_server("SMTP connect error: %s on %s:%d" %
+													  (str(e),self.smtp_server, self.smtp_port), "email")
 					#del s
 					ts = 360
 				except SMTPAuthenticationError as e:
