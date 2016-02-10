@@ -3,6 +3,7 @@ import re
 import managers, utils.uuid
 from utils.exception import VDOM_mailserver_invalid_index
 from mailing.message import Message, MailAttachment
+from mailing.email1 import VDOM_email_manager
 from ... import errors
 from ...subtypes import binary, generic, string, integer, boolean, array, integer, error, v_mismatch, v_nothing, v_empty
 from ..scripting import v_vdomtype, v_vdomobject, v_vdomapplication
@@ -297,6 +298,79 @@ class v_mailconnection(generic):
 		return v_mismatch
 
 
+class SmtpSettings(object):
+
+	def __init__(self):
+		self.smtp_server_address = ""
+		self.smtp_server_port = 0
+		self.smtp_server_user = ""
+		self.smtp_server_password = ""
+		self.smtp_server_sender = ""
+		self.smtp_over_ssl = 0
+
+
+class v_smtpsettings(generic):
+
+	def __init__(self, smtp_settings=None):
+		generic.__init__(self)
+		self._value = smtp_settings or SmtpSettings()
+
+	def get_opt(self, name):
+		# e.g. SMTP-SERVER-ADDRESS -> smtp_server_address
+		attr_name = "_".join(name.lower().split("-"))
+		if hasattr(self._value, attr_name):
+			return str(getattr(self._value, attr_name))
+		return None
+
+	def v_server(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_server_address=keywords["let"].as_string
+		elif "set" in keywords:
+			raise errors.object_has_no_property("server")
+		else:
+			return string(self._value.smtp_server_address)
+
+	def v_port(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_server_port=keywords["let"].as_integer
+		elif "set" in keywords:
+			raise errors.object_has_no_property("port")
+		else:
+			return integer(self._value.smtp_server_port)
+
+	def v_user(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_server_user=keywords["let"].as_string
+		elif "set" in keywords:
+			raise errors.object_has_no_property("user")
+		else:
+			return string(self._value.smtp_server_user)
+
+	def v_password(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_server_password=keywords["let"].as_string
+		elif "set" in keywords:
+			raise errors.object_has_no_property("password")
+		else:
+			return string(self._value.smtp_server_password)
+
+	def v_sender(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_server_sender=keywords["let"].as_string
+		elif "set" in keywords:
+			raise errors.object_has_no_property("sender")
+		else:
+			return string(self._value.smtp_server_sender)
+
+	def v_ssl(self, **keywords):
+		if "let" in keywords:
+			self._value.smtp_over_ssl=keywords["let"].as_integer
+		elif "set" in keywords:
+			raise errors.object_has_no_property("ssl")
+		else:
+			return integer(self._value.smtp_over_ssl)
+
+
 class v_mailer(generic):
 
 	def v_connect(self, server, port, secure=None):
@@ -304,10 +378,22 @@ class v_mailer(generic):
 		client=VDOM_Pop3_client(server.as_string, port.as_integer,
 			secure=False if secure is None else secure.as_boolean)
 		return v_mailconnection(client)
-	
+
 	def v_send(self, message):
 		return integer(managers.email_manager.send(message.as_specific(v_mailmessage).value))
-		        
+
+	def v_send_via(self, message, smtp_settings):
+		settings = smtp_settings.as_specific(v_smtpsettings)
+		email_manager = VDOM_email_manager(config=settings, daemon=False)
+		msg_id = email_manager.send(message.as_specific(v_mailmessage).value)
+		if msg_id >= 0:
+			email_manager.work()
+			if email_manager.check(msg_id):
+				msg_id = -1
+		else:
+			msg_id = -1
+		return integer(msg_id)
+
 	def v_receive(self, server, port, login, password, secure=None, index=None, delete=None):
 		from mailing.pop import VDOM_Pop3_client
 		try:

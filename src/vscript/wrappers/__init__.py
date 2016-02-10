@@ -7,7 +7,8 @@ from .environment import v_mailconnection, v_mailattachment, v_mailmessage, \
 	v_mailserverclosedconnectionerror, v_mailservernomessageindexerror, \
 	v_mailserverclosedconnectionerror as v_mailserverclosedconnection,\
 	v_mailservernomessageindexerror as v_mailservernomessageindex, \
-	v_mailattachment as v_attachment, v_mailmessage as v_message
+	v_mailattachment as v_attachment, v_mailmessage as v_message, \
+	v_smtpsettings
 from .databases import v_vdomdbconnection, v_vdomdbrecordset, \
 	v_databaseerror, v_databasenotconnectederror, v_databasealreadyconnectederror, \
 	v_databasenotfounderror
