@@ -646,7 +646,7 @@ class VDOM_DynamicObject(VDOM_object):
             vdomactions = {}
 
         is_debug = self.debugmode == "1"
-        is_error = False
+        error_text = ""
         dynamic_contents = ""
 
         if self.vdomxml:
@@ -657,10 +657,10 @@ class VDOM_DynamicObject(VDOM_object):
                 if is_debug:
                     raise
 
-                is_error = True
+                error_text = u"Render error: {}".format(ex)
 
-        if is_error:
-            dynamic_contents = u"""<span class="render-error">{}</span>""".format(self.rendererrormsg)
+        if error_text:
+            dynamic_contents = u"""<span class="render-error">{}</span>""".format(self.rendererrormsg or error_text)
 
         if raw_content:
             return dynamic_contents
