@@ -87,7 +87,7 @@ class v_vdomobject(generic):
 		self._object.update(*(argument.as_string.lower() for argument in arguments))
 
 	def v_action(self, name, parameters=None, source=None):
-		parameters=() if parameters is None else tuple((parameter.as_string for parameter in parameters.as_array.items))
+		parameters=() if parameters is None else [parameter.as_string for parameter in parameters.as_array.items]
 		self._object.action(name.as_string, parameters, None if source is None else source.as_string)
 		
 
