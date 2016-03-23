@@ -480,9 +480,9 @@ function vdom_ui_timerStartOnce(ob, interval)
 	if (typeof obj === 'undefined') return;
 	if (interval == undefined) return;/*interval = 500;*/
 	$q(obj).stopTime();
-	obj.timerfreeze = 0;
 	$q(obj).oneTime(interval, function(i){
-		if (parseInt(obj.timerfreeze,10) == 0) {
+        eval("var freeze = window.timer_" + ob + "_freeze;");
+		if (freeze == undefined || parseInt(freeze, 10) == 0) {
 			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
 /*
 			var vdomEvent = new VDOM_Event();
@@ -499,13 +499,29 @@ function vdom_ui_timerStart2(ob, interval)
 	eval("var obj = Obj_" + ob.substring(2, ob.length) + ";");
 	if (typeof obj === 'undefined') return;
 	if (interval == undefined) return;/*interval = 500;*/
-	$q(obj).stopTime();
-	obj.timerfreeze = 0;
-	$q(obj).everyTime(interval, function(i){
-		if (parseInt(obj.timerfreeze,10) == 0) {
-			execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
-		}
-	});
+    eval("var timer_id = window.timer_" + ob + ";");
+    if (timer_id != undefined) {
+        clearInterval(timer_id);
+    }
+    timer_id = setInterval(
+        function(i){
+            eval("var freeze = window.timer_" + ob + "_freeze;");
+            if (freeze == undefined || parseInt(freeze, 10) == 0) {
+                execEventBinded(ob.substring(2, ob.length), 'timechange', {count: i});
+            }
+        }, interval)
+    eval("window.timer_" + ob + "=timer_id;");
+}
+function vdom_ui_timerStop(ob)
+{
+    eval("var timer_id = window.timer_" + ob + ";");
+    if (timer_id == undefined) return;
+    clearInterval(timer_id);
+    eval("window.timer_" + ob + "=null;");
+}
+function vdom_ui_timerFreeze(ob, freeze)
+{
+    eval("window.timer_" + ob + "_freeze=freeze;");
 }
 </script>
     ]]></Library>
@@ -527,7 +543,7 @@ function vdom_ui_timerStart2(ob, interval)
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="freeze" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-vdom_ui_timerFreeze(this, freeze);
+vdom_ui_timerFreeze(this.domCont.id, freeze);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="setInterval">
@@ -535,7 +551,7 @@ vdom_ui_timerFreeze(this, freeze);
             <Parameter DefaultValue="500" Interface="" InterfaceName="#Lang(702)" ScriptName="interval" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-vdom_ui_timerSetInterval(this, interval);
+vdom_ui_timerStart2(this.domCont.id, interval);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="start">
@@ -557,7 +573,7 @@ vdom_ui_timerStartOnce(this.domCont.id, interval);
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="stop">
           <Parameters/>
           <SourceCode><![CDATA[
-vdom_ui_timerStop(this);
+vdom_ui_timerStop(this.domCont.id);
 ]]></SourceCode>
         </Action>
       </Container>
