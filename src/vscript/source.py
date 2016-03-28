@@ -1051,6 +1051,14 @@ class vprocedure(vstatement):
 		self.default=default
 		self.cachenames={}
 		self.statements.insert(0, vdefinename(self.name))
+		self.precede=[]
+
+	def insert(self, *lines):
+		for line in lines:
+			if isinstance(line, basestring):
+				self.precede.append((None, None, line))
+			else:
+				self.precede.append(line)
 
 	def collect_names(self, names):
 		vstatement.collect_names(self, names)
@@ -1071,6 +1079,8 @@ class vprocedure(vstatement):
 
 	def compose(self, ident, precede=None):
 		contents=[(self.line, ident, u"def %s(%s):"%(self.vname, self.arguments))]
+		for local_line, local_ident, local_string in self.precede:
+			contents.append((local_line or self.line, ident+1+(local_ident or 0), local_string))
 		initialization=[(self.line, ident+1, self.arguments.initialization),
 			(self.line, ident+1, self.globals.initialization)]
 		if precede:
@@ -1283,7 +1293,8 @@ class vclass(vstatement):
 				statements.join(vcall(vexpression(u"self.%s()"%vscript_constructor, line=self.line), line=self.line))
 			else:
 				arguments=varguments()
-			self.statements.insert(0, vsub(python_constructor, arguments, statements, line=self.line))
+			self.native=vsub(python_constructor, arguments, statements, line=self.line)
+			self.statements.insert(0, self.native)
 		for procedure in [statement for statement in self.statements if isinstance(statement, vprocedure)]:
 			procedure.arguments.insert(0, (u"self", None))
 
@@ -1294,6 +1305,8 @@ class vclass(vstatement):
 
 	def scope_names(self, mysource, myclass, myprocedure):
 		self.statements.scope_names(mysource, self, myprocedure)
+		if self.inherits:
+			self.native.insert("super(%s, self).__init__()"%self.name)
 
 	def compose(self, ident):
 		contents=[(self.line, ident, u"class %s(%s):"%(self.name, self.inherits or "generic"))]
