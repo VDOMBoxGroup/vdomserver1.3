@@ -27,7 +27,11 @@ def wrap(value):
 
 def vscript_parse_object(*arguments):
 	subject, position=JSONObject(*arguments)
+	# TODO: Remove this after upgrade to Python 2.7.11
+	if isinstance(subject, list):
+		subject = {}
 	return dictionary({string(key): wrap(value) for key, value in subject.iteritems()}), position
+
 
 def vscript_parse_array(*arguments):
 	subject, position=JSONArray(*arguments)
