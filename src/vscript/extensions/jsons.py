@@ -51,12 +51,12 @@ class VScriptJSONEncoder(JSONEncoder):
 	def default(self, value):
 		def unknown(value):
 			raise errors.system_error, u"Unexpected %s object"%value.__class__.__name__
+		dd = lambda value: {key.as_string: value for key, value in value.items.iteritems()}
 		return {
 			array: lambda value: value.items,
 			boolean: lambda value: value.value,
 			date: lambda value: unicode(value),
-			dictionary: lambda value: {key.as_string: value \
-				for key, value in value.items.iteritems()},
+			dictionary: dd,
 			double: lambda value: value.value,
 			empty: lambda value: value.name,
 			error: lambda value: value.name,
@@ -65,7 +65,7 @@ class VScriptJSONEncoder(JSONEncoder):
 			mismatch: lambda value: unicode(value),
 			nothing: lambda value: value.name,
 			null: lambda value: v_null,
-			string: lambda value: value.value} \
+			string: lambda value: value.value}\
 				.get(type(value), unknown)(value)
 
 
