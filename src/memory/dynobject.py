@@ -91,7 +91,8 @@ class DummyObject(object):
         self.objects_list.append(child)
         self.objects[child.id] = child
         self.types[child.type.id] = child.type
-        
+        child.parent = self
+
     def regenerate_uuid(self, recursive=False):
         """
         Create new guids, if needed - recursively
