@@ -1913,13 +1913,13 @@ $("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected", idlist, start, le
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="selectAll">
           <Parameters/>
           <SourceCode><![CDATA[
-$("#" + this.domCont.id).dynamicObjectView("markAsSelected");
+$("#" + this.domCont.id).dynamicObjectView("markAsSelected", undefined, undefined, undefined, true);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="selectNone">
           <Parameters/>
           <SourceCode><![CDATA[
-$("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected");
+$("#" + this.domCont.id).dynamicObjectView("unmarkAsSelected", undefined, undefined, undefined, true);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="insertAtBeginning">
