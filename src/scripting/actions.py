@@ -34,7 +34,7 @@ class python_action(generic_action):
 
 	def compile(self):
 		generic_action.compile(self)
-		debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%self.source)
+		#debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%self.source)
 		self.code=compile(self.source, "action: %s:%s"%(self.id, self.name), u"exec")
 
 	def on_execute(self, object, namespace):

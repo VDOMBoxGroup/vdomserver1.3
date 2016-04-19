@@ -101,8 +101,11 @@ class VDOM_module_manager(object):
 			#request_object.container_id = container_id
 			#debug("Container id: " + container_id)
 
+			#managers.xml_manager.load_apps()
 			# get container object and check if it can be a top level container
-			_a = managers.xml_manager.get_application(request_object.app_id())
+			app_id = request_object.app_id()
+			managers.xml_manager.load_application_by_guid(app_id)					
+			_a = managers.xml_manager.get_application(app_id)			
 			obj = _a.search_object(container_id)
 			if not obj:
 				for _i in _a.objects:

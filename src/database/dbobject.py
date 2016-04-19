@@ -19,7 +19,7 @@ class VDOM_database_object:
 		self.owner_id = owner_id
 		self.id = id
 		self.name = str(id)
-		self.filename = str(utils.uuid.uuid4())
+		self.filename = str(id)#str(utils.uuid.uuid4())
 		self.is_ready = False
 		self.tables_list = None
 		self.tables_index = {}

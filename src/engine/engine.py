@@ -99,7 +99,7 @@ class VDOM_engine:
 				language=application.scripting_language
 				#if action.lang=="python":
 				if language=="python":
-					debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%action.code)
+					#debug("- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%action.code)
 					# namespace={"request": request, "self": None, "__package__": application.id }
 					namespace={"server": scripting.server, "application": scripting.application, "log": scripting.log, 
 						"session": scripting.session, "request": scripting.request, "response": scripting.response,

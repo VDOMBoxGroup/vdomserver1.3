@@ -106,7 +106,10 @@ class VDOM_watcher(VDOM_thread):
 	def __init__(self):
 		VDOM_thread.__init__(self, name="Watcher")
 		self._address=VDOM_CONFIG["SERVER-ADDRESS"]
-		self._port=VDOM_CONFIG["WATCHER-PORT"]
+		self._port=VDOM_CONFIG["WATCHER-PORT"]		
+		if not VDOM_CONFIG["WATCHER-PORT"]:
+			self.stop()
+			return
 		self._socket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self._socket.bind((self._address, self._port))
 		self._session_socket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)

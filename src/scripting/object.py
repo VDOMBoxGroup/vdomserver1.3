@@ -237,11 +237,11 @@ class VDOM_object(object):
 			return result
 
 	def wysiwyg(self, parent, contents=""):
-		debug("[Object] Wysiwyg %s contents:\n- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%(self.__id, contents))
+		#debug("[Object] Wysiwyg %s contents:\n- - - - - - - - - - - - - - - - - - - -\n%s\n- - - - - - - - - - - - - - - - - - - -"%(self.__id, contents))
 		return contents
 
 	def write(self, data):
-		debug("[Object] Write data to client %s"%data)
+		#debug("[Object] Write data to client %s"%data)
 		self.stage=stage_action
 		obsolete_request.add_client_action(self.__id, data)
 
