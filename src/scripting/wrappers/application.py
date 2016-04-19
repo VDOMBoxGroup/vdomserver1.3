@@ -243,7 +243,7 @@ class VDOM_databases(object):
 			obj_name, obj_id = application_memmory.create_object(DBSCHEMA_ID,do_compute=False)
 			obj = application_memmory.search_object(obj_id)
 			obj.set_name(db_name)
-			obj.set_attributes({"title": title, "description": description}, do_)
+			obj.set_attributes({"title": title, "description": description}, do_compute=False)
 			
 		database = managers.database_manager.get_database_by_name(application.id, db_name)
 		if not database:		
