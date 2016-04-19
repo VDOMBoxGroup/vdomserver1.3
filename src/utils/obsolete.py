@@ -1,5 +1,5 @@
 
-import __builtin__, sys, os,  time, thread, socket, shutil, stat
+import __builtin__, sys, os,  time, thread, socket, shutil, stat,json
 
 from config import VDOM_CONFIG, VDOM_CONFIG_1
 __builtin__.VDOM_CONFIG = VDOM_CONFIG
@@ -31,6 +31,13 @@ if sys.argv:
 					if config.has_option("VdomConfig", key):
 						if type(VDOM_CONFIG[key]) is int:
 							VDOM_CONFIG[key] = config.getint("VdomConfig", key)
+						elif type(VDOM_CONFIG[key]) is float:
+							VDOM_CONFIG[key] = config.getfloat("VdomConfig", key)
+						elif type(VDOM_CONFIG[key]) is dict:
+							try:
+								VDOM_CONFIG[key] = json.loads(config.get("VdomConfig", key))
+							except Exception as e:
+								print "Error loading config key %s:%s"%(key,e)
 						else:
 							VDOM_CONFIG[key] = config.get("VdomConfig", key)
 					

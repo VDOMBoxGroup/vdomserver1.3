@@ -167,6 +167,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			self.wsgidav_app = None
 			if app_id:
 				try:
+					managers.xml_manager.load_application_by_guid(app_id)					
 					appl = managers.xml_manager.get_application(app_id)
 					self.wsgidav_app = getattr(appl, 'wsgidav_app', None)
 				except VDOM_exception_missing_app as e:

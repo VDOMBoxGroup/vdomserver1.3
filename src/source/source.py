@@ -83,31 +83,31 @@ class VDOM_source(object):
 		""" Compile common source code """
 		source=self.__combine_modules()+self.__combine_sources()
 		source+="%s=%s(%s)\n"%(self.name, self.class_name, repr(self.id))
-		debug("[Source] Compile %s common code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+		#debug("[Source] Compile %s common code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 		self.__common_code=compile(source, "common code: %s:%s"%(self.id, self.action_name), "exec")
 
 	def __compile_compute(self):
 		""" Compile compute source code """
 		source="%s.recompute()\nresult=None\ndel %s\n"%(self.name, self.name)
-		debug("[Source] Compile %s compute code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+		#debug("[Source] Compile %s compute code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 		self.__compute_code=compile(source, "compute code: %s:%s"%(self.id, self.action_name), "exec")
 
 	def __compile_render(self):
 		""" Compile render source code """
 		source="%s.execute(action_name, context)\nresult=%s.render(parent)\ndel %s\n"%(self.name, self.name, self.name)
-		debug("[Source] Compile %s render code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+		#debug("[Source] Compile %s render code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 		self.__render_code=compile(source, "render code: %s:%s"%(self.id, self.action_name), "exec")
 
 	def __compile_wysiwyg(self):
 		""" Compile wysiwyg source code """
 		source="result=%s.wysiwyg(parent)\ndel %s\n"%(self.name, self.name)
-		debug("[Source] Compile %s wysiwyg code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+		#debug("[Source] Compile %s wysiwyg code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 		self.__wysiwyg_code=compile(source, "wysiwyg code: %s:%s"%(self.id, self.action_name), "exec")
 
 	def __compile_execute(self):
 		""" Compile execute source code """
 		source="%s.execute(action_name, context)\nresult=%s.render_separate(parent) if silent is None else None\ndel %s\n"%(self.name, self.name, self.name)
-		debug("[Source] Compile %s execute code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+		#debug("[Source] Compile %s execute code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 		self.__execute_code=compile(source, "execute code: %s:%s"%(self.id, self.action_name), "exec")
 
 	def __execute_compute(self, arguments):
@@ -123,13 +123,13 @@ class VDOM_source(object):
 					if override[attribute]:
 						source+="%s.%s=%s\n"%(self.name, attribute, repr(override[attribute]))
 				if source:
-					debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+					#debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 					code=compile(source, "compute override code: %s:%s"%(self.id, self.action_name), "exec")
 					exec code in namespace
 			include=arguments.get("include", None)
 			if include:
 				source=include
-				debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+				#debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 				code=compile(source, "compute include code: %s:%s"%(self.id, self.action_name), "exec")
 				exec code in namespace
 		exec self.__compute_code in namespace
@@ -146,13 +146,13 @@ class VDOM_source(object):
 					if override[attribute]:
 						source+="%s.override(\"%s\", %s)\n"%(self.name, attribute, repr(override[attribute]))
 				if source:
-					debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+					#debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 					code=compile(source, "render override code: %s:%s"%(self.id, self.action_name), "exec")
 					exec code in namespace
 			include=arguments.get("include", None)
 			if include:
 				source=include
-				debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+				#debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 				code=compile(source, "render include code: %s:%s"%(self.id, self.action_name), "exec")
 				exec code in namespace
 		exec self.__render_code in namespace
@@ -169,13 +169,13 @@ class VDOM_source(object):
 					if override[attribute]:
 						source+="%s.%s=%s\n"%(self.name, attribute, repr(override[attribute]))
 				if source:
-					debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+					#debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 					code=compile(source, "wysiwyg override code: %s:%s"%(self.id, self.action_name), "exec")
 					exec code in namespace
 			include=arguments.get("include", None)
 			if include:
 				source=include
-				debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+				#debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 				code=compile(source, "wysiwyg include code: %s:%s"%(self.id, self.action_name), "exec")
 				exec code in namespace
 		exec self.__wysiwyg_code in namespace
@@ -192,13 +192,13 @@ class VDOM_source(object):
 					if override[attribute]:
 						source+="%s.override(\"%s\", %s)\n"%(self.name, attribute, repr(override[attribute]))
 				if source:
-					debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+					#debug("[Source] Override %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 					code=compile(source, "execute override code: %s:%s"%(self.id, self.action_name), "exec")
 					exec code in namespace
 			include=arguments.get("include", None)
 			if include:
 				source=include
-				debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
+				#debug("[Source] Include %s code:\n- - - - - - - - - - - - - - - - - - - -\n%s- - - - - - - - - - - - - - - - - - - -"%(self.id, string.replace(source, "\t", "    ")))
 				code=compile(source, "execute include code: %s:%s"%(self.id, self.action_name), "exec")
 				exec code in namespace
 		exec self.__execute_code in namespace

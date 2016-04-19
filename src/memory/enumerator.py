@@ -36,14 +36,14 @@ class VDOM_type_enumerator(VDOM_enumerator):
 class VDOM_application_enumerator(VDOM_enumerator):
 	"""application enumerator class"""
 
-	def get(self):
+	def get(self,loaded_apps = []):
 		"""get application files list"""
 		try:
 			directory = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], application_path)
 			r1 = os.listdir(directory)
 			r2 = []
 			for item in r1:
-				if -1 == item.find("."):
+				if -1 == item.find(".") and item not in loaded_apps:
 					directory2 = os.path.join(directory, item, "app.xml")
 					r2.append(directory2)
 			return r2

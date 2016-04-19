@@ -33,7 +33,9 @@ class VDOM_xml_manager(object):
 		# sync semaphores
 		self.__sem = VDOM_semaphore()
 		self.__app_sem = VDOM_semaphore()
-
+		self.__load_app_sem = VDOM_semaphore()
+		
+		
 		# clear resources and source code
 		id_list = managers.storage.read_object(VDOM_CONFIG["XML-MANAGER-APP-STORAGE-RECORD"])
 		if id_list:
@@ -72,7 +74,24 @@ class VDOM_xml_manager(object):
 		send_to_card("booting 60")
 		set_server_state("60")
 		# list files in app directory and load applications from files
-		apps = VDOM_application_enumerator().get()
+		
+		if not VDOM_CONFIG["LAZY-MODE"]:
+			self.load_apps()
+
+		self.__sync_type()
+		self.__sync_app()
+		# remove unused resources
+		managers.resource_manager.collect_unused()
+		managers.resource_manager.save_index_on(True)
+
+		self.__daemon=VDOM_xml_synchronizer(self)
+		self.__daemon.start()
+		send_to_card("booting 100")
+		set_loaded_applications(self.__applications)
+		set_server_state("100")
+
+	def load_apps(self):
+		apps = VDOM_application_enumerator().get(self.get_applications())
 		apps_count = len(apps)
 		for counter in xrange(apps_count):
 			fname = apps[counter]
@@ -96,21 +115,29 @@ class VDOM_xml_manager(object):
 				sys.stderr.write(_("Error loading application \'") + str(fname) + "\': " + str(e) + "\n")
 				traceback.print_exc(file=debugfile)
 				if VDOM_CONFIG["AUTO-REMOVE-INCORRECT-APPLICATIONS"]:
-					shutil.rmtree(os.path.split(fname)[0], True)
-
-		self.__sync_type()
-		self.__sync_app()
-		# remove unused resources
-		managers.resource_manager.collect_unused()
-		managers.resource_manager.save_index_on(True)
-
-		self.__daemon=VDOM_xml_synchronizer(self)
-		self.__daemon.start()
-		send_to_card("booting 100")
-		set_loaded_applications(self.__applications)
-		set_server_state("100")
-
-
+					shutil.rmtree(os.path.split(fname)[0], True)		
+					
+	def load_application_by_guid(self, guid):
+		if guid in self.__applications:
+			return
+		apppath = os.path.join(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"], application_path,guid, "app.xml")
+		if not os.path.isfile(apppath):
+			return False
+		self.__load_app_sem.lock()
+		try:
+			(result, app_object) = self.load_application(apppath, boot = True)
+			sys.stderr.write(_("Loaded application \'") + str(app_object.id) + "\'\n")
+		except VDOM_exception_missing_type, t:
+			sys.stderr.write(_("Error loading application \'") + str(apppath) + "\': Missing type " + str(t) + "\n")
+		except VDOM_exception_lic, s:
+			sys.stderr.write(_("Error loading application \'") + str(apppath) + "\': " + str(s) + "\n")
+		except Exception, e:
+			sys.stderr.write(_("Error loading application \'") + str(apppath) + "\': " + str(e) + "\n")
+			traceback.print_exc(file=debugfile)
+			if VDOM_CONFIG["AUTO-REMOVE-INCORRECT-APPLICATIONS"]:
+				shutil.rmtree(os.path.split(apppath)[0], True)		
+		finally:
+			self.__load_app_sem.unlock()			
 	def work(self):
 		if len(self.__app_to_sync) > 0:
 			#debug("APP SEM LOCK")

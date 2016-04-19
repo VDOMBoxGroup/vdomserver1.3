@@ -11,10 +11,14 @@ class VDOM_local_server_thread(VDOM_thread):
 	def __init__(self):
 		VDOM_thread.__init__(self, name="Local Server")
 		port=VDOM_CONFIG["SERVER-LOCALHOST-PORT"]
+		if port == 0:
+			self.stop()
+			return
 		self.__local_socket=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.__local_socket.bind(('localhost', port))
 		local_server.send_to_card("online")
 		sys.stderr.write("Listening on localhost: %d\n"%port)
+			
 
 	def handle_specific_request(self, command):
 		try:

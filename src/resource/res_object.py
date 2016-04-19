@@ -67,7 +67,7 @@ class VDOM_resource_descriptor(object):
 		if fn:
 			return fn
 		else:
-			self.__filename = str(utils.uuid.uuid4())
+			self.__filename = str(self.id)#str(utils.uuid.uuid4())
 			return self.__filename
 
 	def __set_filename(self, value):
