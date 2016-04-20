@@ -70,7 +70,8 @@ class VDOM_xml_manager(object):
 			except Exception, e:
 				sys.stderr.write(_("Error loading type \'") + str(fname) + "\': " + str(e) + "\n")
 				traceback.print_exc(file=debugfile)
-		wait_for_options()
+		if not VDOM_CONFIG["PRELICENSE"]:		
+			wait_for_options()
 		send_to_card("booting 60")
 		set_server_state("60")
 		# list files in app directory and load applications from files
