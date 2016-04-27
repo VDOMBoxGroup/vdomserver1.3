@@ -60,9 +60,16 @@ class VDOM_session_manager(dict):
 			if dict.__contains__(self, key):
 				s = dict.__getitem__(self, key)
 				if s.is_expired(self.__timeout):
-					s.context = {}
-					s.clean_files()
-					dict.__delitem__(self, key)
+					# execute session onfinish action
+					try:
+						if s.context["application_id"]:
+							_a = managers.xml_manager.get_application(s.context["application_id"])
+							if _a.global_actions["session"]["sessiononfinish"].code:
+								managers.engine.special(_a, _a.global_actions["session"]["sessiononfinish"])					
+					finally:
+						s.context = {}
+						s.clean_files()
+						dict.__delitem__(self, key)
 				else:
 					return s
 			return None
