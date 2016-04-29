@@ -27,7 +27,7 @@ if sys.argv:
 			basepath = sys.argv[i+1]
 		if sys.argv[i] == "-c" and i+1<len (sys.argv):
 			if os.path.isfile(sys.argv[i+1]):
-				pathoptions = ("FILE-ACCESS-DIRECTORY","XML-MANAGER-DIRECTORY","APPLICATION-XML-TEMPLATE","SOURCE-MODULES-DIRECTORY","WSDL-FILE-LOCATION","TYPES-LOCATION","STORAGE-DIRECTORY","TEMP-DIRECTORY","BACKUP-DIRECTORY","SHARE-DIRECTORY","LIB-DIRECTORY","LOG-DIRECTORY")
+				pathoptions = ("FILE-ACCESS-DIRECTORY","XML-MANAGER-DIRECTORY","APPLICATION-XML-TEMPLATE","SOURCE-MODULES-DIRECTORY","WSDL-FILE-LOCATION","TYPES-LOCATION","STORAGE-DIRECTORY","TEMP-DIRECTORY","BACKUP-DIRECTORY","SHARE-DIRECTORY","LIB-DIRECTORY","LOG-DIRECTORY","SERVER-INFORMATION-DIRECTORY")
 				import ConfigParser
 				config = ConfigParser.SafeConfigParser()
 				config.read(sys.argv[i+1])
@@ -180,10 +180,14 @@ except: pass
 try: os.makedirs(VDOM_CONFIG["TEMP-DIRECTORY"])
 except: pass
 
+socketenabled = True
 # change directory access rights
-
-os.chmod(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket", stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
-
+try:
+	os.chmod(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket", stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+except:
+	socketenabled = False
+	try: os.rmdir(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket")
+	except: pass	
 # enforce lib module
 
 f = open(os.path.join(VDOM_CONFIG["STORAGE-DIRECTORY"], "lib", "__init__.py"), "wt")
