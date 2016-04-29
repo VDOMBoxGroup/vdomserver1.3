@@ -164,6 +164,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			vh = managers.virtual_hosts
 			
 			app_id = (vh.get_site(host.lower()) if host else None) or vh.get_def_site()
+			if not app_id:
+				managers.xml_manager.load_apps()	
 			self.wsgidav_app = None
 			if app_id:
 				try:
