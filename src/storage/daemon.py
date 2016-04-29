@@ -13,11 +13,12 @@ class VDOM_storage_writer(VDOM_daemon):
 
 	def prepare(self):
 		sys.stderr.write("Start %s\n"%self.name)
-		self.__connection,  self.__cursor=self.__manager.prepare()
+		#self.__connection,  self.__cursor=self.__manager.prepare()
 
 	def cleanup(self):
 		sys.stderr.write("Stop %s\n"%self.name)
-		self.__manager.work(self.__connection, self.__cursor)
+		#self.__manager.work(self.__connection, self.__cursor)
 
 	def work(self):
-		self.__manager.work(self.__connection, self.__cursor)
+		__connection,  __cursor=self.__manager.prepare()
+		self.__manager.work(__connection,  __cursor)
