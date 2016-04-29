@@ -29,7 +29,7 @@ class VDOM_session_manager(dict):
 	def work(self):
 		"""clean thread function"""
 		self.check_sessions()
-		return max(3600, self.__timeout)
+		return min(120, self.__timeout)
 
 	def create_session(self):
 		"""create session & return it`s id"""

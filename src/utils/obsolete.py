@@ -11,8 +11,9 @@ from utils.system import console_debug
 # install debug and licensing
 
 #overriding server ports
-print ("Server run params: vdomsvr.py -p SERVER-PORT LOCAL-PORT CARD-PORT LOGGER-PORT -c vdom.cfg")
+print ("Server run params: vdomsvr.py -p SERVER-PORT LOCAL-PORT CARD-PORT LOGGER-PORT -b BASE-PATH -c vdom.cfg")
 if sys.argv:
+	basepath = ""
 	for i in range(len(sys.argv)):
 		if sys.argv[i] == "-p" and i+1<len (sys.argv):
 			portlist = sys.argv[i+1:]
@@ -22,11 +23,16 @@ if sys.argv:
 					break
 				VDOM_CONFIG[confkeys[j]] = int(portlist[j])
 			break
+		if sys.argv[i] == "-b" and i+1<len (sys.argv):
+			basepath = sys.argv[i+1]
 		if sys.argv[i] == "-c" and i+1<len (sys.argv):
 			if os.path.isfile(sys.argv[i+1]):
+				pathoptions = ("FILE-ACCESS-DIRECTORY","XML-MANAGER-DIRECTORY","APPLICATION-XML-TEMPLATE","SOURCE-MODULES-DIRECTORY","WSDL-FILE-LOCATION","TYPES-LOCATION","STORAGE-DIRECTORY","TEMP-DIRECTORY","BACKUP-DIRECTORY","SHARE-DIRECTORY","LIB-DIRECTORY","LOG-DIRECTORY")
 				import ConfigParser
 				config = ConfigParser.SafeConfigParser()
 				config.read(sys.argv[i+1])
+				if not basepath and config.has_option("VdomConfig", "BASE-PATH"):
+					basepath = config.get("VdomConfig", "BASE-PATH")
 				for key in VDOM_CONFIG:
 					if config.has_option("VdomConfig", key):
 						if type(VDOM_CONFIG[key]) is int:
@@ -39,7 +45,10 @@ if sys.argv:
 							except Exception as e:
 								print "Error loading config key %s:%s"%(key,e)
 						else:
-							VDOM_CONFIG[key] = config.get("VdomConfig", key)
+							val = config.get("VdomConfig", key)
+							if key in pathoptions and (val[0:2]=="./" or val[0:3]=="../"):
+								val = os.path.normpath(os.path.join(basepath,val))
+							VDOM_CONFIG[key] = val
 					
 
 

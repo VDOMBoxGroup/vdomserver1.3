@@ -1,8 +1,5 @@
 import sys, socket, json
 
-
-
-
 LINUX = sys.platform.startswith("linux")
 FREEBSD = sys.platform.startswith("frebsd")
 WIN = sys.platform.startswith("win")
