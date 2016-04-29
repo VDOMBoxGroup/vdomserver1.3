@@ -50,6 +50,7 @@ class VDOM_server(VDOM_singleton):
 		self.__running=False
 
 	def terminate(self,signum=None, frame=None):
+		print "Catch SIGTERM. Server termination in process"
 		self.stop()
 
 	def notify(self, condition):
