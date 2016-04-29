@@ -118,9 +118,12 @@ class VDOM_storage(object):
 					item = self.__queue.pop(0)
 					self.__internal_write(item[0], item[1], cursor)
 				connection.commit()
+			except Exception as e:
+				debug("Work error")
+				debug(str(e))
+				traceback.print_exc(file=debugfile)
 			finally:
 				self.__sem.unlock()
-
 
 	def read(self, key):
 		"""read data from storage"""
