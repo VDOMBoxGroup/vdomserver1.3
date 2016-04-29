@@ -22,19 +22,20 @@ try:
 except:
 	pass
 def console_debug(data):
-	l = os.listdir(direct)
-	for item in l:
-		p = os.path.join(direct, item)
-		err = False
-		try:
-			s.sendto(data, p)
-		except:
-			err = True
-		if err:
+	if os.path.exists(direct):
+		l = os.listdir(direct)
+		for item in l:
+			p = os.path.join(direct, item)
+			err = False
 			try:
-				os.remove(p)
+				s.sendto(data, p)
 			except:
-				pass
+				err = True
+			if err:
+				try:
+					os.remove(p)
+				except:
+					pass
 	try:
 		sess = managers.request_manager.get_request().session()
 		d = sess.value("debug_data")
