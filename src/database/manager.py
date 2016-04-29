@@ -21,14 +21,14 @@ class VDOM_database_manager(object):
 	def restore(self):	
 		"""Restoring databases from last session.(After reboot or power off)"""
 		self.__index = managers.storage.read_object(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"])
-		#if self.__index:
-			#remove_list = []
-			#is_dirty_index = False
-			#for id in self.__index: #check for not existing or temporary resources
-				#database = self.__index[id]
+		if self.__index:
+			remove_list = []
+			is_dirty_index = False
+			for id in self.__index: #check for not existing or temporary resources
+				database = self.__index[id]
 				#database.set_wal_mode()
-				#if managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
-					#self.__database_by_name[(database.owner_id,database.name)] = database
+				if managers.file_manager.exists(file_access.database,database.owner_id,None, database.filename):
+					self.__database_by_name[(database.owner_id,database.name)] = database
 				#else:
 					#remove_list.append(id)
 
