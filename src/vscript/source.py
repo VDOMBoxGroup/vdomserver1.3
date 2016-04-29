@@ -1253,6 +1253,7 @@ class vclass(vstatement):
 		self.statements=statements
 		self.inherits=None
 		self.parent=None
+		self.native=None
 
 	def collect_names(self, names):
 		vstatement.collect_names(self, names)
@@ -1305,7 +1306,7 @@ class vclass(vstatement):
 
 	def scope_names(self, mysource, myclass, myprocedure):
 		self.statements.scope_names(mysource, self, myprocedure)
-		if self.inherits:
+		if self.inherits and self.native:
 			self.native.insert("super(%s, self).__init__()"%self.name)
 
 	def compose(self, ident):
