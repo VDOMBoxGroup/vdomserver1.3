@@ -45,7 +45,10 @@ class v_problem(generic):
 				values=(unknown.value,)
 		else:
 			values=tuple(value.value for value in values)
-		self._problem.addVariable(name, values)
+		try:
+			self._problem.addVariable(name, values)
+		except Exception as error:
+			raise errors.internal_error(str(error))
 		self._iterator=None
 		return v_mismatch
 
@@ -57,11 +60,14 @@ class v_problem(generic):
 		else:
 			names=tuple(name.as_string for name in arguments[:-1])
 		values=tuple(value.value for value in arguments[-1].as_array.items)
-		self._problem.addVariables(names, values)
+		try:
+			self._problem.addVariables(names, values)
+		except Exception as error:
+			raise errors.internal_error(str(error))
 		self._iterator=None
 		return v_mismatch
-
-	def v_addconstraint(self, klass, name):
+		
+	def v_addconstraint(self, klass, name, *names):
 		instance=self._instances[klass]
 		constraint=getattr(instance, "v_%s"%name.as_string)
 		if not isinstance(constraint, MethodType):
@@ -69,12 +75,21 @@ class v_problem(generic):
 		code=constraint.__func__.__code__
 		if code.co_argcount<2:
 			raise errors.generic("Constraint function must have at least one argument")
-		variables=tuple(name[2:] for name in code.co_varnames[1:code.co_argcount])
+		if names:
+			if len(names) != code.co_argcount - 1:
+				raise errors.generic("Constraint function takes exactly %d arguments: %d given" %
+					(code.co_argcount - 1, len(names)))
+			variables=tuple(name.value for name in names)
+		else:
+			variables=tuple(name[2:] for name in code.co_varnames[1:code.co_argcount])
 		def wrapper(*arguments):
 			arguments=(pack(argument) for argument in arguments)
 			result=constraint(*arguments)
 			return result.as_boolean
-		self._problem.addConstraint(wrapper, variables)
+		try:
+			self._problem.addConstraint(wrapper, variables)
+		except Exception as error:
+			raise errors.internal_error(str(error))
 		self._iterator=None
 		return v_mismatch
 
@@ -86,7 +101,16 @@ class v_problem(generic):
 		return v_mismatch
 
 	def v_again(self):
-		self._iterator=self._problem.getSolutionIter()
+		try:
+			self._iterator=self._problem.getSolutionIter()
+		except KeyError as error:
+			message = str(error)
+			if message and message[0] == "'":
+				raise errors.generic(u"Possible variable is not defined: %s" % message.replace("'", "\""))
+			else:
+				raise errors.internal_error(message)
+		except Exception as error:
+			raise errors.internal_error(str(error))
 		return v_mismatch
 
 	def v_solve(self):
@@ -96,6 +120,8 @@ class v_problem(generic):
 			solution=self._iterator.next()
 		except StopIteration:
 			self._solution=v_empty
+		except Exception as error:
+			raise errors.internal_error(str(error))
 		else:
 			self._solution=dictionary({string(unicode(key)): pack(value) \
 				for key, value in solution.iteritems()})
