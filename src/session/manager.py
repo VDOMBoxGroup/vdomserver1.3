@@ -62,7 +62,7 @@ class VDOM_session_manager(dict):
 				if s.is_expired(self.__timeout):
 					# execute session onfinish action
 					try:
-						if s.context["application_id"]:
+						if "application_id" in s.context and s.context["application_id"]:
 							_a = managers.xml_manager.get_application(s.context["application_id"])
 							if _a.global_actions["session"]["sessiononfinish"].code:
 								managers.engine.special(_a, _a.global_actions["session"]["sessiononfinish"])					
