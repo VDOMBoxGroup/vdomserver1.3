@@ -38,8 +38,8 @@ class VDOM_database_manager(object):
 				
 			#if is_dirty_index:
 				#managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
-		#else:
-			#self.remove_databases()
+		else:
+			self.remove_databases()
 	
 	def add_database(self, owner_id, attributes, data):
 		"""Adding a new database"""
@@ -194,7 +194,7 @@ class VDOM_database_manager(object):
 		
 	def remove_databases(self):
 		"""Clearing all databases"""
-		managers.file_manager.clear(file_access.database,None, None)
+		#managers.file_manager.clear(file_access.database,None, None)
 		self.__index = {}
 		self.__database_by_name = {}
 		managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)

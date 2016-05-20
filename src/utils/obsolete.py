@@ -27,7 +27,7 @@ if sys.argv:
 			basepath = sys.argv[i+1]
 		if sys.argv[i] == "-c" and i+1<len (sys.argv):
 			if os.path.isfile(sys.argv[i+1]):
-				pathoptions = ("FILE-ACCESS-DIRECTORY","XML-MANAGER-DIRECTORY","APPLICATION-XML-TEMPLATE","SOURCE-MODULES-DIRECTORY","WSDL-FILE-LOCATION","TYPES-LOCATION","STORAGE-DIRECTORY","TEMP-DIRECTORY","BACKUP-DIRECTORY","SHARE-DIRECTORY","LIB-DIRECTORY","LOG-DIRECTORY","SERVER-INFORMATION-DIRECTORY")
+				pathoptions = ("FILE-ACCESS-DIRECTORY","XML-MANAGER-DIRECTORY","APPLICATION-XML-TEMPLATE","SOURCE-MODULES-DIRECTORY","WSDL-FILE-LOCATION","TYPES-LOCATION","STORAGE-DIRECTORY","TEMP-DIRECTORY","BACKUP-DIRECTORY","SHARE-DIRECTORY","LIB-DIRECTORY","LOG-DIRECTORY","SERVER-INFORMATION-DIRECTORY","FILE-STORAGE-DIRECTORY")
 				import ConfigParser
 				config = ConfigParser.SafeConfigParser()
 				config.read(sys.argv[i+1])
@@ -179,7 +179,6 @@ try: os.makedirs(VDOM_CONFIG["FILE-ACCESS-DIRECTORY"] + "/cert")
 except: pass
 try: os.makedirs(VDOM_CONFIG["TEMP-DIRECTORY"])
 except: pass
-
 socketenabled = True
 # change directory access rights
 try:
@@ -210,5 +209,30 @@ for item in from_files:
 			continue
 	shutil.copy2(_from + "/" + item, _to + "/" + item)
 if not os.path.exists(VDOM_CONFIG["APPLICATION-XML-TEMPLATE"]):
-	shutil.copy2("app_template.xml", VDOM_CONFIG["APPLICATION-XML-TEMPLATE"])
+	try:
+		shutil.copy2("app_template.xml", VDOM_CONFIG["APPLICATION-XML-TEMPLATE"])
+	except IOError:
+		open(VDOM_CONFIG["APPLICATION-XML-TEMPLATE"],"wb").write("""<?xml version="1.0" encoding="utf-8"?>
+<Application>
+	<Information>
+		<ID>-</ID>
+		<Name>-</Name>
+		<Description>-</Description>
+		<Owner>-</Owner>
+		<Active>-</Active>
+		<Serverversion>-</Serverversion>
+	</Information>
+	<Objects/>
+	<Structure/>
+	<Actions/>
+	<Resources/>
+	<Databases/>
+	<E2vdom>
+		<Events/>
+		<Actions/>
+	</E2vdom>
+	<Languages/>
+	<Libraries/>
+</Application>
+""")
 print "Done"
