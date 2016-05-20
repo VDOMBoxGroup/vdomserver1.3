@@ -525,6 +525,7 @@ import json
 
 import e2vdom
 import utils.wysiwyg as utils_wysiwyg
+from xml.sax.saxutils import escape as xml_escape
 from memory import dynobject
 from memory.xml_object import xml_object
 
@@ -658,6 +659,11 @@ class VDOM_DynamicObject(VDOM_object):
                     raise
 
                 error_text = u"Render error: {}".format(ex)
+                if not self.rendererrormsg:
+                    lines = xml_escape(self.vdomxml).split("\n")
+                    for i in range(len(lines)):
+                        lines[i] = u"{}: {}".format(i + 1, lines[i])
+                    error_text = u"{}<br>{}".format(error_text, u"<br>".join(lines))
 
         if error_text:
             dynamic_contents = u"""<span class="render-error">{}</span>""".format(self.rendererrormsg or error_text)
