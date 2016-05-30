@@ -88,7 +88,7 @@ VDOM_CONFIG_1 = {
 	"SMTP-SERVER-ADDRESS"			: "smtp.gmail.com",
 	"SMTP-SERVER-PORT"			: 465,
 	"SMTP-SERVER-USER"			: "Vdom.Server@gmail.com",
-	"SMTP-SERVER-PASSWORD"			: "VDMNK22YK",
+	"SMTP-SERVER-PASSWORD"			: "zdupxsbnkbllgtox",
 	"SMTP-SERVER-SENDER"			: "",
 	"SMTP-OVER-SSL"				: 1,
 
