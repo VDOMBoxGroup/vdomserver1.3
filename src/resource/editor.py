@@ -1,6 +1,5 @@
 from cStringIO import StringIO
-from PIL import Image, ImageDraw, ImageFont
-import ImageEnhance
+from PIL import Image, ImageEnhance, ImageDraw, ImageFont
 
 import managers, security
 from utils.uuid import uuid4
