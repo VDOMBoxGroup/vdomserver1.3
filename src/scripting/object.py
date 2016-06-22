@@ -1,6 +1,7 @@
 
 import sys, re
 
+from collections import MutableMapping
 from wrappers import obsolete_request # from . import request
 from e2vdom import global_context
 from utils.exception import *
@@ -63,6 +64,31 @@ class VDOM_object_actions(object):
 		def invoke(*arguments):
 			self.owner.action(name, param=[argument for argument in arguments]);
 		return invoke
+		
+class VDOM_object_attributes(MutableMapping):
+
+    def __init__(self, owner):
+        self._owner = owner
+
+    def __getitem__(self, name):
+        # return getattr(self._owner, make_attribute_name(name))
+        print "RETURN VALUE FOR", name
+        return getattr(self._owner, attribute_value_name%name)
+
+    def __setitem__(self, name, value):
+        # setattr(self._owner, make_attribute_name(name), value)
+        print "SET", name, "OF", self._owner, "TO", repr(value)
+        setattr(self._owner, attribute_value_name%name, value)
+        
+    def __delitem__(self, name):
+        raise NotImplementedError
+
+    def __iter__(self):
+        for name in self._owner.__attributes:
+            yield getattr(self._owner, attribute_value_name%name)
+
+    def __len__(self):
+        return len(self._owner.__attributes)
 
 class VDOM_object(object):
 
@@ -74,6 +100,7 @@ class VDOM_object(object):
 		self.stage=stage_initialize
 		self.compute_state=compute_require_recompute
 		self.__attributes=[]
+		self.__attributes_collection=VDOM_object_attributes(self)
 		self.__objects={}
 		temp = None
 		for attribute in self.__object.get_attributes().values():
@@ -95,7 +122,8 @@ class VDOM_object(object):
 
 
 			setattr(self, attribute_value_name%attribute.name, attribute_value)
-			self.attributes.append(attribute.name)
+			#self.attributes.append(attribute.name)
+			self.__attributes.append(attribute.name)
 		self.order=type(self.__object).__dict__.get("order", 0)
 		# - - - little cheat for table objects  - - - - - - - - - - - - - - - - - - - #
 		if "top" in type(self).__dict__ and "left" in type(self).__dict__:
@@ -160,8 +188,9 @@ class VDOM_object(object):
 	object=property(__get_object, __set_object)
 
 	def __get_attributes(self):
-		return self.__attributes
-
+		#return self.__attributes
+		return self.__attributes_collection
+		
 	def	__set_attributes(self, value):
 		raise AttributeError
 
