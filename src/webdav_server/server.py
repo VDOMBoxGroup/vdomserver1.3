@@ -8,8 +8,11 @@ from wsgidav.lock_storage import LockStorageDict
 from wsgidav.property_manager import PropertyManager
 from wsgidav.lock_manager import LockManager
 from vdom_dav_provider import VDOM_Provider
-from domain_controller import VDOM_domain_controller
+from domain_controller import VDOM_domain_controller, VDOM_HTTPAuthenticator
 from vdom_dav_provider import get_properties
+from wsgidav.debug_filter import WsgiDavDebugFilter
+from wsgidav.error_printer import ErrorPrinter
+from wsgidav.dir_browser import WsgiDavDirBrowser
 import managers
 
 class VDOM_webdav_manager(object):
@@ -21,9 +24,15 @@ class VDOM_webdav_manager(object):
 		                      "propsmanager": True,
 		                      "provider_mapping": {},
 		                      "acceptbasic": True,      # Allow basic authentication, True or False
-		                      "acceptdigest": False,     # Allow digest authentication, True or False
-		                      "defaultdigest": False,
+		                      "acceptdigest": True,     # Allow digest authentication, True or False
+		                      "defaultdigest": True,
 		                      "verbose": 0,
+		                      "middleware_stack": [
+		                              WsgiDavDirBrowser,
+		                              VDOM_HTTPAuthenticator,
+		                              ErrorPrinter,
+		                              WsgiDavDebugFilter,
+		                      ]		                      
 		                      })			
 		self.__index = {}
 		app_list = managers.xml_manager.get_applications()
@@ -73,7 +82,10 @@ class VDOM_webdav_manager(object):
 				del app.wsgidav_app.providerMap[sharePath.encode('utf8')]
 				del self.__index[appid][objid]
 				if len(self.__index[appid]) == 0: del self.__index[appid]
-				
+	def list_webdav(self, appid):
+		wdav = self.__index.get(appid)
+		return list(wdav.keys()) if wdav else []
+	
 	def del_all_webdav(self, appid):
 		app = managers.xml_manager.get_application(appid)
 		if hasattr(app, "wsgidav_app"):	
@@ -85,7 +97,14 @@ class VDOM_webdav_manager(object):
 		if appid in self.__index:
 			return self.__index[appid].get(objid, None)
 		return None
-					
+	
+	#def get_webdav_obj_by_path(self, appid, sharePath):
+	#	if appid in self.__index:
+	#		davs = self.__index[appid] or {}
+	#		for key in davs:
+	#			if davs[key] == 
+	#	return None		
+	
 	def add_to_cache(self, appid, objid, path):
 		if isinstance(path, unicode):
 			try:

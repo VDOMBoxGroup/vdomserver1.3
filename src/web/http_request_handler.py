@@ -234,10 +234,17 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 					                    ("Server", "DAV/2"),
 					                    ("Date", util.getRfc1123Time()),
 					                    ])		
-			
-		else:
-			for v in application(environ, self.start_response):
-				self.wfile.write(v)
+			return
+		
+		if environ["REQUEST_METHOD"] == "PROPFIND" and environ["PATH_INFO"] in ("/", "*"):
+			providers = self.wsgidav_app.providerMap.keys()
+			if providers:
+				environ["PATH_INFO"] = providers[0]#Need some testing if this approach will work
+			else:
+				self.send_error(404, self.responses[404][0])
+				return
+		for v in application(environ, self.start_response):
+			self.wfile.write(v)
 		
 		
 	def do_GET(self):
