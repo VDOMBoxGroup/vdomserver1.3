@@ -1,18 +1,50 @@
+import json
 import managers
 import wsgidav.util as util
 from webdav_request import VDOM_webdav_request
 from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN
 from webdav_cache import lru_cache
-
+from wsgidav.http_authenticator import HTTPAuthenticator
+from wsgidav.middleware import BaseMiddleware
+class VDOM_DigestHandler(BaseMiddleware):
+	def __init__(self, application, domaincontroller):
+		self._domaincontroller = domaincontroller
+		self._application = application	
+	def __call__(self, environ, start_response):
+		if environ["http_authenticator.username"]:
+			self._domaincontroller.authDomainUser(environ["http_authenticator.realm"], environ["http_authenticator.username"],"",environ)
+		return self._application(environ, start_response)	
+	
+class VDOM_HTTPAuthenticator(HTTPAuthenticator):
+	def computeDigestResponse(self, username, realm, password, method, uri, nonce, cnonce, qop, nc):
+		md5hA1 = self._domaincontroller.getDigest(realm, username)
+		A2 = method + ":" + uri
+		if qop:
+			digestresp = self.md5kd( md5hA1, nonce + ":" + nc + ":" + cnonce + ":" + qop + ":" + self.md5h(A2))
+		else:
+			digestresp = self.md5kd( md5hA1, nonce + ":" + self.md5h(A2))
+			
+		if not isinstance (self._application,VDOM_DigestHandler):
+			self._application = VDOM_DigestHandler(self._application,self._domaincontroller)
+		return digestresp
+		
 
 def authAppUser(app_id, obj_id, user, password):
-	xml_data = """{"user": "%s","password": "%s"}""" % (user, password)
 	try:
-		ret = managers.dispatcher.dispatch_action(app_id, obj_id, "authentication", "",xml_data)
-	except:
-		ret = False
-		#raise DAVError(HTTP_FORBIDDEN)
-	return ret
+		xml_data = """{"user": "%s","password": "%s"}""" % (user, password)
+		return managers.dispatcher.dispatch_action(app_id, obj_id, "authentication", "",xml_data)
+	except Exception as e:
+		debug("DAV auth error: %s"%e)
+		return False
+
+def authGetDigest(app_id, obj_id, user):
+	try:
+		xml_data = json.dumps({"user":user})
+		return managers.dispatcher.dispatch_action(app_id, obj_id, "getDigest", "",xml_data)
+	except Exception as e:
+		debug("DAV auth error: %s"%e)
+		return ""
+
 
 class VDOM_domain_controller(object):
 	
@@ -37,7 +69,8 @@ class VDOM_domain_controller(object):
 		return obj.id
 
 	def requireAuthentication(self, realmname, environ):
-		return True
+		session = managers.request_manager.current.session()
+		return "current_user" not in session and "dav_user" not in session
 
 	def isRealmUser(self, realmname, username, environ):
 		return True
@@ -48,10 +81,7 @@ class VDOM_domain_controller(object):
 	def authDomainUser(self, realmname, username, password, environ):
 		#request = VDOM_webdav_request(environ)
 		#managers.request_manager.current = request
-		
-		path = environ["PATH_INFO"]
 		obj_id = realmname
-		func_name = "authentication"
 		session = managers.request_manager.current.session()
 		if "dav_user" in session and session["dav_user"] == (self._application.id, obj_id,username, password):
 			return True
@@ -64,7 +94,15 @@ class VDOM_domain_controller(object):
 				return False
 		#raise DAVError(HTTP_FORBIDDEN)
 	
-
+	def getDigest(self, realmname, username):
+		obj_id = realmname
+		if obj_id == '/':
+			obj_id = managers.webdav_manager.list_webdav(self._application.id)[0]
+			
+		session = managers.request_manager.current.session()
+		if not session.get("dav_digest"):
+			session["dav_digest"] = authGetDigest(self._application.id, obj_id,username)
+		return session.get("dav_digest","")
 
 #	def _get_app(self, host):
 #
