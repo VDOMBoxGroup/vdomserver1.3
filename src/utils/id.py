@@ -1,6 +1,6 @@
 """id generation module"""
 
-import string, random, math, time
+import string, random, math, time,os
 from hashlib import md5
 import managers
 
@@ -14,10 +14,10 @@ class VDOM_id:
 			i = ord(c)
 			r = r + h[(i >> 4) & 0xF] + h[i & 0xF]
 		return r
-
+	
 	def new(self):
 		"""generate new id"""
-		md5obj = md5(str(time.time() + random.random() + math.sin(random.random())))
+		md5obj = md5(str(time.time() + _urandom() + math.sin(random.random())))
 		return self.hexstr(md5obj.digest())
 
 	def random_string(self, length):
@@ -28,7 +28,35 @@ class VDOM_id:
 			a = random.randint(0, 255)
 			r = r + h[a & 0xF]
 		return r
+	
+def vdomid():
+	"""generate new id"""
+	return md5(b''.join([str(time.time()),_urandom(),str(math.sin(random.random()))])).hexdigest()
+	
+def hexstr(s):
+	"""convert byte array to hex string"""
+	h = string.hexdigits
+	r = ""
+	for c in s:
+		i = ord(c)
+		r = r + h[(i >> 4) & 0xF] + h[i & 0xF]
+	return r
+		
+			
+def _urandom():
+	if hasattr(os, 'urandom'):
+		return os.urandom(30)
+	return text_type(random()).encode('ascii')
 
+
+def generate_key(salt=None):
+	if salt is None:
+		salt = repr(salt).encode('ascii')
+	return sha1(b''.join([
+                salt,
+                str(time.time()).encode('ascii'),
+                _urandom()
+                ])).hexdigest()
 
 def guid2mod(guid):
 	"""transform guid to module name"""

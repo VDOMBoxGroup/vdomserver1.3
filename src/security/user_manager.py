@@ -5,7 +5,7 @@ User Manager module
 from hashlib import md5
 
 import managers
-import utils.id as theid
+from utils.id import vdomid
 from storage.storage import VDOM_config
 from security.user import VDOM_user
 from security.group import VDOM_usergroup
@@ -69,7 +69,7 @@ class VDOM_user_manager:
 		if(self.name_exists(login)):
 			raise VDOM_exception(_("Login %s already exists in the system" % login))
 		user = VDOM_user()
-		user.id = theid.VDOM_id().new()
+		user.id = vdomid()
 		user.login = login
 		user.password = password
 		user.first_name = name1
@@ -87,7 +87,7 @@ class VDOM_user_manager:
 		if(self.name_exists(name)):
 			raise VDOM_exception(_("Name %s already exists in the system" % name))
 		group = VDOM_usergroup()
-		group.id = theid.VDOM_id().new()
+		group.id = vdomid()
 		group.login = name
 		group.description = descr
 		group.system = system

@@ -7,7 +7,7 @@ from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 import managers
 from daemon import VDOM_session_cleaner
-from utils.id import VDOM_id
+from utils.id import vdomid
 
 class VDOM_session_manager(dict):
 	"""Session Manager class"""
@@ -106,8 +106,8 @@ class VDOM_session_manager(dict):
 	current = property(__get_current, __set_current)
 
 	def get_unique_sid(self):
-		sid = VDOM_id().new()
+		sid = vdomid()
 		while dict.__contains__(self, sid):
-			sid = VDOM_id().new()
+			sid = vdomid()
 			debug("Sid generation colision")
 		return sid
