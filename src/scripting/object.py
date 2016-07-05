@@ -72,14 +72,20 @@ class VDOM_object_attributes(MutableMapping):
 
     def __getitem__(self, name):
         # return getattr(self._owner, make_attribute_name(name))
-        print "RETURN VALUE FOR", name
-        return getattr(self._owner, attribute_value_name%name)
+        # print "RETURN VALUE FOR", name
+        if name in self._owner.__dict__["_VDOM_object__attributes"]:
+            return getattr(self._owner, attribute_value_name%name)
+        else:
+            raise KeyError(name)
 
     def __setitem__(self, name, value):
         # setattr(self._owner, make_attribute_name(name), value)
-        print "SET", name, "OF", self._owner, "TO", repr(value)
-        setattr(self._owner, attribute_value_name%name, value)
-        
+        # print "SET", name, "OF", self._owner, "TO", repr(value)
+        if name in self._owner.__dict__["_VDOM_object__attributes"]:
+            setattr(self._owner, attribute_value_name%name, value)
+        else:
+            raise KeyError(name)
+
     def __delitem__(self, name):
         raise NotImplementedError
 
@@ -188,7 +194,7 @@ class VDOM_object(object):
 	object=property(__get_object, __set_object)
 
 	def __get_attributes(self):
-		#return self.__attributes
+		# return self.__attributes
 		return self.__attributes_collection
 		
 	def	__set_attributes(self, value):
@@ -256,8 +262,8 @@ class VDOM_object(object):
 		return contents
 
 	def render_separate(self, parent):
-		debug("[Object] Render separate %s"%self.__id)
 		if self.update_state is state_require_update:
+			debug("[Object] Render separate %s"%self.__id)
 			return {self.__id: self.render(parent)}
 		else:
 			result={}
