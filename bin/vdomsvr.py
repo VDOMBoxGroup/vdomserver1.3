@@ -5,7 +5,8 @@ import sys, gettext, os
 #import xmlrpclib
 
 gettext.install("vdom2")
-sys.path.append("../src")
+sys.path.insert(0, '../src')
+
 #import wingdbstub
 from utils import codecs
 from utils.card_connect import send_to_card
