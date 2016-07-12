@@ -31,17 +31,22 @@ def run(request):
 	xml_param = args.get("xml_param")[0] if args.get("xml_param") else ""
 	xml_data = args.get("xml_data")[0] if args.get("xml_data") else ""
 	callback = args.get("callback")[0] if args.get("callback") else ""
-	if not (appid !='' and container !='' and action !='' and callback!=''):
+	if not (appid !='' and container !='' and action !=''):
 		request.write("<ERROR>Invalid params</ERROR>")
 	else:
 		try:
 			app = managers.xml_manager.get_application(appid)
+			if not app:
+				raise Exception("Invalid params")
+			request.set_application_id(appid)
 			obj = app.search_object(container)
 			if not obj or obj.name.lower() != "api":
-				request.write("<ERROR>Invalid params</ERROR>")
+				raise Exception("Invalid params")
 			else:
 				ret = managers.dispatcher.dispatch_action(appid, container, action, xml_param,xml_data)
+				if isinstance(ret, unicode):
+					ret = ret.encode("utf8","ignore")
 		except Exception as e:
 			request.write("<ERROR>%s</ERROR>"%e)
 		else:
-			request.write("/**/ %s(%s);" % (callback,ret))
+			request.write("/**/ %s(%s);" % (callback,ret) if callback else ret)

@@ -73,6 +73,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				exc_info = None    # Avoid circular ref.
 		status_code = int(status.split(' ')[0])
 		status_message = status[status.find(' ')+1:]
+		#print (">>>%s %s"%(status_code,status_message))
 		try:
 			self.send_response(status_code, status_message)
 		except socket.error as e:#TODO: find why socket already closed when error in Webdav
@@ -243,6 +244,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			else:
 				self.send_error(404, self.responses[404][0])
 				return
+		#print "<<<%s %s"%(environ["REQUEST_METHOD"], environ["PATH_INFO"])
 		for v in application(environ, self.start_response):
 			self.wfile.write(v)
 		
@@ -413,6 +415,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			else:
 				return StringIO(ret)
 		elif "" == ret:
+			self.send_response(204)
 			return None
 		elif code:
 			self.send_error(code, self.responses[code][0])
