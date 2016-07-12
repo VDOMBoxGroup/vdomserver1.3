@@ -31,7 +31,6 @@ SOURCE_STRING = "<evalstring expression>"
 
 
 contexts = local()
-contexts.current = v_nothing
 
 
 class InstancesDict(defaultdict):
@@ -167,7 +166,7 @@ class v_evalcontext(generic):
 
 
 def v_evalglobalcontext():
-    return contexts.current
+    return getattr(contexts, "current", v_nothing)
 
 
 class v_evalstring(generic):
@@ -227,7 +226,7 @@ class v_evalstring(generic):
                     exec(expression, namespace)
                 yield iterator.next()
 
-        previous = contexts.current
+        previous = getattr(contexts, "current", v_nothing)
         contexts.current = v_evalcontext() if self._context is None else self._context
         try:
             namespace = self._functions.copy()
