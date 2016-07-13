@@ -6,6 +6,7 @@ from threading import local
 import re
 
 from .. import errors
+from ..primitives import primitive
 from ..subtypes import generic, integer, double, string, boolean, date, dictionary, v_mismatch, v_nothing
 from ..variables import shadow
 from ..conversions import pack
@@ -194,7 +195,7 @@ class v_evalstring(generic):
         if not isinstance(function, MethodType):
             raise errors.expected_function
         def wrapper(*arguments):
-            return function(*(pack(argument) for argument in arguments)).as_is
+            return function(*(argument if isinstance(argument, primitive) else pack(argument) for argument in arguments)).as_is
         self._functions[name] = wrapper
         return v_mismatch
 
