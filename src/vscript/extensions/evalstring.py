@@ -50,6 +50,14 @@ class v_evalvariable(generic):
     value = property(lambda self: self._value)
     vartype = property(lambda self: self._vartype)
 
+    def v_value(self, key=None, **keywords):
+        if "let" in keywords:
+            self.v_setvalue(keywords["let"])
+        elif "set" in keywords:
+            raise errors.object_has_no_property(u"value")
+        else:
+            return self.v_getvalue()
+
     def v_vartype(self, key=None, **keywords):
         if "let" in keywords or "set" in keywords:
             raise errors.object_has_no_property(u"vartype")
@@ -135,13 +143,16 @@ class v_evalcontext(generic):
 
     def v_getvariable(self, name):
         try:
-            return self._variables[name.as_string].value
+            return self._variables[name.as_string]
         except KeyError:
-            return v_empty
+            raise errors.variable_is_undefined(name.as_string)
 
     def v_setvariable(self, name, value):
-        self._variables[name.as_string].v_setvalue(value)
-        return v_mismatch
+        try:
+            self._variables[name.as_string].v_setvalue(value)
+            return v_mismatch
+        except KeyError:
+            raise errors.variable_is_undefined(name.as_string)
 
     def v_loadcontext(self, context):
         subtype = context.subtype
