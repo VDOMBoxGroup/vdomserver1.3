@@ -142,20 +142,19 @@ class v_evalcontext(generic):
     v_vdim = v_addvariable
 
     def v_getvariable(self, name):
-        try:
-            return self._variables[name.as_string]
-        except KeyError:
-            self.v_addvariable(name)
-            return self._variables[name.as_string]
+        name = name.as_string
+        variable = self._variables.get(name)
+        if variable is None:
+            self._variables[name] = variable = v_evalvariable()
+        return variable
 
     def v_setvariable(self, name, value):
-        try:
-            self._variables[name.as_string].v_setvalue(value)
-            return v_mismatch
-        except KeyError:
-            self.v_addvariable(name)
-            self._variables[name.as_string].v_setvalue(value)
-            return v_mismatch
+        name = name.as_string
+        variable = self._variables.get(name)
+        if variable is None:
+            self._variables[name] = variable = v_evalvariable()
+        variable.v_setvalue(value)
+        return v_mismatch
 
     def v_loadcontext(self, context):
         subtype = context.subtype
