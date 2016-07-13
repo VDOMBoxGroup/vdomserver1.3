@@ -145,14 +145,17 @@ class v_evalcontext(generic):
         try:
             return self._variables[name.as_string]
         except KeyError:
-            raise errors.variable_is_undefined(name.as_string)
+            self.v_addvariable(name)
+            return self._variables[name.as_string]
 
     def v_setvariable(self, name, value):
         try:
             self._variables[name.as_string].v_setvalue(value)
             return v_mismatch
         except KeyError:
-            raise errors.variable_is_undefined(name.as_string)
+            self.v_addvariable(name)
+            self._variables[name.as_string].v_setvalue(value)
+            return v_mismatch
 
     def v_loadcontext(self, context):
         subtype = context.subtype
