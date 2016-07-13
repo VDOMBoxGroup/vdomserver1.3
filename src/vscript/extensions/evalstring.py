@@ -7,7 +7,7 @@ import re
 
 from .. import errors
 from ..primitives import primitive
-from ..subtypes import generic, integer, double, string, boolean, date, dictionary, v_mismatch, v_nothing
+from ..subtypes import generic, integer, double, string, boolean, date, dictionary, v_mismatch, v_nothing, v_empty
 from ..variables import shadow
 from ..conversions import pack
 from .jsons import v_asjson, v_tojson
@@ -134,7 +134,10 @@ class v_evalcontext(generic):
     v_vdim = v_addvariable
 
     def v_getvariable(self, name):
-        return self._variables[name.as_string].value
+        try:
+            return self._variables[name.as_string].value
+        except KeyError:
+            return v_empty
 
     def v_setvariable(self, name, value):
         self._variables[name.as_string].v_setvalue(value)
