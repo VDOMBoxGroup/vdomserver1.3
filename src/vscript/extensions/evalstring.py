@@ -184,7 +184,7 @@ class v_evalstring(generic):
         elif "set" in keywords:
             self._context = keywords["set"].as_specific(v_evalcontext)
         else:
-            return self._context or v_nothing
+            return v_nothing if self._context is None else self._context
 
     v_evaluatorcontext = v_context
 
