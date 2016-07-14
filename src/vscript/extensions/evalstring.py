@@ -170,7 +170,8 @@ class v_evalcontext(generic):
                 return FALSE_BOOLEAN
             self._variables = {}
             for name, value in items.items.iteritems():
-                self._variables[name.as_string] = value.subtype
+                self._variables[name.as_string] = variable = v_evalvariable()
+                variable.v_setvalue(value)
             return TRUE_BOOLEAN
         except:
             # NOTE: check this later
