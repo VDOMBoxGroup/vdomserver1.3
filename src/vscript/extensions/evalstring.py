@@ -92,6 +92,18 @@ class v_evalvariable(generic):
             self._vartype = SYSTEM_TYPE
         return v_mismatch
 
+    def v_loadvalue(self, valueinfo):
+            if TYPE_STRING in valueinfo and VALUE_STRING in valueinfo:
+                subtype = valueinfo._items[VALUE_STRING]
+                vartype = valueinfo._items[TYPE_STRING]
+                if vartype in (NUMERIC_TYPE,STRING_TYPE,DATE_TYPE,BOOLEAN_TYPE):
+                    self._value = subtype
+                    self._vartype = vartype
+                else:
+                    self._value = DEFAULT_VALUE
+                    self._vartype = SYSTEM_TYPE
+            return v_mismatch    
+
     def v_gettype(self):
         return self._vartype
 
@@ -171,7 +183,7 @@ class v_evalcontext(generic):
             self._variables = {}
             for name, value in items.items.iteritems():
                 self._variables[name.as_string] = variable = v_evalvariable()
-                variable.v_setvalue(value)
+                variable.v_loadvalue(value)
             return TRUE_BOOLEAN
         except:
             # NOTE: check this later
