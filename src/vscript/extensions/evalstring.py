@@ -177,7 +177,7 @@ class v_evalcontext(generic):
                 if not isinstance(items, dictionary):
                     return FALSE_BOOLEAN
             elif isinstance(subtype, dictionary):
-                items = context
+                items = context.as_dictionary
             else:
                 return FALSE_BOOLEAN
             self._variables = {}
