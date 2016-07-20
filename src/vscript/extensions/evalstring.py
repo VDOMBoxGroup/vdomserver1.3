@@ -3,7 +3,7 @@ from types import MethodType
 from collections import defaultdict
 from threading import local
 
-import re
+import re,ast
 
 from .. import errors
 from ..primitives import primitive
@@ -32,6 +32,12 @@ SOURCE_STRING = "<evalstring expression>"
 
 
 contexts = local()
+
+class IntTransformer(ast.NodeTransformer):
+
+    def visit_Num(self, node):
+        #print node.__dict__
+        return ast.copy_location(ast.Call(func=ast.Name(id='integer', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Num(node.n,lineno = 0,col_offset=0)]),node)
 
 
 class InstancesDict(defaultdict):
@@ -240,8 +246,9 @@ class v_evalstring(generic):
     def v_compile(self, template):
         parts = SPLIT_REGEX.split(template.as_string)
         self._strings = parts[0::2]
-        self._expressions = tuple((True, compile(expression[1:], SOURCE_STRING, "eval")) if expression.startswith("=")
-            else (False, compile(expression, SOURCE_STRING, "exec")) for expression in parts[1::2])
+        rw = IntTransformer()
+        self._expressions = tuple((True, compile(rw.visit(compile(expression[1:], SOURCE_STRING, "eval",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "eval")) if expression.startswith("=")
+            else (False, compile(rw.visit(compile(expression, SOURCE_STRING, "exec",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "exec")) for expression in parts[1::2])
         return v_mismatch
 
     def v_eval(self):
