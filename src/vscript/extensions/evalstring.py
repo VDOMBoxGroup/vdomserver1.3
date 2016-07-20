@@ -36,9 +36,15 @@ contexts = local()
 class IntTransformer(ast.NodeTransformer):
 
     def visit_Num(self, node):
-        #print node.__dict__
-        return ast.copy_location(ast.Call(func=ast.Name(id='integer', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Num(node.n,lineno = 0,col_offset=0)]),node)
-
+        return ast.copy_location(ast.Call(func=ast.Name(id='integer'if isinstance(node.n,int) else 'double', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Num(node.n,lineno = 0,col_offset=0)]),node)
+    def visit_Str(self,node):
+        return ast.copy_location(ast.Call(func=ast.Name(id='string', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Str(node.s,lineno = 0,col_offset=0)]),node)
+    def visit_Name(self,node):
+        if node.id in ('True','False'):
+            return ast.copy_location(ast.Call(func=ast.Name(id='boolean', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Name(id='True' if node.id == 'True' else 'False', ctx=ast.Load(),lineno = 0,col_offset=0)]),node)
+        else:
+            return node
+        
 
 class InstancesDict(defaultdict):
 
