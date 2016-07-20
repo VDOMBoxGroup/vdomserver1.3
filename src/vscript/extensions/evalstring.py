@@ -251,7 +251,11 @@ class v_evalstring(generic):
             yield iterator.next()
             for evaluate, expression in self._expressions:
                 if evaluate:
-                    yield eval(expression, namespace).as_string
+                    ret = eval(expression, namespace)
+                    if isinstance(ret, primitive):
+                        yield ret.as_string
+                    else:
+                        yield unicode(ret)
                 else:
                     exec(expression, namespace)
                 yield iterator.next()
@@ -261,6 +265,7 @@ class v_evalstring(generic):
         try:
             namespace = self._functions.copy()
             namespace.update({name: shadow(value, "_value") for name, value in self._context._variables.iteritems()})
+            namespace.update({vtype.__module__.rsplit('.')[2]:vtype for vtype in (integer, double, string, boolean, date)})
             return string(u"".join(generate()))
         finally:
             contexts.current = previous
