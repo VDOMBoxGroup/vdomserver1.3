@@ -367,7 +367,7 @@ class VDOM_editableresource(VDOM_object):
 
 	def render(self, parent, contents=""):
 		if self.visible == "1":
-			resource = application.resources.get_by_label(self.id, "userdata")
+			resource = application.resources.get_by_label(self.id, "data")
 			if resource:
 				res_id = resource.id
 			else:
