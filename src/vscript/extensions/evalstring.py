@@ -3,7 +3,7 @@ from types import MethodType
 from collections import defaultdict
 from threading import local
 
-import re
+import re,ast
 
 from .. import errors
 from ..primitives import primitive
@@ -33,6 +33,18 @@ SOURCE_STRING = "<evalstring expression>"
 
 contexts = local()
 
+class IntTransformer(ast.NodeTransformer):
+
+    def visit_Num(self, node):
+        return ast.copy_location(ast.Call(func=ast.Name(id='integer'if isinstance(node.n,int) else 'double', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Num(node.n,lineno = 0,col_offset=0)]),node)
+    def visit_Str(self,node):
+        return ast.copy_location(ast.Call(func=ast.Name(id='string', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Str(node.s,lineno = 0,col_offset=0)]),node)
+    def visit_Name(self,node):
+        if node.id in ('True','False'):
+            return ast.copy_location(ast.Call(func=ast.Name(id='boolean', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Name(id='True' if node.id == 'True' else 'False', ctx=ast.Load(),lineno = 0,col_offset=0)]),node)
+        else:
+            return node
+        
 
 class InstancesDict(defaultdict):
 
@@ -240,8 +252,9 @@ class v_evalstring(generic):
     def v_compile(self, template):
         parts = SPLIT_REGEX.split(template.as_string)
         self._strings = parts[0::2]
-        self._expressions = tuple((True, compile(expression[1:], SOURCE_STRING, "eval")) if expression.startswith("=")
-            else (False, compile(expression, SOURCE_STRING, "exec")) for expression in parts[1::2])
+        rw = IntTransformer()
+        self._expressions = tuple((True, compile(rw.visit(compile(expression[1:], SOURCE_STRING, "eval",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "eval")) if expression.startswith("=")
+            else (False, compile(rw.visit(compile(expression, SOURCE_STRING, "exec",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "exec")) for expression in parts[1::2])
         return v_mismatch
 
     def v_eval(self):
@@ -251,7 +264,11 @@ class v_evalstring(generic):
             yield iterator.next()
             for evaluate, expression in self._expressions:
                 if evaluate:
-                    yield eval(expression, namespace).as_string
+                    ret = eval(expression, namespace)
+                    if isinstance(ret, primitive):
+                        yield ret.as_string
+                    else:
+                        yield unicode(ret)
                 else:
                     exec(expression, namespace)
                 yield iterator.next()
@@ -261,6 +278,7 @@ class v_evalstring(generic):
         try:
             namespace = self._functions.copy()
             namespace.update({name: shadow(value, "_value") for name, value in self._context._variables.iteritems()})
+            namespace.update({vtype.__module__.rsplit('.')[2]:vtype for vtype in (integer, double, string, boolean, date)})
             return string(u"".join(generate()))
         finally:
             contexts.current = previous
