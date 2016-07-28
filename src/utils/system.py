@@ -1,4 +1,4 @@
-import sys, socket, json
+import sys, socket, json,managers,os
 
 LINUX = sys.platform.startswith("linux")
 FREEBSD = sys.platform.startswith("frebsd")
