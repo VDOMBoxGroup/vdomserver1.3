@@ -14,16 +14,12 @@ else:
 	from utils.system_freebsd import *
 
 
-
-direct = VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket"
-s = None
-try:
-	s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-except Exception as e:
-	print ("console_debug socker error: %s"%e)
-
 def console_debug(data):
-	if not s:
+	direct = VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket"
+	try:
+		s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+	except Exception as e:
+		print ("console_debug socker error: %s"%e)	
 		return
 	try:	
 		if os.path.exists(direct):
