@@ -6,7 +6,7 @@ from SOAPpy.Config import Config
 from SOAPpy.NS     import NS
 from SOAPpy.Types  import *
 
-from SOAPpy.SOAPBuilder import SOAPBuilder
+from SOAPpy.SOAPBuilder import SOAPBuilder,pythonHasBooleanType
 
 
 class SOAPBuilderE( SOAPBuilder ):

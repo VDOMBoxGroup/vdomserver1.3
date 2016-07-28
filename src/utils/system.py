@@ -19,8 +19,8 @@ direct = VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket"
 s = None
 try:
 	s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-except:
-	pass
+except Exception as e:
+	print ("console_debug socker error: %s"%e)
 
 def console_debug(data):
 	if not s:
