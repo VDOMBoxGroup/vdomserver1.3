@@ -39,6 +39,7 @@ class VDOM_request:
 		self.__headers_out = VDOM_headers({})
 
 		self.__cookies = BaseCookie(headers.get("cookie"))
+		self.__response_cookies = BaseCookie()
 		self.__environment = VDOM_environment(headers, handler)
 		self.files = {}
 		args = {}
@@ -76,13 +77,12 @@ class VDOM_request:
 
 		# session
 		sid = ""
-		cookies = self.__cookies #.cookies()
 		if "sid" in args:
 			#debug("Got session from arguments "+str(args["sid"]))
 			sid = args["sid"]
-		elif "sid" in cookies:
+		elif "sid" in self.__cookies:
 			#debug("Got session from cookies "+cookies["sid"].value)
-			sid = cookies["sid"].value
+			sid = self.__cookies["sid"].value
 		if sid == "":
 			sid = managers.session_manager.create_session()
 			#debug("Created session " + sid)
@@ -92,7 +92,8 @@ class VDOM_request:
 				#debug("Session " + sid + " expired")
 				sid = managers.session_manager.create_session()
 		#debug("Session ID "+str(sid))
-		cookies["sid"] = sid
+		self.__cookies["sid"] = sid
+		self.__response_cookies["sid"] = sid
 		args["sid"] = sid
 		self.__session = managers.session_manager[sid]
 		self.__arguments = VDOM_request_arguments(args)
@@ -229,6 +230,10 @@ class VDOM_request:
 		""" Server cookies """
 		return self.__cookies
 
+	def response_cookies(self):
+		""" Server cookies """
+		return self.__response_cookies
+	
 	def application(self):
 		"""get application object"""
 		return self.__app
