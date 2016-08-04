@@ -77,6 +77,12 @@ class VDOM_session(dict):
 			raise TypeError()
 		return dict.__contains__(self, key)
 
+	def get(self, key, default=None):
+		self.update()
+		if not isinstance(key, basestring):
+			raise TypeError()
+		return dict.get(self, key, default)
+
 	def set_user(self, login, password, md5 = False):
 		if md5:
 			if managers.user_manager.match_user_md5(login, password):
