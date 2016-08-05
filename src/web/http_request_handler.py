@@ -416,6 +416,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				return StringIO(ret)
 		elif "" == ret:
 			self.send_response(204)
+			self.send_headers()
+			self.end_headers()
 			return None
 		elif code:
 			self.send_error(code, self.responses[code][0])
