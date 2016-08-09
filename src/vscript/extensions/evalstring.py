@@ -3,11 +3,12 @@ from types import MethodType
 from collections import defaultdict
 from threading import local
 
-import re,ast
+import re
+import ast
 
 from .. import errors
 from ..primitives import primitive
-from ..subtypes import generic, integer, double, string, boolean, date, dictionary, v_mismatch, v_nothing, v_empty
+from ..subtypes import generic, integer, double, string, boolean, date, dictionary, v_mismatch, v_nothing
 from ..variables import shadow
 from ..conversions import pack
 from .jsons import v_asjson, v_tojson
@@ -33,18 +34,39 @@ SOURCE_STRING = "<evalstring expression>"
 
 contexts = local()
 
+
 class IntTransformer(ast.NodeTransformer):
 
     def visit_Num(self, node):
-        return ast.copy_location(ast.Call(func=ast.Name(id='integer'if isinstance(node.n,int) else 'double', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Num(node.n,lineno = 0,col_offset=0)]),node)
-    def visit_Str(self,node):
-        return ast.copy_location(ast.Call(func=ast.Name(id='string', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Str(node.s,lineno = 0,col_offset=0)]),node)
-    def visit_Name(self,node):
-        if node.id in ('True','False'):
-            return ast.copy_location(ast.Call(func=ast.Name(id='boolean', ctx=ast.Load(),lineno = 0,col_offset=0), keywords=[], starargs=None, kwargs=None, args=[ast.Name(id='True' if node.id == 'True' else 'False', ctx=ast.Load(),lineno = 0,col_offset=0)]),node)
+        return ast.copy_location(ast.Call(
+            func=ast.Name(id='integer' if isinstance(node.n, int) else 'double', ctx=ast.Load(), lineno=0, col_offset=0),
+            keywords=[],
+            starargs=None,
+            kwargs=None,
+            args=[ast.Num(node.n, lineno=0, col_offset=0)]),
+            node)
+
+    def visit_Str(self, node):
+        return ast.copy_location(ast.Call(
+            func=ast.Name(id='string', ctx=ast.Load(), lineno=0, col_offset=0),
+            keywords=[],
+            starargs=None,
+            kwargs=None,
+            args=[ast.Str(node.s, lineno=0, col_offset=0)]),
+            node)
+
+    def visit_Name(self, node):
+        if node.id in ('True', 'False'):
+            return ast.copy_location(ast.Call(
+                func=ast.Name(id='boolean', ctx=ast.Load(), lineno=0, col_offset=0),
+                keywords=[],
+                starargs=None,
+                kwargs=None,
+                args=[ast.Name(id='True' if node.id == 'True' else 'False', ctx=ast.Load(), lineno=0, col_offset=0)]),
+                node)
         else:
             return node
-        
+
 
 class InstancesDict(defaultdict):
 
@@ -105,16 +127,16 @@ class v_evalvariable(generic):
         return v_mismatch
 
     def v_loadvalue(self, valueinfo):
-            if TYPE_STRING in valueinfo and VALUE_STRING in valueinfo:
-                subtype = valueinfo._items[VALUE_STRING]
-                vartype = valueinfo._items[TYPE_STRING]
-                if vartype in (NUMERIC_TYPE,STRING_TYPE,DATE_TYPE,BOOLEAN_TYPE):
-                    self._value = subtype
-                    self._vartype = vartype
-                else:
-                    self._value = DEFAULT_VALUE
-                    self._vartype = SYSTEM_TYPE
-            return v_mismatch    
+        if TYPE_STRING in valueinfo and VALUE_STRING in valueinfo:
+            subtype = valueinfo._items[VALUE_STRING]
+            vartype = valueinfo._items[TYPE_STRING]
+            if vartype in (NUMERIC_TYPE, STRING_TYPE, DATE_TYPE, BOOLEAN_TYPE):
+                self._value = subtype
+                self._vartype = vartype
+            else:
+                self._value = DEFAULT_VALUE
+                self._vartype = SYSTEM_TYPE
+        return v_mismatch
 
     def v_gettype(self):
         return self._vartype
@@ -253,8 +275,11 @@ class v_evalstring(generic):
         parts = SPLIT_REGEX.split(template.as_string)
         self._strings = parts[0::2]
         rw = IntTransformer()
-        self._expressions = tuple((True, compile(rw.visit(compile(expression[1:], SOURCE_STRING, "eval",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "eval")) if expression.startswith("=")
-            else (False, compile(rw.visit(compile(expression, SOURCE_STRING, "exec",flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "exec")) for expression in parts[1::2])
+        self._expressions = tuple(
+            (True, compile(rw.visit(compile(expression[1:], SOURCE_STRING, "eval", flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "eval"))
+            if expression.startswith("=") else
+            (False, compile(rw.visit(compile(expression, SOURCE_STRING, "exec", flags=ast.PyCF_ONLY_AST)), SOURCE_STRING, "exec"))
+            for expression in parts[1::2])
         return v_mismatch
 
     def v_eval(self):
@@ -278,7 +303,7 @@ class v_evalstring(generic):
         try:
             namespace = self._functions.copy()
             namespace.update({name: shadow(value, "_value") for name, value in self._context._variables.iteritems()})
-            namespace.update({vtype.__module__.rsplit('.')[2]:vtype for vtype in (integer, double, string, boolean, date)})
+            namespace.update({vtype.__module__.rsplit('.')[2]: vtype for vtype in (integer, double, string, boolean, date)})
             return string(u"".join(generate()))
         finally:
             contexts.current = previous
