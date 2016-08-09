@@ -185,10 +185,11 @@ socketenabled = True
 # change directory access rights
 try:
 	os.chmod(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket", stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
-except:
+except Exception as e:
+	print e
 	socketenabled = False
-	try: os.rmdir(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket")
-	except: pass	
+	#try: os.rmdir(VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket")
+	#except: pass	
 # enforce lib module
 
 f = open(os.path.join(VDOM_CONFIG["STORAGE-DIRECTORY"], "lib", "__init__.py"), "wt")
