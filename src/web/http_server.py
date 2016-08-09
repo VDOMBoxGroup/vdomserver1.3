@@ -73,21 +73,30 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 		#call base class constructor
 		if use_ssl:
 			import ssl
+			context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+			
 			if not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.cert") or \
 				not managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "server.pem"):
 				raise VDOMSecureServerError("No SSL certificates to run Secure server")
-				
 			certfile=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "server.cert")
 			keyfile=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "server.pem")
+			
+			context.load_cert_chain(certfile=certfile, keyfile=keyfile)	
+			
 			if managers.file_manager.exists(managers.file_manager.CERTIFICATES,None, None, "ca.cert"):
 				ca_certs=managers.file_manager.get_path(managers.file_manager.CERTIFICATES,None, None, "ca.cert")
-			else:
-				ca_certs = None
+				context.load_verify_locations(ca_certs)			#ca_certs	
+			
+				
+			
+			
+			context.options |= ssl.OP_NO_SSLv2
+			context.options |= ssl.OP_NO_SSLv3	
+			context.options |= ssl.OP_NO_COMPRESSION
+			context.set_ciphers('EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH')
 			SocketServer.BaseServer.__init__(self, server_address, request_handler_class)
-			self.socket = ssl.wrap_socket(socket.socket(self.address_family,self.socket_type),
-				                      server_side=True,do_handshake_on_connect=True,
-				        certfile=certfile, keyfile=keyfile, ssl_version=ssl.PROTOCOL_SSLv23, 
-			                ca_certs=ca_certs, ciphers="ALL")
+			self.socket = context.wrap_socket(socket.socket(self.address_family,self.socket_type),
+				                      server_side=True,do_handshake_on_connect=True)
 			
 			self.server_bind()
 			self.server_activate()

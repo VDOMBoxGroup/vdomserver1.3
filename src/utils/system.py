@@ -1,4 +1,4 @@
-import sys, socket, json
+import sys, socket, json,managers,os
 
 LINUX = sys.platform.startswith("linux")
 FREEBSD = sys.platform.startswith("frebsd")
@@ -15,37 +15,43 @@ else:
 
 
 
-#direct = VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket"
-#s = None
-#try:
-#	s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-#except:
-#	pass
 def console_debug(data):
-	#if os.path.exists(direct):
-		#l = os.listdir(direct)
-		#for item in l:
-			#p = os.path.join(direct, item)
-			#err = False
-			#try:
-				#s.sendto(data, p)
-			#except:
-				#err = True
-			#if err:
-				#try:
-					#os.remove(p)
-				#except:
-					#pass
+	import os, socket ,managers
+	direct = VDOM_CONFIG["STORAGE-DIRECTORY"] + "/socket"
 	try:
+		s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+	except Exception as e:
+		print ("console_debug socker error: %s"%e)	
+		return False
+	try:	
+		ret = False
+		if os.path.exists(direct):
+			l = os.listdir(direct)
+			for item in l:
+				p = os.path.join(direct, item)
+				err = False
+				try:
+
+					s.sendto(data, p)
+					ret = True
+				except Exception as e:
+					print e
+					err = True
+				if err:
+					try:
+						os.remove(p)
+					except:
+						pass
+
 		sess = managers.request_manager.get_request().session()
 		d = sess.value("debug_data")
 		if d is None:
 			d = []
 		d.append(data)
 		sess.value("debug_data", d)
-	except:
-		pass
-
+	except Exception as e:
+		print ("console_debug error: %s"%e)
+	return ret
 
 
 def set_virtual_card_key( system_key ):

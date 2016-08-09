@@ -82,7 +82,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 			if header[0] != 'Date':
 				self.send_header(header[0], header[1])
 				
-		cookies = self.__request.cookies()
+		cookies = self.__request.response_cookies()
 		if "sid" in cookies:
 			cookies["sid"]["path"] = "/"
 			self.wfile.write("%s\r\n" % cookies.output())
@@ -416,6 +416,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 				return StringIO(ret)
 		elif "" == ret:
 			self.send_response(204)
+			self.send_headers()
+			self.end_headers()
 			return None
 		elif code:
 			self.send_error(code, self.responses[code][0])
@@ -427,7 +429,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 	def send_headers(self):
 		"""send all headers"""
 		headers = self.__request.headers_out().headers()
-		cookies = self.__request.cookies().output()
+		cookies = self.__request.response_cookies().output()
 		#debug("Outgoing headers---")
 		#for h in headers:
 		#	debug(h + ": " + headers[h])
