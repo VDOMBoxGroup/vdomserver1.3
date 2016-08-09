@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.76.6720</Version>
+    <Version>1.187.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -177,21 +177,29 @@
       <Sentence ID="505"></Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
       <Sentence ID="704"></Sentence>
       <Sentence ID="705"></Sentence>
+      <Sentence ID="706"></Sentence>
+      <Sentence ID="707"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
       <Sentence ID="804"></Sentence>
       <Sentence ID="805"></Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807"></Sentence>
       <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -333,6 +341,7 @@ COMPONENTS_CSS_MAP = {
     "livesearch": "livesearch",
     "richtextarea": "richtextarea",
     # "fileupload" : render_fileupload
+    "codeeditor": "codeeditor",
 }
 
 
@@ -1051,6 +1060,68 @@ def render_fileupload(elem):
     Render FileUpload component
     """
     pass
+    
+    
+def render_codeeditor(elem):
+	"""
+	Render CodeEditor component
+
+	Example:
+
+    <CodeEditor id='inputName'
+                 class='css class'
+                 visible= '1 | 0 | true | false'
+                 disabled='1 | 0 | true | false'
+                 readonly='1 | 0 | true | false'>
+        <Properties>
+            <Property name='label'><!--[CDATA[Code Editor Label]]--></Property>
+            <Property name='value'><!--[CDATA[default value]]--></Property>
+            <Property name='width'><!--[CDATA[360]]--></Property>
+            <Property name='height'><!--[CDATA[130]]--></Property>
+            <Property name='syntax'><!--[CDATA[python]]--></Property>
+        </Properties>..
+    </CodeEditor>
+    """
+
+	attrs = get_elem_attrs(elem)
+	props = get_elem_props(elem)
+
+	style = u"""overflow: visible; width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; font: 14px tahoma""".format(width = props.get("width", ""), height = props.get("height", ""))
+	style_area = u"""width:{width}px; height:{height}px""".format(width = props.get("width", ""), height = props.get("height", ""))
+
+	html = u"""
+<style type="text/css">#{id} .CodeMirror-scroll {{ height: {height}px; }}</style>
+<div id="{id}" style="{style}">
+	<textarea name="{name}" style="{style_area}">{value}</textarea>
+</div>
+<script type="text/javascript">$q(document).bind('dialog.loaded', function(){{
+	if (typeof window.{id}_codeeditor !== 'undefined') {{
+		window.{id}_codeeditor.toTextArea();
+		delete(window.{id}_codeeditor);
+	}}
+	window.{id}_codeeditor = CodeMirror.fromTextArea($q('#{id}>textarea').get(0), {{
+		mode: '{mode}',
+		lineNumbers: true,
+		styleActiveLine: true,
+		onCursorActivity: function() {{ window.{id}_codeeditor.matchHighlight("CodeMirror-matchhighlight"); }}
+	}})
+	$q('#{id}').parents('form:first').submit(function(){{
+		window.{id}_codeeditor.save()
+	}})
+	window.{id}_codeeditor.refresh()
+}});</script>
+""".format(
+		id	 = u"xml_dialog_ce_" + escape_quote(attrs.get("id", "")),
+		name   = escape_quote(attrs.get("id", "")),
+		mode   = props.get("syntax", ""),
+		style  = style,
+		style_area = style_area,
+		value  = unicode(props.get("value", "")).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'),
+		width  = props.get("width", ""),
+		height = props.get("height", ""),
+	)
+	return html
+#	return make_div_row(html, elem, props.get("label", ""))
 
 
 COMPONENTS_MAP = {
@@ -1067,6 +1138,7 @@ COMPONENTS_MAP = {
     "container": render_container,
     "fileupload" : render_fileupload,
     "richtextarea": render_richtextarea,
+    "codeeditor": render_codeeditor,
 }
 
 
@@ -1158,8 +1230,8 @@ class VDOM_xmldialog(VDOM_object):
 
         if not dom.getElementsByTagName("Button"):
             output += render_default_button()
-
         return self.parse_dialog_title(dom), u"""<form action="" method="post" enctype="multipart/form-data" class="xml-dialog-form">{}</form>""".format(output)
+
 
     def parse_dialog_title(self, elem):
         """
@@ -1199,6 +1271,9 @@ class VDOM_xmldialog(VDOM_object):
         result = """
 <div style='display:none' %(debug_info)s><div id='%(id)s'>%(data)s</div></div>
 <script type='text/javascript'>$q(function(){
+    dialog = $q("#%(id)s")
+    var dialogScripts = $q("#%(id)s").find("script");
+    dialogScripts.remove();
     $q("#%(id)s").data('ev','1');
     $q("#%(id)s:ui-dialog").dialog("destroy");
     $q("#%(id)s").dialog({
@@ -1226,6 +1301,7 @@ class VDOM_xmldialog(VDOM_object):
             if ($q("#%(id)s").data('ev')=='1') execEventBinded('%(idn)s', "hide", {});
         }
     });
+    
     $q("#%(id)s form.xml-dialog-form").live('submit',function(e){
         e.preventDefault;
         for (var i in window["xmlDialogTinyEditors"])
@@ -1236,6 +1312,10 @@ class VDOM_xmldialog(VDOM_object):
         execEventBinded('%(idn)s', "submit", x);
         return false;
     });
+    
+    $(document).trigger('dialog.loaded')
+    var dialogContainer = document.getElementById('%(id)s');
+    dialogScripts.each(function() { dialogContainer.appendChild(this); });
 });</script>""" % {
             "data":   html,
             "id":     oid,
@@ -1347,31 +1427,124 @@ class VDOM_xmldialog(VDOM_object):
 <script type="text/javascript" src="/9f1c05cd-fee2-6055-2ef4-16fae32145d0.res"></script>
 <script type="text/javascript" src="/9f1c05cd-fee2-6055-2ef4-16fae32bafe5.res"></script>
 <script type="text/javascript" src="/9f1c05cd-fee2-6055-2ef4-16fae6cbdfa6.res"></script>
+<script type="text/javascript" src="/966f39fb-3da2-95f2-c33a-398880aff765.res?v2.22"></script>
+<script type="text/javascript" src="/5cd10fee-6e10-5253-24ea-3edb0a87f9ec.res?match"></script>
+<script type="text/javascript" src="/95be4415-7ccb-b87b-f50f-77c8485f6bd9.res?syntaxes"></script>
+
+<style type="text/css">
+.CodeMirror {
+	line-height: 1em;
+	font-family: monospace;
+	border: 1px solid silver;
+	overflow: visible;
+}
+
+.CodeMirror-scroll { 
+	overflow: auto;
+	position: relative;
+}
+
+.CodeMirror-gutter { position: absolute; left: 0; top: 0; z-index: 10; background-color: #f7f7f7; border-right: 1px solid #eee; min-width: 2em; height: 100%; }
+.CodeMirror-gutter-text { color: #aaa; text-align: right; padding: .4em .2em .4em .4em; white-space: pre !important; }
+.CodeMirror-lines { padding: .4em; }
+
+.CodeMirror pre {
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-o-border-radius: 0; border-radius: 0; border-width: 0; margin: 0; padding: 0; background: transparent;
+font-family: inherit; font-size: inherit; padding: 0; margin: 0; white-space: pre; word-wrap: normal; }
+
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; }
+.CodeMirror-wrap .CodeMirror-scroll { 
+	/*overflow-x: auto;*/
+}
+
+.CodeMirror textarea { outline: none !important; }
+
+.CodeMirror pre.CodeMirror-cursor { z-index: 10; position: absolute; visibility: hidden; border-left: 1px solid black; border-right:none; width:0; }
+.CodeMirror pre.CodeMirror-cursor.CodeMirror-overwrite {}
+.CodeMirror-focused pre.CodeMirror-cursor { visibility: visible; }
+
+div.CodeMirror-selected { background: #d9d9d9; }
+.CodeMirror-focused div.CodeMirror-selected { background: #d7d4f0; }
+
+.CodeMirror-searching {
+background: #ffa;
+background: rgba(255, 255, 0, .4);
+}
+
+span.CodeMirror-matchhighlight { background: #ff1 }
+.CodeMirror-focused span.CodeMirror-matchhighlight { background: #ff1; !important }
+
+/* Default theme */
+
+.cm-s-default span.cm-keyword {color: #708;}
+.cm-s-default span.cm-atom {color: #219;}
+.cm-s-default span.cm-number {color: #164;}
+.cm-s-default span.cm-def {color: #00f;}
+.cm-s-default span.cm-variable {color: black;}
+.cm-s-default span.cm-variable-2 {color: #05a;}
+.cm-s-default span.cm-variable-3 {color: #085;}
+.cm-s-default span.cm-property {color: black;}
+.cm-s-default span.cm-operator {color: black;}
+.cm-s-default span.cm-comment {color: #999;}
+.cm-s-default span.cm-string {color: #a11;}
+.cm-s-default span.cm-string-2 {color: #f50;}
+.cm-s-default span.cm-meta {color: #555;}
+.cm-s-default span.cm-error {color: #f00;}
+.cm-s-default span.cm-qualifier {color: #555;}
+.cm-s-default span.cm-builtin {color: #30a;}
+.cm-s-default span.cm-bracket {color: #cc7;}
+.cm-s-default span.cm-tag {color: #170;}
+.cm-s-default span.cm-attribute {color: #00c;}
+.cm-s-default span.cm-header {color: #a0a;}
+.cm-s-default span.cm-quote {color: #090;}
+.cm-s-default span.cm-hr {color: #999;}
+.cm-s-default span.cm-link {color: #00c;}
+
+span.cm-header, span.cm-strong {font-weight: bold;}
+span.cm-em {font-style: italic;}
+span.cm-emstrong {font-style: italic; font-weight: bold;}
+span.cm-link {text-decoration: underline;}
+
+div.CodeMirror span.CodeMirror-matchingbracket {color: #0f0;}
+div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
+</style>
+
 ]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="hide" Help="#Lang(505)">
+        <Event Name="hide" Help="#Lang(506)">
           <Parameters/>
         </Event>
-        <Event Name="show" Help="#Lang(506)">
+        <Event Name="show" Help="#Lang(507)">
           <Parameters/>
         </Event>
-        <Event Name="submit" Help="#Lang(507)">
+        <Event Name="submit" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="params" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
-        <Event Name="customEvent" Help="#Lang(507)">
+        <Event Name="customEvent" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="macros_id" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="macros_id" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="executeCallback">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="callbackName" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="params" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[
+$q("#"+this.domCont.id).dialog('executeCallback', callbackName, params);
+]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1380,12 +1553,12 @@ class VDOM_xmldialog(VDOM_object):
 $q("#"+this.domCont.id).dialog('close');
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadData">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="xmldata" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$q("#"+this.domCont.id).dialog('open');
+vdom_xd_load("#"+this.domCont.id,xmldata);
 ]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
@@ -1397,21 +1570,12 @@ $q("#"+this.domCont.id).dialog('open');
 $q("#"+this.domCont.id).dialog("option",{width:parseInt(width,10),height:parseInt(height,10)});
 ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadData">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="xmldata" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-vdom_xd_load("#"+this.domCont.id,xmldata);
-]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="executeCallback">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="callbackName" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="params" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[
-$q("#"+this.domCont.id).dialog('executeCallback', callbackName, params);
+$q("#"+this.domCont.id).dialog('open');
 ]]></SourceCode>
         </Action>
       </Container>
