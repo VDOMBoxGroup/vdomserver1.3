@@ -900,10 +900,10 @@ class VDOM_web_services_server(object):
 				x = obj.actions["name"][_name]
 				if _name in copy_object.actions["name"]:
 					y = copy_object.actions["name"][_name]
-					copy_object.set_action(y.id, x.code)
+					copy_object.set_action(y.id, x.code.replace("]]>","]]]]><![CDATA[>"))
 					actionid = y.id
 				else:
-					actionid = copy_object.create_action(x.name, x.code)
+					actionid = copy_object.create_action(x.name, x.code.replace("]]>","]]]]><![CDATA[>"))
 				xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" Language="" State="%s" />\n""" % (actionid, x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
 				action_map[x.id] = actionid
 			xml_actions += '</ServerActions>\n'
@@ -1266,7 +1266,7 @@ class VDOM_web_services_server(object):
 		for _name in obj.actions["name"]:
 			x = obj.actions["name"][_name]
 			result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (x.id, x.name, x.top, x.left, x.state)
-			result += """<![CDATA[%s]]>\n""" % x.code
+			result += """<![CDATA[%s]]>\n""" % x.code.replace("]]>","]]]]><![CDATA[>")
 			result += "</Action>\n"
 		result += '</Container>\n'
 
