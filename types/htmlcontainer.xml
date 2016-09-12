@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.94.6723</Version>
+    <Version>2.99.6723</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -196,79 +196,79 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>testFunc</Name>
+      <Name>cookiewarning</Name>
       <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>cookiewarningtext</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>testFunc</Name>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>testClasses</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue/>
-      <Visible>0</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>position</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>left</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|left)|(#Lang(411)|center)|(#Lang(412)|jscenter))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(left|center)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>style</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>position</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>left</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(412)|left)|(#Lang(413)|center)|(#Lang(414)|jscenter))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(left|center)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>.+</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textcolor</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>000000</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>Color()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>linkcolor</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue>000000</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>Color()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>activelinkcolor</Name>
       <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
@@ -280,7 +280,7 @@
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>visitedlinkcolor</Name>
+      <Name>linkcolor</Name>
       <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
@@ -292,9 +292,9 @@
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>bgcolor</Name>
+      <Name>activelinkcolor</Name>
       <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue>FFFFFF</DefaultValue>
+      <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
@@ -304,27 +304,51 @@
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>css</Name>
+      <Name>visitedlinkcolor</Name>
       <DisplayName>#Lang(126)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>bgcolor</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue>FFFFFF</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>css</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
       <InterfaceType>3</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(127)</DisplayName>
+      <DisplayName>#Lang(129)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(227)</Help>
+      <Help>#Lang(229)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -347,17 +371,19 @@
       <Sentence ID="113">Denied link</Sentence>
       <Sentence ID="114">jQuery.UI</Sentence>
       <Sentence ID="115">Custom headers</Sentence>
-      <Sentence ID="116">testFunc</Sentence>
-      <Sentence ID="117">testClasses</Sentence>
-      <Sentence ID="118">Positioning</Sentence>
-      <Sentence ID="119">Style</Sentence>
-      <Sentence ID="121">Text color</Sentence>
-      <Sentence ID="122">Link color</Sentence>
-      <Sentence ID="123">Active link color</Sentence>
-      <Sentence ID="124">Visited link color</Sentence>
-      <Sentence ID="125">Background color</Sentence>
-      <Sentence ID="126">CSS</Sentence>
-      <Sentence ID="127">Class CSS</Sentence>
+      <Sentence ID="116">Cookie warning</Sentence>
+      <Sentence ID="117">Cookie warning text</Sentence>
+      <Sentence ID="118">testFunc</Sentence>
+      <Sentence ID="119">testClasses</Sentence>
+      <Sentence ID="121">Positioning</Sentence>
+      <Sentence ID="122">Style</Sentence>
+      <Sentence ID="123">Text color</Sentence>
+      <Sentence ID="124">Link color</Sentence>
+      <Sentence ID="125">Active link color</Sentence>
+      <Sentence ID="126">Visited link color</Sentence>
+      <Sentence ID="127">Background color</Sentence>
+      <Sentence ID="128">CSS</Sentence>
+      <Sentence ID="129">Class CSS</Sentence>
       <Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the Z-Index indicates the order of their displaying. The larger Z-Index is, the upper the object is situated.</Sentence>
@@ -372,17 +398,19 @@
       <Sentence ID="213">The page, to which the user is redirected when a security check fails. If it is not specified a blank page is displayed.</Sentence>
       <Sentence ID="214">Use jQuery.UI</Sentence>
       <Sentence ID="215">Custom tags (meta, style, script) to place in  HEAD tag of document</Sentence>
-      <Sentence ID="216">testFunc</Sentence>
-      <Sentence ID="217">testClasses</Sentence>
-      <Sentence ID="218">Positioning</Sentence>
-      <Sentence ID="219">Style</Sentence>
-      <Sentence ID="221">The color of the text.</Sentence>
-      <Sentence ID="222">The color of the link.</Sentence>
-      <Sentence ID="223">The color of the active link.</Sentence>
-      <Sentence ID="224">The color of the visited link.</Sentence>
-      <Sentence ID="225">The background color of the object.</Sentence>
-      <Sentence ID="226">The necessary CSS code applied to all objects within the container.</Sentence>
-      <Sentence ID="227">The names of CSS classes. The names can consist only of Latin characters, may include hyphen (-) and underscore (_).</Sentence>
+      <Sentence ID="216">Display a warning message indicating that application may create cookies on client side.</Sentence>
+      <Sentence ID="217">Text to display as message when Cookie warning attribute is enabled.</Sentence>
+      <Sentence ID="218">testFunc</Sentence>
+      <Sentence ID="219">testClasses</Sentence>
+      <Sentence ID="221">Positioning</Sentence>
+      <Sentence ID="222">Style</Sentence>
+      <Sentence ID="223">The color of the text.</Sentence>
+      <Sentence ID="224">The color of the link.</Sentence>
+      <Sentence ID="225">The color of the active link.</Sentence>
+      <Sentence ID="226">The color of the visited link.</Sentence>
+      <Sentence ID="227">The background color of the object.</Sentence>
+      <Sentence ID="228">The necessary CSS code applied to all objects within the container.</Sentence>
+      <Sentence ID="229">The names of CSS classes. The names can consist only of Latin characters, may include hyphen (-) and underscore (_).</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be string.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer.</Sentence>
@@ -397,10 +425,10 @@
       <Sentence ID="313">Incorrect value.</Sentence>
       <Sentence ID="314">Incorrect value.</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316">HTML Container.</Sentence>
-      <Sentence ID="317">HTML Container.</Sentence>
-      <Sentence ID="318">Incorrect value.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
+      <Sentence ID="316">Incorrect value, must be 0 or 1.</Sentence>
+      <Sentence ID="317">Incorrect value.</Sentence>
+      <Sentence ID="318">HTML Container.</Sentence>
+      <Sentence ID="319">HTML Container.</Sentence>
       <Sentence ID="321">Incorrect value.</Sentence>
       <Sentence ID="322">Incorrect value.</Sentence>
       <Sentence ID="323">Incorrect value.</Sentence>
@@ -408,6 +436,8 @@
       <Sentence ID="325">Incorrect value.</Sentence>
       <Sentence ID="326">Incorrect value.</Sentence>
       <Sentence ID="327">Incorrect value.</Sentence>
+      <Sentence ID="328">Incorrect value.</Sentence>
+      <Sentence ID="329">Incorrect value.</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Repeat</Sentence>
@@ -416,9 +446,11 @@
       <Sentence ID="406">Repeat-Y</Sentence>
       <Sentence ID="407">Yes</Sentence>
       <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Left</Sentence>
-      <Sentence ID="411">Center</Sentence>
-      <Sentence ID="412">JS Center</Sentence>
+      <Sentence ID="409">Disabled</Sentence>
+      <Sentence ID="411">Enabled</Sentence>
+      <Sentence ID="412">Left</Sentence>
+      <Sentence ID="413">Center</Sentence>
+      <Sentence ID="414">JS Center</Sentence>
       <Sentence ID="501">Visibility</Sentence>
       <Sentence ID="502">Visibility</Sentence>
       <Sentence ID="503">Visibility</Sentence>
@@ -544,17 +576,19 @@
       <Sentence ID="113">Ссылка при отказе</Sentence>
       <Sentence ID="114">jQuery.UI</Sentence>
       <Sentence ID="115"></Sentence>
-      <Sentence ID="116">testFunc</Sentence>
-      <Sentence ID="117">testClasses</Sentence>
-      <Sentence ID="118">Позиционирование</Sentence>
-      <Sentence ID="119">Стиль</Sentence>
-      <Sentence ID="121">Цвет текста</Sentence>
-      <Sentence ID="122">Цвет ссылки</Sentence>
-      <Sentence ID="123">Цвет активной ссылки</Sentence>
-      <Sentence ID="124">Цвет посещенной ссылки</Sentence>
-      <Sentence ID="125">Цвет фона</Sentence>
-      <Sentence ID="126">CSS</Sentence>
-      <Sentence ID="127">Class CSS</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118">testFunc</Sentence>
+      <Sentence ID="119">testClasses</Sentence>
+      <Sentence ID="121">Позиционирование</Sentence>
+      <Sentence ID="122">Стиль</Sentence>
+      <Sentence ID="123">Цвет текста</Sentence>
+      <Sentence ID="124">Цвет ссылки</Sentence>
+      <Sentence ID="125">Цвет активной ссылки</Sentence>
+      <Sentence ID="126">Цвет посещенной ссылки</Sentence>
+      <Sentence ID="127">Цвет фона</Sentence>
+      <Sentence ID="128">CSS</Sentence>
+      <Sentence ID="129">Class CSS</Sentence>
       <Sentence ID="201">Отображается объект или нет</Sentence>
       <Sentence ID="202">Заголовок контейнера</Sentence>
       <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
@@ -569,17 +603,19 @@
       <Sentence ID="213">Ссылка при отказе</Sentence>
       <Sentence ID="214">Use jQuery.UI</Sentence>
       <Sentence ID="215"></Sentence>
-      <Sentence ID="216">testFunc</Sentence>
-      <Sentence ID="217">testClasses</Sentence>
-      <Sentence ID="218">Позиционирование</Sentence>
-      <Sentence ID="219">Стиль</Sentence>
-      <Sentence ID="221">Цвет текста</Sentence>
-      <Sentence ID="222">Цвет ссылки</Sentence>
-      <Sentence ID="223">Цвет активной ссылки</Sentence>
-      <Sentence ID="224">Цвет посещенной ссылки</Sentence>
-      <Sentence ID="225">Цвет фона</Sentence>
-      <Sentence ID="226">Таблицы стилей для страницы</Sentence>
-      <Sentence ID="227">CSS classes for body</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218">testFunc</Sentence>
+      <Sentence ID="219">testClasses</Sentence>
+      <Sentence ID="221">Позиционирование</Sentence>
+      <Sentence ID="222">Стиль</Sentence>
+      <Sentence ID="223">Цвет текста</Sentence>
+      <Sentence ID="224">Цвет ссылки</Sentence>
+      <Sentence ID="225">Цвет активной ссылки</Sentence>
+      <Sentence ID="226">Цвет посещенной ссылки</Sentence>
+      <Sentence ID="227">Цвет фона</Sentence>
+      <Sentence ID="228">Таблицы стилей для страницы</Sentence>
+      <Sentence ID="229">CSS classes for body</Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
@@ -594,10 +630,10 @@
       <Sentence ID="313">Неправильное значение</Sentence>
       <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">HTML Контейнер</Sentence>
-      <Sentence ID="317">HTML Контейнер</Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318">HTML Контейнер</Sentence>
+      <Sentence ID="319">HTML Контейнер</Sentence>
       <Sentence ID="321">Неправильное значение</Sentence>
       <Sentence ID="322">Неправильное значение</Sentence>
       <Sentence ID="323">Неправильное значение</Sentence>
@@ -605,6 +641,8 @@
       <Sentence ID="325">Неправильное значение</Sentence>
       <Sentence ID="326">Неправильное значение</Sentence>
       <Sentence ID="327">Неправильное значение</Sentence>
+      <Sentence ID="328">Неправильное значение</Sentence>
+      <Sentence ID="329">Неправильное значение</Sentence>
       <Sentence ID="401">Не отображается</Sentence>
       <Sentence ID="402">Отображается</Sentence>
       <Sentence ID="403">Повторять</Sentence>
@@ -613,9 +651,11 @@
       <Sentence ID="406">Повторять по Y</Sentence>
       <Sentence ID="407">Yes</Sentence>
       <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Left</Sentence>
-      <Sentence ID="411">Center</Sentence>
-      <Sentence ID="412">JS Center</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412">Left</Sentence>
+      <Sentence ID="413">Center</Sentence>
+      <Sentence ID="414">JS Center</Sentence>
       <Sentence ID="501">Z-Индекс</Sentence>
       <Sentence ID="502">Z-Индекс</Sentence>
       <Sentence ID="503">Z-Индекс</Sentence>
@@ -741,17 +781,19 @@
       <Sentence ID="113">Lien refusé</Sentence>
       <Sentence ID="114">jQuery.UI</Sentence>
       <Sentence ID="115"></Sentence>
-      <Sentence ID="116">testFunc</Sentence>
-      <Sentence ID="117">testClasses</Sentence>
-      <Sentence ID="118">Position</Sentence>
-      <Sentence ID="119">Style</Sentence>
-      <Sentence ID="121">Couleur Texte</Sentence>
-      <Sentence ID="122">Couleur liens</Sentence>
-      <Sentence ID="123">Couleur Liens Actif</Sentence>
-      <Sentence ID="124">Couleur Liens Visités</Sentence>
-      <Sentence ID="125">Couleur de fond</Sentence>
-      <Sentence ID="126">CSS</Sentence>
-      <Sentence ID="127">Class CSS</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118">testFunc</Sentence>
+      <Sentence ID="119">testClasses</Sentence>
+      <Sentence ID="121">Position</Sentence>
+      <Sentence ID="122">Style</Sentence>
+      <Sentence ID="123">Couleur Texte</Sentence>
+      <Sentence ID="124">Couleur liens</Sentence>
+      <Sentence ID="125">Couleur Liens Actif</Sentence>
+      <Sentence ID="126">Couleur Liens Visités</Sentence>
+      <Sentence ID="127">Couleur de fond</Sentence>
+      <Sentence ID="128">CSS</Sentence>
+      <Sentence ID="129">Class CSS</Sentence>
       <Sentence ID="201">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="202">Titre du conteneur</Sentence>
       <Sentence ID="203">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
@@ -766,17 +808,19 @@
       <Sentence ID="213">Lien refusé</Sentence>
       <Sentence ID="214">Use jQuery.UI</Sentence>
       <Sentence ID="215"></Sentence>
-      <Sentence ID="216">testFunc</Sentence>
-      <Sentence ID="217">testClasses</Sentence>
-      <Sentence ID="218">Position du container à l'intèrieur de la fenetre du navigateur</Sentence>
-      <Sentence ID="219">Style</Sentence>
-      <Sentence ID="221">Couleur par défaut du texte de la page</Sentence>
-      <Sentence ID="222">Couleur par défaut des liens de la page</Sentence>
-      <Sentence ID="223">Couleur par défaut des liens Actifs de la page</Sentence>
-      <Sentence ID="224">Couleur par défaut des liens Visité de la page</Sentence>
-      <Sentence ID="225">Couleur d'arrière plan de la page</Sentence>
-      <Sentence ID="226">Style sheet of the page</Sentence>
-      <Sentence ID="227">CSS classes for body</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218">testFunc</Sentence>
+      <Sentence ID="219">testClasses</Sentence>
+      <Sentence ID="221">Position du container à l'intèrieur de la fenetre du navigateur</Sentence>
+      <Sentence ID="222">Style</Sentence>
+      <Sentence ID="223">Couleur par défaut du texte de la page</Sentence>
+      <Sentence ID="224">Couleur par défaut des liens de la page</Sentence>
+      <Sentence ID="225">Couleur par défaut des liens Actifs de la page</Sentence>
+      <Sentence ID="226">Couleur par défaut des liens Visité de la page</Sentence>
+      <Sentence ID="227">Couleur d'arrière plan de la page</Sentence>
+      <Sentence ID="228">Style sheet of the page</Sentence>
+      <Sentence ID="229">CSS classes for body</Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -791,17 +835,19 @@
       <Sentence ID="313">Valeur Incorrecte</Sentence>
       <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Conteneur HTML</Sentence>
-      <Sentence ID="317">Conteneur HTML</Sentence>
-      <Sentence ID="318">Valeur Incorrecte</Sentence>
-      <Sentence ID="319">Valeur Incorrecte</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318">Conteneur HTML</Sentence>
+      <Sentence ID="319">Conteneur HTML</Sentence>
       <Sentence ID="321">Valeur Incorrecte</Sentence>
       <Sentence ID="322">Valeur Incorrecte</Sentence>
       <Sentence ID="323">Valeur Incorrecte</Sentence>
       <Sentence ID="324">Valeur Incorrecte</Sentence>
       <Sentence ID="325">Valeur Incorrecte</Sentence>
-      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="326">Valeur Incorrecte</Sentence>
       <Sentence ID="327">Valeur Incorrecte</Sentence>
+      <Sentence ID="328">Incorrect value</Sentence>
+      <Sentence ID="329">Valeur Incorrecte</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Répéter</Sentence>
@@ -810,9 +856,11 @@
       <Sentence ID="406">Répéter-vertical</Sentence>
       <Sentence ID="407">Yes</Sentence>
       <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Gauche</Sentence>
-      <Sentence ID="411">Centrer</Sentence>
-      <Sentence ID="412">JS Centrer</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412">Gauche</Sentence>
+      <Sentence ID="413">Centrer</Sentence>
+      <Sentence ID="414">JS Centrer</Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -5307,6 +5355,9 @@ O0NhbnZhc1BhdHRlcm49dTtET01FeGNlcHRpb249b30pKCl9Ow0K]]></Resource>
 
 import e2vdom
 import json
+import time
+import email
+import email.utils
 
 def on_compile(application, object, action_name, context, objects):
 	result=objects
@@ -5422,6 +5473,19 @@ position: relative;
 			else:
 				noscript=""
 
+			cookie_name = 'cookiewarning'
+			cookiewarning = ""
+			if self.cookiewarning == "1":
+				if cookie_name not in request.cookies:
+					cookiewarning=u"""<div id="cookieWarningDiv" style="display: block; text-align: center; background: #333; color: #fff; font-size: 15px !important; width: 90%%; box-sizing: content-box; font-family: sans-serif !important; padding-top: 5px; padding-right: 5%%; padding-bottom: 5px; padding-left: 5%%; vertical-align: initial;">
+							  <span id="cookieWarningAlert" style="font: 15px verdana;"> %(text)s </span>
+							  <span id="cookieWarningOK" style="cursor: pointer; display: inline-block; font-size: 16px; background: #4596ec !important; border-radius: 10px; font-family: sans-serif !important; box-sizing: initial; vertical-align: initial; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; margin-left: 7px;" onclick="$j(function(){ document.cookie = '%(cookie)s=1; expires=%(cookie_exp)s'; $('#cookieWarningDiv').hide(); });">&#x2713; OK</span>
+							  </div>""" %	{
+										"text": self.cookiewarningtext.decode('utf8'),
+										"cookie": cookie_name,
+										"cookie_exp": email.utils.formatdate(time.time()+31536000, usegmt=True) # set one year expiration
+									}
+
 			css = u'<style type="text/css">\n%s\n%s</style>' % (self.css,centercss)
 			doctype = u"""<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">"""
 			doctypenew = u"""<!DOCTYPE html>"""
@@ -5453,6 +5517,7 @@ position: relative;
 	<!--[if lt IE 9]><script src="/62bfaaa0-c2fd-02d5-2a32-49056e416a65.res"></script><![endif]-->
 </head>
 <body id="%(obj_id)s" style="%(style)s" %(style2)s %(cssclass)s >
+	%(cookiewarning)s
 	%(noscript)s
 	<div id='container'>
 		%(contents)s
@@ -5486,6 +5551,7 @@ position: relative;
 				"jqui":         jqui,
 				"libraries":    libraries,
 				"metas":        metas,
+				"cookiewarning":cookiewarning,
 				"noscript":     noscript,
 				"clean_obj_id": clean_obj_id,
 				"obj_id":       obj_id,
