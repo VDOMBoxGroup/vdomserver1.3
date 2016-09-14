@@ -147,6 +147,12 @@ class VDOM_request(object):
 	def uploaded_file(self,guid):
 		u_file = managers.session_manager.current.files.pop(guid, None)
 		return Attachment(u_file) if u_file else None
+
+	def clear_files(self):
+		files = managers.session_manager.current.files
+		for x in files:
+			files[x].remove()
+		managers.session_manager.current.files = {}
 	
 	arguments=property(lambda self: self._arguments)
 	container=property(_get_container)
