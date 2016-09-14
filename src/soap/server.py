@@ -800,7 +800,7 @@ class VDOM_web_services_server(object):
 		# attributes
 		result += "<Attributes>\n"
 		for a in obj.get_attributes().values():
-			result += "<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
+			result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value).decode('utf8'))
 		result += "</Attributes>\n"
 #		result += "<Script>%s</Script>\n" % obj.script
 		# put all child objects
@@ -824,7 +824,7 @@ class VDOM_web_services_server(object):
 		# attributes
 		result += "<Attributes>\n"
 		for a in obj.get_attributes().values():
-			result += "<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
+			result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value).decode('utf8'))
 		result += "</Attributes>\n"
 #		result += "<Objects/>\n"
 		result += self.__get_code_interface(obj)
