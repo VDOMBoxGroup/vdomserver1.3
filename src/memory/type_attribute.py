@@ -6,7 +6,7 @@ class VDOM_type_attribute:
 	def __init__(self, name, default_value):
 		"""constructor"""
 		self.name = name
-		self.default_value = default_value
+		self.default_value = default_value.decode('utf8')
 		self.regexp = ""
 
 	def __repr__(self):

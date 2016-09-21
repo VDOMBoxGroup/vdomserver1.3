@@ -5481,7 +5481,7 @@ position: relative;
 							  <span id="cookieWarningAlert" style="font: 15px verdana;"> %(text)s </span>
 							  <span id="cookieWarningOK" style="cursor: pointer; display: inline-block; font-size: 16px; background: #4596ec !important; border-radius: 10px; font-family: sans-serif !important; box-sizing: initial; vertical-align: initial; padding-top: 5px; padding-right: 10px; padding-bottom: 5px; padding-left: 10px; margin-left: 7px;" onclick="$j(function(){ document.cookie = '%(cookie)s=1; expires=%(cookie_exp)s'; $('#cookieWarningDiv').hide(); });">&#x2713; OK</span>
 							  </div>""" %	{
-										"text": self.cookiewarningtext.decode('utf8'),
+										"text": self.cookiewarningtext,
 										"cookie": cookie_name,
 										"cookie_exp": email.utils.formatdate(time.time()+31536000, usegmt=True) # set one year expiration
 									}
