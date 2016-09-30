@@ -1,6 +1,6 @@
 """database manager"""
 import string
-import sys
+import sys, os.path
 import utils.uuid
 import managers, file_access
 from utils.exception import VDOM_exception
@@ -249,15 +249,15 @@ class VDOM_database_manager(object):
 		id = orig_db.id
 		tempdb_name = orig_db.name
 		temppath = managers.file_manager.create_tmp_dir("db_")
-		tgt_connection = sqlite3.connect("%s\copydb"%temppath)
+		tgt_connection = sqlite3.connect(os.path.join(temppath,"copydb"))
 		newdb = orig_db.backup_data(tgt_connection)
 		tgt_connection.execute("VACUUM")
 		tgt_connection.commit()
 		tgt_connection.close()
-		data = managers.file_manager.read_file("%s\copydb"%temppath)
+		data = managers.file_manager.read_file(os.path.join(temppath,"copydb"))
 		managers.file_manager.delete_tmp_dir(temppath)
 		return data
-
+	
 def un_quote(param):
 	"""Delete all quotes from param"""
 	return param.replace("\'","").replace("\"","").replace("\\","")
