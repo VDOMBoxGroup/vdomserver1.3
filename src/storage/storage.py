@@ -36,14 +36,18 @@ class VDOM_storage(object):
 		if not VDOM_CONFIG["VDOM-CONFIG-1-RECORD"] in self.keys():
 			self.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], VDOM_CONFIG_1)
 		else:
-			conf = self.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
+			conf = self.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"]) or {}
 			for k in VDOM_CONFIG_1:
+				if "DEBUG-ENABLE-TAG" in k:
+					pass#remove all debug tags
 				if k not in conf:
 					conf[k] = VDOM_CONFIG_1[k]
 				else:
 					VDOM_CONFIG_1[k] = conf[k]
-			self.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf)
-
+			conf2 = {key:val for key,val in conf.iteritems() if "DEBUG-ENABLE-TAG" not in key}
+			self.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], conf2)
+			self.erase("DEBUG-TAGS")
+			#self.write_object("DEBUG-TAGS", [])
 	def init_db(self):
 		"""open storage"""
 		self.__sem.lock()
@@ -81,7 +85,13 @@ class VDOM_storage(object):
 		else:
 			cur.execute("select count(value) from storage where name = ? limit 1", (key, ))
 			if cur.fetchone()[0]:
-				cur.execute("update storage set value = ? where name = ?", (value, key))
+				try:
+					cur.execute("update storage set value = ? where name = ?", (value, key))
+				except:
+					cur.execute("VACUUM")
+					cur.execute("delete from storage where name = ?", (key, ))
+					cur.execute("VACUUM")
+					cur.execute("insert into storage values (?, ?)", (key, value))
 			else:
 				cur.execute("insert into storage values (?, ?)", (key, value))
 		if conn:
@@ -101,7 +111,12 @@ class VDOM_storage(object):
 	def __internal_erase(self, key):
 		"""internal erase method"""
 		with sqlite3.connect(self.__fname) as conn:
-			conm.execute("delete from storage where name = ?", (key, ))
+			try:
+				conn.execute("delete from storage where name = ?", (key, ))
+			except:
+				conn.execute("VACUUM")
+				conn.execute("delete from storage where name = ?", (key, ))
+			conn.execute("VACUUM")
 			#conn.commit() #
 
 

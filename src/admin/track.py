@@ -70,18 +70,18 @@ function MM_swapImage() { //v3.0
 		else:
 			cf.set_opt_sync("ENABLE-PAGE-DEBUG", "0")
 			VDOM_CONFIG_1["ENABLE-PAGE-DEBUG"] = "0"
-		tags = managers.storage.read_object("DEBUG-TAGS")
-		if not tags:
-			tags = []
-			managers.storage.write_object("DEBUG-TAGS", tags)
-		for a in args.keys():
-			if a.startswith("enable_tag_"):
-				k = a[11:]
-				if k in tags:
-					tags.remove(k)
-				cf.set_opt_sync("DEBUG-ENABLE-TAG-" + k, "1")
-		for key in tags:
-			cf.set_opt_sync("DEBUG-ENABLE-TAG-" + key, "0")
+		#tags = managers.storage.read_object("DEBUG-TAGS")
+		#if not tags:
+		#	tags = []
+		#	#managers.storage.write_object("DEBUG-TAGS", tags)
+		#for a in args.keys():
+		#	if a.startswith("enable_tag_"):
+		#		k = a[11:]
+		#		if k in tags:
+		#			tags.remove(k)
+		#		#cf.set_opt_sync("DEBUG-ENABLE-TAG-" + k, "1")
+		#for key in tags:
+		#	cf.set_opt_sync("DEBUG-ENABLE-TAG-" + key, "0")
 
 	opt = cf.get_opt("DEBUG")
 	toset = ""
@@ -144,29 +144,29 @@ function MM_swapImage() { //v3.0
         </tr>
 """ % s)
 
-	tags = managers.storage.read_object("DEBUG-TAGS")
-	if not tags:
-		tags = []
-		managers.storage.write_object("DEBUG-TAGS", tags)
-	for key in cf.get_keys():
-		if key.startswith("DEBUG-ENABLE-TAG-") and "1" == cf.get_opt(key):
-			k = key[17:]
-			if k in tags:
-				tags.remove(k)
-			request.write("""<tr>
-	  <td><input type=checkbox name="enable_tag_%s" value="1" checked>%s</input></td>
-        </tr>
-""" % (k, k))
+	#tags = managers.storage.read_object("DEBUG-TAGS")
+	#if not tags:
+		#tags = []
+		#managers.storage.write_object("DEBUG-TAGS", tags)
+	#for key in cf.get_keys():
+		#if key.startswith("DEBUG-ENABLE-TAG-") and "1" == cf.get_opt(key):
+			#k = key[17:]
+			#if k in tags:
+				#tags.remove(k)
+			#request.write("""<tr>
+	  #<td><input type=checkbox name="enable_tag_%s" value="1" checked>%s</input></td>
+        #</tr>
+#""" % (k, k))
 
-	for key in tags:
-		request.write("""<tr>
-	  <td><input type=checkbox name="enable_tag_%s" value="1">%s</input></td>
-        </tr>
-""" % (key, key))
+	#for key in tags:
+		#request.write("""<tr>
+	  #<td><input type=checkbox name="enable_tag_%s" value="1">%s</input></td>
+        #</tr>
+#""" % (key, key))
 
-	request.write("""<tr><td>
-<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
-</td></tr></table></form></td>""")	
+	#request.write("""<tr><td>
+#<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
+#</td></tr></table></form></td>""")	
 
 	request.write("""</tr>
  </table>
