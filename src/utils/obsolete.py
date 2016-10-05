@@ -85,7 +85,7 @@ def my_debug(_data, tag="", console=None):
 	global tags
 	from storage.storage import VDOM_config
 	if tags is None:
-		tags=managers.storage.read_object("DEBUG-TAGS") or []
+		tags=[]#managers.storage.read_object("DEBUG-TAGS") or []
 	debug_on = True
 	if "1" != VDOM_CONFIG_1["DEBUG"]:
 		debug_on = False
@@ -100,12 +100,12 @@ def my_debug(_data, tag="", console=None):
 	if not debug_on:
 		return
 	_tag = s = ""
-	if tag:
-		_tag = tag.lower()
-		if _tag not in tags:
-			tags.append(_tag)
-			managers.storage.write_object_async("DEBUG-TAGS", tags)
-			cf.set_opt_sync("DEBUG-ENABLE-TAG-" + _tag, "1")
+	#if tag:
+		#_tag = tag.lower()
+		#if _tag not in tags:
+			#tags.append(_tag)
+			#managers.storage.write_object_async("DEBUG-TAGS", tags)
+			#cf.set_opt_sync("DEBUG-ENABLE-TAG-" + _tag, "1")
 	x = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
 	prep = "%s thread %4d" % (x, thread.get_ident())
 	en_tag = VDOM_CONFIG_1["DEBUG-ENABLE-TAGS"]
