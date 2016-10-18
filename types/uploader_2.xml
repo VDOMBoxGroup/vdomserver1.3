@@ -515,6 +515,8 @@ ju9DSnd+hCBLuv0X7Ybu/gowAMUkYJuZo2aTAAAAAElFTkSuQmCC]]></Resource>
 
 import sys
 
+from utils.csrf import create_csrf_token, csrf_token_arg_name
+
 class VDOM_uploader_2(VDOM_object):
 
 	def render(self, parent, contents=""):
@@ -600,27 +602,33 @@ $j(function(){
 </script>
 		""" % { "woid": woid, "id": id, "formdata": formdata }
 
+		csrftoken = '<input type="hidden" name="%s" value="%s">' % (csrf_token_arg_name, create_csrf_token())
+
 		v2 = u"""
 			<form id="{id}" action="{pageurl}" method="post" enctype="multipart/form-data" style="{style}" {classname}>
 				<input type="file" name="files[]" multiple />
 				<table class="files"></table>
+				{csrftoken}
 			</form>
 		""".format(
 				id        = id,
 				style     = style,
 				classname = classname,
-				pageurl   = pageurl
+				pageurl   = pageurl,
+				csrftoken = csrftoken
 			)
 
 		v3 = u"""
 			<form id="{id}" action="/upload.py" method="post" enctype="multipart/form-data" style="{style}" {classname}>
 				<input type="file" name="files" />
 				<table class="files"></table>
+				{csrftoken}
 			</form>
 		""".format(
 				id        = id,
 				style     = style,
-				classname = classname
+				classname = classname,
+				csrftoken = csrftoken
 			)
 
 		result = u"""
