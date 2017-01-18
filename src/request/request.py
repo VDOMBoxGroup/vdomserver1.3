@@ -106,7 +106,7 @@ class VDOM_request:
 			self.__app_id = vh.get_def_site()
 		self.__stdout = StringIO()
 		self.action_result = ""
-
+		self.wholeAnswer = None
 		self.application_id = self.__app_id
 		if self.__app_id:
 			self.__session.context["application_id"] = self.__app_id
@@ -231,7 +231,7 @@ class VDOM_request:
 		return self.__cookies
 
 	def response_cookies(self):
-		""" Server cookies """
+		""" Server response cookies """
 		return self.__response_cookies
 	
 	def application(self):
