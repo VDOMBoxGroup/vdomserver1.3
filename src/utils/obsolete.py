@@ -96,7 +96,7 @@ def my_debug(_data, tag="", console=None):
 		data = str(_data)
 	if console is not None:
 		console_debug(data)
-	cf = VDOM_config()
+	#cf = VDOM_config()
 	if not debug_on:
 		return
 	_tag = s = ""
