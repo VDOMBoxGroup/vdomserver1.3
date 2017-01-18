@@ -18,6 +18,8 @@ class VDOM_session(object):
 		managers.request_manager.current.session()[name] = value
 
 	def __delitem__(self, name):
+		if name == "response" and name not in managers.request_manager.current.session(): #temporary solution for backward compability of Whole
+			return
 		del managers.request_manager.current.session()[name]
 
 	
