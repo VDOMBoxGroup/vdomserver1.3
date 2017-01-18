@@ -369,6 +369,8 @@ gg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
 
+from utils.csrf import create_csrf_token, csrf_token_arg_name
+
 class VDOM_contact(VDOM_object):
 
 	def render(self, parent, contents=""):
@@ -444,6 +446,8 @@ class VDOM_contact(VDOM_object):
 						"iw": "100%" if (int(self.width) <= 200) else "50%"
 					}
 
+			csrftoken = '<input type="hidden" name="%s" value="%s">' % (csrf_token_arg_name, create_csrf_token())
+
 			form_data = u"""
 				<label for="addr_{id}">{addr}</label>
 				<input class="addr" type="text" name="fromaddr" />
@@ -455,12 +459,14 @@ class VDOM_contact(VDOM_object):
 				<textarea class="msg" name="message" rows="6" cols="30"></textarea>
 				<div style='clear:both'></div>
 				<input class="send" type="submit" value="{send}" />
+				{csrftoken}
 				""".format(
 						id   = id,
 						addr = addr,
 						subj = subj,
 						msg  = msg,
-						send = send.replace('"', '&quot;') )
+						send = send.replace('"', '&quot;'),
+						csrftoken = csrftoken )
 
 			p = application.objects.search(self.id)
 			while p.parent:
