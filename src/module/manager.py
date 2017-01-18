@@ -1,6 +1,6 @@
 """Module Manager module"""
 
-import sys, traceback, shutil, os,types
+import sys, traceback, shutil, os, types, re
 
 import managers
 from utils.exception import VDOM_exception
@@ -9,6 +9,10 @@ from resource import VDOM_module_resource
 from .python import VDOM_module_python
 from post_processing import VDOM_post_processing
 
+guid_regex=re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
+
+class PathNotFound(Exception):
+	pass
 
 class VDOM_module_manager(object):
 	"""Module Manager class"""
@@ -32,7 +36,7 @@ class VDOM_module_manager(object):
 				raise AttributeError, ext
 			request_object.add_header("Content-Length", str(len(data)))
 			return (None, data)
-		elif "/favicon.ico" == script_name:
+		if "/favicon.ico" == script_name:
 			app = request_object.application()
 			if not app or not app.icon:
 				return (404, None)
@@ -44,18 +48,20 @@ class VDOM_module_manager(object):
 				debug(_("Module manager: resource module error: %s") % str(e))
 				return (404, None)
 
-		parts1 = script_name.split("/")
-		parts = parts1[-1]
-		parts = parts.split(".")
-		if len(parts) == 1 and parts[0] != "":
-			parts.append("vdom")
-		request_type = parts[-1].lower()
-		request_object.request_type = request_type
 		if "127.0.0.1" != request_object.handler().client_address[0]:
 			debug("Request type: " + request_type)
-
-		parts1 = filter(lambda x: "" != x, parts1)
-		if 2 == len(parts1):
+		
+		
+		url_parts= filter(lambda x: "" != x, script_name.split("/"))
+		
+		#parts = parts1[-1]
+		#parts = parts.split(".")
+		#if len(parts) == 1 and parts[0] != "":
+		#	parts.append("vdom")
+		#request_type = parts[-1].lower() or 'vdom'
+		#request_object.request_type = request_type		
+		
+		if 2 == len(url_parts) and guid_regex.search(url_parts[0]) and guid_regex.search(url_parts[1]): #http://host/app_guid/page_guid
 			try:	# preview
 				a1 = managers.xml_manager.get_application(parts1[0])
 				request_object.set_application_id(a1.id)
@@ -65,21 +71,27 @@ class VDOM_module_manager(object):
 					request_object.request_type = "vdom"
 					result = managers.engine.render(a1, o1, None, o1.type.render_type.lower())
 					return (None, result.encode("utf-8"))
-			except: raise
+			except Exception as e: 
+				debug("Preview mode failed: %s"%e)
+				raise
 
 		# check if container is present
 		app = request_object.application()
-		if app and len(parts) < 2:
-			# have no container id, try to redirect to the top level container
-			if app.index_page:
-				_o = app.search_object(app.index_page)
-				if _o:
-					request_object.redirect("/%s.vdom" % _o.name)
-				else:
-					return (404, None)
+		if not url_parts: #http://host/
+			if not app:
+				ret = "Application not found"
+				debug(ret)
+				return (None, ret)	
+			elif app.index_page:# have no container id, try to redirect to the top level container
+				index_page = app.search_object(app.index_page)
+				if index_page:
+					request_object.redirect("/%s.vdom" % index_page.name)
 			elif len(app.get_objects_list()) > 0:	# redirect to the first container
 				request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
 			return (404, None)	# empty request
+	
+		request_type = url_parts[0].rpartition(".")[2] if '.' in url_parts[0] else 'vdom'
+		request_object.request_type = request_type			
 
 		# this acts as Communication Dispatcher
 		if "vdom" == request_type:	# VDOM container request
@@ -96,8 +108,10 @@ class VDOM_module_manager(object):
 				ret = "Application not active"
 				debug(ret)
 				return (None, ret)
-
-			container_id = parts[-2].lower()
+			target = url_parts[0]
+			if target.endswith('.vdom'):
+				target = target[:-5]
+			container_id = target#url_parts[-2].lower()
 			#request_object.container_id = container_id
 			#debug("Container id: " + container_id)
 
@@ -113,6 +127,15 @@ class VDOM_module_manager(object):
 						obj = _a.objects[_i]
 						break
 			if not obj:
+				#check for onerror handler
+	
+				if _a.global_actions["request"]["requestonerror"].code:
+					ee = PathNotFound(container_id)
+					request = managers.request_manager.get_request()
+					request.arguments().arguments()["error"] = [ee]
+					managers.engine.special(_a, _a.global_actions["request"]["requestonerror"])
+					if request_object.wholeAnswer:
+						return (None, request_object.wholeAnswer.encode("utf-8"))
 				return (404, None) #_("Container not found")
 
 			if obj.parent != None:
@@ -140,6 +163,14 @@ class VDOM_module_manager(object):
 			except VDOM_exception, e:
 				debug("Render exception: " + str(e))
 				return (None, str(e))
+			except Exception as ee:
+				if _a.global_actions["request"]["requestonerror"].code:
+					request = managers.request_manager.get_request()
+					request.arguments().arguments()["error"] = [ee]
+					managers.engine.special(_a, _a.global_actions["request"]["requestonerror"])
+					if request_object.wholeAnswer:
+						return (None, request_object.wholeAnswer.encode("utf-8"))
+				raise
 			
 			if request_object.fh:
 				shutil.copyfileobj(request_object.fh, request_object.wfile)
