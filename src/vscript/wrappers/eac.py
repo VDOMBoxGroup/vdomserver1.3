@@ -4,7 +4,7 @@ from .util import AutoCast, v_PropertySimple
 from packages import EACObject
 
 
-class v_eac(generic):
+class v_eacobject(generic):
 
     def __init__(self, mail_obj=None):
         generic.__init__(self)
