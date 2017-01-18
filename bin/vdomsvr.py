@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
-import datetime
+import datetime, time
 # http://bugs.python.org/issue7980
 datetime.datetime.strptime('2012-01-01', '%Y-%m-%d')
+time.strptime('2012-01-01', '%Y-%m-%d')
 
 import sys, gettext, os
 #import encodings.utf_16, encodings.utf_16_be, encodings.utf_16_le, encodings.utf_7, encodings.utf_8, encodings.utf_8_sig
