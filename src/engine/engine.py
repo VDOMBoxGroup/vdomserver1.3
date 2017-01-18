@@ -43,7 +43,7 @@ class VDOM_engine:
 			try:
 				result=source.render(parent.id if parent else "")
 			except VDOM_timeout_exception:
-				if application.global_actions["request"]["request"+"ontimeout"].code:
+				if application.global_actions["request"]["requestontimeout"].code:
 					self.special(application, application.global_actions["request"]["requestontimeout"])
 				raise			
 			except RenderTermination:
