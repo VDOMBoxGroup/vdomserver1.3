@@ -82,10 +82,10 @@ if sys.platform.startswith("freebsd") or sys.platform.startswith("linux"):
 tags=None
 
 def my_debug(_data, tag="", console=None):
-	global tags
-	from storage.storage import VDOM_config
-	if tags is None:
-		tags=[]#managers.storage.read_object("DEBUG-TAGS") or []
+	#global tags
+	#from storage.storage import VDOM_config
+	#if tags is None:
+	#	tags=[]#managers.storage.read_object("DEBUG-TAGS") or []
 	debug_on = True
 	if "1" != VDOM_CONFIG_1["DEBUG"]:
 		debug_on = False
@@ -108,11 +108,11 @@ def my_debug(_data, tag="", console=None):
 			#cf.set_opt_sync("DEBUG-ENABLE-TAG-" + _tag, "1")
 	x = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
 	prep = "%s thread %4d" % (x, thread.get_ident())
-	en_tag = VDOM_CONFIG_1["DEBUG-ENABLE-TAGS"]
-	if "1" == en_tag and "" != tag and "1" == cf.get_opt("DEBUG-ENABLE-TAG-" + _tag):
-		prep += " [%s]: " % _tag
-	else:
-		prep += ": "
+	#en_tag = VDOM_CONFIG_1["DEBUG-ENABLE-TAGS"]
+	#if "1" == en_tag and "" != tag and "1" == cf.get_opt("DEBUG-ENABLE-TAG-" + _tag):
+	#	prep += " [%s]: " % _tag
+	#else:
+	#	prep += ": "
 	s = ("\n" + prep).join(data.split("\n"))
 	sys.stderr.write(prep + s + "\n")
 	send_to_log(prep + s + "\n")
