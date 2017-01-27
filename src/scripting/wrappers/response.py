@@ -90,4 +90,8 @@ class VDOM_response(object):
 	def terminate(self):
 		managers.engine.terminate()
 		
+	def send_htmlcode(code=200):
+		managers.request_manager.current.send_htmlcode(code)
+		managers.engine.terminate()
+		
 		

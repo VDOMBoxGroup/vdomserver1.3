@@ -25,7 +25,7 @@ def run(request):
 					#return
 			#finally:
 				#sem.unlock()			
-	appid = args.get("appid")[0] if args.get("appid") else ""
+	appid = args.get("appid")[0] if args.get("appid") else request.app_id()
 	container = args.get("objid")[0] if args.get("objid") else ""
 	action =args.get("action_name")[0] if args.get("action_name") else ""
 	xml_param = args.get("xml_param")[0] if args.get("xml_param") else ""
@@ -39,7 +39,10 @@ def run(request):
 			if not app:
 				raise Exception("Invalid params")
 			request.set_application_id(appid)
-			obj = app.search_object(container)
+			if container.lower() == 'api':
+				obj = app.get_objects['api']
+			else:
+				obj = app.search_object(container)
 			if not obj or obj.name.lower() != "api":
 				raise Exception("Invalid params")
 			else:

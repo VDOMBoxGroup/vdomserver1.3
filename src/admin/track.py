@@ -143,9 +143,9 @@ function MM_swapImage() { //v3.0
 	  <td class="Texte"><input type=checkbox name="enable_page_debug" value="1" %s>Enable debug in browser</input></td>
         </tr>
 	<tr><td>
-#<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
-#</td></tr></table></form></td>""" % s)
 
+</td></tr></table></form></td>""" % s)
+##<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
 	#tags = managers.storage.read_object("DEBUG-TAGS")
 	#if not tags:
 		#tags = []
