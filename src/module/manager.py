@@ -48,8 +48,8 @@ class VDOM_module_manager(object):
 				debug(_("Module manager: resource module error: %s") % str(e))
 				return (404, None)
 
-		if "127.0.0.1" != request_object.handler().client_address[0]:
-			debug("Request type: " + request_type)
+			
+		
 		
 		
 		url_parts= filter(lambda x: "" != x, script_name.split("/"))
@@ -92,7 +92,9 @@ class VDOM_module_manager(object):
 	
 		request_type = url_parts[0].rpartition(".")[2] if '.' in url_parts[0] else 'vdom'
 		request_object.request_type = request_type			
-
+		#if "127.0.0.1" != request_object.handler().client_address[0]:
+		#	debug("Request type: " + request_type)
+		
 		# this acts as Communication Dispatcher
 		if "vdom" == request_type:	# VDOM container request
 			# first chek if application is OK

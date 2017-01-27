@@ -73,8 +73,8 @@ class VDOM_dispatcher:
 				raise Exception("Container id:%s not found"%object_id)
 			request.container_id = object_id
 			managers.engine.execute(app, obj, None, func_name, True)
-			ret = request.result
-			request.result = None
+			ret = request.wholeAnswer
+			request.wholeAnswer = None
 			request.session().remove("response")
 			return ret or ""
 		except Exception, e:

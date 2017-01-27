@@ -3,7 +3,10 @@ import types, numbers, os, gc, resource, traceback
 from utils.threads import VDOM_thread, VDOM_daemon
 from utils.tracing import normalize_source_path, get_threads_trace
 from ..auxiliary import search_thread, search_object, get_type_name, get_thread_traceback, OptionError
+from xml.sax.saxutils import escape
 
+#def encode_xml(input):
+#	input.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&apos;")
 
 def state(options):
 	if "thread" in options:
@@ -17,13 +20,13 @@ def state(options):
 			yield "<reply>"
 			yield "<threads>"
 			yield "<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">"% \
-				(thread.name.encode("xml"), thread.ident,
+				(escape(thread.name), thread.ident,
 				"yes" if thread.daemon else "no",
 				"yes" if isinstance(thread, (VDOM_thread, VDOM_daemon)) else "no")
 			yield "<stack>"
 			for path, line, name, statement in trace_back:
 				yield "<frame name=\"%s\" path=\"%s\" line=\"%d\"/>"% \
-					(name.encode("xml"), normalize_source_path(path).encode("xml"), line)
+					(escape(name), escape(normalize_source_path(path)), line)
 			yield "</stack>"
 			yield "</thread>"
 			yield "</threads>"
@@ -68,7 +71,7 @@ def state(options):
 		yield "<threads>"
 		for thread, smart, stack in get_threads_trace():
 			yield "<thread id=\"%d\" name=\"%s\"%s/>"% \
-				(thread.ident, thread.name.encode("xml"), "" if thread.is_alive() else " alive=\"no\"")
+				(thread.ident, escape(thread.name), "" if thread.is_alive() else " alive=\"no\"")
 		yield "</threads>"
 		yield "<garbagecollector>"
 		yield "<objects>%d</objects>"%len(gc.get_objects())
