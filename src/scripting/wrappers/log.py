@@ -26,32 +26,32 @@ class VDOM_log(object):
 
 	def write(self, message, *arguments, **keywords):
 		message=self._format("", message, *arguments, **keywords)
-		print message.encode("ascii", "replace"),
+		print message.encode("ascii", "backslashreplace"),
 		if self._file is None:
 			self._open()
-		self._file.write(message)
+		self._file.write(message.encode("utf8"))
 		self._file.flush()
 
 	def debug(self, message, *arguments, **keywords):
 		message=self._format("debug", message, *arguments, **keywords)
-		print message.encode("ascii", "replace"),
+		print message.encode("ascii", "backslashreplace"),
 		if self._file is None:
 			self._open()
-		self._file.write(message)
+		self._file.write(message.encode("utf8"))
 		self._file.flush()
 
 	def warning(self, message, *arguments, **keywords):
 		message=self._format("warning", message, *arguments, **keywords)
-		print message.encode("ascii", "replace"),
+		print message.encode("ascii", "backslashreplace"),
 		if self._file is None:
 			self._open()
-		self._file.write(message)
+		self._file.write(message.encode("utf8"))
 		self._file.flush()
 
 	def error(self, message, *arguments, **keywords):
 		message=self._format("error", message, *arguments, **keywords)
-		print message.encode("ascii", "replace"),
+		print message.encode("ascii", "backslashreplace"),
 		if self._file is None:
 			self._open()
-		self._file.write(message)
+		self._file.write(message.encode("utf8"))
 		self._file.flush()
