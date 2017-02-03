@@ -2,7 +2,7 @@ import re, md5
 import threading
 
 import SOAPpy
-from scripting.soap.soaputils import VDOM_session_protector
+from soap.soaputils import VDOM_session_protector
 from utils.exception import VDOMServiceCallError
 
 
