@@ -1,7 +1,12 @@
-import SOAPpy, md5, re, sys
-from SOAPpy import WSDL
-from soap.soaputils import VDOM_session_protector
+import re, md5
+import threading
+
+import SOAPpy
+from scripting.soap.soaputils import VDOM_session_protector
 from utils.exception import VDOMServiceCallError
+
+
+__version__ = '0.1.2'
 
 
 session_id_re = re.compile("\<SessionId\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionId\>")
@@ -10,35 +15,72 @@ hash_string_re = re.compile("\<HashString\>\<\!\[CDATA\[(\S+)\]\]\>\<\/HashStrin
 key_re = re.compile("\<Key\>(\S+)_\d+\<\/Key\>")
 
 
-class VDOMService:
 
+class VDOMServiceSingleThread(object):
 	def __init__(self, url, login, md5hexpass, application_id):
-		self._url 				= url
-		self._login 			= login
-		self._md5hexpass 		= md5hexpass
-		self._application_id 	= application_id
+		self._url = url
+		self._login = login
+		self._md5hexpass = md5hexpass
+		self._application_id = application_id
 
-		self._request_num 		= 0
-		self._skey 				= None
-		self._sid 				= None
-		self._skey 				= None
+		self._request_num = 0
+		self._skey = None
+		self._sid = None
+		self._skey = None
 
-		#self._server 	= SOAPpy.SOAPProxy("https://%s:443/SOAP"%url,namespace="http://services.vdom.net/VDOMServices")
-		self._server 	= SOAPpy.SOAPProxy("http://%s/SOAP"%url,namespace="http://services.vdom.net/VDOMServices")
+		self._server = self.__create_soap_proxy(url)
 		self._protector = None
 
 
+	def __try_connect(self, url, exception=False):
+		try:
+			service = SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
+			service.keep_alive()
 
-	@classmethod
-	def connect(self, url, login, md5_hexpass, application_id):
-		service = VDOMService(url, login, md5_hexpass, application_id)
-		return service.open_session()
+			self._url = url
+			return service
+
+		except:
+			if exception: raise
+
+		return None
 
 
+	def __create_soap_proxy(self, url):
+		def define_best_ssl_context(url, exception=False):
+			service = self.__try_connect(url)
+			if service is not None: return service
+
+			try:
+				import ssl
+				ssl._create_default_https_context = ssl._create_unverified_context
+				return self.__try_connect(url, exception=True)
+
+			except:
+				if exception: raise
+
+			return None
+
+		if url.lower().startswith('https://'):
+			return define_best_ssl_context(url, exception=True)
+
+		if '://' in url:
+			return self.__try_connect(url, exception=True)
+
+		service = define_best_ssl_context('https://' + url)
+		if service is not None: return service
+
+		return self.__try_connect('http://' + url, exception=True)
+
+
+	def __request_skey(self):
+		return '{0}_{1:d}'.format(self._skey, self._request_num)
 
 
 	def open_session(self):
 		login_result = self._server.open_session(self._login, self._md5hexpass)
+
+		self._request_num = 0
 
 		self._sid = str(session_id_re.search(login_result, 1).group(1))
 		skey = str(session_key_re.search(login_result, 1).group(1))
@@ -50,47 +92,82 @@ class VDOMService:
 		return self
 
 
-
 	def call(self, container_id, action_name, xml_data):
 		xml_param = "<Arguments><CallType>server_action</CallType></Arguments>"
-		ret = self._server.remote_call(self._sid,"%s_%i"%(self._skey,self._request_num),self._application_id, container_id,action_name, xml_param, xml_data)
-		try:
-			server_skey = str(key_re.search(ret, 1).group(1))
-		except:
-			server_skey = None
-			#raise VDOMServiceCallError(str(ret))
+		ret = None
 
-		#assert (server_skey == self._skey)
+		try:
+			ret = self._server.remote_call(self._sid, self.__request_skey(), self._application_id, container_id, action_name, xml_param, xml_data)
+
+		except Exception, ex:
+			if ret:
+				raise VDOMServiceCallError( str(ret) )
+			else:
+				raise VDOMServiceCallError( ex.message  )
 
 		self._skey = self._protector.next_session_key(self._skey)
-		self._request_num+=1
-		if server_skey:
-			return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
-		else:
-			return ret
+		self._request_num += 1
 
-	def remote(self, method, params = [], no_app_id = False):
-		if params == None:
-			params = []
+		return key_re.sub('', ret)
+
+
+	def remote(self, method_name, params=None, no_app_id=False):
+		params = params or []
+
 		if not no_app_id:
-			params.insert(0,self._application_id)
-		ret = getattr(self._server,method)(self._sid,"%s_%i"%(self._skey,self._request_num), *params)
-	
-		try:
-			server_skey = str(key_re.search(ret, 1).group(1))
-		except:
-			server_skey = None
-			#raise VDOMServiceCallError(str(ret))
+			params.insert(0, self._application_id)
 
-		#assert (server_skey == self._skey)
+		ret = None
+		try:
+			soap_method = getattr(self._server, method_name)
+			ret = soap_method(self._sid, self.__request_skey(), *params)
+
+		except Exception, ex:
+			if ret:
+				raise VDOMServiceCallError( str(ret) )
+			else:
+				raise VDOMServiceCallError( ex.message  )
 
 		self._skey = self._protector.next_session_key(self._skey)
 		self._request_num+=1
-		if server_skey:
-			return ret.replace("\n<Key>%s_%s</Key>" % (server_skey, str(self._request_num-1)), "")
-		else:
-			return ret
 
-VDOM_service = VDOMService
+		return key_re.sub('', ret)
 
 
+	@classmethod
+	def connect(self, url, login, md5_hexpass, application_id):
+		service = VDOMService(url, login, md5_hexpass, application_id)
+		return service.open_session()
+
+
+
+
+
+
+
+class VDOMServiceMultiThread(VDOMServiceSingleThread):
+	def __init__(self, url, login, md5hexpass, application_id):
+		VDOMServiceSingleThread.__init__(self, url, login, md5hexpass, application_id)
+		self.__thread = threading.local()
+
+
+	def api(self):
+		if getattr(self.__thread, 'api', None) is None:
+			self.__thread.api = VDOMServiceSingleThread(self._url, self._login, self._md5hexpass, self._application_id)
+			self.__thread.api.open_session()
+		return self.__thread.api
+
+
+	def open_session( self ):
+		self.api().open_session()
+		return self
+
+
+	def call( self, container_id, action_name, xml_data ):
+		return self.api().call(container_id, action_name, xml_data)
+
+
+
+
+VDOMService = VDOMServiceMultiThread
+VDOM_service = VDOMServiceMultiThread
