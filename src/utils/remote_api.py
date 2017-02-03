@@ -135,8 +135,8 @@ class VDOMServiceSingleThread(object):
 
 
 	@classmethod
-	def connect(self, url, login, md5_hexpass, application_id):
-		service = VDOMService(url, login, md5_hexpass, application_id)
+	def connect(cls, url, login, md5_hexpass, application_id):
+		service = cls(url, login, md5_hexpass, application_id)
 		return service.open_session()
 
 
@@ -165,6 +165,10 @@ class VDOMServiceMultiThread(VDOMServiceSingleThread):
 
 	def call( self, container_id, action_name, xml_data ):
 		return self.api().call(container_id, action_name, xml_data)
+
+	
+	def remote(self, method_name, params=None, no_app_id=False):
+		return self.api().remote(method_name, params, no_app_id)
 
 
 
