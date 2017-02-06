@@ -111,6 +111,7 @@ class VDOM_application(VDOM_parser):
 		self.sync()
 		del self.o_tmp
 
+	def on_start(self):
 		on_start=self.global_actions[APPLICATION_SECTION][APPLICATION_SECTION+ON_START]
 		if on_start.code:
 			#threading.currentThread().application=self.id
