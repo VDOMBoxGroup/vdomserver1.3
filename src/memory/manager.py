@@ -117,6 +117,8 @@ class VDOM_xml_manager(object):
 				traceback.print_exc(file=debugfile)
 				if VDOM_CONFIG["AUTO-REMOVE-INCORRECT-APPLICATIONS"]:
 					shutil.rmtree(os.path.split(fname)[0], True)		
+			else:
+				app_object.on_start()					
 					
 	def load_application_by_guid(self, guid):
 		if guid in self.__applications:
@@ -137,6 +139,8 @@ class VDOM_xml_manager(object):
 			traceback.print_exc(file=debugfile)
 			if VDOM_CONFIG["AUTO-REMOVE-INCORRECT-APPLICATIONS"]:
 				shutil.rmtree(os.path.split(apppath)[0], True)		
+		else:
+			app_object.on_start()
 		finally:
 			self.__load_app_sem.unlock()			
 	def work(self):
@@ -373,7 +377,7 @@ class VDOM_xml_manager(object):
 					return (str(app_object.id), "This application could not be installed on server version %s.%s. Please contact your dealer for support."%tuple(VDOM_server_version.split('.')[:2]))
 				if VDOM_server_version.split('.')[2] < app_version.split('.')[2]:
 					return (str(app_object.id), "Server version (%s) is unsuitable for this application (%s)" % (VDOM_server_version, app_version))
-			
+		
 		except Exception, e:
 			debug(_("Error loading application from path \'") + path + "\': " + str(e))
 			traceback.print_exc(file=debugfile)
@@ -382,7 +386,8 @@ class VDOM_xml_manager(object):
 			if hasattr(p, "id") and p.id:
 				managers.resource_manager.invalidate_resources(p.id)
 			return (None, str(e))
-		
+		else:
+			app_object.on_start()		
 		return (str(app_object.id), "")
 
 	def uninstall_application(self, appid, remove_db = True, remove_zero_res = True, remove_storage = True, remove_ldap = True):
