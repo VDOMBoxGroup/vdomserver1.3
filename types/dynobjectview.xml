@@ -170,6 +170,30 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>actions</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <Description>#Lang(233)</Description>
+      <DefaultValue></DefaultValue>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <Visible>1</Visible>
+      <InterfaceType>3</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <ColorGroup>2</ColorGroup>
+    </Attribute>
+    <Attribute>
+      <Name>handler</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <Description>#Lang(234)</Description>
+      <DefaultValue></DefaultValue>
+      <RegularExpressionValidation>^[A-Za-z][_0-1A-Za-z]*$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
+      <Visible>1</Visible>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <ColorGroup>2</ColorGroup>
+    </Attribute>
+    <Attribute>
       <Name>bindings</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
@@ -353,6 +377,8 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="124">Dynamic Loading</Sentence>
       <Sentence ID="125">Insert method</Sentence>
       <Sentence ID="126">Active item</Sentence>
+      <Sentence ID="133">Actions</Sentence>
+      <Sentence ID="134">Handler</Sentence>
       <Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="202">Visibility of the object.</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
@@ -384,6 +410,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="224">Dynamic Loading</Sentence>
       <Sentence ID="225">Insert Method</Sentence>
       <Sentence ID="226">Active item</Sentence>
+      <Sentence ID="233">Actions</Sentence>
+      <Sentence ID="234">Custom dynamic server actions handler</Sentence>
       <Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -408,6 +436,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="324">Invalid value</Sentence>
       <Sentence ID="325">Invalid value</Sentence>
       <Sentence ID="326">Invalid value</Sentence>
+      <Sentence ID="333">Invalid value</Sentence>
+      <Sentence ID="334">Incorrect value</Sentence>
       <Sentence ID="401">Invisible</Sentence>
       <Sentence ID="402">Visible</Sentence>
       <Sentence ID="403">Vertical</Sentence>
