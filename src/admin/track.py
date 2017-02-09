@@ -166,9 +166,9 @@ function MM_swapImage() { //v3.0
         #</tr>
 #""" % (key, key))
 
-	#request.write("""<tr><td>
-#<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
-#</td></tr></table></form></td>""")	
+	request.write("""<tr><td>
+<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
+</td></tr></table></form></td>""")	
 
 	request.write("""</tr>
  </table>
