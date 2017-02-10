@@ -63,9 +63,9 @@ class VDOM_module_manager(object):
 		
 		if 2 == len(url_parts) and guid_regex.search(url_parts[0]) and guid_regex.search(url_parts[1]): #http://host/app_guid/page_guid
 			try:	# preview
-				a1 = managers.xml_manager.get_application(parts1[0])
+				a1 = managers.xml_manager.get_application(url_parts[0])
 				request_object.set_application_id(a1.id)
-				o1 = a1.search_object(parts1[1])
+				o1 = a1.search_object(url_parts[1])
 				if o1 and 3 == o1.type.container:
 					request_object.container_id = o1.id
 					request_object.request_type = "vdom"
