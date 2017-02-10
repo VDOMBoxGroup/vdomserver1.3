@@ -15,66 +15,31 @@ class VDOM_resource_manager(object):
 		self.save_index = True
 		#NEW VERSION:
 		self.__main_index = {}
+		self.__name_index = {}
 
 	def restore(self):	
 		"""Restoring resources from last session.(After reboot or power off)"""
-		# from src!.storage import storage
 		self.__old_index = managers.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
 
-		# already_exist = storage.make_resources_index()
 		already_exist = managers.storage.make_resources_index() # ?????
 
 		if self.__old_index and not already_exist:
 			#Transfering index to new format
 			for resource in self.__old_index:
 				self.__main_index[resource] = VDOM_resource_descriptor.convert(self.__old_index[resource])
+				self.__name_index[self.__old_index[resource].name] = resource
 		else:
-			#self.__main_index = {res_id:VDOM_resource_descriptor(owner_id, res_id) for (owner_id, res_id) in storage.list_resource_index()}
-			self.__main_index = {res_id:VDOM_resource_descriptor(owner_id, res_id) for (owner_id, res_id) in managers.storage.list_resource_index()} # ?????
+			self.__main_index = {}
+			self.__name_index = {}
+			for (owner_id, res_id, name) in managers.storage.list_resource_index():
+				self.__main_index[res_id] = VDOM_resource_descriptor(owner_id, res_id) 
+				self.__name_index[name.split(".")[0].lower()] = res_id
+				
 		del self.__old_index
 		#TODO: check for not existing or temporary resources
 		if not self.__main_index:
 			self.remove_resources()
-		
-		#managers.storage.make_resources_index()
-		#resource_data = managers.storage.__execute_sql("select res_id, app_id, filename from Resource_index",())
-		#for row in resource_data:
-			#app_id = row[1]
-			#if app_id not in self.__main_index:
-				#self.__main_index[app_id] = {}
-			#self.__main_index[app_id] = VDOM_resource_descriptor(row[0],row[1],row[2])
 			
-		#self.__index = managers.storage.read_object(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"])
-		#if self.__index:
-			#self.__label_index = {}
-			#remove_list = []
-			#object_owner_list = []
-			#is_dirty_index = False
-			#for id in self.__index: #check for not existing or temporary resources
-				#resource = self.__index[id]
-				#if resource.label:
-					#remove_list.append(id)
-					#for object_id in resource.dependences.keys():
-						#object_owner_list.append(object_id)
-					#resource.decrease(None,True)
-					#del(resource)
-				#elif not managers.file_manager.exists(file_access.resource,resource.application_id,None, resource.filename):
-					#remove_list.append(id)
-				#else:
-					#resource.dependences = {}
-					##resource.use_counting = False
-			#for id in remove_list:
-				#self.__index.pop(id)
-				#is_dirty_index = True
-				
-			#for object_id in object_owner_list:
-				#managers.file_manager.clear(file_access.resource,None,object_id)
-			#if is_dirty_index and self.save_index:
-				#managers.storage.write_object_async(VDOM_CONFIG["RESOURCE-MANAGER-INDEX-STORAGE-RECORD"],self.__index)
-		#else:
-		
-			#self.remove_resources()
-	
 	def collect_unused(self):
 		"""Removing unused resources with no dependences"""
 		pass
@@ -100,16 +65,8 @@ class VDOM_resource_manager(object):
 			return False
 		if not resource.filename:
 			return False
-		
-		#if not "id" in attributes:
-			#return False
-		#if not attributes["id"] in self.__index:
-			#return False
-		#resource = self.__index[attributes["id"]]
-		#if resource.application_id != owner_id and owner_id not in resource.dependences:
-			#return False
-		#if not resource.filename:
-			#return False
+		if not managers.file_manager.exists(file_access.resource, owner_id ,None, resource.filename):
+			return False
 		#if crc != managers.file_manager.compute_crc(file_access.resource,resource.application_id,resource.object_id, resource.filename):
 			#return False
 		return True
@@ -118,6 +75,10 @@ class VDOM_resource_manager(object):
 		"new version of Add resource"
 		if attributes.get("id") in self.__main_index:
 			#We have such resource already
+			resource = self.__main_index[attributes.get("id")]
+			resource.load_copy()
+			if not managers.file_manager.exists(file_access.resource, owner_id ,None, resource.filename):
+				managers.file_manager.write(file_access.resource,resource.application_id,object_id, resource.filename, bin_data,None, "save_async" in attributes)
 			return attributes.get("id")
 		else:
 			assert(isinstance(attributes, dict))
@@ -185,25 +146,19 @@ class VDOM_resource_manager(object):
 
 	def get_resource(self, owner_id, res_id):
 		"""Getting resource object"""
-		res = self.__main_index.get(res_id)
+		res = self.__main_index.get(res_id) or self.__main_index.get(self.__name_index.get(res_id.lower()))
 		return res.load_copy() if res else None
 	
 	def get_resource_old(self, owner_id, res_id):
 		"""Getting resource object"""
 		return self.__index.get(res_id)
-		#if res_id in self.__index:
-		#	resource = self.__index[res_id]
-		#	#if resource.application_id == owner_id or resource.object_id == owner_id:
-		#	return resource
-		#return None
+
 	
 	def get_resource_by_label(self, object_id, label):
 		"""Getting resource object"""
 		return self.__label_index.get((object_id,label))
 
-		#if (object_id,label) in self.__label_index:
-		#	return self.__label_index[(object_id,label)]
-		#return None
+
 
 	def list_resources(self, owner_id):
 		"""listing of all resources of application"""
@@ -254,7 +209,6 @@ class VDOM_resource_manager(object):
 		self.__label_index = {}
 		managers.file_manager.clear(file_access.resource,None, None)
 
-		# storage.clear_resources_index()
 		managers.storage.clear_resources_index() # ?????
 		
 		#managers.file_manager.clear(file_access.resource,None, None)

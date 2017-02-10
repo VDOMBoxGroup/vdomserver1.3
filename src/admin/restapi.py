@@ -26,7 +26,7 @@ def run(request):
 			#finally:
 				#sem.unlock()			
 	appid = args.get("appid")[0] if args.get("appid") else request.app_id()
-	container = args.get("objid")[0] if args.get("objid") else ""
+	container = args.get("objid")[0] if args.get("objid") else "API"
 	action =args.get("action_name")[0] if args.get("action_name") else ""
 	xml_param = args.get("xml_param")[0] if args.get("xml_param") else ""
 	xml_data = args.get("xml_data")[0] if args.get("xml_data") else ""
