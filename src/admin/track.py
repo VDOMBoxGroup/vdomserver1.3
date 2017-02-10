@@ -143,9 +143,9 @@ function MM_swapImage() { //v3.0
 	  <td class="Texte"><input type=checkbox name="enable_page_debug" value="1" %s>Enable debug in browser</input></td>
         </tr>
 	<tr><td>
-
+	<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
 </td></tr></table></form></td>""" % s)
-##<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
+
 	#tags = managers.storage.read_object("DEBUG-TAGS")
 	#if not tags:
 		#tags = []
@@ -156,19 +156,18 @@ function MM_swapImage() { //v3.0
 			#if k in tags:
 				#tags.remove(k)
 			#request.write("""<tr>
-	  #<td><input type=checkbox name="enable_tag_%s" value="1" checked>%s</input></td>
-        #</tr>
+		#<td><input type=checkbox name="enable_tag_%s" value="1" checked>%s</input></td>
+	#</tr>
 #""" % (k, k))
 
 	#for key in tags:
 		#request.write("""<tr>
-	  #<td><input type=checkbox name="enable_tag_%s" value="1">%s</input></td>
-        #</tr>
+		#<td><input type=checkbox name="enable_tag_%s" value="1">%s</input></td>
+	#</tr>
 #""" % (key, key))
-
-	request.write("""<tr><td>
-<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
-</td></tr></table></form></td>""")	
+#	request.write("""<tr><td>
+#<input name="btn_tags" type=submit value="OK" style="font-family:Arial; font-size:x-small; border-width:1px; border-color:black;">
+#</td></tr></table></form></td>""")	
 
 	request.write("""</tr>
  </table>

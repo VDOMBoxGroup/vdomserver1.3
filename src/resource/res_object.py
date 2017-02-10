@@ -5,10 +5,11 @@ from utils.exception import VDOM_exception
 import utils.uuid
 
 class VDOM_resource_descriptor(object):
-	def __init__(self,owner_id, res_id=None):
+	def __init__(self,owner_id, res_id=None, name=None):
 		"""constructor"""
 		self.application_id = owner_id
 		self.id = res_id or str(utils.uuid.uuid4())
+		self.name = name
 		self.__loaded = False	
 	
 	@classmethod
