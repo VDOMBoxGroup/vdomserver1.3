@@ -97,6 +97,7 @@ class VDOM_resource_manager(object):
 			for key in attributes:
 				if key == "name":
 					setattr(res_descriptor,"name",unicode(attributes["name"]).encode('ascii','ignore'))
+					self.__name_index[res_descriptor.name] = res_descriptor.id
 				elif key == "save_async":
 					write_async = True
 				elif key !="id":
@@ -105,7 +106,7 @@ class VDOM_resource_manager(object):
 				res_descriptor.res_type = "permanent"
 			if "res_format" not in attributes:
 				res_descriptor.res_format = ""
-			
+				
 			managers.file_manager.write(file_access.resource,res_descriptor.application_id,object_id, res_descriptor.filename, bin_data,None, write_async)
 			if "label" not in attributes:
 				res_descriptor.save_record()			
@@ -190,6 +191,8 @@ class VDOM_resource_manager(object):
 				if getattr(resource, "object_id",None):
 					self.__label_index.pop((resource.object_id,resource.label),None) #TODO: fix labels resources
 				self.__main_index.pop(res_id)
+				if resource.name in self.__name_index:
+					self.__name_index.pop(resource.name)
 			
 		#if id in self.__index:
 			#resource = self.__index[id]
