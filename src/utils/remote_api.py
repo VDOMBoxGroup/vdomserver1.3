@@ -1,12 +1,13 @@
 import re, md5
 import threading
+import socket
 
 import SOAPpy
 from soap.soaputils import VDOM_session_protector
 from utils.exception import VDOMServiceCallError
 
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 
 session_id_re = re.compile("\<SessionId\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionId\>")
@@ -34,6 +35,10 @@ class VDOMServiceSingleThread(object):
 
 	def __try_connect(self, url, exception=False):
 		try:
+			# need to update socket.defaulttimeout because SOAPpy is ignoring "timeout" "parameter for HTTPS connections
+			socket_timeout = socket.getdefaulttimeout()
+			socket.setdefaulttimeout(1)
+
 			service = SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
 			service.keep_alive()
 
@@ -42,6 +47,9 @@ class VDOMServiceSingleThread(object):
 
 		except:
 			if exception: raise
+
+		finally:
+			socket.setdefaulttimeout(socket_timeout)
 
 		return None
 
@@ -166,7 +174,7 @@ class VDOMServiceMultiThread(VDOMServiceSingleThread):
 	def call( self, container_id, action_name, xml_data ):
 		return self.api().call(container_id, action_name, xml_data)
 
-	
+
 	def remote(self, method_name, params=None, no_app_id=False):
 		return self.api().remote(method_name, params, no_app_id)
 
