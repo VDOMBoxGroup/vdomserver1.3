@@ -27,7 +27,7 @@ class VDOM_resource_manager(object):
 			#Transfering index to new format
 			for resource in self.__old_index:
 				self.__main_index[resource] = VDOM_resource_descriptor.convert(self.__old_index[resource])
-				self.__name_index[self.__old_index[resource].name] = resource
+				self.__name_index[self.__old_index[resource].name.lower()] = resource
 		else:
 			self.__main_index = {}
 			self.__name_index = {}
@@ -97,7 +97,7 @@ class VDOM_resource_manager(object):
 			for key in attributes:
 				if key == "name":
 					setattr(res_descriptor,"name",unicode(attributes["name"]).encode('ascii','ignore'))
-					self.__name_index[res_descriptor.name] = res_descriptor.id
+					self.__name_index[res_descriptor.name.lower()] = res_descriptor.id
 				elif key == "save_async":
 					write_async = True
 				elif key !="id":
@@ -192,7 +192,7 @@ class VDOM_resource_manager(object):
 					self.__label_index.pop((resource.object_id,resource.label),None) #TODO: fix labels resources
 				self.__main_index.pop(res_id)
 				if resource.name in self.__name_index:
-					self.__name_index.pop(resource.name)
+					self.__name_index.pop(resource.name.lower())
 			
 		#if id in self.__index:
 			#resource = self.__index[id]
