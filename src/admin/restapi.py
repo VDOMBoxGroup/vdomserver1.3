@@ -40,7 +40,7 @@ def run(request):
 				raise Exception("Invalid params")
 			request.set_application_id(appid)
 			if container.lower() == 'api':
-				obj = app.get_objects('api')
+				obj = ([o for o in app.objects_list if o.name.lower() == 'api'] or [None])[0]
 			else:
 				obj = app.search_object(container)
 			if not obj or obj.name.lower() != "api":
