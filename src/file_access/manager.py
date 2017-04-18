@@ -261,7 +261,12 @@ class VDOM_file_manager(object):
 	def open_tmp_file(self, mode="w+b", prefix=""):
 		from tempfile import TemporaryFile
 		return TemporaryFile(mode=mode, prefix=prefix, dir=os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]))
-		
+
+	def open_named_tmp_file(self, mode="w+b", buffering=-1, suffix="", prefix="", delete=True):
+		from tempfile import NamedTemporaryFile
+		return NamedTemporaryFile(mode=mode, bufsize=buffering, suffix=suffix, prefix=prefix,
+			dir=os.path.abspath(VDOM_CONFIG["TEMP-DIRECTORY"]), delete=delete)
+
 	def create_tmp_dir(self,prefix=""):
 		"""Create directory in temp and give full path"""
 		from tempfile import mkdtemp
