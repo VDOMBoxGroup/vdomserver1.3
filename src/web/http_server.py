@@ -206,7 +206,10 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 			if self.__current_connections > 0:
 				self.__current_connections -= 1
 				if True or "127.0.0.1" != client_address[0]:
-					debug("Decrease: %d (exception, from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
+					if do_handle:
+						debug("Decrease: %d (exception %s, from %s:%d)" % (self.__current_connections, e,  client_address[0], client_address[1]))
+					else:
+						debug("Decrease: %d (socket error, from %s:%d)" % (self.__current_connections,  client_address[0], client_address[1]))
 					#import gc
 					#debug("\nGarbage: "+str(len(gc.garbage))+"\n", "vdomsvr")
 					#if len(gc.garbage) > 0:
