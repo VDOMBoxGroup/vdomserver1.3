@@ -77,7 +77,7 @@ class VDOM_resource_manager(object):
 			#We have such resource already
 			resource = self.__main_index[attributes.get("id")]
 			resource.load_copy()
-			if not managers.file_manager.exists(file_access.resource, owner_id ,None, resource.filename):
+			if bin_data and not managers.file_manager.exists(file_access.resource, owner_id ,None, resource.filename):
 				managers.file_manager.write(file_access.resource,resource.application_id,object_id, resource.filename, bin_data,None, "save_async" in attributes)
 			return attributes.get("id")
 		else:
