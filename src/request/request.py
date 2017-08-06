@@ -41,13 +41,18 @@ class VDOM_request:
 		self.__cookies = BaseCookie(headers.get("cookie"))
 		self.__response_cookies = BaseCookie()
 		self.__environment = VDOM_environment(headers, handler)
+		
 		self.files = {}
+		self.raw_postdata = None
+
 		args = {}
 		#parse request data depenging on the request method
 		if arguments["method"] == "post":
 			try:
 				if self.environment().environment()["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
 					storage = MFSt(handler.rfile, headers, "", self.__environment.environment(), True)
+					self.raw_postdata = storage.file
+
 					for key in storage.keys():
 						#Access to file name after uploading
 						filename = getattr(storage[key],"filename","")
