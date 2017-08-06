@@ -183,6 +183,7 @@ class VDOM_xml_manager(object):
 			obj.create(doc)
 		except Exception ,x:
 			e = x
+			traceback.print_exc(file=debugfile)
 		if e and not boot:
 			try:
 				self.uninstall_abnormal(obj)

@@ -125,7 +125,7 @@ class VDOM_module_manager(object):
 			obj = _a.search_object(container_id)
 			if not obj:
 				for _i in _a.objects:
-					if _a.objects[_i].name == container_id:
+					if _a.objects[_i].name == container_id.lower():
 						obj = _a.objects[_i]
 						break
 			if not obj:
