@@ -616,7 +616,7 @@ class VDOM_application(VDOM_parser):
 			if 3 != type_obj.container:
 				raise VDOM_exception_param(_("Object '%s' can't be top-level container" % type_obj.name))
 		else:
-			if parent.type.name not in type_obj.containers:
+			if parent.type.name not in type_obj.containers and parent.type.render_type not in type_obj.containers:
 				debug("!!!!!!!!!!!!!!!!Parent = %s" % parent.id)
 				raise VDOM_exception_param(_("Object '%s' can't be created inside '%s'" % (type_obj.name, parent.type.name)))
 
