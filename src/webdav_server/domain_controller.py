@@ -63,7 +63,7 @@ class VDOM_domain_controller(object):
 			return None
 		obj_name = davProvider.sharePath.strip("/")
 		if obj_name == "":
-			return None
+			return ""
 		obj = self._application.search_objects_by_name(obj_name)[0]
 			
 		return obj.id
