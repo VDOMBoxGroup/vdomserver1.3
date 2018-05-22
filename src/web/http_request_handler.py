@@ -196,6 +196,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 						
 			if self.command not in ("GET", "POST"):
 				mname = 'do_WebDAV'
+				if self.wsgidav_app is None:
+					managers.webdav_manager.load_webdav(app_id)
 			
 			if not hasattr(self, mname):
 				self.send_error(501, "Unsupported method (%r)" % self.command)
@@ -227,6 +229,7 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		application = self.wsgidav_app
 		if not application:
 			self.send_error(404, self.responses[404][0])
+			return
 		elif environ["REQUEST_METHOD"] == "OPTIONS" and environ["PATH_INFO"] in ("/", "*"):
 			import wsgidav.util as util
 			self.start_response("200 OK", [("Content-Type", "text/html"),

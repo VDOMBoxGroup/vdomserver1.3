@@ -1,6 +1,7 @@
 import wsgidav.request_server
 from wsgidav.request_server import *
 import urllib
+from urlparse import urlparse
 _logger = wsgidav.request_server._logger
 
 class VDOM_webdav_request_server(RequestServer):

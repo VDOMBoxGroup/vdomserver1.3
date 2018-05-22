@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.4.6720</Version>
+    <Version>1.5.9200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -149,6 +149,10 @@ g3UXeoe3HMQAAAAASUVORK5CYII=]]></Resource>
 import managers
   
 class VDOM_webdavcontainer(VDOM_object):
+	def render(self, parent, contents=""):
+		managers.webdav_manager.load_webdav(application.id)
+		response.redirect("/"+self.name)
+		return ""
 	
 	def wysiwyg(self, parent, contents=""):
 		result="<container id=\"%s\" visible=\"%s\" hierarchy=\"%s\" >%s</container>"%(self.id, self.visible, self.hierarchy, contents)
